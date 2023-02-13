@@ -1,0 +1,58 @@
+No. ,Escuela,Grado,Programa,Código,Tipo,Duración (m),Créditos,Año inicio,# Materias,# Materias inglés,Acuerdo,Fecha,Última actualización
+1,Bellas Artes,Maestría,Maestría en Gestión de las Artes y Políticas Culturales,MGAP,Profesionalizante,24,81,2018,21,5,20194392,13/12/2019,2019
+2,Ciencias de la Salud,Especialidad,Especialidad en Neuropsicología,EN,Profesionalizante,12,,2022,12,0,20170989,10/08/2017,2017
+3,Ciencias de la Salud,Especialidad,Especialidad en Psicología Clínica y Salud,EPCS,Profesionalizante,12,,2022,12,0,20180037,11/01/2018,2017
+4,Ciencias de la Salud,Especialidad,Especialidad en Psicología Educativa,EPE,Profesionalizante,12,,2022,12,0,20200076,26/02/2020,2019
+5,Ciencias de la Salud,Especialidad,Especialidad en Psicología Organizacional,EPO,Profesionalizante,12,,2022,12,0,20170048,28/02/2017,2016
+6,Ciencias de la Salud,Especialidad,"Especialidad en Terapia de Heridas, Estomas y Quemaduras",ETHEQ,Profesionalizante,8,61.87,2008,4,1,20090196,28/07/2009,2009
+7,Ciencias de la Salud,Maestría,Maestría en Bioética,MBIO,Profesionalizante,24,,2014,33,0,20100494,16/04/2010,2010
+8,Ciencias de la Salud,Maestría,"Maestría en Terapia de Heridas, Estomas y Quemaduras",MTHEQ,Profesionalizante,10,78.74,2009,7,1,20090195,28/07/2009,2009
+9,Ciencias de la Salud,Doctorado,Doctorado en Bioética,DBIO,Investigación,24,,2019,24,0,20190919,25/04/2019,2019
+10,Comunicación,Especialidad,Especialidad en Publicidad y Creación de Contenidos,EPCC,Profesionalizante,9,45,2021,9,0,,,
+11,Comunicación,Especialidad,Especialidad en Relaciones Públicas y Reputación de Marca,ERPRM,Profesionalizante,9,45,2021,9,0,20090516,07/08/2009,2009
+12,Comunicación,Maestría,Maestría en Comunicación Institucional,MCOMI,Profesionalizante,18,75,1997,17,0,20200723,15/10/2020,2020
+13,Comunicación,Maestría,Maestría en Comunicación Política y Pública,MCPP,Profesionalizante,18,75,2019,17,1,20200724,15/10/2020,2020
+14,Comunicación,Maestría,Maestría en Comunicaciones de Marca,MCM,Profesionalizante,15,77,2021,16,0,,,
+15,Comunicación,Maestría,Maestría en Narrativa y Producción Audiovisual,MNPAU,Profesionalizante,18,75,2009,17,0,20200725,15/10/2020,2020
+16,Derecho,Especialidad,Especialidad en Derecho de Amparo,EDAMP,Profesionalizante,11,46.49,2003,16,0,2003028,24/01/2003,2002
+17,Derecho,Especialidad,Especialidad en Derecho de la Empresa,EDEMP,Profesionalizante,12,47.1,2002,13,0,2003031,24/01/2003,2007
+18,Derecho,Especialidad,Especialidad en Derecho Procesal Civil y Mercantil,EDPCM,Profesionalizante,11,46.95,2003,18,0,2003038,24/01/2003,2002
+19,Derecho,Maestría,Maestría en Ciencias Jurídicas,MCJUR,Investigación,12,75,2003,12,0,2006205,13/06/2006,2014
+20,Derecho,Maestría,Maestría en Derecho Administrativo,MDADM,Profesionalizante,24,77,2006,12,0,2006205,17/12/2007,2014
+21,Derecho,Maestría,Maestría en Derecho Constitucional y Derechos Humanos,MDCDH,Profesionalizante,24,77,2009,11,0,20081906,27/11/2008,2014
+22,Derecho,Maestría,Maestría en Derecho de la Empresa,MDEES,Profesionalizante,11,73,2004,7,0,20080170,09/06/2008,2014
+23,Derecho,Maestría,Maestría en Derecho Fiscal,MDERF,Profesionalizante,24,79,2002,20,0,974181,20/07/2016,2014
+24,Derecho,Maestría,Maestría en Derecho Laboral,MDLA,Profesionalizante,12,77,2020,17,1,20200077,24/01/2003,2019
+25,Derecho,Maestría,Maestría en Derecho Procesal Constitucional,MDEPC,Profesionalizante,24,63,2003,13,0,2003040,24/01/2003,2014
+26,Derecho,Maestría,Maestría en Instituciones de Derecho Financiero,MIDFS,Profesionalizante,12,78,2014,16,0,20140264,12/09/2014,2017
+27,Derecho,Doctorado,Doctorado en Derecho,DDER,Investigación,24,,1999,6,0,985162,17/08/1998,2012
+28,Empresariales,Maestría,Maestría en Administración de Proyectos,MAP,Profesionalizante,18,75,2020,15,2,20200718,15/10/2020,2020
+29,Empresariales,Maestría,Maestría en Dirección del Capital Humano,MDICH,Profesionalizante,18,75,2021,9,2,20090521,07/08/2009,2012
+30,Empresariales,Maestría,Maestría en Finanzas,MFIN,Profesionalizante,18,75,2020,16,2,20200719,15/10/2020,2020
+31,Empresariales,Maestría,Maestría en Mercadotecnia Estratégica,MME,Profesionalizante,18,75,2020,15,2,20200721,15/10/2020,2020
+32,Empresariales,Maestría,Maestría en Negocios Internacionales,MNI,Profesionalizante,18,75,2020,18,2,20200722,15/10/2020,2020
+33,Empresariales,Maestría,Maestría en Impuestos,MIMP,Profesionalizante,18,75,2020,16,0,20200720,15/10/2020,2020
+34,Empresariales,Maestría,Maestría Internacional en Finanzas,MIF,Directiva,12,75,2016,18,0,20192946,18/07/2019,2019
+35,Empresariales,Doctorado,Doctorado en Ciencias Empresariales,DCE,Investigación,48,153,2019,24,0,20181652,20/08/2018,2018
+36,ESDAI,Especialidad,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,EENAR,Profesionalizante,10,47,2010,7,0,20190915,24/04/2019,2019
+37,ESDAI,Especialidad,Especialidad en Gestión de Eventos,EGEVR,Profesionalizante,10,47,2010,9,0,20190292,04/03/2019,2019
+38,ESDAI,Maestría,Maestría en Dirección de Instituciones de Salud,MDISS,Profesionalizante,18,76,2019,14,0,20181922,24/10/2018,2018
+39,Filosofía,Maestría,Maestría en Filosofía Antigua,MFIAT,Investigación,24,84,2015,28,5,20140261,29/08/2014,2017
+40,Filosofía,Maestría,Maestría en Historia del Pensamiento,MHPS,Investigación,24,80,2017,12,0,20170784,13/07/2017,2017
+41,Filosofía,Doctorado,Doctorado en Historia del Pensamiento,DHISP,Investigación,24,80,1999,4,0,2005029,04/02/2000,2011
+42,Gobierno y Economía,Maestría,Maestría en Anticorrupción,MACS,Profesionalizante,15,75,2019,12,0,20181925,24/10/2018,2018
+43,Gobierno y Economía,Maestría,Maestría en Gobierno y Políticas Públicas,MGPP,Profesionalizante,15,75,2010,10,1,20192945,18/07/2019,2019
+44,Ingeniería,Especialidad,Especialidad en Dirección de Operaciones,EDIOP ,Profesionalizante,12,50,2002,20,2,2006206,13/06/2006,2011
+45,Ingeniería,Especialidad,Especialidad en Ingeniería y Gestión Ambiental,EIGA,Profesionalizante,12,50,2019,20,2,20191768,08/05/2019,2018
+46,Ingeniería,Especialidad,Especialidad en Ingeniería y Gestión de Proyectos,EIGEP,Profesionalizante,12,50,2005,19,2,20180861,27/07/2018,2018
+47,Ingeniería,Especialidad,Especialidad en Logística Internacional,ELOIN ,Profesionalizante,12,50,2012,20,2,20180860,27/07/2018,2018
+48,Ingeniería,Especialidad,Especialidad en Robótica y Manufactura,EROMA,Profesionalizante,12,50,2001,22,2,20180855,27/07/2018,2018
+49,Ingeniería,Especialidad,Especialidad en Simuladores Gráficos,ESIMG ,Profesionalizante,12,50,2012,20,2,20180858,27/07/2018,2018
+50,Ingeniería,Maestría,Maestría en Ciencia de Datos,MCD,Profesionalizante,18,75,2020,23,0,20190920,25/04/2019,2019
+51,Ingeniería,Maestría,Maestría en Dirección de Operaciones,MDIOP,Profesionalizante,24,42,2008,19,2,2006206,13/06/2006,2011
+52,Ingeniería,Maestría,Maestría en Ingeniería,MING,Profesionalizante,24,42,2004,68,12,20180857,27/07/2018,2018
+53,Ingeniería,Maestría,Maestría en Ingeniería y Gestión de la Cadena de Suministro,MIGC,Profesionalizante,24,42,2019,19,4,20181651,20/08/2018,2018
+54,Ingeniería,Doctorado,Doctorado en Inteligencia Artificial,DIA,Investigación,48,,2022,69,0,20211415,31/08/2021,2021
+55,Pedagogía,Maestría,Maestría en Dirección de Capital Humano,MDICH,Profesionalizante,18,75,2021,17,2,20220358,06/04/2022,2021
+56,Pedagogía,Maestría,Maestría en Dirección de Instituciones Educativas,MDIES,Profesionalizante,18,75,2016,20,0,20150367,24/07/2015,2015
+57,Pedagogía,Maestría,Maestría en Neuropsicología y Educación,MNE,Profesionalizante,18,75,2011,15,1,20100496,16/04/2010,2014

@@ -1,0 +1,86 @@
+nombre_modulo,programa,no_clase,salon,fecha_inicio,fecha_fin,dia,hora_inicio,hora_fin
+Control Financiero,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1235,R 46,2023-01-04,2023-01-25,Lunes,19:00:00 ,22:00:00 
+Control Financiero,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1235,R 46,2023-01-04,2023-01-25,Miércoles,19:00:00 ,22:00:00 
+Servicio de A&B,Especialidad en Gestión de Eventos,1455,R 46,2023-01-04,2023-01-11,Lunes,19:00:00 ,22:00:00 
+Servicio de A&B,Especialidad en Gestión de Eventos,1455,R 46,2023-01-04,2023-01-11,Miércoles,19:00:00 ,22:00:00 
+Plan de Operación de Negocios de un Evento 2,Especialidad en Gestión de Eventos,1448,R 46,2023-01-16,2023-01-25,Lunes,19:00:00 ,22:00:00 
+Plan de Operación de Negocios de un Evento 2,Especialidad en Gestión de Eventos,1448,R 46,2023-01-16,2023-01-25,Miércoles,19:00:00 ,22:00:00 
+Marco legal aplicado,Maestría en Dirección de Instituciones de Salud,10418,SF_6-1,2023-01-10,2023-02-09,Martes,19:00:00 ,22:00:00 
+Marco legal aplicado,Maestría en Dirección de Instituciones de Salud,10418,SF_6-1,2023-01-10,2023-02-09,Jueves,19:00:00 ,22:00:00 
+Gestión directiva de hospitales,Maestría en Dirección de Instituciones de Salud,241152,SF_6-1,2023-02-13,2023-03-10,Martes,19:00:00 ,22:00:00 
+Gestión directiva de hospitales,Maestría en Dirección de Instituciones de Salud,174631,SF_6-1,2023-02-13,2023-03-10,Jueves,19:00:00 ,22:00:00 
+Gestión directiva de hospitales,Maestría en Dirección de Instituciones de Salud,10418,SF_6-1,2023-02-13,2023-03-10,Martes,19:00:00 ,22:00:00 
+Bioética,Maestría en Dirección de Instituciones de Salud,10439,SF_6-1,2023-03-14,2023-04-27,Jueves,19:00:00 ,22:00:00 
+Bioética,Maestría en Dirección de Instituciones de Salud,10439,SF_6-1,2023-03-14,2023-04-27,Martes,19:00:00 ,22:00:00 
+Exposciones finales,Maestría en Dirección de Instituciones de Salud,EXPF,SF_6-1,2023-05-02,2023-05-04,Jueves,19:00:00 ,22:00:00 
+Exposciones finales,Maestría en Dirección de Instituciones de Salud,EXPF,SF_6-1,2023-05-02,2023-05-04,Martes,19:00:00 ,22:00:00 
+Mercadotecnia,Maestría en Dirección de Instituciones de Salud,10976,SF_6-5,2023-01-03,2023-02-02,Jueves,19:00:00 ,22:00:00 
+Mercadotecnia,Maestría en Dirección de Instituciones de Salud,10976,SF_6-5,2023-01-03,2023-02-02,Martes,19:00:00 ,22:00:00 
+Administración financiera,Maestría en Dirección de Instituciones de Salud,10947,SF_6-5,2023-02-07,2023-03-16,Jueves,19:00:00 ,22:00:00 
+Administración financiera,Maestría en Dirección de Instituciones de Salud,10947,SF_6-5,2023-02-07,2023-03-16,Martes,19:00:00 ,22:00:00 
+Hospitalidad en las instituciones de salud,Maestría en Dirección de Instituciones de Salud,10948,SF_6-5,2023-03-21,2023-05-04,Jueves,19:00:00 ,22:00:00 
+Hospitalidad en las instituciones de salud,Maestría en Dirección de Instituciones de Salud,10948,SF_6-5,2023-03-21,2023-05-04,Martes,19:00:00 ,22:00:00 
+Marco legal aplicado ,Maestría en Dirección de Instituciones de Salud,10949,SF_6-5,2023-05-09,2023-06-13,Jueves,19:00:00 ,22:00:00 
+Marco legal aplicado ,Maestría en Dirección de Instituciones de Salud,10949,SF_6-5,2023-05-09,2023-06-13,Martes,19:00:00 ,22:00:00 
+Servicios generales ,Maestría en Dirección de Instituciones de Salud,10950,SF_6-5,2023-06-15,2023-07-25,Jueves,19:00:00 ,22:00:00 
+Servicios generales ,Maestría en Dirección de Instituciones de Salud,10950,SF_6-5,2023-06-15,2023-07-25,Martes,19:00:00 ,22:00:00 
+Servicios de alimentos,Maestría en Dirección de Instituciones de Salud,10951,SF_6-5,2023-07-27,2023-08-22,Jueves,19:00:00 ,22:00:00 
+Servicios de alimentos,Maestría en Dirección de Instituciones de Salud,10951,SF_6-5,2023-07-27,2023-08-22,Martes,19:00:00 ,22:00:00 
+Microbiología ambiental y manejo de residuos,Maestría en Dirección de Instituciones de Salud,10952,SF_6-5,2023-08-24,2023-09-26,Jueves,19:00:00 ,22:00:00 
+Microbiología ambiental y manejo de residuos,Maestría en Dirección de Instituciones de Salud,10952,SF_6-5,2023-08-24,2023-09-26,Martes,19:00:00 ,22:00:00 
+"Instalación, equipo y mantenimiento",Maestría en Dirección de Instituciones de Salud,10954,SF_6-5,2023-09-28,2023-11-09,Jueves,19:00:00 ,22:00:00 
+"Instalación, equipo y mantenimiento",Maestría en Dirección de Instituciones de Salud,10954,SF_6-5,2023-09-28,2023-11-09,Martes,19:00:00 ,22:00:00 
+Seguridad dentro de las instalaciones,Maestría en Dirección de Instituciones de Salud,10975,SF_6-5,2023-11-14,2023-12-07,Jueves,19:00:00 ,22:00:00 
+Seguridad dentro de las instalaciones,Maestría en Dirección de Instituciones de Salud,10975,SF_6-5,2023-11-14,2023-12-07,Martes,19:00:00 ,22:00:00 
+Mercadotecnia de Servicios ,Especialidad en Gestión de Eventos,6651,NR 08,2023-01-07,2023-02-11,Sábado,8:00:00 ,14:00:00 
+"Logística, Compra y Operación de Eventos",Especialidad en Gestión de Eventos,6652,NR 08,2023-02-18,2023-04-22,Sábado,8:00:00 ,14:00:00 
+Relaciones Públicas,Especialidad en Gestión de Eventos,6653,NR 08,2023-04-29,2023-05-27,Sábado,8:00:00 ,14:00:00 
+Liderazgo y la Gestión de Eventos,Especialidad en Gestión de Eventos,6654,NR 08,2023-06-03,2023-06-17,Sábado,8:00:00 ,14:00:00 
+Gestión del Capital Humano,Especialidad en Gestión de Eventos,6655,NR 08,2023-06-24,2023-07-08,Sábado,8:00:00 ,14:00:00 
+Introducción al Tratamiento Laboral y Fiscal de Nóminas,Especialidad en Gestión de Eventos,6656,NR 08,2023-07-08,2023-07-29,Sábado,8:00:00 ,14:00:00 
+Servicio de A&B,Especialidad en Gestión de Eventos,6657,NR 08,2023-08-05,2023-08-26,Sábado,8:00:00 ,14:00:00 
+Plan de Operación de Negocios de un Evento 2,Especialidad en Gestión de Eventos,6650,NR 08,2023-09-02,2023-09-09,Sábado,8:00:00 ,14:00:00 
+Introducción y Planeación de Eventos ,Especialidad en Gestión de Eventos,1384,,2023-03-27,2023-04-26,Lunes,19:00:00 ,22:00:00 
+Introducción y Planeación de Eventos ,Especialidad en Gestión de Eventos,1384,,2023-03-27,2023-04-26,Miércoles,19:00:00 ,22:00:00 
+Plan de Operación de Negocios de un Evento 1,Especialidad en Gestión de Eventos,1386,,2023-05-03,2023-05-24,Lunes,19:00:00 ,22:00:00 
+Plan de Operación de Negocios de un Evento 1,Especialidad en Gestión de Eventos,1386,,2023-05-03,2023-05-24,Miércoles,19:00:00 ,22:00:00 
+Mercadotecnia de Servicios ,Especialidad en Gestión de Eventos,1388,,2023-05-29,2023-07-05,Lunes,19:00:00 ,22:00:00 
+Mercadotecnia de Servicios ,Especialidad en Gestión de Eventos,1388,,2023-05-29,2023-07-05,Miércoles,19:00:00 ,22:00:00 
+"Logística, Compra y Operación de Eventos",Especialidad en Gestión de Eventos,1389,,2023-07-10,2023-08-23,Lunes,19:00:00 ,22:00:00 
+"Logística, Compra y Operación de Eventos",Especialidad en Gestión de Eventos,1389,,2023-07-10,2023-08-23,Miércoles,19:00:00 ,22:00:00 
+Relaciones Públicas,Especialidad en Gestión de Eventos,1390,,2023-08-28,2023-09-27,Lunes,19:00:00 ,22:00:00 
+Relaciones Públicas,Especialidad en Gestión de Eventos,1390,,2023-08-28,2023-09-27,Miércoles,19:00:00 ,22:00:00 
+Liderazgo y la Gestión de Eventos,Especialidad en Gestión de Eventos,1391,,2023-10-02,2023-10-18,Lunes,19:00:00 ,22:00:00 
+Liderazgo y la Gestión de Eventos,Especialidad en Gestión de Eventos,1391,,2023-10-02,2023-10-18,Miércoles,19:00:00 ,22:00:00 
+Gestión del Capital Humano,Especialidad en Gestión de Eventos,1392,,2023-10-23,2023-11-06,Lunes,19:00:00 ,22:00:00 
+Gestión del Capital Humano,Especialidad en Gestión de Eventos,1392,,2023-10-23,2023-11-06,Miércoles,19:00:00 ,22:00:00 
+Introducción al Tratamiento Laboral y Fiscal de Nóminas,Especialidad en Gestión de Eventos,1393,,2023-11-08,2023-12-04,Lunes,19:00:00 ,22:00:00 
+Introducción al Tratamiento Laboral y Fiscal de Nóminas,Especialidad en Gestión de Eventos,1393,,2023-11-08,2023-12-04,Miércoles,19:00:00 ,22:00:00 
+Servicio de A&B,Especialidad en Gestión de Eventos,1394,,2023-12-06,2024-01-22,Lunes,19:00:00 ,22:00:00 
+Servicio de A&B,Especialidad en Gestión de Eventos,1394,,2023-12-06,2024-01-22,Miércoles,19:00:00 ,22:00:00 
+Plan de Operación de Negocios de un Evento 2,Especialidad en Gestión de Eventos,1386,,2024-01-24,2024-02-07,Lunes,19:00:00 ,22:00:00 
+Plan de Operación de Negocios de un Evento 2,Especialidad en Gestión de Eventos,6650,,2024-01-24,2024-02-07,Miércoles,19:00:00 ,22:00:00 
+Emprendimiento e Innovación en la industria de A&B,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1374,,2023-03-29,2023-05-15,Lunes,19:00:00 ,22:00:00 
+Emprendimiento e Innovación en la industria de A&B,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1374,,2023-03-29,2023-05-15,Miércoles,19:00:00 ,22:00:00 
+Mercadotecnia Enfocada a la Industria ,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1378,,2023-05-17,2023-06-26,Lunes,19:00:00 ,22:00:00 
+Mercadotecnia Enfocada a la Industria ,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1378,,2023-05-17,2023-06-26,Miércoles,19:00:00 ,22:00:00 
+Administración de Alimentos y Bebidas ,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1379,,2023-06-28,2023-09-07,Lunes,19:00:00 ,22:00:00 
+Administración de Alimentos y Bebidas ,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1379,,2023-06-28,2023-09-07,Miércoles,19:00:00 ,22:00:00 
+Diseño de Interiores para Plan de Negocios de A&B,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1380,,2023-08-09,2023-09-18,Lunes,19:00:00 ,22:00:00 
+Diseño de Interiores para Plan de Negocios de A&B,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1380,,2023-08-09,2023-09-18,Miércoles,19:00:00 ,22:00:00 
+Capital Humano,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1381,,2023-09-20,2023-10-30,Lunes,19:00:00 ,22:00:00 
+Capital Humano,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1381,,2023-09-20,2023-10-30,Miércoles,19:00:00 ,22:00:00 
+Entorno Legal En Las Empresas De Alimentos Y Bebidas,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1382,,2023-10-25,2023-11-29,Lunes,19:00:00 ,22:00:00 
+Entorno Legal En Las Empresas De Alimentos Y Bebidas,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1382,,2023-10-25,2023-11-29,Miércoles,19:00:00 ,22:00:00 
+Control Financiero,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1383,,2023-12-04,2024-02-12,Lunes,19:00:00 ,22:00:00 
+Control Financiero,Especialidad en Emprendedores de Negocios de Alimentos y Bebidas,1383,,2023-12-04,2024-02-12,Miércoles,19:00:00 ,22:00:00 
+Sesión de introducción,Diplomado en Wellness,SESI,,2023-02-22,2023-02-22,Miércoles,19:00:00 ,22:00:00 
+Dimensión Emocional,Diplomado en Wellness,DIME,,2023-03-01,2023-03-22,Miércoles,19:00:00 ,22:00:00 
+Dimensión Física,Diplomado en Wellness,DIMFI,,2023-03-29,2023-05-03,Miércoles,19:00:00 ,22:00:00 
+Dimensión Ambiental,Diplomado en Wellness,DIMAM,,2023-05-17,2023-05-31,Miércoles,19:00:00 ,22:00:00 
+Dimensión Intelectual,Diplomado en Wellness,DIMIN,,2023-06-07,2023-06-21,Miércoles,19:00:00 ,22:00:00 
+Dimensión Espiritual,Diplomado en Wellness,DIMESP,,2023-06-28,2023-07-12,Miércoles,19:00:00 ,22:00:00 
+Dimensión Social,Diplomado en Wellness,DIMSOC,,2023-07-19,2023-07-26,Miércoles,19:00:00 ,22:00:00 
+Dimensión Financiera,Diplomado en Wellness,DIMFIN,,2023-08-01,2023-08-16,Miércoles,19:00:00 ,22:00:00 
+Dimensión Ocupacional,Diplomado en Wellness,DIMOC,,2023-08-23,2023-09-06,Miércoles,19:00:00 ,22:00:00 
+Integrando el Wellness en tu vida,Diplomado en Wellness,IWV,,2023-09-13,2023-09-13,Miércoles,19:00:00 ,22:00:00 

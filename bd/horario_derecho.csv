@@ -1,0 +1,777 @@
+nombre_modulo,programa,no_clase,salon,fecha_inicio,fecha_fin,dia,hora_inicio,hora_fin
+Introducción al Juicio de Ampa,Especialidad en Derecho de Amparo,1236,AULA MAGNA,2023-02-16,2023-03-02,Martes,19:00:00 ,22:00:00 
+Introducción al Juicio de Ampa,Especialidad en Derecho de Amparo,1236,AULA MAGNA,2023-02-16,2023-03-02,Jueves,19:00:00 ,22:00:00 
+Introducción al Juicio de Ampa,Especialidad en Derecho de Amparo,1236,AULA MAGNA,2023-02-16,2023-03-02,Martes,19:00:00 ,22:00:00 
+Introducción al Juicio de Ampa,Especialidad en Derecho de Amparo,1236,AULA MAGNA,2023-02-16,2023-03-02,Jueves,19:00:00 ,22:00:00 
+Teoría del Proceso,Especialidad en Derecho de Amparo,1237,AULA MAGNA,2023-03-07,2023-03-14,Jueves,19:00:00 ,22:00:00 
+Teoría del Proceso,Especialidad en Derecho de Amparo,1237,AULA MAGNA,2023-03-07,2023-03-14,Martes,19:00:00 ,22:00:00 
+Teoría del Proceso,Especialidad en Derecho de Amparo,1237,AULA MAGNA,2023-03-07,2023-03-14,Martes,19:00:00 ,22:00:00 
+Teoría del Proceso,Especialidad en Derecho de Amparo,1237,AULA MAGNA,2023-03-07,2023-03-14,Jueves,19:00:00 ,22:00:00 
+Control y Defensa de la Consti,Especialidad en Derecho de Amparo,1239,AULA MAGNA,2023-03-15,2023-03-23,Martes,19:00:00 ,22:00:00 
+Control y Defensa de la Consti,Especialidad en Derecho de Amparo,1239,AULA MAGNA,2023-03-15,2023-03-23,Jueves,19:00:00 ,22:00:00 
+Control y Defensa de la Consti,Especialidad en Derecho de Amparo,1239,AULA MAGNA,2023-03-15,2023-03-23,Martes,19:00:00 ,22:00:00 
+Control y Defensa de la Consti,Especialidad en Derecho de Amparo,1239,AULA MAGNA,2023-03-15,2023-03-23,Jueves,19:00:00 ,22:00:00 
+La Suspensión del Acto Reclama,Especialidad en Derecho de Amparo,1240,AULA MAGNA,2023-03-28,2023-04-13,Martes,19:00:00 ,22:00:00 
+La Suspensión del Acto Reclama,Especialidad en Derecho de Amparo,1240,AULA MAGNA,2023-03-28,2023-04-13,Jueves,19:00:00 ,22:00:00 
+La Suspensión del Acto Reclama,Especialidad en Derecho de Amparo,1240,AULA MAGNA,2023-03-28,2023-04-13,Martes,19:00:00 ,22:00:00 
+La Suspensión del Acto Reclama,Especialidad en Derecho de Amparo,1240,AULA MAGNA,2023-03-28,2023-04-13,Jueves,19:00:00 ,22:00:00 
+Diversas Cuestiones Procesales,Especialidad en Derecho de Amparo,1241,AULA MAGNA,2023-04-18,2023-05-02,Jueves,19:00:00 ,22:00:00 
+Diversas Cuestiones Procesales,Especialidad en Derecho de Amparo,1241,AULA MAGNA,2023-04-18,2023-05-02,Martes,19:00:00 ,22:00:00 
+Diversas Cuestiones Procesales,Especialidad en Derecho de Amparo,1241,AULA MAGNA,2023-04-18,2023-05-02,Martes,19:00:00 ,22:00:00 
+Diversas Cuestiones Procesales,Especialidad en Derecho de Amparo,1241,AULA MAGNA,2023-04-18,2023-05-02,Jueves,19:00:00 ,22:00:00 
+Improcedencia y Sobreseimiento,Especialidad en Derecho de Amparo,1242,AULA MAGNA,2023-05-09,2023-05-18,Martes,19:00:00 ,22:00:00 
+Improcedencia y Sobreseimiento,Especialidad en Derecho de Amparo,1242,AULA MAGNA,2023-05-09,2023-05-18,Jueves,19:00:00 ,22:00:00 
+Improcedencia y Sobreseimiento,Especialidad en Derecho de Amparo,1242,AULA MAGNA,2023-05-09,2023-05-18,Martes,19:00:00 ,22:00:00 
+Improcedencia y Sobreseimiento,Especialidad en Derecho de Amparo,1242,AULA MAGNA,2023-05-09,2023-05-18,Jueves,19:00:00 ,22:00:00 
+Las Sentencias y los Recursos,Especialidad en Derecho de Amparo,1243,R 03,2023-05-23,2023-06-13,Jueves,19:00:00 ,22:00:00 
+Las Sentencias y los Recursos,Especialidad en Derecho de Amparo,1243,R 03,2023-05-23,2023-06-13,Martes,19:00:00 ,22:00:00 
+Las Sentencias y los Recursos,Especialidad en Derecho de Amparo,1243,R 03,2023-05-23,2023-06-13,Martes,19:00:00 ,22:00:00 
+Las Sentencias y los Recursos,Especialidad en Derecho de Amparo,1243,R 03,2023-05-23,2023-06-13,Jueves,19:00:00 ,22:00:00 
+Amparo Contra Leyes,Especialidad en Derecho de Amparo,1244,R 03,2023-06-22,2023-07-06,Jueves,19:00:00 ,22:00:00 
+Amparo Contra Leyes,Especialidad en Derecho de Amparo,1244,R 03,2023-06-22,2023-07-06,Martes,19:00:00 ,22:00:00 
+Amparo Civil,Especialidad en Derecho de Amparo,1245,R 03,2023-08-10,2023-08-29,Jueves,19:00:00 ,22:00:00 
+Amparo Civil,Especialidad en Derecho de Amparo,1245,R 03,2023-08-10,2023-08-29,Martes,19:00:00 ,22:00:00 
+Amparo Penal,Especialidad en Derecho de Amparo,1246,R 03,2023-09-19,2023-10-03,Martes,19:00:00 ,22:00:00 
+Amparo Penal,Especialidad en Derecho de Amparo,1246,R 03,2023-09-19,2023-10-03,Jueves,19:00:00 ,22:00:00 
+Amparo Laboral,Especialidad en Derecho de Amparo,1247,R 03,2023-10-05,2023-10-17,Martes,19:00:00 ,22:00:00 
+Amparo Laboral,Especialidad en Derecho de Amparo,1247,R 03,2023-10-05,2023-10-17,Jueves,19:00:00 ,22:00:00 
+Amparo Administrativo y Fiscal,Especialidad en Derecho de Amparo,1248,R 03,2023-09-06,2023-09-13,Miércoles,19:00:00 ,22:00:00 
+Amparo Administrativo y Fiscal,Especialidad en Derecho de Amparo,1248,R 03,2023-09-05,2023-09-14,Martes,19:00:00 ,22:00:00 
+Amparo Administrativo y Fiscal,Especialidad en Derecho de Amparo,1248,R 03,2023-09-05,2023-09-14,Jueves,19:00:00 ,22:00:00 
+Amparo Agrario,Especialidad en Derecho de Amparo,1249,R 03,2023-10-19,2023-10-31,Jueves,19:00:00 ,22:00:00 
+Amparo Agrario,Especialidad en Derecho de Amparo,1249,R 03,2023-10-19,2023-10-31,Martes,19:00:00 ,22:00:00 
+La Jurisprudencia,Especialidad en Derecho de Amparo,1250,R 03,2023-11-01,2023-11-01,Miércoles,19:00:00 ,22:00:00 
+La Jurisprudencia,Especialidad en Derecho de Amparo,1250,R 03,2023-11-07,2023-11-09,Jueves,19:00:00 ,22:00:00 
+La Jurisprudencia,Especialidad en Derecho de Amparo,1250,R 03,2023-11-07,2023-11-09,Martes,19:00:00 ,22:00:00 
+Seminario de Temas Selectos,Especialidad en Derecho de Amparo,1251,R 03,2023-11-14,2023-11-14,Martes,19:00:00 ,22:00:00 
+Seminario de Temas Selectos,Especialidad en Derecho de Amparo,1251,R 03,2023-11-15,2023-11-15,Miércoles,19:00:00 ,22:00:00 
+Marco Teórico del Empresario y,Especialidad en Derecho de la Empresa,7399,R 05,2023-02-15,2023-02-22,Lunes,19:00:00 ,22:00:00 
+Marco Teórico del Empresario y,Especialidad en Derecho de la Empresa,7399,R 05,2023-02-15,2023-02-22,Miércoles,19:00:00 ,22:00:00 
+Marco Teórico del Empresario y,Especialidad en Derecho de la Empresa,7399,R 05,2023-02-15,2023-02-22,Jueves,19:00:00 ,22:00:00 
+Responsabilidad Social y Ética,Especialidad en Derecho de la Empresa,7402,R 02,2023-02-27,2023-03-02,Lunes,19:00:00 ,22:00:00 
+Responsabilidad Social y Ética,Especialidad en Derecho de la Empresa,7402,R 02,2023-02-27,2023-03-02,Miércoles,19:00:00 ,22:00:00 
+Responsabilidad Social y Ética,Especialidad en Derecho de la Empresa,7402,R 02,2023-02-27,2023-03-02,Jueves,19:00:00 ,22:00:00 
+Interpretación de Contabilidad,Especialidad en Derecho de la Empresa,7406,,2023-03-06,2023-03-09,Lunes,19:00:00 ,22:00:00 
+Interpretación de Contabilidad,Especialidad en Derecho de la Empresa,7406,,2023-03-06,2023-03-09,Miércoles,19:00:00 ,22:00:00 
+Interpretación de Contabilidad,Especialidad en Derecho de la Empresa,7406,,2023-03-06,2023-03-09,Jueves,19:00:00 ,22:00:00 
+Aspectos Jurídico-Corporativos,Especialidad en Derecho de la Empresa,7407,,2023-03-13,2023-04-13,Lunes,19:00:00 ,22:00:00 
+Aspectos Jurídico-Corporativos,Especialidad en Derecho de la Empresa,7407,,2023-03-13,2023-04-13,Miércoles,19:00:00 ,22:00:00 
+Aspectos Jurídico-Corporativos,Especialidad en Derecho de la Empresa,7407,,2023-03-13,2023-04-13,Jueves,19:00:00 ,22:00:00 
+Aspectos Jurídico-Corporativos,Especialidad en Derecho de la Empresa,7408,,2023-04-17,2023-05-04,Lunes,19:00:00 ,22:00:00 
+Aspectos Jurídico-Corporativos,Especialidad en Derecho de la Empresa,7408,,2023-04-17,2023-05-04,Miércoles,19:00:00 ,22:00:00 
+Aspectos Jurídico-Corporativos,Especialidad en Derecho de la Empresa,7408,,2023-04-17,2023-05-04,Jueves,19:00:00 ,22:00:00 
+Regulación del Entorno Económi,Especialidad en Derecho de la Empresa,7409,R 02,2023-05-08,2023-05-25,Lunes,19:00:00 ,22:00:00 
+Regulación del Entorno Económi,Especialidad en Derecho de la Empresa,7409,R 02,2023-05-08,2023-05-25,Miércoles,19:00:00 ,22:00:00 
+Regulación del Entorno Económi,Especialidad en Derecho de la Empresa,7409,R 02,2023-05-08,2023-05-25,Jueves,19:00:00 ,22:00:00 
+Financiamiento de la Empresa,Especialidad en Derecho de la Empresa,7410,R 09,2023-05-29,2023-06-08,Lunes,19:00:00 ,22:00:00 
+Financiamiento de la Empresa,Especialidad en Derecho de la Empresa,7410,R 09,2023-05-29,2023-06-08,Miércoles,19:00:00 ,22:00:00 
+Financiamiento de la Empresa,Especialidad en Derecho de la Empresa,7410,R 09,2023-05-29,2023-06-08,Jueves,19:00:00 ,22:00:00 
+Contratación Empresarial,Especialidad en Derecho de la Empresa,7411,R 06,2023-06-13,2023-08-30,Lunes,19:00:00 ,22:00:00 
+Contratación Empresarial,Especialidad en Derecho de la Empresa,7411,R 06,2023-06-13,2023-08-30,Miércoles,19:00:00 ,22:00:00 
+Contratación Empresarial,Especialidad en Derecho de la Empresa,7411,R 06,2023-06-13,2023-08-30,Jueves,19:00:00 ,22:00:00 
+Derecho de Propiedad Indust,Especialidad en Derecho de la Empresa,7412,R 06,2023-09-04,2023-09-21,Lunes,19:00:00 ,22:00:00 
+Derecho de Propiedad Indust,Especialidad en Derecho de la Empresa,7412,R 06,2023-09-04,2023-09-21,Miércoles,19:00:00 ,22:00:00 
+Derecho de Propiedad Indust,Especialidad en Derecho de la Empresa,7412,R 06,2023-09-04,2023-09-21,Jueves,19:00:00 ,22:00:00 
+Concursos Mercantiles,Especialidad en Derecho de la Empresa,7413,R 06,2023-09-25,2023-10-12,Lunes,19:00:00 ,22:00:00 
+Concursos Mercantiles,Especialidad en Derecho de la Empresa,7413,R 06,2023-09-25,2023-10-12,Miércoles,19:00:00 ,22:00:00 
+Concursos Mercantiles,Especialidad en Derecho de la Empresa,7413,R 06,2023-09-25,2023-10-12,Jueves,19:00:00 ,22:00:00 
+Aspectos Jurídicos Colaterales,Especialidad en Derecho de la Empresa,7414,R 06,2023-10-16,2023-11-16,Lunes,19:00:00 ,22:00:00 
+Aspectos Jurídicos Colaterales,Especialidad en Derecho de la Empresa,7414,R 06,2023-10-16,2023-11-16,Miércoles,19:00:00 ,22:00:00 
+Aspectos Jurídicos Colaterales,Especialidad en Derecho de la Empresa,7414,R 06,2023-10-16,2023-11-16,Jueves,19:00:00 ,22:00:00 
+Solución de Controversias,Especialidad en Derecho de la Empresa,7415,R 02,2023-11-20,2023-12-07,Lunes,19:00:00 ,22:00:00 
+Solución de Controversias,Especialidad en Derecho de la Empresa,7415,R 02,2023-11-20,2023-12-07,Miércoles,19:00:00 ,22:00:00 
+Solución de Controversias,Especialidad en Derecho de la Empresa,7415,R 02,2023-11-20,2023-12-07,Jueves,19:00:00 ,22:00:00 
+Taller Sobre Técnicas de Negoc,Especialidad en Derecho de la Empresa,7416,R 06,2024-01-08,2024-01-15,Lunes,19:00:00 ,22:00:00 
+Taller Sobre Técnicas de Negoc,Especialidad en Derecho de la Empresa,7416,R 06,2024-01-08,2024-01-15,Miércoles,19:00:00 ,22:00:00 
+Taller Sobre Técnicas de Negoc,Especialidad en Derecho de la Empresa,7416,R 06,2024-01-08,2024-01-15,Jueves,19:00:00 ,22:00:00 
+Introducción al Derecho Proces,Epecialidad en Derecho Procesal Civil y Mercantil,1063,R 10,2023-02-21,2023-03-07,Martes,19:00:00 ,22:00:00 
+Introducción al Derecho Proces,Epecialidad en Derecho Procesal Civil y Mercantil,1063,R 10,2023-02-21,2023-03-07,Jueves,19:00:00 ,22:00:00 
+La Acción Procesal,Epecialidad en Derecho Procesal Civil y Mercantil,1064,R 10,2023-03-09,2023-03-21,Martes,19:00:00 ,22:00:00 
+La Acción Procesal,Epecialidad en Derecho Procesal Civil y Mercantil,1064,R 10,2023-03-09,2023-03-21,Jueves,19:00:00 ,22:00:00 
+La Acción Procesal,Epecialidad en Derecho Procesal Civil y Mercantil,1064,R 10,2023-03-11,2023-03-11,Sábado,9:00:00 ,12:00:00 
+La Acción Procesal,Epecialidad en Derecho Procesal Civil y Mercantil,1064,R 10,2023-03-22,2023-03-22,Miércoles,19:00:00 ,22:00:00 
+La Acción Procesal,Epecialidad en Derecho Procesal Civil y Mercantil,1064,R 10,2023-04-01,2023-04-01,Sábado,9:00:00 ,12:00:00 
+Jurisdicción,Epecialidad en Derecho Procesal Civil y Mercantil,1065,R 10,2023-04-11,2023-04-18,Martes,19:00:00 ,22:00:00 
+Jurisdicción,Epecialidad en Derecho Procesal Civil y Mercantil,1065,R 10,2023-04-11,2023-04-18,Jueves,19:00:00 ,22:00:00 
+Jurisdicción,Epecialidad en Derecho Procesal Civil y Mercantil,1065,R 10,2023-04-19,2023-04-19,Miércoles,19:00:00 ,22:00:00 
+Juicio Ordinario. Introducción,Epecialidad en Derecho Procesal Civil y Mercantil,1066,R 10,2023-04-20,2023-05-09,Martes,19:00:00 ,22:00:00 
+Juicio Ordinario. Introducción,Epecialidad en Derecho Procesal Civil y Mercantil,1066,R 10,2023-04-20,2023-05-09,Jueves,19:00:00 ,22:00:00 
+Juicio Ordinario. Fase Probato,Epecialidad en Derecho Procesal Civil y Mercantil,1067,R 10,2023-05-11,2023-05-23,Martes,19:00:00 ,22:00:00 
+Juicio Ordinario. Fase Probato,Epecialidad en Derecho Procesal Civil y Mercantil,1067,R 10,2023-05-11,2023-05-23,Jueves,19:00:00 ,22:00:00 
+Juicio Ordinario. Fase Probato,Epecialidad en Derecho Procesal Civil y Mercantil,1067,R 10,2023-05-24,2023-05-24,Miércoles,19:00:00 ,22:00:00 
+Juicio Ordinario. Fase Conclus,Epecialidad en Derecho Procesal Civil y Mercantil,1068,R 10,2023-05-30,2023-06-06,Martes,19:00:00 ,22:00:00 
+Juicio Ordinario. Fase Conclus,Epecialidad en Derecho Procesal Civil y Mercantil,1068,R 10,2023-05-30,2023-06-06,Jueves,19:00:00 ,22:00:00 
+Juicio Ordinario. Fase Conclus,Epecialidad en Derecho Procesal Civil y Mercantil,1068,R 10,2023-06-07,2023-06-07,Miércoles,19:00:00 ,22:00:00 
+Impugnación Procesal,Epecialidad en Derecho Procesal Civil y Mercantil,1069,R 10,2023-06-13,2023-06-27,Martes,19:00:00 ,22:00:00 
+Impugnación Procesal,Epecialidad en Derecho Procesal Civil y Mercantil,1069,R 10,2023-06-13,2023-06-27,Jueves,19:00:00 ,22:00:00 
+Ejecución de Sentencia,Epecialidad en Derecho Procesal Civil y Mercantil,1070,R 10,2023-06-29,2023-07-06,Martes,19:00:00 ,22:00:00 
+Ejecución de Sentencia,Epecialidad en Derecho Procesal Civil y Mercantil,1070,R 10,2023-06-29,2023-07-06,Jueves,19:00:00 ,22:00:00 
+Controversias por Arrendamient,Epecialidad en Derecho Procesal Civil y Mercantil,1071,R 10,2023-08-01,2023-08-15,Martes,19:00:00 ,22:00:00 
+Controversias por Arrendamient,Epecialidad en Derecho Procesal Civil y Mercantil,1071,R 10,2023-08-01,2023-08-15,Jueves,19:00:00 ,22:00:00 
+Controversias del Orden Famili,Epecialidad en Derecho Procesal Civil y Mercantil,1072,R 10,2023-08-22,2023-08-29,Martes,19:00:00 ,22:00:00 
+Controversias del Orden Famili,Epecialidad en Derecho Procesal Civil y Mercantil,1072,R 10,2023-08-22,2023-08-29,Jueves,19:00:00 ,22:00:00 
+Controversias del Orden Famili,Epecialidad en Derecho Procesal Civil y Mercantil,1072,R 10,2023-08-30,2023-08-30,Miércoles,19:00:00 ,22:00:00 
+Concursos y Quiebras,Epecialidad en Derecho Procesal Civil y Mercantil,1073,R 10,2023-08-31,2023-09-19,Martes,19:00:00 ,22:00:00 
+Concursos y Quiebras,Epecialidad en Derecho Procesal Civil y Mercantil,1073,R 10,2023-08-31,2023-09-19,Jueves,19:00:00 ,22:00:00 
+Concursos y Quiebras,Epecialidad en Derecho Procesal Civil y Mercantil,1073,R 10,2023-08-31,2023-09-27,Miércoles,19:00:00 ,22:00:00 
+Concursos y Quiebras,Epecialidad en Derecho Procesal Civil y Mercantil,1073,R 10,2023-09-26,2023-09-26,Martes,19:00:00 ,22:00:00 
+Juicio Ejecutivo,Epecialidad en Derecho Procesal Civil y Mercantil,1074,R 10,2023-09-28,2023-10-10,Martes,19:00:00 ,22:00:00 
+Juicio Ejecutivo,Epecialidad en Derecho Procesal Civil y Mercantil,1074,R 10,2023-09-28,2023-10-10,Jueves,19:00:00 ,22:00:00 
+Juicio Ejecutivo,Epecialidad en Derecho Procesal Civil y Mercantil,1074,R 10,2023-10-11,2023-10-11,Miércoles,19:00:00 ,22:00:00 
+Juicio Especial Hipotecario,Epecialidad en Derecho Procesal Civil y Mercantil,1075,R 10,2023-10-12,2023-10-19,Martes,19:00:00 ,22:00:00 
+Juicio Especial Hipotecario,Epecialidad en Derecho Procesal Civil y Mercantil,1075,R 10,2023-10-12,2023-10-19,Jueves,19:00:00 ,22:00:00 
+Tercería Civil y Mercantil,Epecialidad en Derecho Procesal Civil y Mercantil,1076,R 10,2023-10-24,2023-10-31,Martes,19:00:00 ,22:00:00 
+Tercería Civil y Mercantil,Epecialidad en Derecho Procesal Civil y Mercantil,1076,R 10,2023-10-24,2023-10-31,Jueves,19:00:00 ,22:00:00 
+Jurisdicción Voluntaria,Epecialidad en Derecho Procesal Civil y Mercantil,1077,R 10,2023-11-01,2023-11-01,Miércoles,19:00:00 ,22:00:00 
+Jurisdicción Voluntaria,Epecialidad en Derecho Procesal Civil y Mercantil,1077,R 10,2023-11-07,2023-11-09,Martes,19:00:00 ,22:00:00 
+Jurisdicción Voluntaria,Epecialidad en Derecho Procesal Civil y Mercantil,1077,R 10,2023-11-07,2023-11-09,Jueves,19:00:00 ,22:00:00 
+Cooperación Procesal Internaci,Epecialidad en Derecho Procesal Civil y Mercantil,1078,R 10,2023-11-14,2023-11-23,Martes,19:00:00 ,22:00:00 
+Cooperación Procesal Internaci,Epecialidad en Derecho Procesal Civil y Mercantil,1078,R 10,2023-11-14,2023-11-23,Jueves,19:00:00 ,22:00:00 
+Amparo en Materia Civil y Merc,Epecialidad en Derecho Procesal Civil y Mercantil,1079,R 10,2023-11-28,2023-12-05,Martes,19:00:00 ,22:00:00 
+Amparo en Materia Civil y Merc,Epecialidad en Derecho Procesal Civil y Mercantil,1079,R 10,2023-11-28,2023-12-05,Jueves,19:00:00 ,22:00:00 
+Amparo en Materia Civil y Merc,Epecialidad en Derecho Procesal Civil y Mercantil,1079,R 10,2023-12-06,2023-12-06,Miércoles,19:00:00 ,22:00:00 
+Amparo en Materia Civil y Merc,Epecialidad en Derecho Procesal Civil y Mercantil,1079,R 10,2023-12-07,2023-12-07,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Proc,Epecialidad en Derecho Procesal Civil y Mercantil,1080,JUICIORAL,2023-03-23,2023-03-30,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Proc,Epecialidad en Derecho Procesal Civil y Mercantil,1080,JUICIORAL,2023-03-23,2023-03-30,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Proc,Epecialidad en Derecho Procesal Civil y Mercantil,1080,JUICIORAL,2023-09-26,2023-09-26,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Proc,Epecialidad en Derecho Procesal Civil y Mercantil,1080,JUICIORAL,2023-09-27,2023-09-27,Miércoles,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Proc,Epecialidad en Derecho Procesal Civil y Mercantil,1080,JUICIORAL,2023-12-06,2023-12-06,Miércoles,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Proc,Epecialidad en Derecho Procesal Civil y Mercantil,1080,JUICIORAL,2023-12-07,2023-12-07,Jueves,19:00:00 ,22:00:00 
+Metodología del Derecho,Maestría en Ciencias Jurídicas,1196,R 14,2023-02-06,2023-02-15,Lunes,19:00:00 ,22:00:00 
+Metodología del Derecho,Maestría en Ciencias Jurídicas,1196,R 14,2023-02-06,2023-02-15,Miércoles,19:00:00 ,22:00:00 
+Metodología del Derecho,Maestría en Ciencias Jurídicas,1196,R 14,2023-02-27,2023-03-08,Lunes,19:00:00 ,22:00:00 
+Metodología del Derecho,Maestría en Ciencias Jurídicas,1196,R 14,2023-02-27,2023-03-08,Miércoles,19:00:00 ,22:00:00 
+Antropología y Ética,Maestría en Ciencias Jurídicas,1197,R 14,2023-03-13,2023-03-16,Lunes,19:00:00 ,22:00:00 
+Antropología y Ética,Maestría en Ciencias Jurídicas,1197,R 14,2023-03-13,2023-03-16,Martes,19:00:00 ,22:00:00 
+Antropología y Ética,Maestría en Ciencias Jurídicas,1197,R 14,2023-03-13,2023-03-16,Miércoles,19:00:00 ,22:00:00 
+Antropología y Ética,Maestría en Ciencias Jurídicas,1197,R 14,2023-03-13,2023-03-16,Jueves,19:00:00 ,22:00:00 
+Antropología y Ética,Maestría en Ciencias Jurídicas,1197,R 02,2023-03-17,2023-03-17,Viernes,18:00:00 ,21:00:00 
+Antropología y Ética,Maestría en Ciencias Jurídicas,1197,R 14,2023-03-20,2023-03-29,Lunes,19:00:00 ,22:00:00 
+Antropología y Ética,Maestría en Ciencias Jurídicas,1197,R 14,2023-03-20,2023-03-29,Miércoles,19:00:00 ,22:00:00 
+Antropología y Ética,Maestría en Ciencias Jurídicas,1197,,2023-03-20,2023-05-26,Lunes,19:00:00 ,22:00:00 
+Antropología y Ética,Maestría en Ciencias Jurídicas,1197,,2023-03-20,2023-05-26,Miércoles,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-05-08,2023-05-11,Lunes,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-05-08,2023-05-11,Martes,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-05-08,2023-05-11,Jueves,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-05-15,2023-05-31,Lunes,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-05-15,2023-05-31,Miércoles,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-06-12,2023-06-14,Lunes,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-06-12,2023-06-14,Miércoles,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-06-19,2023-06-21,Lunes,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-06-19,2023-06-21,Martes,19:00:00 ,22:00:00 
+Historia del Pensamiento Juríd,Maestría en Ciencias Jurídicas,1198,R 14,2023-06-19,2023-06-21,Miércoles,19:00:00 ,22:00:00 
+Metodología de la Enseñanza,Maestría en Ciencias Jurídicas,1199,R 14,2023-10-16,2023-11-15,Lunes,19:00:00 ,22:00:00 
+Metodología de la Enseñanza,Maestría en Ciencias Jurídicas,1199,R 14,2023-10-16,2023-11-15,Miércoles,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-02-20,2023-02-23,Lunes,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-02-20,2023-02-23,Martes,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-02-20,2023-02-23,Miércoles,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-02-20,2023-02-23,Jueves,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 02,2023-02-24,2023-02-24,Viernes,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 09,2023-02-25,2023-02-25,Sábado,10:00:00 ,13:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-06-05,2023-06-08,Lunes,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-06-05,2023-06-08,Martes,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-06-05,2023-06-08,Miércoles,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-06-05,2023-06-08,Jueves,19:00:00 ,22:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-06-09,2023-06-09,Viernes,18:00:00 ,21:00:00 
+Filosofía del Derecho,Maestría en Ciencias Jurídicas,1200,R 14,2023-06-10,2023-06-10,Sábado,8:00:00 ,11:00:00 
+Derechos Humanos,Maestría en Ciencias Jurídicas,1201,R 14,2023-06-26,2023-07-06,Lunes,19:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Ciencias Jurídicas,1201,R 14,2023-06-26,2023-07-06,Martes,19:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Ciencias Jurídicas,1201,R 14,2023-06-26,2023-07-06,Miércoles,19:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Ciencias Jurídicas,1201,R 14,2023-06-26,2023-07-06,Jueves,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-07,2023-08-09,Lunes,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-07,2023-08-09,Miércoles,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-14,2023-08-17,Lunes,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-14,2023-08-17,Miércoles,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-14,2023-08-17,Jueves,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-21,2023-08-23,Lunes,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-21,2023-08-23,Miércoles,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-28,2023-08-31,Lunes,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-28,2023-08-31,Miércoles,19:00:00 ,22:00:00 
+Historia del Derecho Natural,Maestría en Ciencias Jurídicas,1202,R 14,2023-08-28,2023-08-31,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación y T,Maestría en Ciencias Jurídicas,1203,,2023-02-17,2023-04-30,Viernes,15:00:00 ,18:00:00 
+Seminario de Investigación y T,Maestría en Ciencias Jurídicas,1203,,2023-02-18,2023-04-01,Sábado,7:00:00 ,10:00:00 
+Seminario de Investigación y T,Maestría en Ciencias Jurídicas,1203,,2023-04-14,2023-08-11,Viernes,15:00:00 ,18:00:00 
+Seminario de Investigación y T,Maestría en Ciencias Jurídicas,1203,,2023-04-15,2023-08-12,Sábado,7:00:00 ,10:00:00 
+Temas Selec. de Derecho Const.,Maestría en Ciencias Jurídicas,1204,R 14,2023-09-04,2023-09-14,Lunes,19:00:00 ,22:00:00 
+Temas Selec. de Derecho Const.,Maestría en Ciencias Jurídicas,1204,R 14,2023-09-04,2023-09-14,Martes,19:00:00 ,22:00:00 
+Temas Selec. de Derecho Const.,Maestría en Ciencias Jurídicas,1204,R 14,2023-09-04,2023-09-14,Miércoles,19:00:00 ,22:00:00 
+Temas Selec. de Derecho Const.,Maestría en Ciencias Jurídicas,1204,R 14,2023-09-04,2023-09-14,Jueves,19:00:00 ,22:00:00 
+Temas Selec de Filosofía del D,Maestría en Ciencias Jurídicas,1205,R 14,2023-11-27,2023-12-07,Lunes,19:00:00 ,22:00:00 
+Temas Selec de Filosofía del D,Maestría en Ciencias Jurídicas,1205,R 14,2023-11-27,2023-12-07,Martes,19:00:00 ,22:00:00 
+Temas Selec de Filosofía del D,Maestría en Ciencias Jurídicas,1205,R 14,2023-11-27,2023-12-07,Miércoles,19:00:00 ,22:00:00 
+Temas Selec de Filosofía del D,Maestría en Ciencias Jurídicas,1205,R 14,2023-11-27,2023-12-07,Jueves,19:00:00 ,22:00:00 
+Temas Selec. de Argumentación,Maestría en Ciencias Jurídicas,1206,R 14,2023-09-18,2023-10-11,Lunes,19:00:00 ,22:00:00 
+Temas Selec. de Argumentación,Maestría en Ciencias Jurídicas,1206,R 14,2023-09-18,2023-10-11,Miércoles,19:00:00 ,22:00:00 
+Temas Selec de Teoría Política,Maestría en Ciencias Jurídicas,1207,R 14,2023-04-10,2023-04-12,Lunes,19:00:00 ,22:00:00 
+Temas Selec de Teoría Política,Maestría en Ciencias Jurídicas,1207,R 14,2023-04-10,2023-04-12,Miércoles,19:00:00 ,22:00:00 
+Temas Selec de Teoría Política,Maestría en Ciencias Jurídicas,1207,R 14,2023-07-31,2023-08-03,Lunes,19:00:00 ,22:00:00 
+Temas Selec de Teoría Política,Maestría en Ciencias Jurídicas,1207,R 14,2023-07-31,2023-08-03,Miércoles,19:00:00 ,22:00:00 
+Temas Selec de Teoría Política,Maestría en Ciencias Jurídicas,1207,R 14,2023-07-31,2023-08-03,Jueves,19:00:00 ,22:00:00 
+Temas Selec de Teoría Política,Maestría en Ciencias Jurídicas,1207,R 14,2023-12-11,2023-12-14,Lunes,19:00:00 ,22:00:00 
+Temas Selec de Teoría Política,Maestría en Ciencias Jurídicas,1207,R 14,2023-12-11,2023-12-14,Miércoles,19:00:00 ,22:00:00 
+Temas Selec de Teoría Política,Maestría en Ciencias Jurídicas,1207,R 14,2023-12-11,2023-12-14,Jueves,19:00:00 ,22:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,R 12,2023-02-20,2023-02-27,Lunes,19:00:00 ,22:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,R 12,2023-02-20,2023-02-27,Miércoles,19:00:00 ,22:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,,2023-02-25,2023-02-25,Sábado,8:00:00 ,14:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,R 01,2023-02-27,2023-04-10,Lunes,19:00:00 ,22:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,R 01,2023-02-27,2023-04-10,Miércoles,19:00:00 ,22:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,R 12,2023-03-01,2023-03-08,Lunes,19:00:00 ,22:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,R 12,2023-03-01,2023-03-08,Miércoles,19:00:00 ,22:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,,2023-03-04,2023-03-04,Sábado,8:00:00 ,14:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,R 12,2023-03-13,2023-03-22,Lunes,19:00:00 ,22:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,R 12,2023-03-13,2023-03-22,Miércoles,19:00:00 ,22:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,,2023-03-18,2023-03-01,Sábado,8:00:00 ,14:00:00 
+Fundamentos de Derecho Adminis,Maestría en Derecho Administrativo,1327,,2023-04-01,2023-04-01,Sábado,8:00:00 ,14:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-04-12,2023-04-19,Lunes,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-04-12,2023-04-19,Miércoles,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-04-12,2023-04-19,Viernes,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-04-24,2023-05-03,Martes,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-04-24,2023-05-03,Viernes,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 12,2023-05-08,2023-05-11,Lunes,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 12,2023-05-08,2023-05-11,Jueves,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-05-12,2023-05-12,Viernes,18:00:00 ,21:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-05-13,2023-05-13,Sábado,8:00:00 ,11:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-05-15,2023-05-17,Lunes,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-05-15,2023-05-17,Miércoles,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-05-22,2023-05-24,Lunes,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 01,2023-05-22,2023-05-24,Miércoles,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 02,2023-05-29,2023-05-07,Lunes,19:00:00 ,22:00:00 
+Función Pública,Maestría en Derecho Administrativo,1328,R 02,2023-05-29,2023-05-07,Miércoles,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 12,2023-06-12,2023-06-15,Lunes,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 12,2023-06-12,2023-06-15,Martes,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 12,2023-06-12,2023-06-15,Miércoles ,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 12,2023-06-12,2023-06-15,Jueves,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 01,2023-06-16,2023-06-16,Viernes,18:00:00 ,21:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 01,2023-06-19,2023-07-03,Lunes,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 01,2023-06-19,2023-07-03,Miércoles,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 01,2023-07-05,2023-08-07,Lunes,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 01,2023-07-05,2023-08-07,Miércoles,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 01,2023-08-09,2023-08-21,Lunes,19:00:00 ,22:00:00 
+Acto y Procedimiento Admon.,Maestría en Derecho Administrativo,1329,R 01,2023-08-09,2023-08-21,Miércoles,19:00:00 ,22:00:00 
+Administración Activa,Maestría en Derecho Administrativo,1331,R 01,2023-08-23,2023-08-30,Lunes,19:00:00 ,22:00:00 
+Administración Activa,Maestría en Derecho Administrativo,1331,R 01,2023-08-23,2023-08-30,Miércoles,19:00:00 ,22:00:00 
+Administración Activa,Maestría en Derecho Administrativo,1331,R 01,2023-09-06,2023-09-25,Lunes,19:00:00 ,22:00:00 
+Administración Activa,Maestría en Derecho Administrativo,1331,R 01,2023-09-06,2023-09-25,Miércoles,19:00:00 ,22:00:00 
+Administración Activa,Maestría en Derecho Administrativo,1331,R 01,2023-09-27,2023-10-11,Lunes,19:00:00 ,22:00:00 
+Administración Activa,Maestría en Derecho Administrativo,1331,R 01,2023-09-27,2023-10-11,Miércoles,19:00:00 ,22:00:00 
+Administración Activa,Maestría en Derecho Administrativo,1331,,2023-10-14,2023-10-14,Sábado,8:00:00 ,14:00:00 
+Contratos Públicos,Maestría en Derecho Administrativo,1333,R 01,2023-10-16,2023-10-30,Lunes,19:00:00 ,22:00:00 
+Contratos Públicos,Maestría en Derecho Administrativo,1333,R 01,2023-10-16,2023-10-30,Miércoles,19:00:00 ,22:00:00 
+Contratos Públicos,Maestría en Derecho Administrativo,1333,R 01,2023-11-01,2023-11-13,Lunes,19:00:00 ,22:00:00 
+Contratos Públicos,Maestría en Derecho Administrativo,1333,R 01,2023-11-01,2023-11-13,Miércoles,19:00:00 ,22:00:00 
+Contratos Públicos,Maestría en Derecho Administrativo,1333,R 01,2023-11-23,2023-11-30,Lunes,19:00:00 ,22:00:00 
+Contratos Públicos,Maestría en Derecho Administrativo,1333,R 01,2023-11-23,2023-11-30,Miércoles,19:00:00 ,22:00:00 
+Contratos Públicos,Maestría en Derecho Administrativo,1333,R 01,2023-11-23,2023-11-30,Viernes,19:00:00 ,22:00:00 
+Servicios Públicos,Maestría en Derecho Administrativo,1341,R 12,2023-02-16,2023-02-23,Martes,19:00:00 ,22:00:00 
+Servicios Públicos,Maestría en Derecho Administrativo,1341,R 12,2023-02-16,2023-02-23,Jueves,19:00:00 ,22:00:00 
+Servicios Públicos,Maestría en Derecho Administrativo,1341,,2023-02-25,2023-02-25,Sábado,8:00:00 ,14:00:00 
+Servicios Públicos,Maestría en Derecho Administrativo,1341,R 01,2023-02-28,20223-03-14,Martes,19:00:00 ,22:00:00 
+Servicios Públicos,Maestría en Derecho Administrativo,1341,R 01,2023-02-28,20223-03-14,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación y T,Maestría en Derecho Administrativo,1345,R 12,2023-11-14,2023-12-07,Martes,19:00:00 ,22:00:00 
+Seminario de Investigación y T,Maestría en Derecho Administrativo,1345,R 12,2023-11-14,2023-12-07,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación y T,Maestría en Derecho Administrativo,1345,,2023-11-18,2023-12-09,Sábado,8:00:00 ,14:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 01,2023-08-10,2023-08-17,Martes,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 01,2023-08-10,2023-08-17,Jueves,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-08-21,2023-08-24,Lunes,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-08-21,2023-08-24,Martes,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-08-21,2023-08-24,Miércoles,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-08-21,2023-08-24,Jueves,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-08-25,2023-08-25,Viernes,18:00:00 ,21:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-08-29,2023-09-14,Martes,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-08-29,2023-09-14,Jueves,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-09-21,2023-10-10,Martes,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-09-21,2023-10-10,Jueves,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-10-12,2023-10-17,Martes,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-10-12,2023-10-17,Jueves,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-10-19,2023-11-07,Martes,19:00:00 ,22:00:00 
+Defensa del Administrado,Maestría en Derecho Administrativo,1344,R 12,2023-10-19,2023-11-07,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,R 12,2023-04-27,2023-05-09,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,R 12,2023-04-27,2023-05-09,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,R 15,2023-05-11,2023-05-23,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,R 15,2023-05-11,2023-05-23,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,AULA MAGNA,2023-05-29,2023-06-01,Lunes,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,AULA MAGNA,2023-05-29,2023-06-01,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,AULA MAGNA,2023-05-29,2023-06-01,Miércoles,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,AULA MAGNA,2023-05-29,2023-06-01,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,AULA MAGNA,2023-06-08,2023-08-20,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1343,AULA MAGNA,2023-06-08,2023-08-20,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Humanismo Ju,Maestría en Derecho Administrativo,1349,R 12,2023-06-23,2023-07-06,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Humanismo Ju,Maestría en Derecho Administrativo,1349,R 12,2023-06-23,2023-07-06,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Humanismo Ju,Maestría en Derecho Administrativo,1349,R 01,2023-07-11,2023-08-08,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Humanismo Ju,Maestría en Derecho Administrativo,1349,R 01,2023-07-11,2023-08-08,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1342,R 02,2023-03-16,30/30/2023,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1342,R 02,2023-03-16,30/30/2023,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1342,R 12,2023-04-11,2023-04-25,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Derecho Admi,Maestría en Derecho Administrativo,1342,R 12,2023-04-11,2023-04-25,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Administraci,Maestría en Derecho Administrativo,1340,R 01,2023-01-23,2023-01-26,Lunes,19:00:00 ,22:00:00 
+Temas Selectos de Administraci,Maestría en Derecho Administrativo,1340,R 01,2023-01-23,2023-01-26,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Administraci,Maestría en Derecho Administrativo,1340,R 01,2023-01-23,2023-01-26,Miércoles,19:00:00 ,22:00:00 
+Temas Selectos de Administraci,Maestría en Derecho Administrativo,1340,R 01,2023-01-23,2023-01-26,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Administraci,Maestría en Derecho Administrativo,1340,R 12,2023-01-27,2023-01-27,Viernes,18:00:00 ,21:00:00 
+Temas Selectos de Administraci,Maestría en Derecho Administrativo,1340,R 01,2023-01-31,2023-02-14,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Administraci,Maestría en Derecho Administrativo,1340,R 01,2023-01-31,2023-02-14,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación y T,Maestría en Derecho Constitucional y Derechos Humanos,1153,R 13,2023-02-20,2023-02-24,Lunes,19:00:00 ,21:00:00 
+Seminario de Investigación y T,Maestría en Derecho Constitucional y Derechos Humanos,1153,R 13,2023-02-20,2023-02-24,Martes,19:00:00 ,21:00:00 
+Seminario de Investigación y T,Maestría en Derecho Constitucional y Derechos Humanos,1153,R 13,2023-02-20,2023-02-24,Miércoles,19:00:00 ,21:00:00 
+Seminario de Investigación y T,Maestría en Derecho Constitucional y Derechos Humanos,1153,R 13,2023-02-20,2023-02-24,Jueves,19:00:00 ,21:00:00 
+Seminario de Investigación y T,Maestría en Derecho Constitucional y Derechos Humanos,1153,R 13,2023-02-20,2023-02-24,Viernes,19:00:00 ,21:00:00 
+Seminario de Investigación y T,Maestría en Derecho Constitucional y Derechos Humanos,1153,R 13,2023-02-27,2023-03-01,Lunes,19:00:00 ,21:00:00 
+Seminario de Investigación y T,Maestría en Derecho Constitucional y Derechos Humanos,1153,R 13,2023-02-27,2023-03-01,Miércoles,19:00:00 ,21:00:00 
+Seminario de Investigación y T,Maestría en Derecho Constitucional y Derechos Humanos,1153,R 13,2023-07-05,2023-07-05,Miércoles,19:00:00 ,22:00:00 
+Seminario de Investigación y T,Maestría en Derecho Constitucional y Derechos Humanos,1153,,2023-07-15,2023-07-15,Sábado,10:00:00 ,11:00:00 
+Interpretación y Argumentación,Maestría en Derecho Constitucional y Derechos Humanos,1145,R 13,2023-02-14,2023-02-16,Martes,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Constitucional y Derechos Humanos,1145,R 13,2023-02-14,2023-02-16,Miércoles,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Constitucional y Derechos Humanos,1145,R 13,2023-02-14,2023-02-16,Jueves,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Constitucional y Derechos Humanos,1145,R 13,2023-02-17,2023-02-17,Viernes,18:00:00 ,21:00:00 
+Interpretación y Argumentación,Maestría en Derecho Constitucional y Derechos Humanos,1145,R 13,2023-11-27,2023-11-30,Lunes,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Constitucional y Derechos Humanos,1145,R 13,2023-11-27,2023-11-30,Martes,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Constitucional y Derechos Humanos,1145,R 13,2023-11-27,2023-11-30,Miércoles,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Constitucional y Derechos Humanos,1145,R 13,2023-11-27,2023-11-30,Jueves,19:00:00 ,22:00:00 
+Fundamentos Histórico Filosófi,Maestría en Derecho Constitucional y Derechos Humanos,1159,R 13,2023-03-06,2023-03-29,Lunes,19:00:00 ,22:00:00 
+Fundamentos Histórico Filosófi,Maestría en Derecho Constitucional y Derechos Humanos,1159,R 13,2023-03-06,2023-03-29,Miércoles,19:00:00 ,22:00:00 
+Fundamentos Histórico Filosófi,Maestría en Derecho Constitucional y Derechos Humanos,1159,R 13,2023-04-10,2023-04-26,Lunes,19:00:00 ,22:00:00 
+Fundamentos Histórico Filosófi,Maestría en Derecho Constitucional y Derechos Humanos,1159,R 13,2023-04-10,2023-04-26,Miércoles,19:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Derecho Constitucional y Derechos Humanos,1169,R 13,2023-06-10,2023-06-10,Sábado,11:00:00 ,14:00:00 
+Derechos Humanos,Maestría en Derecho Constitucional y Derechos Humanos,1169,R 13,2023-06-12,2023-06-14,Lunes,18:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Derecho Constitucional y Derechos Humanos,1169,R 13,2023-06-12,2023-06-14,Martes,18:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Derecho Constitucional y Derechos Humanos,1169,R 13,2023-06-19,2023-06-21,Miércoles,18:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Derecho Constitucional y Derechos Humanos,1169,R 13,2023-06-19,2023-06-21,Lunes,19:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Derecho Constitucional y Derechos Humanos,1169,R 13,2023-06-19,2023-06-21,Miércoles,19:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Derecho Constitucional y Derechos Humanos,1169,R 13,2023-06-26,2023-06-28,Lunes,19:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Derecho Constitucional y Derechos Humanos,1169,R 13,2023-06-26,2023-06-28,Martes,19:00:00 ,22:00:00 
+Derechos Humanos,Maestría en Derecho Constitucional y Derechos Humanos,1169,R 13,2023-06-26,2023-06-28,Miércoles,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-05-15,2023-05-29,Lunes,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-05-15,2023-05-29,Miércoles,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-07-10,2023-07-13,Lunes,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-07-10,2023-07-13,Martes,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-07-10,2023-07-13,Miércoles,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-07-10,2023-07-13,Jueves,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-08-02,2023-08-21,Lunes,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-08-02,2023-08-21,Miércoles,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-08-23,2023-09-06,Lunes,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-08-23,2023-09-06,Miércoles,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-09-18,2023-10-02,Lunes,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-09-18,2023-10-02,Miércoles,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-10-16,2023-10-30,Lunes,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-10-16,2023-10-30,Miércoles,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-11-13,2023-11-17,Lunes,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-11-13,2023-11-17,Martes,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-11-13,2023-11-17,Miércoles,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-11-13,2023-11-17,Jueves,19:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Constitucional y Derechos Humanos,1162,R 13,2023-11-13,2023-11-17,Viernes,19:00:00 ,22:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-02-03,2023-02-10,Viernes,18:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-02-04,2023-02-11,Sábado,10:00:00 ,13:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-02-14,2023-02-16,Martes,19:00:00 ,22:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-02-14,2023-02-16,Miércoles,19:00:00 ,22:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-02-14,2023-02-16,Jueves,19:00:00 ,22:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-02-21,2023-02-23,Martes,19:00:00 ,22:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-02-21,2023-02-23,Jueves,19:00:00 ,22:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-02-28,2023-03-02,Martes,19:00:00 ,22:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-02-28,2023-03-02,Miércoles,19:00:00 ,22:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-02-28,2023-03-02,Jueves,19:00:00 ,22:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-03-03,2023-03-03,Viernes,18:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,,2023-03-09,2023-03-23,Jueves,19:00:00 ,20:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,,2023-03-28,2023-03-28,Martes,19:00:00 ,20:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-04-10,2023-04-13,Lunes,19:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-04-10,2023-04-13,Martes,19:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-04-10,2023-04-13,Miércoles,19:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-04-10,2023-04-13,Jueves,19:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-04-14,2023-04-14,Viernes,18:00:00 ,20:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-04-24,2023-04-27,Lunes,19:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-04-24,2023-04-27,Martes,19:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-04-24,2023-04-27,Miércoles,19:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-04-24,2023-04-27,Jueves,19:00:00 ,21:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-04-28,2023-04-28,Viernes,18:00:00 ,20:00:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-06-26,2023-06-29,Lunes,19:00:00 ,21:30:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-06-26,2023-06-29,Martes,19:00:00 ,21:30:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-06-26,2023-06-29,Miércoles,19:00:00 ,21:30:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 15,2023-06-26,2023-06-29,Jueves,19:00:00 ,21:30:00 
+Sistema Internacional y Region,Maestría en Derecho Constitucional y Derechos Humanos,1647,R 09,2023-06-30,2023-06-30,Viernes,18:00:00 ,20:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 06,2023-04-18,2023-04-20,Martes,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 06,2023-04-18,2023-04-20,Jueves,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 15,2023-05-02,2023-05-04,Martes,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 15,2023-05-02,2023-05-04,Miércoles,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 15,2023-05-02,2023-05-04,Jueves,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 15,2023-05-05,2023-05-05,Viernes,18:00:00 ,21:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 15,2023-06-13,2023-06-20,Martes,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 15,2023-06-13,2023-06-20,Jueves,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 15,2023-07-03,2023-07-05,Lunes,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 15,2023-07-03,2023-07-05,Martes,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 15,2023-07-03,2023-07-05,Miércoles,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 09,2023-08-08,2023-08-10,Martes,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 09,2023-08-08,2023-08-10,Miércoles,19:00:00 ,22:00:00 
+Protección y Promoción de los,Maestría en Derecho Constitucional y Derechos Humanos,1649,R 09,2023-08-08,2023-08-10,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas Selectos de,Maestría en Derecho Constitucional y Derechos Humanos,1648,R 06,2023-05-16,2023-05-18,Martes,19:00:00 ,22:00:00 
+Seminario de Temas Selectos de,Maestría en Derecho Constitucional y Derechos Humanos,1648,R 06,2023-05-16,2023-05-18,Miércoles,19:00:00 ,22:00:00 
+Seminario de Temas Selectos de,Maestría en Derecho Constitucional y Derechos Humanos,1648,R 06,2023-05-16,2023-05-18,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas Selectos de,Maestría en Derecho Constitucional y Derechos Humanos,1648,R 06,2023-05-19,2023-05-19,Viernes,18:00:00 ,20:00:00 
+Seminario de Temas Selectos de,Maestría en Derecho Constitucional y Derechos Humanos,1648,R 04,2023-05-23,2023-06-06,Martes,19:00:00 ,21:00:00 
+Seminario de Temas Selectos de,Maestría en Derecho Constitucional y Derechos Humanos,1648,R 04,2023-05-25,2023-06-01,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas Selectos de,Maestría en Derecho Constitucional y Derechos Humanos,1648,,2023-07-13,20223-07-13,Jueves,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-08-15,2023-09-07,Martes,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-08-15,2023-09-07,Jueves,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-09-19,2023-09-28,Martes,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-09-19,2023-09-28,Jueves,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-10-10,2023-10-12,Martes,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-10-10,2023-10-12,Miércoles,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-10-10,2023-10-12,Jueves,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 01,2023-10-17,2023-10-24,Martes,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 01,2023-10-17,2023-10-24,Jueves,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-11-07,2023-11-09,Martes,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-11-07,2023-11-09,Miércoles,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-11-07,2023-11-09,Jueves,19:00:00 ,22:00:00 
+Sem. de Derechos de Igualdad,Maestría en Derecho Constitucional y Derechos Humanos,1650,R 15,2023-11-10,2023-11-10,Viernes,18:00:00 ,21:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-09-11,2023-09-14,Lunes,18:00:00 ,21:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-09-11,2023-09-14,Martes,18:00:00 ,21:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-09-11,2023-09-14,Miércoles,18:00:00 ,21:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-09-11,2023-09-14,Jueves,18:00:00 ,21:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-10-02,2023-10-06,Lunes,18:00:00 ,20:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-10-02,2023-10-06,Martes,18:00:00 ,20:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-10-02,2023-10-06,Miércoles,18:00:00 ,20:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-10-02,2023-10-06,Jueves,18:00:00 ,20:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-10-02,2023-10-06,Viernes,18:00:00 ,20:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-11-14,2023-11-16,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-11-14,2023-11-16,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-11-20,2023-11-23,Lunes,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-11-20,2023-11-23,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-11-20,2023-11-23,Miércoles,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-11-20,2023-11-23,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-11-28,2023-12-07,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-11-28,2023-12-07,Jueves,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-12-12,2023-12-14,Martes,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-12-12,2023-12-14,Miércoles,19:00:00 ,22:00:00 
+Temas Selectos de Nuevos Derec,Maestría en Derecho Constitucional y Derechos Humanos,1651,R 09,2023-12-12,2023-12-14,Jueves,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-02-27,2023-03-15,Lunes,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-02-27,2023-03-15,Miércoles,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-03-22,2023-03-29,Lunes,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-03-22,2023-03-29,Miércoles,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-03-24,2023-03-24,Viernes,18:00:00 ,21:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-03-25,2023-03-25,Sábado,8:00:00 ,14:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-04-10,2023-04-17,Lunes,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-04-10,2023-04-17,Miércoles,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-04-15,2023-04-15,Sábado,8:00:00 ,14:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-04-19,2023-04-26,Lunes,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-04-19,2023-04-26,Miércoles,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-05-01,2023-05-04,Lunes,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-05-01,2023-05-04,Martes,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-05-01,2023-05-04,Miércoles,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-05-01,2023-05-04,Jueves,19:00:00 ,22:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-05-05,2023-05-05,Viernes,18:00:00 ,21:00:00 
+Conceptos Fundamentales de Der,Maestría en Derecho Fiscal,1280,R 05,2023-05-06,2023-05-06,Sábado,8:00:00 ,14:00:00 
+Procedimientos Administrativos,Maestría en Derecho Fiscal,1281,R 05,2023-05-08,2023-05-17,Lunes,19:00:00 ,22:00:00 
+Procedimientos Administrativos,Maestría en Derecho Fiscal,1281,R 05,2023-05-08,2023-05-17,Miércoles,19:00:00 ,22:00:00 
+Procedimientos Administrativos,Maestría en Derecho Fiscal,1281,R 05,2023-05-22,2023-05-31,Lunes,19:00:00 ,22:00:00 
+Procedimientos Administrativos,Maestría en Derecho Fiscal,1281,R 05,2023-05-22,2023-05-31,Miércoles,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-06-05,2023-07-05,Lunes,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-06-05,2023-07-05,Miércoles,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-06-10,2023-06-10,Sábado,9:00:00 ,12:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-07-10,2023-08-09,Lunes,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-07-10,2023-08-09,Miércoles,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-08-04,2023-09-06,Lunes,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-08-04,2023-09-06,Miércoles,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-09-12,2023-09-20,Lunes,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-09-12,2023-09-20,Miércoles,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-09-25,2023-10-09,Lunes,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-09-25,2023-10-09,Miércoles,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-10-11,2023-10-18,Lunes,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-10-11,2023-10-18,Miércoles,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-10-23,2023-11-08,Lunes,19:00:00 ,22:00:00 
+Impuestos Federales,Maestría en Derecho Fiscal,1282,R 05,2023-10-23,2023-11-08,Miércoles,19:00:00 ,22:00:00 
+Contribuciones y Procedimiento,Maestría en Derecho Fiscal,1283,R 05,2023-11-08,2023-12-02,Sábado,8:00:00 ,14:00:00 
+Contribuciones y Procedimiento,Maestría en Derecho Fiscal,1283,R 05,2023-11-13,2023-12-06,Lunes,18:00:00 ,21:00:00 
+Contribuciones y Procedimiento,Maestría en Derecho Fiscal,1283,R 05,2023-11-13,2023-12-06,Miércoles,18:00:00 ,21:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-01-31,2023-02-21,Martes,19:00:00 ,22:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-01-31,2023-02-21,Jueves,19:00:00 ,22:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,82023-02-17,2023-02-17,Viernes,18:00:00 ,21:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-02-23,2023-03-16,Martes,19:00:00 ,22:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-02-23,2023-03-16,Jueves,19:00:00 ,22:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-03-17,2023-03-17,Viernes,18:00:00 ,21:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-03-21,2023-04-11,Martes,19:00:00 ,22:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-03-21,2023-04-11,Jueves,19:00:00 ,22:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-03-24,2023-03-24,Viernes,18:00:00 ,21:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-04-13,2023-04-27,Martes,19:00:00 ,22:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-04-13,2023-04-27,Jueves,19:00:00 ,22:00:00 
+Procedimiento Contencioso Adm.,Maestría en Derecho Fiscal,1296,JUICIORAL,2023-04-14,2023-04-14,Viernes,18:00:00 ,21:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,,2023-05-02,2023-05-18,Martes,19:00:00 ,22:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,,2023-05-02,2023-05-18,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,,2023-05-23,2023-06-08,Martes,19:00:00 ,22:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,,2023-05-23,2023-06-08,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,R 02,2023-05-26,2023-05-26,Viernes,18:00:00 ,21:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,R 02,2023-06-13,2023-07-06,Martes,19:00:00 ,22:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,R 02,2023-06-13,2023-07-06,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,R 02,2023-07-11,2023-08-03,Martes,19:00:00 ,22:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,R 02,2023-07-11,2023-08-03,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,R 02,2023-08-08,2023-08-24,Martes,19:00:00 ,22:00:00 
+Seminario de Temas de Fiscali,Maestría en Derecho Fiscal,1298,R 02,2023-08-08,2023-08-24,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,,2023-05-02,2023-05-16,Martes,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,,2023-05-02,2023-05-16,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 14,2023-05-05,2023-05-12,Viernes,18:00:00 ,21:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 14,2023-05-16,2023-06-02,Viernes,18:00:00 ,21:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,,2023-05-23,2023-06-06,Martes,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,,2023-05-23,2023-06-06,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 18,2023-06-08,2023-06-22,Martes,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 18,2023-06-08,2023-06-22,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 18,2023-06-27,2023-07-06,Martes,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 8,2023-06-27,2023-07-06,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 04,2023-08-08,2023-08-24,Martes,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 04,2023-08-08,2023-08-24,Jueves,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 18,2023-08-29,2023-09-07,Martes,19:00:00 ,22:00:00 
+Seminario de Temas Tributarios,Maestría en Derecho Fiscal,2698,R 18,2023-08-29,2023-09-07,Jueves,19:00:00 ,22:00:00 
+Marco Teórico del Capital y,Maestría en Derecho Laboral,1335,R 03,2023-06-16,2023-06-23,Viernes,18:00:00 ,22:00:00 
+Marco Teórico del Capital y,Maestría en Derecho Laboral,1335,R 03,2023-06-17,2023-06-24,Sábado,10:00:00 ,14:00:00 
+Humanísticas,Maestría en Derecho Laboral,1336,R 03,2023-06-30,2023-07-14,Viernes,18:00:00 ,22:00:00 
+Humanísticas,Maestría en Derecho Laboral,1336,R 03,2023-07-01,2023-07-16,Sábado,10:00:00 ,14:00:00 
+Conceptos Fundamentales del D,Maestría en Derecho Laboral,1278,R 03,2023-03-03,2023-03-18,Viernes,18:00:00 ,22:00:00 
+Conceptos Fundamentales del D,Maestría en Derecho Laboral,1278,AULA MAGNA,2023-03-03,2023-03-18,Sábado,10:00:00 ,14:00:00 
+Conceptos Fundamentales del D,Maestría en Derecho Laboral,1284,R 03,2023-03-24,2023-04-01,Viernes,18:00:00 ,22:00:00 
+Conceptos Fundamentales del D,Maestría en Derecho Laboral,1284,AULA MAGNA,2023-03-25,2023-04-01,Sábado,10:00:00 ,14:00:00 
+Conceptos Fundamentales del D,Maestría en Derecho Laboral,1284,R 03,2023-04-03,2023-04-03,Lunes,9:00:00 ,11:00:00 
+Derecho Colectivo,Maestría en Derecho Laboral,1330,AULA MAGNA,2023-04-14,2023-04-28,Viernes,18:00:00 ,22:00:00 
+Derecho Colectivo,Maestría en Derecho Laboral,1330,R 03,2023-04-15,2023-04-29,Sábado,10:00:00 ,14:00:00 
+Relaciones Individuales del T,Maestría en Derecho Laboral,1332,AULA MAGNA,2023-05-12,2023-05-19,Viernes,18:00:00 ,22:00:00 
+Relaciones Individuales del T,Maestría en Derecho Laboral,1332,R 03,2023-05-13,2023-05-20,Sábado,10:00:00 ,14:00:00 
+Relaciones Individuales del T,Maestría en Derecho Laboral,1332,R 03,2023-05-22,2023-05-22,Lunes,9:00:00 ,17:00:00 
+Derecho Procesal del Trabajo,Maestría en Derecho Laboral,1334,R 03,2023-05-26,2023-06-09,Viernes,18:00:00 ,22:00:00 
+Derecho Procesal del Trabajo,Maestría en Derecho Laboral,1334,R 03,2023-05-27,2023-06-10,Sábado,10:00:00 ,14:00:00 
+Amparo Laboral,Maestría en Derecho Laboral,1337,R 03,2023-07-21,2023-08-04,Viernes,18:00:00 ,22:00:00 
+Amparo Laboral,Maestría en Derecho Laboral,1337,R 03,2023-07-22,2023-08-05,Sábado,10:00:00 ,14:00:00 
+Derecho Internacional del Trab,Maestría en Derecho Laboral,1338,R 03,2023-09-01,2023-09-22,Viernes,18:00:00 ,22:00:00 
+Derecho Internacional del Trab,Maestría en Derecho Laboral,1338,R 03,2023-09-02,2023-09-23,Sábado,10:00:00 ,14:00:00 
+Régimen de la Seguridad Social,Maestría en Derecho Laboral,1348,R 03,2023-09-29,2023-10-27,Viernes,18:00:00 ,22:00:00 
+Régimen de la Seguridad Social,Maestría en Derecho Laboral,1348,R 03,2023-09-30,2023-10-28,Sábado,10:00:00 ,14:00:00 
+Negociación en Materia Laboral,Maestría en Derecho Laboral,1350,R 03,2023-11-03,2023-11-10,Viernes,14:00:00 ,22:00:00 
+Negociación en Materia Laboral,Maestría en Derecho Laboral,1350,R 03,2023-11-04,2023-11-11,Sábado,8:00:00 ,14:00:00 
+Modalidades de Contratación,Maestría en Derecho Laboral,1351,R 03,2023-11-17,2023-11-17,Viernes,18:00:00 ,22:00:00 
+Modalidades de Contratación,Maestría en Derecho Laboral,1351,R 03,2023-11-18,2023-11-18,Sábado,9:00:00 ,14:00:00 
+Derecho Burocrático,Maestría en Derecho Laboral,1352,R 03,2023-11-24,2023-12-01,Viernes,18:00:00 ,22:00:00 
+Derecho Burocrático,Maestría en Derecho Laboral,1352,R 03,2023-11-25,2023-12-02,Sábado,11:00:00 ,14:00:00 
+Derechos Humanos en la Empresa,Maestría en Derecho Laboral,1353,R 03,2023-12-08,2023-12-15,Viernes,18:00:00 ,22:00:00 
+Derechos Humanos en la Empresa,Maestría en Derecho Laboral,1353,R 03,2023-12-09,2023-12-16,Sábado,9:00:00 ,14:00:00 
+Argumentación Jurídica,Maestría en Derecho Laboral,1354,R 03,2024-01-12,2024-01-19,Viernes,19:00:00 ,22:00:00 
+Argumentación Jurídica,Maestría en Derecho Laboral,1354,R 03,2024-01-13,2024-01-20,Sábado,11:00:00 ,14:00:00 
+Práctica Forense del Derecho L,Maestría en Derecho Laboral,1355,R 03,2024-01-26,2024-02-02,Viernes,18:00:00 ,22:00:00 
+Práctica Forense del Derecho L,Maestría en Derecho Laboral,1355,R 03,2024-01-27,2024-02-03,Sábado,10:00:00 ,14:00:00 
+Práctica Forense del Derecho L,Maestría en Derecho Laboral,1355,R 03,2024-02-05,2024-02-05,Lunes,9:00:00 ,11:00:00 
+Seminario de Actualización en,Maestría en Derecho Laboral,1356,R 03,2024-02-09,2024-02-16,Viernes,18:00:00 ,22:00:00 
+Seminario de Actualización en,Maestría en Derecho Laboral,1356,R 03,2024-02-10,2024-02-17,Sábado,10:00:00 ,14:00:00 
+Seminario de Actualización en,Maestría en Derecho Laboral,1356,R 03,2024-02-19,2024-02-19,Lunes,9:00:00 ,11:00:00 
+Seminario de Investigación y T,Maestría en Derecho Procesal Constitucional,1325,R 04,2023-05-19,2023-05-19,Viernes,18:00:00 ,22:00:00 
+Seminario de Investigación y T,Maestría en Derecho Procesal Constitucional,1325,R 04,2023-05-26,2023-05-26,Viernes,18:00:00 ,22:00:00 
+Seminario de Investigación y T,Maestría en Derecho Procesal Constitucional,1325,R 04,2023-05-27,2023-05-27,Sábado,11:00:00 ,13:00:00 
+Seminario de Investigación y T,Maestría en Derecho Procesal Constitucional,1325,R 04,2023-06-02,2023-06-02,Viernes,18:00:00 ,22:00:00 
+Seminario de Investigación y T,Maestría en Derecho Procesal Constitucional,1325,,2023-08-02,2023-08-02,Miércoles,16:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 06,2023-02-28,2023-03-02,Martes,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 06,2023-02-28,2023-03-02,Miércoles,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 06,2023-02-28,2023-03-02,Jueves,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 06,2023-03-03,2023-03-03,Viernes,18:00:00 ,21:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,,2023-03-08,2023-03-09,Miércoles,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,,2023-03-08,2023-03-09,Jueves,19:00:00 ,22:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 04,2023-03-17,2023-03-31,Viernes,19:00:00 ,21:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 04,2023-03-18,2023-03-18,Sábado,10:00:00 ,13:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 04,2023-03-25,2023-03-25,Sábado,10:00:00 ,14:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,,2023-04-19,2023-04-20,Miércoles,19:00:00 ,20:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,,2023-04-19,2023-04-20,Jueves,19:00:00 ,20:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,,2023-12-02,2023-12-02,Sábado,9:00:00 ,14:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 04,2023-12-04,2023-12-07,Lunes,19:00:00 ,21:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 04,2023-12-04,2023-12-07,Martes,19:00:00 ,21:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 04,2023-12-04,2023-12-07,Miércoles,19:00:00 ,21:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 04,2023-12-04,2023-12-07,Jueves,19:00:00 ,21:00:00 
+Interpretación y Argumentación,Maestría en Derecho Procesal Constitucional,1323,R 04,2023-12-08,2023-12-08,Viernes,18:00:00 ,20:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,R 06,2023-02-22,2023-02-24,Miércoles,17:00:00 ,22:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,R 06,2023-02-22,2023-02-24,Jueves,17:00:00 ,22:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,R 06,2023-02-22,2023-02-24,Viernes,17:00:00 ,22:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,R 04,2023-04-10,2023-04-13,Lunes,19:00:00 ,22:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,R 04,2023-04-10,2023-04-13,Martes,19:00:00 ,22:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,R 04,2023-04-10,2023-04-13,Miércoles,19:00:00 ,22:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,R 04,2023-04-10,2023-04-13,Jueves,19:00:00 ,22:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,R 04,2023-04-14,2023-04-14,Viernes,18:00:00 ,21:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,,2023-04-17,2023-04-17,Lunes,18:00:00 ,19:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,,2023-07-17,2023-07-17,Lunes,19:00:00 ,20:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,,2023-07-24,2023-07-24,Lunes,19:00:00 ,20:00:00 
+Fundamentos de Derecho Procesa,Maestría en Derecho Procesal Constitucional,1322,,2023-07-31,2023-07-31,Lunes,19:00:00 ,20:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Procesal Constitucional,1324,R 04,2023-04-28,2023-05-05,Viernes,18:00:00 ,21:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Procesal Constitucional,1324,R 04,2023-04-29,2023-05-06,Sábado,9:00:00 ,14:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Procesal Constitucional,1324,R 04,2023-06-09,2023-06-30,Viernes,18:00:00 ,21:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Procesal Constitucional,1324,R 04,2023-06-24,2023-06-24,Sábado,9:00:00 ,14:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Procesal Constitucional,1324,R 04,2023-08-01,2023-08-02,Martes,17:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Procesal Constitucional,1324,R 04,2023-08-01,2023-08-02,Miércoles,17:00:00 ,22:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Procesal Constitucional,1324,R 04,2023-08-11,2023-08-11,Viernes,18:00:00 ,21:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Procesal Constitucional,1324,R 04,2023-08-12,2023-08-12,Sábado,9:00:00 ,12:00:00 
+Fundamentos Constitucionales,Maestría en Derecho Procesal Constitucional,1324,R 04,2023-08-19,2023-08-19,Sábado,9:00:00 ,23:00:00 
+Der Procesal Constitu. Local,Maestría en Derecho Procesal Constitucional,1573,R 06,2023-08-18,2023-08-25,Viernes,18:00:00 ,21:00:00 
+Der Procesal Constitu. Local,Maestría en Derecho Procesal Constitucional,1573,R 06,2023-08-19,2023-08-26,Sábado,10:00:00 ,13:00:00 
+Der Procesal Constitu. Local,Maestría en Derecho Procesal Constitucional,1573,R 04,2023-09-08,2023-09-08,Viernes,18:00:00 ,21:00:00 
+Der Procesal Constitu. Local,Maestría en Derecho Procesal Constitucional,1573,R 04,2023-09-09,2023-09-09,Sábado,10:00:00 ,13:00:00 
+Der Procesal Constitu Transna,Maestría en Derecho Procesal Constitucional,1576,R 04,2023-11-13,2023-11-15,Lunes,18:00:00 ,22:00:00 
+Der Procesal Constitu Transna,Maestría en Derecho Procesal Constitucional,1576,R 04,2023-11-13,2023-11-15,Martes,18:00:00 ,22:00:00 
+Der Procesal Constitu Transna,Maestría en Derecho Procesal Constitucional,1576,R 04,2023-11-13,2023-11-15,Miércoles,18:00:00 ,22:00:00 
+Der Procesal Constitu Transna,Maestría en Derecho Procesal Constitucional,1576,R 04,2023-11-16,2023-11-16,Jueves,19:00:00 ,21:00:00 
+Der Procesal Constitu Transna,Maestría en Derecho Procesal Constitucional,1576,R 04,2023-11-17,2023-11-17,Viernes,18:00:00 ,22:00:00 
+Der Procesal Constitu Transna,Maestría en Derecho Procesal Constitucional,1576,,2023-11-23,2023-11-23,Jueves,19:00:00 ,21:00:00 
+Der Procesal Constitu Transna,Maestría en Derecho Procesal Constitucional,1576,,2023-11-30,2023-11-30,Jueves,19:00:00 ,21:00:00 
+Sem. Tem Selec Procesal Const,Maestría en Derecho Procesal Constitucional,1575,R 04,2023-10-06,2023-10-13,Viernes,18:00:00 ,21:00:00 
+Sem. Tem Selec Procesal Const,Maestría en Derecho Procesal Constitucional,1575,R 04,2023-10-07,2023-10-14,Sábado,9:00:00 ,14:00:00 
+Sem. Tem Selec Procesal Const,Maestría en Derecho Procesal Constitucional,1575,R 04,2023-10-27,2023-10-27,Viernes,18:00:00 ,21:00:00 
+Sem. Tem Selec Procesal Const,Maestría en Derecho Procesal Constitucional,1575,R 04,2023-10-28,2023-10-28,Sábado,9:00:00 ,14:00:00 
+Sem. Tem Selec Procesal Const,Maestría en Derecho Procesal Constitucional,1575,R 06,2023-12-04,2023-12-07,Lunes,19:00:00 ,22:00:00 
+Sem. Tem Selec Procesal Const,Maestría en Derecho Procesal Constitucional,1575,R 06,2023-12-04,2023-12-07,Martes,19:00:00 ,22:00:00 
+Sem. Tem Selec Procesal Const,Maestría en Derecho Procesal Constitucional,1575,R 06,2023-12-04,2023-12-07,Miércoles,19:00:00 ,22:00:00 
+Sem. Tem Selec Procesal Const,Maestría en Derecho Procesal Constitucional,1575,R 06,2023-12-04,2023-12-07,Jueves,19:00:00 ,22:00:00 
+Sem. Tem Selec Procesal Const,Maestría en Derecho Procesal Constitucional,1575,R 06,2023-12-08,2023-12-08,Viernes,18:00:00 ,21:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-02-10,2023-02-17,Viernes,18:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-02-11,2023-02-11,Sábado,9:00:00 ,14:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-03-03,2023-03-10,Viernes,18:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,82023-03-04,2023-03-04,Sábado,8:00:00 ,14:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 06,2023-03-22,2023-03-24,Miércoles,19:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 06,2023-03-22,2023-03-24,Jueves,19:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 06,2023-03-22,2023-03-24,Viernes,19:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-03-25,2023-03-25,Sábado,9:00:00 ,14:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-03-31,2023-03-31,Viernes,18:00:00 ,21:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-04-01,2023-04-01,Sábado,9:00:00 ,14:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-04-14,2023-04-28,Viernes,18:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-05-12,2023-05-19,Viernes,18:00:00 ,21:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-05-13,2023-05-20,Sábado,9:00:00 ,14:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-06-02,2023-06-02,Viernes,18:00:00 ,21:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-06-03,2023-06-03,Sábado,9:00:00 ,14:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-06-09,2023-06-23,Viernes,18:00:00 ,21:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-06-17,2023-06-24,Sábado,10:00:00 ,13:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-07-10,2023-07-13,Lunes,19:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-07-10,2023-07-13,Martes,19:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-07-10,2023-07-13,Miércoles,19:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-07-10,2023-07-13,Jueves,19:00:00 ,22:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-07-14,2023-07-14,Viernes,18:00:00 ,21:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-08-11,2023-08-11,Viernes,18:00:00 ,21:00:00 
+Procesos Constitucionales,Maestría en Derecho Procesal Constitucional,1578,R 15,2023-08-19,2023-08-19,Sábado,9:00:00 ,14:00:00 
+Der. Procesal Consti Electoral,Maestría en Derecho Procesal Constitucional,1643,R 15,2023-09-01,2023-09-08,Viernes,18:00:00 ,22:00:00 
+Der. Procesal Consti Electoral,Maestría en Derecho Procesal Constitucional,1643,R 15,2023-09-02,2023-09-09,Sábado,9:00:00 ,14:00:00 
+Der. Procesal Consti Electoral,Maestría en Derecho Procesal Constitucional,1643,,2023-09-11,2023-09-11,Lunes,19:00:00 ,22:00:00 
+Der. Procesal Consti Electoral,Maestría en Derecho Procesal Constitucional,1643,R 15,2023-09-22,2023-09-22,Viernes,18:00:00 ,22:00:00 
+Der. Procesal Consti Electoral,Maestría en Derecho Procesal Constitucional,1643,R 15,2023-09-23,2023-09-23,Sábado,9:00:00 ,14:00:00 
+Protección no Jurisdiccional,Maestría en Derecho Procesal Constitucional,1644,R 15,2023-10-06,2023-10-13,Viernes,18:00:00 ,21:00:00 
+Protección no Jurisdiccional,Maestría en Derecho Procesal Constitucional,1644,R 15,2023-10-07,2023-10-07,Sábado,10:00:00 ,12:00:00 
+Protección no Jurisdiccional,Maestría en Derecho Procesal Constitucional,1644,R 15,2023-10-14,124/10/2023,Sábado,10:00:00 ,14:00:00 
+Protección no Jurisdiccional,Maestría en Derecho Procesal Constitucional,1644,,2023-10-23,2023-10-23,Lunes,18:00:00 ,21:00:00 
+Las Sentencias Constitucionale,Maestría en Derecho Procesal Constitucional,1645,R 15,2023-10-24,2023-10-26,Martes,19:00:00 ,22:00:00 
+Las Sentencias Constitucionale,Maestría en Derecho Procesal Constitucional,1645,R 15,2023-10-24,2023-10-26,Miércoles,19:00:00 ,22:00:00 
+Las Sentencias Constitucionale,Maestría en Derecho Procesal Constitucional,1645,R 15,2023-10-24,2023-10-26,Jueves,19:00:00 ,22:00:00 
+Las Sentencias Constitucionale,Maestría en Derecho Procesal Constitucional,1645,R 15,2023-10-27,2023-10-27,Viernes,18:00:00 ,21:00:00 
+Las Sentencias Constitucionale,Maestría en Derecho Procesal Constitucional,1645,R 15,2023-11-04,2023-11-11,Sábado,9:00:00 ,14:00:00 
+Las Sentencias Constitucionale,Maestría en Derecho Procesal Constitucional,1645,,2023-11-29,2023-11-29,Miércoles,19:00:00 ,22:00:00 
+Sem. T Selec Jueces y Derechos,Maestría en Derecho Procesal Constitucional,1646,R 15,2023-11-17,2023-11-24,Viernes,18:00:00 ,22:00:00 
+Sem. T Selec Jueces y Derechos,Maestría en Derecho Procesal Constitucional,1646,R 15,2023-11-18,2023-11-25,Sábado,9:00:00 ,14:00:00 
+Sem. T Selec Jueces y Derechos,Maestría en Derecho Procesal Constitucional,1646,R 15,2023-12-06,2023-12-08,Miércoles,18:00:00 ,22:00:00 
+Sem. T Selec Jueces y Derechos,Maestría en Derecho Procesal Constitucional,1646,R 15,2023-12-06,2023-12-08,Jueves,18:00:00 ,22:00:00 
+Sem. T Selec Jueces y Derechos,Maestría en Derecho Procesal Constitucional,1646,R 15,2023-12-06,2023-12-08,Viernes,18:00:00 ,22:00:00 
+Sem. T Selec Jueces y Derechos,Maestría en Derecho Procesal Constitucional,1646,R 15,2023-12-09,2023-12-09,Sábado,9:00:00 ,14:00:00 
+Sem. T Selec Jueces y Derechos,Maestría en Derecho Procesal Constitucional,1646,,2023-12-14,2023-12-14,Jueves,18:00:00 ,19:00:00 
+Principios Éticos del Derecho,Maestría en Instituciones de Derecho Financiero,1304,,2023-02-10,2023-02-10,Viernes,17:00:00 ,22:00:00 
+Principios Éticos del Derecho,Maestría en Instituciones de Derecho Financiero,1304,,2023-02-11,2023-02-11,Sábado,9:00:00 ,14:00:00 
+Economía y Derecho Monetario,Maestría en Instituciones de Derecho Financiero,1305,SF_6-1,2023-02-18,2023-02-18,Sábado,9:00:00 ,14:00:00 
+Economía y Derecho Monetario,Maestría en Instituciones de Derecho Financiero,1305,SF_6-1,2023-02-17,2023-02-17,Viernes,17:00:00 ,22:00:00 
+El Sistema Financiero y Banca,Maestría en Instituciones de Derecho Financiero,1306,SF_6-1,2023-03-03,2023-03-25,Viernes,17:00:00 ,22:00:00 
+El Sistema Financiero y Banca,Maestría en Instituciones de Derecho Financiero,1306,SF_6-1,2023-03-03,2023-03-25,Sábado,9:00:00 ,14:00:00 
+Operaciones Bancarias y Temas,Maestría en Instituciones de Derecho Financiero,1307,SF_6-1,2023-04-21,2023-04-21,Viernes,17:00:00 ,22:00:00 
+Operaciones Bancarias y Temas,Maestría en Instituciones de Derecho Financiero,1307,SF_6-1,2023-04-22,2023-04-22,Sábado,9:00:00 ,14:00:00 
+Operaciones Bancarias y Temas,Maestría en Instituciones de Derecho Financiero,1307,SF_6-1,2023-05-12,2023-06-24,Viernes,17:00:00 ,22:00:00 
+Operaciones Bancarias y Temas,Maestría en Instituciones de Derecho Financiero,1307,SF_6-1,2023-05-12,2023-06-24,Sábado,9:00:00 ,14:00:00 
+Liquidación de Instituciones,Maestría en Instituciones de Derecho Financiero,1308,SF_6-1,2023-09-22,2023-09-22,Viernes,17:00:00 ,22:00:00 
+Liquidación de Instituciones,Maestría en Instituciones de Derecho Financiero,1308,SF_6-1,2023-09-23,2023-09-23,Sábado,9:00:00 ,14:00:00 
+Derecho Bursátil,Maestría en Instituciones de Derecho Financiero,1309,SF_6-1,2023-06-30,2023-07-22,Viernes,17:00:00 ,22:00:00 
+Derecho Bursátil,Maestría en Instituciones de Derecho Financiero,1309,SF_6-1,2023-06-30,2023-07-22,Sábado,9:00:00 ,14:00:00 
+"Derecho de Seguros, Finanzas,",Maestría en Instituciones de Derecho Financiero,1310,SF_6-1,2023-08-04,2023-08-26,Viernes,17:00:00 ,22:00:00 
+"Derecho de Seguros, Finanzas,",Maestría en Instituciones de Derecho Financiero,1310,SF_6-1,2023-08-04,2023-08-26,Sábado,9:00:00 ,14:00:00 
+Protección de los Intereses,Maestría en Instituciones de Derecho Financiero,1311,SF_6-1,2023-09-08,2023-09-09,Viernes,17:00:00 ,22:00:00 
+Protección de los Intereses,Maestría en Instituciones de Derecho Financiero,1311,SF_6-1,2023-09-08,2023-09-09,Sábado,9:00:00 ,14:00:00 
+Autorización para Operar,Maestría en Instituciones de Derecho Financiero,1312,,2023-09-29,2023-09-30,Viernes,17:00:00 ,22:00:00 
+Autorización para Operar,Maestría en Instituciones de Derecho Financiero,1312,,2023-09-29,2023-09-30,Sábado,9:00:00 ,14:00:00 
+Derecho Financiero Internacion,Maestría en Instituciones de Derecho Financiero,1313,SF_6-1,2023-10-13,2023-10-20,Viernes,17:00:00 ,22:00:00 
+Derecho Financiero Internacion,Maestría en Instituciones de Derecho Financiero,1313,SF_6-1,2023-10-13,2023-10-20,Sábado,9:00:00 ,14:00:00 
+Delitos Financieros,Maestría en Instituciones de Derecho Financiero,1314,SF_6-1,2023-10-27,2023-11-04,Viernes,17:00:00 ,22:00:00 
+Delitos Financieros,Maestría en Instituciones de Derecho Financiero,1314,SF_6-1,2023-10-27,2023-11-04,Sábado,9:00:00 ,14:00:00 
+Grupos Financieros,Maestría en Instituciones de Derecho Financiero,1315,SF_6-1,2023-11-17,2023-11-18,Viernes,17:00:00 ,22:00:00 
+Grupos Financieros,Maestría en Instituciones de Derecho Financiero,1315,SF_6-1,2023-11-17,2023-11-18,Sábado,9:00:00 ,14:00:00 
+Temas Selectos de Derecho F,Maestría en Instituciones de Derecho Financiero,1316,SF_6-1,2023-11-24,2023-12-01,Viernes,17:00:00 ,22:00:00 
+Temas Selectos de Derecho F,Maestría en Instituciones de Derecho Financiero,1316,SF_6-1,2023-11-24,2023-12-01,Sábado,9:00:00 ,14:00:00 
+Metodología de la Investigació,Maestría en Instituciones de Derecho Financiero,1317,SF_6-1,2023-12-08,2023-12-09,Viernes,17:00:00 ,22:00:00 
+Metodología de la Investigació,Maestría en Instituciones de Derecho Financiero,1317,SF_6-1,2023-12-08,2023-12-09,Sábado,9:00:00 ,14:00:00 
+Productos Financieros Derivado,Maestría en Instituciones de Derecho Financiero,1318,SF_6-1,2024-01-12,2024-02-03,Viernes,17:00:00 ,22:00:00 
+Productos Financieros Derivado,Maestría en Instituciones de Derecho Financiero,1318,SF_6-1,2024-01-12,2024-02-03,Sábado,9:00:00 ,14:00:00 
+Seminario de Investigación I,Doctorado en Derecho,1233,JEREZ 01,2023-04-11,2023-04-20,Martes,19:00:00 ,22:00:00 
+Seminario de Investigación I,Doctorado en Derecho,1233,JEREZ 01,2023-04-11,2023-04-20,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación I,Doctorado en Derecho,1233,JEREZ 01,2023-05-02,2023-05-11,Martes,19:00:00 ,22:00:00 
+Seminario de Investigación I,Doctorado en Derecho,1233,JEREZ 01,2023-05-02,2023-05-11,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación I,Doctorado en Derecho,1233,JEREZ 01,2023-05-23,2023-06-01,Martes,19:00:00 ,22:00:00 
+Seminario de Investigación I,Doctorado en Derecho,1233,JEREZ 01,2023-05-23,2023-06-01,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación II,Doctorado en Derecho,1234,JEREZ 01,2023-06-20,2023-06-29,Martes,19:00:00 ,22:00:00 
+Seminario de Investigación II,Doctorado en Derecho,1234,JEREZ 01,2023-06-20,2023-06-29,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación II,Doctorado en Derecho,1234,JEREZ 01,2023-08-04,2023-08-11,Viernes,18:00:00 ,21:00:00 
+Seminario de Investigación II,Doctorado en Derecho,1234,JEREZ 01,2023-08-05,2023-08-12,Sábado,9:00:00 ,12:00:00 
+Seminario de Investigación II,Doctorado en Derecho,1234,JEREZ 01,2023-08-22,2023-08-31,Martes,19:00:00 ,22:00:00 
+Seminario de Investigación II,Doctorado en Derecho,1234,JEREZ 01,2023-08-22,2023-08-31,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación II,Doctorado en Derecho,1234,JEREZ 01,2023-09-04,2023-09-11,Lunes,19:00:00 ,22:00:00 
+Seminario de Investigación II,Doctorado en Derecho,1234,JEREZ 01,2023-09-04,2023-09-11,Miércoles,19:00:00 ,22:00:00 
+Seminario de Investigación II,Doctorado en Derecho,1234,JEREZ 01,2023-12-01,2023-12-15,Viernes,18:00:00 ,21:00:00 
+Seminario de Investigación III,Doctorado en Derecho,1235,JEREZ 01,2023-09-19,2023-09-28,Martes,19:00:00 ,22:00:00 
+Seminario de Investigación III,Doctorado en Derecho,1235,JEREZ 01,2023-09-19,2023-09-28,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación III,Doctorado en Derecho,1235,JEREZ 01,2023-10-10,2023-10-19,Martes,19:00:00 ,22:00:00 
+Seminario de Investigación III,Doctorado en Derecho,1235,JEREZ 01,2023-10-10,2023-10-19,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación III,Doctorado en Derecho,1235,JEREZ 01,2023-11-04,2023-11-11,Sábado,9:00:00 ,13:00:00 
+Seminario de Investigación III,Doctorado en Derecho,1235,JEREZ 01,2023-11-25,2023-11-25,Sábado,9:00:00 ,13:00:00 
+Seminario de Investigación IV,Doctorado en Derecho,1547,JEREZ 01,2023-02-07,2023-02-09,Martes,19:00:00 ,22:00:00 
+Seminario de Investigación IV,Doctorado en Derecho,1547,JEREZ 01,2023-02-07,2023-02-09,Miércoles,19:00:00 ,22:00:00 
+Seminario de Investigación IV,Doctorado en Derecho,1547,JEREZ 01,2023-02-07,2023-02-09,Jueves,19:00:00 ,22:00:00 
+Seminario de Investigación IV,Doctorado en Derecho,1547,JEREZ 02,2023-02-10,2023-02-10,Viernes,18:00:00 ,21:00:00 
+Seminario de Investigación IV,Doctorado en Derecho,1547,JEREZ 01,2023-02-20,2023-03-01,Lunes,19:00:00 ,22:00:00 
+Seminario de Investigación IV,Doctorado en Derecho,1547,JEREZ 01,2023-02-20,2023-03-01,Miércoles,19:00:00 ,22:00:00 
+Seminario de Investigación IV,Doctorado en Derecho,1547,JEREZ 01,2023-03-06,2023-03-15,Lunes,19:00:00 ,22:00:00 
+Seminario de Investigación IV,Doctorado en Derecho,1547,JEREZ 01,2023-03-06,2023-03-15,Miércoles,19:00:00 ,22:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-03-27,2023-03-29,Lunes,19:00:00 ,22:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-03-27,2023-03-29,Miércoles,19:00:00 ,22:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-04-10,2023-04-12,Lunes,19:00:00 ,22:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-04-10,2023-04-12,Miércoles,19:00:00 ,22:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-05-15,2023-05-24,Lunes,19:00:00 ,22:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-05-15,2023-05-24,Miércoles,19:00:00 ,22:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-06-05,2023-06-07,Lunes,18:00:00 ,21:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-06-05,2023-06-07,Miércoles,18:00:00 ,21:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-06-06,2023-06-09,Martes,9:00:00 ,13:00:00 
+Seminario de Investigación V,Doctorado en Derecho,1557,JEREZ 01,2023-06-06,2023-06-09,Viernes,9:00:00 ,13:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-05-12,2023-06-21,Lunes,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-05-12,2023-06-21,Miércoles,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-08-07,2023-08-16,Lunes,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-08-07,2023-08-16,Miércoles,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-09-11,2023-09-14,Lunes,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-09-11,2023-09-14,Martes,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-09-11,2023-09-14,Miércoles,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-09-11,2023-09-14,Jueves,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-10-06,2023-10-13,Viernes,18:00:00 ,21:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-10-06,2023-10-13,Sábado,10:00:00 ,13:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-10-23,2023-10-25,Lunes,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-10-23,2023-10-25,Miércoles,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-11-06,2023-11-08,Lunes,19:00:00 ,22:00:00 
+Seminario de Tesis,Doctorado en Derecho,1562,JEREZ 01,2023-11-06,2023-11-08,Miércoles,19:00:00 ,22:00:00 
+Se Metodología Estudio de Caso,Maestría en Derecho de la Empresa,1262,SF_6-4,2023-03-07,2023-03-14,Martes,16:00:00 ,22:00:00 
+Etapa de Creación de la Empres,Maestría en Derecho de la Empresa,1266,SF_6-4,2023-03-21,2023-04-18,Martes,15:00:00 ,22:00:00 
+Etapa de Creación de la Empres,Maestría en Derecho de la Empresa,1266,SF_6-4,2023-04-25,2023-06-20,Martes,15:00:00 ,22:00:00 
+Etapa de Creación de la Empres,Maestría en Derecho de la Empresa,1266,SF_6-4,2023-06-27,2023-06-27,Martes,17:00:00 ,22:00:00 
+Etapa de Obtención de Recursos,Maestría en Derecho de la Empresa,1268,SF_6-4,2023-06-27,2023-06-27,Martes,15:00:00 ,17:00:00 
+Etapa de Obtención de Recursos,Maestría en Derecho de la Empresa,1268,SF_6-4,2023-07-04,2023-07-18,Martes,14:00:00 ,22:00:00 
+Etapa de Obtención de Recursos,Maestría en Derecho de la Empresa,1268,SF_6-4,2023-07-25,2023-08-15,Martes,15:00:00 ,22:00:00 
+Etapa de Operación de la Empresa,Maestría en Derecho de la Empresa,1271,SF_6-4,2023-08-22,2023-11-07,Martes,15:00:00 ,22:00:00 
+Etapa de Operación de la Empresa,Maestría en Derecho de la Empresa,1271,SF_6-4,2023-11-14,2023-11-14,Martes,16:00:00 ,22:00:00 
+Etapa de Transf. de la Empresa,Maestría en Derecho de la Empresa,1003,SF_6-4,2023-11-21,2023-12-19,Martes,15:00:00 ,22:00:00 
+Etapa de Transf. de la Empresa,Maestría en Derecho de la Empresa,1003,SF_6-4,2024-01-09,2024-02-06,Martes,14:00:00 ,22:00:00 
+Etapa de Transf. de la Empresa,Maestría en Derecho de la Empresa,1003,SF_6-4,2024-02-13,2024-02-27,Martes,14:00:00 ,22:00:00 
+Etapa de Transf. de la Empresa,Maestría en Derecho de la Empresa,1003,SF_6-4,2024-03-05,2024-03-05,Martes,14:00:00 ,22:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2023-03-07,2023-03-14,Martes,13:00:00 ,16:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2023-03-21,2023-03-28,Martes,13:00:00 ,15:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2023-04-18,2023-04-18,Martes,13:00:00 ,15:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2023-04-20,2023-04-20,Jueves,13:00:00 ,15:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2023-04-25,2023-06-27,Martes,13:00:00 ,15:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2023-07-04,2023-07-18,Martes,13:00:00 ,14:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2023-07-25,2023-11-07,Martes,13:00:00 ,15:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2023-11-14,2023-11-14,Martes,13:00:00 ,16:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2023-11-21,2023-12-19,Martes,13:00:00 ,15:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2024-01-09,2024-02-06,Martes,13:00:00 ,14:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2024-02-13,2024-03-05,Martes,13:00:00 ,15:00:00 
+Seminario de Toma de Decisione,Maestría en Derecho de la Empresa,1274,SF_6-4,2024-03-06,2024-03-06,Miércoles,13:00:00 ,16:00:00 
+Empresa y Familia,Maestría en Derecho de la Empresa,1005,SF_6-4,2024-03-06,2024-03-06,Miércoles,16:00:00 ,22:00:00 
