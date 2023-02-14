@@ -2,11 +2,11 @@ import pandas as pd
 import math
 
 #read de csv file
-df = pd.read_csv('horario_empresariales.csv')
-escuela = 'Empresariales'
+df = pd.read_csv('horario_extra_comunicacion.csv')
+escuela = 'Comunicación'
 
 #open a sql file
-f = open('horarios_empresariales.sql', 'w')
+f = open('horarios_comunicacion.sql', 'w')
 
 for index, row in df.iterrows():
     if(type(row['salon']) == str):

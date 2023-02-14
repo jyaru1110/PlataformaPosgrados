@@ -1,6 +1,9 @@
 require('dotenv').config()
 const { Client } = require('pg');
 
+var app = require('./app');
+var port = process.env.PORT || 3900;
+
 const user = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
 const DB_NAME = process.env.DB_NAME;
@@ -14,5 +17,21 @@ const client = new Client({
 });
 
 client.connect()
-  .then(() => console.log('Conexión exitosa a la base de datos PostgreSQL'))
+  .then(() => {
+    console.log('Conexión exitosa a la base de datos PostgreSQL');
+    //creación del servidor
+    app.listen(port, () => {
+      console.log('Servidor del api rest escuchando en http://localhost:'+port);
+    });
+  })
   .catch(err => console.error('Error al conectar a la base de datos', err))
+app.get('/servicios', (req, res) => {
+    client.query('SELECT * FROM servicios_dia', (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results.rows);
+    });
+  });
+  
+  
