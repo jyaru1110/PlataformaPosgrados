@@ -672,3 +672,27 @@ CREATE TRIGGER update_servicios_dia_on_horario_update
    ON horario
    FOR EACH ROW
        EXECUTE PROCEDURE update_servicios_dia();
+
+
+CREATE FUNCTION get_servicios_semana()
+RETURNS VOID
+AS $$
+DECLARE
+	fecha_inicio date;
+	fecha_fin date;
+BEGIN
+	fecha_inicio = date_trunc('week', now());
+	fecha_fin = fecha_inicio + interval '6 day';
+	SELECT sd.no_clase,m.nombre_modulo,sd.dia,sd.fecha,sd.hora_inicio,sd.hora_fin,sd.programa,sd.num_servicios,sd.salon,p.escuela,s.isla,s.sede,p.cuenta
+	FROM servicios_dia as sd 
+	inner join programa as p ON p.programa = sd.programa
+	inner join salon as s on s.salon = sd.salon
+	inner join clase on sd.no_clase = clase.no_clase
+	inner join modulo as m on clase.id_curso = m.id_curso
+	inner join receso as r on sd.dia = r.dia and p.escuela = r.escuela
+	inner join escuela as e on p.escuela = e.escuela
+	where sd.hora_inicio < r.hora_inicio
+	where sd.fecha >= fecha_inicio and sd.fecha <= fecha_fin;
+END;
+$$ LANGUAGE plpgsql;
+/*perfom function*/
