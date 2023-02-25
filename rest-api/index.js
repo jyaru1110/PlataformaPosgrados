@@ -27,6 +27,43 @@ client.connect()
   })
   .catch(err => console.error('Error al conectar a la base de datos', err))
 
+  app.get('/get_all_servicios_dia', (req, res) => {
+    client.query('SELECT * FROM servicios_dia', (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results.rows);
+    });
+  });
+
+  app.get('/get_servicios_semana', (req, res) => {
+    client.query('select get_servicios_semana();', (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results.rows);
+    });
+  });
+
+  app.get('/get_servicios_escuela', (req, res) => {
+    client.query("select * from servicios_dia inner join programa on programa.programa=servicios_dia.programa inner join escuela on programa.escuela = escuela.escuela where escuela.escuela = '"+req.query.escuela+"';", (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results.rows);
+    });
+  });
+  
+  app.get('/get_servicios_isla', (req, res) => {
+    client.query("select * from servicios_dia inner join salon on salon.salon=servicios_dia.salon where salon.isla = '"+req.query.isla+"';", (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.status(200).json(results.rows);
+    });
+  });
+
+
 //exportar cliente
 module.exports = client;
   
