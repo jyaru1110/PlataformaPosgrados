@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-var sequelize = require('./database/database');
+var sequelize = require('../database/database');
 
 const Personas = sequelize.define('Personas', {
     // Atributos del modelo
@@ -22,3 +22,5 @@ const Personas = sequelize.define('Personas', {
     // Opciones del modelo
     tableName: 'Personas'
 });
+
+module.exports = Personas;

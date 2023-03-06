@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-var sequelize = require('./database/database');
+var sequelize = require('../database/database');
 
 const Puesto_programa = sequelize.define('Puesto_programa', {
     // Atributos del modelo
@@ -27,3 +27,5 @@ const Puesto_programa = sequelize.define('Puesto_programa', {
     // Opciones del modelo
     tableName: 'Puesto_programa'
 });
+
+module.exports = Puesto_programa;   

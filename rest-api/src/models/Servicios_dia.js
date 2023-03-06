@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-var sequelize = require('./database/database');
+var sequelize = require('../database/database');
 
 const Servicio_dia = sequelize.define('Servicios_dia', {
     // Atributos del modelo
@@ -51,3 +51,5 @@ const Servicio_dia = sequelize.define('Servicios_dia', {
     // Opciones del modelo
     tableName: 'Servicios_dia'
 });
+
+module.exports = Servicio_dia;

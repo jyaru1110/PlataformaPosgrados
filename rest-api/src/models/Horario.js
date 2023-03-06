@@ -1,10 +1,10 @@
 const { DataTypes } = require('sequelize');
-var sequelize = require('./database/database');
+var sequelize = require('../database/database');
 
 const Horario = sequelize.define('Horario', {
     // Atributos del modelo
     id_horario: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
@@ -54,3 +54,5 @@ const Horario = sequelize.define('Horario', {
     // Opciones del modelo
     tableName: 'Horario'
 });
+
+module.exports = Horario;

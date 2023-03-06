@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-var sequelize = require('./database/database');
+var sequelize = require('../database/database');
 
 const receso = sequelize.define('receso', {
     // Atributos del modelo
@@ -30,5 +30,8 @@ const receso = sequelize.define('receso', {
     }
 }, {
     // Opciones del modelo
-    tableName: 'receso'
+    tableName: 'receso',
+    timestamps: false
 });
+
+module.exports = receso;
