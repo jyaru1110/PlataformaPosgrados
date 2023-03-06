@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Modulo = sequelize.define('Modulo', {
+const Modulo = sequelize.define('modulo', {
     // Atributos del modelo
     id_curso: {
         type: DataTypes.STRING,
@@ -14,7 +14,8 @@ const Modulo = sequelize.define('Modulo', {
     }
 }, {
     // Opciones del modelo
-    tableName: 'Modulo'
+    tableName: 'modulo',
+    timestamps: false
 });
 
 module.exports = Modulo;

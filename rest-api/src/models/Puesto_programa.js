@@ -1,13 +1,13 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Puesto_programa = sequelize.define('Puesto_programa', {
+const Puesto_programa = sequelize.define('puesto_programa', {
     // Atributos del modelo
     programa: {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Programa',
+            model: 'programa',
             key: 'programa'
         }
     },
@@ -19,13 +19,14 @@ const Puesto_programa = sequelize.define('Puesto_programa', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Personas',
+            model: 'personas',
             key: 'email_persona'
         }
     }
 }, {
     // Opciones del modelo
-    tableName: 'Puesto_programa'
+    tableName: 'puesto_programa',
+    timestamps: false
 });
-
+s
 module.exports = Puesto_programa;   

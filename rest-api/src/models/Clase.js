@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Clase = sequelize.define('Clase', {
+const Clase = sequelize.define('clase', {
     // Atributos del modelo
     no_clase: {
         type: DataTypes.STRING,
@@ -12,13 +12,14 @@ const Clase = sequelize.define('Clase', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Modulo',
+            model: 'modulo',
             key: 'id_curso'
         }
     }
 }, {
     // Opciones del modelo
-    tableName: 'Clase'
+    tableName: 'clase',
+    timestamps: false
 });
 
 module.exports = Clase;

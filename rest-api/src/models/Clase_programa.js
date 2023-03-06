@@ -1,13 +1,13 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Clase_programa = sequelize.define('Clase_programa', {
+const Clase_programa = sequelize.define('clase_programa', {
     // Atributos del modelo
     programa: {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Programa',
+            model: 'programa',
             key: 'programa'
         }
     },
@@ -15,7 +15,7 @@ const Clase_programa = sequelize.define('Clase_programa', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Clase',
+            model: 'clase',
             key: 'no_clase'
         }
     },
@@ -24,7 +24,8 @@ const Clase_programa = sequelize.define('Clase_programa', {
     }
 }, {
     // Opciones del modelo
-    tableName: 'Clase_programa'
+    tableName: 'clase_programa',
+    timestamps: false
 });
 
 module.exports = Clase_programa;

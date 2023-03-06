@@ -1,13 +1,13 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const RolesModulo = sequelize.define('RolesModulo', {
+const RolesModulo = sequelize.define('rolesmodulo', {
     // Atributos del modelo
     id_curso: {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Modulo',
+            model: 'modulo',
             key: 'id_curso'
         }
     },
@@ -15,7 +15,7 @@ const RolesModulo = sequelize.define('RolesModulo', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Personas',
+            model: 'personas',
             key: 'email_persona'
         }
     },
@@ -25,7 +25,8 @@ const RolesModulo = sequelize.define('RolesModulo', {
     }
 }, {
     // Opciones del modelo
-    tableName: 'RolesModulo'
+    tableName: 'rolesmodulo',
+    timestamps: false
 });
 
 module.exports = RolesModulo;

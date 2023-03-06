@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Escuela = sequelize.define('Escuela', {
+const Escuela = sequelize.define('escuela', {
     // Atributos del modelo
     escuela: {
         type: DataTypes.STRING,
@@ -10,7 +10,8 @@ const Escuela = sequelize.define('Escuela', {
     },
 }, {
     // Opciones del modelo
-    tableName: 'Escuela'
+    tableName: 'escuela',
+    timestamps: false
 });
 
 module.exports = Escuela;

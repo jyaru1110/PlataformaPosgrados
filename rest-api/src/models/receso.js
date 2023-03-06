@@ -24,7 +24,7 @@ const receso = sequelize.define('receso', {
     escuela: {
         type: DataTypes.STRING,
         reference: {
-            model: 'Escuela',
+            model: 'escuela',
             key: 'escuela'
         }
     }

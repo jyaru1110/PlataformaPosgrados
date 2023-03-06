@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Programa = sequelize.define('Programa', {
+const Programa = sequelize.define('programa', {
     // Atributos del modelo
     programa: {
         type: DataTypes.STRING,
@@ -24,13 +24,14 @@ const Programa = sequelize.define('Programa', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Escuela',
+            model: 'escuela',
             key: 'escuela'
         }
     },
 }, {
     // Opciones del modelo
-    tableName: 'Programa'
+    tableName: 'programa',
+    timestamps: false
 });
 
 module.exports = Programa;

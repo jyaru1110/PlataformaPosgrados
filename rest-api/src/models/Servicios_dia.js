@@ -1,19 +1,19 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Servicio_dia = sequelize.define('Servicios_dia', {
+const Servicios_dia = sequelize.define('servicios_dia', {
     // Atributos del modelo
     id_horario: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'Horario',
+            model: 'horario',
             key: 'id_horario'
         }
     },
     no_clase: {
         type: DataTypes.STRING,
         references: {
-            model: 'Clase',
+            model: 'clase',
             key: 'no_clase'
         }
     },
@@ -36,20 +36,21 @@ const Servicio_dia = sequelize.define('Servicios_dia', {
     programa: {
         type: DataTypes.STRING,
         references: {
-            model: 'Programa',
+            model: 'programa',
             key: 'programa'
         }
     },
     salon: {
         type: DataTypes.STRING,
         references: {
-            model: 'Salon',
+            model: 'salon',
             key: 'salon'
         }
     }
 }, {
     // Opciones del modelo
-    tableName: 'Servicios_dia'
+    tableName: 'servicios_dia',
+    timestamps: false
 });
 
-module.exports = Servicio_dia;
+module.exports = Servicios_dia;

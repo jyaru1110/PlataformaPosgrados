@@ -1,13 +1,13 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Puesto_escuela = sequelize.define('Puesto_escuela', {
+const Puesto_escuela = sequelize.define('puesto_escuela', {
     // Atributos del modelo
     email_persona: {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Personas',
+            model: 'personas',
             key: 'email_persona'
         }
     },
@@ -15,7 +15,7 @@ const Puesto_escuela = sequelize.define('Puesto_escuela', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Escuela',
+            model: 'escuela',
             key: 'escuela'
         }
     },
@@ -25,7 +25,8 @@ const Puesto_escuela = sequelize.define('Puesto_escuela', {
     }
 }, {
     // Opciones del modelo
-    tableName: 'Puesto_escuela'
+    tableName: 'puesto_escuela',
+    timestamps: false
 });
 
 module.exports = Puesto_escuela;
