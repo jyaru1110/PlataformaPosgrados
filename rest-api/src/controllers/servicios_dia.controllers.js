@@ -1,8 +1,14 @@
 const Servicios_dia = require('../models/Servicios_dia');
 
 const get_servicios_fecha = async (req, res) => {
-    const fecha = req.query.fecha;
-    const servicios = await Servicios_dia.findAll();
+    var fecha = req.query.fecha;
+    const servicios = await Servicios_dia.findAll(
+        {
+            where:{
+                fecha:fecha
+            }
+        }
+    )
     res.send(servicios);
 }
 

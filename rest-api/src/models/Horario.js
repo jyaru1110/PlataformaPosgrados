@@ -24,11 +24,11 @@ const Horario = sequelize.define('horario', {
         }
     },
     fecha_inicio: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false
     },
     fecha_fin: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false
     },
     hora_inicio: {
