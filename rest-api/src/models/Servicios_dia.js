@@ -42,6 +42,9 @@ const Servicios_dia = sequelize.define(
         key: "programa",
       },
     },
+    num_servicios: {
+      type: DataTypes.INTEGER
+    },
     salon: {
       type: DataTypes.STRING,
       references: {
