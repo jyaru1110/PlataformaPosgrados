@@ -10,25 +10,30 @@ const get_servicios_fecha = async (req, res) => {
             }
         }
     )
-    res.send(servicios);
+    res.status(200).send({servicio:servicios});
 }
 
 const get_proximo_servicio = async (req, res) => {
-    const servicios = await Servicios_dia.findAll(
-        {
-            limit: 1,
-            order: [
-                ['fecha', 'ASC'],
-                ['hora_inicio', 'ASC']
-            ],
-            where:{
-                fecha:{
-                    [Op.gt]: Date.now()
+    try {
+        const servicio = await Servicios_dia.findAll(
+            {
+                limit: 1,
+                order: [
+                    ['fecha', 'ASC'],
+                    ['hora_inicio', 'ASC']
+                ],
+                where:{
+                    fecha:{
+                        [Op.gt]: Date.now()
+                    }
                 }
             }
-        }
-    )
-    res.send(servicios);
+        )
+        res.json(servicio);
+    } catch (error) {
+        res.status(500).send({error:error});
+    }
+
 }
 
 module.exports = {
