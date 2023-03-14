@@ -1,4 +1,4 @@
-const get_fetch = (url,func) => {
+export const get_fetch = (url,func) => {
     const controller = new AbortController();
     const signal = controller.signal;
     fetch(url, {signal: signal})
@@ -11,5 +11,3 @@ const get_fetch = (url,func) => {
     });
     return () => controller.abort();
 }
-
-export default get_fetch;
