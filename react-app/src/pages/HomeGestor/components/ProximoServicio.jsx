@@ -1,35 +1,36 @@
 import { useEffect,useState } from "react";
-
+import get_fetch from "../../../hooks/get_fetch";
+import image_coffe from "../../../assets/CoffeeGlass.png";
+import {date_to_dd_month_yyyy} from  "../../../utils/date_to_string";
 export default function ProximoServicio() {
-    var [servicio, setServicio] = useState([]);
+    const [servicio, setServicio] = useState([]);
+
+    const after_fetch = (data) => {
+        data[0].fecha = date_to_dd_month_yyyy(data[0].fecha);
+        setServicio(data);
+    }
+
     useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
-        fetch('http://localhost:3900/api/proximo_servicio', {signal: signal})
-        .then(response => response.json())
-        .then(data => {
-            setServicio(data);    
-            console.log("data ",data);
-        })
-        .catch((err) => {
-            console.log("error ",err);
-        });
-        return () => controller.abort();
+        get_fetch("http://localhost:3900/api/proximo_servicio", after_fetch)
     }, []);
 
     return (
       <>
-        <div className = "bg-primary m-auto text-white rounded-lg p-4">
-            {servicio[0]==undefined ? <h1 className = "font-poppins">No hay servicios</h1> : 
+        <div className = "bg-primary m-auto text-white rounded-2xl p-4 flex flex-row items-center justify-between">
+            {servicio[0]==undefined ? 
+            <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div> : 
             (
-                <div>
-                    <h1 className = "font-poppins">{servicio[0].salon}</h1>
-                    <h1 className = "font-poppins">{servicio[0].hora_inicio} -{servicio[0].hora_fin}</h1>
-                    <h1 className = "font-poppins">{servicio[0].num_servicios}</h1>
+                <div className="flex flex-col items-stretch h-full">
+                    <h1 className = "font-poppins text-sm font-semibold">{servicio[0].salon}</h1>
+                    <h1 className = "font-poppins text-sm font-semibold">{servicio[0].hora_inicio.substring(0,5)} - {servicio[0].hora_fin.substring(0,5)}</h1>
+                    <h1 className = "font-poppins text-sm font-semibold">{servicio[0].programa}</h1>
+                    <h1 className = "font-poppins text-sm font-semibold">{servicio[0].fecha}</h1>
+                    <h1 className = "font-poppins text-sm font-semibold">{servicio[0].num_servicios} servicios</h1>
                 </div>
             )
 
             }
+            <img src={image_coffe}></img>
             
         </div>
       </>
