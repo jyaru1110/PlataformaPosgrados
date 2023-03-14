@@ -26,7 +26,7 @@ export default function BarDiasSemana() {
             </div>
         ))}
         </div>
-        {servicios.servicio[0]=='Cargando' ? <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] m-2"></div> :
+        {servicios.servicio[0]=='Cargando' ? <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div> :
         <>
         {servicios.servicio.length==0 ? <h1 className="text-center mt-2">No hay servicios para esta fecha</h1> : 
         <>
