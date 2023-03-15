@@ -1,4 +1,3 @@
-import Add from "../../../assets/add.svg"
 export default function ButtonAdd() {
     return (
         <button className="bottom-24 shadow-[0px_1px_4px_rgba(0,0,0,0.25)] absolute bg-primary h-12 w-12 rounded-full justify-center flex content-center flex-wrap">

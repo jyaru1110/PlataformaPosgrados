@@ -14,7 +14,7 @@ export default function BarDiasSemana() {
         get_fetch(url, setServicios);
     }, [dia]);
     return (
-      <>
+      <div className="w-full sm:mx-2">
         <h1 className = "font-poppins text-lg font-semibold text-primary ml-1 mt-2">{date_to_day_dd_mm(dia)}</h1>
         <div className="flex flex-row justify-between">
         {dias.map((dia_m) => (
@@ -40,6 +40,6 @@ export default function BarDiasSemana() {
         }
         </>
         }
-      </>
+      </div>
     );
   }
