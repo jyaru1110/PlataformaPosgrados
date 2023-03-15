@@ -2,6 +2,7 @@ import { getDiasSemana } from "../../../utils/get_dias_semana";
 import { date_to_day_dd_mm } from "../../../utils/date_to_string";
 import { useEffect,useState } from "react";
 import { get_fetch } from "../../../hooks/get_fetch";
+import Footer from "./Footer";
 import Servicio from "./Servicio";
 
 export default function BarDiasSemana() {

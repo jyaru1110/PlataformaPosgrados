@@ -1,5 +1,6 @@
 import ProximoServicio from "./components/ProximoServicio";
 import BarDiasSemana from "./components/BarDiasSemana";
+import Footer from "./components/Footer";
 export default function HomeGestor() {
     return (
       <>
@@ -8,6 +9,7 @@ export default function HomeGestor() {
           <ProximoServicio />
           <BarDiasSemana />
         </div>
+        <Footer />
       </>
     );
   }
