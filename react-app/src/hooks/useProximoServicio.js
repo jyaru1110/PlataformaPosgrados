@@ -11,7 +11,7 @@ export const useProximoServicio = () => {
     }
 
     useEffect(() => {
-        get_fetch("http://localhost:3900/api/proximo_servicio", after_fetch)
+        get_fetch("http://192.168.0.15:3900/api/proximo_servicio", after_fetch)
     }, []);
 
     return servicio[0];

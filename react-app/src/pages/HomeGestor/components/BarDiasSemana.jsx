@@ -10,11 +10,11 @@ export default function BarDiasSemana() {
     const [dia, setDia] = useState(dias[0]);
     const [servicios, setServicios] = useState({servicio:['Cargando']});
     useEffect(() => {
-        let url = `http://localhost:3900/api/servicios_por_fecha?fecha=${dia.toISOString().substring(0,10)}`;
+        let url = `http://192.168.0.15:3900/api/servicios_por_fecha?fecha=${dia.toISOString().substring(0,10)}`;
         get_fetch(url, setServicios);
     }, [dia]);
     return (
-      <div className="w-full sm:mx-2">
+      <div className="w-full h-full sm:mx-8">
         <h1 className = "font-poppins text-lg font-semibold text-primary ml-1 mt-2">{date_to_day_dd_mm(dia)}</h1>
         <div className="flex flex-row justify-between">
         {dias.map((dia_m) => (
@@ -29,14 +29,14 @@ export default function BarDiasSemana() {
         </div>
         {servicios.servicio[0]=='Cargando' ? <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div> :
         <>
-        {servicios.servicio.length==0 ? <h1 className="text-center mt-2">No hay servicios para esta fecha</h1> : 
-        <>
+        {servicios.servicio.length==0 ? <h1 className="text-center mt-2 font-poppins">No hay servicios para esta fecha</h1> : 
+        <div className="overflow-y-auto h-2/3 mt-1">
             {servicios.servicio.map((servicio) => (
                 <div key = {servicio.id}>
                     <Servicio servicio_parm = {servicio}/>
                 </div>
             ))}
-        </>
+        </div>
         }
         </>
         }
