@@ -2,7 +2,7 @@ const Servicios_dia = require('../models/Servicios_dia');
 const { Op } = require("sequelize");
 
 const get_servicios_fecha = async (req, res) => {
-    var fecha = req.query.fecha;
+    var fecha = req.params.fecha;
     const servicios = await Servicios_dia.findAll(
         {
             where:{
