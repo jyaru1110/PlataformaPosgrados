@@ -10,7 +10,18 @@ export function date_to_day_dd_mm (dia) {
     diaString = diaString.charAt(0).toUpperCase() + diaString.slice(1);
     return diaString;
 }
-export function get_dia_semana(date) {
+
+export function get_numero_dia(date) {
     const dia = new Date(date);
     return dia.getDate();
+}
+
+export function get_primera_letra (date) {
+    const dia = new Date(date);
+    const diaString = dia.toLocaleString('es-ES', { weekday:'long' });
+    if(diaString == "miércoles")
+    {
+        return "X";
+    }
+    return diaString.charAt(0).toUpperCase();
 }

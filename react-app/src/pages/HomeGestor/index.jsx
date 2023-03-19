@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 export default function HomeGestor() {
     return (
       <>
-        <div className="w-11/12 m-auto sm:flex sm:w-full sm:items-start h-full">
+        <div className="w-11/12 m-auto sm:flex sm:w-full sm:items-start h-screen">
           <ProximoServicio />  
           <BarDiasSemana />
         </div>
