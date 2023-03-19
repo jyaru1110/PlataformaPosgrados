@@ -1,6 +1,4 @@
-export const get_fetch = (url,func) => {
-    const controller = new AbortController();
-    const signal = controller.signal;
+export const get_fetch = (url,signal,func) => {
     fetch(url, {signal: signal})
     .then(response => response.json())
     .then(data => {
@@ -9,5 +7,4 @@ export const get_fetch = (url,func) => {
     .catch((err) => {
         console.log("error ",err);
     });
-    return () => controller.abort();
 }

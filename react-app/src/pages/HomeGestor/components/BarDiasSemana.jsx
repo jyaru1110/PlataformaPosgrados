@@ -1,31 +1,17 @@
 import { getDiasSemana } from "../../../utils/get_dias_semana";
 import { date_to_day_dd_mm,get_dia_semana } from "../../../utils/date_to_string";
 import { useEffect,useState } from "react";
+import { useServiciosDia } from "../../../hooks/useServiciosDia";
 import { get_fetch } from "../../../hooks/get_fetch";
-import Footer from "./Footer";
 import Servicio from "./Servicio";
 
 const dias = getDiasSemana();
 
 export default function BarDiasSemana() {
     const [dia, setDia] = useState(dias[0]);
-    const [servicios, setServicios] = useState();
-    const [loading, setLoading] = useState(true);
-
-    const after_fetch = (data) => {
-        setServicios(data);
-        setLoading(false);
-    }
-    
-    useEffect(() => {
-        console.log("use effect");
-        setLoading(true);
-        let url = `http://192.168.0.15:3900/api/servicios_por_fecha?fecha=${dia}`;
-        get_fetch(url, after_fetch);
-    }, [dia]);
-
-
-
+    const resultado = useServiciosDia(dia);
+    const servicios = resultado.servicios;
+    const loading = resultado.loading;
 
     return (
       <div className="w-full h-full sm:mx-8">
