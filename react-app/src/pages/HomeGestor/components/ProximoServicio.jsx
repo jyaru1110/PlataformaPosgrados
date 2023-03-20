@@ -4,7 +4,7 @@ export default function ProximoServicio() {
     const servicio = useProximoServicio();
     return (
       <div className="sm:w-2/5">
-        <h1 className = "font-poppins text-lg font-semibold text-primary ml-1 mt-2">Próximo servicio</h1>
+        <h1 className = "font-poppins text-lg font-semibold text-primary ml-1">Próximo servicio</h1>
         <div className = "bg-primary m-auto text-white rounded-2xl p-4 flex flex-row items-center justify-between sm:my-0 sm:ml-1 sm:mr-0 sm:w-full">
             {servicio==undefined ? 
             <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div> : 
