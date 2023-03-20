@@ -3,13 +3,36 @@ const { Op } = require("sequelize");
 
 const get_servicios_fecha = async (req, res) => {
     var fecha = req.params.fecha;
-    const servicios = await Servicios_dia.findAll(
-        {
-            where:{
-                fecha:fecha
+    try {
+        const servicios = await Servicios_dia.findAll(
+            {
+                where:{
+                    fecha:fecha
+                }
             }
-        }
-    )
+        )
+        res.status(200).send({servicio:servicios});
+    } catch (error) {
+        res.status(500).send({error:error});
+    }
+}
+
+const get_servicios_isla = async (req, res) => {
+    try {
+        const servicios = await Servicios_dia.findAll(
+            {
+                group: ['dia']
+            }
+        )
+        res.status(200).send({servicio:servicios});
+    } catch (error) {
+        res.status(500).send({error:error});
+    }
+}
+
+
+const get_servicios_todos = async (req, res) => {
+    const servicios = await Servicios_dia.findAll();
     res.status(200).send({servicio:servicios});
 }
 
@@ -38,5 +61,7 @@ const get_proximo_servicio = async (req, res) => {
 
 module.exports = {
     get_servicios_fecha,
-    get_proximo_servicio
+    get_proximo_servicio,
+    get_servicios_todos,
+    get_servicios_isla
 }

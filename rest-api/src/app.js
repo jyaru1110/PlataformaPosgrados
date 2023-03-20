@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var servicios_dia_routes = require('./routes/servicios_dia.routes');
+var horarios_routes = require('./routes/horarios.routes');
 
 //permite que cualquier dominio pueda hacer peticiones a la api
 app.use((req, res, next) => {
@@ -15,5 +16,6 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 //cargar archivos de rutas
 app.use('/api',servicios_dia_routes);
+app.use('/api',horarios_routes);
 //exportar
 module.exports = app;
