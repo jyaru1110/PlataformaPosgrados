@@ -1,5 +1,6 @@
-export function date_to_dd_month_yyyy (date) {
-    date = new Date(date);
+export function date_to_dd_month_yyyy (dia) {
+    dia = dia.replace(/-/g, '/');
+    const date = new Date(dia);
     const fecha_servicio = date.toLocaleString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' });
     return fecha_servicio;
 }
