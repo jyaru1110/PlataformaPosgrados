@@ -1,5 +1,7 @@
 const { DataTypes } = require("sequelize");
-var sequelize = require("../database/database");
+const sequelize = require("../database/database");
+const Salon = require("./Salon");
+
 
 const Servicios_dia = sequelize.define(
   "servicios_dia",
@@ -45,13 +47,13 @@ const Servicios_dia = sequelize.define(
     num_servicios: {
       type: DataTypes.INTEGER
     },
-    salon: {
+    /*salon: {
       type: DataTypes.STRING,
       references: {
         model: "salon",
         key: "salon",
       },
-    },
+    },*/
     estado: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -73,5 +75,7 @@ const Servicios_dia = sequelize.define(
     timestamps: false,
   }
 );
+
+Servicios_dia.belongsTo(Salon, {foreignKey: 'salon_id', targetKey: 'salon'});
 
 module.exports = Servicios_dia;

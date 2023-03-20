@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-var sequelize = require('../database/database');
+const sequelize = require('../database/database');
 
 const Salon = sequelize.define('salon', {
     // Atributos del modelo
