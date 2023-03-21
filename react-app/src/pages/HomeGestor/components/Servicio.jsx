@@ -1,7 +1,7 @@
 export default function Servicio(props){
     const servicio = props.servicio_parm;
     return(
-        <div className="group/item w-full bg-primary text-white p-2 my-2 rounded-xl flex justify-between items-center h-14">
+        <div className="group/item w-full bg-primarylight text-primary p-2 my-2 rounded-xl flex justify-between items-center h-14">
             <div className="flex flex-row">
                 <p className="font-poppins font-thin text-xs">{servicio.hora_inicio.substring(0,5)} - {servicio.hora_fin.substring(0,5)}</p>
                 <div className="ml-3.5">
