@@ -15,7 +15,7 @@ export const useServiciosDia = (dia) => {
     useEffect(() => {
         setLoading(true);
         dia = dia.replace(/\//g, "-");
-        let url = `http://192.168.0.15:3900/api/servicios/${dia}`;
+        let url = `http://localhost:3900/api/servicios/${dia}`;
         const abortController = new AbortController();
         const signal = abortController.signal;
         get_fetch(url,signal, after_fetch);

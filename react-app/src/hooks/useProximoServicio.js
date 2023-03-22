@@ -13,7 +13,7 @@ export const useProximoServicio = () => {
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
-        get_fetch("http://192.168.0.15:3900/api/proximo_servicio",signal,after_fetch)
+        get_fetch("http://localhost:3900/api/proximo_servicio",signal,after_fetch)
         return () => controller.abort();
     }, []);
 
