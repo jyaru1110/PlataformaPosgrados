@@ -11,8 +11,8 @@ export default function ProximoServicio() {
             (
               <>
               <div className="rounded-xl bg-primary w-14 h-14 flex justify-center items-center flex-col text-white font-bold">
-                <p className="p-0">{servicio.hora_inicio.substring(0,5)}</p>
-                <p className="p-0 font-normal text-sm">horas</p>
+                <p className="p-0 m-[-4px] font-poppins font-semibold">{servicio.hora_inicio.substring(0,5)}</p>
+                <p className="p-0 font-poppins font-normal text-xs m-[-3px] text-gray-200">horas</p>
               </div>
                 <div className="flex flex-col items-stretch h-full">
                     <h1 className = "font-poppins text-sm font-semibold">Salón {servicio.salon_id}</h1>
