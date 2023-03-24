@@ -26,3 +26,10 @@ export function get_primera_letra (date) {
     }
     return diaString.charAt(0).toUpperCase();
 }
+
+export function get_month_short(date) {
+    const dia = new Date(date);
+    let diaString = dia.toLocaleString('es-ES', { month:'short' });
+    diaString = diaString.charAt(0).toUpperCase() + diaString.slice(1);
+    return diaString.substring(0,3);
+}

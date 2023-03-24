@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import {get_fetch}  from './get_fetch';
-import { date_to_dd_month_yyyy } from '../utils/date_to_string';
+
+const host_back  = "localhost";
+const port = "3900";
 
 export const useServiciosDia = (dia) => {
-
     const [servicios, setServicios] = useState();
     const [loading, setLoading] = useState(true);
 
@@ -15,7 +16,7 @@ export const useServiciosDia = (dia) => {
     useEffect(() => {
         setLoading(true);
         dia = dia.replace(/\//g, "-");
-        let url = `http://localhost:3900/api/servicios/${dia}`;
+        let url = `http://${host_back}:${port}/api/servicios/${dia}`;
         const abortController = new AbortController();
         const signal = abortController.signal;
         get_fetch(url,signal, after_fetch);
