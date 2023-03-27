@@ -10,11 +10,15 @@ export default function Dropdown(props) {
       <div className="flex flex-col ml-9">
         <label className="font-poppins text-base ml-1 mb-2" htmlFor={name}>{label}</label>
         <select className="font-poppins text-base w-80 h-7 bg-primarylight text-gray1 rounded-md px-2.5 mb-4" onChange={handleChange}>
-          {options.map(option => (
-            <option key={option._id} value={option._id}>
-              {option.name}
-            </option>
-          ))}
+          {
+            options == undefined ? <option value="0">No hay opciones</option> : 
+          
+            options.map(option => (
+             <option key={option._id} value={option._id}>
+                {option.name}
+              </option>
+            ))
+          }
         </select>
       </div>
     );
