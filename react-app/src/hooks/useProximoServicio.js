@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {get_fetch}  from './get_fetch';
 import { date_to_dd_month_yyyy } from '../utils/date_to_string';
 
-const host_back  = "localhost";
+const host_back  = "192.168.0.15";
 const port = "3900";
 
 export const useProximoServicio = () => {

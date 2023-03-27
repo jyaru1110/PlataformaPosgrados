@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+select {
+  @apply appearance-none;
+  background: url(../src/assets/Down_Arrow.png) no-repeat right #ddd;
+}
