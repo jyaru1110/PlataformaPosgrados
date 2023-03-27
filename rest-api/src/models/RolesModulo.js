@@ -15,7 +15,7 @@ const RolesModulo = sequelize.define('rolesmodulo', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'personas',
+            model: 'persona',
             key: 'email_persona'
         }
     },

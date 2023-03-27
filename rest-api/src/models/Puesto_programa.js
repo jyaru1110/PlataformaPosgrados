@@ -19,7 +19,7 @@ const Puesto_programa = sequelize.define('puesto_programa', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'personas',
+            model: 'persona',
             key: 'email_persona'
         }
     }
@@ -28,5 +28,5 @@ const Puesto_programa = sequelize.define('puesto_programa', {
     tableName: 'puesto_programa',
     timestamps: false
 });
-s
+
 module.exports = Puesto_programa;   

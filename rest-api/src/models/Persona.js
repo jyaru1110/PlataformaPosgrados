@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Personas = sequelize.define('personas', {
+const Persona = sequelize.define('persona', {
     // Atributos del modelo
     email_persona: {
         type: DataTypes.STRING,
@@ -13,15 +13,15 @@ const Personas = sequelize.define('personas', {
         allowNull: false
     },
     ext: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING,
     },
     birthday: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.STRING,
     }
 }, {
     // Opciones del modelo
-    tableName: 'personas',
+    tableName: 'persona',
     timestamps: false
 });
 
-module.exports = Personas;
+module.exports = Persona;

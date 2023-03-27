@@ -1,19 +1,19 @@
 require('dotenv').config()
 var app = require('./app');
 var sequelize = require('./database/database');
-/*const Clase = require('./models/Clase');
+const Clase = require('./models/Clase');
 const Clase_programa = require('./models/Clase_programa');
 const Modulo = require('./models/Modulo');
 const Programa = require('./models/Programa');
 const Puesto_programa = require('./models/Puesto_programa');
-const Personas = require('./models/Personas');
+const Persona = require('./models/Persona');
 const Escuela = require('./models/Escuela');
 const Puesto_escuela = require('./models/Puesto_escuela');
 const Horario = require('./models/Horario');
 const receso = require('./models/receso');
 const RolesModulo = require('./models/RolesModulo');
 const Salon = require('./models/Salon');
-const Servicios_dia = require('./models/Servicios_dia');*/
+const Servicios_dia = require('./models/Servicios_dia');
 
 var port = process.env.PORT || 3900;
 
