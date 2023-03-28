@@ -19,7 +19,10 @@ export default function ProximoServicio() {
                   <p className="text-sm text-gray2 font-poppins font-regular">Salón {servicio.salon_id}</p>
                 </div> 
                 <div className="rounded-xl bg-whitebg h-16 flex items-center px-1 flex-col justify-center">
-                  <p className="text-base text-whiteprimary font-poppins mx-4 font-medium">{servicio.num_servicios}</p>
+                  {
+                    servicio.num_servicios>0 ? <p className="text-base text-whiteprimary font-poppins mx-4 font-medium">{servicio.num_servicios}</p> :
+                    <p className="text-base text-whiteprimary font-poppins mx-4 font-medium">0</p>
+                  }
                   <p className="text-xs text-gray2 font-poppins font-regular">servicios</p>
                 </div>
               </div>

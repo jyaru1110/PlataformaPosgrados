@@ -8,7 +8,8 @@ const get_servicios_fecha = async (req, res) => {
         const servicios = await Servicios_dia.findAll(
             {
                 where:{
-                    fecha:fecha
+                    fecha:fecha,
+                    estado: 'Pendiente'
                 }
             }
         )
@@ -63,7 +64,8 @@ const get_proximo_servicio = async (req, res) => {
                 where:{
                     fecha:{
                         [Op.gte]: today
-                    }
+                    },
+                    estado: 'Pendiente',
                 },
             }
         )

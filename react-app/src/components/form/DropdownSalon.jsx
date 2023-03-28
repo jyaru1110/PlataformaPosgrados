@@ -1,11 +1,11 @@
 import Dropdown from "./Dropdown";
-import { useSalones } from "../../hooks/useClases";
-import {clases_to_correct_format} from "../../utils/clases_to_correct_format";
+import { useSalones } from "../../hooks/useSalones";
+import {salones_to_correct_format} from "../../utils/salones_to_correct_format";
 
 export default function DropdowClase(props) {
-  const label = 'Selecciona una número de clase';
-  const clases = useClases();
-  const options = clases_to_correct_format(clases);
+  const label = 'Selecciona un salón';
+  const salones = useSalones();
+  const options = salones_to_correct_format(salones);
  
   const child_to_parent = (child_data) => {
     props.func(child_data);
