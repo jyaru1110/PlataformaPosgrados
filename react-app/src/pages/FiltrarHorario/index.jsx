@@ -4,6 +4,8 @@ import DropdowClase from '../../components/form/DropdownClase';
 import Horas from '../../components/form/Horas';
 import Fechas from '../../components/form/Fechas';
 import DropdownSalon from '../../components/form/DropdownSalon';
+import { useHorarios } from '../../hooks/useHorarios';
+import { date_to_dd_mm_yyyy } from '../../utils/date_to_string';
 import { useState, useEffect } from 'react';
 
 export default function FiltrarHorario() {
@@ -16,20 +18,47 @@ export default function FiltrarHorario() {
     const [fecha_fin, setFechaFin] = useState('');
     const [salones, setSalones] = useState('');
 
-    useEffect(() => {
-      console.log(fecha_fin);
-      console.log(fecha_inicio);
-    }, [fecha_fin, fecha_inicio]);
-
+    const resultado = useHorarios();
+    const horarios =  resultado.horarios;
+    const loading = resultado.loading;
 
     return (
-      <div className="w-11/12 pt-2">
-        <DropdownEscuelas func = {setEscuela}/>
-        <DropdowClase func = {setClase}/>
-        <DropdownSalon func = {setSalones}/>
-        <DropdownDia func = {setDia}/>
-        <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio}/>
-        <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio}/>
+      <div className="w-11/12 pt-2 md:flex">
+        <div>
+          <DropdownEscuelas func = {setEscuela}/>
+          <DropdowClase func = {setClase}/>
+          <DropdownSalon func = {setSalones}/>
+          <DropdownDia func = {setDia}/>
+          <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio}/>
+          <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio}/>
+        </div>
+        {loading ? <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div> :
+          <div className="flex flex-wrap">
+            {
+              horarios.filter(horario => {
+                if(escuela == '' && dia == '' && clase == '' && hora_inicio == '' && hora_fin == '' && fecha_inicio == '' && fecha_fin == '' && salones == '') return true;
+                if(escuela != '' && horario.escuela != escuela) return false;
+                if(dia != '' && horario.dia != dia) return false;
+                if(clase != '' && horario.no_clase != clase) return false;
+                if(hora_inicio != '' && horario.hora_inicio != hora_inicio) return false;
+                if(hora_fin != '' && horario.hora_fin != hora_fin) return false;
+                if(fecha_inicio != '' && horario.fecha_inicio != fecha_inicio) return false;
+                if(fecha_fin != '' && horario.fecha_fin != fecha_fin) return false;
+                if(salones != '' && horario.salon != salones) return false;
+                return true;
+              }).map((horario) => (
+                <div key = {horario.id_horario} className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5">
+                  <div>
+                    <p className="text-base font-poppins text-primary font-semibold mb-2">{horario.escuela} clase {horario.no_clase}</p>
+                  </div>
+                  <p className="font-poppins text-gray1 font-medium text-sm mb-2">Salón {horario.salon}</p>
+                  <p className="font-poppins text-gray1 font-medium text-sm mb-2">Del {date_to_dd_mm_yyyy(horario.fecha_inicio)} al {date_to_dd_mm_yyyy(horario.fecha_fin)}</p>
+                  <p className="font-poppins text-gray1 font-medium text-sm mb-2">{horario.dia} de {horario.hora_inicio.substring(0,5)} a {horario.hora_fin.substring(0,5)}</p>
+                </div>
+              ))
+            }
+          </div>
+        }
       </div>
     );
   }

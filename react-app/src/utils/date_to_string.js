@@ -5,6 +5,13 @@ export function date_to_dd_month_yyyy (dia) {
     return fecha_servicio;
 }
 
+export function date_to_dd_mm_yyyy (dia) {
+    dia = dia.replace(/-/g, '/');
+    const date = new Date(dia);
+    const fecha_servicio = date.toLocaleString('es-ES', { day: 'numeric', month: 'numeric', year: 'numeric' });
+    return fecha_servicio;
+}
+
 export function date_to_day_dd_mm (dia) {
     const date = new Date(dia);
     let diaString = date.toLocaleString('es-ES', { weekday:'long' ,day: 'numeric', month: 'long'});
