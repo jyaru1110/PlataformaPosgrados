@@ -18,6 +18,8 @@ export default function Dropdown(props) {
               </option>
             ))
           }
+
+            <option value={0}>Todos</option>
         </select>
       </div>
     );
