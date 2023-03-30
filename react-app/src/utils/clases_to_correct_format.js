@@ -3,12 +3,12 @@ export function clases_to_correct_format (clases)
     if(clases !== undefined)
     {
         var i = 1;
-        clases.forEach(clase => {
-                clase._id = i;
-                clase.name = clase.no_clase;
-                i++;
-            }
-        );
+        for (var j = 0; j < clases.length; j++)
+        {
+            clases[j]._id = i;
+            clases[j].name = clases[j].no_clase;
+            i++;
+        }
         return clases;
     }
 

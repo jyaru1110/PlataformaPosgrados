@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {get_fetch}  from './get_fetch';
 
-const host_back  = "192.168.0.15";
+const host_back  = "localhost";
 const port = "3900";
 
 export const useClases = () => {

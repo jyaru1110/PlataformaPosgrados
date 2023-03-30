@@ -48,13 +48,13 @@ export default function FiltrarHorario() {
                 if(salones != 'Todos' && horario.salon != salones) return false;
                 return true;
               }).map((horario) => (
-                <div key = {horario.id_horario} className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5">
+                <div key = {horario.id_horario} className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 md:w-60">
                   <div>
                     <p className="text-base font-poppins text-primary font-semibold mb-2">{horario.escuela} clase {horario.no_clase}</p>
                   </div>
                   <p className="font-poppins text-gray1 font-medium text-sm mb-2">Salón {horario.salon}</p>
-                  <p className="font-poppins text-gray1 font-medium text-sm mb-2">Del {date_to_dd_mm_yyyy(horario.fecha_inicio)} al {date_to_dd_mm_yyyy(horario.fecha_fin)}</p>
                   <p className="font-poppins text-gray1 font-medium text-sm mb-2">{horario.dia} de {horario.hora_inicio.substring(0,5)} a {horario.hora_fin.substring(0,5)}</p>
+                  <p className="font-poppins text-gray1 font-medium text-sm mb-2">Del {date_to_dd_mm_yyyy(horario.fecha_inicio)} al {date_to_dd_mm_yyyy(horario.fecha_fin)}</p>
                 </div>
               ))
             }

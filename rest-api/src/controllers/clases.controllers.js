@@ -1,11 +1,12 @@
 const Clase = require('../models/Clase');
 
 const get_clase_todos = async (req, res) => {
-    const clases = await Clase.findAll(
+    var clases = await Clase.findAll(
         {
             attributes: ['no_clase']
         }
     );
+    clases.unshift({no_clase:'Todos'});
     res.status(200).send({clases:clases});
 }
 

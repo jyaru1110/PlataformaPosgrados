@@ -1,7 +1,7 @@
 import Dropdown from "./Dropdown";
 
 export default function DropdownEscuelas(props) {
-    const options = [{ _id: 1, name: 'Lunes' }, { _id: 2, name: 'Martes' }, { _id: 3, name: 'Miércoles'}, { _id: 4, name: 'Jueves'}, { _id: 5, name: 'Viernes'}, { _id: 6, name: 'Sábado'}];
+    const options = [{_id:0,name:'Todos'},{ _id: 1, name: 'Lunes' }, { _id: 2, name: 'Martes' }, { _id: 3, name: 'Miércoles'}, { _id: 4, name: 'Jueves'}, { _id: 5, name: 'Viernes'}, { _id: 6, name: 'Sábado'}];
     const label = 'Selecciona el día';
 
     const child_to_parent = (child_data) => {

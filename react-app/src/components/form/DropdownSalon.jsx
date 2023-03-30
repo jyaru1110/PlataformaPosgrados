@@ -5,7 +5,7 @@ import {salones_to_correct_format} from "../../utils/salones_to_correct_format";
 export default function DropdowClase(props) {
   const label = 'Selecciona un salón';
   const salones = useSalones();
-  const options = salones_to_correct_format(salones);
+  let options = salones_to_correct_format(salones);
  
   const child_to_parent = (child_data) => {
     props.func(child_data);
