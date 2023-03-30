@@ -5,7 +5,7 @@ import Horas from '../../components/form/Horas';
 import Fechas from '../../components/form/Fechas';
 import DropdownSalon from '../../components/form/DropdownSalon';
 import { useHorarios } from '../../hooks/useHorarios';
-import { date_to_dd_mm_yyyy } from '../../utils/date_to_string';
+import { date_to_dd_month_yyyy } from '../../utils/date_to_string';
 import { useEffect, useState } from 'react';
 import ButtonAdd from '../HomeGestor/components/ButtonAdd';
 
@@ -70,10 +70,10 @@ export default function FiltrarHorario() {
               horarios.filter(filtrar).map((horario) => (
                 <div key = {horario.id_horario} className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 md:w-60 md:ml-2">
                   <div>
-                    <p className="text-base font-poppins text-primary font-semibold mb-2">{horario.escuela} clase {horario.no_clase}</p>
+                    <p className="text-sm font-poppins text-primary font-semibold mb-2">{horario.escuela} clase {horario.no_clase}</p>
                   </div>
-                  <p className="font-poppins text-gray1 font-medium text-sm mb-2">{horario.salon} • {horario.dia} • {horario.hora_inicio.substring(0,5)} a {horario.hora_fin.substring(0,5)}</p>
-                  <p className="font-poppins text-gray1 font-medium text-sm mb-2">Del {date_to_dd_mm_yyyy(horario.fecha_inicio)} al {date_to_dd_mm_yyyy(horario.fecha_fin)}</p>
+                  <p className="font-poppins text-gray1 font-medium text-xs mb-2">{horario.salon} • {horario.dia} • {horario.hora_inicio.substring(0,5)} a {horario.hora_fin.substring(0,5)}</p>
+                  <p className="font-poppins text-gray1 font-medium text-xs mb-2">Del {date_to_dd_month_yyyy(horario.fecha_inicio)} al {date_to_dd_month_yyyy(horario.fecha_fin)}</p>
                 </div>
               ))
             }

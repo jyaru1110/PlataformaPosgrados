@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="w-full p-4 overflow-x-auto flex md:flex-col md:items-center">
                 <BotonFooter texto = {"Busca horarios en especifico"} imagen = {Calendar} ruta='/filtrar-horario'/>
                 <BotonFooter texto = {"Consulta información de los coffes"} imagen = {Dashboard}/>
-                <BotonFooter texto = {"Filtra servicios por isla"} imagen = {Location}/>
+                <BotonFooter texto = {"Filtra servicios por isla"} imagen = {Location} ruta = '/filtrar-islas'/>
                 <BotonFooter texto = {"Busca servicios en especifico"} imagen = {Search}/>
             </div>
         </div>

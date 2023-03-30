@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+
 export default function BotonFooter(props) {
     return (
         <a href={props.ruta} className="h-20 w-48 ml-4 shadow-[2px_4px_12px_rgba(0,0,0,0.10)] rounded-2xl font-poppins flex-none z bg-white md:mt-2 md:w-full md:ml-0">

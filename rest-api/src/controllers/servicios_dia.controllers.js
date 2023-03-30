@@ -36,7 +36,7 @@ const get_suma_servicios_dia_isla = async (req, res) => {
     const fecha_fin = req.params.fecha_fin;
     try {
         const servicios_dia = await sequelize.query(
-            "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia inner join salon on servicios_dia.salon_id =  salon.salon group by salon.isla where servicios_dia.fecha between :'"+fecha_inicio+" and :'"+fecha_fin+"'",
+            "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon where servicios_dia.fecha between '"+fecha_inicio+"' and '"+fecha_fin+"' group by salon.isla",
         )
         res.status(200).send({servicio:servicios_dia});
     } catch (error) {
