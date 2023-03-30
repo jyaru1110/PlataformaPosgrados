@@ -1,7 +1,6 @@
 import Dropdown from "./Dropdown";
 import { useClases } from "../../hooks/useClases";
 import {clases_to_correct_format} from "../../utils/clases_to_correct_format";
-import { useEffect } from "react";
 
 export default function DropdowClase(props) {
   const label = 'Selecciona una número de clase';

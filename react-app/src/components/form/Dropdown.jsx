@@ -2,7 +2,7 @@ export default function Dropdown(props) {
     const { options, name, label, child_to_parent } = props;
 
     const handleChange = (e) => {
-        child_to_parent(options[e.target.value-1].name);
+        child_to_parent(options[e.target.value].name);
     };
 
     return (
