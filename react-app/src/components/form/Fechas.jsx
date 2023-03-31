@@ -10,7 +10,7 @@ export default function Horas(props) {
     return (
         <div className="flex ml-9 w-80 justify-between">
             <div className="flex flex-col">
-                <label className="font-poppins text-base mb-2 font-thin">Fecha de inicio</label>
+                <label className="font-poppins text-base mb-2 ml-1 font-thin">Fecha de inicio</label>
                 <input className="w-36 font-poppins text-base h-7 bg-primarylight text-gray1 rounded-md px-2.5 mb-4" type="date" onChange={handleInicio}/>
             </div>
             <div className="flex flex-col">

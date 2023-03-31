@@ -34,9 +34,28 @@ export function get_primera_letra (date) {
     return diaString.charAt(0).toUpperCase();
 }
 
+export function get_month_long(date) {
+    const dia = new Date(date);
+    let diaString = dia.toLocaleString('es-ES', { month:'long' });
+    diaString = diaString.charAt(0).toUpperCase() + diaString.slice(1);
+    return diaString;
+}
+
+export function month_day_year_to_year_month_day(date) {
+    date =  date.replace(/-/g, '/');
+    const dia = new Date(date);
+    var diaString = (dia.getFullYear()) + "-" + (dia.getMonth() + 1) + "-" + dia.getDate();
+    return diaString;
+}
+
 export function get_month_short(date) {
     const dia = new Date(date);
     let diaString = dia.toLocaleString('es-ES', { month:'short' });
     diaString = diaString.charAt(0).toUpperCase() + diaString.slice(1);
     return diaString.substring(0,3);
+}
+
+export function datetype_to_yyyy_mm_dd(date) {
+    const diaString = (date.getFullYear()) + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    return diaString;
 }

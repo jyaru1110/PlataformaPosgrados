@@ -8,7 +8,7 @@ export const getDiasSemana = () => {
         const dia = new Date(hoy + i * 24 * 60 * 60 * 1000);
         if(dia.getDay() !== 0)
         {
-            diaString =  (dia.getMonth() + 1) + "/" +  dia.getDate() + "/" + dia.getFullYear();
+            diaString = (dia.getMonth() + 1) + "/" +  dia.getDate() + "/" + dia.getFullYear();
             diasSemana.push(diaString);
         }
         else

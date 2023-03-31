@@ -17,6 +17,7 @@ export const useServiciosDia = (dia) => {
         setLoading(true);
         dia = dia.replace(/\//g, "-");
         let url = `http://${host_back}:${port}/api/servicios/${dia}`;
+        console.log(url);
         const abortController = new AbortController();
         const signal = abortController.signal;
         get_fetch(url,signal, after_fetch);
