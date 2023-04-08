@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {get_fetch}  from './get_fetch';
 import { month_day_year_to_year_month_day } from '../utils/date_to_string';
 
-const host_back  = "localhost";
+const host_back  = "192.168.0.5";
 const port = "3900";
 
 export const useIslasDia = (fecha) => {
