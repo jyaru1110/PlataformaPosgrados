@@ -1,6 +1,7 @@
 import DropdowClase from "../../components/form/DropdownClase";
 import DropdownSalon from "../../components/form/DropdownSalon";
 import DropdownEscuelas from "../../components/form/DropdownEscuelas";
+import DropdownProgramas from "../../components/form/DropdownProgramas";
 import Fechas from "../../components/form/Fechas";
 import Horas from "../../components/form/Horas";
 import OpcionesEstado from "../../components/form/OpcionesEstado";
@@ -14,7 +15,9 @@ export default function FiltarServicios() {
     const [fecha_inicio, setFechaInicio] = useState('Todos');
     const [fecha_fin, setFechaFin] = useState('Todos');
     const [salones, setSalones] = useState('Todos');
+    const [programa, setPrograma] = useState('Todos');
     const [estados, setEstados] = useState(['Pendiente', 'Cancelado', 'Realizado']);
+
 
     return (
       <>
@@ -24,6 +27,7 @@ export default function FiltarServicios() {
             <DropdownSalon func = {setSalones}/>
             <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio}/>
             <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio}/>
+            <DropdownProgramas func = {setPrograma} escuela = {escuela}/>
             <OpcionesEstado estados={estados} setEstados = {setEstados}/>
         </div>
       </>
