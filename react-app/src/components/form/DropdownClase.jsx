@@ -3,7 +3,7 @@ import { useClases } from "../../hooks/useClases";
 import {clases_to_correct_format} from "../../utils/clases_to_correct_format";
 
 export default function DropdowClase(props) {
-  const label = 'Selecciona una número de clase';
+  const label = 'Selecciona un número de clase';
   const clases = useClases();
   const options = clases_to_correct_format(clases);
 
