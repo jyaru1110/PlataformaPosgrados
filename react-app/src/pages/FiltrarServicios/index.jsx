@@ -5,6 +5,7 @@ import DropdownProgramas from "../../components/form/DropdownProgramas";
 import Fechas from "../../components/form/Fechas";
 import Horas from "../../components/form/Horas";
 import OpcionesEstado from "../../components/form/OpcionesEstado";
+import ButtonAdd from "../HomeGestor/components/ButtonAdd";
 import { useState } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
@@ -91,6 +92,9 @@ export default function FiltarServicios() {
                 </div>
             ))
         }
+        </div>
+        <div className='fixed right-14 bottom-14'>
+          <ButtonAdd/>
         </div>
       </div>
     );
