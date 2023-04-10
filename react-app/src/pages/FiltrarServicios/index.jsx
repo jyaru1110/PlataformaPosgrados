@@ -5,7 +5,7 @@ import DropdownProgramas from "../../components/form/DropdownProgramas";
 import Fechas from "../../components/form/Fechas";
 import Horas from "../../components/form/Horas";
 import OpcionesEstado from "../../components/form/OpcionesEstado";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
 
@@ -67,7 +67,7 @@ export default function FiltarServicios() {
         </div>
         <div className="mt-4">
         {
-            loading ? <p>Cargando...</p> :
+            loading ? <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>:
             servicios.servicio.filter(filtrar).map((servicio_i) => (
                 <div className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 font-poppins flex justify-between" key={servicio_i.id}>
                     <div>
