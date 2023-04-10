@@ -96,11 +96,37 @@ const create_servicio = async (req, res) => {
     }
 }
 
+const update_servicio = async (req, res) => {
+    const {fecha, hora_inicio, hora_fin, num_servicios, salon_id, programa, no_clase, dia} = req.body;
+    const id = req.params.id;
+    try {
+        const servicio = await Servicios_dia.update({
+            fecha:fecha,
+            hora_inicio:hora_inicio,
+            hora_fin:hora_fin,
+            num_servicios:num_servicios,
+            salon_id:salon_id,
+            programa:programa,
+            no_clase:no_clase,
+            dia:dia
+        },{
+            where:{
+                id:id
+            }
+        });
+        res.status(200).send({servicio:servicio});
+    } catch (error) {
+        res.status(500).send({error:error});
+    }
+}
+
+
 module.exports = {
     get_servicios_fecha,
     get_proximo_servicio,
     get_servicios_todos,
     get_servicios_isla,
     get_suma_servicios_dia_isla,
-    create_servicio
+    create_servicio,
+    update_servicio
 }
