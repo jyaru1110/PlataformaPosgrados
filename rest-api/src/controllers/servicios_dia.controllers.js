@@ -120,6 +120,19 @@ const update_servicio = async (req, res) => {
     }
 }
 
+const delete_servicio = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const servicio = await Servicios_dia.destroy({
+            where:{
+                id:id
+            }
+        });
+        res.status(200).send({servicio:servicio});
+    } catch (error) {
+        res.status(500).send({error:error});
+    }
+}
 
 module.exports = {
     get_servicios_fecha,
@@ -128,5 +141,6 @@ module.exports = {
     get_servicios_isla,
     get_suma_servicios_dia_isla,
     create_servicio,
-    update_servicio
+    update_servicio,
+    delete_servicio
 }
