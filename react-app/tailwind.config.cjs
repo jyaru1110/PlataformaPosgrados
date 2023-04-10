@@ -12,6 +12,12 @@ module.exports = {
         graytextsecondary:"#9CA0A9",
         whiteprimary: "rgba(255, 255, 255, 0.80)",
         whitebg : "rgba(255, 255, 255, 0.25)",
+        redbg:"#FFCDD9",
+        redtext:"#670016",
+        greenbg: "#C7FFCD",
+        greentext: "#006400",
+        yellowbg: "#F6E3A7",
+        yellowtext: "#59491D",
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif']

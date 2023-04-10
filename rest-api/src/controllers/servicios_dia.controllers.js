@@ -50,6 +50,17 @@ const get_servicios_todos = async (req, res) => {
     res.status(200).send({servicio:servicios});
 }
 
+const get_servicios_pendientes = async (req, res) => {
+    const fecha = req.params.fecha;
+    const servicios = await Servicios_dia.findAll({
+        where:{
+            estado: 'Pendiente',
+            fecha:fecha
+        }
+    });
+    res.status(200).send({servicio:servicios});
+}
+
 const get_proximo_servicio = async (req, res) => {
     const today =  new Date();
     const current_hour = today.getHours() + ":" + today.getMinutes();
@@ -97,8 +108,10 @@ const create_servicio = async (req, res) => {
 }
 
 const update_servicio = async (req, res) => {
-    const {fecha, hora_inicio, hora_fin, num_servicios, salon_id, programa, no_clase, dia} = req.body;
+    const {fecha, hora_inicio, hora_fin, num_servicios, salon_id, programa, no_clase, dia, estado} = req.body;
     const id = req.params.id;
+
+    console.log(fecha);
     try {
         const servicio = await Servicios_dia.update({
             fecha:fecha,
@@ -108,7 +121,8 @@ const update_servicio = async (req, res) => {
             salon_id:salon_id,
             programa:programa,
             no_clase:no_clase,
-            dia:dia
+            dia:dia,
+            estado:estado
         },{
             where:{
                 id:id
@@ -138,6 +152,7 @@ module.exports = {
     get_servicios_fecha,
     get_proximo_servicio,
     get_servicios_todos,
+    get_servicios_pendientes,
     get_servicios_isla,
     get_suma_servicios_dia_isla,
     create_servicio,

@@ -19,6 +19,14 @@ export function date_to_day_dd_mm (dia) {
     return diaString;
 }
 
+export function date_to_day_dd_mm_2 (dia) {
+    dia = dia.replace(/-/g, '/');
+    const date = new Date(dia);
+    let diaString = date.toLocaleString('es-ES', { weekday:'long' ,day: 'numeric', month: 'long'});
+    diaString = diaString.charAt(0).toUpperCase() + diaString.slice(1);
+    return diaString;
+}
+
 export function get_numero_dia(date) {
     const dia = new Date(date);
     return dia.getDate();
@@ -57,5 +65,11 @@ export function get_month_short(date) {
 
 export function datetype_to_yyyy_mm_dd(date) {
     const diaString = (date.getFullYear()) + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    return diaString;
+}
+
+export function date_to_dd_monthshort_yyyy(date) {
+    const dia = new Date(date);
+    const diaString = dia.toLocaleString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
     return diaString;
 }

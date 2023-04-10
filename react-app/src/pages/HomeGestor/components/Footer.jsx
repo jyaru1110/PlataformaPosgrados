@@ -12,7 +12,7 @@ export default function Footer() {
                 <BotonFooter texto = {"Busca horarios en especifico"} imagen = {Calendar} ruta='/filtrar-horario'/>
                 <BotonFooter texto = {"Consulta información de los coffes"} imagen = {Dashboard}/>
                 <BotonFooter texto = {"Filtra servicios por isla"} imagen = {Location} ruta = '/filtrar-islas'/>
-                <BotonFooter texto = {"Busca servicios en especifico"} imagen = {Search}/>
+                <BotonFooter texto = {"Busca servicios en especifico"} imagen = {Search} ruta = '/filtrar-servicios'/>
             </div>
         </div>
     )
