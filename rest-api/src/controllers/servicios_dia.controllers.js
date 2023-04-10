@@ -78,7 +78,7 @@ const get_proximo_servicio = async (req, res) => {
 }
 
 const create_servicio = async (req, res) => {
-    const {fecha, hora_inicio, hora_fin, num_servicios, salon_id, programa, no_clase} = req.body;
+    const {fecha, hora_inicio, hora_fin, num_servicios, salon_id, programa, no_clase, dia} = req.body;
     try {
         const servicio = await Servicios_dia.create({
             fecha:fecha,
@@ -87,7 +87,8 @@ const create_servicio = async (req, res) => {
             num_servicios:num_servicios,
             salon_id:salon_id,
             programa:programa,
-            no_clase:no_clase
+            no_clase:no_clase,
+            dia:dia
         });
         res.status(200).send({servicio:servicio});
     } catch (error) {
