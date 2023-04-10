@@ -23,13 +23,14 @@ export default function FiltarServicios() {
       <>
         <div className="mt-4">
             <DropdownEscuelas func = {setEscuela}/>
+            <DropdownProgramas func = {setPrograma} escuela = {escuela}/>
             <DropdowClase func = {setClase} />
             <DropdownSalon func = {setSalones}/>
             <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio}/>
             <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio}/>
-            <DropdownProgramas func = {setPrograma} escuela = {escuela}/>
             <OpcionesEstado estados={estados} setEstados = {setEstados}/>
         </div>
+        
       </>
     );
   }
