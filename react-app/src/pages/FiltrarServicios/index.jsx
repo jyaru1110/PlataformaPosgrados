@@ -6,6 +6,7 @@ import Fechas from "../../components/form/Fechas";
 import Horas from "../../components/form/Horas";
 import OpcionesEstado from "../../components/form/OpcionesEstado";
 import ButtonAdd from "../HomeGestor/components/ButtonAdd";
+import Header from "../../components/Header";
 import { useState } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
@@ -57,7 +58,8 @@ export default function FiltarServicios() {
 
     return (
       <div className="w-11/12 pt-2 sm:flex sm:w-full">
-        <div className="mt-4 md:fixed">
+        <div className="mt-2 md:fixed">
+            <Header titulo="Buscar servicios" />
             <DropdownEscuelas func = {setEscuela}/>
             <DropdownProgramas func = {setPrograma} escuela = {escuela}/>
             <DropdowClase func = {setClase} />

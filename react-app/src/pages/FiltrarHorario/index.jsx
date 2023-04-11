@@ -8,6 +8,7 @@ import { useHorarios } from '../../hooks/useHorarios';
 import { date_to_dd_monthshort_yyyy } from '../../utils/date_to_string';
 import { useState } from 'react';
 import ButtonAdd from '../HomeGestor/components/ButtonAdd';
+import Header from '../../components/Header';
 
 export default function FiltrarHorario() {
     const [escuela, setEscuela] = useState('Todos');
@@ -56,6 +57,7 @@ export default function FiltrarHorario() {
 
     return (
       <div className="w-11/12 pt-2 sm:flex">
+        <Header titulo="Buscar horario"></Header>
         <div className='md:fixed'>
           <DropdownEscuelas func = {setEscuela}/>
           <DropdowClase func = {setClase}/>

@@ -1,6 +1,7 @@
 import Fechas from '../../components/form/Fechas';
 import SumaIslas from './components/SumaIslas';
 import SumaDia from './components/SumaDia';
+import Header from '../../components/Header';
 import { datetype_to_yyyy_mm_dd } from '../../utils/date_to_string';
 import { useSumasIslas } from '../../hooks/useSumasIslas';
 import { useState } from 'react';
@@ -18,7 +19,8 @@ export default function FiltrarIslas() {
 
     return (
         <div className="w-11/12 flex flex-col pt-2">
-            <div className=''>
+            <Header titulo="Información de las islas"></Header>
+            <div>
                 <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio}/>
             </div>
             <SumaIslas sumas = {sumas} loading={loading}/>
