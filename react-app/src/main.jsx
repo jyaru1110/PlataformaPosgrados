@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import HomeGestor from './pages/HomeGestor/index'
-import FiltrarHorario from './pages/FiltrarHorario/index';
+import FiltrarHorario from './pages/FiltrarHorario';
 import FiltrarIslas from './pages/FiltrarIslas';
 import FiltrarServicios from './pages/FiltrarServicios';
+import Horario from './pages/Horario';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/filtrar-servicios",
     element: <FiltrarServicios />
+  },
+  {
+    path: "/horario",
+    element: <Horario />
   }
 ]);
 

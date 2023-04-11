@@ -6,6 +6,7 @@ export default function DropdowClase(props) {
   const label = 'Selecciona un número de clase';
   const clases = useClases();
   const options = clases_to_correct_format(clases);
+  const value = props.value||'Todos';
 
  
   const child_to_parent = (child_data) => {
@@ -13,7 +14,7 @@ export default function DropdowClase(props) {
   };
 
   return (
-    <Dropdown label = {label} options = {options} child_to_parent = {child_to_parent}>
+    <Dropdown label = {label} options = {options} child_to_parent = {child_to_parent} value = {value}>
     </Dropdown >
   );
 }

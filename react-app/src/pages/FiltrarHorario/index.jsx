@@ -9,8 +9,12 @@ import { date_to_dd_monthshort_yyyy } from '../../utils/date_to_string';
 import { useState } from 'react';
 import ButtonAdd from '../HomeGestor/components/ButtonAdd';
 import Header from '../../components/Header';
+import { useNavigate } from 'react-router-dom';
 
 export default function FiltrarHorario() {
+
+    const navigate = useNavigate();
+
     const [escuela, setEscuela] = useState('Todos');
     const [dia, setDia] = useState('Todos');
     const [clase, setClase] = useState('Todos');
@@ -56,9 +60,9 @@ export default function FiltrarHorario() {
 
 
     return (
-      <div className="w-11/12 pt-2 sm:flex">
-        <Header titulo="Buscar horario"></Header>
-        <div className='md:fixed'>
+      <div className="w-11/12 pt-2 sm:flex sm:w-full">
+        <div className='md:fixed ml-9 w-80'>
+          <Header titulo="Buscar horario"></Header>
           <DropdownEscuelas func = {setEscuela}/>
           <DropdowClase func = {setClase}/>
           <DropdownSalon func = {setSalones}/>
@@ -70,7 +74,7 @@ export default function FiltrarHorario() {
           <div className="flex flex-wrap md:ml-96 w-full">
             {
               horarios.filter(filtrar).map((horario) => (
-                <div key = {horario.id_horario} className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 md:w-60 md:ml-2">
+                <div key = {horario.id_horario} onClick={()=>{navigate("/horario",{state:{id_horario: horario.id_horario }})}} className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 md:w-60 md:ml-2">
                   <div>
                     <p className="text-sm font-poppins text-primary font-semibold mb-2">Clase {horario.no_clase}</p>
                   </div>

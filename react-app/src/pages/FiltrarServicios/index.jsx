@@ -58,8 +58,8 @@ export default function FiltarServicios() {
 
     return (
       <div className="w-11/12 pt-2 sm:flex sm:w-full">
-        <div className="mt-2 md:fixed">
-            <Header titulo="Buscar servicios" />
+        <div className="mt-2 ml-9 w-80 md:fixed">
+            <Header titulo="Buscar servicios"/>
             <DropdownEscuelas func = {setEscuela}/>
             <DropdownProgramas func = {setPrograma} escuela = {escuela}/>
             <DropdowClase func = {setClase} />

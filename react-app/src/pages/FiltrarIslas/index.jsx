@@ -19,8 +19,8 @@ export default function FiltrarIslas() {
 
     return (
         <div className="w-11/12 flex flex-col pt-2">
-            <Header titulo="Información de las islas"></Header>
-            <div>
+            <div className='w-80 ml-9'>
+                <Header titulo="Información de las islas"></Header>
                 <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio}/>
             </div>
             <SumaIslas sumas = {sumas} loading={loading}/>

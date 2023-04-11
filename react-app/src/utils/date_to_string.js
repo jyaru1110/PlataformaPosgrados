@@ -69,6 +69,7 @@ export function datetype_to_yyyy_mm_dd(date) {
 }
 
 export function date_to_dd_monthshort_yyyy(date) {
+    date =  date.replace(/-/g, '/');
     const dia = new Date(date);
     const diaString = dia.toLocaleString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
     return diaString;

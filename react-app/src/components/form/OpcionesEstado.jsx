@@ -11,7 +11,7 @@ export default function OpcionesEstado(props) {
         }
     };
     return (
-        <div className="flex flex-col ml-9">
+        <div className="flex flex-col">
             <p className="font-poppins text-sm ml-1 mb-2 font-thin">Selecciona los servicios que deseas ver</p>
             <div className="flex justify-between w-80 font-poppins text-base">
                 {

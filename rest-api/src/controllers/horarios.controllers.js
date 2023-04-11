@@ -1,8 +1,17 @@
 const Horario = require('../models/Horario');
+const Servicios_dia = require('../models/Servicios_dia');
 
 const get_horarios_todos = async (req, res) => {
     const horarios = await Horario.findAll();
     res.status(200).send({horarios:horarios});
+}
+
+const get_horario = async (req, res) => {
+    const {id} = req.params;
+    const horario = await Horario.findAll({
+        where: {id_horario:id}
+    });
+    res.status(200).send({horario:horario});
 }
 
 const delete_horario = async (req, res) => {
@@ -48,6 +57,7 @@ const update_horario = async (req, res) => {
 
 module.exports = {
     get_horarios_todos,
+    get_horario,
     delete_horario,
     create_horario,
     update_horario
