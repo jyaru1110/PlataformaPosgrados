@@ -10,6 +10,7 @@ import { useState,useEffect } from "react"
 import { useHorario } from "../../hooks/useHorario"
 import { useNavigate, useLocation } from "react-router-dom"
 import { put_fetch } from "../../hooks/put_fetch"
+import { delete_fetch } from "../../hooks/delete_fetch"
 
 export default function Horario() {
     const {state} = useLocation();
@@ -95,10 +96,22 @@ export default function Horario() {
         return () => controller.abort();
     }
 
+    const after_delete = (data) => {
+        if(data.horario)
+        {
+
+            alert('Horario eliminado');
+            navigation(-1);
+        }
+        else
+            alert('No se pudo eliminar el horario');
+    }
+
     const eliminar_horario = () => {
         const controller = new AbortController();
         const signal = controller.signal;
         const url = `http://localhost:3900/api/delete_horario/${id_horario}/`;
+        delete_fetch(url,signal,after_delete);
         return () => controller.abort();
     }
 
@@ -121,7 +134,7 @@ export default function Horario() {
                     <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio} value_inicio = {horario[0].hora_inicio} value_fin = {horario[0].hora_fin}/>
                     <DropdownDia func = {setDia} value ={horario[0].dia}/>
                     <DropdowSalon func = {setSalones} value ={horario[0].salon}/>
-                    <button className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg">Eliminar horario</button>
+                    <button className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg" onClick={eliminar_horario}>Eliminar horario</button>
                 </div>
             </div>
         }

@@ -12,7 +12,7 @@ const Servicios_dia = sequelize.define(
       type: DataTypes.INTEGER,
       references: {
         model: "horario",
-        key: "id_horario",
+        key: "id_horario"
       },
     },
     no_clase: {

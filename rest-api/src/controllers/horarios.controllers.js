@@ -16,6 +16,9 @@ const get_horario = async (req, res) => {
 
 const delete_horario = async (req, res) => {
     const {id} = req.params;
+    const servicios_dia = await Servicios_dia.destroy({
+        where: {id_horario:id}
+    });
     const horario = await Horario.destroy({
         where: {id_horario:id}
     });
