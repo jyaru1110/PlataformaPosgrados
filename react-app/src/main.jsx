@@ -5,6 +5,7 @@ import FiltrarHorario from './pages/FiltrarHorario';
 import FiltrarIslas from './pages/FiltrarIslas';
 import FiltrarServicios from './pages/FiltrarServicios';
 import Horario from './pages/Horario';
+import Servicio from './pages/Servicio';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/horario",
     element: <Horario />
+  },
+  {
+    path: "/servicio",
+    element: <Servicio />
   }
 ]);
 

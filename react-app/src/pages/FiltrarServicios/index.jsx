@@ -10,8 +10,10 @@ import Header from "../../components/Header";
 import { useState } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
+import { useNavigate } from "react-router-dom";
 
 export default function FiltarServicios() {
+    const navigation = useNavigate();
     const resultado = useServicios();
     const servicios = resultado.servicios;
     const loading = resultado.loading;
@@ -72,7 +74,7 @@ export default function FiltarServicios() {
         {
             loading ? <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>:
             servicios.servicio.filter(filtrar).map((servicio_i) => (
-                <div className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 font-poppins flex justify-between md:ml-2" key={servicio_i.id}>
+                <div className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 font-poppins flex justify-between md:ml-2" key={servicio_i.id} onClick={()=>{navigation("/servicio",{state:{id:servicio_i.id}})}}>
                     <div>
                         <p className="text-primary font-semibold text-xs mb-1">Salón {servicio_i.salon_id}</p>
                         <div className="flex">
