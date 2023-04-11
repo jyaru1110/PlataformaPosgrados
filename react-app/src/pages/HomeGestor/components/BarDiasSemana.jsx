@@ -2,11 +2,13 @@ import { getDiasSemana } from "../../../utils/get_dias_semana";
 import { date_to_day_dd_mm,get_numero_dia,get_primera_letra } from "../../../utils/date_to_string";
 import { useState } from "react";
 import { useServiciosDia } from "../../../hooks/useServiciosDia";
+import {useNavigate} from "react-router-dom";
 import Servicio from "./Servicio";
 
 const dias = getDiasSemana();
 
 export default function BarDiasSemana() {
+    const navigation = useNavigate();
     const [dia, setDia] = useState(dias[0]);
     const resultado = useServiciosDia(dia);
     const servicios = resultado.servicios;
@@ -31,7 +33,7 @@ export default function BarDiasSemana() {
         {servicios.servicio.length==0 ? <h1 className="text-center mt-2 font-poppins">No hay servicios para esta fecha</h1> : 
         <div>
             {servicios.servicio.map((servicio) => (
-                <div key = {servicio.id}>
+                <div key = {servicio.id} onClick={()=>{navigation('/servicio',{state:{id:servicio.id}})}}>
                     <Servicio servicio_parm = {servicio}/>
                 </div>
             ))}

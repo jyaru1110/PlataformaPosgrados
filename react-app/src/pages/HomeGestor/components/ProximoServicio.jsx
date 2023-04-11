@@ -1,6 +1,8 @@
 import { useProximoServicio } from "../../../hooks/useProximoServicio";
 import { get_numero_dia, get_month_short } from "../../../utils/date_to_string";
+import { useNavigate } from "react-router-dom";
 export default function ProximoServicio() {
+    const navigation = useNavigate();
     const servicio = useProximoServicio();
     return (
       <div className="sm:w-2/5 mt-4">
@@ -14,7 +16,7 @@ export default function ProximoServicio() {
                   <p className="text-base text-whiteprimary font-poppins mx-4 font-medium">{get_numero_dia(servicio.fecha)}</p>
                   <p className="text-xs text-gray2 font-poppins font-regular">{get_month_short(servicio.fecha)}</p>
                 </div>
-                <div className="text-whitebg rounded-xl bg-whitebg h-16 text-sm flex flex-col justify-center p-2 grow">
+                <div className="text-whitebg rounded-xl bg-whitebg h-16 text-sm flex flex-col justify-center p-2 grow" onClick={()=>{navigation('/servicio',{state:{id:servicio.id}})}}>
                   <p className="text-base text-whiteprimary font-poppins font-medium">{(servicio.hora_inicio).substring(0,5)} - {(servicio.hora_fin).substring(0,5)}</p>
                   <p className="text-sm text-gray2 font-poppins font-regular">Salón {servicio.salon_id}</p>
                 </div> 
