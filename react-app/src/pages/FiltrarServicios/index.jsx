@@ -43,10 +43,10 @@ export default function FiltarServicios() {
         if(hora_fin!=='Todos' && servicio.hora_fin.substring(0,5)>=hora_fin){
             return false;
         }
-        if(fecha_inicio!=='Todos' && servicio.fecha<=fecha_inicio){
+        if(fecha_inicio!=='Todos' && servicio.fecha<fecha_inicio){
             return false;
         }
-        if(fecha_fin!=='Todos' && servicio.fecha>=fecha_fin){
+        if(fecha_fin!=='Todos' && servicio.fecha>fecha_fin){
             return false;
         }
         if(salones!=='Todos' && servicio.salon!==salones){
