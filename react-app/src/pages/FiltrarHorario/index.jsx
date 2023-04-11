@@ -6,7 +6,7 @@ import Fechas from '../../components/form/Fechas';
 import DropdownSalon from '../../components/form/DropdownSalon';
 import { useHorarios } from '../../hooks/useHorarios';
 import { date_to_dd_monthshort_yyyy } from '../../utils/date_to_string';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ButtonAdd from '../HomeGestor/components/ButtonAdd';
 import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,7 @@ export default function FiltrarHorario() {
     const resultado = useHorarios();
     const horarios =  resultado.horarios;
     const loading = resultado.loading;
-    
+
     const filtrar = (horario) => {
         if(escuela!=='Todos' && horario.escuela!==escuela){
             return false;
