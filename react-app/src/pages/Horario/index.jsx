@@ -70,7 +70,7 @@ export default function Horario() {
     }
 
     const actualizar_informacion = () => {
-        if(escuela==='Todos' || dia==='Todos' && clase==='Todos' && hora_inicio==='Todos' && hora_fin==='Todos' && fecha_inicio==='Todos' && fecha_fin==='Todos' && salones==='Todos'){
+        if(escuela==='Todos' || dia==='Todos' || clase==='Todos'|| hora_inicio==='Todos'|| hora_fin==='Todos' || fecha_inicio==='Todos' || fecha_fin==='Todos' || salones==='Todos'){
             alert('No se puede actualizar con campos en "Todos"');
             return;
         }
