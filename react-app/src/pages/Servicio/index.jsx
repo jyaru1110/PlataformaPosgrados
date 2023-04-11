@@ -119,7 +119,6 @@ export default function Servicio() {
         const data = {
             estado: 'Cancelado'
         }
-
         const controller = new AbortController();
         const signal = controller.signal;
         const url = `http://localhost:3900/api/update_servicio/${id}/`;
