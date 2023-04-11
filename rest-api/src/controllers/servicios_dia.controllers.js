@@ -9,8 +9,10 @@ const get_servicios_fecha = async (req, res) => {
             {
                 where:{
                     fecha:fecha,
-                    estado: 'Pendiente'
-                }
+                },
+                order: [
+                    ['hora_inicio', 'ASC'],
+                ],
             }
         )
         res.status(200).send({servicio:servicios});
@@ -73,7 +75,11 @@ const get_servicios_pendientes = async (req, res) => {
         where:{
             estado: 'Pendiente',
             fecha:fecha
-        }
+        },
+
+        order: [
+            ['hora_inicio', 'ASC'],
+        ],
     });
     res.status(200).send({servicio:servicios});
 }
