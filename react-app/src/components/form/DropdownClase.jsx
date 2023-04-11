@@ -1,6 +1,6 @@
-import Dropdown from "./Dropdown";
 import { useClases } from "../../hooks/useClases";
 import {clases_to_correct_format} from "../../utils/clases_to_correct_format";
+import Select from 'react-select';
 
 export default function DropdowClase(props) {
   const label = 'Selecciona un número de clase';
@@ -14,7 +14,9 @@ export default function DropdowClase(props) {
   };
 
   return (
-    <Dropdown label = {label} options = {options} child_to_parent = {child_to_parent} value = {value}>
-    </Dropdown >
+    <>
+        <label className="font-poppins text-sm ml-1 mb-2 font-thin">{label}</label>
+        <Select options={options}/>
+    </>
   );
 }
