@@ -19,6 +19,23 @@ const get_servicios_fecha = async (req, res) => {
     }
 }
 
+const get_servicio = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const servicio = await Servicios_dia.findOne(
+            {
+                where:{
+                    id:id
+                }
+            }
+        )
+        res.status(200).send({servicio:servicio});
+    } catch (error) {
+        res.status(500).send({error:error});
+    }
+}
+
+
 const get_servicios_isla = async (req, res) => {
     const fecha = req.params.dia;
     try {
@@ -157,5 +174,6 @@ module.exports = {
     get_suma_servicios_dia_isla,
     create_servicio,
     update_servicio,
-    delete_servicio
+    delete_servicio,
+    get_servicio
 }
