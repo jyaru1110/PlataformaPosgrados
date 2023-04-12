@@ -1,5 +1,6 @@
 import { useClases } from "../../hooks/useClases";
 import {clases_to_correct_format} from "../../utils/clases_to_correct_format";
+import React from "react";
 import Select from 'react-select';
 
 export default function DropdowClase(props) {
