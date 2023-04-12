@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import {get_fetch}  from './get_fetch';
 
-const host_back  = "192.168.0.5";
-const port = "3900";
+const url_backend  = import.meta.env.VITE_URL_API;
 
 export const usePrograma = (escuela) => {
     const [programas, setProgramas] = useState([]);
@@ -16,9 +15,9 @@ export const usePrograma = (escuela) => {
         const signal = controller.signal;
         var url;
         if(escuela === 'Todos')
-            url = "http://"+host_back+":"+port+"/api/programas";
+            url = url_backend+"/programas";
         else
-            url = "http://"+host_back+":"+port+"/api/programas/"+escuela;
+            url = url_backend+"/programas/"+escuela;
         get_fetch(url,signal,after_fetch)
         return () => controller.abort();
     }, [escuela]);

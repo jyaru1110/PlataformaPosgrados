@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import {get_fetch}  from './get_fetch';
 
-const host_back  = "192.168.0.5";
-const port = "3900";
+
+const url_backend  = import.meta.env.VITE_URL_API;
 
 export const useServicio = (id) => {
     const [servicio, setServicio] = useState([]);
@@ -17,7 +17,7 @@ export const useServicio = (id) => {
         setLoading(true);
         const controller = new AbortController();
         const signal = controller.signal;
-        get_fetch("http://"+host_back+":"+port+"/api/servicio/"+id,signal,after_fetch);
+        get_fetch(url_backend+"/servicio/"+id,signal,after_fetch);
         return () => controller.abort();
     }, [id]);
 

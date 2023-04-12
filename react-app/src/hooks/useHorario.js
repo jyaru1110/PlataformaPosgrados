@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import {get_fetch}  from './get_fetch';
 
-const host_back  = "192.168.0.5";
-const port = "3900";
+const url_backend  = import.meta.env.VITE_URL_API;
 
 export const useHorario = (id_horario) => {
     const [horario, setHorario] = useState([]);
@@ -17,7 +16,7 @@ export const useHorario = (id_horario) => {
         setLoading(true);
         const controller = new AbortController();
         const signal = controller.signal;
-        get_fetch("http://"+host_back+":"+port+"/api/horario/"+id_horario,signal,after_fetch);
+        get_fetch(url_backend+"/horario/"+id_horario,signal,after_fetch);
         return () => controller.abort();
     }, [id_horario]);
 
