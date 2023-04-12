@@ -51,3 +51,6 @@ select {
   margin: 0px!important;
   padding: 0px!important;
 }
+.Toastify__toast-body {
+  font-family:'Poppins', sans-serif!important;
+}

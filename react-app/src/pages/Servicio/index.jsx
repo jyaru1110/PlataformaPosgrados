@@ -10,6 +10,8 @@ import { put_fetch } from "../../hooks/put_fetch"
 import {useServicio} from "../../hooks/useServicio"
 import { useNavigate, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Servicio() {
     const navigation = useNavigate();
@@ -61,11 +63,14 @@ export default function Servicio() {
     const after_set = (data) => {
         if(data.servicio[0])
         {
-            alert('servicio actualizado');
-            window.location.reload();
+            toast.success('Servicio actualizado',{
+                pauseOnFocusLoss: true
+            });
         }
         else
-            alert('No se pudo actualizar el servicio');
+            toast.error('No se pudo actualizar el servicio',{
+                pauseOnFocusLoss: true
+            });
     }
 
 
@@ -108,11 +113,18 @@ export default function Servicio() {
     const after_canceled = (data) => {
         if(data.servicio[0])
         {
-            alert('servicio cancelado');
-            navigation(-1);
+            toast.onChange(payload=> {
+                if(payload.type === "success" && payload.status === "removed"){
+                    navigation(-1);
+                }
+            });
+            toast.success("Servicio cancelado",{
+                pauseOnFocusLoss: true
+            });
+
         }
         else
-            alert('No se pudo actualizar el servicio');
+            alert('No se pudo cancelar el servicio');
     }
 
     const cancelar_servicio = () => {
@@ -152,6 +164,7 @@ export default function Servicio() {
                 </div>
             </div>
         }
+        <ToastContainer/>
         </>
         
     )

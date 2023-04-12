@@ -11,6 +11,10 @@ import { useHorario } from "../../hooks/useHorario"
 import { useNavigate, useLocation } from "react-router-dom"
 import { put_fetch } from "../../hooks/put_fetch"
 import { delete_fetch } from "../../hooks/delete_fetch"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 export default function Horario() {
     const {state} = useLocation();
@@ -62,11 +66,14 @@ export default function Horario() {
     const after_set = (data) => {
         if(data.horario[0])
         {
-            alert('Horario actualizado');
-            window.location.reload();
+            toast.success('Horario actualizado',{
+                pauseOnFocusLoss: true
+            });
         }
         else
-            alert('No se pudo actualizar el horario');
+            toast.error('No se pudo actualizar horario',{
+                pauseOnFocusLoss: true
+            });
     }
 
     const actualizar_informacion = () => {
@@ -99,12 +106,20 @@ export default function Horario() {
     const after_delete = (data) => {
         if(data.horario)
         {
+            toast.onChange(payload=> {
+                if(payload.type === "success" && payload.status === "removed"){
+                    navigation(-1);
+                }
+            });
+            toast.success("Horario eliminado",{
+                pauseOnFocusLoss: true
+            });
 
-            alert('Horario eliminado');
-            navigation(-1);
         }
         else
-            alert('No se pudo eliminar el horario');
+            toast.error('No se pudo eliminar horario',{
+                pauseOnFocusLoss: true
+            });
     }
 
     const eliminar_horario = () => {
@@ -138,6 +153,7 @@ export default function Horario() {
                 </div>
             </div>
         }
+        <ToastContainer />
         </>
         
     )
