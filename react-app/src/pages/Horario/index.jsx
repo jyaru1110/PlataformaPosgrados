@@ -13,6 +13,7 @@ import { put_fetch } from "../../hooks/put_fetch"
 import { delete_fetch } from "../../hooks/delete_fetch"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const url_backend  = import.meta.env.VITE_URL_API;
 
 
 
@@ -98,7 +99,7 @@ export default function Horario() {
 
         const controller = new AbortController();
         const signal = controller.signal;
-        const url = `http://localhost:3900/api/update_horario/${id_horario}/`;
+        const url = `${url_backend}/update_horario/${id_horario}`;
         put_fetch(url,signal,data,after_set);
         return () => controller.abort();
     }
@@ -125,7 +126,7 @@ export default function Horario() {
     const eliminar_horario = () => {
         const controller = new AbortController();
         const signal = controller.signal;
-        const url = `http://localhost:3900/api/delete_horario/${id_horario}/`;
+        const url = `${url_backend}/delete_horario/${id_horario}/`;
         delete_fetch(url,signal,after_delete);
         return () => controller.abort();
     }

@@ -3,14 +3,19 @@ import { get_numero_dia, get_month_short } from "../../../utils/date_to_string";
 import { useNavigate } from "react-router-dom";
 export default function ProximoServicio() {
     const navigation = useNavigate();
-    const servicio = useProximoServicio();
+    const resultado = useProximoServicio();
+    const servicio = resultado.servicio;
+    const loading = resultado.loading;
     return (
       <div className="sm:w-2/5 mt-4">
         <div className = "m-auto rounded-3xl flex flex-col bg-primary justify-between sm:my-0 sm:ml-1 sm:mr-0 sm:w-full">
           <h1 className = "font-poppins pl-4 pt-4 font-medium text-whiteprimary ml-1 text-lg mb-2">Próximo servicio</h1>
-        {servicio==undefined ? 
-            <div className="m-auto h-8 p-4 mb-4 w-8 animate-spin rounded-full border-4 border-solid border-whitebg border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div> : 
-            (
+        {loading ?
+            <div className="m-auto h-8 p-4 mb-4 w-8 animate-spin rounded-full border-4 border-solid border-whitebg border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+            : 
+              <>
+              {servicio ?(
+
               <div className="w-full px-4 m-auto flex mb-4 justify-between">
                 <div className="rounded-xl bg-whitebg h-16 flex items-center flex-col justify-center mr-2">
                   <p className="text-base text-whiteprimary font-poppins mx-4 font-medium">{get_numero_dia(servicio.fecha)}</p>
@@ -28,7 +33,22 @@ export default function ProximoServicio() {
                   <p className="text-xs text-gray2 font-poppins font-regular">servicios</p>
                 </div>
               </div>
-            )
+              ):(
+                <div className="w-full px-4 m-auto flex mb-4 justify-between">
+                  <div className="rounded-xl bg-whitebg h-16 flex items-center flex-col justify-center mr-2">
+                    <p className="text-base text-whiteprimary font-poppins mx-4 font-medium">-</p>
+                    <p className="text-xs text-gray2 font-poppins font-regular">-</p>
+                  </div>
+                  <div className="text-whitebg rounded-xl bg-whitebg h-16 text-sm flex flex-col justify-center p-2 grow">
+                    <p className="text-base text-whiteprimary font-poppins font-medium">No hay servicios hoy</p>
+                  </div>
+                  <div className="rounded-xl bg-whitebg h-16 flex items-center px-1 flex-col justify-center ml-2">
+                    <p className="text-base text-whiteprimary font-poppins mx-4 font-medium">-</p>
+                    <p className="text-xs text-gray2 font-poppins font-regular">-</p>
+                  </div>
+                </div>
+              )}
+            </>
             }
         </div>
       </div>

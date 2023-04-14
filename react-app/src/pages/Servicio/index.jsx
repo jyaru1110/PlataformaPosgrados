@@ -12,6 +12,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const url_backend  = import.meta.env.VITE_URL_API;
 
 export default function Servicio() {
     const navigation = useNavigate();
@@ -105,7 +106,7 @@ export default function Servicio() {
 
         const controller = new AbortController();
         const signal = controller.signal;
-        const url = `http://localhost:3900/api/update_servicio/${id}/`;
+        const url = `${url_backend}/update_servicio/${id}/`;
         put_fetch(url,signal,data,after_set);
         return () => controller.abort();
     }
@@ -133,7 +134,7 @@ export default function Servicio() {
         }
         const controller = new AbortController();
         const signal = controller.signal;
-        const url = `http://localhost:3900/api/update_servicio/${id}/`;
+        const url = `${url_backend}/update_servicio/${id}/`;
         put_fetch(url,signal,data,after_canceled);
         return () => controller.abort();
     }
@@ -156,7 +157,7 @@ export default function Servicio() {
                     <Fecha setFecha = {setFecha} value = {servicio.fecha}/>
                     <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio} value_inicio = {servicio.hora_inicio} value_fin = {servicio.hora_fin}/>
                     <DropdownDia func = {setDia} value = {servicio.dia}/>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between max">
                         <DropdowSalon func = {setSalon} value = {servicio.salon_id}/>
                         <NumeroServicios setNumeroServicios = {setNumeroServicios} value = {servicio.num_servicios}/>
                     </div>
