@@ -65,7 +65,14 @@ const get_suma_servicios_dia_isla = async (req, res) => {
 }
 
 const get_servicios_todos = async (req, res) => {
-    const servicios = await Servicios_dia.findAll();
+    const servicios = await Servicios_dia.findAll(
+        {
+            order: [
+                ['fecha', 'ASC'],
+                ['hora_inicio', 'ASC'],
+            ],
+        }
+    );
     res.status(200).send({servicio:servicios});
 }
 
@@ -94,7 +101,7 @@ const get_proximo_servicio = async (req, res) => {
                 limit: 1,
                 order: [
                     ['fecha', 'ASC'],
-                    ['hora_inicio', 'ASC']
+                    ['hora_inicio', 'ASC'],
                 ],
                 where:{
                     fecha:{

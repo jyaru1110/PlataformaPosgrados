@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const Persona = sequelize.define('persona', {
+const Persona = sequelize.define('personas', {
     // Atributos del modelo
     email_persona: {
         type: DataTypes.STRING,
@@ -20,7 +20,7 @@ const Persona = sequelize.define('persona', {
     }
 }, {
     // Opciones del modelo
-    tableName: 'persona',
+    tableName: 'personas',
     timestamps: false
 });
 

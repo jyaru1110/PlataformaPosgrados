@@ -16,11 +16,11 @@ const Horario = sequelize.define('horario', {
             key: 'salon'
         }
     },
-    escuela: {
+    programa: {
         type: DataTypes.STRING,
         reference: {
-            model: 'escuela',
-            key: 'escuela'
+            model: 'programa',
+            key: 'programa'
         }
     },
     fecha_inicio: {
@@ -49,7 +49,12 @@ const Horario = sequelize.define('horario', {
     dia: {
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+    num_alumnos: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+    },
+
 }, {
     // Opciones del modelo
     tableName: 'horario',

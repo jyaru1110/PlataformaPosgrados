@@ -14,13 +14,13 @@ import { useNavigate } from 'react-router-dom';
 export default function FiltrarHorario() {
 
     const navigate = useNavigate();
-
+    const date = new Date();
     const [escuela, setEscuela] = useState('Todos');
     const [dia, setDia] = useState('Todos');
     const [clase, setClase] = useState('Todos');
     const [hora_inicio, setHoraInicio] = useState('Todos');
     const [hora_fin, setHoraFin] = useState('Todos');
-    const [fecha_inicio, setFechaInicio] = useState('Todos');
+    const [fecha_inicio, setFechaInicio] = useState(date.toISOString().substring(0,10));
     const [fecha_fin, setFechaFin] = useState('Todos');
     const [salones, setSalones] = useState('Todos');
 
@@ -29,6 +29,8 @@ export default function FiltrarHorario() {
     const loading = resultado.loading;
 
     const filtrar = (horario) => {
+
+        const date = new Date();
         if(escuela!=='Todos' && horario.escuela!==escuela){
             return false;
         }
@@ -46,10 +48,10 @@ export default function FiltrarHorario() {
 
             return false;
         }
-        if(fecha_inicio!=='Todos' && horario.fecha_inicio!==fecha_inicio){
+        if(fecha_inicio!=='Todos' && horario.fecha_inicio<=fecha_inicio){
             return false;
         }
-        if(fecha_fin!=='Todos' && horario.fecha_fin!==fecha_fin){
+        if(fecha_fin!=='Todos' && horario.fecha_fin>=fecha_fin){
             return false;
         }
         if(salones!=='Todos' && horario.salon!==salones){
@@ -68,7 +70,7 @@ export default function FiltrarHorario() {
           <DropdownSalon func = {setSalones}/>
           <DropdownDia func = {setDia}/>
           <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio}/>
-          <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio}/>
+          <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio} value_inicio={fecha_inicio}/>
         </div>
         {loading ? <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div> :
           <div className="flex flex-wrap md:ml-96 w-full">

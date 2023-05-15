@@ -7,7 +7,7 @@ const Puesto_escuela = sequelize.define('puesto_escuela', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'persona',
+            model: 'personas',
             key: 'email_persona'
         }
     },

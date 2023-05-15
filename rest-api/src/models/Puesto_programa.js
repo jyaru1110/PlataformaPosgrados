@@ -19,7 +19,7 @@ const Puesto_programa = sequelize.define('puesto_programa', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'persona',
+            model: 'personas',
             key: 'email_persona'
         }
     }

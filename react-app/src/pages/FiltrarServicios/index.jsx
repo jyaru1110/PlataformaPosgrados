@@ -7,12 +7,13 @@ import Horas from "../../components/form/Horas";
 import OpcionesEstado from "../../components/form/OpcionesEstado";
 import ButtonAdd from "../HomeGestor/components/ButtonAdd";
 import Header from "../../components/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
 import { useNavigate } from "react-router-dom";
 
 export default function FiltarServicios() {
+    const date = new Date();
     const navigation = useNavigate();
     const resultado = useServicios();
     const servicios = resultado.servicios;
@@ -21,7 +22,7 @@ export default function FiltarServicios() {
     const [clase, setClase] = useState('Todos');
     const [hora_inicio, setHoraInicio] = useState('Todos');
     const [hora_fin, setHoraFin] = useState('Todos');
-    const [fecha_inicio, setFechaInicio] = useState('Todos');
+    const [fecha_inicio, setFechaInicio] = useState(date.toISOString().substring(0,10));
     const [fecha_fin, setFechaFin] = useState('Todos');
     const [salones, setSalones] = useState('Todos');
     const [programa, setPrograma] = useState('Todos');
@@ -67,7 +68,7 @@ export default function FiltarServicios() {
             <DropdowClase func = {setClase} />
             <DropdownSalon func = {setSalones}/>
             <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio}/>
-            <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio}/>
+            <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio} value_inicio = {fecha_inicio}/>
             <OpcionesEstado estados={estados} setEstados = {setEstados}/>
         </div>
         <div className="mt-4 flex flex-wrap md:ml-96 w-full">
@@ -76,7 +77,7 @@ export default function FiltarServicios() {
             servicios.servicio.filter(filtrar).map((servicio_i) => (
                 <div className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 font-poppins flex justify-between md:ml-2" key={servicio_i.id} onClick={()=>{navigation("/servicio",{state:{id:servicio_i.id}})}}>
                     <div>
-                        <p className="text-primary font-semibold text-xs mb-1">Salón {servicio_i.salon_id}</p>
+                        <p className="text-primary font-semibold text-xs mb-1">Clase {servicio_i.no_clase}</p>
                         <div className="flex">
                             <p className="text-gray1 text-xs mb-1">{servicio_i.hora_inicio.substring(0,5)}-{servicio_i.hora_fin.substring(0,5)} |</p>
                             {
@@ -86,7 +87,7 @@ export default function FiltarServicios() {
                             }
                         </div>
                         <p className="text-gray1 text-xs mb-1">{date_to_day_dd_mm_2(servicio_i.fecha)} {servicio_i.fecha.substring(0,4)}</p>
-                        <p className="text-gray1 text-xs mb-1">Clase {servicio_i.no_clase}</p>
+                        <p className="text-gray1 text-xs mb-1">Salón {servicio_i.salon_id}</p>
                         <p className="text-gray1 text-xs mb-1">{servicio_i.programa}</p>
                     </div>
                     <div className="flex justify-center flex-col items-center">

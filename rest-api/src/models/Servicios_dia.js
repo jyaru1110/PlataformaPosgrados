@@ -14,6 +14,7 @@ const Servicios_dia = sequelize.define(
         model: "horario",
         key: "id_horario"
       },
+      onDelete: "CASCADE",
     },
     no_clase: {
       type: DataTypes.STRING,
