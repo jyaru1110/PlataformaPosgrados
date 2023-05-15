@@ -6,6 +6,7 @@ import FiltrarIslas from './pages/FiltrarIslas';
 import FiltrarServicios from './pages/FiltrarServicios';
 import Horario from './pages/Horario';
 import Servicio from './pages/Servicio';
+import AddServicio from './pages/AddServicio';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -36,7 +37,11 @@ const router = createBrowserRouter([
   {
     path: "/servicio",
     element: <Servicio />
-  }
+  },
+  {
+    path: "/add-servicio",
+    element: <AddServicio />
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
