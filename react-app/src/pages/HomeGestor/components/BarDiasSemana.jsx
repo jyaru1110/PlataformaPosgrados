@@ -15,7 +15,7 @@ export default function BarDiasSemana() {
     const loading = resultado.loading;
 
     return (
-      <div className="w-full h-2/3 sm:mx-8 sm:h-full">
+      <div className="md:w-full md:mx-8 pt-40 pb-32 md:p-0 mb-10">
         <h1 className = "font-poppins text-lg font-semibold text-primary ml-1 mt-2">{date_to_day_dd_mm(dia)}</h1>
         <div className="flex flex-row justify-between">
         {dias.map((dia_m) => (

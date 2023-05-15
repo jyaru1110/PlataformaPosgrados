@@ -7,8 +7,8 @@ export default function ProximoServicio() {
     const servicio = resultado.servicio;
     const loading = resultado.loading;
     return (
-      <div className="sm:w-2/5 mt-4">
-        <div className = "m-auto rounded-3xl flex flex-col bg-primary justify-between sm:my-0 sm:ml-1 sm:mr-0 sm:w-full">
+      <div className="md:w-2/5 pt-4 md:relative fixed w-11/12 bg-white">
+        <div className = "m-auto rounded-3xl flex flex-col bg-primary justify-between sm:my-0 md:ml-1 sm:mr-0 sm:w-full">
           <h1 className = "font-poppins pl-4 pt-4 font-medium text-whiteprimary ml-1 text-lg mb-2">Próximo servicio</h1>
         {loading ?
             <div className="m-auto h-8 p-4 mb-4 w-8 animate-spin rounded-full border-4 border-solid border-whitebg border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
