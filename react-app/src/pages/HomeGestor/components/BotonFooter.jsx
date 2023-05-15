@@ -6,7 +6,6 @@ export default function BotonFooter(props) {
                 <div className="flex p-2.5 w-3/4 h-full text-xs flex-col justify-between">
                     <p className="text-left font-semibold">{props.texto}</p>
                 </div>
-                <img className="contain" src={props.imagen}></img>
             </div>
             
         </a>
