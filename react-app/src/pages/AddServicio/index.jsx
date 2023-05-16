@@ -10,10 +10,15 @@ import {salones_to_correct_format} from "../../utils/salones_to_correct_format";
 import { useClases } from "../../hooks/useClases";
 import { clases_to_correct_format } from "../../utils/clases_to_correct_format";
 import SelectDia from "./components/SelectDia";
+import { post_axios } from "../../hooks/post_axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AddServicio() {
   const [servicios, setServicios] = useState([]);
   const [seleccionados, setSeleccionados] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const url_backend = import.meta.env.VITE_URL_API;
 
   const options_dias = [
     { value: "Lunes" },
@@ -41,8 +46,19 @@ export default function AddServicio() {
     servicios.forEach((servicio) => {
       if(servicio.programa==="" || servicio.clase==="" || servicio.salon==="" || servicio.dia==="" || servicio.horaInicio==="" || servicio.horaFin==="" || servicio.fechaInicio==="" || servicio.fechaFin===""){
         seleccionados.includes(servicio.id)?{}:setSeleccionados([...seleccionados, servicio.id]);
+        toast.error('Faltan campos por llenar');
         return;
       }
+      const response = post_axios(url_backend+"/create_horario", servicio);
+      response.then((data)=>{
+        if(data.status===200){
+          toast.success('Servicios creado');
+        }
+        else{
+          toast.error('Error al crear servicios');
+        }
+      }
+      );
     });
   };
 
@@ -52,13 +68,13 @@ export default function AddServicio() {
       {
         id: servicios.length,
         programa: "",
-        clase: "",
+        no_clase: "",
         salon: "",
         dia: "",
-        horaInicio: "",
-        horaFin: "",
-        fechaInicio: "",
-        fechaFin: "",
+        hora_inicio: "",
+        hora_fin: "",
+        fecha_inicio: "",
+        fecha_fin: "",
       },
     ]);
   };
@@ -107,7 +123,7 @@ export default function AddServicio() {
               </td>
               <td className="border-r p-2">
                 <InputClase onchange={(clase)=>{
-                  updateServicio(servicio.id, {...servicio, clase:clase})
+                  updateServicio(servicio.id, {...servicio, clase:no_clase})
                 }} options={options_clases}>
                 </InputClase>
               </td>
@@ -128,7 +144,7 @@ export default function AddServicio() {
                   type="time"
                   placeholder="Hora inicio"
                   onChange={(e)=>{
-                    updateServicio(servicio.id, {...servicio, horaInicio:e.target.value})
+                    updateServicio(servicio.id, {...servicio, hora_inicio:e.target.value})
                   }}
                 />
               </td>
@@ -138,7 +154,7 @@ export default function AddServicio() {
                   type="time"
                   placeholder="Hora fin"
                   onChange = {(e)=>{
-                    updateServicio(servicio.id, {...servicio, horaFin:e.target.value})
+                    updateServicio(servicio.id, {...servicio, hora_fin:e.target.value})
                   }}
                 />
               </td>
@@ -148,7 +164,7 @@ export default function AddServicio() {
                   type="date"
                   placeholder="Fecha inicio"
                   onChange = {(e)=>{
-                    updateServicio(servicio.id, {...servicio, fechaInicio:e.target.value})
+                    updateServicio(servicio.id, {...servicio, fecha_inicio:e.target.value})
                   }}
                 />
               </td>
@@ -158,7 +174,7 @@ export default function AddServicio() {
                   type="date"
                   placeholder="Fecha fin"
                   onChange={(e)=>{
-                    updateServicio(servicio.id, {...servicio, fechaFin:e.target.value})
+                    updateServicio(servicio.id, {...servicio, fecha_fin:e.target.value})
                   }
                   }
                 />
@@ -176,6 +192,7 @@ export default function AddServicio() {
           </tr>
         </tbody>
       </table>
+      <ToastContainer />
     </div>
   );
 }
