@@ -42,7 +42,7 @@ const create_horario = async (req, res) => {
 
 const update_horario = async (req, res) => {
     const {id} = req.params;
-    const {hora_inicio, hora_fin, dia, salon, fecha_inicio, fecha_fin, no_clase, escuela} = req.body;
+    const {hora_inicio, hora_fin, dia, salon, fecha_inicio, fecha_fin, no_clase, programa} = req.body;
     const horario = await Horario.update({
         hora_inicio:hora_inicio,
         hora_fin:hora_fin,
@@ -51,7 +51,7 @@ const update_horario = async (req, res) => {
         fecha_inicio:fecha_inicio,
         fecha_fin:fecha_fin,
         no_clase:no_clase,
-        escuela:escuela,
+        programa:programa,
     },{
         where: {id_horario:id}
     });
