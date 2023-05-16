@@ -43,12 +43,29 @@ export default function AddServicio() {
   }, [servicios]);
 
   const send_servicios = () => {
+    servicios.length===0?toast.error('No hay servicios'):null;
     servicios.forEach((servicio) => {
-      if(servicio.programa==="" || servicio.clase==="" || servicio.salon==="" || servicio.dia==="" || servicio.horaInicio==="" || servicio.horaFin==="" || servicio.fechaInicio==="" || servicio.fechaFin===""){
-        seleccionados.includes(servicio.id)?{}:setSeleccionados([...seleccionados, servicio.id]);
+      if(servicio.programa==="" || servicio.no_clase==="" || servicio.salon==="" || servicio.dia==="" || servicio.hora_inicio==="" || servicio.hora_fin==="" || servicio.fecha_inicio==="" || servicio.fecha_fin===""){
+        seleccionados.includes(servicio.id)?null:setSeleccionados([...seleccionados, servicio.id]);
         toast.error('Faltan campos por llenar');
         return;
       }
+      if(servicio.fecha_inicio<=Date.now()){
+        seleccionados.includes(servicio.id)?null:setSeleccionados([...seleccionados, servicio.id]);
+        toast.error('La fecha de inicio no puede ser hoy o antes');
+        return;
+      }
+      if(servicio.fecha_fin<servicio.fecha_inicio){
+        seleccionados.includes(servicio.id)?null:setSeleccionados([...seleccionados, servicio.id]);
+        toast.error('La fecha de fin no puede ser menor o igual a la fecha de inicio');
+        return;
+      }
+      if(servicio.hora_fin<=servicio.hora_inicio){
+        seleccionados.includes(servicio.id)?null:setSeleccionados([...seleccionados, servicio.id]);
+        toast.error('La hora de fin no puede ser menor a la hora de inicio');
+        return;
+      }
+
       const response = post_axios(url_backend+"/create_horario", servicio);
       response.then((data)=>{
         if(data.status===200){
@@ -94,7 +111,7 @@ export default function AddServicio() {
 
   return (
     <div className="w-screen flex flex-col items-start p-8">
-      <div className="w-11/12 flex justify-between mb-4 fixed">
+      <div className="w-11/12 flex justify-between mb-4 fixed flex-wrap">
         <Header titulo="Añadir servicio"></Header>
         <button className="font-poppins bg-primary text-white px-2 rounded-lg ml-1" onClick={send_servicios}>Crear nuevos servicios</button>
       </div>
@@ -122,20 +139,23 @@ export default function AddServicio() {
                 }} options={options_programas}/>
               </td>
               <td className="border-r p-2">
-                <InputClase onchange={(clase)=>{
-                  updateServicio(servicio.id, {...servicio, clase:no_clase})
+                <InputClase onchange={(no_clase)=>{
+                  updateServicio(servicio.id, {...servicio, no_clase:no_clase});
+                  setSeleccionados(seleccionados.filter((seleccionado)=>seleccionado!==servicio.id));
                 }} options={options_clases}>
                 </InputClase>
               </td>
               <td className="border-r p-2">
                 <SelectSalon onchange={(salon)=>{
-                  updateServicio(servicio.id, {...servicio, salon:salon})
+                  updateServicio(servicio.id, {...servicio, salon:salon});
+                  setSeleccionados(seleccionados.filter((seleccionado)=>seleccionado!==servicio.id));
                 }} options={options_salones}/>
 
               </td>
               <td className="border-r p-2">
                 <SelectDia onchange={(dia)=>{
-                  updateServicio(servicio.id, {...servicio, dia:dia})
+                  updateServicio(servicio.id, {...servicio, dia:dia});
+                  setSeleccionados(seleccionados.filter((seleccionado)=>seleccionado!==servicio.id));
                 }} options={options_dias}/>
               </td>
               <td className="border-r p-2">
@@ -144,7 +164,8 @@ export default function AddServicio() {
                   type="time"
                   placeholder="Hora inicio"
                   onChange={(e)=>{
-                    updateServicio(servicio.id, {...servicio, hora_inicio:e.target.value})
+                    updateServicio(servicio.id, {...servicio, hora_inicio:e.target.value});
+                    setSeleccionados(seleccionados.filter((seleccionado)=>seleccionado!==servicio.id));
                   }}
                 />
               </td>
@@ -154,7 +175,8 @@ export default function AddServicio() {
                   type="time"
                   placeholder="Hora fin"
                   onChange = {(e)=>{
-                    updateServicio(servicio.id, {...servicio, hora_fin:e.target.value})
+                    updateServicio(servicio.id, {...servicio, hora_fin:e.target.value});
+                    setSeleccionados(seleccionados.filter((seleccionado)=>seleccionado!==servicio.id));
                   }}
                 />
               </td>
@@ -164,7 +186,8 @@ export default function AddServicio() {
                   type="date"
                   placeholder="Fecha inicio"
                   onChange = {(e)=>{
-                    updateServicio(servicio.id, {...servicio, fecha_inicio:e.target.value})
+                    updateServicio(servicio.id, {...servicio, fecha_inicio:e.target.value});
+                    setSeleccionados(seleccionados.filter((seleccionado)=>seleccionado!==servicio.id));
                   }}
                 />
               </td>
@@ -174,7 +197,8 @@ export default function AddServicio() {
                   type="date"
                   placeholder="Fecha fin"
                   onChange={(e)=>{
-                    updateServicio(servicio.id, {...servicio, fecha_fin:e.target.value})
+                    updateServicio(servicio.id, {...servicio, fecha_fin:e.target.value});
+                    setSeleccionados(seleccionados.filter((seleccionado)=>seleccionado!==servicio.id));
                   }
                   }
                 />

@@ -1,4 +1,4 @@
-import DropdownEscuelas from '../../components/form/DropdownEscuelas';
+import DropdownProgramas from '../../components/form/DropdownProgramas';
 import DropdownDia from '../../components/form/DropdownDia';
 import DropdowClase from '../../components/form/DropdownClase';
 import Horas from '../../components/form/Horas';
@@ -15,7 +15,7 @@ export default function FiltrarHorario() {
 
     const navigate = useNavigate();
     const date = new Date();
-    const [escuela, setEscuela] = useState('Todos');
+    const [programa, setPrograma] = useState('Todos');
     const [dia, setDia] = useState('Todos');
     const [clase, setClase] = useState('Todos');
     const [hora_inicio, setHoraInicio] = useState('Todos');
@@ -24,10 +24,6 @@ export default function FiltrarHorario() {
     const [fecha_fin, setFechaFin] = useState('Todos');
     const [salones, setSalones] = useState('Todos');
 
-    useEffect(() => {
-        console.log(clase);
-    }, [clase]);
-
     const resultado = useHorarios();
     const horarios =  resultado.horarios;
     const loading = resultado.loading;
@@ -35,7 +31,7 @@ export default function FiltrarHorario() {
     const filtrar = (horario) => {
 
         const date = new Date();
-        if(escuela!=='Todos' && horario.escuela!==escuela){
+        if(programa!=='Todos' && horario.programa!==programa){
             return false;
         }
         if(dia!=='Todos' && horario.dia!==dia){
@@ -52,10 +48,10 @@ export default function FiltrarHorario() {
 
             return false;
         }
-        if(fecha_inicio!=='Todos' && horario.fecha_inicio<=fecha_inicio){
+        if(fecha_inicio!=='Todos' && horario.fecha_inicio<fecha_inicio){
             return false;
         }
-        if(fecha_fin!=='Todos' && horario.fecha_fin>=fecha_fin){
+        if(fecha_fin!=='Todos' && horario.fecha_fin>fecha_fin){
             return false;
         }
         if(salones!=='Todos' && horario.salon!==salones){
@@ -69,7 +65,7 @@ export default function FiltrarHorario() {
       <div className="w-11/12 pt-2 sm:flex sm:w-full">
         <div className='md:fixed ml-9 w-80'>
           <Header titulo="Buscar horario"></Header>
-          <DropdownEscuelas func = {setEscuela}/>
+          <DropdownProgramas func = {setPrograma}/>
           <DropdowClase func = {setClase}/>
           <DropdownSalon func = {setSalones}/>
           <DropdownDia func = {setDia}/>
@@ -86,7 +82,7 @@ export default function FiltrarHorario() {
                   </div>
                   <p className="font-poppins text-gray1 text-sm mb-1">{horario.salon} • {horario.dia}, {horario.hora_inicio.substring(0,5)} a {horario.hora_fin.substring(0,5)}</p>
                   <p className="font-poppins text-gray1 text-sm mb-1">{ date_to_dd_monthshort_yyyy(horario.fecha_inicio)} - { date_to_dd_monthshort_yyyy(horario.fecha_fin)}</p>
-                  <p className='font-poppins text-gray1 text-sm mb-1'>{horario.escuela}</p>
+                  <p className='font-poppins text-gray1 text-sm mb-1 font-medium'>{horario.programa}</p>
                 </div>
               ))
             }

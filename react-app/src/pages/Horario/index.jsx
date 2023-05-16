@@ -1,5 +1,5 @@
 import Header from "../../components/Header"
-import DropdownEscuelas from "../../components/form/DropdownEscuelas"
+import DropdownProgramas from "../../components/form/DropdownProgramas"
 import DropdowClase from "../../components/form/DropdownClase"
 import Horas from "../../components/form/Horas"
 import Fechas from "../../components/form/Fechas"
@@ -25,7 +25,7 @@ export default function Horario() {
     const horario = resultado.horario;
     const loading = resultado.loading;
 
-    const [escuela, setEscuela] = useState('');
+    const [programa, setPrograma] = useState('');
     const [dia, setDia] = useState('');
     const [clase, setClase] = useState('');
     const [hora_inicio, setHoraInicio] = useState('');
@@ -36,8 +36,8 @@ export default function Horario() {
 
     useEffect(() => {
         if(horario){
-            if(escuela===''){
-                setEscuela(horario[0].escuela);
+            if(programa===''){
+                setPrograma(horario[0].programa);
             }
             if(dia===''){
                 setDia(horario[0].dia);
@@ -62,7 +62,7 @@ export default function Horario() {
             }
         }
         
-    }, [escuela, dia, clase, hora_inicio, hora_fin, fecha_inicio, fecha_fin, salones]);
+    }, [programa, dia, clase, hora_inicio, hora_fin, fecha_inicio, fecha_fin, salones]);
 
     const after_set = (data) => {
         if(data.horario[0])
@@ -78,16 +78,16 @@ export default function Horario() {
     }
 
     const actualizar_informacion = () => {
-        if(escuela==='Todos' || dia==='Todos' || clase==='Todos'|| hora_inicio==='Todos'|| hora_fin==='Todos' || fecha_inicio==='Todos' || fecha_fin==='Todos' || salones==='Todos'){
+        if(programa==='Todos' || dia==='Todos' || clase==='Todos'|| hora_inicio==='Todos'|| hora_fin==='Todos' || fecha_inicio==='Todos' || fecha_fin==='Todos' || salones==='Todos'){
             alert('No se puede actualizar con campos en "Todos"');
             return;
         }
         
-        if((escuela==='' || escuela == horario[0].escuela) && (dia==='' || dia == horario[0].dia) && (clase===''||clase ==  horario[0].no_clase) && (hora_inicio==='' || hora_inicio == horario[0].hora_inicio) && (hora_fin==='' || hora_fin==horario[0].hora_fin) && (fecha_inicio===''  || fecha_inicio == horario[0].fecha_inicio) && (fecha_fin==='' || fecha_fin==horario[0].fecha_fin) && (salones===''||salones==horario[0].salon))
+        if((programa==='' || escuela == horario[0].escuela) && (dia==='' || dia == horario[0].dia) && (clase===''||clase ==  horario[0].no_clase) && (hora_inicio==='' || hora_inicio == horario[0].hora_inicio) && (hora_fin==='' || hora_fin==horario[0].hora_fin) && (fecha_inicio===''  || fecha_inicio == horario[0].fecha_inicio) && (fecha_fin==='' || fecha_fin==horario[0].fecha_fin) && (salones===''||salones==horario[0].salon))
             return;
 
         const data = {
-            escuela: escuela,
+            escuela: programa,
             dia: dia,
             no_clase: clase,
             hora_inicio: hora_inicio,
@@ -144,7 +144,7 @@ export default function Horario() {
                     <button className="font-semibold text-primary" onClick={actualizar_informacion}>Guardar</button>
                 </div>
                 <div className="m-auto w-80 mt-4 ">
-                    <DropdownEscuelas func = {setEscuela} value = {horario[0].escuela}/>
+                    <DropdownProgramas func = {setPrograma} value = {horario[0].programa} escuela='Todos'/>
                     <DropdowClase func = {setClase} value ={horario[0].no_clase}/>
                     <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio} value_inicio = {horario[0].fecha_inicio} value_fin = {horario[0].fecha_fin}/>
                     <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio} value_inicio = {horario[0].hora_inicio} value_fin = {horario[0].hora_fin}/>
