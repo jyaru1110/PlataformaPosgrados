@@ -11,13 +11,6 @@ select {
   appearance: none !important;
 }
 
-.css-13cymwt-control{
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  min-height: 1.75rem!important;
-  height: 1.75rem!important;
-}
-
 .css-art2ul-ValueContainer2, .css-4xgw5l-IndicatorsContainer2, .css-1jqq78o-placeholder, .css-w9q2zk-Input2, .css-b62m3t-container
 {
   height: 1.75rem!important;
@@ -31,6 +24,7 @@ select {
 .css-tj5bde-Svg{
   fill: #545A5A!important;
 }
+
 .css-1dimb5e-singleValue, .css-1jqq78o-placeholder{
   --tw-text-opacity: 1!important;
   color: rgb(117 120 121 / var(--tw-text-opacity))!important;
@@ -47,6 +41,21 @@ select {
   padding: 0px!important;
 }
 
+.css-art2ul-ValueContainer2{
+  padding-top: 0px!important;
+
+}
+
+.css-1xc3v61-indicatorContainer{
+  padding-right: 4px!important;
+}
+
+
+
 .Toastify__toast-body {
   font-family:'Poppins', sans-serif!important;
+}
+
+* {
+  outline: none!important;
 }

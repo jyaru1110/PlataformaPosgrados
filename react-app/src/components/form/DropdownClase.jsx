@@ -29,7 +29,8 @@ export default function DropdowClase(props) {
             minHeight: "1.75rem",
             fontFamily:'Poppins',
             fontSize: '14px',
-            marginBottom: '1rem'
+            marginBottom: '1rem',
+            outline: 'none',
           }),
         }}
         options={options}

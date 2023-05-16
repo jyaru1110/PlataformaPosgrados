@@ -28,7 +28,7 @@ export function date_to_day_dd_mm_2 (dia) {
 }
 
 export function get_numero_dia(date) {
-        date.replace(/-/g, '/');
+        date =  date.replace(/-/g, '/');
         const dia = new Date(date);
         return dia.getDate();
 }

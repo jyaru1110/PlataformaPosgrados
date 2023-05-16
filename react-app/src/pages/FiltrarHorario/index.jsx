@@ -24,6 +24,10 @@ export default function FiltrarHorario() {
     const [fecha_fin, setFechaFin] = useState('Todos');
     const [salones, setSalones] = useState('Todos');
 
+    useEffect(() => {
+        console.log(clase);
+    }, [clase]);
+
     const resultado = useHorarios();
     const horarios =  resultado.horarios;
     const loading = resultado.loading;
