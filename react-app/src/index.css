@@ -59,3 +59,7 @@ select {
 * {
   outline: none!important;
 }
+
+input{
+  background-color: transparent;
+}
