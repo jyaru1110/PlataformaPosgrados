@@ -26,7 +26,7 @@ const delete_horario = async (req, res) => {
 }
 
 const create_horario = async (req, res) => {
-    const {hora_inicio, hora_fin, dia, salon, fecha_inicio, fecha_fin, no_clase, escuela} = req.body;
+    const {hora_inicio, hora_fin, dia, salon, fecha_inicio, fecha_fin, no_clase, programa} = req.body;
     const horario = await Horario.create({
         hora_inicio:hora_inicio,
         hora_fin:hora_fin,
@@ -35,7 +35,7 @@ const create_horario = async (req, res) => {
         fecha_inicio:fecha_inicio,
         fecha_fin:fecha_fin,
         no_clase:no_clase,
-        escuela:escuela,
+        programa:programa,
     });
     res.status(200).send({horario:horario});
 }

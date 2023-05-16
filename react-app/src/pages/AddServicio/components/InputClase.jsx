@@ -1,9 +1,6 @@
 import Select from "react-select";
-import { useClases } from "../../../hooks/useClases";
-import { clases_to_correct_format } from "../../../utils/clases_to_correct_format";
-const InputClase = ({onchange}) => {
-  const clases = useClases();
-  const options = clases_to_correct_format(clases);
+const InputClase = ({onchange,options}) => {
+  
 
   const actualizar = (clase) => {
     clase = clase.label;
@@ -11,7 +8,7 @@ const InputClase = ({onchange}) => {
   };
 
   return (
-    <div className="">
+    <div className="w-28">
       <Select
         styles={{
           control: (baseStyles) => ({
@@ -24,6 +21,7 @@ const InputClase = ({onchange}) => {
             fontSize: "16px",
             marginTop: "1rem",
             width: "100%",
+            backgroundColor: "transparent",
           }),
         }}
         options={options}
