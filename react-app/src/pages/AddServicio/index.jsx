@@ -43,6 +43,8 @@ export default function AddServicio() {
   }, [servicios]);
 
   const send_servicios = () => {
+    const hoy = new Date();
+    const string_hoy = hoy.toISOString().substring(0,10);
     servicios.length===0?toast.error('No hay servicios'):null;
     servicios.forEach((servicio) => {
       if(servicio.programa==="" || servicio.no_clase==="" || servicio.salon==="" || servicio.dia==="" || servicio.hora_inicio==="" || servicio.hora_fin==="" || servicio.fecha_inicio==="" || servicio.fecha_fin===""){
@@ -50,7 +52,7 @@ export default function AddServicio() {
         toast.error('Faltan campos por llenar');
         return;
       }
-      if(servicio.fecha_inicio<=Date.now()){
+      if(servicio.fecha_inicio<=string_hoy){
         seleccionados.includes(servicio.id)?null:setSeleccionados([...seleccionados, servicio.id]);
         toast.error('La fecha de inicio no puede ser hoy o antes');
         return;

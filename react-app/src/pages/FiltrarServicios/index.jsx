@@ -29,9 +29,6 @@ export default function FiltarServicios() {
     const [estados, setEstados] = useState(['Pendiente', 'Cancelado', 'Realizado']);
 
     const filtrar = (servicio) => {
-        if(escuela!=='Todos' && servicio.escuela!==escuela){
-            return false;
-        }
         if(programa!=='Todos' && servicio.programa!==programa){
             return false;
         }
@@ -50,7 +47,7 @@ export default function FiltarServicios() {
         if(fecha_fin!=='Todos' && servicio.fecha>fecha_fin){
             return false;
         }
-        if(salones!=='Todos' && servicio.salon!==salones){
+        if(salones!=='Todos' && servicio.salon_id!==salones){
             return false;
         }
         if(!estados.includes(servicio.estado)){

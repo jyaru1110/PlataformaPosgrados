@@ -83,11 +83,11 @@ export default function Horario() {
             return;
         }
         
-        if((programa==='' || escuela == horario[0].escuela) && (dia==='' || dia == horario[0].dia) && (clase===''||clase ==  horario[0].no_clase) && (hora_inicio==='' || hora_inicio == horario[0].hora_inicio) && (hora_fin==='' || hora_fin==horario[0].hora_fin) && (fecha_inicio===''  || fecha_inicio == horario[0].fecha_inicio) && (fecha_fin==='' || fecha_fin==horario[0].fecha_fin) && (salones===''||salones==horario[0].salon))
+        if((programa==='' || programa == horario[0].programa) && (dia==='' || dia == horario[0].dia) && (clase===''||clase ==  horario[0].no_clase) && (hora_inicio==='' || hora_inicio == horario[0].hora_inicio) && (hora_fin==='' || hora_fin==horario[0].hora_fin) && (fecha_inicio===''  || fecha_inicio == horario[0].fecha_inicio) && (fecha_fin==='' || fecha_fin==horario[0].fecha_fin) && (salones===''||salones==horario[0].salon))
             return;
 
         const data = {
-            escuela: programa,
+            programa: programa,
             dia: dia,
             no_clase: clase,
             hora_inicio: hora_inicio,

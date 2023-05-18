@@ -65,7 +65,7 @@ export default function FiltrarHorario() {
       <div className="w-11/12 pt-2 sm:flex sm:w-full">
         <div className='md:fixed ml-9 w-80'>
           <Header titulo="Buscar horario"></Header>
-          <DropdownProgramas func = {setPrograma}/>
+          <DropdownProgramas func = {setPrograma} escuela="Todos" />
           <DropdowClase func = {setClase}/>
           <DropdownSalon func = {setSalones}/>
           <DropdownDia func = {setDia}/>
