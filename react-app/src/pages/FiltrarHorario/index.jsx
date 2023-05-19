@@ -6,7 +6,7 @@ import Fechas from '../../components/form/Fechas';
 import DropdownSalon from '../../components/form/DropdownSalon';
 import { useHorarios } from '../../hooks/useHorarios';
 import { date_to_dd_monthshort_yyyy } from '../../utils/date_to_string';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ButtonAdd from '../HomeGestor/components/ButtonAdd';
 import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
@@ -41,11 +41,10 @@ export default function FiltrarHorario() {
 
             return false;
         }
-        if(hora_inicio!=='Todos' && horario.hora_inicio.substring(0,5)!==hora_inicio){
+        if(hora_inicio!=='Todos' && horario.hora_inicio.substring(0,5)<hora_inicio){
             return false;
         }
-        if(hora_fin!=='Todos' && horario.hora_fin.substring(0,5)!==hora_fin){
-
+        if(hora_fin!=='Todos' && horario.hora_fin.substring(0,5)>hora_fin){
             return false;
         }
         if(fecha_inicio!=='Todos' && horario.fecha_inicio<fecha_inicio){
@@ -54,7 +53,7 @@ export default function FiltrarHorario() {
         if(fecha_fin!=='Todos' && horario.fecha_fin>fecha_fin){
             return false;
         }
-        if(salones!=='Todos' && horario.salon!==salones){
+        if(salones!=='Todos' && horario.salon_id!==salones){
             return false;
         }
         return true;
@@ -76,7 +75,7 @@ export default function FiltrarHorario() {
           <div className="flex flex-wrap md:ml-96 w-full">
             {
               horarios.filter(filtrar).map((horario) => (
-                <div key = {horario.id_horario} onClick={()=>{navigate("/horario",{state:{id_horario: horario.id_horario }})}} className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 md:w-60 md:ml-2">
+                <div key = {horario.id_horario} onClick={()=>{navigate("/horario",{state:{id_horario: horario.id_horario }})}} className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 md:w-60 md:ml-2 max-h-28">
                   <div>
                     <p className="text-sm font-poppins text-primary font-semibold mb-2">Clase {horario.no_clase}</p>
                   </div>
