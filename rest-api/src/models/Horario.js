@@ -39,6 +39,12 @@ const Horario = sequelize.define('horario', {
         type: DataTypes.TIME,
         allowNull: false
     },
+    hora_servicio_inicio: {
+        type: DataTypes.TIME
+    },
+    hora_servicio_fin: {
+        type: DataTypes.TIME
+    },
     no_clase: {
         type: DataTypes.STRING,
         reference: {

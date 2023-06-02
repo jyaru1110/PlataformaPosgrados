@@ -36,8 +36,13 @@ const Servicios_dia = sequelize.define(
       allowNull: false,
     },
     hora_fin: {
-      type: DataTypes.TIME,
-      allowNull: false,
+      type: DataTypes.TIME
+    },
+    hora_servicio_inicio: {
+      type: DataTypes.TIME
+    },
+    hora_servicio_fin: {
+      type: DataTypes.TIME
     },
     programa: {
       type: DataTypes.STRING,

@@ -14,6 +14,7 @@ const receso = require('./models/receso');
 const RolesModulo = require('./models/RolesModulo');
 const Salon = require('./models/Salon');
 const Servicios_dia = require('./models/Servicios_dia');
+const Usuario = require('./models/Usuario');
 
 var port = process.env.PORT || 3900;
 
@@ -21,7 +22,7 @@ async function init() {
     try {
         await sequelize.authenticate();
         console.log('Conexión a la base de datos establecida correctamente.');
-        await sequelize.sync({ force: false });
+        await sequelize.sync({ alter: true });
         console.log("All models were synchronized successfully.");
         app.listen(port, () => {
             console.log('Servidor corriendo en http://localhost:'+port);
