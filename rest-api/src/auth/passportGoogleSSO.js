@@ -21,13 +21,13 @@ passport.use(new GoogleStrategy({
 }));
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user);
 });
 
 
-passport.deserializeUser(async (id, done) => {
-    const usuario = await Usuario.findByPk(id);
-    if (usuario) {
-        done(null, usuario);
-    }
+passport.deserializeUser(async (user, done) => {
+    const usuario = await Usuario.findOne({ where: { googleId: user.googleId } });
+    done(null, usuario);
 }); 
+
+module.exports = passport;
