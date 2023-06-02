@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 const {get_servicios_fecha,get_proximo_servicio,get_servicios_todos,get_servicios_isla,get_suma_servicios_dia_isla,create_servicio,update_servicio,delete_servicio,get_servicios_pendientes,get_servicio} = require('../controllers/servicios_dia.controllers');
+const { isUserAuthenticated } = require('../middlewares/auth');
 
 router.get('/servicios/:fecha',get_servicios_fecha);
 router.get('/servicios',get_servicios_todos);

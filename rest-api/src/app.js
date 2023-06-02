@@ -1,6 +1,7 @@
 var express = require('express');
 require('./auth/passportGoogleSSO');
 const passport = require('passport');
+const cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var app = express();
 var servicios_dia_routes = require('./routes/servicios_dia.routes');
@@ -19,6 +20,10 @@ app.use((req, res, next) => {
 });
 //middleware
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+/*app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_KEY]
+}));*/
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(passport.initialize());
