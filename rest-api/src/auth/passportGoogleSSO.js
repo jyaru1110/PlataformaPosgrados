@@ -1,33 +1,52 @@
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const Usuario = require('../models/Usuario');
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const Usuario = require("../models/Usuario");
 
-passport.use(new GoogleStrategy({
-    clientID: process.env.CLIENT_ID_GOOGLE,
-    clientSecret: process.env.CLIENT_SECRET_GOOGLE,
-    callbackURL: process.env.CALLBACK_URL_GOOGLE,
-    passReqToCallback: true,
-}, async (req, accessToken, refreshToken, profile, done) => {
-    const usuario = await Usuario.findOne({ where: { googleId: profile.id } });
-    if (usuario) {
-        return done(null, usuario);
-    }
-    const nuevoUsuario = await Usuario.create({
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.CLIENT_ID_GOOGLE,
+      clientSecret: process.env.CLIENT_SECRET_GOOGLE,
+      callbackURL: process.env.CALLBACK_URL_GOOGLE,
+      passReqToCallback: true,
+    },
+    async (req, accessToken, refreshToken, profile, done) => {
+      const defaultUser = {
         email: profile.emails[0].value,
         googleId: profile.id,
-        nombre: profile.displayName
-    });
-    done(null, nuevoUsuario);
-}));
+        nombre: profile.displayName,
+      };
 
-passport.serializeUser((user, done) => {
-    done(null, user);
+      const user = await Usuario.findOrCreate({
+        where: { googleId: profile.id },
+        defaults: defaultUser,
+      }).catch((err) => {
+        console.log("Error signing up", err);
+        cb(err, null);
+      });
+
+      if (user && user[0]) return done(null, user && user[0]);
+    }
+  )
+);
+
+passport.serializeUser((user, cb) => {
+  console.log("Serializing user:", user);
+  cb(null, user.id);
 });
 
+passport.deserializeUser(async (id, cb) => {
+  console.log("Deserializing user:", id);
+  const user = await Usuario.findOne({ where: { id: id } }).catch((err) => {
+    console.log("Error deserializing", err);
+    cb(err, null);
+  });
 
-passport.deserializeUser(async (user, done) => {
-    const usuario = await Usuario.findOne({ where: { googleId: user.googleId } });
-    done(null, usuario);
-}); 
+  console.log("DeSerialized user", user);
 
+  if (user) {
+    cb(null, user);
+    console.log("User deserialized");
+  }
+});
 module.exports = passport;

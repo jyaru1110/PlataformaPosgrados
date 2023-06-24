@@ -4,10 +4,8 @@ const sequelize = require("../database/database");
 const Usuario = sequelize.define(
     "usuarios",
     {
-        // Atributos del modelo
         email : {
             type: DataTypes.STRING,
-            primaryKey: true,
             allowNull: false
         },
         googleId : {
