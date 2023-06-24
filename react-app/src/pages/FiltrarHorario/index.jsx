@@ -29,7 +29,6 @@ export default function FiltrarHorario() {
     const loading = resultado.loading;
 
     const filtrar = (horario) => {
-
         const date = new Date();
         if(programa!=='Todos' && horario.programa!==programa){
             return false;

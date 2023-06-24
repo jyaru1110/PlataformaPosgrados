@@ -1,5 +1,6 @@
 const express = require("express");
 require("./auth/passportGoogleSSO");
+require('dotenv').config()
 const passport = require("passport");
 const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
@@ -23,8 +24,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-//middleware
-//app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+//middlewares
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

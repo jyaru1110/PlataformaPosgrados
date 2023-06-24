@@ -4,8 +4,10 @@ export const  get_fetch  = async (url, signal, func) => {
     const response = await axios.get(url, {
         signal: signal,
         withCredentials: true,
-    }).catch((err) => {
+    }).then((response) => {
+            func(response.data);
+        }
+    ).catch((err) => {
         console.log("error ", err);
     });
-    func(response.data);
 };

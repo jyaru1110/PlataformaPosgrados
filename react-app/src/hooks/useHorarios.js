@@ -19,6 +19,5 @@ export const useHorarios = () => {
         get_fetch(url_backend+"/horarios",signal,after_fetch)
         return () => controller.abort();
     }, []);
-
     return {horarios:horarios.horarios,loading:loading};
 }
