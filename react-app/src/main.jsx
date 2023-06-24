@@ -7,6 +7,8 @@ import FiltrarServicios from './pages/FiltrarServicios';
 import Horario from './pages/Horario';
 import Servicio from './pages/Servicio';
 import AddServicio from './pages/AddServicio';
+import Login from './pages/Login';
+import Callback from './pages/Callback';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
   {
     path: "/add-servicio",
     element: <AddServicio />
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "/callback",
+    element: <Callback />
   },
 ]);
 
