@@ -14,12 +14,14 @@ export default function Login() {
     const response = await axios
       .get("http://localhost:3900/api/user/auth", { withCredentials: true })
       .then((res) => {
-        setLoading(false);
+        if (res.status === 200) {
+          window.location.href = "http://localhost:5173/";
+        }
         return res;
+      })
+      .catch((err) => {
+        setLoading(false);
       });
-    if (response.status === 200) {
-      window.location.href = "http://localhost:5173/";
-    }
   };
 
   useEffect(() => {
