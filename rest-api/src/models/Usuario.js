@@ -23,7 +23,10 @@ const Usuario = sequelize.define(
             },
             allowNull: true
         },
-    },
+        rol: {
+            type: DataTypes.STRING,
+        },
+    }
 );
 
 module.exports = Usuario;

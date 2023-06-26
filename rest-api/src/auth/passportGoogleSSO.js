@@ -1,6 +1,7 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const Usuario = require("../models/Usuario");
+const Persona = require("../models/Persona");
 
 passport.use(
   new GoogleStrategy(
@@ -17,13 +18,19 @@ passport.use(
         googleId: profile.id,
         nombre: profile.displayName,
       };
-
+      const persona =  await Persona.findOne({
+        where: { email: profile.emails[0].value },
+      }).catch((err) => {
+        console.log("Error signing up", err);
+        done(err, null);
+      });
+      
       const user = await Usuario.findOrCreate({
         where: { googleId: profile.id },
         defaults: defaultUser,
       }).catch((err) => {
         console.log("Error signing up", err);
-        cb(err, null);
+        done(err, null);
       });
 
       if (user && user[0]) return done(null, user && user[0]);
