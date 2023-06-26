@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 const sequelize = require('../database/database');
 
 const get_servicios_fecha = async (req, res) => {
-    var fecha = req.params.fecha;
+    const fecha = req.params.fecha;
     try {
         const servicios = await Servicios_dia.findAll(
             {
@@ -92,6 +92,7 @@ const get_servicios_pendientes = async (req, res) => {
 }
 
 const get_proximo_servicio = async (req, res) => {
+    const escuela =  req.user.dataValues.escuela;
     const today =  new Date();
     const current_hour = today.getHours() + ":" + today.getMinutes();
     console.log(current_hour);
@@ -107,7 +108,7 @@ const get_proximo_servicio = async (req, res) => {
                     fecha:{
                         [Op.gte]: today
                     },
-                    estado: 'Pendiente',
+                    estado: 'Pendiente'
                 },
             }
         )

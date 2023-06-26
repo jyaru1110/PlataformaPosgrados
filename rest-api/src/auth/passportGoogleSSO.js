@@ -11,6 +11,7 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, accessToken, refreshToken, profile, done) => {
+      console.log("profile: ", profile.emails);
       const defaultUser = {
         email: profile.emails[0].value,
         googleId: profile.id,
@@ -31,22 +32,15 @@ passport.use(
 );
 
 passport.serializeUser((user, cb) => {
-  console.log("Serializing user:", user);
   cb(null, user.id);
 });
 
 passport.deserializeUser(async (id, cb) => {
-  console.log("Deserializing user:", id);
   const user = await Usuario.findOne({ where: { id: id } }).catch((err) => {
-    console.log("Error deserializing", err);
     cb(err, null);
   });
-
-  console.log("DeSerialized user", user);
-
   if (user) {
     cb(null, user);
-    console.log("User deserialized");
   }
 });
 module.exports = passport;
