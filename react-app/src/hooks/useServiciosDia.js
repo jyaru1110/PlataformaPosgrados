@@ -8,7 +8,7 @@ export const useServiciosDia = (dia) => {
     const [loading, setLoading] = useState(true);
 
     const after_fetch = (data) => {
-        setServicios(data);
+        setServicios(data.servicio[0]);
         setLoading(false);
     }
 

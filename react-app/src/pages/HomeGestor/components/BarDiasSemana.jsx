@@ -51,13 +51,13 @@ export default function BarDiasSemana() {
         <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
       ) : (
         <div className="overflow-y-auto mt-1">
-          {servicios.servicio.length == 0 ? (
+          {servicios.length == 0 ? (
             <h1 className="text-center mt-2 font-poppins">
               No hay servicios para esta fecha
             </h1>
           ) : (
             <div>
-              {servicios.servicio.map((servicio) => (
+              {servicios.map((servicio) => (
                 <div
                   key={servicio.id}
                   onClick={() => {

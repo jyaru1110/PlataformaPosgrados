@@ -8,7 +8,7 @@ export const useHorarios = () => {
     const [loading, setLoading] = useState(true);
 
     const after_fetch = (data) => {
-        setHorarios(data);
+        setHorarios(data.horarios[0]);
         setLoading(false);
     }
 
@@ -19,5 +19,5 @@ export const useHorarios = () => {
         get_fetch(url_backend+"/horarios",signal,after_fetch)
         return () => controller.abort();
     }, []);
-    return {horarios:horarios.horarios,loading:loading};
+    return {horarios:horarios,loading:loading};
 }

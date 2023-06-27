@@ -1,8 +1,16 @@
 const Horario = require('../models/Horario');
 const Servicios_dia = require('../models/Servicios_dia');
+const sequelize = require('../database/database');
 
 const get_horarios_todos = async (req, res) => {
-    const horarios = await Horario.findAll();
+    const rol =  req.user.dataValues.rol;
+    var query = "";
+    if(rol == "Gestor"){
+        query = "select * from horario;";
+    }else{
+        query = "select * from horario inner join programa on programa.programa = horario.programa where programa.escuela = '"+req.user.dataValues.escuela+"';";
+    }
+    const horarios = await sequelize.query(query);
     res.status(200).send({horarios:horarios});
 }
 

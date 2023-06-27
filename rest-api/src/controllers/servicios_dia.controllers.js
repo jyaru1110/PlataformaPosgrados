@@ -3,18 +3,16 @@ const { Op } = require("sequelize");
 const sequelize = require('../database/database');
 
 const get_servicios_fecha = async (req, res) => {
+    const rol =  req.user.dataValues.rol;
     const fecha = req.params.fecha;
+    var query = "";
+    if(rol == "Gestor"){
+        query = "select * from servicios_dia where fecha = '"+fecha+"' order by hora_inicio asc;";
+    }else{
+        query = "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where programa.escuela = '"+req.user.dataValues.escuela+"' and fecha = '"+fecha+"' order by hora_inicio asc;";
+    }
     try {
-        const servicios = await Servicios_dia.findAll(
-            {
-                where:{
-                    fecha:fecha,
-                },
-                order: [
-                    ['hora_inicio', 'ASC'],
-                ],
-            }
-        )
+        const servicios = await sequelize.query(query);
         res.status(200).send({servicio:servicios});
     } catch (error) {
         res.status(500).send({error:error});
@@ -39,11 +37,16 @@ const get_servicio = async (req, res) => {
 
 
 const get_servicios_isla = async (req, res) => {
+    const rol =  req.user.dataValues.rol;
     const fecha = req.params.dia;
+    var query = "";
+    if(rol == "Gestor"){
+        query = "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon where servicios_dia.fecha = '"+fecha+"' group by salon.isla";
+    }else{
+        query = "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia.programa where programa.escuela = '"+req.user.dataValues.escuela+"' and servicios_dia.fecha = '"+fecha+"' group by salon.isla";
+    }
     try {
-        const servicios_dia = await sequelize.query(
-            "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon where servicios_dia.fecha = '"+fecha+"' group by salon.isla"
-        )
+        const servicios_dia = await sequelize.query(query);
         res.status(200).send({servicio:servicios_dia});
     } catch (error) {
         res.status(500).send({error:error});
@@ -54,10 +57,15 @@ const get_servicios_isla = async (req, res) => {
 const get_suma_servicios_dia_isla = async (req, res) => {
     const fecha_inicio = req.params.fecha_inicio;
     const fecha_fin = req.params.fecha_fin;
+    const rol = req.user.dataValues.rol;
+    var query = "";
+    if(rol == 'Gestor'){
+        query = "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon where servicios_dia.fecha between '"+fecha_inicio+"' and '"+fecha_fin+"' group by salon.isla";
+    }else{
+        query = "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia.programa where servicios_dia.fecha between '"+fecha_inicio+"' and '"+fecha_fin+"' and programa.escuela = '"+req.user.dataValues.escuela+"' group by salon.isla";
+    }
     try {
-        const servicios_dia = await sequelize.query(
-            "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon where servicios_dia.fecha between '"+fecha_inicio+"' and '"+fecha_fin+"' group by salon.isla",
-        )
+        const servicios_dia = await sequelize.query(query);
         res.status(200).send({servicio:servicios_dia});
     } catch (error) {
         res.status(500).send({error:error});
@@ -65,56 +73,52 @@ const get_suma_servicios_dia_isla = async (req, res) => {
 }
 
 const get_servicios_todos = async (req, res) => {
-    const servicios = await Servicios_dia.findAll(
-        {
-            order: [
-                ['fecha', 'ASC'],
-                ['hora_inicio', 'ASC'],
-            ],
-        }
-    );
+    const rol = req.user.dataValues.rol;
+    var query = "";
+    if(rol == 'Gestor'){
+        query  = "select * from servicios_dia order by fecha asc,hora_inicio asc";
+    }else{
+        query  = "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where programa.escuela ='"+req.user.dataValues.escuela+"'order by servicios_dia.fecha asc,servicios_dia.hora_inicio asc";
+    }
+    const servicios = await sequelize.query(query);
     res.status(200).send({servicio:servicios});
 }
 
 const get_servicios_pendientes = async (req, res) => {
     const fecha = req.params.fecha;
-    const servicios = await Servicios_dia.findAll({
-        where:{
-            estado: 'Pendiente',
-            fecha:fecha
-        },
-
-        order: [
-            ['hora_inicio', 'ASC'],
-        ],
-    });
+    const rol = req.user.dataValues.rol;
+    var query = "";
+    if(rol == 'Gestor'){
+        query  = "select * from servicios_dia where estado = 'Pendiente' and fecha = '"+fecha+"' order by hora_inicio asc";
+    }else{
+        query = "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where programa.escuela ='"+req.user.dataValues.escuela+"' and estado = 'Pendiente' and fecha = '"+fecha+"' order by servicios_dia.hora_inicio asc";
+    }
+    const servicios =  await sequelize.query(query);
     res.status(200).send({servicio:servicios});
 }
 
 const get_proximo_servicio = async (req, res) => {
-    const escuela =  req.user.dataValues.escuela;
     const today =  new Date();
-    const current_hour = today.getHours() + ":" + today.getMinutes();
-    console.log(current_hour);
+    const rol =  req.user.dataValues.rol;
+    const iso_today = today.toISOString().split('T')[0];
+    console.log(rol);
+    var query = "";
+    if(rol=="Gestor"){
+        query = "select * from servicios_dia where fecha >= '"+iso_today+"' and estado = 'Pendiente' order by fecha asc, hora_inicio asc limit 1";
+    }
+    else{
+        query = "select * from servicios_dia inner join programa on programa.programa =  servicios_dia.programa where servicios_dia.fecha >= '"+iso_today+"' and servicios_dia.estado = 'Pendiente' and programa.escuela='"+req.user.dataValues.escuela+"' order by fecha asc, hora_inicio asc limit 1"
+    }
+    
     try {
-        const servicio = await Servicios_dia.findAll(
-            {
-                limit: 1,
-                order: [
-                    ['fecha', 'ASC'],
-                    ['hora_inicio', 'ASC'],
-                ],
-                where:{
-                    fecha:{
-                        [Op.gte]: today
-                    },
-                    estado: 'Pendiente'
-                },
-            }
-        )
+        const servicio = await sequelize.query(
+            query,
+            { type: sequelize.QueryTypes.SELECT }
+        );
         res.json(servicio);
     } catch (error) {
         res.status(500).send({error:error});
+        console.log(error);
     }
 
 }
