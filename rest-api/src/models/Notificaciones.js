@@ -63,6 +63,10 @@ const Notificaciones = sequelize.define(
             key: 'id'
         }
     },
+    aceptado: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
   },
   {
     tableName: "notificaciones",
