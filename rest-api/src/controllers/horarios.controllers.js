@@ -36,7 +36,7 @@ const delete_horario = async (req, res) => {
 
 const create_horario = async (req, res) => {
     const rol =  req.user.dataValues.rol;
-    const {hora_inicio, hora_fin, dia, salon, fecha_inicio, fecha_fin, no_clase, programa} = req.body;
+    const {hora_inicio, hora_fin, dia, salon, fecha_inicio, fecha_fin, no_clase, programa, num_alumnos, hora_servicio_inicio, hora_servicio_fin} = req.body;
     if (rol == "Gestor"){
         const horario = await Horario.create({
             hora_inicio:hora_inicio,
@@ -47,6 +47,9 @@ const create_horario = async (req, res) => {
             fecha_fin:fecha_fin,
             no_clase:no_clase,
             programa:programa,
+            hora_servicio_inicio:hora_servicio_inicio,
+            hora_servicio_fin:hora_servicio_fin,
+            num_alumnos:num_alumnos,
         });
         res.status(200).send({horario:horario});
     }else{
@@ -59,6 +62,9 @@ const create_horario = async (req, res) => {
             fecha_fin:fecha_fin,
             no_clase:no_clase,
             programa:programa,
+            hora_servicio_inicio:hora_servicio_inicio,
+            hora_servicio_fin:hora_servicio_fin,
+            num_alumnos:num_alumnos,
             id_usuario:req.user.dataValues.id,
         });
         res.status(200).send({notificacion:notificacion});

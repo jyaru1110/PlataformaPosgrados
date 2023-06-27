@@ -117,6 +117,9 @@ export default function AddServicio() {
         dia: "",
         hora_inicio: "",
         hora_fin: "",
+        hora_servicio_inicio: "",
+        hora_servicio_fin: "",
+        num_alumnos: 0,
         fecha_inicio: "",
         fecha_fin: "",
       },
@@ -162,8 +165,11 @@ export default function AddServicio() {
             <th className="border-r p-2 font-medium">Dia</th>
             <th className="border-r p-2 font-medium">Hora inicio</th>
             <th className="border-r p-2 font-medium">Hora fin</th>
+            <th className="border-r p-2 font-medium">Hora inicio servicio</th>
+            <th className="border-r p-2 font-medium">Hora fin servicio</th>
             <th className="border-r p-2 font-medium">Fecha inicio</th>
-            <th className="p-2 font-medium">Fecha fin</th>
+            <th className="border-r p-2 font-medium">Fecha fin</th>
+            <th className="p-2 font-medium">Número de servicios</th>
           </tr>
         </thead>
         <tbody className="font-poppins text-base">
@@ -275,6 +281,42 @@ export default function AddServicio() {
                 <td className="border-r p-2">
                   <input
                     className="w-full placeholder:text-gray1"
+                    type="time"
+                    placeholder="Hora servicio inicio"
+                    onChange={(e) => {
+                      updateServicio(servicio.id, {
+                        ...servicio,
+                        hora_servicio_inicio: e.target.value,
+                      });
+                      setSeleccionados(
+                        seleccionados.filter(
+                          (seleccionado) => seleccionado !== servicio.id
+                        )
+                      );
+                    }}
+                  />
+                </td>
+                <td className="border-r p-2">
+                  <input
+                    className="w-full placeholder:text-gray1"
+                    type="time"
+                    placeholder="Hora servicio fin"
+                    onChange={(e) => {
+                      updateServicio(servicio.id, {
+                        ...servicio,
+                        hora_servicio_fin: e.target.value,
+                      });
+                      setSeleccionados(
+                        seleccionados.filter(
+                          (seleccionado) => seleccionado !== servicio.id
+                        )
+                      );
+                    }}
+                  />
+                </td>
+                <td className="border-r p-2">
+                  <input
+                    className="w-full placeholder:text-gray1"
                     type="date"
                     placeholder="Fecha inicio"
                     onChange={(e) => {
@@ -305,6 +347,18 @@ export default function AddServicio() {
                           (seleccionado) => seleccionado !== servicio.id
                         )
                       );
+                    }}
+                  />
+                </td>
+                <td className="p-2 border-r">
+                  <input
+                    className="w-full placeholder:text-gray1"
+                    type="number"
+                    onChange={(e) => {
+                      updateServicio(servicio.id, {
+                        ...servicio,
+                        num_alumnos: e.target.value,
+                      });
                     }}
                   />
                 </td>
