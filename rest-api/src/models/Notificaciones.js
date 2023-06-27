@@ -56,17 +56,27 @@ const Notificaciones = sequelize.define(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    id_persona : {
-        type: DataTypes.STRING,
+    id_usuario : {
+        type: DataTypes.INTEGER,
         reference: {
-            model: 'persona',
+            model: 'usuarios',
             key: 'id'
         }
     },
-    aceptado: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-    },
+    estado: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "Pendiente",
+        validate: {
+          customValidator: (value) => {
+            const enums = ["Pendiente", "Aceptado", "Rechazado"];
+            if (!enums.includes(value))
+            {
+              throw new Error("El estado debe ser Pendiente, Realizado o Cancelado");
+            }
+          },
+        },
+    }
   },
   {
     tableName: "notificaciones",

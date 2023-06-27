@@ -18,12 +18,6 @@ passport.use(
         googleId: profile.id,
         nombre: profile.displayName,
       };
-      const persona =  await Persona.findOne({
-        where: { email: profile.emails[0].value },
-      }).catch((err) => {
-        console.log("Error signing up", err);
-        done(err, null);
-      });
       
       const user = await Usuario.findOrCreate({
         where: { googleId: profile.id },

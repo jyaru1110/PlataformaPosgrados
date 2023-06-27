@@ -6,6 +6,7 @@ const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
 const app = express();
 const servicios_dia_routes = require("./routes/servicios_dia.routes");
+const solicitudes_routes = require("./routes/solicitudes.routes");
 const horarios_routes = require("./routes/horarios.routes");
 const clases_routes = require("./routes/clases.routes");
 const salones_routes = require("./routes/salones.routes");
@@ -42,6 +43,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 //cargar archivos de rutas
+app.use("/api", solicitudes_routes);
 app.use("/api", servicios_dia_routes);
 app.use("/api", auth_routes);
 app.use("/api", horarios_routes);

@@ -59,7 +59,7 @@ const create_horario = async (req, res) => {
             fecha_fin:fecha_fin,
             no_clase:no_clase,
             programa:programa,
-            id_persona:req.user.dataValues.id,
+            id_usuario:req.user.dataValues.id,
         });
         res.status(200).send({notificacion:notificacion});
     }
