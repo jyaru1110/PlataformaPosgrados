@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const clientId = import.meta.env.VITE_CLIENT_ID_GOOGLE;
+const url_backend = import.meta.env.VITE_URL_API;
 
 export default function Login() {
   const [loading, setLoading] = useState(true);
 
   const googleAuth = () => {
-    window.location.href = "http://localhost:3900/api/login/google";
+    window.location.href = url_backend+"/login/google";
   };
 
   const getAuth = async () => {
     const response = await axios
-      .get("http://localhost:3900/api/user/auth", { withCredentials: true })
+      .get(url_backend+"/user/auth", { withCredentials: true })
       .then((res) => {
         if (res.status === 200) {
-          window.location.href = "http://localhost:5173/";
+          window.location.href = "/";
         }
         return res;
       })

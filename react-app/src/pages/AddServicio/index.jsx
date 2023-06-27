@@ -42,7 +42,11 @@ export default function AddServicio() {
     setIsLoading(true);
     const hoy = new Date();
     const string_hoy = hoy.toISOString().substring(0, 10);
-    servicios.length === 0 ? toast.error("No hay servicios") : null;
+    if (servicios.length === 0) {
+      toast.error("No hay servicios");
+      setIsLoading(false);
+      return;
+    }
     servicios.forEach((servicio) => {
       if (
         servicio.programa === "" ||
@@ -58,12 +62,14 @@ export default function AddServicio() {
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
         toast.error("Faltan campos por llenar");
+        setIsLoading(false);
         return;
       }
       if (servicio.fecha_inicio <= string_hoy) {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
+        setIsLoading(false);
         toast.error("La fecha de inicio no puede ser hoy o antes");
         return;
       }
@@ -71,6 +77,7 @@ export default function AddServicio() {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
+          setIsLoading(false);
         toast.error(
           "La fecha de fin no puede ser menor o igual a la fecha de inicio"
         );
@@ -80,6 +87,7 @@ export default function AddServicio() {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
+          setIsLoading(false);
         toast.error("La hora de fin no puede ser menor a la hora de inicio");
         return;
       }
@@ -146,7 +154,7 @@ export default function AddServicio() {
         </button>
       </div>
       <table className="table-auto border-collapse w-full mt-14">
-        <thead className="">
+        <thead className="bg-slate-100 font-poppins">
           <tr className="text-left border-y border-x-0">
             <th className="border-r font-medium p-2">Programa</th>
             <th className="border-r font-medium p-2">Clase</th>

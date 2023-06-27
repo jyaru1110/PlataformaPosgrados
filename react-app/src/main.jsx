@@ -8,6 +8,7 @@ import Horario from './pages/Horario';
 import Servicio from './pages/Servicio';
 import AddServicio from './pages/AddServicio';
 import Login from './pages/Login';
+import Solicitudes from './pages/Solicitudes';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />
   },
+  {
+    path: "/solicitudes",
+    element: <Solicitudes />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -3,18 +3,19 @@ import BarDiasSemana from "./components/BarDiasSemana";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Footer from "./components/Footer";
+const url_backend  = import.meta.env.VITE_URL_API;
 export default function HomeGestor() {
   const [loading, setLoading] = useState(true);
   const getAuth = async () => {
     const response = await axios
-      .get("http://localhost:3900/api/user/auth", { withCredentials: true })
+      .get(url_backend+"/user/auth", { withCredentials: true })
       .then((res) => {
         setLoading(false);
         return res;
       })
       .catch((err) => {
         if (err.response.status === 401) {
-          window.location.href = "http://localhost:5173/login";
+          window.location.href = "/login";
         }
       });
   };
