@@ -1,6 +1,7 @@
 import Header from "../../components/Header";
 import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react";
+import { useSolicitudes } from "../../hooks/useSolicitudes";
 const solicitudes = [
   {
     id: 1,
@@ -8,8 +9,10 @@ const solicitudes = [
 ];
 
 export default function Solicitudes() {
-  const [isLoading, setIsLoading] = useState(false);
   const [seleccionados, setSeleccionados] = useState([]);
+  const resultado = useSolicitudes();
+  const solicitudes = resultado.solicitudes;
+  const loading = resultado.loading;
   const onCheck = (id) => {
     if (seleccionados.includes(id)) {
       setSeleccionados(seleccionados.filter((item) => item !== id));
@@ -43,32 +46,37 @@ export default function Solicitudes() {
             <th className="p-2 font-medium">Número servicios</th>
           </tr>
         </thead>
-        <tbody className="font-poppins text-base">
-          {solicitudes.map((solicitud) => {
-            return (
-              <tr className="border-y border-x-0" key={solicitud.id}>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="border-r p-2"></td>
-                <td className="p-2 text-center">
-                  <input
-                    type="checkbox"
-                    onChange={() => onCheck(solicitud.id)}
-                  />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
+
+        {loading ? (
+          <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+        ) : (
+          <tbody className="font-poppins text-base">
+            {solicitudes.map((solicitud) => {
+              return (
+                <tr className="border-y border-x-0" key={solicitud.id}>
+                  <td className="border-r p-2">{solicitud.nombre}</td>
+                  <td className="border-r p-2">{solicitud.salon}</td>
+                  <td className="border-r p-2">{solicitud.programa}</td>
+                  <td className="border-r p-2">{solicitud.fecha_inicio}</td>
+                  <td className="border-r p-2">{solicitud.fecha_fin}</td>
+                  <td className="border-r p-2">{solicitud.hora_inicio}</td>
+                  <td className="border-r p-2">{solicitud.hora_fin}</td>
+                  <td className="border-r p-2">{solicitud.hora_servicio_inicio}</td>
+                  <td className="border-r p-2">{solicitud.hora_servicio_fin}</td>
+                  <td className="border-r p-2">{solicitud.no_clase}</td>
+                  <td className="border-r p-2">{solicitud.dia}</td>
+                  <td className="border-r p-2">{solicitud.num_alumnos}</td>
+                  <td className="p-2 text-center">
+                    <input
+                      type="checkbox"
+                      onChange={() => onCheck(solicitud.id)}
+                    />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        )}
       </table>
       <ToastContainer />
     </div>

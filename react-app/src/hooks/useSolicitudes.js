@@ -8,19 +8,19 @@ export const useSolicitudes = () => {
     const [loading, setLoading] = useState(true);
 
     const after_fetch = (data) => {
-        setSolicitudes(data.solicitudes[0]);
+        console.log(data.notificaciones);
+        setSolicitudes(data.notificaciones);
         setLoading(false);
     }
 
     useEffect(() => {
         setLoading(true);
-        dia = dia.replace(/\//g, "-");
         let url = `${url_backend}/solicitudes`;
         const abortController = new AbortController();
         const signal = abortController.signal;
         get_fetch(url,signal, after_fetch);
         return () => abortController.abort();
-    }, [dia]);
+    }, []);
 
-    return {servicios:solicitudes,loading:loading};
+    return {solicitudes:solicitudes,loading:loading};
 }
