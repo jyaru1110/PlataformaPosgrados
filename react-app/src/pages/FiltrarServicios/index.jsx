@@ -82,7 +82,7 @@ export default function FiltarServicios() {
         {loading ? (
           <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
         ) : (
-          servicios.servicio.filter(filtrar).map((servicio_i) => (
+          servicios.filter(filtrar).map((servicio_i) => (
             <div
               className="rounded-3xl bg-primarylight w-96 ml-9 mb-4 p-2.5 font-poppins flex flex-col md:ml-2 max-h-32"
               key={servicio_i.id}

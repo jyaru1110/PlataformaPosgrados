@@ -15,6 +15,7 @@ const RolesModulo = require('./models/RolesModulo');
 const Salon = require('./models/Salon');
 const Servicios_dia = require('./models/Servicios_dia');
 const Usuario = require('./models/Usuario');
+const Notificaciones = require('./models/Notificaciones');
 
 var port = process.env.PORT || 3900;
 

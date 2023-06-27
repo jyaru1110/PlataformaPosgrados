@@ -1,7 +1,9 @@
+import axios from 'axios';
 export const put_fetch = (url,signal,body,func) => {
     fetch(url, {
         signal: signal,
         method: 'PUT',
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },

@@ -74,7 +74,7 @@ export default function FiltrarHorario() {
           <div className="flex flex-wrap md:ml-96 w-full">
             {
               horarios.filter(filtrar).map((horario) => (
-                <div key = {horario.id_horario} onClick={()=>{navigate("/horario",{state:{id_horario: horario.id_horario }})}} className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 md:w-60 md:ml-2 max-h-28">
+                <div key = {horario.id_horario} onClick={()=>{navigate("/horario",{state:{id_horario: horario.id_horario }})}} className="rounded-3xl bg-primarylight h-80 w-80 ml-9 mb-4 p-2.5 md:w-60 md:ml-2 max-h-28">
                   <div>
                     <p className="text-sm font-poppins text-primary font-semibold mb-2">Clase {horario.no_clase}</p>
                   </div>
