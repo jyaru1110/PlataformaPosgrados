@@ -53,7 +53,7 @@ export default function Solicitudes() {
           <tbody className="font-poppins text-base">
             {solicitudes.map((solicitud) => {
               return (
-                <tr className="border-y border-x-0" key={solicitud.id}>
+                <tr className={`${solicitud.estado=="Aceptado"?"bg-green-50":(solicitud.estado=="Rechazado"?"bg-red-50":"")} border-x-0 border-y`} key={solicitud.id}>
                   <td className="border-r p-2">{solicitud.nombre}</td>
                   <td className="border-r p-2">{solicitud.salon}</td>
                   <td className="border-r p-2">{solicitud.programa}</td>
