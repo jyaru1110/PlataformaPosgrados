@@ -2,11 +2,6 @@ import Header from "../../components/Header";
 import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react";
 import { useSolicitudes } from "../../hooks/useSolicitudes";
-const solicitudes = [
-  {
-    id: 1,
-  },
-];
 
 export default function Solicitudes() {
   const [seleccionados, setSeleccionados] = useState([]);

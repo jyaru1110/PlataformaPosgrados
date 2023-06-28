@@ -9,6 +9,7 @@ export default function Footer() {
                 <BotonFooter texto = {"Consulta información de los coffes"} />
                 <BotonFooter texto = {"Filtra servicios por isla"} ruta = '/filtrar-islas'/>
                 <BotonFooter texto = {"Busca servicios en especifico"} ruta = '/filtrar-servicios'/>
+                <BotonFooter texto = {"Solicitudes de servicios"} ruta = '/solicitudes'/>
             </div>
         </div>
     )
