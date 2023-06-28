@@ -2,9 +2,13 @@ import Header from "../../components/Header";
 import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react";
 import { useSolicitudes } from "../../hooks/useSolicitudes";
+import axios from "axios";
+const url_backend = import.meta.env.VITE_URL_API;
 
 export default function Solicitudes() {
   const [seleccionados, setSeleccionados] = useState([]);
+  const [loadingR, setLoadingR] = useState(false);
+  const [loadingA, setLoadingA] = useState(false);
   const resultado = useSolicitudes();
   const solicitudes = resultado.solicitudes;
   const loading = resultado.loading;
@@ -20,6 +24,65 @@ export default function Solicitudes() {
     console.log(seleccionados);
   }, [seleccionados]);
 
+  const aceptarSolicitudes = () => {
+    seleccionados.map((id) => {
+      setLoadingA(true);
+      axios
+        .put(url_backend + "/solicitudes/aceptar/" + id, 
+        {
+          withCredentials: true,
+        },{
+          withCredentials: true,
+        })
+        .then((res) => {
+          setLoadingA(false);
+          window.location.reload();
+        })
+        .catch((err) => {
+          setLoadingA(false);
+          console.log(err);
+        });
+    });
+  };
+
+  const rechazarSolicitudes = () => {
+    seleccionados.map((id) => {
+      setLoadingR(true);
+      axios
+        .put(url_backend + "/solicitudes/rechazar/" + id, {
+          withCredentials: true,
+        },{
+          withCredentials: true,
+        })
+        .then((res) => {
+          setLoadingR(false);
+          window.location.reload();
+        })
+        .catch((err) => {
+          setLoadingR(false);
+          console.log(err);
+        });
+    });
+  };
+
+  const cancelarSolicitudes = () => {
+    seleccionados.map((id) => {
+      setLoadingR(true);
+      axios
+        .delete(url_backend + "/solicitudes/cancelar/" + id, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setLoadingR(false);
+          window.location.reload();
+        })
+        .catch((err) => {
+          setLoadingR(false);
+          console.log(err);
+        });
+    });
+  };
+
   return (
     <div className="w-screen flex flex-col items-start p-8">
       <div className="w-11/12 flex justify-between mb-4 fixed flex-wrap">
@@ -28,16 +91,35 @@ export default function Solicitudes() {
       <div className="fixed top-8 right-8">
         {rol === "Gestor" ? (
           <>
-            <button className={`${seleccionados.length>0?"bg-primary":"bg-slate-100"} text-white font-poppins font-medium text-sm px-4 py-2 rounded-md ml-4`}>
-              Aceptar
-            </button>
-            <button className={`${seleccionados.length>0?"bg-primary":"bg-slate-100"} text-white font-poppins font-medium text-sm px-4 py-2 rounded-md ml-4`}>
-              Rechazar
-            </button>
+            {loadingR ? null : (
+              <button
+                className={`${
+                  seleccionados.length > 0 ? "bg-primary" : "bg-slate-100"
+                } text-white font-poppins font-medium text-sm px-4 py-2 rounded-md`}
+                onClick={aceptarSolicitudes}
+              >
+                Aceptar
+              </button>
+            )}
+            {loadingA ? null : (
+              <button
+                className={`${
+                  seleccionados.length > 0 ? "bg-primary" : "bg-slate-100"
+                } text-white font-poppins font-medium text-sm px-4 py-2 rounded-md ml-4`}
+                onClick={rechazarSolicitudes}
+              >
+                Rechazar
+              </button>
+            )}
           </>
         ) : (
           <>
-            <button className={`${seleccionados.length>0?"bg-primary":"bg-slate-100"} text-white font-poppins font-medium text-sm px-4 py-2 rounded-md ml-4`}>
+            <button
+              className={`${
+                seleccionados.length > 0 ? "bg-primary" : "bg-slate-100"
+              } text-white font-poppins font-medium text-sm px-4 py-2 rounded-md`}
+              onClick={cancelarSolicitudes}
+            >
               Cancelar solicitudes
             </button>
           </>

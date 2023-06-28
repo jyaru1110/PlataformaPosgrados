@@ -18,7 +18,7 @@ const aceptar_solicitud = async (req, res) => {
     const id = req.params.id;
     const notificacion = await Notificaciones.findOne({where:{id:id}});
     if(notificacion){
-        notificacion.estado = "Aceptada";
+        notificacion.estado = "Aceptado";
         await notificacion.save();
         res.status(200).send({message:"Solicitud aceptada"});
     }else{
@@ -30,9 +30,19 @@ const rechazar_solicitud = async (req, res) => {
     const id = req.params.id;
     const notificacion = await Notificaciones.findOne({where:{id:id}});
     if(notificacion){
-        notificacion.estado = "Rechazada";
+        notificacion.estado = "Rechazado";
         await notificacion.save();
         res.status(200).send({message:"Solicitud rechazada"});
+    }else{
+        res.status(404).send({message:"No se encontro la solicitud"});
+    }
+}
+
+const cancelar_solicitud = async (req, res) => {
+    const id = req.params.id;
+    const notificacion = await Notificaciones.destroy({where:{id:id}});
+    if(notificacion){
+        res.status(200).send({message:"Solicitud cancelada"});
     }else{
         res.status(404).send({message:"No se encontro la solicitud"});
     }
@@ -42,5 +52,6 @@ const rechazar_solicitud = async (req, res) => {
 module.exports = {
     get_solicitudes,
     aceptar_solicitud,
-    rechazar_solicitud
+    rechazar_solicitud,
+    cancelar_solicitud
 }

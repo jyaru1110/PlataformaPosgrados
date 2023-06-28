@@ -1,4 +1,3 @@
-import axios from 'axios';
 export const put_fetch = (url,signal,body,func) => {
     fetch(url, {
         signal: signal,

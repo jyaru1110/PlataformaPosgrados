@@ -8,7 +8,6 @@ export const useSolicitudes = () => {
     const [loading, setLoading] = useState(true);
 
     const after_fetch = (data) => {
-        console.log(data.notificaciones);
         setSolicitudes(data.notificaciones);
         setLoading(false);
     }
