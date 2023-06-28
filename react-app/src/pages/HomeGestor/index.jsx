@@ -10,6 +10,11 @@ export default function HomeGestor() {
     const response = await axios
       .get(url_backend+"/user/auth", { withCredentials: true })
       .then((res) => {
+        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("rol", res.data.rol);
+        localStorage.setItem("nombre", res.data.nombre);
+        localStorage.setItem("escuela", res.data.escuela);
+        localStorage.setItem("email", res.data.email);
         setLoading(false);
         return res;
       })

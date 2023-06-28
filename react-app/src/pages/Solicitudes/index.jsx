@@ -8,6 +8,7 @@ export default function Solicitudes() {
   const resultado = useSolicitudes();
   const solicitudes = resultado.solicitudes;
   const loading = resultado.loading;
+  const rol = localStorage.getItem("rol");
   const onCheck = (id) => {
     if (seleccionados.includes(id)) {
       setSeleccionados(seleccionados.filter((item) => item !== id));
@@ -23,6 +24,24 @@ export default function Solicitudes() {
     <div className="w-screen flex flex-col items-start p-8">
       <div className="w-11/12 flex justify-between mb-4 fixed flex-wrap">
         <Header titulo="Solicitudes"></Header>
+      </div>
+      <div className="fixed top-8 right-8">
+        {rol === "Gestor" ? (
+          <>
+            <button className={`${seleccionados.length>0?"bg-primary":"bg-slate-100"} text-white font-poppins font-medium text-sm px-4 py-2 rounded-md ml-4`}>
+              Aceptar
+            </button>
+            <button className={`${seleccionados.length>0?"bg-primary":"bg-slate-100"} text-white font-poppins font-medium text-sm px-4 py-2 rounded-md ml-4`}>
+              Rechazar
+            </button>
+          </>
+        ) : (
+          <>
+            <button className={`${seleccionados.length>0?"bg-primary":"bg-slate-100"} text-white font-poppins font-medium text-sm px-4 py-2 rounded-md ml-4`}>
+              Cancelar solicitudes
+            </button>
+          </>
+        )}
       </div>
       <table className="table-auto border-collapse w-full mt-14">
         <thead className="bg-slate-100 font-poppins">
@@ -48,7 +67,16 @@ export default function Solicitudes() {
           <tbody className="font-poppins text-base">
             {solicitudes.map((solicitud) => {
               return (
-                <tr className={`${solicitud.estado=="Aceptado"?"bg-green-50":(solicitud.estado=="Rechazado"?"bg-red-50":"")} border-x-0 border-y`} key={solicitud.id}>
+                <tr
+                  className={`${
+                    solicitud.estado == "Aceptado"
+                      ? "bg-green-50"
+                      : solicitud.estado == "Rechazado"
+                      ? "bg-red-50"
+                      : ""
+                  } border-x-0 border-y`}
+                  key={solicitud.id}
+                >
                   <td className="border-r p-2">{solicitud.nombre}</td>
                   <td className="border-r p-2">{solicitud.salon}</td>
                   <td className="border-r p-2">{solicitud.programa}</td>
@@ -56,8 +84,12 @@ export default function Solicitudes() {
                   <td className="border-r p-2">{solicitud.fecha_fin}</td>
                   <td className="border-r p-2">{solicitud.hora_inicio}</td>
                   <td className="border-r p-2">{solicitud.hora_fin}</td>
-                  <td className="border-r p-2">{solicitud.hora_servicio_inicio}</td>
-                  <td className="border-r p-2">{solicitud.hora_servicio_fin}</td>
+                  <td className="border-r p-2">
+                    {solicitud.hora_servicio_inicio}
+                  </td>
+                  <td className="border-r p-2">
+                    {solicitud.hora_servicio_fin}
+                  </td>
                   <td className="border-r p-2">{solicitud.no_clase}</td>
                   <td className="border-r p-2">{solicitud.dia}</td>
                   <td className="border-r p-2">{solicitud.num_alumnos}</td>
