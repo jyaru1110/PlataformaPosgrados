@@ -143,7 +143,7 @@ const create_servicio = async (req, res) => {
 }
 
 const update_servicio = async (req, res) => {
-    const {fecha, hora_inicio, hora_fin, num_servicios, salon_id, programa, no_clase, dia, estado} = req.body;
+    const {fecha, hora_inicio,hora_servicio_fin,hora_servicio_inicio, hora_fin, num_servicios, salon_id, programa, no_clase, estado} = req.body;
     const id = req.params.id;
 
     console.log(fecha);
@@ -152,11 +152,12 @@ const update_servicio = async (req, res) => {
             fecha:fecha,
             hora_inicio:hora_inicio,
             hora_fin:hora_fin,
+            hora_servicio_inicio:hora_servicio_inicio,
+            hora_servicio_fin:hora_servicio_fin,
             num_servicios:num_servicios,
             salon_id:salon_id,
             programa:programa,
             no_clase:no_clase,
-            dia:dia,
             estado:estado
         },{
             where:{

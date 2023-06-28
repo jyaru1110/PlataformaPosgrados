@@ -28,12 +28,13 @@ export default function Solicitudes() {
     seleccionados.map((id) => {
       setLoadingA(true);
       axios
-        .put(url_backend + "/solicitudes/aceptar/" + id, 
-        {
-          withCredentials: true,
-        },{
-          withCredentials: true,
-        })
+        .put(
+          url_backend + "/solicitudes/aceptar/" + id,
+          {},
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           setLoadingA(false);
           window.location.reload();
@@ -49,11 +50,13 @@ export default function Solicitudes() {
     seleccionados.map((id) => {
       setLoadingR(true);
       axios
-        .put(url_backend + "/solicitudes/rechazar/" + id, {
-          withCredentials: true,
-        },{
-          withCredentials: true,
-        })
+        .put(
+          url_backend + "/solicitudes/rechazar/" + id,
+          {},
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           setLoadingR(false);
           window.location.reload();
@@ -97,6 +100,7 @@ export default function Solicitudes() {
                   seleccionados.length > 0 ? "bg-primary" : "bg-slate-100"
                 } text-white font-poppins font-medium text-sm px-4 py-2 rounded-md`}
                 onClick={aceptarSolicitudes}
+                disabled={loadingA}
               >
                 Aceptar
               </button>
@@ -107,6 +111,7 @@ export default function Solicitudes() {
                   seleccionados.length > 0 ? "bg-primary" : "bg-slate-100"
                 } text-white font-poppins font-medium text-sm px-4 py-2 rounded-md ml-4`}
                 onClick={rechazarSolicitudes}
+                disabled={loadingR}
               >
                 Rechazar
               </button>
@@ -120,7 +125,7 @@ export default function Solicitudes() {
               } text-white font-poppins font-medium text-sm px-4 py-2 rounded-md`}
               onClick={cancelarSolicitudes}
             >
-              Cancelar solicitudes
+              Eliminar solicitudes
             </button>
           </>
         )}

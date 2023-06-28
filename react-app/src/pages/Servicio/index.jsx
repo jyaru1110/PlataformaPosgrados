@@ -3,7 +3,6 @@ import DropdownProgramas from "../../components/form/DropdownProgramas"
 import DropdowClase from "../../components/form/DropdownClase"
 import Horas from "../../components/form/Horas"
 import Fecha from "../../components/form/Fecha"
-import DropdownDia from "../../components/form/DropdownDia"
 import DropdowSalon from "../../components/form/DropdownSalon"
 import NumeroServicios from "../../components/form/NumeroServicios"
 import { put_fetch } from "../../hooks/put_fetch"
@@ -23,9 +22,10 @@ export default function Servicio() {
     const loading = resultado.loading;
 
     const [fecha, setFecha] = useState('');
-    const [dia, setDia] = useState('');
     const [horaInicio, setHoraInicio] = useState('');
     const [horaFin, setHoraFin] = useState('');
+    const [hora_servicio_inicio, setHoraServicioInicio] = useState('');
+    const [hora_servicio_fin, setHoraServicioFin] = useState('');
     const [salon, setSalon] = useState('');
     const [clase, setClase] = useState('');
     const [programa, setPrograma] = useState('');
@@ -35,9 +35,6 @@ export default function Servicio() {
         if(servicio){
             if(programa===''){
                 setPrograma(servicio.programa);
-            }
-            if(dia===''){
-                setDia(servicio.dia);
             }
             if(clase===''){
                 setClase(servicio.no_clase);
@@ -57,9 +54,15 @@ export default function Servicio() {
             if(numeroServicios==='p'){
                 setNumeroServicios(servicio.num_servicios);
             }
+            if(hora_servicio_inicio===''){
+                setHoraServicioInicio(servicio.hora_servicio_inicio);
+            }
+            if(hora_servicio_fin===''){
+                setHoraServicioFin(servicio.hora_servicio_fin);
+            }
         }
         
-    }, [dia, clase, horaInicio, horaFin, fecha, salon, programa, numeroServicios]);
+    }, [clase, horaInicio, horaFin, fecha, salon, programa, numeroServicios, hora_servicio_inicio, hora_servicio_fin]);
 
     const after_set = (data) => {
         if(data.servicio[0])
@@ -76,7 +79,7 @@ export default function Servicio() {
 
 
     const actualizar_informacion = () => {
-        if(programa==='Todos' || dia==='Todos' || clase==='Todos' || horaInicio==='Todos' || horaFin==='Todos' || fecha==='Todos' || salon==='Todos'){
+        if(programa==='Todos' || clase==='Todos' || horaInicio==='Todos' || horaFin==='Todos' || fecha==='Todos' || salon==='Todos' || numeroServicios==='Todos' || hora_servicio_inicio==='Todos' || hora_servicio_fin==='Todos'){
             alert('No se puede actualizar con campos en "Todos"');
             return;
         }
@@ -89,18 +92,18 @@ export default function Servicio() {
             return;
         }
 
-        if((programa==='' || programa == servicio.programa) && (dia==='' || dia == servicio.dia) && (clase===''||clase ==  servicio.no_clase) && (horaInicio==='' || horaInicio == servicio.hora_inicio) && (horaFin==='' || horaFin==servicio.hora_fin) && (fecha===''  || fecha == servicio.fecha) && (numeroServicios==='p' || numeroServicios==servicio.num_servicios) && (salon===''||salon==servicio.salon_id))
+        if((programa==='' || programa == servicio.programa) && (clase===''||clase ==  servicio.no_clase) && (horaInicio==='' || horaInicio == servicio.hora_inicio) && (horaFin==='' || horaFin==servicio.hora_fin) && (fecha===''  || fecha == servicio.fecha) && (numeroServicios==='p' || numeroServicios==servicio.num_servicios) && (salon===''||salon==servicio.salon_id) && (hora_servicio_inicio===''||hora_servicio_inicio==servicio.hora_servicio_inicio) && (hora_servicio_fin===''||hora_servicio_fin==servicio.hora_servicio_fin))
             return;
 
         const data = {
             programa: programa,
-            dia: dia,
             no_clase: clase,
             hora_inicio: horaInicio,
             hora_fin: horaFin,
+            hora_servicio_inicio: hora_servicio_inicio,
+            hora_servicio_fin: hora_servicio_fin,
             fecha: fecha,
             salon_id: salon,
-            estado: 'Pendiente',
             num_servicios: numeroServicios
         }
 
@@ -155,8 +158,10 @@ export default function Servicio() {
                     <DropdownProgramas escuela = 'Todos' func = {setPrograma} value = {servicio.programa}/>
                     <DropdowClase func = {setClase} value = {servicio.no_clase}/>
                     <Fecha setFecha = {setFecha} value = {servicio.fecha}/>
+                    <h1 className="font-semibold  font-poppins">Horario de clase</h1>
                     <Horas setHoraFin = {setHoraFin} setHoraInicio = {setHoraInicio} value_inicio = {servicio.hora_inicio} value_fin = {servicio.hora_fin}/>
-                    <DropdownDia func = {setDia} value = {servicio.dia}/>
+                    <h1 className="font-semibold  font-poppins">Horario de servicio</h1>
+                    <Horas setHoraFin = {setHoraServicioFin} setHoraInicio = {setHoraServicioInicio} value_inicio = {servicio.hora_servicio_inicio} value_fin = {servicio.hora_servicio_fin}/>
                     <div className="flex justify-between max">
                         <DropdowSalon func = {setSalon} value = {servicio.salon_id}/>
                         <NumeroServicios setNumeroServicios = {setNumeroServicios} value = {servicio.num_servicios}/>
