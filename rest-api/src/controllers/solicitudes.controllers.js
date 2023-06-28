@@ -1,4 +1,5 @@
 const Notificaciones = require('../models/Notificaciones');
+const Horario = require('../models/Horario');
 const { Op } = require("sequelize");
 const sequelize = require('../database/database');
 
@@ -20,7 +21,24 @@ const aceptar_solicitud = async (req, res) => {
     if(notificacion){
         notificacion.estado = "Aceptado";
         await notificacion.save();
-        res.status(200).send({message:"Solicitud aceptada"});
+        const nuevoHorario = Horario.create({
+            salon: notificacion.salon,
+            programa: notificacion.programa,
+            fecha_inicio: notificacion.fecha_inicio,
+            fecha_fin: notificacion.fecha_fin,
+            hora_inicio: notificacion.hora_inicio,
+            hora_fin: notificacion.hora_fin,
+            hora_servicio_inicio: notificacion.hora_servicio_inicio,
+            hora_servicio_fin: notificacion.hora_servicio_fin,
+            no_clase: notificacion.no_clase,
+            dia: notificacion.dia,
+            num_alumnos: notificacion.num_alumnos
+        });
+        if(nuevoHorario){
+            res.status(200).send({message:"Solicitud aceptada"});
+        }else{
+            res.status(404).send({message:"No se encontro la solicitud"});
+        }
     }else{
         res.status(404).send({message:"No se encontro la solicitud"});
     }
