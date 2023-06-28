@@ -78,7 +78,7 @@ export default function FiltrarHorario() {
                   <div>
                     <p className="text-sm font-poppins text-primary font-semibold mb-2">Clase {horario.no_clase}</p>
                   </div>
-                  <p className="font-poppins text-gray1 text-sm mb-1">{horario.salon} • {horario.dia}, {horario.hora_inicio.substring(0,5)} a {horario.hora_fin.substring(0,5)}</p>
+                  <p className="font-poppins text-gray1 text-sm mb-1">{horario.salon} • {horario.dia}, {horario.hora_servicio_inicio.substring(0,5)} a {horario.hora_servicio_fin.substring(0,5)}</p>
                   <p className="font-poppins text-gray1 text-sm mb-1">{ date_to_dd_monthshort_yyyy(horario.fecha_inicio)} - { date_to_dd_monthshort_yyyy(horario.fecha_fin)}</p>
                   <p className='font-poppins text-gray1 text-sm mb-1 font-medium'>{horario.programa}</p>
                 </div>

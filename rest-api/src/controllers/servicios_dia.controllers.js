@@ -145,6 +145,9 @@ const create_servicio = async (req, res) => {
 const update_servicio = async (req, res) => {
     const {fecha, hora_inicio,hora_servicio_fin,hora_servicio_inicio, hora_fin, num_servicios, salon_id, programa, no_clase, estado} = req.body;
     const id = req.params.id;
+    const date  =  new Date(fecha);
+    const dia = date.getDay();
+    console.log(dia);
 
     console.log(fecha);
     try {
