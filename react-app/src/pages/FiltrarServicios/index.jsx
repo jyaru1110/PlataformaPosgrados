@@ -112,8 +112,8 @@ export default function FiltarServicios() {
                 <div className="w-3/4">
                   <div className="flex">
                     <p className="text-gray1 text-xs mb-1 mr-1">
-                      {servicio_i.hora_servicio_inicio.substring(0, 5)}-
-                      {servicio_i.hora_servicio_fin.substring(0, 5)} •
+                      {servicio_i.hora_servicio_inicio?servicio_i.hora_servicio_inicio.substring(0, 5):servicio_i.hora_inicio.substring(0, 5)}-
+                      {servicio_i.hora_servicio_fin?servicio_i.hora_servicio_fin.substring(0, 5):servicio_i.hora_fin.substring(0, 5)} •
                     </p>
                     <p className="text-gray1 text-xs mb-1">
                       Clase {servicio_i.no_clase}

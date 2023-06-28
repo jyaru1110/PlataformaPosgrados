@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import { useSolicitudes } from "../../hooks/useSolicitudes";
 import axios from "axios";
@@ -36,10 +37,20 @@ export default function Solicitudes() {
           }
         )
         .then((res) => {
+          toast.onChange((payload) => {
+            if (payload.type === "success" && payload.status === "removed") {
+              window.location.reload();
+            }
+          });
+          toast.success("Solicitudes aceptadas", {
+            pauseOnFocusLoss: true,
+          });
           setLoadingA(false);
-          window.location.reload();
         })
         .catch((err) => {
+          toast.error("No se pudieron aceptar las solicitudes", {
+            pauseOnFocusLoss: true,
+          });
           setLoadingA(false);
           console.log(err);
         });
@@ -58,10 +69,20 @@ export default function Solicitudes() {
           }
         )
         .then((res) => {
+          toast.onChange((payload) => {
+            if (payload.type === "success" && payload.status === "removed") {
+              window.location.reload();
+            }
+          });
+          toast.success("Solicitudes rechazadas", {
+            pauseOnFocusLoss: true,
+          });
           setLoadingR(false);
-          window.location.reload();
         })
         .catch((err) => {
+          toast.error("No se pudieron rechazar las solicitudes", {
+            pauseOnFocusLoss: true,
+          });
           setLoadingR(false);
           console.log(err);
         });
@@ -76,8 +97,15 @@ export default function Solicitudes() {
           withCredentials: true,
         })
         .then((res) => {
+          toast.onChange((payload) => {
+            if (payload.type === "success" && payload.status === "removed") {
+              window.location.reload();
+            }
+          });
+          toast.success("Solicitudes canceladas", {
+            pauseOnFocusLoss: true,
+          });
           setLoadingR(false);
-          window.location.reload();
         })
         .catch((err) => {
           setLoadingR(false);

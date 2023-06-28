@@ -14,6 +14,8 @@ import { post_axios } from "../../hooks/post_axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function AddServicio() {
+  const rol = localStorage.getItem("rol");
+  const escuela = localStorage.getItem("escuela");
   const [servicios, setServicios] = useState([]);
   const [seleccionados, setSeleccionados] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +37,7 @@ export default function AddServicio() {
   const salones = useSalones();
   const options_salones = salones_to_correct_format(salones);
 
-  const programas = usePrograma("Todos");
+  const programas = usePrograma(rol=='Gestor'?'Todos':escuela);
   const options_programas = programas_to_correct_format(programas);
 
   const send_servicios = () => {
@@ -106,6 +108,11 @@ export default function AddServicio() {
     });
   };
 
+  useEffect(() => {
+    console.log(servicios);
+  }, [servicios]);
+
+
   const addServicio = () => {
     setServicios([
       ...servicios,
@@ -114,7 +121,7 @@ export default function AddServicio() {
         programa: "",
         no_clase: "",
         salon: "",
-        dia: "",
+        dia: "Lunes",
         hora_inicio: "",
         hora_fin: "",
         hora_servicio_inicio: "",
