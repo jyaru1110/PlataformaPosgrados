@@ -207,21 +207,21 @@ export default function Solicitudes() {
                     )}
                   </td>
                   <td className="border-r p-2">{solicitud.nombre}</td>
-                  <td className="border-r p-2">{solicitud.salon}</td>
-                  <td className="border-r p-2">{solicitud.programa}</td>
-                  <td className="border-r p-2">{solicitud.fecha_inicio}</td>
-                  <td className="border-r p-2">{solicitud.fecha_fin}</td>
-                  <td className="border-r p-2">{solicitud.hora_inicio}</td>
-                  <td className="border-r p-2">{solicitud.hora_fin}</td>
+                  <td className="border-r p-2">{solicitud.salon||solicitud.h_salon}</td>
+                  <td className="border-r p-2">{solicitud.programa||solicitud.h_programa}</td>
+                  <td className="border-r p-2">{solicitud.fecha_inicio||solicitud.h_fecha_inicio}</td>
+                  <td className="border-r p-2">{solicitud.fecha_fin||solicitud.h_fecha_fin}</td>
+                  <td className="border-r p-2">{solicitud.hora_inicio||solicitud.h_hora_inicio}</td>
+                  <td className="border-r p-2">{solicitud.hora_fin||solicitud.h_hora_fin}</td>
                   <td className="border-r p-2">
-                    {solicitud.hora_servicio_inicio}
+                    {solicitud.hora_servicio_inicio||solicitud.h_hora_s_inicio}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_servicio_fin}
+                    {solicitud.hora_servicio_fin||solicitud.h_hora_s_fin}
                   </td>
-                  <td className="border-r p-2">{solicitud.no_clase}</td>
-                  <td className="border-r p-2">{solicitud.dia}</td>
-                  <td className="border-r p-2">{solicitud.num_alumnos}</td>
+                  <td className="border-r p-2">{solicitud.no_clase||solicitud.h_no_clase}</td>
+                  <td className="border-r p-2">{solicitud.dia||solicitud.h_dia}</td>
+                  <td className="border-r p-2">{solicitud.num_alumnos||solicitud.h_num_alumnos}</td>
                   <td className="p-2 text-center">
                     <input
                       type="checkbox"
