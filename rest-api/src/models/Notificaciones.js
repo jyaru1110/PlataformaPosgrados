@@ -63,6 +63,25 @@ const Notificaciones = sequelize.define(
             key: 'id'
         }
     },
+    id_horario : {
+        type: DataTypes.INTEGER,
+        reference: {
+            model: 'horario',
+            key: 'id'
+        }
+    },
+    tipo: {
+        type: DataTypes.STRING,
+        validate: {
+          customValidator: (value) => {
+            const enums = ["Cambio","Nuevo","Cancelacion"];
+            if (!enums.includes(value))
+            {
+              throw new Error("El tipo debe ser Solicitud o Aviso");
+            }
+          },
+        },
+    },
     estado: {
         type: DataTypes.STRING,
         allowNull: false,
