@@ -1,14 +1,16 @@
 const Notificaciones = require("../models/Notificaciones");
 const Horario = require("../models/Horario");
+const Usuario = require("../models/Usuario");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
+const send = require("../mail/nodemailerprovider");
 
 const get_solicitudes = async (req, res) => {
   const rol = req.user.dataValues.rol;
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select usuarios.nombre, notificaciones.programa, notificaciones.no_clase, notificaciones.salon, notificaciones.id, notificaciones.fecha_inicio, notificaciones.fecha_fin, notificaciones.hora_inicio, notificaciones.hora_fin, notificaciones.hora_servicio_inicio,notificaciones.hora_servicio_fin, notificaciones.dia, notificaciones.num_alumnos, notificaciones.estado, notificaciones.tipo, notificaciones.id_horario, notificaciones.id_servicio from notificaciones inner join usuarios on usuarios.id = notificaciones.id_usuario where notificaciones.estado ='Pendiente' order by notificaciones.fecha_inicio;";
+      "select usuarios.nombre, notificaciones.programa, notificaciones.no_clase, notificaciones.salon, notificaciones.id, notificaciones.fecha_inicio, notificaciones.fecha_fin, notificaciones.hora_inicio, notificaciones.hora_fin, notificaciones.hora_servicio_inicio,notificaciones.hora_servicio_fin, notificaciones.dia, notificaciones.num_alumnos, notificaciones.estado, notificaciones.tipo, notificaciones.id_horario, notificaciones.id_servicio, horario.num_alumnos as h_num_alumnos, horario.salon as h_salon, horario.programa as h_programa, horario.fecha_inicio as h_fecha_inicio, horario.fecha_fin as h_fecha_fin, horario.hora_inicio as h_hora_inicio, horario.hora_fin as h_hora_fin, horario.hora_servicio_inicio as h_hora_s_inicio, horario.hora_servicio_fin as h_hora_s_fin, horario.no_clase as h_no_clase, horario.dia as h_dia from notificaciones inner join usuarios on usuarios.id = notificaciones.id_usuario left join horario on horario.id_horario =  notificaciones.id_horario where notificaciones.estado ='Pendiente' order by notificaciones.fecha_inicio;";
   } else {
     query =
       "select usuarios.nombre, notificaciones.programa, notificaciones.no_clase, notificaciones.salon, notificaciones.id, notificaciones.fecha_inicio, notificaciones.fecha_fin, notificaciones.hora_inicio, notificaciones.hora_fin, notificaciones.hora_servicio_inicio,notificaciones.hora_servicio_fin, notificaciones.dia, notificaciones.num_alumnos, notificaciones.estado, notificaciones.tipo, notificaciones.id_horario, notificaciones.id_servicio, horario.num_alumnos as h_num_alumnos, horario.salon as h_salon, horario.programa as h_programa, horario.fecha_inicio as h_fecha_inicio, horario.fecha_fin as h_fecha_fin, horario.hora_inicio as h_hora_inicio, horario.hora_fin as h_hora_fin, horario.hora_servicio_inicio as h_hora_s_inicio, horario.hora_servicio_fin as h_hora_s_fin, horario.no_clase as h_no_clase, horario.dia as h_dia from notificaciones inner join usuarios on usuarios.id = notificaciones.id_usuario left join horario on horario.id_horario =  notificaciones.id_horario where notificaciones.id_usuario = " +
@@ -42,6 +44,10 @@ const aceptar_solicitud = async (req, res) => {
       if (nuevoHorario) {
         notificacion.estado = "Aceptado";
         await notificacion.save();
+        const usuario = await Usuario.findOne({
+          where: { id: notificacion.id_usuario },
+        });
+        send(usuario.email, "Solicitud aceptada", "Solicitud aceptada");
         res.status(200).send({ message: "Solicitud aceptada" });
       } else {
         res.status(404).send({ message: "No se pudo crear el horario" });
@@ -65,11 +71,16 @@ const aceptar_solicitud = async (req, res) => {
         await horario.save();
         notificacion.estado = "Aceptado";
         await notificacion.save();
+
+        const usuario = await Usuario.findOne({
+          where: { id: notificacion.id_usuario },
+        });
+        send(usuario.email, "Solicitud aceptada", "Solicitud aceptada");
         res.status(200).send({ message: "Solicitud aceptada" });
       } else {
         res.status(404).send({ message: "No se encontro el horario" });
       }
-    } else if(notificacion.tipo == "Cancelacion"){
+    } else if (notificacion.tipo == "Cancelacion") {
       const horario = await Horario.findOne({
         where: { id_horario: notificacion.id_horario },
       });
@@ -77,6 +88,10 @@ const aceptar_solicitud = async (req, res) => {
         await horario.destroy();
         notificacion.estado = "Aceptado";
         await notificacion.save();
+        const usuario = await Usuario.findOne({
+          where: { id: notificacion.id_usuario },
+        });
+        send(usuario.email, "Solicitud aceptada", "Solicitud aceptada");
         res.status(200).send({ message: "Solicitud aceptada" });
       } else {
         res.status(404).send({ message: "No se encontro el horario" });
@@ -93,6 +108,10 @@ const rechazar_solicitud = async (req, res) => {
   if (notificacion) {
     notificacion.estado = "Rechazado";
     await notificacion.save();
+    const usuario = await Usuario.findOne({
+      where: { id: notificacion.id_usuario },
+    });
+    send(usuario.email, "Solicitud rechazada", "Solicitud rechazada");
     res.status(200).send({ message: "Solicitud rechazada" });
   } else {
     res.status(404).send({ message: "No se encontro la solicitud" });
