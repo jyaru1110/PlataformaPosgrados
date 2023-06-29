@@ -51,55 +51,57 @@ const Notificaciones = sequelize.define(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    id_usuario : {
-        type: DataTypes.INTEGER,
-        allowNull:false,
-        reference: {
-            model: 'usuarios',
-            key: 'id'
-        }
+    id_usuario: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      reference: {
+        model: "usuarios",
+        key: "id",
+      },
     },
-    id_horario : {
-        type: DataTypes.INTEGER,
-        reference: {
-            model: 'horario',
-            key: 'id'
-        }
+    id_horario: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: "horario",
+        key: "id_horario",
+      },
+      onDelete: "CASCADE",
     },
-    id_servicio : {
-        type: DataTypes.INTEGER,
-        reference: {
-            model: 'servicios_dia',
-            key: 'id'
-        }
+    id_servicio: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: "servicios_dia",
+        key: "id",
+      },
+      onDelete: "CASCADE",
     },
     tipo: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          customValidator: (value) => {
-            const enums = ["Cambio","Nuevo","Cancelacion"];
-            if (!enums.includes(value))
-            {
-              throw new Error("El tipo debe ser Solicitud o Aviso");
-            }
-          },
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        customValidator: (value) => {
+          const enums = ["Cambio", "Nuevo", "Cancelacion"];
+          if (!enums.includes(value)) {
+            throw new Error("El tipo debe ser Solicitud o Aviso");
+          }
         },
+      },
     },
     estado: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "Pendiente",
-        validate: {
-          customValidator: (value) => {
-            const enums = ["Pendiente", "Aceptado", "Rechazado"];
-            if (!enums.includes(value))
-            {
-              throw new Error("El estado debe ser Pendiente, Realizado o Cancelado");
-            }
-          },
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "Pendiente",
+      validate: {
+        customValidator: (value) => {
+          const enums = ["Pendiente", "Aceptado", "Rechazado"];
+          if (!enums.includes(value)) {
+            throw new Error(
+              "El estado debe ser Pendiente, Realizado o Cancelado"
+            );
+          }
         },
-    }
+      },
+    },
   },
   {
     tableName: "notificaciones",

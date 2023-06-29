@@ -86,11 +86,16 @@ export default function Horario() {
   ]);
 
   const after_set = (data) => {
-    if (data.horario[0]) {
+    if (data.horario) {
       toast.success("Horario actualizado", {
         pauseOnFocusLoss: true,
       });
-    } else
+    } else if(data.notificacion){
+      toast.info("Solicitud de cambio de horario enviada", {
+        pauseOnFocusLoss: true,
+      });
+    }
+    else
       toast.error("No se pudo actualizar horario", {
         pauseOnFocusLoss: true,
       });
@@ -160,12 +165,16 @@ export default function Horario() {
   };
 
   const after_delete = (data) => {
-    if (data.status === 200) {
-      toast.onChange((payload) => {
-        if (payload.type === "success" && payload.status === "removed") {
-          navigation(-1);
-        }
+    toast.onChange((payload) => {
+      if (payload.type === "success" && payload.status === "removed") {
+        navigation(-1);
+      }
+    });
+    if (data.data.notificacion) {
+      toast.info("Solicitud de cancelación de horario enviada", {
+        pauseOnFocusLoss: true,
       });
+    } else if(data.data.horario){
       toast.success("Horario eliminado", {
         pauseOnFocusLoss: true,
       });

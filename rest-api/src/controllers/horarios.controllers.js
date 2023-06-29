@@ -1,7 +1,7 @@
 const Horario = require("../models/Horario");
 const Servicios_dia = require("../models/Servicios_dia");
 const Notificaciones = require("../models/Notificaciones");
-const send =  require("../mail/nodemailerprovider");
+const send = require("../mail/nodemailerprovider");
 const sequelize = require("../database/database");
 
 const get_horarios_todos = async (req, res) => {
@@ -31,17 +31,24 @@ const delete_horario = async (req, res) => {
   const rol = req.user.dataValues.rol;
   const { id } = req.params;
   if (rol == "Gestor") {
+    const notificaciones = await Notificaciones.destroy({
+      where: { id_horario: id },
+    });
     const horario = await Horario.destroy({
       where: { id_horario: id },
     });
     res.status(200).send({ horario: horario });
   } else {
     const notificacion = await Notificaciones.create({
-        id_horario : id,
-        id_usuario : req.user.dataValues.id,
-        tipo : "Cancelacion",
+      id_horario: id,
+      id_usuario: req.user.dataValues.id,
+      tipo: "Cancelacion",
     });
-    await send("0246759@up.edu.mx", req.user.dataValues.nombre + " ha creado una solicitud de servicio", "Se ha creado una solicitud de servicio, revisala en ")
+    await send(
+      "0246759@up.edu.mx",
+      req.user.dataValues.nombre + " ha creado una solicitud de servicio",
+      "Se ha creado una solicitud de servicio, revisala en "
+    );
     res.status(200).send({ notificacion: notificacion });
   }
 };
@@ -92,7 +99,11 @@ const create_horario = async (req, res) => {
       id_usuario: req.user.dataValues.id,
       tipo: "Nuevo",
     });
-    await send("0246759@up.edu.mx", req.user.dataValues.nombre + " ha creado una solicitud de servicio", "Se ha creado una solicitud de servicio, revisala en ")
+    await send(
+      "0246759@up.edu.mx",
+      req.user.dataValues.nombre + " ha creado una solicitud de servicio",
+      "Se ha creado una solicitud de servicio, revisala en "
+    );
     res.status(200).send({ notificacion: notificacion });
   }
 };
@@ -151,7 +162,11 @@ const update_horario = async (req, res) => {
       id_horario: id,
       tipo: "Cambio",
     });
-    await send("0246759@up.edu.mx", req.user.dataValues.nombre + " ha creado una solicitud de servicio", "Se ha creado una solicitud de servicio, revisala en ")
+    await send(
+      "0246759@up.edu.mx",
+      req.user.dataValues.nombre + " ha creado una solicitud de servicio",
+      "Se ha creado una solicitud de servicio, revisala en "
+    );
     res.status(200).send({ notificacion: notificacion });
   }
 };

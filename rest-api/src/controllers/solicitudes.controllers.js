@@ -88,6 +88,9 @@ const aceptar_solicitud = async (req, res) => {
         await horario.destroy();
         notificacion.estado = "Aceptado";
         await notificacion.save();
+        const notificaciones = await Notificaciones.destroy({
+          where: { id_horario: notificacion.id_horario, tipo: "Cambio" },
+        });
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
