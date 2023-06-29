@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSolicitudes } from "../../hooks/useSolicitudes";
 import axios from "axios";
 const url_backend = import.meta.env.VITE_URL_API;
@@ -21,9 +21,6 @@ export default function Solicitudes() {
       setSeleccionados([...seleccionados, id]);
     }
   };
-  useEffect(() => {
-    console.log(seleccionados);
-  }, [seleccionados]);
 
   const aceptarSolicitudes = () => {
     seleccionados.map((id) => {
@@ -52,7 +49,6 @@ export default function Solicitudes() {
             pauseOnFocusLoss: true,
           });
           setLoadingA(false);
-          console.log(err);
         });
     });
   };
@@ -84,7 +80,6 @@ export default function Solicitudes() {
             pauseOnFocusLoss: true,
           });
           setLoadingR(false);
-          console.log(err);
         });
     });
   };
@@ -109,7 +104,6 @@ export default function Solicitudes() {
         })
         .catch((err) => {
           setLoadingR(false);
-          console.log(err);
         });
     });
   };
@@ -193,7 +187,25 @@ export default function Solicitudes() {
                   } border-x-0 border-y`}
                   key={solicitud.id}
                 >
-                  <td className="border-r p-2">{solicitud.tipo}</td>
+                  <td className="border-r p-2">
+                    {solicitud.tipo == "Nuevo" ? (
+                      <div className="bg-greenbg text-greentext text-center text-xs p-1 rounded-2xl">
+                        {solicitud.tipo}
+                      </div>
+                    ) : (
+                      <>
+                        {solicitud.tipo == "Cambio" ? (
+                          <div className="bg-yellowbg text-yellowtext text-center text-xs p-1 rounded-2xl">
+                            {solicitud.tipo}
+                          </div>
+                        ) : (
+                          <div className="bg-redbg text-redtext text-center text-xs p-1 rounded-2xl">
+                            {solicitud.tipo}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </td>
                   <td className="border-r p-2">{solicitud.nombre}</td>
                   <td className="border-r p-2">{solicitud.salon}</td>
                   <td className="border-r p-2">{solicitud.programa}</td>
