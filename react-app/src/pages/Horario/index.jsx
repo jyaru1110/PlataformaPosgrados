@@ -80,6 +80,9 @@ export default function Horario() {
     fecha_fin,
     salones,
     dia,
+    hora_servicio_fin,
+    hora_servicio_inicio,
+    numero_servicios,
   ]);
 
   const after_set = (data) => {
@@ -149,16 +152,15 @@ export default function Horario() {
       dia: dia,
       num_alumnos: numero_servicios,
     };
-
-    const controller = new AbortController();
-    const signal = controller.signal;
-    const url = `${url_backend}/update_horario/${id_horario}`;
-    put_fetch(url, signal, data, after_set);
-    return () => controller.abort();
+      const controller = new AbortController();
+      const signal = controller.signal;
+      const url = `${url_backend}/update_horario/${id_horario}`;
+      put_fetch(url, signal, data, after_set);
+      return () => controller.abort();
   };
 
   const after_delete = (data) => {
-    if (data.horario) {
+    if (data.status === 200) {
       toast.onChange((payload) => {
         if (payload.type === "success" && payload.status === "removed") {
           navigation(-1);

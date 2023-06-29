@@ -1,10 +1,11 @@
+import axios from "axios";
 export const delete_fetch = (url,signal,func) => {
-    fetch(url, {
+    axios.delete(url, {
         signal: signal,
-        method: 'DELETE'
+        withCredentials: true
     })
-    .then(response => response.json())
     .then(data => {
+        console.log("data ",data);
         func(data);
     })
     .catch((err) => {

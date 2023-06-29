@@ -62,7 +62,6 @@ const Horario = sequelize.define('horario', {
     },
 
 }, {
-    // Opciones del modelo
     tableName: 'horario',
     timestamps: false
 });

@@ -21,19 +21,15 @@ const Notificaciones = sequelize.define(
     },
     fecha_inicio: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
     },
     fecha_fin: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
     },
     hora_inicio: {
       type: DataTypes.TIME,
-      allowNull: false,
     },
     hora_fin: {
       type: DataTypes.TIME,
-      allowNull: false,
     },
     hora_servicio_inicio: {
       type: DataTypes.TIME,
@@ -50,7 +46,6 @@ const Notificaciones = sequelize.define(
     },
     dia: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     num_alumnos: {
       type: DataTypes.INTEGER,
@@ -58,6 +53,7 @@ const Notificaciones = sequelize.define(
     },
     id_usuario : {
         type: DataTypes.INTEGER,
+        allowNull:false,
         reference: {
             model: 'usuarios',
             key: 'id'
@@ -70,8 +66,16 @@ const Notificaciones = sequelize.define(
             key: 'id'
         }
     },
+    id_servicio : {
+        type: DataTypes.INTEGER,
+        reference: {
+            model: 'servicios_dia',
+            key: 'id'
+        }
+    },
     tipo: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           customValidator: (value) => {
             const enums = ["Cambio","Nuevo","Cancelacion"];

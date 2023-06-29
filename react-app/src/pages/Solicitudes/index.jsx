@@ -161,6 +161,7 @@ export default function Solicitudes() {
       <table className="table-auto border-collapse w-full mt-14">
         <thead className="bg-slate-100 font-poppins">
           <tr className="text-left border-y border-x-0">
+            <th className="border-r p-2 font-medium">Tipo</th>
             <th className="border-r p-2 font-medium">Persona</th>
             <th className="border-r font-medium p-2">Salón</th>
             <th className="border-r font-medium p-2">Programa</th>
@@ -192,6 +193,7 @@ export default function Solicitudes() {
                   } border-x-0 border-y`}
                   key={solicitud.id}
                 >
+                  <td className="border-r p-2">{solicitud.tipo}</td>
                   <td className="border-r p-2">{solicitud.nombre}</td>
                   <td className="border-r p-2">{solicitud.salon}</td>
                   <td className="border-r p-2">{solicitud.programa}</td>
