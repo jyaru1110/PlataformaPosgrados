@@ -67,7 +67,7 @@ const Servicios_dia = sequelize.define(
       defaultValue: "Pendiente",
       validate: {
         customValidator: (value) => {
-          const enums = ["Pendiente", "Realizado", "Cancelado"];
+          const enums = ["Pendiente", "Realizado", "Cancelado", "Confirmado"];
           if (!enums.includes(value))
           {
             throw new Error("El estado debe ser Pendiente, Realizado o Cancelado");

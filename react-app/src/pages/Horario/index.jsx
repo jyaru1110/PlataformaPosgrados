@@ -91,7 +91,7 @@ export default function Horario() {
         pauseOnFocusLoss: true,
       });
     } else if(data.notificacion){
-      toast.info("Solicitud de cambio de horario enviada", {
+      toast.info("Solicitud de cambio enviada", {
         pauseOnFocusLoss: true,
       });
     }

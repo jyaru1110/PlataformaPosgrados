@@ -68,44 +68,36 @@ const create_horario = async (req, res) => {
     hora_servicio_inicio,
     hora_servicio_fin,
   } = req.body;
-  if (rol == "Gestor") {
-    const horario = await Horario.create({
+  if (fecha_fin == fecha_inicio) {
+    const servicio = Servicios_dia.create({
       hora_inicio: hora_inicio,
       hora_fin: hora_fin,
       dia: dia,
-      salon: salon,
-      fecha_inicio: fecha_inicio,
-      fecha_fin: fecha_fin,
+      salon_id: salon,
+      fecha: fecha_inicio,
       no_clase: no_clase,
       programa: programa,
       hora_servicio_inicio: hora_servicio_inicio,
       hora_servicio_fin: hora_servicio_fin,
-      num_alumnos: num_alumnos,
+      num_servicios: num_alumnos,
     });
-    res.status(200).send({ horario: horario });
-  } else {
-    const notificacion = await Notificaciones.create({
-      hora_inicio: hora_inicio,
-      hora_fin: hora_fin,
-      dia: dia,
-      salon: salon,
-      fecha_inicio: fecha_inicio,
-      fecha_fin: fecha_fin,
-      no_clase: no_clase,
-      programa: programa,
-      hora_servicio_inicio: hora_servicio_inicio,
-      hora_servicio_fin: hora_servicio_fin,
-      num_alumnos: num_alumnos,
-      id_usuario: req.user.dataValues.id,
-      tipo: "Nuevo",
-    });
-    await send(
-      "0246759@up.edu.mx",
-      req.user.dataValues.nombre + " ha creado una solicitud de servicio",
-      "Se ha creado una solicitud de servicio, revisala en "
-    );
-    res.status(200).send({ notificacion: notificacion });
+    res.status(200).send({ servicio: servicio });
+    return;
   }
+  const horario = await Horario.create({
+    hora_inicio: hora_inicio,
+    hora_fin: hora_fin,
+    dia: dia,
+    salon: salon,
+    fecha_inicio: fecha_inicio,
+    fecha_fin: fecha_fin,
+    no_clase: no_clase,
+    programa: programa,
+    hora_servicio_inicio: hora_servicio_inicio,
+    hora_servicio_fin: hora_servicio_fin,
+    num_alumnos: num_alumnos,
+  });
+  res.status(200).send({ horario: horario });
 };
 
 const update_horario = async (req, res) => {

@@ -37,7 +37,7 @@ export default function AddServicio() {
   const salones = useSalones();
   const options_salones = salones_to_correct_format(salones);
 
-  const programas = usePrograma(rol=='Gestor'?'Todos':escuela);
+  const programas = usePrograma(rol == "Gestor" ? "Todos" : escuela);
   const options_programas = programas_to_correct_format(programas);
 
   const send_servicios = () => {
@@ -79,7 +79,7 @@ export default function AddServicio() {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
-          setIsLoading(false);
+        setIsLoading(false);
         toast.error(
           "La fecha de fin no puede ser menor o igual a la fecha de inicio"
         );
@@ -89,7 +89,7 @@ export default function AddServicio() {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
-          setIsLoading(false);
+        setIsLoading(false);
         toast.error("La hora de fin no puede ser menor a la hora de inicio");
         return;
       }
@@ -97,10 +97,8 @@ export default function AddServicio() {
       const response = post_axios(url_backend + "/create_horario", servicio);
       response.then((data) => {
         setIsLoading(false);
-        if (data.status === 200 && data.data.notificacion) {
+        if (data.status === 200) {
           toast.info("Solicitud de servicios enviada");
-        } else if (data.status === 200 && data.data.horario) {
-          toast.success("Servicios creados");
         } else {
           toast.error("Error al crear servicios");
         }
@@ -111,7 +109,6 @@ export default function AddServicio() {
   useEffect(() => {
     console.log(servicios);
   }, [servicios]);
-
 
   const addServicio = () => {
     setServicios([
