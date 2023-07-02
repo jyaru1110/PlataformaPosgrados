@@ -5,7 +5,6 @@ export const delete_fetch = (url,signal,func) => {
         withCredentials: true
     })
     .then(data => {
-        console.log("data ",data);
         func(data);
     })
     .catch((err) => {

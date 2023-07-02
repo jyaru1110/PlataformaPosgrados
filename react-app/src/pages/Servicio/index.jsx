@@ -5,7 +5,7 @@ import Horas from "../../components/form/Horas";
 import Fecha from "../../components/form/Fecha";
 import DropdowSalon from "../../components/form/DropdownSalon";
 import NumeroServicios from "../../components/form/NumeroServicios";
-import { put_fetch } from "../../hooks/put_fetch";
+import { delete_fetch } from "../../hooks/delete_fetch";
 import { useServicio } from "../../hooks/useServicio";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -148,12 +148,13 @@ export default function Servicio() {
   };
 
   const after_canceled = (data) => {
-    if (data.servicio) {
-      toast.onChange((payload) => {
+
+    toast.onChange((payload) => {
         if (payload.type === "success" && payload.status === "removed") {
           navigation(-1);
         }
       });
+    if (data.data.servicio) {
       toast.success("Servicio cancelado", {
         pauseOnFocusLoss: true,
       });
@@ -165,13 +166,10 @@ export default function Servicio() {
   };
 
   const cancelar_servicio = () => {
-    const data = {
-      estado: "Cancelado",
-    };
     const controller = new AbortController();
     const signal = controller.signal;
-    const url = `${url_backend}/update_servicio/${id}/`;
-    put_fetch(url, signal, data, after_canceled);
+    const url = `${url_backend}/delete_servicio/${id}/`;
+    delete_fetch(url, signal, after_canceled);
     return () => controller.abort();
   };
 
