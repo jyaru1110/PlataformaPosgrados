@@ -15,6 +15,7 @@ const auth_routes = require("./routes/auth.routes");
 const user_routes = require("./routes/user.routes");
 const cors = require("cors");
 
+
 //permite que cualquier dominio pueda hacer peticiones a la api
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -30,7 +31,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: process.env.FRONT_END_URL, credentials: true }));
 app.use(express.json());
 
 
