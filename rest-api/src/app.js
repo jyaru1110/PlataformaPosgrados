@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors({ origin: process.env.FRONT_END_URL, credentials: true }));
+app.use(cors({ origin: "https://coffee-breaks.vercel.app", credentials: true }));
 app.use(express.json());
 
 
