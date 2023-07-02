@@ -148,7 +148,7 @@ export default function Servicio() {
   };
 
   const after_canceled = (data) => {
-    if (data.servicio[0]) {
+    if (data.servicio) {
       toast.onChange((payload) => {
         if (payload.type === "success" && payload.status === "removed") {
           navigation(-1);
@@ -157,7 +157,11 @@ export default function Servicio() {
       toast.success("Servicio cancelado", {
         pauseOnFocusLoss: true,
       });
-    } else alert("No se pudo cancelar el servicio");
+    } else if (data.notificacion) {
+      toast.info("Solicitud de cancelación enviada", {
+        pauseOnFocusLoss: true,
+      });
+    }
   };
 
   const cancelar_servicio = () => {

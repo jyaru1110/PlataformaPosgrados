@@ -212,8 +212,12 @@ const update_servicio = async (req, res) => {
       id: id,
     },
   });
-  
-  if (rol == "Gestor" || servicio.estado !== "Confirmado" || (servicio.num_alumnos == num_servicios && servicio.fecha == fecha)) {
+
+  if (
+    rol == "Gestor" ||
+    servicio.estado !== "Confirmado" ||
+    (servicio.num_alumnos == num_servicios && servicio.fecha == fecha)
+  ) {
     try {
       const servicio = await Servicios_dia.update(
         {
@@ -266,15 +270,41 @@ const update_servicio = async (req, res) => {
 
 const delete_servicio = async (req, res) => {
   const id = req.params.id;
-  try {
-    const servicio = await Servicios_dia.destroy({
-      where: {
-        id: id,
-      },
+  const rol = req.user.dataValues.rol;
+  const servicio = Servicios_dia.findOne({
+    where: {
+      id: id,
+    },
+  });
+  if (rol == "Gestor" || servicio.estado !== "Confirmado") {
+    try {
+      const servicio = await Servicios_dia.destroy({
+        where: {
+          id: id,
+        },
+      });
+      res.status(200).send({ servicio: servicio });
+    } catch (error) {
+      res.status(500).send({ error: error });
+    }
+  } else {
+    const notificacion = await Notificaciones.create({
+      id_servicio: id,
+      tipo: "Cancelacion",
+      salon: servicio.salon_id,
+      programa: servicio.programa,
+      fecha_inicio: servicio.fecha,
+      fecha_fin: servicio.fecha,
+      hora_inicio: servicio.hora_inicio,
+      hora_fin: servicio.hora_fin,
+      hora_servicio_inicio: servicio.hora_servicio_inicio,
+      hora_servicio_fin: servicio.hora_servicio_fin,
+      num_servicios: servicio.num_servicios,
+      no_clase: servicio.no_clase,
+      num_alumnos: servicio.num_alumnos,
+      id_usuario: req.user.dataValues.id
     });
-    res.status(200).send({ servicio: servicio });
-  } catch (error) {
-    res.status(500).send({ error: error });
+    res.status(200).send({ notificacion: notificacion });
   }
 };
 
