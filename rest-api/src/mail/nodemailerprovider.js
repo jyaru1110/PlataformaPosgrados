@@ -1,3 +1,5 @@
+const user =  process.env.EMAIL;
+const pass = process.env.PASS;
 const nodemailer = require('nodemailer');
 const config = {
     service: 'gmail',
@@ -5,8 +7,8 @@ const config = {
     port: 465,
     secure: false,
     auth: {
-        user:"0246759@up.edu.mx",
-        pass:"nxvuwyudxykmiwin"
+        user:user,
+        pass:pass
     }
 }
 
