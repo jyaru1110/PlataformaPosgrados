@@ -40,8 +40,9 @@ app.set("trust proxy", 1);
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: ["session","session.sig","g_state"],
+    keys: ["session","session.sig"],
     sameSite: "none",
+    secure: true,
   })
 );
 app.use(passport.initialize());
