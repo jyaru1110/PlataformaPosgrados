@@ -8,7 +8,6 @@ router.get('/login/google', passport.authenticate('google', { scope: ['profile',
 
 router.get('/auth/google/callback', passport.authenticate('google', {
     failureMessage: 'No se pudo iniciar sesión con Google',
-    failureRedirect: callbackURL_front,
     successRedirect: callbackURL_front,
 }), (req, res) => {
     console.log('req.user: ', req.user);

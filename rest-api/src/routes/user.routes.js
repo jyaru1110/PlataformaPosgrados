@@ -20,7 +20,6 @@ router.put('/user/gestor/:id',async (req, res) => {
                 rol:'Gestor'
             },
             {
-
                 where:{
 
                     id:id
@@ -37,7 +36,6 @@ router.put('/user/usuario/:id',async (req, res) => {
   const id = req.params.id;
   try {
       const user = await Usuario.update(
-
           {
               rol:'Usuario'
           },
