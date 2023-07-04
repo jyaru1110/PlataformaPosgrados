@@ -44,7 +44,7 @@ app.use(
 );
 
 app.use((req, res, next)=>{
-  req["sessionCookies"].secure = true;
+  req.sessionOptions.secure = true;
   next();
 });
 
