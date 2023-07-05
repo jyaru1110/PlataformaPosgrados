@@ -34,6 +34,15 @@ app.use(bodyParser.json());
 app.use(cors({ origin: "https://coffee-breaks.vercel.app", credentials: true}));
 app.use(express.json());
 
+app.use(Proxy('https://coffee-breaks.vercel.app', {
+  proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
+    proxyReqOpts.headers['Access-Control-Allow-Origin'] = '*';
+    return proxyReqOpts;
+  }
+}));
+
+app.set("trust proxy", 1);
+
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
