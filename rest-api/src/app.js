@@ -41,12 +41,18 @@ app.use(
     name: "session",
     maxAge: 24 * 60 * 60 * 1000,
     keys: ["session","session.sig"],
-    domain: "https://coffee-breaks.vercel.app",
+    domain: "https://coffee-breaks.vercel.app/",
     secure: true,
     httpOnly: true,
     sameSite: 'none',
   })
 );
+
+app.use((req, res, next)=>{
+  req.sessionOptions.sameSite = 'none';
+  req.sessionOptions.secure = true;
+  next()
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
