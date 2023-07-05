@@ -51,6 +51,8 @@ app.use(
 app.use((req, res, next)=>{
   req.sessionOptions.sameSite = 'none';
   req.sessionOptions.secure = true;
+  req.cookies.sameSite = 'none';
+  req.cookies.secure = true;
   next()
 });
 
