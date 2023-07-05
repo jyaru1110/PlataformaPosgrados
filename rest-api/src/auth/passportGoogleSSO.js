@@ -12,7 +12,7 @@ passport.use(
       passReqToCallback: true
     },
     async (req, accessToken, refreshToken, profile, done) => {
-      console.log("profile: ", profile.emails);
+      console.log("pasa por la estrtegia de google");
       const defaultUser = {
         email: profile.emails[0].value,
         googleId: profile.id,
