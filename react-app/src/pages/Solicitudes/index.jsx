@@ -113,7 +113,7 @@ export default function Solicitudes() {
       <div className="w-11/12 flex justify-between mb-4 fixed flex-wrap">
         <Header titulo="Solicitudes"></Header>
       </div>
-      <div className="fixed top-8 right-8">
+      <div className="fixed top-8 right-3">
         {rol === "Gestor" ? (
           <>
             {loadingR ? null : (
