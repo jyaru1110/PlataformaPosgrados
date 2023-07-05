@@ -3,7 +3,6 @@ require("./auth/passportGoogleSSO");
 require('dotenv').config()
 const passport = require("passport");
 const cookieSession = require("cookie-session");
-const session = require('express-session');
 const bodyParser = require("body-parser");
 const app = express();
 const servicios_dia_routes = require("./routes/servicios_dia.routes");
@@ -32,20 +31,14 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors({ origin: "https://coffee-breaks.vercel.app", credentials: true}));
+app.use(cors({ origin: "http://localhost:5173", credentials: true}));
 app.use(express.json());
 
-
 app.use(
-  session({
-    secret: 'session',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      sameSite: 'none',
-      domain: 'https://coffee-breaks.vercel.app',
-      secure: true
-    },
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: ["session","session.sig"],
+    sameSite: "none",
   })
 );
 
