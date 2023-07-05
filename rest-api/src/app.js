@@ -40,8 +40,7 @@ app.use(
     maxAge: 24 * 60 * 60 * 1000,
     keys: ["session","session.sig"],
     sameSite: "none",
-    secureProxy: true,
-    secure: true,
+    secure: false,
     domain: "https://coffee-breaks.vercel.app",
   })
 );
