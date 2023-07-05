@@ -43,6 +43,7 @@ app.use(
     keys: ["session","session.sig"],
     secure: true,
     sameSite: "none",
+    domain: "https://coffee-breaks.vercel.app",
   })
 );
 
