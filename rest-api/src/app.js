@@ -17,8 +17,8 @@ const cors = require("cors");
 
 //permite que cualquier dominio pueda hacer peticiones a la api
 app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", true);
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
   res.header(
     "Access-Control-Allow-Headers",
     "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method"
@@ -34,15 +34,16 @@ app.use(bodyParser.json());
 app.use(cors({ origin: "https://coffee-breaks.vercel.app", credentials: true}));
 app.use(express.json());
 
-app.set("trust proxy", true);
+app.set("trust proxy", 1);
 
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
     keys: ["session","session.sig"],
-    sameSite: "none",
-    secure: false,
     domain: "https://coffee-breaks.vercel.app",
+    secure: true,
+    httpOnly: true,
+    sameSite: 'none'
   })
 );
 
