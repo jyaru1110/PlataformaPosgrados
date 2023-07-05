@@ -101,7 +101,6 @@ const create_horario = async (req, res) => {
 };
 
 const update_horario = async (req, res) => {
-  console.log(req.body);
   const rol = req.user.dataValues.rol;
   const { id } = req.params;
   const {

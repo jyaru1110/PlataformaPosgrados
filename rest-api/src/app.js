@@ -13,6 +13,7 @@ const salones_routes = require("./routes/salones.routes");
 const programas_routes = require("./routes/programas.routes");
 const auth_routes = require("./routes/auth.routes");
 const user_routes = require("./routes/user.routes");
+const environment =  process.env.ENV
 const cors = require("cors");
 
 //permite que cualquier dominio pueda hacer peticiones a la api
@@ -31,7 +32,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors({ origin: "https://coffee-breaks.vercel.app", credentials: true}));
+app.use(cors({ origin: environment=="Production"? "https://coffee-breaks.vercel.app":"http://localhost:5173", credentials: true}));
 app.use(express.json());
 
 app.set("trust proxy", 1);
@@ -41,8 +42,8 @@ app.use(
     name: "session",
     maxAge: 24 * 60 * 60 * 1000,
     keys: ["session","session.sig"],
-    secure: true,
-    sameSite: "none"
+    secure: environment=="Production"?true:false,
+    sameSite: environment=="Production"?"none":"strict"
   })
 );
 

@@ -137,7 +137,6 @@ const get_proximo_servicio = async (req, res) => {
   const today = new Date();
   const rol = req.user.dataValues.rol;
   const iso_today = today.toISOString().split("T")[0];
-  console.log(rol);
   var query = "";
   if (rol == "Gestor") {
     query =
