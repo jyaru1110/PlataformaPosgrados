@@ -40,9 +40,7 @@ app.use(
   cookieSession({
     name: "session",
     maxAge: 24 * 60 * 60 * 1000,
-    keys: ["session","session.sig"],
-    secure: true,
-    sameSite: "none",
+    keys: ["session","session.sig"]
   })
 );
 
