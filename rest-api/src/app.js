@@ -38,12 +38,13 @@ app.set("trust proxy", 1);
 
 app.use(
   cookieSession({
+    name: "session",
     maxAge: 24 * 60 * 60 * 1000,
     keys: ["session","session.sig"],
     domain: "https://coffee-breaks.vercel.app",
     secure: true,
     httpOnly: true,
-    sameSite: 'none'
+    sameSite: 'none',
   })
 );
 
