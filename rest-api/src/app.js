@@ -27,6 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 //middlewares
+app.set("trust proxy", 1);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
