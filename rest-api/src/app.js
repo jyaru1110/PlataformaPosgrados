@@ -3,6 +3,7 @@ require("./auth/passportGoogleSSO");
 require('dotenv').config()
 const passport = require("passport");
 const cookieSession = require("cookie-session");
+const session = require('express-session');
 const bodyParser = require("body-parser");
 const app = express();
 const servicios_dia_routes = require("./routes/servicios_dia.routes");
@@ -27,7 +28,6 @@ app.use((req, res, next) => {
   next();
 });
 //middlewares
-app.set("trust proxy", 1);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -35,19 +35,17 @@ app.use(bodyParser.json());
 app.use(cors({ origin: "http://localhost:5173", credentials: true}));
 app.use(express.json());
 
+
 app.use(
-  cookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
-    keys: ["session","session.sig"],
-    secure: true,
-    sameSite: "none",
+  session({
+    secret: 'session',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      sameSite: 'none',
+    },
   })
 );
-
-app.use((req, res, next)=>{
-  req.sessionOptions.secure = true;
-  next();
-});
 
 app.use(passport.initialize());
 app.use(passport.session());
