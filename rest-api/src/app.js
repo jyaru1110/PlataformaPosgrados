@@ -43,6 +43,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       sameSite: 'none',
+      domain: 'http://localhost:5173',
+      secure: true
     },
   })
 );
