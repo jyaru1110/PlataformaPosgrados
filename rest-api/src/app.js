@@ -14,8 +14,6 @@ const programas_routes = require("./routes/programas.routes");
 const auth_routes = require("./routes/auth.routes");
 const user_routes = require("./routes/user.routes");
 const cors = require("cors");
-const proxy = require('express-http-proxy');
-
 
 //permite que cualquier dominio pueda hacer peticiones a la api
 app.use((req, res, next) => {
