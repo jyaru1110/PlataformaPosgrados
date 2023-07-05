@@ -118,14 +118,14 @@ const get_servicios_pendientes = async (req, res) => {
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select * from servicios_dia where estado = 'Pendiente' and fecha = '" +
+      "select * from servicios_dia where estado = 'Confirmado' and fecha = '" +
       fecha +
       "' order by hora_inicio asc";
   } else {
     query =
       "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where programa.escuela ='" +
       req.user.dataValues.escuela +
-      "' and estado = 'Pendiente' and fecha = '" +
+      "' and estado = 'Confirmado' and fecha = '" +
       fecha +
       "' order by servicios_dia.hora_inicio asc";
   }
@@ -142,12 +142,12 @@ const get_proximo_servicio = async (req, res) => {
     query =
       "select * from servicios_dia where fecha >= '" +
       iso_today +
-      "' and estado = 'Pendiente' order by fecha asc, hora_inicio asc limit 1";
+      "' and estado = 'Confirmado' order by fecha asc, hora_inicio asc limit 1";
   } else {
     query =
       "select * from servicios_dia inner join programa on programa.programa =  servicios_dia.programa where servicios_dia.fecha >= '" +
       iso_today +
-      "' and servicios_dia.estado = 'Pendiente' and programa.escuela='" +
+      "' and servicios_dia.estado = 'Confirmado' and programa.escuela='" +
       req.user.dataValues.escuela +
       "' order by fecha asc, hora_inicio asc limit 1";
   }
@@ -206,11 +206,15 @@ const update_servicio = async (req, res) => {
   } = req.body;
   const id = req.params.id;
   const rol = req.user.dataValues.rol;
-  const servicio = Servicios_dia.findOne({
+  const servicio = await Servicios_dia.findOne({
     where: {
       id: id,
     },
   });
+
+  console.log(servicio);
+  console.log("num ", num_servicios);
+  console.log("fecha ",fecha);
 
   if (
     rol == "Gestor" ||

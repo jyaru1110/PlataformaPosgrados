@@ -32,6 +32,7 @@ export default function FiltarServicios() {
     "Pendiente",
     "Cancelado",
     "Realizado",
+    "Confirmado"
   ]);
 
   const filtrar = (servicio) => {
@@ -102,11 +103,16 @@ export default function FiltarServicios() {
                   <p className="text-redtext bg-redbg py px-1 rounded-xl w-20 text-center text-xs mb-1 ml-1">
                     {servicio_i.estado}
                   </p>
-                ) : (
+                ) : servicio_i.estado == "Realizado" ? (
                   <p className="text-greentext bg-greenbg py px-1 rounded-xl w-20 text-center text-xs mb-1 ml-1">
                     {servicio_i.estado}
                   </p>
-                )}
+                ) : (
+                  <p className="text-purple-700 bg-purple-300 py px-1 rounded-xl w-20 text-center text-xs mb-1 ml-1">
+                    {servicio_i.estado}
+                  </p>
+                )
+              }
               </div>
               <div className="flex justify-between">
                 <div className="w-3/4">

@@ -29,6 +29,11 @@ export default function OpcionesEstado(props) {
                     <button className="bg-primary p-2 rounded-3xl text-white active:bg-primary text-sm" onClick={handleEstado} value="Realizado">Realizado</button> :
                     <button className="bg-primarylight p-2 rounded-3xl text-gray1 text-sm" onClick={handleEstado} value="Realizado">Realizado</button>
                 }
+                {
+                    estados.includes("Confirmado") ? 
+                    <button className="bg-primary p-2 rounded-3xl text-white active:bg-primary text-sm" onClick={handleEstado} value="Confirmado">Confirmado</button> :
+                    <button className="bg-primarylight p-2 rounded-3xl text-gray1 text-sm" onClick={handleEstado} value="Confirmado">Confirmado</button>
+                }
             </div>
         </div>
     );

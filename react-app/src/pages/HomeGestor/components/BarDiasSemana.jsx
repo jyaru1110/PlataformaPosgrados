@@ -20,7 +20,7 @@ export default function BarDiasSemana() {
 
   return (
     <div className="md:w-full md:mx-8 pt-40 pb-32 md:p-0 mb-10">
-      <h1 className="font-poppins text-lg font-semibold text-primary ml-1 mt-2">
+      <h1 className="font-poppins text-lg font-semibold text-primary ml-1 md:mt-2 mt-6">
         {date_to_day_dd_mm(dia)}
       </h1>
       <div className="flex flex-row justify-between">

@@ -6,6 +6,7 @@ import Fecha from "../../components/form/Fecha";
 import DropdowSalon from "../../components/form/DropdownSalon";
 import NumeroServicios from "../../components/form/NumeroServicios";
 import { delete_fetch } from "../../hooks/delete_fetch";
+import { put_fetch } from "../../hooks/put_fetch";
 import { useServicio } from "../../hooks/useServicio";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -119,7 +120,7 @@ export default function Servicio() {
       (horaInicio === "" || horaInicio == servicio.hora_inicio) &&
       (horaFin === "" || horaFin == servicio.hora_fin) &&
       (fecha === "" || fecha == servicio.fecha) &&
-      (numeroServicios === "p" || numeroServicios == servicio.num_servicios) &&
+      (numeroServicios === "" || numeroServicios == servicio.num_servicios) &&
       (salon === "" || salon == servicio.salon_id) &&
       (hora_servicio_inicio === "" ||
         hora_servicio_inicio == servicio.hora_servicio_inicio) &&

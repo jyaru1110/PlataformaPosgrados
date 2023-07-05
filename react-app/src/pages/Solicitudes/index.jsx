@@ -155,24 +155,24 @@ export default function Solicitudes() {
       <table className="table-auto border-collapse w-full mt-14">
         <thead className="bg-slate-100 font-poppins">
           <tr className="text-left border-y border-x-0">
+            <th className="border-r p-2 font-medium">Fecha de solicitud</th>
+            <th className="border-r p-2 font-medium">Status</th>
             <th className="border-r p-2 font-medium">Tipo</th>
             <th className="border-r p-2 font-medium">Persona</th>
             <th className="border-r font-medium p-2">Salón</th>
             <th className="border-r font-medium p-2">Programa</th>
-            <th className="border-r p-2 font-medium">Fecha inicio</th>
-            <th className="border-r p-2 font-medium">Fecha fin</th>
+            <th className="border-r p-2 font-medium">Fecha</th>
             <th className="border-r p-2 font-medium">Hora incio</th>
             <th className="border-r p-2 font-medium">Hora fin</th>
             <th className="border-r p-2 font-medium">Hora incio servicio</th>
             <th className="border-r p-2 font-medium">Hora fin servicio</th>
             <th className="border-r p-2 font-medium">No. Clase</th>
-            <th className="border-r p-2 font-medium">Dia</th>
             <th className="p-2 font-medium">Número servicios</th>
           </tr>
         </thead>
 
         {loading ? (
-          <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+         <></>
         ) : (
           <tbody className="font-poppins text-base">
             {solicitudes.map((solicitud) => {
@@ -187,6 +187,8 @@ export default function Solicitudes() {
                   } border-x-0 border-y`}
                   key={solicitud.id}
                 >
+                  <td className="border-r p-2">{solicitud.createdAt.substring(0,10)}</td>
+                  <td className="border-r p-2">{solicitud.estado}</td>
                   <td className="border-r p-2">
                     {solicitud.tipo == "Nuevo" ? (
                       <div className="bg-greenbg text-greentext text-center text-xs p-1 rounded-2xl">
@@ -207,21 +209,34 @@ export default function Solicitudes() {
                     )}
                   </td>
                   <td className="border-r p-2">{solicitud.nombre}</td>
-                  <td className="border-r p-2">{solicitud.salon||solicitud.h_salon}</td>
-                  <td className="border-r p-2">{solicitud.programa||solicitud.h_programa}</td>
-                  <td className="border-r p-2">{solicitud.fecha_inicio||solicitud.h_fecha_inicio}</td>
-                  <td className="border-r p-2">{solicitud.fecha_fin||solicitud.h_fecha_fin}</td>
-                  <td className="border-r p-2">{solicitud.hora_inicio||solicitud.h_hora_inicio}</td>
-                  <td className="border-r p-2">{solicitud.hora_fin||solicitud.h_hora_fin}</td>
                   <td className="border-r p-2">
-                    {solicitud.hora_servicio_inicio||solicitud.h_hora_s_inicio}
+                    {solicitud.salon || solicitud.h_salon}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_servicio_fin||solicitud.h_hora_s_fin}
+                    {solicitud.programa || solicitud.h_programa}
                   </td>
-                  <td className="border-r p-2">{solicitud.no_clase||solicitud.h_no_clase}</td>
-                  <td className="border-r p-2">{solicitud.dia||solicitud.h_dia}</td>
-                  <td className="border-r p-2">{solicitud.num_alumnos||solicitud.h_num_alumnos}</td>
+                  <td className="border-r p-2">
+                    {solicitud.fecha_inicio || solicitud.h_fecha_inicio}
+                  </td>
+                  <td className="border-r p-2">
+                    {solicitud.hora_inicio || solicitud.h_hora_inicio}
+                  </td>
+                  <td className="border-r p-2">
+                    {solicitud.hora_fin || solicitud.h_hora_fin}
+                  </td>
+                  <td className="border-r p-2">
+                    {solicitud.hora_servicio_inicio ||
+                      solicitud.h_hora_s_inicio}
+                  </td>
+                  <td className="border-r p-2">
+                    {solicitud.hora_servicio_fin || solicitud.h_hora_s_fin}
+                  </td>
+                  <td className="border-r p-2">
+                    {solicitud.no_clase || solicitud.h_no_clase}
+                  </td>
+                  <td className="border-r p-2">
+                    {solicitud.num_alumnos || solicitud.h_num_alumnos}
+                  </td>
                   <td className="p-2 text-center">
                     <input
                       type="checkbox"
