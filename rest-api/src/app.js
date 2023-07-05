@@ -14,6 +14,7 @@ const programas_routes = require("./routes/programas.routes");
 const auth_routes = require("./routes/auth.routes");
 const user_routes = require("./routes/user.routes");
 const cors = require("cors");
+const proxy = require('express-http-proxy');
 
 
 //permite que cualquier dominio pueda hacer peticiones a la api
@@ -34,14 +35,7 @@ app.use(bodyParser.json());
 app.use(cors({ origin: "https://coffee-breaks.vercel.app", credentials: true}));
 app.use(express.json());
 
-app.use(Proxy('https://coffee-breaks.vercel.app', {
-  proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
-    proxyReqOpts.headers['Access-Control-Allow-Origin'] = '*';
-    return proxyReqOpts;
-  }
-}));
-
-app.set("trust proxy", 1);
+app.set("trust proxy", true);
 
 app.use(
   cookieSession({
