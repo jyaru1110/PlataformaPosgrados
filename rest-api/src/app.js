@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true}));
+app.use(cors({ origin: "https://coffee-breaks.vercel.app/", credentials: true}));
 app.use(express.json());
 
 
@@ -43,7 +43,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       sameSite: 'none',
-      domain: 'http://localhost:5173',
+      domain: 'https://coffee-breaks.vercel.app/',
       secure: true
     },
   })
