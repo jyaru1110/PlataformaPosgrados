@@ -50,11 +50,8 @@ app.use(
 
 app.use((req, res, next)=>{
   req.sessionOptions.sameSite = 'none';
-  req.sessionOptions.secure = true;
+  req.sessionOptions.secure = false;
   console.log(req.sessionOptions);
-  console.log(req.session);
-  console.log(req.cookies);
-  console.log(req.subdomains)
   next()
 });
 
