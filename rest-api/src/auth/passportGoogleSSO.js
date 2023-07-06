@@ -1,7 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const Usuario = require("../models/Usuario");
-const Persona = require("../models/Persona");
 
 passport.use(
   new GoogleStrategy(
@@ -9,25 +8,30 @@ passport.use(
       clientID: process.env.CLIENT_ID_GOOGLE,
       clientSecret: process.env.CLIENT_SECRET_GOOGLE,
       callbackURL: process.env.CALLBACK_URL_GOOGLE,
-      passReqToCallback: true
+      passReqToCallback: true,
     },
     async (req, accessToken, refreshToken, profile, done) => {
-      console.log("pasa por la estrtegia de google");
-      const defaultUser = {
-        email: profile.emails[0].value,
-        googleId: profile.id,
-        nombre: profile.displayName,
-      };
-      
-      const user = await Usuario.findOrCreate({
-        where: { googleId: profile.id },
-        defaults: defaultUser,
+      const user = await Usuario.findOne({
+        where: { email: profile.emails[0].value },
       }).catch((err) => {
         console.log("Error signing up", err);
         done(err, null);
       });
+      if (user.dataValues.googleId == null) {
+        const user = await Usuario.update(
+          {
+            googleId: profile.id,
+          },
+          {
+            where: { email: profile.emails[0].value },
+          }
+        ).catch((err) => {
+          console.log("Error signing up", err);
+          done(err, null);
+        });
+      }
 
-      if (user && user[0]) return done(null, user && user[0]);
+      if (user) return done(null, user);
     }
   )
 );

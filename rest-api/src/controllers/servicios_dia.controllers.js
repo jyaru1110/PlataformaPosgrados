@@ -2,6 +2,7 @@ const Servicios_dia = require("../models/Servicios_dia");
 const Notificaciones = require("../models/Notificaciones");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
+const send = require("../mail/nodemailerprovider");
 
 const get_servicios_fecha = async (req, res) => {
   const rol = req.user.dataValues.rol;
@@ -212,10 +213,6 @@ const update_servicio = async (req, res) => {
     },
   });
 
-  console.log(servicio);
-  console.log("num ", num_servicios);
-  console.log("fecha ",fecha);
-
   if (
     rol == "Gestor" ||
     servicio.estado !== "Confirmado" ||
@@ -265,6 +262,12 @@ const update_servicio = async (req, res) => {
         estado: "Pendiente",
       });
       res.status(200).send({ notificacion: notificacion });
+      await send(
+        "0246759@up.edu.mx",
+        req.user.dataValues.nombre + " ha creado una solicitud de servicio",
+        "Se ha creado una solicitud de servicio, revisala en ",
+        notificacion.id
+      );
     } catch (error) {
       res.status(500).send({ error: error });
     }

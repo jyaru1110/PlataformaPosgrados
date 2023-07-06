@@ -172,7 +172,7 @@ export default function Solicitudes() {
         </thead>
 
         {loading ? (
-         <></>
+          <></>
         ) : (
           <tbody className="font-poppins text-base">
             {solicitudes.map((solicitud) => {
@@ -187,7 +187,9 @@ export default function Solicitudes() {
                   } border-x-0 border-y`}
                   key={solicitud.id}
                 >
-                  <td className="border-r p-2">{solicitud.createdAt.substring(0,10)}</td>
+                  <td className="border-r p-2">
+                    {solicitud.createdAt.substring(0, 10)}
+                  </td>
                   <td className="border-r p-2">{solicitud.estado}</td>
                   <td className="border-r p-2">
                     {solicitud.tipo == "Nuevo" ? (
@@ -216,7 +218,15 @@ export default function Solicitudes() {
                     {solicitud.programa || solicitud.h_programa}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.fecha_inicio || solicitud.h_fecha_inicio}
+                    {solicitud.tipo == "Cambio" &&
+                    solicitud.fecha_inicio != solicitud.h_fecha_inicio ? (
+                      <p className="text-red-600 line-through">
+                        {solicitud.h_fecha_inicio}
+                      </p>
+                    ) : null}
+                    <p className="text-green-400">
+                      {solicitud.fecha_inicio || solicitud.h_fecha_inicio}
+                    </p>
                   </td>
                   <td className="border-r p-2">
                     {solicitud.hora_inicio || solicitud.h_hora_inicio}
@@ -234,8 +244,14 @@ export default function Solicitudes() {
                   <td className="border-r p-2">
                     {solicitud.no_clase || solicitud.h_no_clase}
                   </td>
-                  <td className="border-r p-2">
-                    {solicitud.num_alumnos || solicitud.h_num_alumnos}
+                  <td className="border-r p-2 flex justify-between">
+                    {solicitud.tipo == "Cambio" &&
+                    solicitud.num_alumnos != solicitud.h_num_alumnos ? (
+                      <p className="text-red-600 line-through">
+                        {solicitud.h_num_alumnos}
+                      </p>
+                    ) : null}
+                    <p className="text-green-400">{solicitud.num_alumnos}</p>
                   </td>
                   <td className="p-2 text-center">
                     <input

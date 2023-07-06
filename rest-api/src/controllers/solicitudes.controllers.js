@@ -1,5 +1,5 @@
 const Notificaciones = require("../models/Notificaciones");
-const Horario = require("../models/Horario");
+const Servicios_dia = require("../models/Servicios_dia");
 const Usuario = require("../models/Usuario");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
@@ -53,22 +53,13 @@ const aceptar_solicitud = async (req, res) => {
         res.status(404).send({ message: "No se pudo crear el horario" });
       }
     } else if (notificacion.tipo == "Cambio") {
-      const horario = await Horario.findOne({
-        where: { id_horario: notificacion.id_horario },
+      const servicio = await Servicios_dia.findOne({
+        where: { id: notificacion.id_servicio },
       });
-      if (horario) {
-        horario.salon = notificacion.salon;
-        horario.programa = notificacion.programa;
-        horario.fecha_inicio = notificacion.fecha_inicio;
-        horario.fecha_fin = notificacion.fecha_fin;
-        horario.hora_inicio = notificacion.hora_inicio;
-        horario.hora_fin = notificacion.hora_fin;
-        horario.hora_servicio_inicio = notificacion.hora_servicio_inicio;
-        horario.hora_servicio_fin = notificacion.hora_servicio_fin;
-        horario.no_clase = notificacion.no_clase;
-        horario.dia = notificacion.dia;
-        horario.num_alumnos = notificacion.num_alumnos;
-        await horario.save();
+      if (servicio) {
+        servicio.fecha = notificacion.fecha_inicio;
+        servicio.num_servicios = notificacion.num_alumnos;
+        await servicio.save();
         notificacion.estado = "Aceptado";
         await notificacion.save();
 

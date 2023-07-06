@@ -12,14 +12,14 @@ const config = {
     }
 }
 
-const send = async (email,subject,text) => {
+const send = async (email,subject,text,id) => {
     const transporter = nodemailer.createTransport(config);
     const mailOptions = {
         from: '"Coffee breaks" <0246759@up.edu.mx>',
         to: email,
         subject: subject,
         text: text,
-        html: '<a href="http://localhost:5173/solicitudes">Consulta las solicitudes aquí</a>'
+        html: '<a href="http://localhost:5173/solicitudes">Consulta las solicitudes aquí '+id+'</a>'
     };
     try {
         const info = await transporter.sendMail(mailOptions);

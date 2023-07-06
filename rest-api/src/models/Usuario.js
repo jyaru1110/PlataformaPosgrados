@@ -9,8 +9,7 @@ const Usuario = sequelize.define(
             allowNull: false
         },
         googleId : {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
         },
         nombre : {
             type: DataTypes.STRING
@@ -26,6 +25,9 @@ const Usuario = sequelize.define(
         rol: {
             type: DataTypes.STRING,
         },
+    },
+    {
+        timestamps: false,
     }
 );
 

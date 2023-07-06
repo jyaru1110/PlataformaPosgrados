@@ -153,11 +153,6 @@ const update_horario = async (req, res) => {
       id_horario: id,
       tipo: "Cambio",
     });
-    await send(
-      "0246759@up.edu.mx",
-      req.user.dataValues.nombre + " ha creado una solicitud de servicio",
-      "Se ha creado una solicitud de servicio, revisala en "
-    );
     res.status(200).send({ notificacion: notificacion });
   }
 };
