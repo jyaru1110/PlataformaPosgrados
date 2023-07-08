@@ -8,8 +8,8 @@ export default function ProximoServicio() {
   const loading = resultado.loading;
   return (
     <div className="md:w-2/5 pt-2 md:relative fixed w-11/12 bg-white">
-      <div className="flex items-center ml-2.5 mb-2">
-        <h1 className="font-poppins font-semibold text-lg mr-5">
+      <div className="flex items-center ml-2.5 mb-2 m-auto justify-between md:ml-1 sm:mr-0 sm:w-full">
+        <h1 className="font-poppins font-semibold text-lg">
           Bienvenido {localStorage.getItem("nombre").split(" ")[0]}{" "}
           {localStorage.getItem("nombre").split(" ")[1]}
         </h1>
