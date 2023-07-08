@@ -16,23 +16,23 @@ export default function OpcionesEstado(props) {
             <div className="flex justify-between w-80 font-poppins text-base">
                 {
                     estados.includes("Pendiente") ?
-                    <button className="bg-primary p-2 rounded-3xl text-white active:bg-primary text-sm" onClick={handleEstado} value="Pendiente">Pendiente</button> :
-                    <button className="bg-primarylight p-2 rounded-3xl text-gray1 text-sm" onClick={handleEstado} value="Pendiente">Pendiente</button>
+                    <button className="bg-primary p-1 rounded-3xl text-white active:bg-primary text-xs" onClick={handleEstado} value="Pendiente">Pendiente</button> :
+                    <button className="bg-primarylight p-1 rounded-3xl text-gray1 text-xs" onClick={handleEstado} value="Pendiente">Pendiente</button>
                 }
                 {
                     estados.includes("Cancelado") ?
-                    <button className="bg-primary p-2 rounded-3xl text-white active:bg-primary text-sm" onClick={handleEstado} value="Cancelado">Cancelado</button> :
-                    <button className="bg-primarylight p-2 rounded-3xl text-gray1 text-sm" onClick={handleEstado} value="Cancelado">Cancelado</button>
+                    <button className="bg-primary p-1 rounded-3xl text-white active:bg-primary text-xs" onClick={handleEstado} value="Cancelado">Cancelado</button> :
+                    <button className="bg-primarylight p-1 rounded-3xl text-gray1 text-xs" onClick={handleEstado} value="Cancelado">Cancelado</button>
                 }
                 {
                     estados.includes("Realizado") ?
-                    <button className="bg-primary p-2 rounded-3xl text-white active:bg-primary text-sm" onClick={handleEstado} value="Realizado">Realizado</button> :
-                    <button className="bg-primarylight p-2 rounded-3xl text-gray1 text-sm" onClick={handleEstado} value="Realizado">Realizado</button>
+                    <button className="bg-primary p-1 rounded-3xl text-white active:bg-primary text-xs" onClick={handleEstado} value="Realizado">Realizado</button> :
+                    <button className="bg-primarylight p-1 rounded-3xl text-gray1 text-xs" onClick={handleEstado} value="Realizado">Realizado</button>
                 }
                 {
                     estados.includes("Confirmado") ? 
-                    <button className="bg-primary p-2 rounded-3xl text-white active:bg-primary text-sm" onClick={handleEstado} value="Confirmado">Confirmado</button> :
-                    <button className="bg-primarylight p-2 rounded-3xl text-gray1 text-sm" onClick={handleEstado} value="Confirmado">Confirmado</button>
+                    <button className="bg-primary p-1.5 rounded-3xl text-white active:bg-primary text-xs" onClick={handleEstado} value="Confirmado">Confirmado</button> :
+                    <button className="bg-primarylight p-1.5 rounded-3xl text-gray1 text-xs" onClick={handleEstado} value="Confirmado">Confirmado</button>
                 }
             </div>
         </div>

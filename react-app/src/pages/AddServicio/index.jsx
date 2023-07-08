@@ -98,7 +98,7 @@ export default function AddServicio() {
       response.then((data) => {
         setIsLoading(false);
         if (data.status === 200) {
-          toast.info("Solicitud de servicios enviada");
+          toast.success("Servicios creados");
         } else {
           toast.error("Error al crear servicios");
         }
