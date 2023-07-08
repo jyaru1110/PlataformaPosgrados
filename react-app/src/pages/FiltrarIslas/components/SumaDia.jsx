@@ -28,7 +28,7 @@ export default function SumaDia(props){
             {sumas.sumas.length==0 ? <h1 className="text-center mt-2 font-poppins">No hay servicios para esta fecha</h1> :
             <div>
                 {sumas.sumas.map((suma) => (
-                    <div key = {suma.id} className="flex flex-col justify-center items-center w-36 h-28 rounded-2xl bg-primarylight">
+                    <div key = {suma.id} className="flex flex-col justify-center items-center w-36 h-28 rounded-2xl bg-primarylight m-2">
                         <p className="font-poppins text-xs text-center font-medium text-gray1">{suma.isla.split('/')[0]}</p>
                         <p className="font-poppins text-2xl font-medium">{suma.servicios_totales}</p>
                         <p className="font-poppins text-xs text-center font-thin text-graytextsecondary">servicios</p>
