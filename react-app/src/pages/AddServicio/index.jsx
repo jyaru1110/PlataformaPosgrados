@@ -67,7 +67,7 @@ export default function AddServicio() {
         setIsLoading(false);
         return;
       }
-      if (servicio.fecha_inicio <= string_hoy) {
+      if (servicio.fecha_inicio < string_hoy) {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
