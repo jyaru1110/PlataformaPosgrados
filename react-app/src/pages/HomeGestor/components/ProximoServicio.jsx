@@ -8,12 +8,12 @@ export default function ProximoServicio() {
   const loading = resultado.loading;
   return (
     <div className="md:w-2/5 pt-2 md:relative fixed w-11/12 bg-white">
-      <div className="flex items-center ml-2.5 mb-2 m-auto justify-between md:ml-1 sm:mr-0 sm:w-full">
-        <h1 className="font-poppins font-semibold text-lg">
+      <div className="flex items-center mb-2 m-auto justify-between sm:mr-0 sm:w-full">
+        <h1 className="font-poppins font-semibold text-sm ml-2.5">
           Bienvenido {localStorage.getItem("nombre").split(" ")[0]}{" "}
           {localStorage.getItem("nombre").split(" ")[1]}
         </h1>
-        <div className="bg-blue-100 text-blue-900 font-poppins font-semibold text-center text-sm px-2 py-1 rounded-xl">{localStorage.getItem("rol")=="Gestor"?localStorage.getItem("rol"):localStorage.getItem("escuela")}</div>
+        <div className="bg-blue-100 text-blue-900 font-poppins font-semibold text-center text-xs px-2 py-1 rounded-xl">{localStorage.getItem("rol")=="Gestor"?localStorage.getItem("rol"):localStorage.getItem("escuela")}</div>
       </div>
       <div className="m-auto rounded-3xl flex flex-col bg-primary justify-between sm:my-0 md:ml-1 sm:mr-0 sm:w-full">
         <h1 className="font-poppins pl-4 pt-4 font-medium text-whiteprimary ml-1 text-lg mb-2">
