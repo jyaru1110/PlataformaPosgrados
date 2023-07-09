@@ -22,7 +22,7 @@ const Notificaciones = sequelize.define(
     fecha_inicio: {
       type: DataTypes.DATEONLY,
     },
-    fecha_fin: {
+    fecha_actual: {
       type: DataTypes.DATEONLY,
     },
     hora_inicio: {
@@ -44,10 +44,11 @@ const Notificaciones = sequelize.define(
         key: "no_clase",
       },
     },
-    dia: {
-      type: DataTypes.STRING,
-    },
     num_alumnos: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    num_alumnos_actual: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },

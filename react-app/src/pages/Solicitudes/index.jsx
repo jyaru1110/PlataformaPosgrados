@@ -219,9 +219,9 @@ export default function Solicitudes() {
                   </td>
                   <td className="border-r p-2">
                     {solicitud.tipo == "Cambio" &&
-                    solicitud.fecha_inicio != solicitud.h_fecha_inicio ? (
+                    solicitud.fecha_inicio != solicitud.fecha_actual ? (
                       <p className="text-red-600 line-through">
-                        {solicitud.h_fecha_inicio}
+                        {solicitud.fecha_actual}
                       </p>
                     ) : null}
                     <p className="text-green-400">
@@ -246,9 +246,9 @@ export default function Solicitudes() {
                   </td>
                   <td className="border-r p-2 flex justify-between">
                     {solicitud.tipo == "Cambio" &&
-                    solicitud.num_alumnos != solicitud.h_num_alumnos ? (
+                    solicitud.num_alumnos != solicitud.num_alumnos_actual ? (
                       <p className="text-red-600 line-through">
-                        {solicitud.h_num_alumnos}
+                        {solicitud.num_alumnos_actual}
                       </p>
                     ) : null}
                     <p className="text-green-400">{solicitud.num_alumnos}</p>

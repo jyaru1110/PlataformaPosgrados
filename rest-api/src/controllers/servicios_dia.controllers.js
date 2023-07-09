@@ -250,23 +250,22 @@ const update_servicio = async (req, res) => {
         salon: salon_id,
         programa: programa,
         fecha_inicio: fecha,
-        fecha_fin: fecha,
+        fecha_actual: servicio.fecha,
         hora_inicio: hora_inicio,
         hora_fin: hora_fin,
         hora_servicio_inicio: hora_servicio_inicio,
         hora_servicio_fin: hora_servicio_fin,
-        num_servicios: num_servicios,
         no_clase: no_clase,
         num_alumnos: num_servicios,
+        num_alumnos_actual: servicio.num_servicios,
         id_usuario: req.user.dataValues.id,
         estado: "Pendiente",
       });
       res.status(200).send({ notificacion: notificacion });
       await send(
         "0246759@up.edu.mx",
-        req.user.dataValues.nombre + " ha creado una solicitud de servicio",
-        "Se ha creado una solicitud de servicio, revisala en ",
-        notificacion.id
+        req.user.dataValues.nombre + " ha creado una solicitud de cambio de servicio",
+        "Se ha creado una solicitud de servicio, revisala en "
       );
     } catch (error) {
       res.status(500).send({ error: error });
@@ -277,22 +276,22 @@ const update_servicio = async (req, res) => {
 const delete_servicio = async (req, res) => {
   const id = req.params.id;
   const rol = req.user.dataValues.rol;
-  const servicio = Servicios_dia.findOne({
+  const servicio = await Servicios_dia.findOne({
     where: {
       id: id,
     },
   });
-  if (rol == "Gestor" || servicio.estado !== "Confirmado") {
-    try {
-      const servicio = await Servicios_dia.destroy({
-        where: {
-          id: id,
-        },
-      });
-      res.status(200).send({ servicio: servicio });
-    } catch (error) {
-      res.status(500).send({ error: error });
-    }
+  if (servicio.estado !== "Confirmado") {
+    const servicio = await Servicios_dia.destroy({
+      where: {
+        id: id,
+      },
+    });
+    res.status(200).send({ servicio: servicio });
+  } else if (rol == "Gestor") {
+    servicio.estado = "Cancelado";
+    await servicio.save();
+    res.status(200).send({ servicio: servicio });
   } else {
     const notificacion = await Notificaciones.create({
       id_servicio: id,
@@ -305,11 +304,15 @@ const delete_servicio = async (req, res) => {
       hora_fin: servicio.hora_fin,
       hora_servicio_inicio: servicio.hora_servicio_inicio,
       hora_servicio_fin: servicio.hora_servicio_fin,
-      num_servicios: servicio.num_servicios,
+      num_alumnos: servicio.num_servicios,
       no_clase: servicio.no_clase,
-      num_alumnos: servicio.num_alumnos,
-      id_usuario: req.user.dataValues.id
+      id_usuario: req.user.dataValues.id,
     });
+    await send(
+      "0246759@up.edu.mx",
+      req.user.dataValues.nombre + " ha creado una solicitud de cancelación",
+      "Se ha creado una solicitud de servicio, revisala en "
+    );
     res.status(200).send({ notificacion: notificacion });
   }
 };
