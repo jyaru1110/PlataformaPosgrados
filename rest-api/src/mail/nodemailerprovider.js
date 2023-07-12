@@ -28,7 +28,7 @@ const send = async (email, subject, notificacion, persona) => {
     notificacion.hora_servicio_inicio.substring(0,5)+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
     notificacion.hora_servicio_fin.substring(0,5)+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
     notificacion.no_clase+'</td><td style="border-left: 1px solid; border-bottom:1px solid;border-color: #E1E3E8; padding:8px">'+
-    notificacion.num_alumnos+'</td></tr></tbody></table>';
+    notificacion.num_alumnos+'</td></tr></tbody></table><a href="https://coffee-breaks.vercel.app/solicitudes">Revisa las solicitudes aquí</a>';
 
     const mailOptions = {
       from: '"Coffee breaks" <0246759@up.edu.mx>',

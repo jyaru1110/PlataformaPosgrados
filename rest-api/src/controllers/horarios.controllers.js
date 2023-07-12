@@ -1,8 +1,10 @@
 const Horario = require("../models/Horario");
 const Servicios_dia = require("../models/Servicios_dia");
 const Notificaciones = require("../models/Notificaciones");
+const { Op } = require("sequelize");
 const send = require("../mail/nodemailerprovider");
 const sequelize = require("../database/database");
+const e = require("express");
 
 const get_horarios_todos = async (req, res) => {
   const rol = req.user.dataValues.rol;
@@ -116,44 +118,195 @@ const update_horario = async (req, res) => {
     programa,
     num_alumnos,
   } = req.body;
-  if (rol == "Gestor") {
-    const horario = await Horario.update(
+  const horario = await Horario.findOne({
+    where: { id_horario: id },
+  });
+  if (
+    rol == "Gestor" ||
+    (horario.dataValues.num_alumnos == num_alumnos &&
+      horario.dataValues.fecha_inicio == fecha_inicio &&
+      fecha_fin == horario.dataValues.fecha_fin &&
+      dia == horario.dataValues.dia)
+  ) {
+    horario.hora_inicio = hora_inicio;
+    horario.hora_fin = hora_fin;
+    horario.hora_servicio_inicio = hora_servicio_inicio;
+    horario.hora_servicio_fin = hora_servicio_fin;
+    horario.salon = salon;
+    horario.no_clase = no_clase;
+    horario.programa = programa;
+    await horario.save();
+    const servicios = await Servicios_dia.update(
       {
         hora_inicio: hora_inicio,
         hora_fin: hora_fin,
-        hora_servicio_inicio: hora_servicio_inicio,
-        hora_servicio_fin: hora_servicio_fin,
-        dia: dia,
-        salon: salon,
-        fecha_inicio: fecha_inicio,
-        fecha_fin: fecha_fin,
+        salon_id: salon,
         no_clase: no_clase,
         programa: programa,
-        num_alumnos: num_alumnos,
+        hora_servicio_inicio: hora_servicio_inicio,
+        hora_servicio_fin: hora_servicio_fin,
       },
       {
-        where: { id_horario: id },
+        where: {
+          id_horario: id,
+        },
       }
     );
-    res.status(200).send({ horario: horario });
-  } else {
-    const notificacion = await Notificaciones.create({
-      hora_inicio: hora_inicio,
-      hora_fin: hora_fin,
-      hora_servicio_inicio: hora_servicio_inicio,
-      hora_servicio_fin: hora_servicio_fin,
-      dia: dia,
-      salon: salon,
-      fecha_inicio: fecha_inicio,
-      fecha_fin: fecha_fin,
-      no_clase: no_clase,
-      programa: programa,
-      num_alumnos: num_alumnos,
-      id_usuario: req.user.dataValues.id,
-      id_horario: id,
-      tipo: "Cambio",
+  } else if (dia !== horario.dataValues.dia) {
+    await Servicios_dia.destroy({
+      where: {
+        id_horario: id,
+        estado: "Pendiente",
+      },
     });
-    res.status(200).send({ notificacion: notificacion });
+    const servicios = await Servicios_dia.findAll({
+      where: {
+        id_horario: id,
+        estado: "Confirmado",
+      },
+    });
+    servicios.forEach(async (servicio) => {
+      const notificacion_dia = await Notificaciones.create({
+        id_servicio: servicio.dataValues.id,
+        fecha_inicio: servicio.dataValues.fecha,
+        num_alumnos: servicio.dataValues.num_servicios,
+        hora_inicio: servicio.dataValues.hora_inicio,
+        hora_fin: servicio.dataValues.hora_fin,
+        salon: servicio.dataValues.salon_id,
+        no_clase: servicio.dataValues.no_clase,
+        programa: servicio.dataValues.programa,
+        hora_servicio_inicio: servicio.dataValues.hora_servicio_inicio,
+        hora_servicio_fin: servicio.dataValues.hora_servicio_fin,
+        id_usuario: req.user.dataValues.id,
+        tipo: "Cancelacion",
+      });
+      await send(
+        "0246759@up.edu.mx",
+        req.user.dataValues.nombre + " ha creado una solicitud de cancelacion",
+        notificacion_dia,
+        req.user.dataValues.nombre
+      );
+    });
+    //aquí deberá suceder el flujo para crear los servicios correspondientes creo un nuevo horario con todo LO NUEVO
+  } else {
+    if (fecha_inicio !== horario.dataValues.fecha_inicio) {
+      await Servicios_dia.destroy({
+        where: {
+          id_horario: id,
+          estado: "Pendiente",
+          fecha: {
+            [Op.lt]: fecha_inicio,
+          },
+        },
+      });
+      const servicios_confirmados_fecha_inicio = await Servicios_dia.findAll({
+        where: {
+          id_horario: id,
+          estado: "Confirmado",
+          fecha: {
+            [Op.lt]: fecha_inicio,
+          },
+        },
+      });
+      servicios_confirmados_fecha_inicio.forEach(async (servicio) => {
+        const notificacion_fecha_inicio = await Notificaciones.create({
+          id_servicio: servicio.dataValues.id,
+          fecha_inicio: servicio.dataValues.fecha,
+          num_alumnos: servicio.dataValues.num_servicios,
+          hora_inicio: servicio.dataValues.hora_inicio,
+          hora_fin: servicio.dataValues.hora_fin,
+          salon: servicio.dataValues.salon_id,
+          no_clase: servicio.dataValues.no_clase,
+          programa: servicio.dataValues.programa,
+          hora_servicio_inicio: servicio.dataValues.hora_servicio_inicio,
+          hora_servicio_fin: servicio.dataValues.hora_servicio_fin,
+          id_usuario: req.user.dataValues.id,
+          tipo: "Cancelacion",
+        });
+        await send(
+          "0246759@up.edu.mx",
+          req.user.dataValues.nombre + " ha creado una solicitud de cancelacion",
+          notificacion_fecha_inicio,
+          req.user.dataValues.nombre
+        );
+      });
+    }
+    if (fecha_fin !== horario.dataValues.fecha_fin) {
+      await Servicios_dia.destroy({
+        where: {
+          id_horario: id,
+          estado: "Pendiente",
+          fecha: {
+            [Op.gt]: fecha_fin,
+          },
+        },
+      });
+      const servicios_confirmados_fecha_fin = await Servicios_dia.findAll({
+        where: {
+          id_horario: id,
+          estado: "Confirmado",
+          fecha: {
+            [Op.gt]: fecha_fin,
+          },
+        },
+      });
+      servicios_confirmados_fecha_fin.forEach(async (servicio) => {
+        const notificacion_fecha_f = await Notificaciones.create({
+          id_servicio: servicio.dataValues.id,
+          fecha_inicio: servicio.dataValues.fecha,
+          num_alumnos: servicio.dataValues.num_servicios,
+          hora_inicio: servicio.dataValues.hora_inicio,
+          hora_fin: servicio.dataValues.hora_fin,
+          salon: servicio.dataValues.salon_id,
+          no_clase: servicio.dataValues.no_clase,
+          programa: servicio.dataValues.programa,
+          hora_servicio_inicio: servicio.dataValues.hora_servicio_inicio,
+          hora_servicio_fin: servicio.dataValues.hora_servicio_fin,
+          id_usuario: req.user.dataValues.id,
+          tipo: "Cancelacion",
+        });
+        await send(
+          "0246759@up.edu.mx",
+          req.user.dataValues.nombre + " ha creado una solicitud de cancelacion",
+          notificacion_fecha_f,
+          req.user.dataValues.nombre
+        );
+      });
+    }
+    if (num_alumnos !== horario.dataValues.num_alumnos) {
+      await Servicios_dia.update({
+        num_servicios: num_alumnos,
+      });
+      const servicios_confirmados_num_alumnos = await Servicios_dia.findAll({
+        where: {
+          id_horario: id,
+          estado: "Confirmado",
+        },
+      });
+      servicios_confirmados_num_alumnos.forEach(async (servicio) => {
+        const notificacion_num = await Notificaciones.create({
+          id_servicio: servicio.dataValues.id,
+          fecha_inicio: servicio.dataValues.fecha,
+          num_alumnos: servicio.dataValues.num_servicios,
+          hora_inicio: servicio.dataValues.hora_inicio,
+          hora_fin: servicio.dataValues.hora_fin,
+          salon: servicio.dataValues.salon_id,
+          no_clase: servicio.dataValues.no_clase,
+          programa: servicio.dataValues.programa,
+          hora_servicio_inicio: servicio.dataValues.hora_servicio_inicio,
+          hora_servicio_fin: servicio.dataValues.hora_servicio_fin,
+          id_usuario: req.user.dataValues.id,
+          tipo: "Cambio",
+        });
+      });
+      await send(
+        "0246759@up.edu.mx",
+        req.user.dataValues.nombre + " ha creado una solicitud de cancelacion",
+        notificacion_num,
+        req.user.dataValues.nombre
+      );
+    }
+    res.status(200).send({ horario: horario });
   }
 };
 
