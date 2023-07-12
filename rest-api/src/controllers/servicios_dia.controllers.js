@@ -119,14 +119,14 @@ const get_servicios_pendientes = async (req, res) => {
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select * from servicios_dia where estado = 'Confirmado' and fecha = '" +
+      "select * from servicios_dia where not estado = 'Cancelado' and fecha = '" +
       fecha +
       "' order by hora_inicio asc";
   } else {
     query =
       "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where programa.escuela ='" +
       req.user.dataValues.escuela +
-      "' and estado = 'Confirmado' and fecha = '" +
+      "' and not estado = 'Cancelado' and fecha = '" +
       fecha +
       "' order by servicios_dia.hora_inicio asc";
   }
@@ -143,12 +143,12 @@ const get_proximo_servicio = async (req, res) => {
     query =
       "select * from servicios_dia where fecha >= '" +
       iso_today +
-      "' and estado = 'Confirmado' order by fecha asc, hora_inicio asc limit 1";
+      "' and not estado = 'Cancelado' order by fecha asc, hora_inicio asc limit 1";
   } else {
     query =
       "select * from servicios_dia inner join programa on programa.programa =  servicios_dia.programa where servicios_dia.fecha >= '" +
       iso_today +
-      "' and servicios_dia.estado = 'Confirmado' and programa.escuela='" +
+      "' and not servicios_dia.estado = 'Cancelado' and programa.escuela='" +
       req.user.dataValues.escuela +
       "' order by fecha asc, hora_inicio asc limit 1";
   }
