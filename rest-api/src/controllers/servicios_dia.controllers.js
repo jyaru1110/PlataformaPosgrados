@@ -261,12 +261,13 @@ const update_servicio = async (req, res) => {
         id_usuario: req.user.dataValues.id,
         estado: "Pendiente",
       });
-      res.status(200).send({ notificacion: notificacion });
       await send(
         "0246759@up.edu.mx",
         req.user.dataValues.nombre + " ha creado una solicitud de cambio de servicio",
-        "Se ha creado una solicitud de servicio, revisala en "
+        notificacion.dataValues,
+        req.user.dataValues.nombre 
       );
+      res.status(200).send({ notificacion: notificacion });
     } catch (error) {
       res.status(500).send({ error: error });
     }
@@ -311,7 +312,8 @@ const delete_servicio = async (req, res) => {
     await send(
       "0246759@up.edu.mx",
       req.user.dataValues.nombre + " ha creado una solicitud de cancelación",
-      "Se ha creado una solicitud de servicio, revisala en "
+      notificacion,
+      req.user.dataValues.nombre
     );
     res.status(200).send({ notificacion: notificacion });
   }

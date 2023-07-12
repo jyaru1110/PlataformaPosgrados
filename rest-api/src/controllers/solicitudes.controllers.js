@@ -47,7 +47,7 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
-        send(usuario.email, "Solicitud aceptada", "Solicitud aceptada");
+        send(usuario.email,"Solicitud aceptada",notificacion.dataValues,usuario.nombre);
         res.status(200).send({ message: "Solicitud aceptada" });
       } else {
         res.status(404).send({ message: "No se pudo crear el horario" });
@@ -66,7 +66,7 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
-        send(usuario.email, "Solicitud aceptada", "Solicitud aceptada");
+        send(usuario.email, "Solicitud de cambio aceptada",notificacion.dataValues,usuario.nombre);
         res.status(200).send({ message: "Solicitud aceptada" });
       } else {
         res.status(404).send({ message: "No se encontro el horario" });
@@ -83,7 +83,7 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
-        send(usuario.email, "Solicitud aceptada", "Solicitud aceptada");
+        send(usuario.email, "Solicitud de cancelación aceptada",notificacion.dataValues,usuario.nombre);
         res.status(200).send({ message: "Solicitud aceptada" });
       } else {
         res.status(404).send({ message: "No se encontro el horario" });
@@ -103,7 +103,7 @@ const rechazar_solicitud = async (req, res) => {
     const usuario = await Usuario.findOne({
       where: { id: notificacion.id_usuario },
     });
-    send(usuario.email, "Solicitud rechazada", "Solicitud rechazada");
+    send(usuario.email, "Solicitud rechazada", notificacion.dataValues,usuario.nombre);
     res.status(200).send({ message: "Solicitud rechazada" });
   } else {
     res.status(404).send({ message: "No se encontro la solicitud" });
