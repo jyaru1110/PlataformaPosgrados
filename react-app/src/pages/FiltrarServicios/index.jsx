@@ -61,6 +61,8 @@ export default function FiltarServicios() {
       withCredentials: true,
     }).then(() => {
       window.location.reload();
+    }).catch((error) => {
+      console.log(error);
     });
   };
 
