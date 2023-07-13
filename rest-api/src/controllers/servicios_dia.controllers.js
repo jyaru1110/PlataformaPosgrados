@@ -29,6 +29,21 @@ const get_servicios_fecha = async (req, res) => {
   }
 };
 
+const confirmar_servicio = async (req, res) => {
+  const rol = req.user.dataValues.rol;
+  const servicios = req.body.servicios;
+  const servicios_dia = await Servicios_dia.update({
+    estado: "Confirmado",
+  }, {
+    where: {
+      id: {
+        [Op.in]: servicios
+      }
+    }
+  }); 
+  res.status(200).send({ servicios: servicios_dia });
+};
+
 const get_servicio = async (req, res) => {
   const id = req.params.id;
   try {
@@ -330,4 +345,5 @@ module.exports = {
   update_servicio,
   delete_servicio,
   get_servicio,
+  confirmar_servicio
 };
