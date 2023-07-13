@@ -32,6 +32,9 @@ const get_servicios_fecha = async (req, res) => {
 const confirmar_servicio = async (req, res) => {
   const rol = req.user.dataValues.rol;
   const servicios = req.body.servicios;
+  if(servicios.length == 0 || rol != "Gestor"){
+    res.status(500).send({ error: "No se pudo confirmar el servicio" });
+  }
   const servicios_dia = await Servicios_dia.update({
     estado: "Confirmado",
   }, {

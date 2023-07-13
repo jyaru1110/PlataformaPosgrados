@@ -40,6 +40,7 @@ export default function FiltarServicios() {
   ]);
 
   const select_servicio_confirmado = (servicio) => {
+    if(localStorage.getItem("rol")!="Gestor") return;
     if (servicios_confirmados.includes(servicio)) {
       setServiciosConfirmados((servicios_confirmados) =>
         servicios_confirmados.filter((servicio_i) => servicio_i !== servicio)
@@ -109,7 +110,7 @@ export default function FiltarServicios() {
           value_inicio={fecha_inicio}
         />
         <OpcionesEstado estados={estados} setEstados={setEstados} />
-        {servicios_confirmados.length > 0 ? <button className="w-full p-1 bg-blue-600 font-poppins text-white font-medium mt-2 rounded-xl" onClick={()=>{confirmar_servicios()}}>Confirmar</button> : null}
+        {servicios_confirmados.length > 0 && localStorage.getItem("rol")=="Gestor"? <button className="w-full p-1 bg-blue-600 font-poppins text-white font-medium mt-2 rounded-xl" onClick={()=>{confirmar_servicios()}}>Confirmar</button> : null}
       </div>
       <div className="mt-4 flex flex-wrap md:ml-96 w-full">
         {loading ? (
