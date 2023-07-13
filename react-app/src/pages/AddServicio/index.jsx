@@ -19,6 +19,7 @@ export default function AddServicio() {
   const [servicios, setServicios] = useState([]);
   const [seleccionados, setSeleccionados] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [doble, setDoble] = useState(false);
 
   const url_backend = import.meta.env.VITE_URL_API;
 
@@ -106,10 +107,6 @@ export default function AddServicio() {
     });
   };
 
-  useEffect(() => {
-    console.log(servicios);
-  }, [servicios]);
-
   const addServicio = () => {
     setServicios([
       ...servicios,
@@ -131,6 +128,9 @@ export default function AddServicio() {
   };
 
   const updateServicio = (id, updatedServicio) => {
+    if (updatedServicio.salon.substring(0, 2) === "SF") {
+      setDoble(true);
+    }
     setServicios(
       servicios.map((servicio) =>
         servicio.id === id ? updatedServicio : servicio
@@ -139,6 +139,13 @@ export default function AddServicio() {
   };
 
   const deleteServicio = (id) => {
+    console.log(servicios.find((servicio) => servicio.id === id).salon);
+    if (
+      servicios.find((servicio) => servicio.id === id).salon.substring(0, 2) ===
+      "SF"
+    ) {
+      setDoble(false);
+    }
     setServicios(servicios.filter((servicio) => servicio.id !== id));
     setSeleccionados(
       seleccionados.filter((seleccionado) => seleccionado !== id)
@@ -173,7 +180,10 @@ export default function AddServicio() {
             <th className="border-r p-2 font-medium">Hora fin servicio</th>
             <th className="border-r p-2 font-medium">Fecha inicio</th>
             <th className="border-r p-2 font-medium">Fecha fin</th>
-            <th className="p-2 font-medium">Número de servicios</th>
+            <th className="border-r p-2 font-medium">Número de servicios</th>
+            {doble ? (
+              <th className="p-2 font-medium">Doble</th>
+            ) : null}
           </tr>
         </thead>
         <tbody className="font-poppins text-base">
@@ -366,6 +376,14 @@ export default function AddServicio() {
                     }}
                   />
                 </td>
+                {doble ? (
+                  <td className="p-2 border-r">
+                    <input
+                      className="w-full placeholder:text-gray1"
+                      type="checkbox"
+                    ></input>
+                  </td>
+                ) : null}
                 <td className="p-2">
                   <button
                     className="text-primary"

@@ -8,12 +8,14 @@ import OpcionesEstado from "../../components/form/OpcionesEstado";
 import ButtonAdd from "../HomeGestor/components/ButtonAdd";
 import Header from "../../components/Header";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
 import { useNavigate } from "react-router-dom";
 
-const url_backend  = import.meta.env.VITE_URL_API;
+const url_backend = import.meta.env.VITE_URL_API;
 
 export default function FiltarServicios() {
   const date = new Date();
@@ -40,7 +42,7 @@ export default function FiltarServicios() {
   ]);
 
   const select_servicio_confirmado = (servicio) => {
-    if(localStorage.getItem("rol")!="Gestor") return;
+    if (localStorage.getItem("rol") != "Gestor") return;
     if (servicios_confirmados.includes(servicio)) {
       setServiciosConfirmados((servicios_confirmados) =>
         servicios_confirmados.filter((servicio_i) => servicio_i !== servicio)
@@ -54,16 +56,31 @@ export default function FiltarServicios() {
   };
 
   const confirmar_servicios = () => {
-    axios.put(url_backend + "/servicios/confirmar", {
-      servicios: servicios_confirmados,
-    },
-    {
-      withCredentials: true,
-    }).then(() => {
-      window.location.reload();
-    }).catch((error) => {
-      console.log(error);
+    toast.onChange((payload) => {
+      if (payload.type === "success" && payload.status === "removed") {
+        window.location.reload();
+      }
     });
+    axios
+      .put(
+        url_backend + "/servicios/confirmar",
+        {
+          servicios: servicios_confirmados,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then(() => {
+        toast.success("Servicios confirmados", {
+          pauseOnFocusLoss: true,
+        });
+      })
+      .catch((error) => {
+        toast.error("Error al confirmar servicios", {
+          pauseOnFocusLoss: true,
+        });
+      });
   };
 
   const filtrar = (servicio) => {
@@ -112,7 +129,17 @@ export default function FiltarServicios() {
           value_inicio={fecha_inicio}
         />
         <OpcionesEstado estados={estados} setEstados={setEstados} />
-        {servicios_confirmados.length > 0 && localStorage.getItem("rol")=="Gestor"? <button className="w-full p-1 bg-blue-600 font-poppins text-white font-medium mt-2 rounded-xl" onClick={()=>{confirmar_servicios()}}>Confirmar</button> : null}
+        {servicios_confirmados.length > 0 &&
+        localStorage.getItem("rol") == "Gestor" ? (
+          <button
+            className="w-full p-1 bg-blue-600 font-poppins text-white font-medium mt-2 rounded-xl"
+            onClick={() => {
+              confirmar_servicios();
+            }}
+          >
+            Confirmar
+          </button>
+        ) : null}
       </div>
       <div className="mt-4 flex flex-wrap md:ml-96 w-full">
         {loading ? (
@@ -140,7 +167,7 @@ export default function FiltarServicios() {
                       </p>
                     ) : (
                       <span
-                        className={`rounded-xl h-5 w-5 shadow-md cursor-pointer ${
+                        className={`rounded-xl h-6 w-6 shadow-md cursor-pointer ${
                           servicios_confirmados.includes(servicio_i.id)
                             ? "bg-blue-600"
                             : "bg-white"
@@ -151,8 +178,8 @@ export default function FiltarServicios() {
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
+                          width="25"
+                          height="25"
                           viewBox="0 0 512 512"
                           id="tick"
                           fill="white"
@@ -222,6 +249,7 @@ export default function FiltarServicios() {
       <div className="fixed right-14 bottom-14">
         <ButtonAdd ruta="/add-servicio" />
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -254,10 +254,12 @@ export default function Solicitudes() {
                     <p className="text-green-400">{solicitud.num_alumnos}</p>
                   </td>
                   <td className="p-2 text-center">
-                    <input
-                      type="checkbox"
-                      onChange={() => onCheck(solicitud.id)}
-                    />
+                    {solicitud.estado === "Pendiente" || localStorage.getItem("rol") == "Gestor" ? (
+                      <input
+                        type="checkbox"
+                        onChange={() => onCheck(solicitud.id)}
+                      />
+                    ) : null}
                   </td>
                 </tr>
               );
