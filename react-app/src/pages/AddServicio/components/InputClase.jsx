@@ -1,6 +1,6 @@
 import Select from "react-select";
-const InputClase = ({onchange,options}) => {
-  
+const InputClase = ({onchange,options,default_value}) => {
+  const value_default = default_value;
 
   const actualizar = (clase) => {
     clase = clase.label;
@@ -25,7 +25,7 @@ const InputClase = ({onchange,options}) => {
           }),
         }}
         options={options}
-        defaultValue={{ value: 0, label: "Clase" }}
+        defaultValue={{label: value_default, value: value_default}}
         onChange={actualizar}
       />
     </div>

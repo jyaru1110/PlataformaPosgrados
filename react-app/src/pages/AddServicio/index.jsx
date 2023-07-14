@@ -19,7 +19,6 @@ export default function AddServicio() {
   const [servicios, setServicios] = useState([]);
   const [seleccionados, setSeleccionados] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [doble, setDoble] = useState(false);
 
   const url_backend = import.meta.env.VITE_URL_API;
 
@@ -68,6 +67,22 @@ export default function AddServicio() {
         setIsLoading(false);
         return;
       }
+      if(servicio.salon.substring(0,2) === "SF" && (parseInt(servicio.hora_servicio_inicio.substring(0,2))>22 || parseInt(servicio.hora_servicio_inicio.substring(0,2))<17 || parseInt(servicio.hora_servicio_fin.substring(0,2))>22 || parseInt(servicio.hora_servicio_fin.substring(0,2))<17)){
+        seleccionados.includes(servicio.id)
+          ? null
+          : setSeleccionados([...seleccionados, servicio.id]);
+        toast.error("La isla Santa fe solo esta disponible de 17:00 a 22:00");
+        setIsLoading(false);
+        return;
+      }
+      if(servicio.salon.substring(0,2) !== "SF" && servicio.dia !== "Sábado" && (parseInt(servicio.hora_servicio_inicio.substring(0,2))>22 || parseInt(servicio.hora_servicio_inicio.substring(0,2))<19 || parseInt(servicio.hora_servicio_fin.substring(0,2))>22 || parseInt(servicio.hora_servicio_fin.substring(0,2))<19)){
+        seleccionados.includes(servicio.id)
+          ? null
+          : setSeleccionados([...seleccionados, servicio.id]);
+        toast.error("Las islas en Mixcoac solo esta disponible de 19:00 a 22:00");
+        setIsLoading(false);
+        return;
+      }
       if (servicio.fecha_inicio < string_hoy) {
         seleccionados.includes(servicio.id)
           ? null
@@ -107,6 +122,9 @@ export default function AddServicio() {
     });
   };
 
+  useEffect(() => {
+    console.log(servicios);
+  }, [servicios]);
   const addServicio = () => {
     setServicios([
       ...servicios,
@@ -127,10 +145,29 @@ export default function AddServicio() {
     ]);
   };
 
+  const duplicar_fila = (id) => {
+    const servicio_a_duplicar = servicios.find((servicio) => servicio.id === id);
+    setServicios([
+      ...servicios,
+      {
+        id: servicios.length,
+        programa: servicio_a_duplicar.programa,
+        no_clase: servicio_a_duplicar.no_clase,
+        salon: servicio_a_duplicar.salon,
+        dia: servicio_a_duplicar.dia,
+        hora_inicio: servicio_a_duplicar.hora_inicio,
+        hora_fin: servicio_a_duplicar.hora_fin,
+        hora_servicio_inicio: servicio_a_duplicar.hora_servicio_inicio,
+        hora_servicio_fin: servicio_a_duplicar.hora_servicio_fin,
+        num_alumnos: servicio_a_duplicar.num_alumnos,
+        fecha_inicio: servicio_a_duplicar.fecha_inicio,
+        fecha_fin: servicio_a_duplicar.fecha_fin,
+      },
+    ]);
+  };
+
+
   const updateServicio = (id, updatedServicio) => {
-    if (updatedServicio.salon.substring(0, 2) === "SF") {
-      setDoble(true);
-    }
     setServicios(
       servicios.map((servicio) =>
         servicio.id === id ? updatedServicio : servicio
@@ -139,13 +176,6 @@ export default function AddServicio() {
   };
 
   const deleteServicio = (id) => {
-    console.log(servicios.find((servicio) => servicio.id === id).salon);
-    if (
-      servicios.find((servicio) => servicio.id === id).salon.substring(0, 2) ===
-      "SF"
-    ) {
-      setDoble(false);
-    }
     setServicios(servicios.filter((servicio) => servicio.id !== id));
     setSeleccionados(
       seleccionados.filter((seleccionado) => seleccionado !== id)
@@ -181,9 +211,6 @@ export default function AddServicio() {
             <th className="border-r p-2 font-medium">Fecha inicio</th>
             <th className="border-r p-2 font-medium">Fecha fin</th>
             <th className="border-r p-2 font-medium">Número de servicios</th>
-            {doble ? (
-              <th className="p-2 font-medium">Doble</th>
-            ) : null}
           </tr>
         </thead>
         <tbody className="font-poppins text-base">
@@ -209,6 +236,7 @@ export default function AddServicio() {
                       );
                     }}
                     options={options_programas}
+                    default_value={servicio.programa}
                   />
                 </td>
                 <td className="border-r p-2">
@@ -225,6 +253,7 @@ export default function AddServicio() {
                       );
                     }}
                     options={options_clases}
+                    default_value={servicio.no_clase}
                   ></InputClase>
                 </td>
                 <td className="border-r p-2">
@@ -241,6 +270,7 @@ export default function AddServicio() {
                       );
                     }}
                     options={options_salones}
+                    default_value={servicio.salon}
                   />
                 </td>
                 <td className="border-r p-2">
@@ -254,13 +284,14 @@ export default function AddServicio() {
                       );
                     }}
                     options={options_dias}
+                    default_value={servicio.dia}
                   />
                 </td>
                 <td className="border-r p-2">
                   <input
                     className="w-full placeholder:text-gray1"
                     type="time"
-                    placeholder="Hora inicio"
+                    defaultValue={servicio.hora_inicio}
                     onChange={(e) => {
                       updateServicio(servicio.id, {
                         ...servicio,
@@ -278,7 +309,7 @@ export default function AddServicio() {
                   <input
                     className="w-full placeholder:text-gray1"
                     type="time"
-                    placeholder="Hora fin"
+                    defaultValue={servicio.hora_fin}
                     onChange={(e) => {
                       updateServicio(servicio.id, {
                         ...servicio,
@@ -296,7 +327,7 @@ export default function AddServicio() {
                   <input
                     className="w-full placeholder:text-gray1"
                     type="time"
-                    placeholder="Hora servicio inicio"
+                    defaultValue={servicio.hora_servicio_inicio}
                     onChange={(e) => {
                       updateServicio(servicio.id, {
                         ...servicio,
@@ -314,7 +345,7 @@ export default function AddServicio() {
                   <input
                     className="w-full placeholder:text-gray1"
                     type="time"
-                    placeholder="Hora servicio fin"
+                    defaultValue={servicio.hora_servicio_fin}
                     onChange={(e) => {
                       updateServicio(servicio.id, {
                         ...servicio,
@@ -332,7 +363,7 @@ export default function AddServicio() {
                   <input
                     className="w-full placeholder:text-gray1"
                     type="date"
-                    placeholder="Fecha inicio"
+                    defaultValue={servicio.fecha_inicio}
                     onChange={(e) => {
                       updateServicio(servicio.id, {
                         ...servicio,
@@ -350,7 +381,7 @@ export default function AddServicio() {
                   <input
                     className="w-full placeholder:text-gray1"
                     type="date"
-                    placeholder="Fecha fin"
+                    defaultValue={servicio.fecha_fin}
                     onChange={(e) => {
                       updateServicio(servicio.id, {
                         ...servicio,
@@ -368,6 +399,7 @@ export default function AddServicio() {
                   <input
                     className="w-full placeholder:text-gray1"
                     type="number"
+                    defaultValue={servicio.num_alumnos}
                     onChange={(e) => {
                       updateServicio(servicio.id, {
                         ...servicio,
@@ -376,15 +408,10 @@ export default function AddServicio() {
                     }}
                   />
                 </td>
-                {doble ? (
-                  <td className="p-2 border-r">
-                    <input
-                      className="w-full placeholder:text-gray1"
-                      type="checkbox"
-                    ></input>
-                  </td>
-                ) : null}
-                <td className="p-2">
+                <td className="p-1 border-r">
+                  <button className="text-primary" onClick={()=>duplicar_fila(servicio.id)}>Duplicar</button>
+                </td>
+                <td className="p-1">
                   <button
                     className="text-primary"
                     onClick={() => deleteServicio(servicio.id)}
