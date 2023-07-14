@@ -1,7 +1,5 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database");
-const Clase = require("./Clase");
-const Salon = require("./Salon");
 
 
 const Servicios_dia = sequelize.define(
@@ -82,5 +80,4 @@ const Servicios_dia = sequelize.define(
     timestamps: false,
   }
 );
-
 module.exports = Servicios_dia;

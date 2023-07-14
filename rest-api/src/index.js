@@ -19,6 +19,13 @@ const Notificaciones = require('./models/Notificaciones');
 
 var port = process.env.PORT || 3900;
 
+
+Usuario.hasMany(Notificaciones);
+Notificaciones.belongsTo(Usuario, {
+  foreignKey: "id_usuario",
+});
+
+
 async function init() {
     try {
         await sequelize.authenticate();

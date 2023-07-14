@@ -210,9 +210,16 @@ export default function Solicitudes() {
                       </>
                     )}
                   </td>
-                  <td className="border-r p-2">{solicitud.nombre}</td>
+                  <td className="border-r p-2">{solicitud.usuario.nombre}</td>
                   <td className="border-r p-2">
-                    {solicitud.salon || solicitud.h_salon}
+                    {solicitud.salon !== solicitud.salon_actual ? (
+                      <p className="text-red-600 line-through">
+                        {solicitud.salon_actual}
+                      </p>
+                    ) : null}
+                    <p className="text-green-400">
+                      {solicitud.salon}
+                    </p>
                   </td>
                   <td className="border-r p-2">
                     {solicitud.programa || solicitud.h_programa}
@@ -225,24 +232,23 @@ export default function Solicitudes() {
                       </p>
                     ) : null}
                     <p className="text-green-400">
-                      {solicitud.fecha_inicio || solicitud.h_fecha_inicio}
+                      {solicitud.fecha_inicio }
                     </p>
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_inicio || solicitud.h_hora_inicio}
+                    {solicitud.hora_inicio.substring(0, 5)}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_fin || solicitud.h_hora_fin}
+                    {solicitud.hora_fin.substring(0, 5)}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_servicio_inicio ||
-                      solicitud.h_hora_s_inicio}
+                    {solicitud.hora_servicio_inicio.substring(0, 5)}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_servicio_fin || solicitud.h_hora_s_fin}
+                    {solicitud.hora_servicio_fin.substring(0, 5)}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.no_clase || solicitud.h_no_clase}
+                    {solicitud.no_clase}
                   </td>
                   <td className="border-r p-2 flex justify-between">
                     {solicitud.tipo == "Cambio" &&
@@ -254,7 +260,8 @@ export default function Solicitudes() {
                     <p className="text-green-400">{solicitud.num_alumnos}</p>
                   </td>
                   <td className="p-2 text-center">
-                    {solicitud.estado === "Pendiente" || localStorage.getItem("rol") == "Gestor" ? (
+                    {solicitud.estado === "Pendiente" ||
+                    localStorage.getItem("rol") == "Gestor" ? (
                       <input
                         type="checkbox"
                         onChange={() => onCheck(solicitud.id)}

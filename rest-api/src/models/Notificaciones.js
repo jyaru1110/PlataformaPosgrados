@@ -1,11 +1,19 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database");
+const Usuario = require("./Usuario");
 
 const Notificaciones = sequelize.define(
   "notificaciones",
   {
     // Atributos del modelo
     salon: {
+      type: DataTypes.STRING,
+      reference: {
+        model: "salon",
+        key: "salon",
+      },
+    },
+    salon_actual: {
       type: DataTypes.STRING,
       reference: {
         model: "salon",
@@ -34,7 +42,13 @@ const Notificaciones = sequelize.define(
     hora_servicio_inicio: {
       type: DataTypes.TIME,
     },
+    hora_servicio_inicio_actual: {
+      type: DataTypes.TIME,
+    },
     hora_servicio_fin: {
+      type: DataTypes.TIME,
+    },
+    hora_servicio_fin_actual: {
       type: DataTypes.TIME,
     },
     no_clase: {
@@ -51,14 +65,6 @@ const Notificaciones = sequelize.define(
     num_alumnos_actual: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
-    },
-    id_usuario: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      reference: {
-        model: "usuarios",
-        key: "id",
-      },
     },
     id_horario: {
       type: DataTypes.INTEGER,
@@ -108,5 +114,4 @@ const Notificaciones = sequelize.define(
     tableName: "notificaciones",
   }
 );
-
 module.exports = Notificaciones;

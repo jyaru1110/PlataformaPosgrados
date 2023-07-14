@@ -1,5 +1,6 @@
 const Servicios_dia = require("../models/Servicios_dia");
 const Notificaciones = require("../models/Notificaciones");
+const Salon = require("../models/Salon");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
 const send = require("../mail/nodemailerprovider");
@@ -231,11 +232,21 @@ const update_servicio = async (req, res) => {
       id: id,
     },
   });
-
+  const salon_nuevo =  await Salon.findOne({
+    where: {
+      salon: salon_id,
+    },
+  });
+  
+  const salon_viejo =  await Salon.findOne({
+    where: {
+      salon: servicio.salon_id,
+    },
+  });
   if (
     rol == "Gestor" ||
     servicio.estado !== "Confirmado" ||
-    (servicio.num_alumnos == num_servicios && servicio.fecha == fecha)
+    (servicio.num_servicios == num_servicios && servicio.fecha == fecha && salon_nuevo.isla == salon_viejo.isla && servicio.hora_servicio_inicio == hora_servicio_inicio && servicio.hora_servicio_fin == hora_servicio_fin)
   ) {
     try {
       const servicio = await Servicios_dia.update(
@@ -267,13 +278,16 @@ const update_servicio = async (req, res) => {
         id_servicio: id,
         tipo: "Cambio",
         salon: salon_id,
+        salon_actual: servicio.salon_id,
         programa: programa,
         fecha_inicio: fecha,
         fecha_actual: servicio.fecha,
         hora_inicio: hora_inicio,
         hora_fin: hora_fin,
         hora_servicio_inicio: hora_servicio_inicio,
+        hora_servicio_inicio_actual: servicio.hora_servicio_inicio,
         hora_servicio_fin: hora_servicio_fin,
+        hora_servicio_fin_actual: servicio.hora_servicio_fin,
         no_clase: no_clase,
         num_alumnos: num_servicios,
         num_alumnos_actual: servicio.num_servicios,

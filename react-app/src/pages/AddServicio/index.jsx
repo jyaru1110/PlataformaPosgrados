@@ -422,12 +422,22 @@ export default function AddServicio() {
               </tr>
             );
           })}
-          <tr className="border-b p-2">
+          <tr className="border-b p-2 hover:bg-slate-100 rounded-2xl">
             <td className="border-b p-2">
               <button onClick={addServicio} className="text-primary">
                 + New
               </button>
             </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>

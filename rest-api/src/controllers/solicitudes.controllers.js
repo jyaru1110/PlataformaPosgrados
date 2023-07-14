@@ -7,18 +7,17 @@ const send = require("../mail/nodemailerprovider");
 
 const get_solicitudes = async (req, res) => {
   const rol = req.user.dataValues.rol;
-  var query = "";
-  if (rol == "Gestor") {
-    query =
-      'select usuarios.nombre,notificaciones."createdAt",notificaciones.programa, notificaciones.no_clase, notificaciones.salon, notificaciones.id, notificaciones.fecha_inicio, notificaciones.fecha_actual, notificaciones.hora_inicio, notificaciones.hora_fin, notificaciones.hora_servicio_inicio,notificaciones.hora_servicio_fin, notificaciones.num_alumnos, notificaciones.num_alumnos_actual, notificaciones.estado, notificaciones.tipo, notificaciones.id_servicio, servicios_dia.num_servicios as h_num_alumnos, servicios_dia.salon_id as h_salon, servicios_dia.programa as h_programa, servicios_dia.fecha as h_fecha_inicio, servicios_dia.hora_inicio as h_hora_inicio, servicios_dia.hora_fin as h_hora_fin, servicios_dia.hora_servicio_inicio as h_hora_s_inicio, servicios_dia.hora_servicio_fin as h_hora_s_fin, servicios_dia.no_clase as h_no_clase from notificaciones inner join usuarios on usuarios.id = notificaciones.id_usuario left join servicios_dia on servicios_dia.id =  notificaciones.id_servicio order by notificaciones.fecha_inicio;';
-  } else {
-    query =
-      'select usuarios.nombre,notificaciones."createdAt",notificaciones.programa, notificaciones.no_clase, notificaciones.salon, notificaciones.id, notificaciones.fecha_inicio, notificaciones.fecha_actual, notificaciones.hora_inicio, notificaciones.hora_fin, notificaciones.hora_servicio_inicio,notificaciones.hora_servicio_fin, notificaciones.num_alumnos, notificaciones.num_alumnos_actual, notificaciones.estado, notificaciones.tipo, notificaciones.id_servicio, servicios_dia.num_servicios as h_num_alumnos, servicios_dia.salon_id as h_salon, servicios_dia.programa as h_programa, servicios_dia.fecha as h_fecha_inicio, servicios_dia.hora_inicio as h_hora_inicio, servicios_dia.hora_fin as h_hora_fin, servicios_dia.hora_servicio_inicio as h_hora_s_inicio, servicios_dia.hora_servicio_fin as h_hora_s_fin, servicios_dia.no_clase as h_no_clase from notificaciones inner join usuarios on usuarios.id = notificaciones.id_usuario left join servicios_dia on servicios_dia.id =  notificaciones.id_servicio where notificaciones.id_usuario = ' +
-      req.user.dataValues.id +
-      " order by notificaciones.fecha_inicio;";
-  }
-  const notificaciones = await sequelize.query(query);
-  res.status(200).send({ notificaciones: notificaciones[0] });
+  const where = rol=="Gestor"?{}:{id_usuario: req.user.dataValues.id};
+  const notificaciones = await Notificaciones.findAll({
+    where: where,
+    order: [["createdAt", "DESC"]],
+    include: [
+      {
+        model: Usuario,
+      }
+    ],
+  });
+  res.status(200).send({ notificaciones: notificaciones });
 };
 
 const aceptar_solicitud = async (req, res) => {
@@ -47,7 +46,12 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
-        send(usuario.email,"Solicitud aceptada",notificacion.dataValues,usuario.nombre);
+        send(
+          usuario.email,
+          "Solicitud aceptada",
+          notificacion.dataValues,
+          usuario.nombre
+        );
         res.status(200).send({ message: "Solicitud aceptada" });
       } else {
         res.status(404).send({ message: "No se pudo crear el horario" });
@@ -66,7 +70,12 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
-        send(usuario.email, "Solicitud de cambio aceptada",notificacion.dataValues,usuario.nombre);
+        send(
+          usuario.email,
+          "Solicitud de cambio aceptada",
+          notificacion.dataValues,
+          usuario.nombre
+        );
         res.status(200).send({ message: "Solicitud aceptada" });
       } else {
         res.status(404).send({ message: "No se encontro el horario" });
@@ -83,7 +92,12 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
-        send(usuario.email, "Solicitud de cancelación aceptada",notificacion.dataValues,usuario.nombre);
+        send(
+          usuario.email,
+          "Solicitud de cancelación aceptada",
+          notificacion.dataValues,
+          usuario.nombre
+        );
         res.status(200).send({ message: "Solicitud aceptada" });
       } else {
         res.status(404).send({ message: "No se encontro el horario" });
@@ -103,7 +117,12 @@ const rechazar_solicitud = async (req, res) => {
     const usuario = await Usuario.findOne({
       where: { id: notificacion.id_usuario },
     });
-    send(usuario.email, "Solicitud rechazada", notificacion.dataValues,usuario.nombre);
+    send(
+      usuario.email,
+      "Solicitud rechazada",
+      notificacion.dataValues,
+      usuario.nombre
+    );
     res.status(200).send({ message: "Solicitud rechazada" });
   } else {
     res.status(404).send({ message: "No se encontro la solicitud" });

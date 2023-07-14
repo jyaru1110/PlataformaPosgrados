@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database");
+const Notificaciones = require("./Notificaciones");
 
 const Usuario = sequelize.define(
     "usuarios",
@@ -30,5 +31,4 @@ const Usuario = sequelize.define(
         timestamps: false,
     }
 );
-
 module.exports = Usuario;
