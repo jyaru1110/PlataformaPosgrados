@@ -1,6 +1,7 @@
 const Notificaciones = require("../models/Notificaciones");
 const Servicios_dia = require("../models/Servicios_dia");
 const Usuario = require("../models/Usuario");
+const Horario = require("../models/Horario");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
 const send = require("../mail/nodemailerprovider");

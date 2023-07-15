@@ -66,6 +66,10 @@ export default function FiltarServicios() {
         url_backend + "/servicios/confirmar",
         {
           servicios: servicios_confirmados,
+          fechas:{
+            fecha_inicio: fecha_inicio,
+            fecha_fin: fecha_fin
+          }
         },
         {
           withCredentials: true,

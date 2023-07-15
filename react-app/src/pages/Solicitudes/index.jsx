@@ -213,51 +213,84 @@ export default function Solicitudes() {
                   <td className="border-r p-2">{solicitud.usuario.nombre}</td>
                   <td className="border-r p-2">
                     {solicitud.salon !== solicitud.salon_actual ? (
-                      <p className="text-red-600 line-through">
-                        {solicitud.salon_actual}
-                      </p>
-                    ) : null}
-                    <p className="text-green-400">
-                      {solicitud.salon}
-                    </p>
+                      <>
+                        <p className="text-red-600 line-through">
+                          {solicitud.salon_actual}
+                        </p>
+                        <p className="text-green-400">{solicitud.salon}</p>
+                      </>
+                    ) : (
+                      <p>{solicitud.salon}</p>
+                    )}
                   </td>
-                  <td className="border-r p-2">
-                    {solicitud.programa || solicitud.h_programa}
-                  </td>
+                  <td className="border-r p-2">{solicitud.programa}</td>
                   <td className="border-r p-2">
                     {solicitud.tipo == "Cambio" &&
                     solicitud.fecha_inicio != solicitud.fecha_actual ? (
-                      <p className="text-red-600 line-through">
-                        {solicitud.fecha_actual}
-                      </p>
-                    ) : null}
-                    <p className="text-green-400">
-                      {solicitud.fecha_inicio }
-                    </p>
+                      <>
+                        <p className="text-red-600 line-through">
+                          {solicitud.fecha_actual}
+                        </p>
+                        <p className="text-green-400">
+                          {solicitud.fecha_inicio}
+                        </p>
+                      </>
+                    ) : (
+                      <p>{solicitud.fecha_inicio}</p>
+                    )}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_inicio.substring(0, 5)}
+                    {solicitud.hora_inicio}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_fin.substring(0, 5)}
+                    {solicitud.hora_fin}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_servicio_inicio.substring(0, 5)}
+                    {solicitud.hora_servicio_inicio_actual !=
+                    solicitud.hora_servicio_inicio ? (
+                      <>
+                        {" "}
+                        <p className="text-red-600 line-through">
+                          {solicitud.hora_servicio_inicio_actual}
+                        </p>
+                        <p className="text-green-400">
+                          {solicitud.hora_servicio_inicio}
+                        </p>
+                      </>
+                    ) : (
+                      <p>{solicitud.hora_servicio_inicio}</p>
+                    )}
                   </td>
                   <td className="border-r p-2">
-                    {solicitud.hora_servicio_fin.substring(0, 5)}
+                    {solicitud.hora_servicio_fin_actual !=
+                    solicitud.hora_servicio_fin ? (
+                      <>
+                        <p className="text-red-600 line-through">
+                          {solicitud.hora_servicio_fin_actual}
+                        </p>
+                        <p className="text-green-400">
+                          {solicitud.hora_servicio_fin}
+                        </p>
+                      </>
+                    ) : (
+                      <p>{solicitud.hora_servicio_fin}</p>
+                    )}
                   </td>
-                  <td className="border-r p-2">
-                    {solicitud.no_clase}
-                  </td>
+                  <td className="border-r p-2">{solicitud.no_clase}</td>
                   <td className="border-r p-2 flex justify-between">
                     {solicitud.tipo == "Cambio" &&
                     solicitud.num_alumnos != solicitud.num_alumnos_actual ? (
-                      <p className="text-red-600 line-through">
-                        {solicitud.num_alumnos_actual}
-                      </p>
-                    ) : null}
-                    <p className="text-green-400">{solicitud.num_alumnos}</p>
+                      <>
+                        <p className="text-red-600 line-through">
+                          {solicitud.num_alumnos_actual}
+                        </p>
+                        <p className="text-green-400">
+                          {solicitud.num_alumnos}
+                        </p>
+                      </>
+                    ) : (
+                      <p>{solicitud.num_alumnos}</p>
+                    )}
                   </td>
                   <td className="p-2 text-center">
                     {solicitud.estado === "Pendiente" ||

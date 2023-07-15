@@ -1,5 +1,6 @@
 const Horario = require("../models/Horario");
 const Servicios_dia = require("../models/Servicios_dia");
+const Semana = require("../models/Semana");
 const Notificaciones = require("../models/Notificaciones");
 const { Op } = require("sequelize");
 const send = require("../mail/nodemailerprovider");
@@ -62,7 +63,6 @@ const create_horario = async (req, res) => {
     hora_fin,
     dia,
     salon,
-    fecha_inicio,
     fecha_fin,
     no_clase,
     programa,
@@ -70,6 +70,37 @@ const create_horario = async (req, res) => {
     hora_servicio_inicio,
     hora_servicio_fin,
   } = req.body;
+  var fecha_inicio = req.body.fecha_inicio;
+  const semana = await Semana.findOne({});
+  if (fecha_inicio <= semana.dataValues.fin_semana) {
+    const notificacion = await Notificaciones.create({
+      hora_inicio: hora_inicio,
+      hora_fin: hora_fin,
+      dia: dia,
+      salon: salon,
+      fecha_inicio: fecha_inicio,
+      fecha_fin: semana.dataValues.fin_semana,
+      no_clase: no_clase,
+      programa: programa,
+      num_alumnos: num_alumnos,
+      hora_servicio_inicio: hora_servicio_inicio,
+      hora_servicio_fin: hora_servicio_fin,
+      id_usuario: req.user.dataValues.id,
+      tipo: "Nuevo",
+    });
+    await send(
+      "0246759@up.edu.mx",
+      req.user.dataValues.nombre + " ha creado una solicitud de nuevo servicio",
+      notificacion,
+      req.user.dataValues.nombre
+    );
+    fecha_inicio = semana.dataValues.fin_semana;
+
+    if (fecha_inicio >= fecha_fin) {
+      res.status(200).send({ notificacion: notificacion });
+      return;
+    }
+  }
   if (fecha_fin == fecha_inicio) {
     const servicio = Servicios_dia.create({
       hora_inicio: hora_inicio,
@@ -225,7 +256,8 @@ const update_horario = async (req, res) => {
         });
         await send(
           "0246759@up.edu.mx",
-          req.user.dataValues.nombre + " ha creado una solicitud de cancelacion",
+          req.user.dataValues.nombre +
+            " ha creado una solicitud de cancelacion",
           notificacion_fecha_inicio,
           req.user.dataValues.nombre
         );
@@ -267,7 +299,8 @@ const update_horario = async (req, res) => {
         });
         await send(
           "0246759@up.edu.mx",
-          req.user.dataValues.nombre + " ha creado una solicitud de cancelacion",
+          req.user.dataValues.nombre +
+            " ha creado una solicitud de cancelacion",
           notificacion_fecha_f,
           req.user.dataValues.nombre
         );

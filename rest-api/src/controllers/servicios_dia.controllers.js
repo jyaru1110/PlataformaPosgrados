@@ -4,6 +4,7 @@ const Salon = require("../models/Salon");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
 const send = require("../mail/nodemailerprovider");
+const Semana = require("../models/Semana");
 
 const get_servicios_fecha = async (req, res) => {
   const rol = req.user.dataValues.rol;
@@ -33,10 +34,16 @@ const get_servicios_fecha = async (req, res) => {
 const confirmar_servicio = async (req, res) => {
   const rol = req.user.dataValues.rol;
   const servicios = req.body.servicios;
+  const fechas = req.body.fechas;
+  console.log(fechas);
   if(servicios.length == 0 || rol != "Gestor"){
     res.status(500).send({ error: "No se pudo confirmar el servicio" });
     return;
   }
+  const semana = await Semana.update({
+    inicio_semana: fechas.fecha_inicio,
+    fin_semana: fechas.fecha_fin,
+  });
   const servicios_dia = await Servicios_dia.update({
     estado: "Confirmado",
   }, {
@@ -237,7 +244,6 @@ const update_servicio = async (req, res) => {
       salon: salon_id,
     },
   });
-  
   const salon_viejo =  await Salon.findOne({
     where: {
       salon: servicio.salon_id,

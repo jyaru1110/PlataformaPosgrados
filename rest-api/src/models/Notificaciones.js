@@ -13,6 +13,9 @@ const Notificaciones = sequelize.define(
         key: "salon",
       },
     },
+    dia: {
+      type: DataTypes.STRING,
+    },
     salon_actual: {
       type: DataTypes.STRING,
       reference: {
@@ -28,6 +31,9 @@ const Notificaciones = sequelize.define(
       },
     },
     fecha_inicio: {
+      type: DataTypes.DATEONLY,
+    },
+    fecha_fin: {
       type: DataTypes.DATEONLY,
     },
     fecha_actual: {

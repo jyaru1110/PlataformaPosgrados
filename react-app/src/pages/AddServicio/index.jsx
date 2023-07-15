@@ -113,18 +113,16 @@ export default function AddServicio() {
       const response = post_axios(url_backend + "/create_horario", servicio);
       response.then((data) => {
         setIsLoading(false);
-        if (data.status === 200) {
-          toast.success("Servicios creados");
+        if (data.data.notificacion) {
+          toast.info("Solictud enviada");
+        } else if(data.data.servicio || data.data.horario){
+          toast.success("Servicio creado");
         } else {
-          toast.error("Error al crear servicios");
+          toast.error("Error al crear el servicio");
         }
       });
     });
   };
-
-  useEffect(() => {
-    console.log(servicios);
-  }, [servicios]);
   const addServicio = () => {
     setServicios([
       ...servicios,
