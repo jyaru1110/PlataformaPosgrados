@@ -43,6 +43,10 @@ const confirmar_servicio = async (req, res) => {
   const semana = await Semana.update({
     inicio_semana: fechas.fecha_inicio,
     fin_semana: fechas.fecha_fin,
+  },{
+    where: {
+      id: 1
+    }
   });
   const servicios_dia = await Servicios_dia.update({
     estado: "Confirmado",

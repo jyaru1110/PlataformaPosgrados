@@ -72,7 +72,7 @@ const create_horario = async (req, res) => {
   } = req.body;
   var fecha_inicio = req.body.fecha_inicio;
   const semana = await Semana.findOne({});
-  if (fecha_inicio <= semana.dataValues.fin_semana) {
+  if (fecha_inicio <= semana.dataValues.fin_semana && rol !== "Gestor") {
     const notificacion = await Notificaciones.create({
       hora_inicio: hora_inicio,
       hora_fin: hora_fin,
@@ -94,8 +94,9 @@ const create_horario = async (req, res) => {
       notificacion,
       req.user.dataValues.nombre
     );
-    fecha_inicio = semana.dataValues.fin_semana;
-
+    let fecha_fin_semana_date = new Date(semana.dataValues.fin_semana);
+    fecha_fin_semana_date.setDate(fecha_fin_semana_date.getDate() + 1);
+    fecha_inicio = fecha_fin_semana_date.toISOString().slice(0, 10);
     if (fecha_inicio >= fecha_fin) {
       res.status(200).send({ notificacion: notificacion });
       return;
@@ -135,6 +136,7 @@ const create_horario = async (req, res) => {
 
 const update_horario = async (req, res) => {
   const rol = req.user.dataValues.rol;
+  var notificacion_dia;
   const { id } = req.params;
   const {
     hora_inicio,
@@ -166,6 +168,10 @@ const update_horario = async (req, res) => {
     horario.salon = salon;
     horario.no_clase = no_clase;
     horario.programa = programa;
+    horario.num_alumnos = num_alumnos;
+    horario.fecha_inicio = fecha_inicio;
+    horario.fecha_fin = fecha_fin;
+    horario.dia = dia;
     await horario.save();
     const servicios = await Servicios_dia.update(
       {
@@ -176,6 +182,7 @@ const update_horario = async (req, res) => {
         programa: programa,
         hora_servicio_inicio: hora_servicio_inicio,
         hora_servicio_fin: hora_servicio_fin,
+        num_servicios: num_alumnos,
       },
       {
         where: {
@@ -183,6 +190,7 @@ const update_horario = async (req, res) => {
         },
       }
     );
+    res.status(200).send({ horario: horario });
   } else if (dia !== horario.dataValues.dia) {
     await Servicios_dia.destroy({
       where: {
@@ -197,7 +205,7 @@ const update_horario = async (req, res) => {
       },
     });
     servicios.forEach(async (servicio) => {
-      const notificacion_dia = await Notificaciones.create({
+       notificacion_dia = await Notificaciones.create({
         id_servicio: servicio.dataValues.id,
         fecha_inicio: servicio.dataValues.fecha,
         num_alumnos: servicio.dataValues.num_servicios,
@@ -221,6 +229,7 @@ const update_horario = async (req, res) => {
     //aquí deberá suceder el flujo para crear los servicios correspondientes creo un nuevo horario con todo LO NUEVO
   } else {
     if (fecha_inicio !== horario.dataValues.fecha_inicio) {
+      var notificacion_fecha_inicio;
       await Servicios_dia.destroy({
         where: {
           id_horario: id,
@@ -240,7 +249,7 @@ const update_horario = async (req, res) => {
         },
       });
       servicios_confirmados_fecha_inicio.forEach(async (servicio) => {
-        const notificacion_fecha_inicio = await Notificaciones.create({
+        notificacion_fecha_inicio = await Notificaciones.create({
           id_servicio: servicio.dataValues.id,
           fecha_inicio: servicio.dataValues.fecha,
           num_alumnos: servicio.dataValues.num_servicios,
@@ -264,6 +273,7 @@ const update_horario = async (req, res) => {
       });
     }
     if (fecha_fin !== horario.dataValues.fecha_fin) {
+      var notificacion_fecha_f;
       await Servicios_dia.destroy({
         where: {
           id_horario: id,
@@ -283,7 +293,7 @@ const update_horario = async (req, res) => {
         },
       });
       servicios_confirmados_fecha_fin.forEach(async (servicio) => {
-        const notificacion_fecha_f = await Notificaciones.create({
+        notificacion_fecha_f = await Notificaciones.create({
           id_servicio: servicio.dataValues.id,
           fecha_inicio: servicio.dataValues.fecha,
           num_alumnos: servicio.dataValues.num_servicios,
@@ -307,6 +317,7 @@ const update_horario = async (req, res) => {
       });
     }
     if (num_alumnos !== horario.dataValues.num_alumnos) {
+      var notificacion_num;
       await Servicios_dia.update({
         num_servicios: num_alumnos,
       });
@@ -317,7 +328,7 @@ const update_horario = async (req, res) => {
         },
       });
       servicios_confirmados_num_alumnos.forEach(async (servicio) => {
-        const notificacion_num = await Notificaciones.create({
+        notificacion_num = await Notificaciones.create({
           id_servicio: servicio.dataValues.id,
           fecha_inicio: servicio.dataValues.fecha,
           num_alumnos: servicio.dataValues.num_servicios,

@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useSolicitudes } from "../../hooks/useSolicitudes";
 import axios from "axios";
 const url_backend = import.meta.env.VITE_URL_API;
@@ -15,19 +15,38 @@ export default function Solicitudes() {
   const loading = resultado.loading;
   const rol = localStorage.getItem("rol");
   const onCheck = (id) => {
-    if (seleccionados.includes(id)) {
-      setSeleccionados(seleccionados.filter((item) => item !== id));
+    if (seleccionados.includes(seleccionados.find((item) => item.id === id))) {
+      setSeleccionados(seleccionados.filter((item) => item.id !== id));
     } else {
-      setSeleccionados([...seleccionados, id]);
+      setSeleccionados([...seleccionados, {id:id,mensaje:""}]);
     }
   };
 
+  const onChange = (id, mensaje) => {
+    setSeleccionados(
+      seleccionados.map((item) => {
+        if (item.id === id) {
+          return { ...item, mensaje: mensaje };
+        }
+        return item;
+      })
+    );
+  };
+  const filtrar = (solicitud) => {
+    if(loadingR && seleccionados.length>0){
+      if(!seleccionados.find((item) => item.id === solicitud.id)){
+        return false;
+      }
+    };
+    return true;
+  };
+
   const aceptarSolicitudes = () => {
-    seleccionados.map((id) => {
+    seleccionados.map((seleccionado) => {
       setLoadingA(true);
       axios
         .put(
-          url_backend + "/solicitudes/aceptar/" + id,
+          url_backend + "/solicitudes/aceptar/" + seleccionado.id,
           {},
           {
             withCredentials: true,
@@ -54,12 +73,12 @@ export default function Solicitudes() {
   };
 
   const rechazarSolicitudes = () => {
-    seleccionados.map((id) => {
+    seleccionados.map((solicitud) => {
       setLoadingR(true);
       axios
         .put(
-          url_backend + "/solicitudes/rechazar/" + id,
-          {},
+          url_backend + "/solicitudes/rechazar/" + solicitud.id,
+          {mensaje:solicitud.mensaje},
           {
             withCredentials: true,
           }
@@ -85,10 +104,10 @@ export default function Solicitudes() {
   };
 
   const cancelarSolicitudes = () => {
-    seleccionados.map((id) => {
+    seleccionados.map((solicitud) => {
       setLoadingR(true);
       axios
-        .delete(url_backend + "/solicitudes/cancelar/" + id, {
+        .delete(url_backend + "/solicitudes/cancelar/" + solicitud.id, {
           withCredentials: true,
         })
         .then((res) => {
@@ -116,23 +135,38 @@ export default function Solicitudes() {
       <div className="fixed top-8 right-3">
         {rol === "Gestor" ? (
           <>
-            {loadingR ? null : (
+            {loadingR ? (
               <button
                 className={`${
                   seleccionados.length > 0 ? "bg-primary" : "bg-slate-100"
                 } text-white font-poppins font-medium text-sm px-4 py-2 rounded-md`}
-                onClick={aceptarSolicitudes}
+                onClick={() => {
+                  rechazarSolicitudes();
+                }}
+              >
+                Enviar rechazo
+              </button>
+            ) : (
+              <button
+                className={`${
+                  seleccionados.length > 0 ? "bg-primary" : "bg-slate-100"
+                } text-white font-poppins font-medium text-sm px-4 py-2 rounded-md`}
+                onClick={() => {
+                  aceptarSolicitudes();
+                }}
                 disabled={loadingA}
               >
                 Aceptar
               </button>
             )}
-            {loadingA ? null : (
+            {loadingR || loadingA ? null : (
               <button
                 className={`${
                   seleccionados.length > 0 ? "bg-primary" : "bg-slate-100"
                 } text-white font-poppins font-medium text-sm px-4 py-2 rounded-md ml-4`}
-                onClick={rechazarSolicitudes}
+                onClick={() => {
+                  setLoadingR(true);
+                }}
                 disabled={loadingR}
               >
                 Rechazar
@@ -168,6 +202,7 @@ export default function Solicitudes() {
             <th className="border-r p-2 font-medium">Hora fin servicio</th>
             <th className="border-r p-2 font-medium">No. Clase</th>
             <th className="p-2 font-medium">Número servicios</th>
+            {loadingR ? <th className="p-2 font-medium">Comentario</th> : null}
           </tr>
         </thead>
 
@@ -175,7 +210,7 @@ export default function Solicitudes() {
           <></>
         ) : (
           <tbody className="font-poppins text-base">
-            {solicitudes.map((solicitud) => {
+            {solicitudes.filter(filtrar).map((solicitud) => {
               return (
                 <tr
                   className={`${
@@ -239,12 +274,8 @@ export default function Solicitudes() {
                       <p>{solicitud.fecha_inicio}</p>
                     )}
                   </td>
-                  <td className="border-r p-2">
-                    {solicitud.hora_inicio}
-                  </td>
-                  <td className="border-r p-2">
-                    {solicitud.hora_fin}
-                  </td>
+                  <td className="border-r p-2">{solicitud.hora_inicio}</td>
+                  <td className="border-r p-2">{solicitud.hora_fin}</td>
                   <td className="border-r p-2">
                     {solicitud.hora_servicio_inicio_actual !=
                     solicitud.hora_servicio_inicio ? (
@@ -292,6 +323,9 @@ export default function Solicitudes() {
                       <p>{solicitud.num_alumnos}</p>
                     )}
                   </td>
+                  {loadingR ? (
+                    <td className="p-2">{solicitud.comentario!=null&&solicitud.comentario!=""?solicitud.comentario:<input type="text" placeholder="Escribe un mensaje" onChange={(e)=>{onChange(solicitud.id,e.target.value)}}/>}</td>
+                  ) : null}
                   <td className="p-2 text-center">
                     {solicitud.estado === "Pendiente" ||
                     localStorage.getItem("rol") == "Gestor" ? (

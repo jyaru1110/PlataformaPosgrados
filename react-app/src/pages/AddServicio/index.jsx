@@ -28,7 +28,7 @@ export default function AddServicio() {
     { value: "Miercoles" },
     { value: "Jueves" },
     { value: "Viernes" },
-    { value: "Sabado" },
+    { value: "Sábado" },
   ];
 
   const clases = useClases();
@@ -80,6 +80,14 @@ export default function AddServicio() {
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
         toast.error("Las islas en Mixcoac solo esta disponible de 19:00 a 22:00");
+        setIsLoading(false);
+        return;
+      }
+      if(servicio.salon.substring(0,2) !== "SF" && servicio.dia === "Sábado" && (parseInt(servicio.hora_servicio_inicio.substring(0,2))>12 || parseInt(servicio.hora_servicio_inicio.substring(0,2))<10 || parseInt(servicio.hora_servicio_fin.substring(0,2))>12 || parseInt(servicio.hora_servicio_fin.substring(0,2))<10)){
+        seleccionados.includes(servicio.id)
+          ? null
+          : setSeleccionados([...seleccionados, servicio.id]);
+        toast.error("Las islas en Mixcoac solo esta disponible de 10:00 a 12:00 los sábados");
         setIsLoading(false);
         return;
       }

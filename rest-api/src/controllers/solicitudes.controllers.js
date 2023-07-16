@@ -47,6 +47,10 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
+        const servicios_confirmados =  await Servicios_dia.update(
+          {estado: "Confirmado"},
+          {where: {id_horario: (await nuevoHorario).dataValues.id_horario, estado: "Pendiente"}}
+        );
         send(
           usuario.email,
           "Solicitud aceptada",
@@ -111,18 +115,18 @@ const aceptar_solicitud = async (req, res) => {
 
 const rechazar_solicitud = async (req, res) => {
   const id = req.params.id;
-  const notificacion = await Notificaciones.findOne({ where: { id: id } });
+  const mensaje = req.body.mensaje;
+  console.log(mensaje);
+  const notificacion = await Notificaciones.findOne({ where: { id: id }, include: [{model: Usuario}] });
   if (notificacion) {
     notificacion.estado = "Rechazado";
+    notificacion.comentario = mensaje;
     await notificacion.save();
-    const usuario = await Usuario.findOne({
-      where: { id: notificacion.id_usuario },
-    });
     send(
-      usuario.email,
+      notificacion.usuario.email,
       "Solicitud rechazada",
       notificacion.dataValues,
-      usuario.nombre
+      notificacion.nombre
     );
     res.status(200).send({ message: "Solicitud rechazada" });
   } else {

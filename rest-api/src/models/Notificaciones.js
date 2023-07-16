@@ -100,6 +100,10 @@ const Notificaciones = sequelize.define(
         },
       },
     },
+    comentario: {
+      type: DataTypes.STRING,
+      defaultValue: "",
+    },
     estado: {
       type: DataTypes.STRING,
       allowNull: false,
