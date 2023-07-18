@@ -25,7 +25,7 @@ export default function AddServicio() {
   const options_dias = [
     { value: "Lunes" },
     { value: "Martes" },
-    { value: "Miercoles" },
+    { value: "Miércoles" },
     { value: "Jueves" },
     { value: "Viernes" },
     { value: "Sábado" },
@@ -128,6 +128,9 @@ export default function AddServicio() {
         } else {
           toast.error("Error al crear el servicio");
         }
+      }).catch((error) => {
+        setIsLoading(false);
+        toast.error(error.response.data.message);
       });
     });
   };
