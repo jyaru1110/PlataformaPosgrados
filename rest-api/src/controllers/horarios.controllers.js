@@ -6,13 +6,13 @@ const { Op } = require("sequelize");
 const send = require("../mail/nodemailerprovider");
 const sequelize = require("../database/database");
 const dias = {
-  Lunes: 0,
-  Martes: 1,
-  Miércoles: 2,
-  Jueves: 3,
-  Viernes: 4,
-  Sábado: 5,
-  Domingo: 6,
+  Lunes: 1,
+  Martes: 2,
+  Miércoles: 3,
+  Jueves: 4,
+  Viernes: 5,
+  Sábado: 6,
+  Domingo: 0,
 };
 
 const get_horarios_todos = async (req, res) => {

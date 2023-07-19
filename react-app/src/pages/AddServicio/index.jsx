@@ -126,6 +126,7 @@ export default function AddServicio() {
         } else if(data.data.servicio || data.data.horario){
           toast.success("Servicio creado");
         } else {
+          console.log(data);
           toast.error("La api no regresó nada");
         }
       }).catch((error) => {
