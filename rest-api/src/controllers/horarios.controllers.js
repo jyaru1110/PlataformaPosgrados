@@ -5,7 +5,8 @@ const Notificaciones = require("../models/Notificaciones");
 const { Op } = require("sequelize");
 const send = require("../mail/nodemailerprovider");
 const sequelize = require("../database/database");
-const dias = {
+const environment =  process.env.ENV
+const dias = environment=="Production"?{
   Lunes: 1,
   Martes: 2,
   Miércoles: 3,
@@ -13,7 +14,15 @@ const dias = {
   Viernes: 5,
   Sábado: 6,
   Domingo: 0,
-};
+  }:{
+    Lunes: 0,
+    Martes: 1,
+    Miércoles: 2,
+    Jueves: 3,
+    Viernes: 4,
+    Sábado: 5,
+    Domingo: 6,
+  };
 
 const get_horarios_todos = async (req, res) => {
   const rol = req.user.dataValues.rol;
