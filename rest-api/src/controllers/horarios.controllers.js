@@ -133,8 +133,6 @@ const create_horario = async (req, res) => {
     fecha_fin_semana_date.setDate(fecha_fin_semana_date.getDate() + suma);
     fecha_inicio = fecha_fin_semana_date.toISOString().slice(0, 10);
     if (fecha_inicio > fecha_fin && notificacion) {
-      console.log(notificacion);
-      console.log("entra a la validación de fecha fin")
       res.status(200).send({ notificacion: notificacion });
       return;
     }

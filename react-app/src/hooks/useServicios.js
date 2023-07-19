@@ -10,14 +10,16 @@ export const useServicios = () => {
         setServicios(data.servicio[0]);
         setLoading(false);
     }
-
-    useEffect(() => {
+    const get_data = async () => {
         setLoading(true);
-        let url = `${url_backend}/servicios`;
+        const url = `${url_backend}/servicios`;
         const abortController = new AbortController();
         const signal = abortController.signal;
-        get_fetch(url,signal, after_fetch);
+        await get_fetch(url,signal, after_fetch);
         return () => abortController.abort();
+    }
+    useEffect(() => {
+       get_data();
     }, []);
 
     return {servicios:servicios,loading:loading};

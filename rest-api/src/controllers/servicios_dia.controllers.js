@@ -133,7 +133,7 @@ const get_servicios_todos = async (req, res) => {
   const rol = req.user.dataValues.rol;
   var query = "";
   if (rol == "Gestor") {
-    query = "select * from servicios_dia order by fecha asc,hora_inicio asc";
+    query = "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa order by fecha asc,hora_inicio asc";
   } else {
     query =
       "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where programa.escuela ='" +
