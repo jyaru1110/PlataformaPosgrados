@@ -81,17 +81,21 @@ const create_horario = async (req, res) => {
   var fecha_inicio = req.body.fecha_inicio;
   const semana = await Semana.findOne({});
   var fecha_fin_semana_date = new Date(semana.dataValues.fin_semana);
+  console.log("fecha fin semana: " + fecha_fin_semana_date)
   var notificacion;
   if (fecha_inicio <= semana.dataValues.fin_semana && rol !== "Gestor") {
+    console.log("entra a la primera validación de fecha")
     var fecha_inicio_i = new Date(fecha_inicio);
     fecha_inicio_i.setDate(
       fecha_inicio_i.getDate() + ((dias[dia] - fecha_inicio_i.getDay() + 7) % 7)
     );
     fecha_inicio = fecha_inicio_i.toISOString().slice(0, 10);
+    console.log("fecha inicio: " + fecha_inicio)
     while (
       fecha_inicio_i <= fecha_fin_semana_date &&
       fecha_inicio <= fecha_fin
     ) {
+      console.log("entra al while de la primera")
       notificacion = await Notificaciones.create({
         hora_inicio: hora_inicio,
         hora_fin: hora_fin,
