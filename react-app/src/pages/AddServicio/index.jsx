@@ -67,7 +67,14 @@ export default function AddServicio() {
         setIsLoading(false);
         return;
       }
-      if(servicio.salon.substring(0,2) === "SF" && (parseInt(servicio.hora_servicio_inicio.substring(0,2))>22 || parseInt(servicio.hora_servicio_inicio.substring(0,2))<17 || parseInt(servicio.hora_servicio_fin.substring(0,2))>22 || parseInt(servicio.hora_servicio_fin.substring(0,2))<17)){
+      if (
+        servicio.salon.substring(0, 2) === "SF" &&
+        servicio.dia !== "Sábado" &&
+        (parseInt(servicio.hora_servicio_inicio.substring(0, 2)) > 22 ||
+          parseInt(servicio.hora_servicio_inicio.substring(0, 2)) < 17 ||
+          parseInt(servicio.hora_servicio_fin.substring(0, 2)) > 22 ||
+          parseInt(servicio.hora_servicio_fin.substring(0, 2)) < 17)
+      ) {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
@@ -75,19 +82,36 @@ export default function AddServicio() {
         setIsLoading(false);
         return;
       }
-      if(servicio.salon.substring(0,2) !== "SF" && servicio.dia !== "Sábado" && (parseInt(servicio.hora_servicio_inicio.substring(0,2))>22 || parseInt(servicio.hora_servicio_inicio.substring(0,2))<19 || parseInt(servicio.hora_servicio_fin.substring(0,2))>22 || parseInt(servicio.hora_servicio_fin.substring(0,2))<19)){
+      if (
+        servicio.salon.substring(0, 2) !== "SF" &&
+        servicio.dia !== "Sábado" &&
+        (parseInt(servicio.hora_servicio_inicio.substring(0, 2)) > 22 ||
+          parseInt(servicio.hora_servicio_inicio.substring(0, 2)) < 19 ||
+          parseInt(servicio.hora_servicio_fin.substring(0, 2)) > 22 ||
+          parseInt(servicio.hora_servicio_fin.substring(0, 2)) < 19)
+      ) {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
-        toast.error("Las islas en Mixcoac solo esta disponible de 19:00 a 22:00");
+        toast.error(
+          "Las islas en Mixcoac solo esta disponible de 19:00 a 22:00"
+        );
         setIsLoading(false);
         return;
       }
-      if(servicio.salon.substring(0,2) !== "SF" && servicio.dia === "Sábado" && (parseInt(servicio.hora_servicio_inicio.substring(0,2))>12 || parseInt(servicio.hora_servicio_inicio.substring(0,2))<10 || parseInt(servicio.hora_servicio_fin.substring(0,2))>12 || parseInt(servicio.hora_servicio_fin.substring(0,2))<10)){
+      if (
+        servicio.dia === "Sábado" &&
+        (parseInt(servicio.hora_servicio_inicio.substring(0, 2)) > 12 ||
+          parseInt(servicio.hora_servicio_inicio.substring(0, 2)) < 10 ||
+          parseInt(servicio.hora_servicio_fin.substring(0, 2)) > 12 ||
+          parseInt(servicio.hora_servicio_fin.substring(0, 2)) < 10)
+      ) {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
-        toast.error("Las islas en Mixcoac solo esta disponible de 10:00 a 12:00 los sábados");
+        toast.error(
+          "Las islas solo están disponible de 10:00 a 12:00 los sábados"
+        );
         setIsLoading(false);
         return;
       }
@@ -119,20 +143,22 @@ export default function AddServicio() {
       }
 
       const response = post_axios(url_backend + "/create_horario", servicio);
-      response.then((data) => {
-        setIsLoading(false);
-        if (data.data.notificacion) {
-          toast.info("Solictud enviada");
-        } else if(data.data.servicio || data.data.horario){
-          toast.success("Servicio creado");
-        } else {
-          console.log(data);
-          toast.error("La api no regresó nada");
-        }
-      }).catch((error) => {
-        setIsLoading(false);
-        toast.error(error.response.data.message);
-      });
+      response
+        .then((data) => {
+          setIsLoading(false);
+          if (data.data.notificacion) {
+            toast.info("Solictud enviada");
+          } else if (data.data.servicio || data.data.horario) {
+            toast.success("Servicio creado");
+          } else {
+            console.log(data);
+            toast.error("La api no regresó nada");
+          }
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          toast.error(error.response.data.message);
+        });
     });
   };
   const addServicio = () => {
@@ -156,7 +182,9 @@ export default function AddServicio() {
   };
 
   const duplicar_fila = (id) => {
-    const servicio_a_duplicar = servicios.find((servicio) => servicio.id === id);
+    const servicio_a_duplicar = servicios.find(
+      (servicio) => servicio.id === id
+    );
     setServicios([
       ...servicios,
       {
@@ -175,7 +203,6 @@ export default function AddServicio() {
       },
     ]);
   };
-
 
   const updateServicio = (id, updatedServicio) => {
     setServicios(
@@ -419,7 +446,12 @@ export default function AddServicio() {
                   />
                 </td>
                 <td className="p-1 border-r">
-                  <button className="text-primary" onClick={()=>duplicar_fila(servicio.id)}>Duplicar</button>
+                  <button
+                    className="text-primary"
+                    onClick={() => duplicar_fila(servicio.id)}
+                  >
+                    Duplicar
+                  </button>
                 </td>
                 <td className="p-1">
                   <button

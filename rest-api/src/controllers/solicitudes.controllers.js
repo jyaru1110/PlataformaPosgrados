@@ -126,7 +126,7 @@ const rechazar_solicitud = async (req, res) => {
       notificacion.usuario.email,
       "Solicitud rechazada",
       notificacion.dataValues,
-      notificacion.nombre
+      notificacion.usuario.nombre
     );
     res.status(200).send({ message: "Solicitud rechazada" });
   } else {
