@@ -170,18 +170,18 @@ export default function FiltarServicios() {
         <table className="table-auto w-full">
           <thead className="max-w-full text-center">
             <tr className="max-w-full text-xs">
-              <th className="font-medium ml-1">Confirmados</th>
-              <th className="font-medium">Pendientes</th>
-              <th className="font-medium">Cancelados</th>
-              <th className="font-medium">Realizados</th>
+              <th className="font-thin text-left">Pendiente</th>
+              <th className="font-thin">Cancelado</th>
+              <th className="font-thin">Realizado</th>
+              <th className="font-thin text-right">Confirmado</th>
             </tr>
           </thead>
           <tbody className="max-w-full text-center">
             <tr className="max-w-full text-sm text-primary">
-              <td className="font-bold">{sumaServicios.Confirmado}</td>
               <td className="font-bold">{sumaServicios.Pendiente}</td>
               <td className="font-bold">{sumaServicios.Cancelado}</td>
               <td className="font-bold">{sumaServicios.Realizado}</td>
+              <td className="font-bold">{sumaServicios.Confirmado}</td>
             </tr>
           </tbody>
           </table>
