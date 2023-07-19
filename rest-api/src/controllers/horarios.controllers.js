@@ -127,6 +127,7 @@ const create_horario = async (req, res) => {
         : 1;
     fecha_fin_semana_date.setDate(fecha_fin_semana_date.getDate() + suma);
     fecha_inicio = fecha_fin_semana_date.toISOString().slice(0, 10);
+    console.log("fecha inicio después de ajustarla a después del fin de semana: " + fecha_inicio)
     if (fecha_inicio > fecha_fin) {
       res.status(200).send({ notificacion: notificacion });
       return;
@@ -185,6 +186,7 @@ const create_horario = async (req, res) => {
     }
     res.status(200).send({ horario: horario });
   }
+  console.log("sale de la función");
 };
 
 const update_horario = async (req, res) => {
