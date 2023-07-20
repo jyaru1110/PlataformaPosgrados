@@ -12,7 +12,7 @@ const get_programas_escuela = async (req, res) => {
 }
 
 const get_programas_todos = async (req, res) => {
-    const programas = await Programa.findAll();
+    const programas = await Programa.findAll({order: [['programa', 'ASC']]});
     programas.unshift({programa:'Todos'});
     res.status(200).send({programas:programas});
 }
