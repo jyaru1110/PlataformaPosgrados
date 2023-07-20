@@ -88,6 +88,25 @@ const create_horario = async (req, res) => {
     hora_servicio_fin,
   } = req.body;
   var fecha_inicio = req.body.fecha_inicio;
+  const servicios_repetidos = await Servicios_dia.findAll({
+    where: {
+      salon_id: salon,
+      fecha: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+      no_clase: no_clase,
+      programa: programa,
+      num_servicios: num_alumnos,
+      hora_servicio_inicio: hora_servicio_inicio,
+      hora_servicio_fin: hora_servicio_fin,
+    },
+  });
+  console.log(servicios_repetidos);
+  if (servicios_repetidos.length > 0) {
+    res.status(500).send({ message: "Verfifica las fechas, hay servicios identicos ya registrados" });
+    return;
+  }
+
   const semana = await Semana.findOne({});
   var fecha_fin_semana_date = new Date(semana.dataValues.fin_semana);
   var notificacion;
