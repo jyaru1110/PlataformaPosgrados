@@ -22,6 +22,12 @@ export default function Solicitudes() {
     }
   };
 
+  useEffect(() => {
+    if(seleccionados.length<=0){
+      setLoadingR(false);
+    }
+  }, [seleccionados]);
+
   const onChange = (id, mensaje) => {
     setSeleccionados(
       seleccionados.map((item) => {
@@ -202,7 +208,7 @@ export default function Solicitudes() {
             <th className="border-r p-2 font-medium">Hora fin servicio</th>
             <th className="border-r p-2 font-medium">No. Clase</th>
             <th className="p-2 font-medium">Número servicios</th>
-            {loadingR ? <th className="p-2 font-medium">Comentario</th> : null}
+            {loadingR ? <th className="p-2 font-medium border-l">Comentario</th> : null}
           </tr>
         </thead>
 
@@ -282,14 +288,14 @@ export default function Solicitudes() {
                       <>
                         {" "}
                         <p className="text-red-600 line-through">
-                          {solicitud.hora_servicio_inicio_actual}
+                          {solicitud.hora_servicio_inicio_actual?solicitud.hora_servicio_inicio_actual.substring(0,5):null}
                         </p>
                         <p className="text-green-400">
-                          {solicitud.hora_servicio_inicio}
+                          {solicitud.hora_servicio_inicio.substring(0,5)}
                         </p>
                       </>
                     ) : (
-                      <p>{solicitud.hora_servicio_inicio}</p>
+                      <p>{solicitud.hora_servicio_inicio.substring(0,5)}</p>
                     )}
                   </td>
                   <td className="border-r p-2">
@@ -297,18 +303,18 @@ export default function Solicitudes() {
                     solicitud.hora_servicio_fin ? (
                       <>
                         <p className="text-red-600 line-through">
-                          {solicitud.hora_servicio_fin_actual}
+                          {solicitud.hora_servicio_fin_actual?solicitud.hora_servicio_fin_actual.substring(0,5):null}
                         </p>
                         <p className="text-green-400">
-                          {solicitud.hora_servicio_fin}
+                          {solicitud.hora_servicio_fin.substring(0,5)}
                         </p>
                       </>
                     ) : (
-                      <p>{solicitud.hora_servicio_fin}</p>
+                      <p>{solicitud.hora_servicio_fin.substring(0,5)}</p>
                     )}
                   </td>
                   <td className="border-r p-2">{solicitud.no_clase}</td>
-                  <td className="border-r p-2 flex justify-between">
+                  <td className="p-2 flex justify-between">
                     {solicitud.tipo == "Cambio" &&
                     solicitud.num_alumnos != solicitud.num_alumnos_actual ? (
                       <>
@@ -324,9 +330,9 @@ export default function Solicitudes() {
                     )}
                   </td>
                   {loadingR ? (
-                    <td className="p-2">{solicitud.comentario!=null&&solicitud.comentario!=""?solicitud.comentario:<input type="text" placeholder="Escribe un mensaje" onChange={(e)=>{onChange(solicitud.id,e.target.value)}}/>}</td>
+                    <td className="p-2 border-l">{solicitud.comentario!=null&&solicitud.comentario!=""?solicitud.comentario:<input type="text" placeholder="Escribe un mensaje" onChange={(e)=>{onChange(solicitud.id,e.target.value)}}/>}</td>
                   ) : null}
-                  <td className="p-2 text-center">
+                  <td className="p-2 text-center border-l">
                     {solicitud.estado === "Pendiente" ||
                     localStorage.getItem("rol") == "Gestor" ? (
                       <input
