@@ -74,8 +74,8 @@ export default function ProximoServicio() {
                   }}
                 >
                   <p className="text-base text-whiteprimary font-poppins font-medium">
-                    {servicio.hora_inicio.substring(0, 5)} -{" "}
-                    {servicio.hora_fin.substring(0, 5)}
+                    {servicio.hora_servicio_inicio.substring(0, 5)} -{" "}
+                    {servicio.hora_servicio_fin.substring(0, 5)}
                   </p>
                   <p className="text-sm text-gray2 font-poppins font-regular">
                     Salón {servicio.salon_id}
