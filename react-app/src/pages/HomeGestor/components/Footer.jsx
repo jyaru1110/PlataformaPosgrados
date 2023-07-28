@@ -10,10 +10,6 @@ export default function Footer() {
       <ButtonAdd ruta="/add-servicio" />
       <div className="w-full p-4 overflow-x-auto flex md:flex-col md:items-center sm:justify-between">
         <BotonFooter
-          texto={"Busca servicios en especifico"}
-          ruta="/filtrar-servicios"
-        >
-        <BotonFooter
           texto={"Busca horarios en especifico"}
           ruta="/filtrar-horario"
         >
@@ -22,7 +18,10 @@ export default function Footer() {
         <BotonFooter texto={"Filtra servicios por isla"} ruta="/filtrar-islas">
             {IconFiltrarIsla}
         </BotonFooter>
-        
+        <BotonFooter
+          texto={"Busca servicios en especifico"}
+          ruta="/filtrar-servicios"
+        >
             {IconBuscarServicios}
             </BotonFooter>
         <BotonFooter texto={"Solicitudes de servicios"} ruta="/solicitudes" >
