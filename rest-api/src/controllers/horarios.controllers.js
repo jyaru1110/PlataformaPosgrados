@@ -276,35 +276,7 @@ const update_horario = async (req, res) => {
       fecha: Op.between[(fecha_inicio, fecha_fin)],
     },
   });
-  servicios_confirmados.forEach(async (servicio) => {
-    notificacion = await Notificaciones.create({
-      id_servicio:servicio.id,
-      hora_inicio: hora_inicio,
-      hora_fin: hora_fin,
-      salon: salon,
-      fecha_inicio: fecha_inicio,
-      fecha_fin: fecha_inicio,
-      no_clase: no_clase,
-      programa: programa,
-      num_alumnos: num_alumnos,
-      hora_servicio_inicio: hora_servicio_inicio,
-      hora_servicio_fin: hora_servicio_fin,
-      id_usuario: req.user.dataValues.id,
-      tipo: "Cambio",
-    });
-    await send(
-      req.user.email,
-      "Has creado una solicitud de cambio",
-      notificacion,
-      req.user.nombre
-    );
-    await send(
-      "0246759@up.edu.mx",
-      req.user.nombre+" ha creado una solicitud de cambio",
-      notificacion,
-      req.user.nombre
-    )
-  });
+  res.status(200).send({horario:nuevo_horario})
 };
 
 module.exports = {
