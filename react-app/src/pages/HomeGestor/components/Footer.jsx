@@ -13,23 +13,20 @@ export default function Footer() {
           texto={"Busca servicios en especifico"}
           ruta="/filtrar-servicios"
         >
-          <BotonFooter texto={"Solicitudes de servicios"} ruta="/solicitudes">
-            {IconSolicitudes}
-          </BotonFooter>
-          <BotonFooter
-            texto={"Busca horarios en especifico"}
-            ruta="/filtrar-horario"
-          >
+        <BotonFooter
+          texto={"Busca horarios en especifico"}
+          ruta="/filtrar-horario"
+        >
             {IconBuscarHorario}
-          </BotonFooter>
-          <BotonFooter
-            texto={"Filtra servicios por isla"}
-            ruta="/filtrar-islas"
-          >
+        </BotonFooter>
+        <BotonFooter texto={"Filtra servicios por isla"} ruta="/filtrar-islas">
             {IconFiltrarIsla}
-          </BotonFooter>
-
-          {IconBuscarServicios}
+        </BotonFooter>
+        
+            {IconBuscarServicios}
+            </BotonFooter>
+        <BotonFooter texto={"Solicitudes de servicios"} ruta="/solicitudes" >
+            {IconSolicitudes}
         </BotonFooter>
       </div>
     </div>
