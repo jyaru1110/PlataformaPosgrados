@@ -42,7 +42,7 @@ const aceptar_solicitud = async (req, res) => {
       notificacion.id_horario = nuevoHorario.id;
       await notificacion.save();
       if (nuevoHorario) {
-        notificacion.estado = "Aceptado";
+        notificacion.estado = "Aceptada";
         await notificacion.save();
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
@@ -69,7 +69,7 @@ const aceptar_solicitud = async (req, res) => {
         servicio.fecha = notificacion.fecha_inicio;
         servicio.num_servicios = notificacion.num_alumnos;
         await servicio.save();
-        notificacion.estado = "Aceptado";
+        notificacion.estado = "Aceptada";
         await notificacion.save();
 
         const usuario = await Usuario.findOne({
@@ -92,7 +92,7 @@ const aceptar_solicitud = async (req, res) => {
       if (servicio) {
         servicio.estado = "Cancelado";
         await servicio.save();
-        notificacion.estado = "Aceptado";
+        notificacion.estado = "Aceptada";
         await notificacion.save();
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
@@ -119,7 +119,7 @@ const rechazar_solicitud = async (req, res) => {
   console.log(mensaje);
   const notificacion = await Notificaciones.findOne({ where: { id: id }, include: [{model: Usuario}] });
   if (notificacion) {
-    notificacion.estado = "Rechazado";
+    notificacion.estado = "Rechazada";
     notificacion.comentario = mensaje;
     await notificacion.save();
     send(

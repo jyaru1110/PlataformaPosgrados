@@ -110,7 +110,7 @@ const Notificaciones = sequelize.define(
       defaultValue: "Pendiente",
       validate: {
         customValidator: (value) => {
-          const enums = ["Pendiente", "Aceptado", "Rechazado"];
+          const enums = ["En proceso", "Aceptada", "Rechazada"];
           if (!enums.includes(value)) {
             throw new Error(
               "El estado debe ser Pendiente, Realizado o Cancelado"

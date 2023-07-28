@@ -302,7 +302,7 @@ const update_servicio = async (req, res) => {
         num_alumnos: num_servicios,
         num_alumnos_actual: servicio.num_servicios,
         id_usuario: req.user.dataValues.id,
-        estado: "Pendiente",
+        estado: "En proceso",
       });
       await send(
         "0246759@up.edu.mx",

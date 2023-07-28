@@ -220,9 +220,9 @@ export default function Solicitudes() {
               return (
                 <tr
                   className={`${
-                    solicitud.estado == "Aceptado"
+                    solicitud.estado == "Aceptada"
                       ? "bg-green-50"
-                      : solicitud.estado == "Rechazado"
+                      : solicitud.estado == "Rechazada"
                       ? "bg-red-50"
                       : ""
                   } border-x-0 border-y`}
@@ -333,7 +333,7 @@ export default function Solicitudes() {
                     <td className="p-2 border-l">{solicitud.comentario!=null&&solicitud.comentario!=""?solicitud.comentario:<input type="text" placeholder="Escribe un mensaje" onChange={(e)=>{onChange(solicitud.id,e.target.value)}}/>}</td>
                   ) : null}
                   <td className="p-2 text-center border-l">
-                    {solicitud.estado === "Pendiente" ||
+                    {solicitud.estado === "En proceso" ||
                     localStorage.getItem("rol") == "Gestor" ? (
                       <input
                         type="checkbox"
