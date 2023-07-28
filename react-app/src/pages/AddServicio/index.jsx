@@ -58,7 +58,8 @@ export default function AddServicio() {
         servicio.hora_inicio === "" ||
         servicio.hora_fin === "" ||
         servicio.fecha_inicio === "" ||
-        servicio.fecha_fin === ""
+        servicio.fecha_fin === "" ||
+        servicio.num_alumnos < 0
       ) {
         seleccionados.includes(servicio.id)
           ? null

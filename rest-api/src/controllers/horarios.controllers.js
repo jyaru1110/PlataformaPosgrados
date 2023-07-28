@@ -157,7 +157,6 @@ const create_horario = async (req, res) => {
     }
   }
   if (fecha_fin == fecha_inicio) {
-    //valida que el día concuerde con la fecha
     var fecha_inicio_i = new Date(fecha_inicio);
     if (dias[dia] !== fecha_inicio_i.getDay()) {
       res.status(500).send({ message: "Error en las fechas" });
@@ -209,7 +208,6 @@ const create_horario = async (req, res) => {
     }
     res.status(200).send({ horario: horario });
   }
-  console.log("sale de la función");
 };
 
 const update_horario = async (req, res) => {

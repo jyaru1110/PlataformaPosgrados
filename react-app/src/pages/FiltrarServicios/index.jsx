@@ -159,12 +159,12 @@ export default function FiltarServicios() {
         <DropdownProgramas func={setPrograma} escuela={escuela} />
         <DropdowClase func={setClase} />
         <DropdownSalon func={setSalones} />
-        <Horas setHoraFin={setHoraFin} setHoraInicio={setHoraInicio} />
         <Fechas
           setFechaFin={setFechaFin}
           setFechaInicio={setFechaInicio}
           value_inicio={fecha_inicio}
         />
+        <Horas setHoraFin={setHoraFin} setHoraInicio={setHoraInicio} />
         <OpcionesEstado estados={estados} setEstados={setEstados} />
         <div className="flex flex-col items-center mt-2 font-poppins">
         <table className="table-auto w-full">

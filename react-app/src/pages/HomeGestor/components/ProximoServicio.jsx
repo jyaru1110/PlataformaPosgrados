@@ -73,12 +73,15 @@ export default function ProximoServicio() {
                     navigation("/servicio", { state: { id: servicio.id } });
                   }}
                 >
-                  <p className="text-base text-whiteprimary font-poppins font-medium">
+                  <p className="text-sm text-whiteprimary font-poppins font-medium">
                     {servicio.hora_servicio_inicio.substring(0, 5)} -{" "}
                     {servicio.hora_servicio_fin.substring(0, 5)}
                   </p>
                   <p className="text-sm text-gray2 font-poppins font-regular">
                     Salón {servicio.salon_id}
+                  </p>
+                  <p className="text-sm text-gray2 font-poppins font-regular">
+                    {servicio.codigo}
                   </p>
                 </div>
                 <div className="rounded-xl bg-whitebg h-16 flex items-center px-1 flex-col justify-center ml-2">

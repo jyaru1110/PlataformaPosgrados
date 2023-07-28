@@ -9,7 +9,7 @@ export default function SumaIslas(props) {
                     <>
                         {props.sumas.map((isla) => (
                             <div key={isla.isla} className="flex flex-col items-center justify-center h-12 rounded-2xl bg-primarylight w-11 mr-2">
-                                <p className="font-poppins font-thin text-xs text-gray1">{isla.isla.substring(0,5)}</p>
+                                <p className="font-poppins font-thin text-xs text-gray1">{isla.isla.substring(0,4)}</p>
                                 <p className="font-poppins font-semibold text-sm text-primary">{isla.servicios_totales}</p>
                             </div>
                         ))}

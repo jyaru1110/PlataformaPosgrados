@@ -172,7 +172,7 @@ const get_proximo_servicio = async (req, res) => {
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select * from servicios_dia where fecha >= '" +
+      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where fecha >= '" +
       iso_today +
       "' and not estado = 'Cancelado' order by fecha asc, hora_inicio asc limit 1";
   } else {
@@ -358,6 +358,12 @@ const delete_servicio = async (req, res) => {
       notificacion,
       req.user.dataValues.nombre
     );
+    await send(
+      req.user.email,
+      "Has creado una solicitud de cancelación",
+      notificacion,
+      req.user.dataValues.nombre
+    )
     res.status(200).send({ notificacion: notificacion });
   }
 };
