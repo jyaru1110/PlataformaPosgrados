@@ -110,7 +110,7 @@ const get_suma_servicios_dia_isla = async (req, res) => {
       fecha_inicio +
       "' and '" +
       fecha_fin +
-      "' group by salon.isla";
+      "' group by salon.isla, servicios_dia.programa order by servicios_dia.programa";
   } else {
     query =
       "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia.programa where servicios_dia.fecha between '" +
@@ -119,7 +119,7 @@ const get_suma_servicios_dia_isla = async (req, res) => {
       fecha_fin +
       "' and programa.escuela = '" +
       req.user.dataValues.escuela +
-      "' group by salon.isla";
+      "' group by salon.isla, servicios_dia.programa order by servicios_dia.programa";
   }
   try {
     const servicios_dia = await sequelize.query(query);
