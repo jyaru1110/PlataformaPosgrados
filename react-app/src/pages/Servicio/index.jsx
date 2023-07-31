@@ -203,15 +203,17 @@ export default function Servicio() {
               escuela="Todos"
               func={setPrograma}
               value={servicio.programa}
+              disabled = {true}
             />
-            <DropdowClase func={setClase} value={servicio.no_clase} />
-            <Fecha setFecha={setFecha} value={servicio.fecha} />
+            <DropdowClase func={setClase} value={servicio.no_clase} disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true} />
+            <Fecha setFecha={setFecha} value={servicio.fecha} disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true} />
             <h1 className="font-semibold  font-poppins">Horario de clase</h1>
             <Horas
               setHoraFin={setHoraFin}
               setHoraInicio={setHoraInicio}
               value_inicio={servicio.hora_inicio}
               value_fin={servicio.hora_fin}
+              disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true}
             />
             <h1 className="font-semibold  font-poppins">Horario de servicio</h1>
             <Horas
@@ -219,12 +221,14 @@ export default function Servicio() {
               setHoraInicio={setHoraServicioInicio}
               value_inicio={servicio.hora_servicio_inicio}
               value_fin={servicio.hora_servicio_fin}
+              disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true}
             />
             <div className="flex justify-between max">
-              <DropdowSalon func={setSalon} value={servicio.salon_id} />
+              <DropdowSalon func={setSalon} value={servicio.salon_id} disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true} />
               <NumeroServicios
                 setNumeroServicios={setNumeroServicios}
                 value={servicio.num_servicios}
+                disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true}
               />
             </div>
             <button

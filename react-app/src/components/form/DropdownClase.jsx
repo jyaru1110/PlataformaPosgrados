@@ -7,6 +7,7 @@ export default function DropdowClase(props) {
   const clases = useClases();
   const value = props.value || "Todos";
   const options = clases_to_correct_format(clases);
+  const disabled = props.disabled || false;
 
   const child_to_parent = (child_data) => {
     child_data = child_data.label;
@@ -36,6 +37,7 @@ export default function DropdowClase(props) {
         options={options}
         onChange={child_to_parent}
         defaultValue={{ value: 0, label: value }}
+        isDisabled={disabled}
       />
     </>
   );

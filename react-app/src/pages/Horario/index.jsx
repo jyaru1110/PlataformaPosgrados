@@ -114,15 +114,28 @@ export default function Horario() {
       salones === "Todos" ||
       dia === "Todos"
     ) {
-      alert('No se puede actualizar con campos en "Todos"');
+      toast.error('No se puede actualizar con campos en "Todos"');
       return;
     }
     if (numero_servicios === "p") {
       return;
     }
 
+    if(fecha_fin < fecha_inicio){
+      toast.error("La fecha de fin no puede ser menor a la fecha de inicio");
+      return;
+    }
+    if(fecha_inicio<horario[0].fecha_inicio){
+      toast.error("La fecha de inicio no puede ser menor a la fecha de inicio del horario");
+      return;
+    }
+    if(fecha_fin>horario[0].fecha_fin){
+      toast.error("La fecha de fin no puede ser mayor a la fecha de fin del horario");
+      return;
+    }
+
     if (numero_servicios == 0 || numero_servicios === "") {
-      alert("El número de servicios no puede ser 0");
+      toast.error("El número de servicios no puede ser 0");
       return;
     }
 
@@ -244,7 +257,7 @@ export default function Horario() {
               value_inicio={horario[0].hora_servicio_inicio}
               value_fin={horario[0].hora_servicio_fin}
             />
-            <DropdownDia func={setDia} value={horario[0].dia} />
+            <DropdownDia func={setDia} value={horario[0].dia} disabled={true}/>
             <div className="flex justify-between max">
               <DropdowSalon func={setSalones} value={horario[0].salon} />
               <NumeroServicios

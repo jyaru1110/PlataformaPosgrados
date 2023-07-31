@@ -9,12 +9,13 @@ export default function DropdownProgramas(props) {
   const options = programas_to_correct_format(programas);
   const label = 'Selecciona un programa';
   const value = props.value||'';
+  const disabled = props.disabled||false;
 
   const child_to_parent = (child_data) => {
     props.func(child_data);
   };
 
   return (
-    <Dropdown options={options} label={label} child_to_parent = {child_to_parent} value={value}/>
+    <Dropdown options={options} label={label} child_to_parent = {child_to_parent} value={value} disabled={disabled}/>
   );
 }

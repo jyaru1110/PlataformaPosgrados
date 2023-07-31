@@ -22,6 +22,7 @@ export default function FiltarServicios() {
   const navigation = useNavigate();
   const resultado = useServicios();
   const servicios = resultado.servicios;
+  const [sinResultados, setSinResultados] = useState(false);
   const [servicios_filtrados, setServiciosFiltrados] = useState([]);
   const loading = resultado.loading;
   const [escuela, setEscuela] = useState("Todos");
@@ -148,6 +149,11 @@ export default function FiltarServicios() {
     servicios_filtrados.forEach((servicio) => {
       suma[servicio.estado] += servicio.num_servicios;
     });
+    if (servicios_filtrados.length === 0) {
+      setSinResultados(true);
+    } else {
+      setSinResultados(false);
+    }
     setSumaServicios(suma);
   }, [servicios_filtrados]);
 
@@ -167,23 +173,23 @@ export default function FiltarServicios() {
         <Horas setHoraFin={setHoraFin} setHoraInicio={setHoraInicio} />
         <OpcionesEstado estados={estados} setEstados={setEstados} />
         <div className="flex flex-col items-center mt-2 font-poppins">
-        <table className="table-auto w-full">
-          <thead className="max-w-full text-center">
-            <tr className="max-w-full text-xs">
-              <th className="font-thin text-left">Pendiente</th>
-              <th className="font-thin">Cancelado</th>
-              <th className="font-thin">Realizado</th>
-              <th className="font-thin text-right">Confirmado</th>
-            </tr>
-          </thead>
-          <tbody className="max-w-full text-center">
-            <tr className="max-w-full text-sm text-primary">
-              <td className="font-bold">{sumaServicios.Pendiente}</td>
-              <td className="font-bold">{sumaServicios.Cancelado}</td>
-              <td className="font-bold">{sumaServicios.Realizado}</td>
-              <td className="font-bold">{sumaServicios.Confirmado}</td>
-            </tr>
-          </tbody>
+          <table className="table-auto w-full">
+            <thead className="max-w-full text-center">
+              <tr className="max-w-full text-xs">
+                <th className="font-thin text-left">Pendiente</th>
+                <th className="font-thin">Cancelado</th>
+                <th className="font-thin">Realizado</th>
+                <th className="font-thin text-right">Confirmado</th>
+              </tr>
+            </thead>
+            <tbody className="max-w-full text-center">
+              <tr className="max-w-full text-sm text-primary">
+                <td className="font-bold">{sumaServicios.Pendiente}</td>
+                <td className="font-bold">{sumaServicios.Cancelado}</td>
+                <td className="font-bold">{sumaServicios.Realizado}</td>
+                <td className="font-bold">{sumaServicios.Confirmado}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
         {servicios_confirmados.length > 0 &&
@@ -198,9 +204,11 @@ export default function FiltarServicios() {
           </button>
         ) : null}
       </div>
-      <div className="mt-4 flex flex-wrap md:ml-96 w-full">
+      <div className={"mt-4 flex flex-wrap md:ml-96 w-full"}>
         {loading ? (
           <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+        ) : sinResultados ? (
+          <h1 className="font-poppins font-medium">No se encontró ningún resultado</h1>
         ) : (
           servicios_filtrados.map((servicio_i) => {
             return (
