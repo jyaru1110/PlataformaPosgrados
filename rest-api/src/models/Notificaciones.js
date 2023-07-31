@@ -107,7 +107,7 @@ const Notificaciones = sequelize.define(
     estado: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "Pendiente",
+      defaultValue: "En proceso",
       validate: {
         customValidator: (value) => {
           const enums = ["En proceso", "Aceptada", "Rechazada"];
