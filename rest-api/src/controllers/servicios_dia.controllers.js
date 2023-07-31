@@ -365,7 +365,7 @@ const delete_servicio = async (req, res) => {
       req.user.dataValues.nombre
     );
     await send(
-      req.user.email,
+      req.user.dataValues.email,
       "Has creado una solicitud de cancelación",
       notificacion,
       req.user.dataValues.nombre
