@@ -310,6 +310,12 @@ const update_servicio = async (req, res) => {
         notificacion.dataValues,
         req.user.dataValues.nombre 
       );
+      await send(
+        req.user.dataValues.email,
+        "Has creado una solicitud de cambio de servicio",
+        notificacion.dataValues,
+        req.user.dataValues.nombre
+      );
       res.status(200).send({ notificacion: notificacion });
     } catch (error) {
       res.status(500).send({ error: error });

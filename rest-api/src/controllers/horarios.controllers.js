@@ -95,6 +95,7 @@ const create_horario = async (req, res) => {
   const servicios_repetidos = await Servicios_dia.findAll({
     where: {
       salon_id: salon,
+      dia: dia,
       fecha: {
         [Op.between]: [fecha_inicio, fecha_fin],
       },
