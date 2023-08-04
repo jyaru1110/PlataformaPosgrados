@@ -14,22 +14,6 @@ export default function SumaDia(props) {
   const dias = get_dias_intervalos(props.fecha_inicio, props.fecha_fin);
   const [dia, setDia] = useState(dias[0]);
   const sumas = useIslasDia(dia);
-  const csvData = [
-    [
-      "FECHA",
-      "ÁREA",
-      "HORARIO DE EVENTO",
-      "TIPO DE SOLICITUD",
-      "NO. DE PERSONAS",
-      "LUGAR DE ENTREGA",
-      "OBSERVACIONES",
-      "INICIALES",
-      "FOLIO",
-      "CUENTA",
-      "FOLIO FACTURA",
-      "MONTO",
-    ],
-  ];
 
   return (
     <div className="ml-9 w-80">
@@ -37,17 +21,6 @@ export default function SumaDia(props) {
         <h1 className="font-poppins text-lg font-semibold text-primary">
           {date_to_day_dd_mm(dia)}
         </h1>
-        {rol === "gestor" ? (
-          <CSVLink
-            className="font-poppins rounded-lg bg-primary text-whiteprimary text-sm px-2"
-            filename="my-file.csv"
-            data={csvData}
-          >
-            Descargar
-          </CSVLink>
-        ) : (
-          <></>
-        )}
       </div>
       <div className="flex flex-row justify-between w-full overflow-auto">
         {dias.map((dia_m) => (
