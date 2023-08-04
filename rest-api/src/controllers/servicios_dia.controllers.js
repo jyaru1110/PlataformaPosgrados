@@ -12,7 +12,7 @@ const get_servicios_fecha = async (req, res) => {
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select * from servicios_dia where fecha = '" +
+      "select * from servicios_dia inner join programa on programa.progra = servicios_dia.programa where fecha = '" +
       fecha +
       "' order by hora_inicio asc;";
   } else {
@@ -150,7 +150,7 @@ const get_servicios_pendientes = async (req, res) => {
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select * from servicios_dia where not estado = 'Cancelado' and fecha = '" +
+      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where not estado = 'Cancelado' and fecha = '" +
       fecha +
       "' order by hora_inicio asc";
   } else {
@@ -305,7 +305,7 @@ const update_servicio = async (req, res) => {
         estado: "En proceso",
       });
       await send(
-        "0246759@up.edu.mx",
+        "mx_eventos@up.edu.mx",
         req.user.dataValues.nombre + " ha creado una solicitud de cambio de servicio",
         notificacion.dataValues,
         req.user.dataValues.nombre 
@@ -359,7 +359,7 @@ const delete_servicio = async (req, res) => {
       id_usuario: req.user.dataValues.id,
     });
     await send(
-      "0246759@up.edu.mx",
+      "mx_eventos@up.edu.mx",
       req.user.dataValues.nombre + " ha creado una solicitud de cancelación",
       notificacion,
       req.user.dataValues.nombre

@@ -8,13 +8,9 @@ const Clase = sequelize.define('clase', {
         primaryKey: true,
         allowNull: false
     },
-    id_curso: {
+    nombre_modulo: {
         type: DataTypes.STRING,
-        allowNull: false,
-        references: {
-            model: 'modulo',
-            key: 'id_curso'
-        }
+        allowNull: true,
     }
 }, {
     // Opciones del modelo

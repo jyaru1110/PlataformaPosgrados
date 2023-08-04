@@ -68,7 +68,7 @@ const delete_horario = async (req, res) => {
       tipo: "Cancelacion",
     });
     await send(
-      "0246759@up.edu.mx",
+      "mx_eventos@up.edu.mx",
       req.user.dataValues.nombre + " ha creado una solicitud de servicio",
       "Se ha creado una solicitud de servicio, revisala en "
     );
@@ -145,7 +145,7 @@ const create_horario = async (req, res) => {
         tipo: "Nuevo",
       });
       await send(
-        "0246759@up.edu.mx",
+        "mx_eventos@up.edu.mx",
         req.user.dataValues.nombre +
           " ha creado una solicitud de nuevo servicio",
         notificacion,
