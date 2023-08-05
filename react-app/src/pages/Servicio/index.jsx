@@ -23,6 +23,7 @@ export default function Servicio() {
   const loading = resultado.loading;
 
   const [fecha, setFecha] = useState("");
+  const [loading_req, setLoadingReq] = useState(false);
   const [horaInicio, setHoraInicio] = useState("");
   const [horaFin, setHoraFin] = useState("");
   const [hora_servicio_inicio, setHoraServicioInicio] = useState("");
@@ -75,6 +76,7 @@ export default function Servicio() {
   ]);
 
   const after_set = (data) => {
+    setLoadingReq(false);
     if (data.servicio) {
       toast.success("Servicio actualizado", {
         pauseOnFocusLoss: true,
@@ -91,6 +93,7 @@ export default function Servicio() {
   };
 
   const actualizar_informacion = () => {
+    setLoadingReq(true);
     if (
       programa === "Todos" ||
       clase === "Todos" ||
@@ -149,6 +152,7 @@ export default function Servicio() {
   };
 
   const after_canceled = (data) => {
+    setLoadingReq(false);
     toast.onChange((payload) => {
       if (payload.type === "success" && payload.status === "removed") {
         navigation(-1);
@@ -166,6 +170,7 @@ export default function Servicio() {
   };
 
   const cancelar_servicio = () => {
+    setLoadingReq(true);
     const controller = new AbortController();
     const signal = controller.signal;
     const url = `${url_backend}/delete_servicio/${id}/`;
@@ -182,22 +187,7 @@ export default function Servicio() {
           <div className="ml-9">
             <Header titulo="Editar o eliminar servicios"></Header>
           </div>
-          <div className="flex justify-between w-80 m-auto font-poppins text-sm mt-4">
-            <button
-              className="text-gray1 ml-1"
-              onClick={() => {
-                navigation(-1);
-              }}
-            >
-              Cancelar
-            </button>
-            <button
-              className="font-semibold text-primary"
-              onClick={actualizar_informacion}
-            >
-              Guardar
-            </button>
-          </div>
+          
           <div className="m-auto w-80 mt-4 ">
             <DropdownProgramas
               escuela="Todos"
@@ -234,8 +224,24 @@ export default function Servicio() {
             <button
               className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg"
               onClick={cancelar_servicio}
+              disabled={loading_req}
             >
               Cancelar servicio
+            </button>
+           
+            <button
+              className="font-poppins text-sm rounded-md mb-2 bg-primary w-80 font-normal text-white h-7"
+              onClick={actualizar_informacion}
+            >
+              Guardar
+            </button>
+            <button
+              className="text-gray1 font-poppins text-sm rounded-md mb-2 hover:bg-slate-100 w-80 font-normal h-7"
+              onClick={() => {
+                navigation(-1);
+              }}
+            >
+              Cancelar
             </button>
           </div>
         </div>

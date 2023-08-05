@@ -48,6 +48,7 @@ export default function Solicitudes() {
   };
 
   const aceptarSolicitudes = () => {
+    console.log("aceptar")
     seleccionados.map((seleccionado) => {
       setLoadingA(true);
       axios
@@ -149,6 +150,7 @@ export default function Solicitudes() {
                 onClick={() => {
                   rechazarSolicitudes();
                 }}
+                disabled={loadingR}
               >
                 Enviar rechazo
               </button>
@@ -333,8 +335,7 @@ export default function Solicitudes() {
                     <td className="p-2 border-l">{solicitud.comentario!=null&&solicitud.comentario!=""?solicitud.comentario:<input type="text" placeholder="Escribe un mensaje" onChange={(e)=>{onChange(solicitud.id,e.target.value)}}/>}</td>
                   ) : null}
                   <td className="p-2 text-center border-l">
-                    {solicitud.estado === "En proceso" ||
-                    localStorage.getItem("rol") == "Gestor" ? (
+                    {solicitud.estado === "En proceso" ? (
                       <input
                         type="checkbox"
                         onChange={() => onCheck(solicitud.id)}

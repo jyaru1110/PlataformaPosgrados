@@ -214,22 +214,7 @@ export default function Horario() {
           <div className="ml-9">
             <Header titulo="Editar o eliminar horarios"></Header>
           </div>
-          <div className="flex justify-between w-80 m-auto font-poppins text-sm mt-4">
-            <button
-              className="text-gray1 ml-1"
-              onClick={() => {
-                navigation(-1);
-              }}
-            >
-              Cancelar
-            </button>
-            <button
-              className="font-semibold text-primary"
-              onClick={actualizar_informacion}
-            >
-              Guardar
-            </button>
-          </div>
+          
           <div className="m-auto w-80 mt-4 ">
             <DropdownProgramas
               func={setPrograma}
@@ -270,6 +255,20 @@ export default function Horario() {
               onClick={eliminar_horario}
             >
               Eliminar horario
+            </button>
+            <button
+              className="font-poppins text-sm rounded-md mb-2 w-80 font-normal h-7  text-white bg-primary"
+              onClick={actualizar_informacion}
+            >
+              Guardar
+            </button>
+            <button
+              className="font-poppins text-sm rounded-md mb-2 w-80 font-normal h-7 hover:bg-slate-100 text-gray1"
+              onClick={() => {
+                navigation(-1);
+              }}
+            >
+              Cancelar
             </button>
           </div>
         </div>
