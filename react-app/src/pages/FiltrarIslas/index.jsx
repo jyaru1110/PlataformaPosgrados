@@ -18,12 +18,12 @@ export default function FiltrarIslas() {
     const sumas = res.sumasIslas;
 
     return (
-        <div className="w-11/12 flex flex-col pt-2">
+        <div className="w-11/12 md:flex pt-2">
             <div className='w-80 ml-9'>
                 <Header titulo="Información de las islas"></Header>
                 <Fechas setFechaFin = {setFechaFin} setFechaInicio = {setFechaInicio}/>
+                <SumaIslas sumas = {sumas} loading={loading}/>
             </div>
-            <SumaIslas sumas = {sumas} loading={loading}/>
             <SumaDia fecha_fin={fecha_fin} fecha_inicio = {fecha_inicio}></SumaDia>
         </div>
     )

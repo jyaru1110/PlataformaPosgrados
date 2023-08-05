@@ -80,21 +80,22 @@ const get_servicios_isla = async (req, res) => {
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia.programa where servicios_dia.fecha = '" +
+      "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla,programa.codigo as programa from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia.programa where servicios_dia.fecha = '" +
       fecha +
-      "' group by salon.isla,programa.programa";
+      "' group by salon.isla,programa.codigo";
   } else {
     query =
-      "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia.programa where programa.escuela = '" +
+      "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla,servicios_dia.programa as programa from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia.programa where programa.escuela = '" +
       req.user.dataValues.escuela +
       "' and servicios_dia.fecha = '" +
       fecha +
-      "' group by salon.isla,programa.programa";
+      "' group by salon.isla,programa.codigo";
   }
   try {
     const servicios_dia = await sequelize.query(query);
     res.status(200).send({ servicio: servicios_dia });
   } catch (error) {
+    console.log(error)
     res.status(500).send({ error: error });
   }
 };

@@ -16,7 +16,7 @@ export default function SumaDia(props) {
   const sumas = useIslasDia(dia);
 
   return (
-    <div className="ml-9 w-80">
+    <div className="ml-9 w-100">
       <div className="flex justify-between items-center  mt-3">
         <h1 className="font-poppins text-lg font-semibold text-primary">
           {date_to_day_dd_mm(dia)}
@@ -55,14 +55,14 @@ export default function SumaDia(props) {
               No hay servicios para esta fecha
             </h1>
           ) : (
-            <div>
+            <div className="flex flex-wrap">
               {sumas.sumas.map((suma) => (
                 <div
                   key={suma.id}
                   className="flex flex-col justify-center items-center w-36 h-28 rounded-2xl bg-primarylight m-2"
                 >
                   <p className="font-poppins text-xs text-center font-medium text-gray1">
-                    {suma.isla.split("/")[0]}
+                    {suma.isla?suma.isla.split("/")[0]:'Sin isla'}  · {suma.programa}
                   </p>
                   <p className="font-poppins text-2xl font-medium">
                     {suma.servicios_totales}
