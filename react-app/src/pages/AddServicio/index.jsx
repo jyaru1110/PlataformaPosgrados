@@ -227,6 +227,7 @@ export default function AddServicio() {
         <button
           className="font-poppins bg-primary text-whiteprimary px-2 rounded-lg ml-1 "
           onClick={send_servicios}
+          disabled={isLoading}
         >
           {isLoading ? (
             <div className="m-auto h-2 p-2 w-2 animate-spin rounded-full border-4 border-solid border-whitebg border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>

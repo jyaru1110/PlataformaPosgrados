@@ -30,6 +30,7 @@ export default function FiltarServicios() {
   const [hora_inicio, setHoraInicio] = useState("Todos");
   const [hora_fin, setHoraFin] = useState("Todos");
   const [servicios_confirmados, setServiciosConfirmados] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [fecha_inicio, setFechaInicio] = useState(
     date.toISOString().substring(0, 10)
   );
@@ -45,7 +46,6 @@ export default function FiltarServicios() {
   const [sumaServicios, setSumaServicios] = useState({});
 
   const select_servicio_confirmado = (servicio) => {
-    if (localStorage.getItem("rol") != "Gestor") return;
     if (servicios_confirmados.includes(servicio)) {
       setServiciosConfirmados((servicios_confirmados) =>
         servicios_confirmados.filter((servicio_i) => servicio_i !== servicio)
@@ -58,7 +58,8 @@ export default function FiltarServicios() {
     }
   };
 
-  const confirmar_servicios = () => {
+  const cancelar_servicios = () => {
+    setIsLoading(true);
     toast.onChange((payload) => {
       if (payload.type === "success" && payload.status === "removed") {
         window.location.reload();
@@ -66,25 +67,23 @@ export default function FiltarServicios() {
     });
     axios
       .put(
-        url_backend + "/servicios/confirmar",
+        url_backend + "/servicios/cancelar",
         {
           servicios: servicios_confirmados,
-          fechas: {
-            fecha_inicio: fecha_inicio,
-            fecha_fin: fecha_fin,
-          },
         },
         {
           withCredentials: true,
         }
       )
       .then(() => {
-        toast.success("Servicios confirmados", {
+        setIsLoading(false);
+        toast.success("Servicios cancelados", {
           pauseOnFocusLoss: true,
         });
       })
       .catch((error) => {
-        toast.error("Error al confirmar servicios", {
+        setIsLoading(false);
+        toast.error("Error al cancelar servicios", {
           pauseOnFocusLoss: true,
         });
       });
@@ -192,15 +191,15 @@ export default function FiltarServicios() {
             </tbody>
           </table>
         </div>
-        {servicios_confirmados.length > 0 &&
-        localStorage.getItem("rol") == "Gestor" ? (
+        {servicios_confirmados.length > 0 ? (
           <button
-            className="bg-primary font-poppins rounded-lg text-white font-normal mt-2 w-full h-7"
+            className="text-deletetext font-poppins rounded-lg bg-deletebg font-normal mt-2 w-full h-7"
             onClick={() => {
-              confirmar_servicios();
+              cancelar_servicios();
             }}
+            disabled={isLoading}
           >
-            Confirmar
+            Cancelar servicios
           </button>
         ) : null}
       </div>
@@ -264,9 +263,40 @@ export default function FiltarServicios() {
                       {servicio_i.estado}
                     </p>
                   ) : (
-                    <p className="text-greentext bg-greenbg py px-1 rounded-xl w-20 text-center text-xs mb-1 ml-1">
-                      {servicio_i.estado}
-                    </p>
+                    <>
+                      {servicios_confirmados.length === 0 ? (
+                        <p
+                          className="text-greentext bg-greenbg py px-1 rounded-xl w-20 text-center text-xs mb-1 ml-1 cursor-pointer"
+                          onClick={() => {
+                            select_servicio_confirmado(servicio_i.id);
+                          }}
+                        >
+                          {servicio_i.estado}
+                        </p>
+                      ) : (
+                        <span
+                          className={`rounded-xl h-6 w-6 shadow-md cursor-pointer ${
+                            servicios_confirmados.includes(servicio_i.id)
+                              ? "bg-blue-600"
+                              : "bg-white"
+                          }`}
+                          onClick={() => {
+                            select_servicio_confirmado(servicio_i.id);
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="25"
+                            height="25"
+                            viewBox="0 0 512 512"
+                            id="tick"
+                            fill="white"
+                          >
+                            <path d="M223.9 329.7c-2.4 2.4-5.8 4.4-8.8 4.4s-6.4-2.1-8.9-4.5l-56-56 17.8-17.8 47.2 47.2L340 177.3l17.5 18.1-133.6 134.3z"></path>
+                          </svg>
+                        </span>
+                      )}
+                    </>
                   )}
                 </div>
                 <div

@@ -31,32 +31,70 @@ const get_servicios_fecha = async (req, res) => {
   }
 };
 
-const confirmar_servicio = async (req, res) => {
+const cancelar_servicios = async (req, res) => {
   const rol = req.user.dataValues.rol;
   const servicios = req.body.servicios;
-  const fechas = req.body.fechas;
-  console.log(fechas);
-  if(servicios.length == 0 || rol != "Gestor"){
+  if (servicios.length == 0 || rol != "Gestor") {
     res.status(500).send({ error: "No se pudo confirmar el servicio" });
     return;
   }
-  const semana = await Semana.update({
-    inicio_semana: fechas.fecha_inicio,
-    fin_semana: fechas.fecha_fin,
-  },{
-    where: {
-      id: 1
-    }
-  });
-  const servicios_dia = await Servicios_dia.update({
-    estado: "Confirmado",
-  }, {
+  const servicios_dia = await Servicios_dia.destroy({
     where: {
       id: {
-        [Op.in]: servicios
-      }
+        [Op.in]: servicios,
+      },
+      estado: "Pendiente",
+    },
+  });
+  const servicios_confirmados = await Servicios_dia.findAll({
+    where: {
+      id: {
+        [Op.in]: servicios,
+      },
+      estado: "Confirmado",
+    },
+  });
+  if (rol !== "Gestor") {
+    for (let i = 0; i < servicios_confirmados.length; i++) {
+      const servicio = servicios_confirmados[i];
+      const notificacion = await Notificaciones.create({
+        id_servicio: servicio.dataValues.id,
+        tipo: "Cancelacion",
+        salon: servicio.salon_id,
+        programa: servicio.programa,
+        fecha_inicio: servicio.fecha,
+        hora_inicio: servicio.hora_inicio,
+        hora_fin: servicio.hora_fin,
+        hora_servicio_inicio: servicio.hora_servicio_inicio,
+        hora_servicio_fin: servicio.hora_servicio_fin,
+        no_clase: servicio.no_clase,
+        num_alumnos: servicio.num_servicios,
+        id_usuario: req.user.dataValues.id,
+        estado: "En proceso",
+      });
+      await send(
+        "mx_eventos@up.edu.mx",
+        req.user.dataValues.nombre+" ha realizado una solicitud de cancelacion",
+        notificacion.dataValues,
+        req.user.dataValues.nombre
+      );
+      await send(
+        req.user.dataValues.email,
+        "Has realizado una solicitud de cancelacion",
+        notificacion.dataValues,
+        req.user.dataValues.nombre
+      );
     }
-  }); 
+  }else{
+    const servicios_dia_confirmados = await Servicios_dia.destroy({
+      where: {
+        id: {
+          [Op.in]: servicios,
+        },
+        estado: "Confirmado",
+      },
+    });
+  }
   res.status(200).send({ servicios: servicios_dia });
 };
 
@@ -95,7 +133,7 @@ const get_servicios_isla = async (req, res) => {
     const servicios_dia = await sequelize.query(query);
     res.status(200).send({ servicio: servicios_dia });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).send({ error: error });
   }
 };
@@ -134,7 +172,8 @@ const get_servicios_todos = async (req, res) => {
   const rol = req.user.dataValues.rol;
   var query = "";
   if (rol == "Gestor") {
-    query = "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa order by fecha asc,hora_inicio asc";
+    query =
+      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa order by fecha asc,hora_inicio asc";
   } else {
     query =
       "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where programa.escuela ='" +
@@ -244,12 +283,12 @@ const update_servicio = async (req, res) => {
       id: id,
     },
   });
-  const salon_nuevo =  await Salon.findOne({
+  const salon_nuevo = await Salon.findOne({
     where: {
       salon: salon_id,
     },
   });
-  const salon_viejo =  await Salon.findOne({
+  const salon_viejo = await Salon.findOne({
     where: {
       salon: servicio.salon_id,
     },
@@ -257,7 +296,11 @@ const update_servicio = async (req, res) => {
   if (
     rol == "Gestor" ||
     servicio.estado !== "Confirmado" ||
-    (servicio.num_servicios == num_servicios && servicio.fecha == fecha && salon_nuevo.isla == salon_viejo.isla && servicio.hora_servicio_inicio == hora_servicio_inicio && servicio.hora_servicio_fin == hora_servicio_fin)
+    (servicio.num_servicios == num_servicios &&
+      servicio.fecha == fecha &&
+      salon_nuevo.isla == salon_viejo.isla &&
+      servicio.hora_servicio_inicio == hora_servicio_inicio &&
+      servicio.hora_servicio_fin == hora_servicio_fin)
   ) {
     try {
       const servicio = await Servicios_dia.update(
@@ -307,9 +350,10 @@ const update_servicio = async (req, res) => {
       });
       await send(
         "mx_eventos@up.edu.mx",
-        req.user.dataValues.nombre + " ha creado una solicitud de cambio de servicio",
+        req.user.dataValues.nombre +
+          " ha creado una solicitud de cambio de servicio",
         notificacion.dataValues,
-        req.user.dataValues.nombre 
+        req.user.dataValues.nombre
       );
       await send(
         req.user.dataValues.email,
@@ -370,7 +414,7 @@ const delete_servicio = async (req, res) => {
       "Has creado una solicitud de cancelación",
       notificacion,
       req.user.dataValues.nombre
-    )
+    );
     res.status(200).send({ notificacion: notificacion });
   }
 };
@@ -386,5 +430,5 @@ module.exports = {
   update_servicio,
   delete_servicio,
   get_servicio,
-  confirmar_servicio
+  cancelar_servicios,
 };
