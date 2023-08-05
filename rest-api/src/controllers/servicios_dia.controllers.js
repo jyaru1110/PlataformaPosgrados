@@ -74,7 +74,8 @@ const cancelar_servicios = async (req, res) => {
       });
       await send(
         "mx_eventos@up.edu.mx",
-        req.user.dataValues.nombre+" ha realizado una solicitud de cancelacion",
+        req.user.dataValues.nombre +
+          " ha realizado una solicitud de cancelacion",
         notificacion.dataValues,
         req.user.dataValues.nombre
       );
@@ -85,7 +86,7 @@ const cancelar_servicios = async (req, res) => {
         req.user.dataValues.nombre
       );
     }
-  }else{
+  } else {
     const servicios_dia_confirmados = await Servicios_dia.destroy({
       where: {
         id: {
@@ -96,6 +97,41 @@ const cancelar_servicios = async (req, res) => {
     });
   }
   res.status(200).send({ servicios: servicios_dia });
+};
+
+const confirmar_servicios = async (req, res) => {
+  const rol = req.user.dataValues.rol;
+  const { fecha_inicio, fecha_fin } = req.body;
+  if (rol != "Gestor") {
+    res.status(500).send({ error: "No se pudo confirmar el servicio" });
+    return;
+  }
+  const servicios_confirmados = await Servicios_dia.update(
+    {
+      estado: "Confirmado",
+    },
+    {
+      where: {
+        fecha: {
+          [Op.between]: [fecha_inicio, fecha_fin],
+        },
+        estado: "Pendiente",
+      },
+    }
+  );
+  await Semana.update(
+    {
+      inicio_semana: fecha_inicio,
+      fin_semana: fecha_fin,
+    },
+    {
+      where: {
+        id: 3,
+      },
+    }
+  );
+
+  res.status(200).send({ servicios: servicios_confirmados });
 };
 
 const get_servicio = async (req, res) => {
@@ -431,4 +467,5 @@ module.exports = {
   delete_servicio,
   get_servicio,
   cancelar_servicios,
+  confirmar_servicios,
 };

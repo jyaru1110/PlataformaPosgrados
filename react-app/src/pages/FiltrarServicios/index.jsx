@@ -16,6 +16,7 @@ import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
 import { useNavigate } from "react-router-dom";
 
 const url_backend = import.meta.env.VITE_URL_API;
+const rol = localStorage.getItem("rol");
 
 export default function FiltarServicios() {
   const date = new Date();
@@ -57,6 +58,39 @@ export default function FiltarServicios() {
       ]);
     }
   };
+
+  const confirmar_servicios = () => {
+    setIsLoading(true);
+    toast.onChange((payload) => {
+      if (payload.type === "success" && payload.status === "removed") {
+        window.location.reload();
+      }
+    });
+    axios
+      .put(
+        url_backend + "/servicios/confirmar",
+        {
+          fecha_inicio: fecha_inicio,
+          fecha_fin: fecha_fin,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then(() => {
+        setIsLoading(false);
+        toast.success("Servicios confirmados", {
+          pauseOnFocusLoss: true,
+        });
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        toast.error("Error al confirmar servicios", {
+          pauseOnFocusLoss: true,
+        });
+      });
+  };
+
 
   const cancelar_servicios = () => {
     setIsLoading(true);
@@ -200,6 +234,17 @@ export default function FiltarServicios() {
             disabled={isLoading}
           >
             Cancelar servicios
+          </button>
+        ) : null}
+        {((fecha_inicio !== "Todos" && fecha_fin !== "Todos")&&rol == "Gestor")?(
+          <button
+            className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7"
+            onClick={() => {
+              confirmar_servicios();
+            }}
+            disabled={isLoading}
+          >
+            Confirmar semana
           </button>
         ) : null}
       </div>
