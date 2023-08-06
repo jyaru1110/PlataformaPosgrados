@@ -14,6 +14,13 @@ import { useEffect, useState } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
 import { useNavigate } from "react-router-dom";
+import { CSVLink, CSVDownload } from "react-csv";
+
+const csvData = [
+  { first_name: "cola", email: "si" },
+  { first_name: "cola", email: "si" },
+  { first_name: "cola", email: "si" },
+];
 
 const url_backend = import.meta.env.VITE_URL_API;
 const rol = localStorage.getItem("rol");
@@ -23,6 +30,8 @@ export default function FiltarServicios() {
   const navigation = useNavigate();
   const resultado = useServicios();
   const servicios = resultado.servicios;
+  const [reporte, setReporte] = useState([]);
+  const [reporteReady, setReporteReady] = useState(false);
   const [sinResultados, setSinResultados] = useState(false);
   const [servicios_filtrados, setServiciosFiltrados] = useState([]);
   const loading = resultado.loading;
@@ -60,12 +69,8 @@ export default function FiltarServicios() {
   };
 
   const confirmar_servicios = () => {
+    if (isLoading) return;
     setIsLoading(true);
-    toast.onChange((payload) => {
-      if (payload.type === "success" && payload.status === "removed") {
-        window.location.reload();
-      }
-    });
     axios
       .put(
         url_backend + "/servicios/confirmar",
@@ -77,8 +82,9 @@ export default function FiltarServicios() {
           withCredentials: true,
         }
       )
-      .then(() => {
+      .then((resultado) => {
         setIsLoading(false);
+        setReporte(resultado.data.servicios);
         toast.success("Servicios confirmados", {
           pauseOnFocusLoss: true,
         });
@@ -91,6 +97,13 @@ export default function FiltarServicios() {
       });
   };
 
+  useEffect(() => {
+    if (reporte.length !== 0) {
+      setReporteReady(true);
+    } else {
+      setReporteReady(false);
+    }
+  }, [reporte]);
 
   const cancelar_servicios = () => {
     setIsLoading(true);
@@ -109,7 +122,7 @@ export default function FiltarServicios() {
           withCredentials: true,
         }
       )
-      .then(() => {
+      .then((resultado) => {
         setIsLoading(false);
         toast.success("Servicios cancelados", {
           pauseOnFocusLoss: true,
@@ -236,23 +249,35 @@ export default function FiltarServicios() {
             Cancelar servicios
           </button>
         ) : null}
-        {((fecha_inicio !== "Todos" && fecha_fin !== "Todos")&&rol == "Gestor")?(
-          <button
-            className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7"
-            onClick={() => {
-              confirmar_servicios();
-            }}
-            disabled={isLoading}
-          >
-            Confirmar semana
-          </button>
+        {fecha_inicio !== "Todos" &&
+        fecha_fin !== "Todos" &&
+        rol == "Gestor" ? (
+          <>
+            <button
+              className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
+              onClick={confirmar_servicios}
+            >
+              Confirmar servicios
+            </button>
+            {reporteReady ? (
+              <CSVLink
+                data={reporte}
+                className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
+                filename="reporte.csv"
+              >
+                Descargar reporte
+              </CSVLink>
+            ) : null}
+          </>
         ) : null}
       </div>
       <div className={"mt-4 flex flex-wrap md:ml-96 w-full"}>
         {loading ? (
           <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
         ) : sinResultados ? (
-          <h1 className="font-poppins font-medium">No se encontró ningún resultado</h1>
+          <h1 className="font-poppins font-medium">
+            No se encontró ningún resultado
+          </h1>
         ) : (
           servicios_filtrados.map((servicio_i) => {
             return (

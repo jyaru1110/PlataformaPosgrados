@@ -1,7 +1,7 @@
 const Servicios_dia = require("../models/Servicios_dia");
 const Notificaciones = require("../models/Notificaciones");
 const Salon = require("../models/Salon");
-const { Op } = require("sequelize");
+const { Op, Sequelize } = require("sequelize");
 const sequelize = require("../database/database");
 const send = require("../mail/nodemailerprovider");
 const Semana = require("../models/Semana");
@@ -130,8 +130,12 @@ const confirmar_servicios = async (req, res) => {
       },
     }
   );
+  const query = "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(salon.salon,' ') as Observaciones from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id WHERE fecha between '"+ fecha_inicio +"' and '"+fecha_fin+"' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
+  const servicios_dia_isla = await sequelize.query(query, {
+    type: Sequelize.QueryTypes.SELECT,
+  });
 
-  res.status(200).send({ servicios: servicios_confirmados });
+  res.status(200).send({ servicios: servicios_dia_isla });
 };
 
 const get_servicio = async (req, res) => {
@@ -454,7 +458,6 @@ const delete_servicio = async (req, res) => {
     res.status(200).send({ notificacion: notificacion });
   }
 };
-
 module.exports = {
   get_servicios_fecha,
   get_proximo_servicio,
@@ -467,5 +470,5 @@ module.exports = {
   delete_servicio,
   get_servicio,
   cancelar_servicios,
-  confirmar_servicios,
+  confirmar_servicios
 };
