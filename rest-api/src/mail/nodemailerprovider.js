@@ -32,7 +32,7 @@ const send = async (email, subject, notificacion, persona) => {
     notificacion.num_alumnos+'</td></tr></tbody></table><a href="https://coffee-breaks.vercel.app/solicitudes">Revisa las solicitudes aquí</a></div>';
 
     const mailOptions = {
-      from: '"Coffee breaks" <0246759@up.edu.mx>',
+      from: '"Coffee breaks" <mx_eventos@up.edu.mx>',
       to: email,
       subject: subject,
       html: html

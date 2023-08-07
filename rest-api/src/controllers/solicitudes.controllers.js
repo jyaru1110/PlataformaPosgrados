@@ -5,6 +5,20 @@ const Horario = require("../models/Horario");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
 const send = require("../mail/nodemailerprovider");
+const user = process.env.EMAIL;
+const pass = process.env.PASS;
+const nodemailer = require("nodemailer");
+const config = {
+  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: false,
+  auth: {
+    user: user,
+    pass: pass,
+  },
+};
+
 
 const get_solicitudes = async (req, res) => {
   const rol = req.user.dataValues.rol;
@@ -144,9 +158,10 @@ const cancelar_solicitud = async (req, res) => {
   }
 };
 
+
 module.exports = {
   get_solicitudes,
   aceptar_solicitud,
   rechazar_solicitud,
-  cancelar_solicitud,
+  cancelar_solicitud
 };
