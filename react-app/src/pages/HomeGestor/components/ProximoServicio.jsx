@@ -39,7 +39,7 @@ export default function ProximoServicio() {
         <div
           className="bg-blue-100 text-blue-900 font-poppins font-semibold text-center text-xs px-2 py-1 rounded-xl cursor-pointer"
           onClick={() => {
-            localStorage.getItem("id") == 182 || localStorage.getItem("id") == 183
+            localStorage.getItem("id") == 184 || localStorage.getItem("id") == 183
               ? changeRol(localStorage.getItem("rol"))
               : null;
           }}
