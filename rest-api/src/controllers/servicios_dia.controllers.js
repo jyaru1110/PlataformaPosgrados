@@ -130,7 +130,7 @@ const confirmar_servicios = async (req, res) => {
       },
     }
   );
-  const query = "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(salon.salon,' ') as Observaciones from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id WHERE fecha between '"+ fecha_inicio +"' and '"+fecha_fin+"' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
+  const query = "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id WHERE fecha between '"+ fecha_inicio +"' and '"+fecha_fin+"' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
   const servicios_dia_isla = await sequelize.query(query, {
     type: Sequelize.QueryTypes.SELECT,
   });
