@@ -31,12 +31,12 @@ const get_horarios_todos = async (req, res) => {
   const rol = req.user.dataValues.rol;
   var query = "";
   if (rol == "Gestor") {
-    query = "select * from horario;";
+    query = "select * from horario order by horario.fecha_inicio asc;";
   } else {
     query =
       "select * from horario inner join programa on programa.programa = horario.programa where programa.escuela = '" +
       req.user.dataValues.escuela +
-      "';";
+      "'; order by horario.fecha_inicio asc;";
   }
   const horarios = await sequelize.query(query);
   res.status(200).send({ horarios: horarios });
