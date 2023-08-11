@@ -36,7 +36,7 @@ const get_horarios_todos = async (req, res) => {
     query =
       "select * from horario inner join programa on programa.programa = horario.programa where programa.escuela = '" +
       req.user.dataValues.escuela +
-      "'; order by horario.fecha_inicio asc;";
+      "' order by horario.fecha_inicio asc;";
   }
   const horarios = await sequelize.query(query);
   res.status(200).send({ horarios: horarios });
