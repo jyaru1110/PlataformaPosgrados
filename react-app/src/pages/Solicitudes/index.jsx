@@ -50,7 +50,7 @@ export default function Solicitudes() {
   const aceptarSolicitudes = () => {
     console.log("aceptar")
     seleccionados.map((seleccionado) => {
-      setLoadingA(true);
+      setLoadingA(false);
       axios
         .put(
           url_backend + "/solicitudes/aceptar/" + seleccionado.id,
@@ -150,7 +150,7 @@ export default function Solicitudes() {
                 onClick={() => {
                   rechazarSolicitudes();
                 }}
-                disabled={loadingR}
+
               >
                 Enviar rechazo
               </button>

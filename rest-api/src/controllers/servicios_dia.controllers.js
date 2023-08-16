@@ -428,6 +428,15 @@ const delete_servicio = async (req, res) => {
     await servicio.save();
     res.status(200).send({ servicio: servicio });
   } else {
+    const notificaciones = await Notificaciones.findAll({
+      where: {
+        id_servicio: id,
+      },
+    });
+    if(notificaciones.length == 0){
+      res.status(500).send({ error: "Solo puede haber una solicitud por servicio" });
+      return;
+    }
     const notificacion = await Notificaciones.create({
       id_servicio: id,
       tipo: "Cancelacion",

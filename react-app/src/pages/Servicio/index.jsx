@@ -167,6 +167,11 @@ export default function Servicio() {
         pauseOnFocusLoss: true,
       });
     }
+    else if(data.data.error){
+      toast.error(data.data.error, {
+        pauseOnFocusLoss: true,
+      });
+    }
   };
 
   const cancelar_servicio = () => {
