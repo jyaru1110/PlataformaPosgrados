@@ -97,6 +97,13 @@ export default function FiltarServicios() {
       });
   };
 
+  const after_descargar_report = () => {
+      toast.success("Reporte descargado", {
+        pauseOnFocusLoss: true,
+      });
+      setReporteReady(false);
+  }
+
   useEffect(() => {
     if (reporte.length !== 0) {
       setReporteReady(true);
@@ -253,21 +260,23 @@ export default function FiltarServicios() {
         fecha_fin !== "Todos" &&
         rol == "Gestor" ? (
           <>
-            <button
-              className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
-              onClick={confirmar_servicios}
-            >
-              Confirmar servicios
-            </button>
             {reporteReady ? (
               <CSVLink
                 data={reporte}
                 className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
                 filename="reporte.csv"
+                onClick={after_descargar_report}
               >
                 Descargar reporte
               </CSVLink>
-            ) : null}
+            ) : (
+              <button
+                className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
+                onClick={confirmar_servicios}
+              >
+                Confirmar servicios
+              </button>
+            )}
           </>
         ) : null}
       </div>
