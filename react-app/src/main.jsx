@@ -9,6 +9,7 @@ import Servicio from './pages/Servicio';
 import AddServicio from './pages/AddServicio';
 import Login from './pages/Login';
 import Solicitudes from './pages/Solicitudes';
+import LandingPage from './pages/landingPage';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,6 +19,10 @@ import './index.css'
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <LandingPage />
+  },
+  {
+    path: "/home-coffee-breaks",
     element: <HomeGestor />
   },
   {

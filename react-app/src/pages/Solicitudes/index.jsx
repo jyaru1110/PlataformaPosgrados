@@ -316,7 +316,7 @@ export default function Solicitudes() {
                     )}
                   </td>
                   <td className="border-r p-2">{solicitud.no_clase}</td>
-                  <td className="p-2 flex justify-between">
+                  <td className="p-2">
                     {solicitud.tipo == "Cambio" &&
                     solicitud.num_alumnos != solicitud.num_alumnos_actual ? (
                       <>
