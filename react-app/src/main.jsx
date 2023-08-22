@@ -9,7 +9,7 @@ import Servicio from './pages/Servicio';
 import AddServicio from './pages/AddServicio';
 import Login from './pages/Login';
 import Solicitudes from './pages/Solicitudes';
-import LandingPage from './pages/landingPage';
+import LandingPage from './pages/LandingPage'
 import {
   createBrowserRouter,
   RouterProvider,
