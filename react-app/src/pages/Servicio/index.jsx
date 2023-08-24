@@ -152,6 +152,7 @@ export default function Servicio() {
   };
 
   const after_canceled = (data) => {
+    console.log("after_canceled",data)
     setLoadingReq(false);
     toast.onChange((payload) => {
       if (payload.type === "success" && payload.status === "removed") {
