@@ -52,13 +52,21 @@ export default function AddServicio() {
     servicios.forEach((servicio) => {
       if (
         servicio.programa === "" ||
+        servicio.programa === "Todos" ||
         servicio.no_clase === "" ||
+        servicio.no_clase === "Todos" ||
         servicio.salon === "" ||
+        servicio.salon === "Todos" ||
         servicio.dia === "" ||
+        servicio.dia === "Todos" ||
         servicio.hora_inicio === "" ||
+        servicio.hora_inicio === "Todos" ||
         servicio.hora_fin === "" ||
+        servicio.hora_fin === "Todos" ||
         servicio.fecha_inicio === "" ||
+        servicio.fecha_inicio === "Todos" ||
         servicio.fecha_fin === "" ||
+        servicio.fecha_fin === "Todos" ||
         servicio.num_alumnos < 0
       ) {
         seleccionados.includes(servicio.id)

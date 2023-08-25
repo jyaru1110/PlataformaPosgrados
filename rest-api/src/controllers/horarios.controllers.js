@@ -106,7 +106,6 @@ const create_horario = async (req, res) => {
       hora_servicio_fin: hora_servicio_fin,
     },
   });
-  console.log(servicios_repetidos);
   if (servicios_repetidos.length > 0) {
     res
       .status(500)
@@ -203,11 +202,13 @@ const create_horario = async (req, res) => {
       hora_servicio_fin: hora_servicio_fin,
       num_alumnos: num_alumnos,
     });
+    console.log(horario)
     const servicios_creados = await Servicios_dia.findAll({
       where: {
         id_horario: horario.id_horario,
       },
     });
+    console.log(servicios_creados)
     if (servicios_creados.length == 0) {
       await horario.destroy();
       res

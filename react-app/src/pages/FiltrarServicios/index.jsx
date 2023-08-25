@@ -264,13 +264,14 @@ export default function FiltarServicios() {
                 Descargar reporte
               </CSVLink>
             ) : (
-              <button
+              null
+            )}
+            <button
                 className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
                 onClick={confirmar_servicios}
               >
                 Confirmar servicios
               </button>
-            )}
           </>
         ) : null}
       </div>
