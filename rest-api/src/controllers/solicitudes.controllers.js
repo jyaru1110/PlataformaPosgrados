@@ -111,6 +111,17 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
+        const servicios_restantes = await Servicios_dia.findAll({
+          where: {
+            id_horario: servicio.id_horario,
+          }
+        });
+        if(servicios_restantes.length==0){
+          const horario_eliminado = await Horario.destroy({
+            where: { id_horario: servicio.id_horario },
+          });
+        }
+
         send(
           usuario.email,
           "Solicitud de cancelación aceptada",

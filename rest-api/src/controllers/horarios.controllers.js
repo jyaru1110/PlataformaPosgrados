@@ -62,17 +62,50 @@ const delete_horario = async (req, res) => {
     });
     res.status(200).send({ horario: horario });
   } else {
-    const notificacion = await Notificaciones.create({
-      id_horario: id,
-      id_usuario: req.user.dataValues.id,
-      tipo: "Cancelacion",
+    const servicios_cancelados = await Servicios_dia.destroy({
+      where: {
+        id_horario: id,
+        estado: "Pendiente",
+      },
     });
-    await send(
-      "mx_eventos@up.edu.mx",
-      req.user.dataValues.nombre + " ha creado una solicitud de servicio",
-      "Se ha creado una solicitud de servicio, revisala en "
-    );
-    res.status(200).send({ notificacion: notificacion });
+    const servicios_para_notificacion = await Servicios_dia.findAll({
+      where: {
+        id_horario: id,
+        estado: "Confirmado",
+      },
+    });
+    for (let i = 0; i < servicios_para_notificacion.length; i++) {
+      const servicio = servicios_para_notificacion[i];
+      const notificacion = await Notificaciones.create({
+        id_servicio: servicio.dataValues.id,
+        tipo: "Cancelacion",
+        salon: servicio.salon_id,
+        programa: servicio.programa,
+        fecha_inicio: servicio.fecha,
+        hora_inicio: servicio.hora_inicio,
+        hora_fin: servicio.hora_fin,
+        hora_servicio_inicio: servicio.hora_servicio_inicio,
+        hora_servicio_fin: servicio.hora_servicio_fin,
+        no_clase: servicio.no_clase,
+        num_alumnos: servicio.num_servicios,
+        id_usuario: req.user.dataValues.id,
+        estado: "En proceso",
+      });
+      await send(
+        "mx_eventos@up.edu.mx",
+        req.user.dataValues.nombre +
+          " ha realizado una solicitud de cancelacion",
+        notificacion.dataValues,
+        req.user.dataValues.nombre
+      );
+      await send(
+        req.user.dataValues.email,
+        "Has realizado una solicitud de cancelacion",
+        notificacion.dataValues,
+        req.user.dataValues.nombre
+      );
+    }
+    res.status(200).send({});
   }
 };
 
@@ -107,11 +140,9 @@ const create_horario = async (req, res) => {
     },
   });
   if (servicios_repetidos.length > 0) {
-    res
-      .status(500)
-      .send({
-        message: "Verfifica las fechas, hay servicios identicos ya registrados",
-      });
+    res.status(500).send({
+      message: "Verfifica las fechas, hay servicios identicos ya registrados",
+    });
     return;
   }
 
@@ -202,13 +233,13 @@ const create_horario = async (req, res) => {
       hora_servicio_fin: hora_servicio_fin,
       num_alumnos: num_alumnos,
     });
-    console.log(horario)
+    console.log(horario);
     const servicios_creados = await Servicios_dia.findAll({
       where: {
         id_horario: horario.id_horario,
       },
     });
-    console.log(servicios_creados)
+    console.log(servicios_creados);
     if (servicios_creados.length == 0) {
       await horario.destroy();
       res
@@ -235,7 +266,7 @@ const update_horario = async (req, res) => {
     programa,
     num_alumnos,
   } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   const nuevo_horario = await Horario.update(
     {
       hora_fin: hora_fin,
@@ -267,14 +298,14 @@ const update_horario = async (req, res) => {
     {
       where: {
         id_horario: id,
-        fecha:{
+        fecha: {
           [Op.between]: [fecha_inicio, fecha_fin],
         },
         estado: "Pendiente",
       },
     }
   );
-  res.status(200).send({horario:nuevo_horario})
+  res.status(200).send({ horario: nuevo_horario });
 };
 
 module.exports = {
