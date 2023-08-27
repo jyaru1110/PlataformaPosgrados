@@ -16,7 +16,7 @@ export default function Login() {
       .get(url_backend+"/user/auth", { withCredentials: true })
       .then((res) => {
         if (res.status === 200) {
-          window.location.href = "/";
+          window.location.href = "/home";
         }
         return res;
       })

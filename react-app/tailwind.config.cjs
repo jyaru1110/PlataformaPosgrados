@@ -19,7 +19,8 @@ module.exports = {
         yellowbg: "#F6E3A7",
         yellowtext: "#59491D",
         deletetext: "#A93029",
-        deletebg: "#F9E9E8"
+        deletebg: "#F9E9E8",
+        secondary: "#B78F4E"
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif']
