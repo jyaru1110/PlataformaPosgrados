@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center h-screen w-screen bg-primary justify-center">
       {loading ? (
-        <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+        <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] text-white"></div>
       ) : (
         <>
           <h1 className="text-white text-lg font-serif text-center">
