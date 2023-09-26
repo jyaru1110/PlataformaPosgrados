@@ -22,6 +22,7 @@ const config = {
 
 const get_solicitudes = async (req, res) => {
   const rol = req.user.dataValues.rol;
+  console.log(req.user.dataValues);
   const where = rol=="Gestor"?{}:{id_usuario: req.user.dataValues.id};
   const notificaciones = await Notificaciones.findAll({
     where: where,

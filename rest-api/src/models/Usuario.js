@@ -26,6 +26,12 @@ const Usuario = sequelize.define(
         rol: {
             type: DataTypes.STRING,
         },
+        accessToken: {
+            type: DataTypes.STRING,
+        },
+        refreshToken: {
+            type: DataTypes.STRING,
+        },
     },
     {
         timestamps: false,

@@ -17,10 +17,12 @@ passport.use(
         console.log("Error signing up", err);
         done(err, null);
       });
-      if (user.dataValues.googleId == null) {
+      if (user.dataValues.googleId == null || user.dataValues.accessToken == null || user.dataValues.refreshToken == null) {
         const user = await Usuario.update(
           {
             googleId: profile.id,
+            accessToken: accessToken,
+            refreshToken: refreshToken,
           },
           {
             where: { email: profile.emails[0].value },
