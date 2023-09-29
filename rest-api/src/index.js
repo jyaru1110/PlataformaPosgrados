@@ -39,8 +39,8 @@ Evidencia.belongsTo(Actividad, {
   foreignKey: "actividad_id",
 });
 
-Programa.belongsToMany(Etapa, { through: "proceso" });
-Etapa.belongsToMany(Programa, { through: "proceso" });
+Programa.belongsToMany(Etapa, { through: Proceso });
+Etapa.belongsToMany(Programa, { through: Proceso });
 
 
 
