@@ -18,6 +18,10 @@ const ActividadProceso = sequelize.define(
         },
       },
     },
+    porcentaje: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0.0,
+    },
   },
   {
     // Opciones del modelo

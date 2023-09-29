@@ -6,15 +6,14 @@ const Etapa = sequelize.define(
   {
     nombre: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     descripcion: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    tipo_etapa: {
+    tipo: {
       type: DataTypes.STRING,
-      defaultValue: "Base",
       validate: {
         customValidator: (value) => {
           const enums = ["Nuevo", "Actualización"];

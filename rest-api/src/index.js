@@ -20,6 +20,7 @@ const Evidencia = require("./models/Evidencia");
 const Proceso = require("./models/Proceso");
 const ActividadProceso = require("./models/ActividadProceso");
 const EvidenciaProceso = require("./models/EvidenciaProceso");
+const EtapaProceso = require("./models/EtapaProceso");
 
 var port = process.env.PORT || 3900;
 
@@ -39,10 +40,17 @@ Evidencia.belongsTo(Actividad, {
   foreignKey: "actividad_id",
 });
 
-Programa.belongsToMany(Etapa, { through: Proceso });
-Etapa.belongsToMany(Programa, { through: Proceso });
+Programa.hasMany(Proceso);
+Proceso.belongsTo(Programa, { foreignKey: "programaId" });
 
+Proceso.belongsToMany(Etapa, { through: EtapaProceso });
+Etapa.belongsToMany(Proceso, { through: EtapaProceso });
 
+EtapaProceso.belongsToMany(Actividad, { through: ActividadProceso });
+Actividad.belongsToMany(EtapaProceso, { through: ActividadProceso });
+
+ActividadProceso.belongsToMany(Evidencia, { through: EvidenciaProceso });
+Evidencia.belongsToMany(ActividadProceso, { through: EvidenciaProceso });
 
 //inicio de la aplicacion
 async function init() {
