@@ -21,7 +21,13 @@ const EtapaProceso = sequelize.define(
     porcentaje:{
         type: DataTypes.FLOAT,
         defaultValue: 0.0
-    }
+    },
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+    },
   },
   {
     timestamps: true,
