@@ -1,4 +1,5 @@
 export default function ButtonAdd({ruta}) {
+    if (localStorage.getItem("rol") == "Sólo lectura") return;
     return (
         <a href={ruta} className="cursor-pointer bottom-50 md:bottom-0 md:relative shadow-[0px_1px_4px_rgba(0,0,0,0.25)] absolute bg-primary h-12 w-12 rounded-full justify-center flex content-center flex-wrap transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-300 md:mt-2 z-50">
             <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
