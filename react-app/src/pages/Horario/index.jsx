@@ -90,12 +90,11 @@ export default function Horario() {
       toast.success("Horario actualizado", {
         pauseOnFocusLoss: true,
       });
-    } else if(data.notificacion){
+    } else if (data.notificacion) {
       toast.info("Solicitud de cambio enviada", {
         pauseOnFocusLoss: true,
       });
-    }
-    else
+    } else
       toast.error("No se pudo actualizar horario", {
         pauseOnFocusLoss: true,
       });
@@ -121,16 +120,20 @@ export default function Horario() {
       return;
     }
 
-    if(fecha_fin < fecha_inicio){
+    if (fecha_fin < fecha_inicio) {
       toast.error("La fecha de fin no puede ser menor a la fecha de inicio");
       return;
     }
-    if(fecha_inicio<horario[0].fecha_inicio){
-      toast.error("La fecha de inicio no puede ser menor a la fecha de inicio del horario");
+    if (fecha_inicio < horario[0].fecha_inicio) {
+      toast.error(
+        "La fecha de inicio no puede ser menor a la fecha de inicio del horario"
+      );
       return;
     }
-    if(fecha_fin>horario[0].fecha_fin){
-      toast.error("La fecha de fin no puede ser mayor a la fecha de fin del horario");
+    if (fecha_fin > horario[0].fecha_fin) {
+      toast.error(
+        "La fecha de fin no puede ser mayor a la fecha de fin del horario"
+      );
       return;
     }
 
@@ -170,11 +173,11 @@ export default function Horario() {
       dia: dia,
       num_alumnos: numero_servicios,
     };
-      const controller = new AbortController();
-      const signal = controller.signal;
-      const url = `${url_backend}/update_horario/${id_horario}`;
-      put_fetch(url, signal, data, after_set);
-      return () => controller.abort();
+    const controller = new AbortController();
+    const signal = controller.signal;
+    const url = `${url_backend}/update_horario/${id_horario}`;
+    put_fetch(url, signal, data, after_set);
+    return () => controller.abort();
   };
 
   const after_delete = (data) => {
@@ -187,7 +190,7 @@ export default function Horario() {
       toast.info("Solicitud de cancelación de horario enviada", {
         pauseOnFocusLoss: true,
       });
-    } else if(data.data.horario){
+    } else if (data.data.horario) {
       toast.success("Horario eliminado", {
         pauseOnFocusLoss: true,
       });
@@ -214,19 +217,31 @@ export default function Horario() {
           <div className="ml-9">
             <Header titulo="Editar o eliminar horarios"></Header>
           </div>
-          
+
           <div className="m-auto w-80 mt-4 ">
             <DropdownProgramas
               func={setPrograma}
               value={horario[0].programa}
               escuela="Todos"
+              disabled={
+                localStorage.getItem("rol") !== "Sólo lectura" ? false : true
+              }
             />
-            <DropdowClase func={setClase} value={horario[0].no_clase} />
+            <DropdowClase
+              func={setClase}
+              value={horario[0].no_clase}
+              disabled={
+                localStorage.getItem("rol") !== "Sólo lectura" ? false : true
+              }
+            />
             <Fechas
               setFechaFin={setFechaFin}
               setFechaInicio={setFechaInicio}
               value_inicio={horario[0].fecha_inicio}
               value_fin={horario[0].fecha_fin}
+              disabled={
+                localStorage.getItem("rol") !== "Sólo lectura" ? false : true
+              }
             />
             <h1 className="font-semibold  font-poppins">Horario de clase</h1>
             <Horas
@@ -234,6 +249,9 @@ export default function Horario() {
               setHoraInicio={setHoraInicio}
               value_inicio={horario[0].hora_inicio}
               value_fin={horario[0].hora_fin}
+              disabled={
+                localStorage.getItem("rol") !== "Sólo lectura" ? false : true
+              }
             />
             <h1 className="font-semibold font-poppins">Horario de servicio</h1>
             <Horas
@@ -241,35 +259,51 @@ export default function Horario() {
               setHoraInicio={setHoraServicioInicio}
               value_inicio={horario[0].hora_servicio_inicio}
               value_fin={horario[0].hora_servicio_fin}
+              disabled={
+                localStorage.getItem("rol") !== "Sólo lectura" ? false : true
+              }
             />
-            <DropdownDia func={setDia} value={horario[0].dia} disabled={true}/>
+            <DropdownDia func={setDia} value={horario[0].dia} disabled={true} />
             <div className="flex justify-between max">
-              <DropdowSalon func={setSalones} value={horario[0].salon} />
+              <DropdowSalon
+                func={setSalones}
+                value={horario[0].salon}
+                disabled={
+                  localStorage.getItem("rol") !== "Sólo lectura" ? false : true
+                }
+              />
               <NumeroServicios
                 setNumeroServicios={setNumeroServicios}
                 value={horario[0].num_alumnos}
+                disabled={
+                  localStorage.getItem("rol") !== "Sólo lectura" ? false : true
+                }
               />
             </div>
-            <button
-              className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg"
-              onClick={eliminar_horario}
-            >
-              Eliminar horario
-            </button>
-            <button
-              className="font-poppins text-sm rounded-md mb-2 w-80 font-normal h-7  text-white bg-primary"
-              onClick={actualizar_informacion}
-            >
-              Guardar
-            </button>
-            <button
-              className="font-poppins text-sm rounded-md mb-2 w-80 font-normal h-7 hover:bg-slate-100 text-gray1"
-              onClick={() => {
-                navigation(-1);
-              }}
-            >
-              Cancelar
-            </button>
+            {localStorage.getItem("rol") === "Sólo lectura" ? null : (
+              <>
+                <button
+                  className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg"
+                  onClick={eliminar_horario}
+                >
+                  Eliminar horario
+                </button>
+                <button
+                  className="font-poppins text-sm rounded-md mb-2 w-80 font-normal h-7  text-white bg-primary"
+                  onClick={actualizar_informacion}
+                >
+                  Guardar
+                </button>
+                <button
+                  className="font-poppins text-sm rounded-md mb-2 w-80 font-normal h-7 hover:bg-slate-100 text-gray1"
+                  onClick={() => {
+                    navigation(-1);
+                  }}
+                >
+                  Cancelar
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}

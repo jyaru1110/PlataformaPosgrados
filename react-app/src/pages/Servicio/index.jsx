@@ -152,7 +152,7 @@ export default function Servicio() {
   };
 
   const after_canceled = (data) => {
-    console.log("after_canceled",data)
+    console.log("after_canceled", data);
     setLoadingReq(false);
     toast.onChange((payload) => {
       if (payload.type === "success" && payload.status === "removed") {
@@ -167,8 +167,7 @@ export default function Servicio() {
       toast.info("Solicitud de cancelación enviada", {
         pauseOnFocusLoss: true,
       });
-    }
-    else if(data.data.error){
+    } else if (data.data.error) {
       toast.error(data.data.error, {
         pauseOnFocusLoss: true,
       });
@@ -193,23 +192,49 @@ export default function Servicio() {
           <div className="ml-9">
             <Header titulo="Editar o eliminar servicios"></Header>
           </div>
-          
+
           <div className="m-auto w-80 mt-4 ">
             <DropdownProgramas
               escuela="Todos"
               func={setPrograma}
               value={servicio.programa}
-              disabled = {true}
+              disabled={true}
             />
-            <DropdowClase func={setClase} value={servicio.no_clase} disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true} />
-            <Fecha setFecha={setFecha} value={servicio.fecha} disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true} />
+            <DropdowClase
+              func={setClase}
+              value={servicio.no_clase}
+              disabled={
+                (servicio.estado === "Pendiente" ||
+                  servicio.estado === "Confirmado") &&
+                localStorage.getItem("rol") !== "Sólo lectura"
+                  ? false
+                  : true
+              }
+            />
+            <Fecha
+              setFecha={setFecha}
+              value={servicio.fecha}
+              disabled={
+                (servicio.estado === "Pendiente" ||
+                  servicio.estado === "Confirmado") &&
+                localStorage.getItem("rol") !== "Sólo lectura"
+                  ? false
+                  : true
+              }
+            />
             <h1 className="font-semibold  font-poppins">Horario de clase</h1>
             <Horas
               setHoraFin={setHoraFin}
               setHoraInicio={setHoraInicio}
               value_inicio={servicio.hora_inicio}
               value_fin={servicio.hora_fin}
-              disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true}
+              disabled={
+                (servicio.estado === "Pendiente" ||
+                  servicio.estado === "Confirmado") &&
+                localStorage.getItem("rol") !== "Sólo lectura"
+                  ? false
+                  : true
+              }
             />
             <h1 className="font-semibold  font-poppins">Horario de servicio</h1>
             <Horas
@@ -217,38 +242,64 @@ export default function Servicio() {
               setHoraInicio={setHoraServicioInicio}
               value_inicio={servicio.hora_servicio_inicio}
               value_fin={servicio.hora_servicio_fin}
-              disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true}
+              disabled={
+                (servicio.estado === "Pendiente" ||
+                  servicio.estado === "Confirmado") &&
+                localStorage.getItem("rol") !== "Sólo lectura"
+                  ? false
+                  : true
+              }
             />
             <div className="flex justify-between max">
-              <DropdowSalon func={setSalon} value={servicio.salon_id} disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true} />
+              <DropdowSalon
+                func={setSalon}
+                value={servicio.salon_id}
+                disabled={
+                  (servicio.estado === "Pendiente" ||
+                    servicio.estado === "Confirmado") &&
+                  localStorage.getItem("rol") !== "Sólo lectura"
+                    ? false
+                    : true
+                }
+              />
               <NumeroServicios
                 setNumeroServicios={setNumeroServicios}
                 value={servicio.num_servicios}
-                disabled={servicio.estado==="Pendiente"||servicio.estado==="Confirmado"?false:true}
+                disabled={
+                  (servicio.estado === "Pendiente" ||
+                    servicio.estado === "Confirmado") &&
+                  localStorage.getItem("rol") !== "Sólo lectura"
+                    ? false
+                    : true
+                }
               />
             </div>
-            <button
-              className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg"
-              onClick={cancelar_servicio}
-              disabled={loading_req}
-            >
-              Cancelar servicio
-            </button>
-           
-            <button
-              className="font-poppins text-sm rounded-md mb-2 bg-primary w-80 font-normal text-white h-7"
-              onClick={actualizar_informacion}
-            >
-              Guardar
-            </button>
-            <button
-              className="text-gray1 font-poppins text-sm rounded-md mb-2 hover:bg-slate-100 w-80 font-normal h-7"
-              onClick={() => {
-                navigation(-1);
-              }}
-            >
-              Cancelar
-            </button>
+            {localStorage.getItem("rol") === "Sólo lectura" ? null : (
+              <>
+                <button
+                  className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg"
+                  onClick={cancelar_servicio}
+                  disabled={loading_req}
+                >
+                  Cancelar servicio
+                </button>
+
+                <button
+                  className="font-poppins text-sm rounded-md mb-2 bg-primary w-80 font-normal text-white h-7"
+                  onClick={actualizar_informacion}
+                >
+                  Guardar
+                </button>
+                <button
+                  className="text-gray1 font-poppins text-sm rounded-md mb-2 hover:bg-slate-100 w-80 font-normal h-7"
+                  onClick={() => {
+                    navigation(-1);
+                  }}
+                >
+                  Cancelar
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
