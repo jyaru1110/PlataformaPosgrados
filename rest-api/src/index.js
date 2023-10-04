@@ -31,17 +31,13 @@ Notificaciones.belongsTo(Usuario, {
 });
 
 Etapa.hasMany(Actividad);
-Actividad.belongsTo(Etapa, {
-  foreignKey: "etapa_id",
-});
+Actividad.belongsTo(Etapa);
 
 Actividad.hasMany(Evidencia);
-Evidencia.belongsTo(Actividad, {
-  foreignKey: "actividad_id",
-});
+Evidencia.belongsTo(Actividad);
 
 Programa.hasMany(Proceso);
-Proceso.belongsTo(Programa, { foreignKey: "programaId" });
+Proceso.belongsTo(Programa);
 
 Proceso.belongsToMany(Etapa, { through: EtapaProceso});
 Etapa.belongsToMany(Proceso, { through: EtapaProceso});

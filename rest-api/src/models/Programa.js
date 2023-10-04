@@ -48,7 +48,22 @@ const Programa = sequelize.define(
         model: "programa",
         key: "programa",
       },
-    }
+    },
+    modalidad: {
+      type: DataTypes.STRING,
+      defaultValue: "Presencial",
+      validate: {
+        customValidator: (value) => {
+          const enums = ["Presencial", "En línea","Mixta/Blended"];
+          if (!enums.includes(value)) {
+            throw new Error("La modalidad debe ser Presencial o Virtual");
+          }
+        },
+      },
+    },
+    duracion:{
+      type:DataTypes.STRING,
+    },
   },
   {
     // Opciones del modelo

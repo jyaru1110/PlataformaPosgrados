@@ -13,6 +13,7 @@ const salones_routes = require("./routes/salones.routes");
 const programas_routes = require("./routes/programas.routes");
 const auth_routes = require("./routes/auth.routes");
 const user_routes = require("./routes/user.routes");
+const procesos_routes = require("./routes/proceso.routes");
 const environment =  process.env.ENV
 const cors = require("cors");
 
@@ -50,6 +51,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 //cargar archivos de rutas
+app.use("/api", procesos_routes);
 app.use("/api", solicitudes_routes);
 app.use("/api", servicios_dia_routes);
 app.use("/api", auth_routes);

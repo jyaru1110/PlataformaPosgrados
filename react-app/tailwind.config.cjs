@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#005C4E",
+        secondary: "#B78F4E",
         primarylight: "#F2F5F9",
         primarydark: "#E3E8EF",
         gray1: "#757879",
@@ -20,10 +21,13 @@ module.exports = {
         yellowtext: "#59491D",
         deletetext: "#A93029",
         deletebg: "#F9E9E8",
-        secondary: "#B78F4E"
+        secondary: "#B78F4E",
+        headerbg:"#F8F8F8"
       },
       fontFamily: {
-        poppins : ['Poppins', 'sans-serif']
+        poppins : ['Poppins', 'sans-serif'],
+        timesnr : ['Times New Roman', 'sans-serif'],
+        seravek : ['Seravek', 'sans-serif'],
       }
     },
     screens: {
