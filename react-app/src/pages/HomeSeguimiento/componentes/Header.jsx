@@ -1,4 +1,4 @@
-import LogoPosgrados from "../../..assets/logoposgrados.png";
+import LogoPosgrados from "../../../assets/logoposgrados.png";
 
 export default function Header(props) {
   return (
