@@ -1,11 +1,14 @@
 const Proceso = require("../models/Proceso");
-const EtapaProceso = require("../models/EtapaProceso");
 const Etapa = require("../models/Etapa");
 const Programa = require("../models/Programa");
+const sequelize = require("../database/database");
 
 const get_procesos = async (req, res) => {
   const procesos = await Proceso.findAll({
-    include:[Etapa,Programa]
+    include:[Etapa,Programa],
+    order:[
+        [{model:Etapa},'numero','ASC'],
+    ]
   });
   res.status(200).send({ procesos: procesos });
 };
