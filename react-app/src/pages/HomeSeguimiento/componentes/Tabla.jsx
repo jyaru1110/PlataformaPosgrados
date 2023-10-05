@@ -1,3 +1,5 @@
+import ProgressCircle from "./ProgressCircle";
+
 export default function Tabla(props) {
   const procesos = props.procesos;
   const loading = props.loading;
@@ -47,6 +49,43 @@ export default function Tabla(props) {
                       <td>{proceso.tipo}</td>
                       <td>{proceso.programa.modalidad}</td>
                       <td>18 meses</td>
+                      <td>
+                        <ProgressCircle
+                          porcentaje={proceso.etapas[0].etapaProceso.porcentaje}
+                        />
+                      </td>
+                      <td>
+                        <ProgressCircle
+                          porcentaje={proceso.etapas[1].etapaProceso.porcentaje}
+                        />
+                      </td>
+                      <td>
+                        <ProgressCircle
+                          porcentaje={proceso.etapas[2].etapaProceso.porcentaje}
+                        />
+                      </td>
+                      <td>
+                        <ProgressCircle
+                          porcentaje={proceso.etapas[3].etapaProceso.porcentaje}
+                        />
+                      </td>
+                      <td>
+                        <ProgressCircle
+                          porcentaje={70}
+                        />
+                      </td>
+                      <td>
+                        {proceso.tipo == "Nuevo" ? (
+                          <ProgressCircle
+                            porcentaje={
+                              proceso.etapas[5].etapaProceso.porcentaje
+                            }
+                          />
+                        ) : (
+                          "N/A"
+                        )}
+                      </td>
+                      <td>{proceso.estado}</td>
                     </tr>
                   );
                 })}

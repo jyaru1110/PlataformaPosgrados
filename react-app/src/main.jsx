@@ -64,7 +64,7 @@ const router = createBrowserRouter([
     element: <Solicitudes />
   },
   {
-    path: "/home-seguimiento",
+    path: "/seguimientoposgrados",
     element: <HomeSeguimiento />
   }
 ]);
