@@ -23,7 +23,8 @@ module.exports = {
         deletebg: "#F9E9E8",
         secondary: "#B78F4E",
         headerbg:"#F8F8F8",
-        complete:"#227B76"
+        complete:"#227B76",
+        progress:"#C9B608"
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif'],

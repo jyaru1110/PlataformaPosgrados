@@ -42,7 +42,7 @@ export default function Home() {
             Plataforma Coffee Breaks
           </a>
           <a
-            href="/home-seguimiento"
+            href="/seguimientoposgrados"
             className="flex justify-center items-center w-[245px] h-[36px] bg-secondary text-white text-sm rounded-[18px] mt-4"
           >
             Seguimiento posgrados

@@ -15,8 +15,8 @@ export default function Tabla(props) {
         </button>
         <table className="table-auto font-seravek w-full mt-5 font-light text-sm">
           <thead>
-            <tr className="text-secondary border-y border-secondary">
-              <td className="py-3">Nombre del programa</td>
+            <tr className="text-secondary border-y border-secondary text-center">
+              <td className="py-3 text-left">Nombre del programa</td>
               <td>Siglas</td>
               <td>Campus</td>
               <td>Escuela</td>
@@ -43,12 +43,16 @@ export default function Tabla(props) {
                   return (
                     <tr className="border-b border-secondary" key={proceso.id}>
                       <td className="py-3">{proceso.programa.programa}</td>
-                      <td>{proceso.programa.codigo}</td>
-                      <td>Mixcoac</td>
-                      <td>{proceso.programa.escuela}</td>
-                      <td>{proceso.tipo}</td>
-                      <td>{proceso.programa.modalidad}</td>
-                      <td>18 meses</td>
+                      <td className="text-center">{proceso.programa.codigo}</td>
+                      <td className="text-center">Mixcoac</td>
+                      <td className="text-center">
+                        {proceso.programa.escuela}
+                      </td>
+                      <td className="text-center">{proceso.tipo}</td>
+                      <td className="text-center">
+                        {proceso.programa.modalidad}
+                      </td>
+                      <td className="text-center">18 meses</td>
                       <td>
                         <ProgressCircle
                           porcentaje={proceso.etapas[0].etapaProceso.porcentaje}
@@ -71,7 +75,7 @@ export default function Tabla(props) {
                       </td>
                       <td>
                         <ProgressCircle
-                          porcentaje={70}
+                          porcentaje={proceso.etapas[4].etapaProceso.porcentaje}
                         />
                       </td>
                       <td>
@@ -85,7 +89,21 @@ export default function Tabla(props) {
                           "N/A"
                         )}
                       </td>
-                      <td>{proceso.estado}</td>
+                      <td>
+                        {proceso.estado == "En proceso" ? (
+                          <div className="bg-progress justify-center flex flex-col items-center text-xs font-medium text-white px-1 py-1 rounded-[30px]">
+                            {proceso.estado.toUpperCase()}
+                          </div>
+                        ) : (
+                          <div className="bg-complete justify-center flex flex-col items-center text-xs font-medium text-white px-1 py-1 rounded-[30px]">
+                            {proceso.estado.toUpperCase()}
+                          </div>
+                        )}
+                      </td>
+                      <td className="pl-1.5">{proceso.notas}</td>
+                      <td className="text-center">{proceso.fecha_inicio_sep.substring(0,10)}</td>
+                      <td className="text-center">{proceso.fecha_aprobacion.substring(0,10)}</td>
+                      <td className="text-center">{proceso.fecha_proxima_actualizacion.substring(0,10)}</td>
                     </tr>
                   );
                 })}

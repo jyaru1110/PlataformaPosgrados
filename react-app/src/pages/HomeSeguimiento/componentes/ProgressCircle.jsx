@@ -15,7 +15,7 @@ export default function ProgressCircle(props) {
     );
   } else {
     return (
-      <div className="w-full h-full relative text-black">
+      <div className="w-full h-full relative text-black flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -32,7 +32,7 @@ export default function ProgressCircle(props) {
             r="11.5"
             fill="white"
           ></circle>
-          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fontSize="7">{props.porcentaje}%</text> 
+          <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="7">{props.porcentaje}%</text> 
         </svg>
       </div>
     );
