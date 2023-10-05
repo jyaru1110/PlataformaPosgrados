@@ -3,6 +3,7 @@ import ProgressCircle from "./ProgressCircle";
 export default function Tabla(props) {
   const procesos = props.procesos;
   const loading = props.loading;
+  const setShow = props.setShow;
 
   return (
     <div className="w-full self-center flex justify-center">
@@ -10,7 +11,7 @@ export default function Tabla(props) {
         <h1 className="font-seravek text-primary font-semibold text-xl mt-10">
           Posgrados
         </h1>
-        <button className="self-end py-2 px-10 rounded-md text-sm font-seravek font-medium bg-primary text-white">
+        <button className="self-end py-2 px-10 rounded-md text-sm font-seravek font-medium bg-primary text-white" onClick={()=>setShow(true)}>
           NUEVO PROCESO
         </button>
         <table className="table-auto font-seravek w-full mt-5 font-light text-sm">
