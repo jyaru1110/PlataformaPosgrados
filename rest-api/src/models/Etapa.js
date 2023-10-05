@@ -4,7 +4,7 @@ var sequelize = require("../database/database");
 const Etapa = sequelize.define(
   "etapa",
   {
-    nombre: {
+    numero: {
       type: DataTypes.STRING,
       allowNull: true,
     },

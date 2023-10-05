@@ -1,5 +1,7 @@
 const { DataTypes } = require("sequelize");
 var sequelize = require("../database/database");
+const EvidenciaProceso = require("./EvidenciaProceso");
+const Evidencia = require("./Evidencia");
 
 const ActividadProceso = sequelize.define(
   "actividadProceso",
@@ -31,6 +33,21 @@ const ActividadProceso = sequelize.define(
   },
   {
     // Opciones del modelo
+    hooks: {
+      afterCreate: async (actividadProceso, options) => {
+        const evidencias = await Evidencia.findAll({
+          where: {
+            actividadId: actividadProceso.actividadId,
+          },
+        });
+        evidencias.forEach(async (evidencia) => {
+          await EvidenciaProceso.create({
+            evidenciaId: evidencia.id,
+            actividadProcesoId: actividadProceso.id,
+          });
+        });
+      }
+    },
     tableName: "actividadProceso",
     timestamps: true,
   }

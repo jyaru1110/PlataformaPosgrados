@@ -20,7 +20,6 @@ const EvidenciaProceso = sequelize.define(
     },
     url: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     id: {
       type: DataTypes.INTEGER,

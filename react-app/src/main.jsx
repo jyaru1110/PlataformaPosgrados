@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Solicitudes from './pages/Solicitudes';
 import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
+import HomeSeguimiento from './pages/HomeSeguimiento';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
   {
     path: "/solicitudes",
     element: <Solicitudes />
+  },
+  {
+    path: "/seguimientoposgrados",
+    element: <HomeSeguimiento />
   }
 ]);
 
