@@ -1,4 +1,4 @@
-import Header from "./componentes/header";
+import Header from "./componentes/Header";
 import Tabla from "./componentes/Tabla";
 import NuevoForm from "./componentes/NuevoForm";
 import { useProcesos } from "../../hooks/useProcesos";
