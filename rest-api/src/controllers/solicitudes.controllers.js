@@ -10,7 +10,6 @@ const send = require("../mail/nodemailerprovider");
 
 const get_solicitudes = async (req, res) => {
   const rol = req.user.dataValues.rol;
-  console.log(req.user.dataValues);
   const where = rol=="Gestor"?{}:{"escuela": req.user.dataValues.escuela};
   const notificaciones = await Notificaciones.findAll({
     order: [["createdAt", "DESC"]],
