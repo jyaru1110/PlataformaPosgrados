@@ -30,6 +30,9 @@ Notificaciones.belongsTo(Usuario, {
   foreignKey: "id_usuario",
 });
 
+Programa.hasMany(Notificaciones);
+Notificaciones.belongsTo(Programa);
+
 Etapa.hasMany(Actividad);
 Actividad.belongsTo(Etapa);
 

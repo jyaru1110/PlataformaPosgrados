@@ -23,13 +23,6 @@ const Notificaciones = sequelize.define(
         key: "salon",
       },
     },
-    programa: {
-      type: DataTypes.STRING,
-      reference: {
-        model: "programa",
-        key: "programa",
-      },
-    },
     fecha_inicio: {
       type: DataTypes.DATEONLY,
     },

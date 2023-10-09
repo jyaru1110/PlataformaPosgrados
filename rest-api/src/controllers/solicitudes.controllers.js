@@ -2,34 +2,26 @@ const Notificaciones = require("../models/Notificaciones");
 const Servicios_dia = require("../models/Servicios_dia");
 const Usuario = require("../models/Usuario");
 const Horario = require("../models/Horario");
+const Programa = require("../models/Programa");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
 const send = require("../mail/nodemailerprovider");
-const user = process.env.EMAIL;
-const pass = process.env.PASS;
-const nodemailer = require("nodemailer");
-const config = {
-  service: "gmail",
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: false,
-  auth: {
-    user: user,
-    pass: pass,
-  },
-};
 
 
 const get_solicitudes = async (req, res) => {
   const rol = req.user.dataValues.rol;
   console.log(req.user.dataValues);
-  const where = rol=="Gestor"?{}:{id_usuario: req.user.dataValues.id};
+  const where = rol=="Gestor"?{}:{"escuela": req.user.dataValues.escuela};
   const notificaciones = await Notificaciones.findAll({
-    where: where,
     order: [["createdAt", "DESC"]],
     include: [
       {
         model: Usuario,
+      },
+      {
+        model: Programa,
+        where: where,
+        attributes:["programa"]
       }
     ],
   });

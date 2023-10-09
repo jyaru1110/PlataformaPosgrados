@@ -266,7 +266,7 @@ export default function Solicitudes() {
                       <p>{solicitud.salon}</p>
                     )}
                   </td>
-                  <td className="border-r p-2">{solicitud.programa}</td>
+                  <td className="border-r p-2">{solicitud.programa.programa}</td>
                   <td className="border-r p-2">
                     {solicitud.tipo == "Cambio" &&
                     solicitud.fecha_inicio != solicitud.fecha_actual ? (
