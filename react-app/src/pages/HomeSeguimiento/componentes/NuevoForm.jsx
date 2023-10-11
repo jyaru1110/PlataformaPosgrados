@@ -1,7 +1,14 @@
 import { useState } from "react";
+import ProgramaInput from "./ProgramaInput";
+import {useForm} from "react-hook-form";
 
 export default function NuevoForm(props) {
   const [tipo, setTipo] = useState("choose");
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = data =>{
+    console.log(data);
+  };
 
   return (
     <div
@@ -32,9 +39,9 @@ export default function NuevoForm(props) {
         ) : (
           <>
             {tipo == "nuevo" ? (
-              <div className="w-full h-full">
-                <div className="font-seravek flex items-center font-medium w-full">
-                  <button onClick={()=>setTipo("choose")}>
+              <div className="w-full h-full flex flex-col font-seravek">
+                <div className="flex items-center font-medium w-full">
+                  <button onClick={() => setTipo("choose")} className="justify-self-start">
                     <svg
                       width="8"
                       height="14"
@@ -48,8 +55,13 @@ export default function NuevoForm(props) {
                       />
                     </svg>
                   </button>
-                  <h1 className="text-2xl">NUEVO PROGRAMA</h1>
+                  <h1 className="text-xl ml-2 justify-self-center w-full text-center">NUEVO PROGRAMA</h1>
                 </div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <p className="text-lg font-medium mt-2">De</p>
+                  <ProgramaInput register={register} />
+                  <button type="submit">Comenzar proceso</button>
+                </form>
               </div>
             ) : (
               <h1>actualización</h1>

@@ -39,8 +39,7 @@ export default function AddServicio() {
   const salones = useSalones();
   const options_salones = salones_to_correct_format(salones);
 
-  const programas = usePrograma(rol == "Gestor" ? "Todos" : escuela);
-  const options_programas = programas_to_correct_format(programas);
+  const options_programas = usePrograma(rol == "Gestor" ? "Todos" : escuela);
 
   const send_servicios = () => {
     setIsLoading(true);
