@@ -1,4 +1,4 @@
-export function clases_to_correct_format (clases)
+export function clases_to_correct_format(clases)
 {
     if(clases !== undefined)
     {
@@ -9,5 +9,4 @@ export function clases_to_correct_format (clases)
         }
         return clases;
     }
-
 }

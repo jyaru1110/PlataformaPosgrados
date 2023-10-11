@@ -14,7 +14,7 @@ export default function Tabla(props) {
         <button className="self-end py-2 px-10 rounded-md text-sm font-seravek font-medium bg-primary text-white" onClick={()=>setShow(true)}>
           NUEVO PROCESO
         </button>
-        <table className="table-auto font-seravek w-full mt-5 font-light text-sm">
+        <table className="table-auto font-seravek w-full mt-5 font-light text-sm overflow-x-scroll">
           <thead>
             <tr className="text-secondary border-y border-secondary text-center">
               <td className="py-3 text-left">Nombre del programa</td>
@@ -92,12 +92,10 @@ export default function Tabla(props) {
                       </td>
                       <td>
                         {proceso.estado == "En proceso" ? (
-                          <div className="bg-progress justify-center flex flex-col items-center text-xs font-medium text-white px-1 py-1 rounded-[30px]">
-                            {proceso.estado.toUpperCase()}
-                          </div>
+                          <ProgressCircle porcentaje={proceso.porcentaje}/>
                         ) : (
                           <div className="bg-complete justify-center flex flex-col items-center text-xs font-medium text-white px-1 py-1 rounded-[30px]">
-                            {proceso.estado.toUpperCase()}
+                            {proceso.porcentaje}
                           </div>
                         )}
                       </td>

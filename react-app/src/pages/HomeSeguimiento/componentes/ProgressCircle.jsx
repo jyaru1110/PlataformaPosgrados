@@ -32,7 +32,7 @@ export default function ProgressCircle(props) {
             r="11.5"
             fill="none"
           ></circle>
-          <text x="50%" y="50%" fontSize="7">{props.porcentaje}%</text> 
+          <text x="7" y="15" fontSize="7">{props.porcentaje}%</text> 
         </svg>
       </div>
     );

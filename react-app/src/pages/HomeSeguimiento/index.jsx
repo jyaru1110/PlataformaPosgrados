@@ -11,7 +11,7 @@ export default function HomeSeguimiento() {
   const [showNewForm, setShowNewForm] = useState(false);
   return (
     <div>
-      <NuevoForm show={showNewForm}></NuevoForm>
+      <NuevoForm show={showNewForm} setShow={setShowNewForm}></NuevoForm>
       <Header titulo="Nuevos programas y actualizaciones"></Header>
       <Tabla loading={loading} procesos={procesos} setShow={setShowNewForm}></Tabla>
     </div>

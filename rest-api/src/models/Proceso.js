@@ -18,6 +18,14 @@ const Proceso = sequelize.define(
         },
       },
     },
+    porcentaje: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 100,
+      },
+    },
     estado: {
       type: DataTypes.STRING,
       defaultValue: "En proceso",

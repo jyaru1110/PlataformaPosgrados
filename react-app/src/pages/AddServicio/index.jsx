@@ -31,8 +31,7 @@ export default function AddServicio() {
     { value: "Sábado" },
   ];
 
-  const clases = useClases();
-  const options_clases = clases_to_correct_format(clases);
+  const options_clases = useClases();
 
   const salones = useSalones();
   const options_salones = salones_to_correct_format(salones);
