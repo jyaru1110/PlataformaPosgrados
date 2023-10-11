@@ -1,24 +1,25 @@
 import Header from "../../components/Header";
 import InputClase from "./components/InputClase";
 import SelectSalon from "./components/SelectSalon";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SelectPrograma from "./components/SelectPrograma";
 import { usePrograma } from "../../hooks/usePrograma";
 import { programas_to_correct_format } from "../../utils/programas_to_correct_format";
 import { useSalones } from "../../hooks/useSalones";
 import { salones_to_correct_format } from "../../utils/salones_to_correct_format";
 import { useClases } from "../../hooks/useClases";
-import { clases_to_correct_format } from "../../utils/clases_to_correct_format";
 import SelectDia from "./components/SelectDia";
 import { post_axios } from "../../hooks/post_axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 export default function AddServicio() {
   const rol = localStorage.getItem("rol");
   const escuela = localStorage.getItem("escuela");
   const [servicios, setServicios] = useState([]);
   const [seleccionados, setSeleccionados] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const[isAddingClass, setIsAddingClass] = useState(false);
 
   const url_backend = import.meta.env.VITE_URL_API;
 
@@ -31,7 +32,9 @@ export default function AddServicio() {
     { value: "Sábado" },
   ];
 
-  const options_clases = useClases();
+  const clases = useClases();
+  const options_clases = clases.clases;
+  const setClases = clases.setClases;
 
   const salones = useSalones();
   const options_salones = salones_to_correct_format(salones);
@@ -175,7 +178,7 @@ export default function AddServicio() {
       {
         id: servicios.length,
         programa: "",
-        no_clase: "",
+        no_clase: "Todos",
         salon: "",
         dia: "Lunes",
         hora_inicio: "",
@@ -226,7 +229,7 @@ export default function AddServicio() {
       seleccionados.filter((seleccionado) => seleccionado !== id)
     );
   };
-
+  
   return (
     <div className="w-screen flex flex-col items-start p-8">
       <div className="w-11/12 flex justify-between mb-4 fixed flex-wrap">
@@ -299,6 +302,9 @@ export default function AddServicio() {
                       );
                     }}
                     options={options_clases}
+                    setIsAddingClass={setIsAddingClass}
+                    isAddingClass={isAddingClass}
+                    setClases={setClases}
                     default_value={servicio.no_clase}
                   ></InputClase>
                 </td>

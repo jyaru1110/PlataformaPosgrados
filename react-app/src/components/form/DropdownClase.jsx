@@ -1,12 +1,11 @@
 import { useClases } from "../../hooks/useClases";
-import { clases_to_correct_format } from "../../utils/clases_to_correct_format";
 import Select from "react-select";
 
 export default function DropdowClase(props) {
   const label = "Selecciona un número de clase";
   const clases = useClases();
   const value = props.value || "Todos";
-  const options = clases_to_correct_format(clases);
+  const options = clases.clases;
   const disabled = props.disabled || false;
 
   const child_to_parent = (child_data) => {

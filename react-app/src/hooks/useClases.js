@@ -23,5 +23,5 @@ export const useClases = () => {
         get_clases();
     }, []);
 
-    return clases;
+    return {clases:clases,setClases:setClases};
 }

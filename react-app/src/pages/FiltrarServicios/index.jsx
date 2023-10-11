@@ -210,7 +210,7 @@ export default function FiltarServicios() {
         <Header titulo="Buscar servicios" />
         <DropdownEscuelas func={setEscuela} />
         <DropdownProgramas func={setPrograma} escuela={escuela} />
-        <DropdowClase func={setClase} />
+        <DropdowClase func={setClase}/>
         <DropdownSalon func={setSalones} />
         <Fechas
           setFechaFin={setFechaFin}
