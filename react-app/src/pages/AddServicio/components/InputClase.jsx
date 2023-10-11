@@ -17,6 +17,7 @@ const InputClase = ({
 
   const actualizar = (clase) => {
     onchange(clase.label);
+    setValue(clase);
   };
 
   const create_clase = (clase) => {
