@@ -1,15 +1,22 @@
 import { useState } from "react";
-import {post_axios} from "../../../hooks/post_axios"
+import { post_axios } from "../../../hooks/post_axios";
 import ProgramaInput from "./ProgramaInput";
 import TipoActualizacion from "./TipoActualizacion";
 import { useForm } from "react-hook-form";
 import NombrePrograma from "./NombrePrograma";
 import EscuelaInput from "./EscuelaInput";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const url_backend = import.meta.env.VITE_URL_API;
 
 export default function NuevoForm(props) {
   const [tipo, setTipo] = useState("choose");
   const [tipoActualizacion, setTipoActualizacion] = useState("choose");
+  toast.onChange((payload) => {
+    if (payload.type === "success" && payload.status === "removed") {
+      window.location.reload();
+    }
+  });
 
   const {
     register,
@@ -18,8 +25,11 @@ export default function NuevoForm(props) {
   } = useForm();
   const onSubmit = (data) => {
     data.tipo_proceso = tipo;
-    const proceso = post_axios(url_backend+"/procesos", data);
-    console.log(proceso)
+    post_axios(url_backend + "/procesos", data).then((res) => {
+      if (res.status == 200) {
+        toast.success("Proceso creado correctamente");
+      }
+    });
   };
 
   return (
@@ -290,6 +300,7 @@ export default function NuevoForm(props) {
           </>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }

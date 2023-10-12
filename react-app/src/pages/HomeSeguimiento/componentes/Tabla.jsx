@@ -53,7 +53,7 @@ export default function Tabla(props) {
                       <td className="text-center">
                         {proceso.programa.modalidad}
                       </td>
-                      <td className="text-center">18 meses</td>
+                      <td className="text-center">{proceso.programa.duracion} meses</td>
                       <td>
                         <ProgressCircle
                           porcentaje={proceso.etapas[0].etapaProceso.porcentaje}
@@ -100,9 +100,9 @@ export default function Tabla(props) {
                         )}
                       </td>
                       <td className="pl-1.5">{proceso.notas}</td>
-                      <td className="text-center">{proceso.fecha_inicio_sep.substring(0,10)}</td>
-                      <td className="text-center">{proceso.fecha_aprobacion.substring(0,10)}</td>
-                      <td className="text-center">{proceso.fecha_proxima_actualizacion.substring(0,10)}</td>
+                      <td className="text-center">{proceso.fecha_inicio_sep?.substring(0,10)}</td>
+                      <td className="text-center">{proceso.fecha_aprobacion?.substring(0,10)}</td>
+                      <td className="text-center">{proceso.fecha_proxima_actualizacion?.substring(0,10)}</td>
                     </tr>
                   );
                 })}
