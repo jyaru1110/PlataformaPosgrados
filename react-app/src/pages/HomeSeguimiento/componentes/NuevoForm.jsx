@@ -12,6 +12,7 @@ const url_backend = import.meta.env.VITE_URL_API;
 export default function NuevoForm(props) {
   const [tipo, setTipo] = useState("choose");
   const [tipoActualizacion, setTipoActualizacion] = useState("choose");
+  const erros = ["choose", "", " "];
   toast.onChange((payload) => {
     if (payload.type === "success" && payload.status === "removed") {
       window.location.reload();
@@ -25,6 +26,42 @@ export default function NuevoForm(props) {
   } = useForm();
   const onSubmit = (data) => {
     data.tipo_proceso = tipo;
+    if (
+      data.tipo == "" ||
+      data.tipo == " " ||
+      data.tipo == "choose" ||
+      data.grado == "" ||
+      data.grado == " " ||
+      data.grado == "choose" ||
+      data.modalidad == "" ||
+      data.modalidad == " " ||
+      data.modalidad == "choose" ||
+      data.duracion == "" ||
+      data.duracion == " " ||
+      data.duracion <= 0 ||
+      data.escuela == "" ||
+      data.escuela == " " ||
+      data.escuela == "choose" ||
+      data.programa == "" ||
+      data.programa == " " ||
+      data.programa == "choose" ||
+      data.codigo == "" ||
+      data.codigo == " " ||
+      data.tipo_proceso == "choose" ||
+      data.tipo_proceso == "" ||
+      data.tipo_proceso == " " ||
+      data.programa_origen == "" ||
+      data.programa_origen == " " ||
+      data.programa_origen == "choose" ||
+      data.programa_destino == "" ||
+      data.programa_destino == " " ||
+      data.programa_destino == "choose" ||
+      data.programa_origen == "Todos"
+    ) {
+      toast.error("Por favor llena todos los campos");
+      return;
+    }
+
     post_axios(url_backend + "/procesos", data).then((res) => {
       if (res.status == 200) {
         toast.success("Proceso creado correctamente");
