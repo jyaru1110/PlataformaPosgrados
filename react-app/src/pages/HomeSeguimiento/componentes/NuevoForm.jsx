@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import {post_axios} from "../../../hooks/post_axios"
 import ProgramaInput from "./ProgramaInput";
 import TipoActualizacion from "./TipoActualizacion";
 import { useForm } from "react-hook-form";
 import NombrePrograma from "./NombrePrograma";
 import EscuelaInput from "./EscuelaInput";
+const url_backend = import.meta.env.VITE_URL_API;
 
 export default function NuevoForm(props) {
   const [tipo, setTipo] = useState("choose");
@@ -16,7 +18,8 @@ export default function NuevoForm(props) {
   } = useForm();
   const onSubmit = (data) => {
     data.tipo_proceso = tipo;
-    console.log(data);
+    const proceso = post_axios(url_backend+"/procesos", data);
+    console.log(proceso)
   };
 
   return (
