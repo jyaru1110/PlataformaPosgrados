@@ -10,7 +10,7 @@ import Header from "../../components/Header";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,6 @@ export default function FiltarServicios() {
   const resultado = useServicios();
   const servicios = resultado.servicios;
   const [reporte, setReporte] = useState([]);
-  const [reporteReady, setReporteReady] = useState(false);
   const [sinResultados, setSinResultados] = useState(false);
   const [servicios_filtrados, setServiciosFiltrados] = useState([]);
   const loading = resultado.loading;
@@ -38,6 +37,7 @@ export default function FiltarServicios() {
   const [fecha_inicio, setFechaInicio] = useState(
     date.toISOString().substring(0, 10)
   );
+  const reporteRef = useRef(null);
   const [fecha_fin, setFechaFin] = useState("Todos");
   const [salones, setSalones] = useState("Todos");
   const [programa, setPrograma] = useState("Todos");
@@ -78,7 +78,6 @@ export default function FiltarServicios() {
       )
       .then((resultado) => {
         setIsLoading(false);
-        setReporte(resultado.data.servicios);
         toast.success("Servicios confirmados", {
           pauseOnFocusLoss: true,
         });
@@ -90,21 +89,6 @@ export default function FiltarServicios() {
         });
       });
   };
-
-  const after_descargar_report = () => {
-      toast.success("Reporte descargado", {
-        pauseOnFocusLoss: true,
-      });
-      setReporteReady(false);
-  }
-
-  useEffect(() => {
-    if (reporte.length !== 0) {
-      setReporteReady(true);
-    } else {
-      setReporteReady(false);
-    }
-  }, [reporte]);
 
   const cancelar_servicios = () => {
     setIsLoading(true);
@@ -187,6 +171,11 @@ export default function FiltarServicios() {
   ]);
 
   useEffect(() => {
+    if (reporte.length === 0) return;
+    reporteRef.current.link.click();
+  }, [reporte]);
+
+  useEffect(() => {
     const suma = {
       Confirmado: 0,
       Pendiente: 0,
@@ -210,7 +199,7 @@ export default function FiltarServicios() {
         <Header titulo="Buscar servicios" />
         <DropdownEscuelas func={setEscuela} />
         <DropdownProgramas func={setPrograma} escuela={escuela} />
-        <DropdowClase func={setClase}/>
+        <DropdowClase func={setClase} />
         <DropdownSalon func={setSalones} />
         <Fechas
           setFechaFin={setFechaFin}
@@ -250,28 +239,54 @@ export default function FiltarServicios() {
             Cancelar servicios
           </button>
         ) : null}
-        {fecha_inicio !== "Todos" &&
-        fecha_fin !== "Todos" &&
-        rol == "Gestor" ? (
+        {fecha_inicio !== "Todos" && fecha_fin !== "Todos" ? (
           <>
-            {reporteReady ? (
+            {reporte.length > 0 ? (
               <CSVLink
                 data={reporte}
                 className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
                 filename="reporte.csv"
-                onClick={after_descargar_report}
+                ref={reporteRef}
+                onClick={() => {
+                  setReporte([]);
+                  toast.success("Reporte descargado", {
+                    pauseOnFocusLoss: true,
+                  });
+                }}
               >
                 Descargar reporte
               </CSVLink>
             ) : (
-              null
+              <button
+                className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
+                onClick={() => {
+                  axios
+                    .patch(
+                      url_backend + "/reporte",
+                      {
+                        fecha_inicio: fecha_inicio,
+                        fecha_fin: fecha_fin,
+                      },
+                      {
+                        withCredentials: true,
+                      }
+                    )
+                    .then((resultado) => {
+                      setReporte(resultado.data.servicios);
+                    });
+                }}
+              >
+                Descargar reporte
+              </button>
             )}
-            <button
+            {rol === "Gestor" ? (
+              <button
                 className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
                 onClick={confirmar_servicios}
               >
                 Confirmar servicios
               </button>
+            ) : null}
           </>
         ) : null}
       </div>

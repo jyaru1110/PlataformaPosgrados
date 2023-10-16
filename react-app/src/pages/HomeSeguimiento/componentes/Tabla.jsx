@@ -31,10 +31,10 @@ export default function Tabla(props) {
               <td>Etapa 5</td>
               <td>Etapa 6</td>
               <td>Estatus</td>
-              <td>Notas adicionales</td>
-              <td>Fecha inicio trámite</td>
-              <td>Fecha aprobación SEP</td>
-              <td>Fecha próxima actualización</td>
+              <td>Notas</td>
+              <td>Inicio trámite</td>
+              <td>Aprobación SEP</td>
+              <td>Próxima actualización</td>
             </tr>
           </thead>
           <tbody>
@@ -43,43 +43,43 @@ export default function Tabla(props) {
                 {procesos.map((proceso) => {
                   return (
                     <tr className="border-b border-secondary" key={proceso.id}>
-                      <td className="py-3">{proceso.programa.programa}</td>
-                      <td className="text-center">{proceso.programa.codigo}</td>
-                      <td className="text-center">Mixcoac</td>
-                      <td className="text-center">
+                      <td className="py-3 w-60">{proceso.programa.programa}</td>
+                      <td className="text-center w-20">{proceso.programa.codigo}</td>
+                      <td className="text-center w-20">Mixcoac</td>
+                      <td className="text-center w-28">
                         {proceso.programa.escuela}
                       </td>
-                      <td className="text-center">{proceso.tipo}</td>
-                      <td className="text-center">
+                      <td className="text-center w-24">{proceso.tipo}</td>
+                      <td className="text-center w-24">
                         {proceso.programa.modalidad}
                       </td>
-                      <td className="text-center">{proceso.programa.duracion} meses</td>
-                      <td>
+                      <td className="text-center w-16">{proceso.programa.duracion} meses</td>
+                      <td className="w-20">
                         <ProgressCircle
                           porcentaje={proceso.etapas[0].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td>
+                      <td className="w-20">
                         <ProgressCircle
                           porcentaje={proceso.etapas[1].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td>
+                      <td className="w-20">
                         <ProgressCircle
                           porcentaje={proceso.etapas[2].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td>
+                      <td className="w-20">
                         <ProgressCircle
                           porcentaje={proceso.etapas[3].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td>
+                      <td className="w-20">
                         <ProgressCircle
                           porcentaje={proceso.etapas[4].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td>
+                      <td className="w-20 text-center">
                         {proceso.tipo == "Nuevo" ? (
                           <ProgressCircle
                             porcentaje={
@@ -90,7 +90,7 @@ export default function Tabla(props) {
                           "N/A"
                         )}
                       </td>
-                      <td>
+                      <td className="w-20">
                         {proceso.estado == "En proceso" ? (
                           <ProgressCircle porcentaje={proceso.porcentaje}/>
                         ) : (
@@ -100,9 +100,9 @@ export default function Tabla(props) {
                         )}
                       </td>
                       <td className="pl-1.5">{proceso.notas}</td>
-                      <td className="text-center">{proceso.fecha_inicio_sep?.substring(0,10)}</td>
-                      <td className="text-center">{proceso.fecha_aprobacion?.substring(0,10)}</td>
-                      <td className="text-center">{proceso.fecha_proxima_actualizacion?.substring(0,10)}</td>
+                      <td className="text-center w-28">{proceso.fecha_inicio_sep?.substring(0,10)}</td>
+                      <td className="text-center w-28">{proceso.fecha_aprobacion?.substring(0,10)}</td>
+                      <td className="text-center w-28">{proceso.fecha_proxima_actualizacion?.substring(0,10)}</td>
                     </tr>
                   );
                 })}

@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-const {get_servicios_fecha,get_proximo_servicio,get_servicios_todos,get_servicios_isla,get_suma_servicios_dia_isla,create_servicio,update_servicio,delete_servicio,get_servicios_pendientes,get_servicio,cancelar_servicios,confirmar_servicios} = require('../controllers/servicios_dia.controllers');
+const {get_servicios_fecha,get_proximo_servicio,get_servicios_todos,get_servicios_isla,get_suma_servicios_dia_isla,create_servicio,update_servicio,delete_servicio,get_servicios_pendientes,get_servicio,cancelar_servicios,confirmar_servicios,get_reporte} = require('../controllers/servicios_dia.controllers');
 const { isUserAuthenticated } = require('../middlewares/auth');
 
 router.get('/servicios/:fecha',isUserAuthenticated,get_servicios_fecha);
@@ -10,6 +10,8 @@ router.get('/servicios_pendientes/:fecha',isUserAuthenticated,get_servicios_pend
 router.get('/servicios_isla_dia/:dia',isUserAuthenticated,get_servicios_isla);
 router.get('/suma_servicios_dia_isla/:fecha_inicio/:fecha_fin',isUserAuthenticated,get_suma_servicios_dia_isla);
 router.get('/proximo_servicio',isUserAuthenticated,get_proximo_servicio);
+
+router.patch('/reporte',isUserAuthenticated,get_reporte);
 
 router.post('/create_servicio',isUserAuthenticated,create_servicio);
 

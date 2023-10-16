@@ -106,7 +106,7 @@ const confirmar_servicios = async (req, res) => {
     res.status(500).send({ error: "No se pudo confirmar el servicio" });
     return;
   }
-  const servicios_confirmados = await Servicios_dia.update(
+  await Servicios_dia.update(
     {
       estado: "Confirmado",
     },
@@ -119,7 +119,7 @@ const confirmar_servicios = async (req, res) => {
       },
     }
   );
-  await Semana.update(
+  const semana = await Semana.update(
     {
       inicio_semana: fecha_inicio,
       fin_semana: fecha_fin,
@@ -130,11 +130,32 @@ const confirmar_servicios = async (req, res) => {
       },
     }
   );
-  const query = "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '"+ fecha_inicio +"' and '"+fecha_fin+"' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
+  return res.status(200).send({ semana: semana });
+};
+const get_reporte = async (req, res) => {
+  const rol = req.user.dataValues.rol;
+  const { fecha_inicio, fecha_fin } = req.body;
+  var query = "";
+  if(rol =="Gestor"){
+    query =
+    "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
+    fecha_inicio +
+    "' and '" +
+    fecha_fin +
+    "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
+  } else {
+    query =
+    "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
+    fecha_inicio +
+    "' and '" +
+    fecha_fin +
+    "' and programa.escuela = '" +
+    req.user.dataValues.escuela +
+    "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
+  }
   const servicios_dia_isla = await sequelize.query(query, {
     type: Sequelize.QueryTypes.SELECT,
   });
-
   res.status(200).send({ servicios: servicios_dia_isla });
 };
 
@@ -434,8 +455,10 @@ const delete_servicio = async (req, res) => {
         estado: "En proceso",
       },
     });
-    if(notificaciones.length !== 0){
-      res.status(200).send({ error: "Solo puede haber una solicitud por servicio" });
+    if (notificaciones.length !== 0) {
+      res
+        .status(200)
+        .send({ error: "Solo puede haber una solicitud por servicio" });
       return;
     }
     const notificacion = await Notificaciones.create({
@@ -480,5 +503,6 @@ module.exports = {
   delete_servicio,
   get_servicio,
   cancelar_servicios,
-  confirmar_servicios
+  confirmar_servicios,
+  get_reporte,
 };

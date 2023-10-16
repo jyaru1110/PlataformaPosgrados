@@ -23,6 +23,16 @@ export default function ProgressCircle(props) {
           viewBox="0 0 26 26"
         >
           <circle
+            stroke="#F8F8F8"
+            strokeWidth="3"
+            strokeDasharray="72,72"
+            strokeDashoffset={0}
+            cx="13"
+            cy="13"
+            r="11.5"
+            fill="none"
+          ></circle>
+          <circle
             stroke="#C9B608"
             strokeWidth="3"
             strokeDasharray="72,72"
@@ -32,6 +42,7 @@ export default function ProgressCircle(props) {
             r="11.5"
             fill="none"
           ></circle>
+          
           <text x="7" y="15" fontSize="7">{props.porcentaje}%</text> 
         </svg>
       </div>
