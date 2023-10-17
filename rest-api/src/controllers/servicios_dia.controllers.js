@@ -394,7 +394,7 @@ const update_servicio = async (req, res) => {
         tipo: "Cambio",
         salon: salon_id,
         salon_actual: servicio.salon_id,
-        programa: programa,
+        programaPrograma: programa,
         fecha_inicio: fecha,
         fecha_actual: servicio.fecha,
         hora_inicio: hora_inicio,

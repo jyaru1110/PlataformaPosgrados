@@ -22,7 +22,7 @@ const send = async (email, subject, notificacion, persona) => {
     notificacion.tipo+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
     persona+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
     notificacion.salon+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
-    notificacion.programa+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
+    notificacion.programaPrograma+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
     notificacion.fecha_inicio+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
     notificacion.hora_inicio.substring(0,5)+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
     notificacion.hora_fin.substring(0,5)+'</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">'+
