@@ -73,6 +73,15 @@ const Servicios_dia = sequelize.define(
         },
       },
     },
+    estado_coordinador: {
+      type: DataTypes.STRING,
+      defaultValue:"Sin revisión",
+      validate: {
+        customValidator: (value) => {
+          const enums = ["Sin revisión", "Aprobado", "En revisión"];
+        },
+      },
+    },
   },
   {
     // Opciones del modelo

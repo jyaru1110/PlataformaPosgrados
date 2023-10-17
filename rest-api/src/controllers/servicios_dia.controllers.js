@@ -3,8 +3,23 @@ const Notificaciones = require("../models/Notificaciones");
 const Salon = require("../models/Salon");
 const { Op, Sequelize } = require("sequelize");
 const sequelize = require("../database/database");
-const send = require("../mail/nodemailerprovider");
+const {send_notificacion,send_servicios_confirmados} = require("../mail/nodemailerprovider");
 const Semana = require("../models/Semana");
+
+const get_servicios_confirmados = async (req, res) => {
+  const escuela = req.user.dataValues.escuela;
+  const semana = await Semana.findOne({
+    where: {
+      id: 3,
+    },
+  });
+
+  const query = 'select * from servicios_confirmados inner join programa on programa.programa = servicios_confirmados.programa where servicios_dia.fecha between "'+semana.inicio_semana+'" and "'+semana.fin_semana+'" and programa.escuela = "'+escuela+'";';
+  console.log("el query es "+query)
+  const servicios_confirmados = await sequelize.query(query);
+
+  return res.status(200).send({ servicios: servicios_confirmados });
+}
 
 const get_servicios_fecha = async (req, res) => {
   const rol = req.user.dataValues.rol;
@@ -72,14 +87,14 @@ const cancelar_servicios = async (req, res) => {
         id_usuario: req.user.dataValues.id,
         estado: "En proceso",
       });
-      await send(
+      await send_notificacion(
         "mx_eventos@up.edu.mx",
         req.user.dataValues.nombre +
           " ha realizado una solicitud de cancelacion",
         notificacion.dataValues,
         req.user.dataValues.nombre
       );
-      await send(
+      await send_notificacion(
         req.user.dataValues.email,
         "Has realizado una solicitud de cancelacion",
         notificacion.dataValues,
@@ -106,7 +121,7 @@ const confirmar_servicios = async (req, res) => {
     res.status(500).send({ error: "No se pudo confirmar el servicio" });
     return;
   }
-  await Servicios_dia.update(
+  const servicios_confirmados = await Servicios_dia.update(
     {
       estado: "Confirmado",
     },
@@ -117,6 +132,7 @@ const confirmar_servicios = async (req, res) => {
         },
         estado: "Pendiente",
       },
+      returning: true,
     }
   );
   const semana = await Semana.update(
@@ -130,6 +146,7 @@ const confirmar_servicios = async (req, res) => {
       },
     }
   );
+  send_servicios_confirmados('0246759@up.edu.mx','del '+fecha_inicio+' al '+fecha_fin,servicios_confirmados[1]);
   return res.status(200).send({ semana: semana });
 };
 const get_reporte = async (req, res) => {
@@ -409,14 +426,14 @@ const update_servicio = async (req, res) => {
         id_usuario: req.user.dataValues.id,
         estado: "En proceso",
       });
-      await send(
+      await send_notificacion(
         "mx_eventos@up.edu.mx",
         req.user.dataValues.nombre +
           " ha creado una solicitud de cambio de servicio",
         notificacion.dataValues,
         req.user.dataValues.nombre
       );
-      await send(
+      await send_notificacion(
         req.user.dataValues.email,
         "Has creado una solicitud de cambio de servicio",
         notificacion.dataValues,
@@ -476,13 +493,13 @@ const delete_servicio = async (req, res) => {
       no_clase: servicio.no_clase,
       id_usuario: req.user.dataValues.id,
     });
-    await send(
+    await send_notificacion(
       "mx_eventos@up.edu.mx",
       req.user.dataValues.nombre + " ha creado una solicitud de cancelación",
       notificacion,
       req.user.dataValues.nombre
     );
-    await send(
+    await send_notificacion(
       req.user.dataValues.email,
       "Has creado una solicitud de cancelación",
       notificacion,
@@ -490,6 +507,8 @@ const delete_servicio = async (req, res) => {
     );
     res.status(200).send({ notificacion: notificacion });
   }
+
+  
 };
 module.exports = {
   get_servicios_fecha,
@@ -505,4 +524,5 @@ module.exports = {
   cancelar_servicios,
   confirmar_servicios,
   get_reporte,
+  get_servicios_confirmados
 };

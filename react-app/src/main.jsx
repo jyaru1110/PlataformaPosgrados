@@ -12,6 +12,7 @@ import Solicitudes from './pages/Solicitudes';
 import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
 import HomeSeguimiento from './pages/HomeSeguimiento';
+import Confirmados from './pages/Confirmados';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -66,8 +67,13 @@ const router = createBrowserRouter([
   {
     path: "/seguimientoposgrados",
     element: <HomeSeguimiento />
+  },
+  {
+    path: "/confirmados",
+    element: <Confirmados />
   }
 ]);
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

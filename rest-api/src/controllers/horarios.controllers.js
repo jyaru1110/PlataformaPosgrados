@@ -3,7 +3,7 @@ const Servicios_dia = require("../models/Servicios_dia");
 const Semana = require("../models/Semana");
 const Notificaciones = require("../models/Notificaciones");
 const { Op } = require("sequelize");
-const send = require("../mail/nodemailerprovider");
+const {send_notificacion} = require("../mail/nodemailerprovider");
 const sequelize = require("../database/database");
 const environment = process.env.ENV;
 const dias =
@@ -91,14 +91,14 @@ const delete_horario = async (req, res) => {
         id_usuario: req.user.dataValues.id,
         estado: "En proceso",
       });
-      await send(
+      await send_notificacion(
         "mx_eventos@up.edu.mx",
         req.user.dataValues.nombre +
           " ha realizado una solicitud de cancelacion",
         notificacion.dataValues,
         req.user.dataValues.nombre
       );
-      await send(
+      await send_notificacion(
         req.user.dataValues.email,
         "Has realizado una solicitud de cancelacion",
         notificacion.dataValues,
@@ -174,7 +174,7 @@ const create_horario = async (req, res) => {
         id_usuario: req.user.dataValues.id,
         tipo: "Nuevo",
       });
-      await send(
+      await send_notificacion(
         "mx_eventos@up.edu.mx",
         req.user.dataValues.nombre +
           " ha creado una solicitud de nuevo servicio",

@@ -5,7 +5,7 @@ const Horario = require("../models/Horario");
 const Programa = require("../models/Programa");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
-const send = require("../mail/nodemailerprovider");
+const {send_notificacion} = require("../mail/nodemailerprovider");
 
 
 const get_solicitudes = async (req, res) => {
@@ -57,7 +57,7 @@ const aceptar_solicitud = async (req, res) => {
           {estado: "Confirmado"},
           {where: {id_horario: (await nuevoHorario).dataValues.id_horario, estado: "Pendiente"}}
         );
-        send(
+        await send_notificacion(
           usuario.email,
           "Solicitud aceptada",
           notificacion.dataValues,
@@ -81,7 +81,7 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
-        send(
+        await send_notificacion(
           usuario.email,
           "Solicitud de cambio aceptada",
           notificacion.dataValues,
@@ -114,7 +114,7 @@ const aceptar_solicitud = async (req, res) => {
           });
         }
 
-        send(
+        await send_notificacion(
           usuario.email,
           "Solicitud de cancelación aceptada",
           notificacion.dataValues,
@@ -139,7 +139,7 @@ const rechazar_solicitud = async (req, res) => {
     notificacion.estado = "Rechazada";
     notificacion.comentario = mensaje;
     await notificacion.save();
-    send(
+    await send_notificacion(
       notificacion.usuario.email,
       "Solicitud rechazada",
       notificacion.dataValues,
