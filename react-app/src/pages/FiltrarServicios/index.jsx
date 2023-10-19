@@ -14,7 +14,7 @@ import { useEffect, useState, useRef } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
 import { useNavigate } from "react-router-dom";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 const url_backend = import.meta.env.VITE_URL_API;
 const rol = localStorage.getItem("rol");

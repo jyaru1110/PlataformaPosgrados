@@ -32,7 +32,7 @@ const aceptar_solicitud = async (req, res) => {
   const notificacion = await Notificaciones.findOne({ where: { id: id } });
   if (notificacion) {
     if (notificacion.tipo == "Nuevo") {
-      const nuevoHorario = Horario.create({
+      const nuevoHorario = await Horario.create({
         salon: notificacion.salon,
         programa: notificacion.programa,
         fecha_inicio: notificacion.fecha_inicio,
@@ -53,9 +53,10 @@ const aceptar_solicitud = async (req, res) => {
         const usuario = await Usuario.findOne({
           where: { id: notificacion.id_usuario },
         });
-        const servicios_confirmados =  await Servicios_dia.update(
+
+        await Servicios_dia.update(
           {estado: "Confirmado"},
-          {where: {id_horario: (await nuevoHorario).dataValues.id_horario, estado: "Pendiente"}}
+          {where: {id_horario: nuevoHorario.dataValues.id_horario, estado: "Pendiente"}}
         );
         await send_notificacion(
           usuario.email,
@@ -74,6 +75,7 @@ const aceptar_solicitud = async (req, res) => {
       if (servicio) {
         servicio.fecha = notificacion.fecha_inicio;
         servicio.num_servicios = notificacion.num_alumnos;
+        servicio.estado_coordinador = "Aprobado"
         await servicio.save();
         notificacion.estado = "Aceptada";
         await notificacion.save();
@@ -97,6 +99,7 @@ const aceptar_solicitud = async (req, res) => {
       });
       if (servicio) {
         servicio.estado = "Cancelado";
+        servicio.estado_coordinador = "Aprobado";
         await servicio.save();
         notificacion.estado = "Aceptada";
         await notificacion.save();
@@ -109,7 +112,7 @@ const aceptar_solicitud = async (req, res) => {
           }
         });
         if(servicios_restantes.length==0){
-          const horario_eliminado = await Horario.destroy({
+          await Horario.destroy({
             where: { id_horario: servicio.id_horario },
           });
         }

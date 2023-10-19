@@ -1,9 +1,12 @@
 const Servicios_dia = require("../models/Servicios_dia");
 const Notificaciones = require("../models/Notificaciones");
 const Salon = require("../models/Salon");
-const { Op, Sequelize } = require("sequelize");
+const { Op, Sequelize, where } = require("sequelize");
 const sequelize = require("../database/database");
-const {send_notificacion,send_servicios_confirmados} = require("../mail/nodemailerprovider");
+const {
+  send_notificacion,
+  send_servicios_confirmados,
+} = require("../mail/nodemailerprovider");
 const Semana = require("../models/Semana");
 
 const get_servicios_confirmados = async (req, res) => {
@@ -13,13 +16,67 @@ const get_servicios_confirmados = async (req, res) => {
       id: 3,
     },
   });
-
-  const query = 'select * from servicios_confirmados inner join programa on programa.programa = servicios_confirmados.programa where servicios_dia.fecha between "'+semana.inicio_semana+'" and "'+semana.fin_semana+'" and programa.escuela = "'+escuela+'";';
-  console.log("el query es "+query)
+  const quer_aprobados =
+    "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where servicios_dia.estado = 'Confirmado' and servicios_dia.estado_coordinador = 'Aprobado' and programa.escuela = '" +
+    escuela +
+    "' and servicios_dia.fecha between '" +
+    semana.inicio_semana +
+    "' and '" +
+    semana.fin_semana +
+    "'";
+  const servicios_aprobados = await sequelize.query(quer_aprobados);
+  const hayAprobados = servicios_aprobados[0].length > 0;
+  const query =
+    "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where servicios_dia.estado = 'Confirmado' and servicios_dia.estado_coordinador = 'Sin revisión' and programa.escuela = '" +
+    escuela +
+    "' and servicios_dia.fecha between '" +
+    semana.inicio_semana +
+    "' and '" +
+    semana.fin_semana +
+    "'";
   const servicios_confirmados = await sequelize.query(query);
 
-  return res.status(200).send({ servicios: servicios_confirmados });
-}
+  return res
+    .status(200)
+    .send({ servicios: servicios_confirmados[0], hayAprobados: hayAprobados });
+};
+
+const aprobar_servicios = async (req, res) => {
+  const servicios = req.body.servicios;
+  const servicios_en_revision = req.body.servicios_en_revision;
+  console.log(servicios_en_revision)
+  if (servicios.length == 0) {
+    res.status(500).send({ error: "No se pudo confirmar el servicio" });
+    return;
+  }
+  const servicios_dia = await Servicios_dia.update(
+    {
+      estado_coordinador: "Aprobado",
+    },
+    {
+      where: {
+        id: {
+          [Op.in]: servicios,
+        },
+        estado: "Confirmado",
+      },
+    }
+  );
+  await Servicios_dia.update(
+    {
+      estado_coordinador: "En revisión",
+    },
+    {
+      where: {
+        id: {
+          [Op.in]: servicios_en_revision,
+        },
+        estado: "Confirmado",
+      },
+    }
+  );
+  return res.status(200).send({ servicios: servicios_dia });
+};
 
 const get_servicios_fecha = async (req, res) => {
   const rol = req.user.dataValues.rol;
@@ -76,7 +133,7 @@ const cancelar_servicios = async (req, res) => {
         id_servicio: servicio.dataValues.id,
         tipo: "Cancelacion",
         salon: servicio.salon_id,
-        programa: servicio.programa,
+        programaPrograma: servicio.programa,
         fecha_inicio: servicio.fecha,
         hora_inicio: servicio.hora_inicio,
         hora_fin: servicio.hora_fin,
@@ -146,29 +203,33 @@ const confirmar_servicios = async (req, res) => {
       },
     }
   );
-  send_servicios_confirmados('0246759@up.edu.mx','del '+fecha_inicio+' al '+fecha_fin,servicios_confirmados[1]);
+  send_servicios_confirmados(
+    "0246759@up.edu.mx",
+    "del " + fecha_inicio + " al " + fecha_fin,
+    servicios_confirmados[1]
+  );
   return res.status(200).send({ semana: semana });
 };
 const get_reporte = async (req, res) => {
   const rol = req.user.dataValues.rol;
   const { fecha_inicio, fecha_fin } = req.body;
   var query = "";
-  if(rol =="Gestor"){
+  if (rol == "Gestor") {
     query =
-    "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
-    fecha_inicio +
-    "' and '" +
-    fecha_fin +
-    "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
+      "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
+      fecha_inicio +
+      "' and '" +
+      fecha_fin +
+      "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
   } else {
     query =
-    "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
-    fecha_inicio +
-    "' and '" +
-    fecha_fin +
-    "' and programa.escuela = '" +
-    req.user.dataValues.escuela +
-    "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
+      "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
+      fecha_inicio +
+      "' and '" +
+      fecha_fin +
+      "' and programa.escuela = '" +
+      req.user.dataValues.escuela +
+      "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
   }
   const servicios_dia_isla = await sequelize.query(query, {
     type: Sequelize.QueryTypes.SELECT,
@@ -426,6 +487,7 @@ const update_servicio = async (req, res) => {
         id_usuario: req.user.dataValues.id,
         estado: "En proceso",
       });
+
       await send_notificacion(
         "mx_eventos@up.edu.mx",
         req.user.dataValues.nombre +
@@ -482,7 +544,7 @@ const delete_servicio = async (req, res) => {
       id_servicio: id,
       tipo: "Cancelacion",
       salon: servicio.salon_id,
-      programa: servicio.programa,
+      programaPrograma: servicio.programa,
       fecha_inicio: servicio.fecha,
       fecha_fin: servicio.fecha,
       hora_inicio: servicio.hora_inicio,
@@ -507,8 +569,6 @@ const delete_servicio = async (req, res) => {
     );
     res.status(200).send({ notificacion: notificacion });
   }
-
-  
 };
 module.exports = {
   get_servicios_fecha,
@@ -524,5 +584,6 @@ module.exports = {
   cancelar_servicios,
   confirmar_servicios,
   get_reporte,
-  get_servicios_confirmados
+  get_servicios_confirmados,
+  aprobar_servicios,
 };

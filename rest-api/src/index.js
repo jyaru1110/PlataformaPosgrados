@@ -1,4 +1,5 @@
 require("dotenv").config();
+const {send_servicios_confirmados} = require( "./mail/nodemailerprovider");
 var app = require("./app");
 var sequelize = require("./database/database");
 const Clase = require("./models/Clase");
@@ -42,14 +43,14 @@ Evidencia.belongsTo(Actividad);
 Programa.hasMany(Proceso);
 Proceso.belongsTo(Programa);
 
-Proceso.belongsToMany(Etapa, { through: EtapaProceso});
-Etapa.belongsToMany(Proceso, { through: EtapaProceso});
+Proceso.belongsToMany(Etapa, { through: EtapaProceso });
+Etapa.belongsToMany(Proceso, { through: EtapaProceso });
 
-EtapaProceso.belongsToMany(Actividad, { through: ActividadProceso});
-Actividad.belongsToMany(EtapaProceso, { through: ActividadProceso});
+EtapaProceso.belongsToMany(Actividad, { through: ActividadProceso });
+Actividad.belongsToMany(EtapaProceso, { through: ActividadProceso });
 
-ActividadProceso.belongsToMany(Evidencia, { through: EvidenciaProceso});
-Evidencia.belongsToMany(ActividadProceso, { through: EvidenciaProceso});
+ActividadProceso.belongsToMany(Evidencia, { through: EvidenciaProceso });
+Evidencia.belongsToMany(ActividadProceso, { through: EvidenciaProceso });
 
 //inicio de la aplicacion
 async function init() {
