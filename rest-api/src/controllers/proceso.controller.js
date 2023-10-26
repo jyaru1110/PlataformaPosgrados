@@ -1,6 +1,12 @@
 const Proceso = require("../models/Proceso");
 const Etapa = require("../models/Etapa");
 const Programa = require("../models/Programa");
+const EtapaProceso = require("../models/EtapaProceso");
+const ActividadProceso = require("../models/ActividadProceso");
+const EvidenciaProceso = require("../models/EvidenciaProceso");
+const Evidencia = require("../models/Evidencia");
+const Actividad = require("../models/Actividad");
+
 const sequelize = require("../database/database");
 
 const get_procesos = async (req, res) => {
@@ -56,7 +62,45 @@ const create_proceso = async (req, res) => {
   }
 };
 
+const get_etapas_en_proceso = async (req, res) => {
+  const {tipo} = req.params;
+  const etapas = await Etapa.findAll({
+    include: [
+      {
+        model: EtapaProceso,
+        include: [
+          {
+            model: ActividadProceso,
+            include: [
+              {
+                model: EvidenciaProceso,
+                include: [
+                  {
+                    model: Evidencia,
+                  },
+                ],
+              },
+              {
+                model: Actividad,
+              },
+            ],
+          },
+          {
+            model: Proceso,
+          },
+        ],
+      },
+    ],
+    where: {
+      tipo: tipo,
+    },
+  });
+
+  res.status(200).send({ etapas: etapas });
+};
+
 module.exports = {
   get_procesos,
   create_proceso,
+  get_etapas_en_proceso,
 };

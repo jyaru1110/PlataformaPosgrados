@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/database");
 
-
 const Servicios_dia = sequelize.define(
   "servicios_dia",
   {
@@ -10,7 +9,7 @@ const Servicios_dia = sequelize.define(
       type: DataTypes.INTEGER,
       references: {
         model: "horario",
-        key: "id_horario"
+        key: "id_horario",
       },
       onDelete: "CASCADE",
     },
@@ -34,13 +33,13 @@ const Servicios_dia = sequelize.define(
       allowNull: false,
     },
     hora_fin: {
-      type: DataTypes.TIME
+      type: DataTypes.TIME,
     },
     hora_servicio_inicio: {
-      type: DataTypes.TIME
+      type: DataTypes.TIME,
     },
     hora_servicio_fin: {
-      type: DataTypes.TIME
+      type: DataTypes.TIME,
     },
     programa: {
       type: DataTypes.STRING,
@@ -50,7 +49,7 @@ const Servicios_dia = sequelize.define(
       },
     },
     num_servicios: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     salon_id: {
       type: DataTypes.STRING,
@@ -66,20 +65,33 @@ const Servicios_dia = sequelize.define(
       validate: {
         customValidator: (value) => {
           const enums = ["Pendiente", "Realizado", "Cancelado", "Confirmado"];
-          if (!enums.includes(value))
-          {
-            throw new Error("El estado debe ser Pendiente, Realizado o Cancelado");
+          if (!enums.includes(value)) {
+            throw new Error(
+              "El estado debe ser Pendiente, Realizado o Cancelado"
+            );
           }
         },
       },
     },
     estado_coordinador: {
       type: DataTypes.STRING,
-      defaultValue:"Sin revisión",
+      defaultValue: "Sin revisión",
       validate: {
         customValidator: (value) => {
           const enums = ["Sin revisión", "Aprobado", "En revisión"];
+          if (!enums.includes(value)) {
+            throw new Error(
+              "El estado debe ser Sin revisión, Aprobado o En revisión"
+            );
+          }
         },
+      },
+    },
+    aprobadoPor: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "usuarios",
+        key: "id",
       },
     },
   },

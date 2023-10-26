@@ -63,7 +63,7 @@ export default function Confirmados() {
         )}
       </div>
       <h2 className="mt-24 pl-8 font-poppins font-medium">
-          Los siguientes servicios son los que se confirmaron con el proveedor. Da clic para seleccionar todos los servicios que estén correctos. Si hay algún servicio que no esté correcto, no lo selecciones y da clic en enviar.
+          {aprobados?"Da clic para corregir los servicios que estén incorrectos":"Los siguientes servicios son los que se confirmaron con el proveedor. Da clic para seleccionar todos los servicios que estén correctos. Si hay algún servicio que no esté correcto, no lo selecciones y da clic en enviar."}
       </h2>
       <table className="table-auto border-collapse w-full mt-5 ml-8">
         <thead className="bg-slate-100 font-poppins">
@@ -78,8 +78,6 @@ export default function Confirmados() {
             <th className="border-r p-2 font-medium">Hora fin servicio</th>
             <th className="border-r p-2 font-medium">Fecha</th>
             <th className="border-r p-2 font-medium">Número de servicios</th>
-            <th className="border-r p-2 font-medium">Corrige aquí</th>
-
           </tr>
         </thead>
         <tbody className="font-poppins text-base">

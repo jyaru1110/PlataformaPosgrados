@@ -1,7 +1,9 @@
 const Servicios_dia = require("../models/Servicios_dia");
 const Notificaciones = require("../models/Notificaciones");
 const Salon = require("../models/Salon");
-const { Op, Sequelize, where } = require("sequelize");
+const Programa = require("../models/Programa");
+const Usuario = require("../models/Usuario");
+const { Op, Sequelize } = require("sequelize");
 const sequelize = require("../database/database");
 const {
   send_notificacion,
@@ -16,18 +18,18 @@ const get_servicios_confirmados = async (req, res) => {
       id: 3,
     },
   });
-  const quer_aprobados =
-    "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where servicios_dia.estado = 'Confirmado' and servicios_dia.estado_coordinador = 'Aprobado' and programa.escuela = '" +
-    escuela +
+  const query_aprobados =
+    `select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where servicios_dia.estado = 'Confirmado' and (servicios_dia.estado_coordinador = 'Aprobado' or servicios_dia.estado_coordinador ='En revisión') and servicios_dia."aprobadoPor" = '` +
+    req.user.dataValues.id +
     "' and servicios_dia.fecha between '" +
     semana.inicio_semana +
     "' and '" +
     semana.fin_semana +
     "'";
-  const servicios_aprobados = await sequelize.query(quer_aprobados);
+  const servicios_aprobados = await sequelize.query(query_aprobados);
   const hayAprobados = servicios_aprobados[0].length > 0;
   const query =
-    "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where servicios_dia.estado = 'Confirmado' and servicios_dia.estado_coordinador = 'Sin revisión' and programa.escuela = '" +
+    "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where servicios_dia.estado = 'Confirmado' and (servicios_dia.estado_coordinador = 'Sin revisión' or servicios_dia.estado_coordinador = 'En revisión') and programa.escuela = '" +
     escuela +
     "' and servicios_dia.fecha between '" +
     semana.inicio_semana +
@@ -43,15 +45,19 @@ const get_servicios_confirmados = async (req, res) => {
 
 const aprobar_servicios = async (req, res) => {
   const servicios = req.body.servicios;
-  const servicios_en_revision = req.body.servicios_en_revision;
-  console.log(servicios_en_revision)
-  if (servicios.length == 0) {
+  const servicios_en_revision = req.body.servicios_en_revision?.map(
+    (servicio) => {
+      servicio.id;
+    }
+  );
+  if (servicios.length == 0 && servicios_en_revision.length == 0) {
     res.status(500).send({ error: "No se pudo confirmar el servicio" });
     return;
   }
-  const servicios_dia = await Servicios_dia.update(
+  await Servicios_dia.update(
     {
       estado_coordinador: "Aprobado",
+      aprobadoPor: req.user.dataValues.id,
     },
     {
       where: {
@@ -65,6 +71,7 @@ const aprobar_servicios = async (req, res) => {
   await Servicios_dia.update(
     {
       estado_coordinador: "En revisión",
+      aprobadoPor: req.user.dataValues.id,
     },
     {
       where: {
@@ -75,7 +82,7 @@ const aprobar_servicios = async (req, res) => {
       },
     }
   );
-  return res.status(200).send({ servicios: servicios_dia });
+  return res.status(200).send({ success: true });
 };
 
 const get_servicios_fecha = async (req, res) => {
@@ -192,6 +199,7 @@ const confirmar_servicios = async (req, res) => {
       returning: true,
     }
   );
+
   const semana = await Semana.update(
     {
       inicio_semana: fecha_inicio,
@@ -203,11 +211,30 @@ const confirmar_servicios = async (req, res) => {
       },
     }
   );
-  send_servicios_confirmados(
-    "0246759@up.edu.mx",
-    "del " + fecha_inicio + " al " + fecha_fin,
-    servicios_confirmados[1]
-  );
+
+  const coordinadores = await Usuario.findAll({
+    include: [
+      {
+        model: Programa,
+        required: true,
+      },
+    ],
+  });
+
+  coordinadores.forEach(async (element) => {
+    const programas = element.programas.map((programa) => {
+      return programa.dataValues.programa;
+    });
+    const servicios = servicios_confirmados[1].filter((servicio) => {
+      return programas.includes(servicio.programa);
+    });
+    await send_servicios_confirmados(
+      "0246759@up.edu.mx",
+      " del " + semana.inicio_semana + " al " + semana.fin_semana,
+      servicios
+    );
+  });
+
   return res.status(200).send({ semana: semana });
 };
 const get_reporte = async (req, res) => {

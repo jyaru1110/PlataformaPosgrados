@@ -1,5 +1,5 @@
 require("dotenv").config();
-const {send_servicios_confirmados} = require( "./mail/nodemailerprovider");
+const { send_servicios_confirmados } = require("./mail/nodemailerprovider");
 var app = require("./app");
 var sequelize = require("./database/database");
 const Clase = require("./models/Clase");
@@ -26,14 +26,16 @@ const EtapaProceso = require("./models/EtapaProceso");
 var port = process.env.PORT || 3900;
 
 //relaciones de las tablas
+
+//notificaciones
 Usuario.hasMany(Notificaciones);
 Notificaciones.belongsTo(Usuario, {
   foreignKey: "id_usuario",
 });
-
 Programa.hasMany(Notificaciones);
 Notificaciones.belongsTo(Programa);
 
+//seguimiento de posgrados
 Etapa.hasMany(Actividad);
 Actividad.belongsTo(Etapa);
 
@@ -45,12 +47,34 @@ Proceso.belongsTo(Programa);
 
 Proceso.belongsToMany(Etapa, { through: EtapaProceso });
 Etapa.belongsToMany(Proceso, { through: EtapaProceso });
+Proceso.hasMany(EtapaProceso);
+EtapaProceso.belongsTo(Proceso);
+Etapa.hasMany(EtapaProceso);
+EtapaProceso.belongsTo(Etapa);
 
 EtapaProceso.belongsToMany(Actividad, { through: ActividadProceso });
 Actividad.belongsToMany(EtapaProceso, { through: ActividadProceso });
+EtapaProceso.hasMany(ActividadProceso);
+ActividadProceso.belongsTo(EtapaProceso);
+Actividad.hasMany(ActividadProceso);
+ActividadProceso.belongsTo(Actividad);
 
 ActividadProceso.belongsToMany(Evidencia, { through: EvidenciaProceso });
 Evidencia.belongsToMany(ActividadProceso, { through: EvidenciaProceso });
+ActividadProceso.hasMany(EvidenciaProceso);
+EvidenciaProceso.belongsTo(ActividadProceso);
+Evidencia.hasMany(EvidenciaProceso);
+EvidenciaProceso.belongsTo(Evidencia);
+
+//programas y usuarios
+Usuario.belongsToMany(Programa, {
+  through: "usuario_programa",
+  timestamps: false,
+});
+Programa.belongsToMany(Usuario, {
+  through: "usuario_programa",
+  timestamps: false,
+});
 
 //inicio de la aplicacion
 async function init() {
