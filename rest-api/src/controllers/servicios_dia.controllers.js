@@ -229,7 +229,7 @@ const confirmar_servicios = async (req, res) => {
       return programas.includes(servicio.programa);
     });
     await send_servicios_confirmados(
-      "0246759@up.edu.mx",
+      element.dataValues.email,
       " del " + semana.inicio_semana + " al " + semana.fin_semana,
       servicios
     );
