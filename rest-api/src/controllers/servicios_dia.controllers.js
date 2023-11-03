@@ -209,9 +209,9 @@ const confirmar_servicios = async (req, res) => {
       where: {
         id: 3,
       },
+      returning: true,
     }
   );
-
   const coordinadores = await Usuario.findAll({
     include: [
       {
@@ -230,7 +230,7 @@ const confirmar_servicios = async (req, res) => {
     });
     await send_servicios_confirmados(
       element.dataValues.email,
-      " del " + semana.inicio_semana + " al " + semana.fin_semana,
+      " del " + semana[1][0].dataValues.inicio_semana + " al " + semana[1][0].dataValues.fin_semana,
       servicios
     );
   });
@@ -250,13 +250,13 @@ const get_reporte = async (req, res) => {
       "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
   } else {
     query =
-      "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
+      "select servicios_dia.fecha,sum(servicios_dia.num_servicios) as servicios,sum(servicios_dia.num_servicios*85) as total,STRING_AGG(num_servicios::varchar || ' servicios ' || salon::varchar, ' \n' ) as Observaciones, programa.cuenta as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
       fecha_inicio +
       "' and '" +
       fecha_fin +
       "' and programa.escuela = '" +
       req.user.dataValues.escuela +
-      "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
+      "' group by programa.cuenta,servicios_dia.fecha order by servicios_dia.fecha asc;";
   }
   const servicios_dia_isla = await sequelize.query(query, {
     type: Sequelize.QueryTypes.SELECT,

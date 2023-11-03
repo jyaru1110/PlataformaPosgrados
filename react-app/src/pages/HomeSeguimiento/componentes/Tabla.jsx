@@ -40,7 +40,7 @@ export default function Tabla(props) {
           <tbody>
             {loading ? null : (
               <>
-                {procesos.map((proceso) => {
+                {procesos.length>0?procesos.map((proceso) => {
                   return (
                     <tr className="border-b border-secondary" key={proceso.id}>
                       <td className="py-3 w-60">{proceso.programa.programa}</td>
@@ -105,7 +105,7 @@ export default function Tabla(props) {
                       <td className="text-center w-28">{proceso.fecha_proxima_actualizacion?.substring(0,10)}</td>
                     </tr>
                   );
-                })}
+                }):null}
               </>
             )}
           </tbody>

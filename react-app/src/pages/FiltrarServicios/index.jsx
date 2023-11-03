@@ -245,7 +245,7 @@ export default function FiltarServicios() {
               <CSVLink
                 data={reporte}
                 className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
-                filename="reporte.csv"
+                filename={`${fecha_inicio}_a_${fecha_fin}reporte.csv`}
                 ref={reporteRef}
                 onClick={() => {
                   setReporte([]);

@@ -62,43 +62,42 @@ const send_notificacion = async (email, subject, notificacion, persona) => {
   }
 };
 
-const send_servicios_confirmados = async (
-  email,
-  semana,
-  servicios
-) => {
+const send_servicios_confirmados = async (email, semana, servicios) => {
   const html =
-    '<div><h7>Coffees confirmados para la semana '+semana+'. <b>En caso de no corroborar o corregir los servicios confirmados con el proveedor, se dará por hecho que son son correctos y se cobrará de manera correspondiente.</b></h7>'+
-    servicios?.length>0?('<table style="table-layout: auto;font-family: Poppins; border-collapse: collapse;"><thead style="background-color: #EFF3F8;"><tr style="text-align: left;border-top: 1px solid;border-bottom: 1px solid; border-color: #E1E3E8;"><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Fecha</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Clase</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Hora inicio servicio</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Hora fin servicio</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Salón</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Programa</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Num. Servicios</th></tr></thead>' +
-    "<tbody>" +
-    servicios
-      .map((servicio) => {
-        return (
-          '<tr><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
-          servicio.dataValues.fecha +
-          '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
-          servicio.dataValues.no_clase +
-          '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
-          servicio.dataValues.hora_servicio_inicio.substring(0, 5) +
-          '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
-          servicio.dataValues.hora_servicio_fin.substring(0, 5) +
-          '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
-          servicio.dataValues.salon_id +
-          '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
-          servicio.dataValues.programa +
-          '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
-          servicio.dataValues.num_servicios +
-          "</td></tr>"
-        );
-      })
-      .join("") +
-    "</tbody>" +
-    '</table><a href="https://posgradospanamericana.up.edu.mx/confirmados">Corrobora los servicios confirmados aquí</a>'):'<br><br><h7>No hay servicios confirmados para esta semana, en caso de que los necesites te pedimos que los solicites <a href="https://posgradospanamericana.up.edu.mx/add-servicio">aquí</a></h7>'
-    '</div>';
+    "<div><h7>Coffees confirmados para la semana " +
+      semana +
+      ". <b>En caso de no corroborar o corregir los servicios confirmados con el proveedor, se dará por hecho que son son correctos y se cobrará de manera correspondiente.</b></h7>" +
+     ( servicios?.length >
+    0
+      ? ('<table style="table-layout: auto;font-family: Poppins; border-collapse: collapse;"><thead style="background-color: #EFF3F8;"><tr style="text-align: left;border-top: 1px solid;border-bottom: 1px solid; border-color: #E1E3E8;"><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Fecha</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Clase</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Hora inicio servicio</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Hora fin servicio</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Salón</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Programa</th><th style="border-right: 1px solid; border-color: #E1E3E8; padding:8px">Num. Servicios</th></tr></thead>' +
+        "<tbody>" +
+        servicios.map((servicio) => {
+          return (
+            '<tr><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
+            servicio.dataValues.fecha +
+            '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
+            servicio.dataValues.no_clase +
+            '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
+            servicio.dataValues.hora_servicio_inicio.substring(0, 5) +
+            '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
+            servicio.dataValues.hora_servicio_fin.substring(0, 5) +
+            '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
+            servicio.dataValues.salon_id +
+            '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
+            servicio.dataValues.programa +
+            '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
+            servicio.dataValues.num_servicios +
+            "</td></tr>"
+          );
+        }) +
+        "</tbody>" +
+        '</table><a href="https://posgradospanamericana.up.edu.mx/confirmados">Corrobora los servicios confirmados aquí</a>')
+      : '<br><br><h7>No hay servicios confirmados para esta semana, en caso de que los necesites te pedimos que los solicites <a href="https://posgradospanamericana.up.edu.mx/add-servicio">aquí</a></h7>')
+      + "</div>";
   try {
     const transporter = nodemailer.createTransport(config);
     const mailOptions = {
-      from: '"Coffee breaks" <mx_eventos@up.edu.mx>',
+      from: 'Coffee Breaks <mx_eventos@up.edu.mx>',
       to: email,
       subject: "Servicios confirmados para esta semana",
       html: html,

@@ -63,33 +63,25 @@ const create_proceso = async (req, res) => {
 };
 
 const get_etapas_en_proceso = async (req, res) => {
-  const {tipo} = req.params;
+  const { tipo } = req.params;
   const etapas = await Etapa.findAll({
     include: [
       {
-        model: EtapaProceso,
+        model: Actividad,
         include: [
           {
-            model: ActividadProceso,
+            model: Evidencia,
             include: [
               {
                 model: EvidenciaProceso,
-                include: [
-                  {
-                    model: Evidencia,
-                  },
-                ],
-              },
-              {
-                model: Actividad,
               },
             ],
           },
-          {
-            model: Proceso,
-          },
         ],
       },
+      {
+        model:Proceso
+      }
     ],
     where: {
       tipo: tipo,

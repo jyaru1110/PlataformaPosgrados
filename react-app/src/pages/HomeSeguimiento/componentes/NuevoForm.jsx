@@ -12,7 +12,6 @@ const url_backend = import.meta.env.VITE_URL_API;
 export default function NuevoForm(props) {
   const [tipo, setTipo] = useState("choose");
   const [tipoActualizacion, setTipoActualizacion] = useState("choose");
-  const erros = ["choose", "", " "];
   toast.onChange((payload) => {
     if (payload.type === "success" && payload.status === "removed") {
       window.location.reload();

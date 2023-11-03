@@ -42,7 +42,7 @@ const ActividadProceso = sequelize.define(
         });
         evidencias.forEach(async (evidencia) => {
           await EvidenciaProceso.create({
-            evidenciaId: evidencia.id,
+            evidenciumId: evidencia.id,
             actividadProcesoId: actividadProceso.id,
           });
         });
