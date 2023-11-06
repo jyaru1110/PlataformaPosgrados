@@ -250,13 +250,13 @@ const get_reporte = async (req, res) => {
       "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
   } else {
     query =
-      "select servicios_dia.fecha,sum(servicios_dia.num_servicios) as servicios,sum(servicios_dia.num_servicios*85) as total,STRING_AGG(num_servicios::varchar || ' servicios ' || salon::varchar, ' \n' ) as Observaciones, programa.cuenta as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
+      "select programa.cuenta as cuenta,STRING_AGG(fecha::varchar, ' \n' ) as fechas,STRING_AGG(num_servicios::varchar || ' servicios ' || salon::varchar, ' \n' ) as Observaciones,sum(servicios_dia.num_servicios) as servicios, '$' || sum(servicios_dia.num_servicios*85) || ' + IVA' as total from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
       fecha_inicio +
       "' and '" +
       fecha_fin +
       "' and programa.escuela = '" +
       req.user.dataValues.escuela +
-      "' group by programa.cuenta,servicios_dia.fecha order by servicios_dia.fecha asc;";
+      "' group by programa.cuenta;";
   }
   const servicios_dia_isla = await sequelize.query(query, {
     type: Sequelize.QueryTypes.SELECT,
