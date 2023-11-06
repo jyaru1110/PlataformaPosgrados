@@ -20,6 +20,28 @@ export default function Confirmados() {
     }
   };
 
+  const getAuth = async () => {
+    const response = await axios
+      .get(url_backend + "/user/auth", { withCredentials: true })
+      .then((res) => {
+        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("rol", res.data.rol);
+        localStorage.setItem("nombre", res.data.nombre);
+        localStorage.setItem("escuela", res.data.escuela);
+        localStorage.setItem("email", res.data.email);
+        setLoading(false);
+        return res;
+      })
+      .catch((err) => {
+        if (err.response.status === 401) {
+          window.location.href = "/login";
+        }
+      });
+  };
+  useEffect(() => {
+    getAuth();
+  }, []);
+
   const onAprobar = () => {
     setIsLoading(true);
     axios
@@ -63,7 +85,9 @@ export default function Confirmados() {
         )}
       </div>
       <h2 className="mt-24 pl-8 font-poppins font-medium">
-          {aprobados?"Da clic para corregir los servicios que estén incorrectos":"Los siguientes servicios son los que se confirmaron con el proveedor. Da clic para seleccionar todos los servicios que estén correctos. Si hay algún servicio que no esté correcto, no lo selecciones y da clic en enviar."}
+        {aprobados
+          ? "Da clic para corregir los servicios que estén incorrectos"
+          : "Los siguientes servicios son los que se confirmaron con el proveedor. Da clic para seleccionar todos los servicios que estén correctos. Si hay algún servicio que no esté correcto, no lo selecciones y da clic en enviar."}
       </h2>
       <table className="table-auto border-collapse w-full mt-5 ml-8">
         <thead className="bg-slate-100 font-poppins">
