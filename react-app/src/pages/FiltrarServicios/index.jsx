@@ -65,7 +65,6 @@ export default function FiltarServicios() {
   };
 
   const confirmar_servicios = () => {
-    /*
     if (isLoading) return;
     setIsLoading(true);
     axios
@@ -90,8 +89,7 @@ export default function FiltarServicios() {
         toast.error("Error al confirmar servicios", {
           pauseOnFocusLoss: true,
         });
-      });*/
-    console.log("confirmar servicios");
+      });
   };
 
   const cancelar_servicios = () => {
