@@ -15,6 +15,8 @@ import { useServicios } from "../../hooks/useServicios";
 import { date_to_day_dd_mm_2 } from "../../utils/date_to_string";
 import { useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
+import PopUp from "../../components/PopUp";
+import { setMessage } from "../../components/PopUp";
 
 const url_backend = import.meta.env.VITE_URL_API;
 const rol = localStorage.getItem("rol");
@@ -63,6 +65,7 @@ export default function FiltarServicios() {
   };
 
   const confirmar_servicios = () => {
+    /*
     if (isLoading) return;
     setIsLoading(true);
     axios
@@ -87,7 +90,8 @@ export default function FiltarServicios() {
         toast.error("Error al confirmar servicios", {
           pauseOnFocusLoss: true,
         });
-      });
+      });*/
+    console.log("confirmar servicios");
   };
 
   const cancelar_servicios = () => {
@@ -245,7 +249,9 @@ export default function FiltarServicios() {
               <CSVLink
                 data={reporte}
                 className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
-                filename={`${fecha_inicio}_a_${fecha_fin}reporte.csv`}
+                filename={`${fecha_inicio}_a_${fecha_fin}_${localStorage.getItem(
+                  "escuela"
+                )}.csv`}
                 ref={reporteRef}
                 onClick={() => {
                   setReporte([]);
@@ -282,7 +288,10 @@ export default function FiltarServicios() {
             {rol === "Gestor" ? (
               <button
                 className="text-white font-poppins rounded-lg bg-primary font-normal mt-2 w-full h-7 flex justify-center items-center"
-                onClick={confirmar_servicios}
+                onClick={() => {
+                  setMessage("¿Estás seguro(a) de confirmar los servicios?");
+                }}
+                disabled={isLoading}
               >
                 Confirmar servicios
               </button>
@@ -436,6 +445,7 @@ export default function FiltarServicios() {
         <ButtonAdd ruta="/add-servicio" />
       </div>
       <ToastContainer />
+      <PopUp proceed={confirmar_servicios}></PopUp>
     </div>
   );
 }

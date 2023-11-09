@@ -20,15 +20,20 @@ const EtapaProceso = sequelize.define(
         },
       },
     },
-    porcentaje:{
-        type: DataTypes.FLOAT,
-        defaultValue: 0.0
+    porcentaje: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0.0,
     },
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
+    },
+
+    cantidadActividades: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
     },
   },
   {
@@ -39,13 +44,17 @@ const EtapaProceso = sequelize.define(
             etapaId: etapaProceso.etapaId,
           },
         });
+
+        etapaProceso.cantidadActividades = actividades.length;
+        await etapaProceso.save();
+
         actividades.forEach(async (actividad) => {
           await ActividadProceso.create({
             actividadId: actividad.id,
             etapaProcesoId: etapaProceso.id,
           });
         });
-      }
+      },
     },
     timestamps: true,
     tableName: "etapaProceso",

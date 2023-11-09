@@ -25,13 +25,21 @@ const EvidenciaProceso = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     // Opciones del modelo
     tableName: "evidenciaProceso",
     timestamps: true,
+    hooks: {
+      afterUpdate: async (evidenciaProceso, options) => {
+        //actualiza el porcentaje en la etapa
+        if(evidenciaProceso.estado !== "Completada") return;
+        evidenciaProceso.actividadProceso.porcentaje = 100/evidenciaProceso.actividadProceso.cantidadEvidencias;
+        await evidenciaProceso.actividadProceso.save();
+      },
+    },
   }
 );
 

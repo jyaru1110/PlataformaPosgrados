@@ -28,7 +28,11 @@ const ActividadProceso = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
+    },
+    cantidadEvidencias: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
     },
   },
   {
@@ -40,13 +44,17 @@ const ActividadProceso = sequelize.define(
             actividadId: actividadProceso.actividadId,
           },
         });
+
+        actividadProceso.cantidadEvidencias = evidencias.length;
+        await actividadProceso.save();
+
         evidencias.forEach(async (evidencia) => {
           await EvidenciaProceso.create({
             evidenciumId: evidencia.id,
             actividadProcesoId: actividadProceso.id,
           });
         });
-      }
+      },
     },
     tableName: "actividadProceso",
     timestamps: true,

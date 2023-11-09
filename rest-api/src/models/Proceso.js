@@ -61,6 +61,10 @@ const Proceso = sequelize.define(
       type: DataTypes.STRING,
       defaultValue: "",
     },
+    cantidadEtapas: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
   },
   {
     hooks: {

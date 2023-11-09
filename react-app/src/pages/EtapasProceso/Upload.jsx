@@ -63,7 +63,6 @@ export default function Upload() {
     const formData = new FormData();
     formData.append("file", file, evidenciaId.nombre);
     formData.append("evidencia", evidenciaId.id);
-    console.log(formData.get("evidencia"));
     const evidencia = await axios.post(`${url_backend}/evidencia`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",

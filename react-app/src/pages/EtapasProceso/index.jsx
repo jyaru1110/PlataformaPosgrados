@@ -54,7 +54,7 @@ export default function EtapasProceso() {
                           rowSpan={actividad.evidencia.length + 1}
                           className="px-2 py-1"
                         >
-                          {actividad.descripcion}
+                          {actividad.numero}. {actividad.descripcion}
                         </td>
                       </tr>
                       {actividad.evidencia.map((evidencia) => {
