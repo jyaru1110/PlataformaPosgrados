@@ -66,23 +66,43 @@ export default function EtapasProceso() {
                             {evidencia.evidenciaProcesos.map(
                               (evidenciaProceso) => {
                                 return (
-                                  <td className="text-center accent-primary appearance-none">
-                                    {
-                                      <input
-                                        type="checkbox"
-                                        defaultChecked={
-                                          evidenciaProceso.estado ==
+                                  <td
+                                    className={` text-center ${
+                                      evidenciaProceso.estado == "Completada"
+                                        ? "bg-primarybg"
+                                        : ""
+                                    }`}
+                                  >
+                                    <span
+                                      className={`w-6 h-6 ${
+                                        evidenciaProceso.estado == "Completada"
+                                          ? "bg-primary"
+                                          : " border-2  cursor-pointer"
+                                      } rounded-md flex mx-auto items-center justify-center`}
+                                      onClick={() => {
+                                        if (
+                                          evidenciaProceso.estado !=
                                           "Completada"
-                                        }
-                                        disabled={
-                                          evidenciaProceso.estado ==
-                                          "Completada"
-                                        }
-                                        onChange={() => {
-                                          onCheck(evidenciaProceso.id)
-                                        }}
-                                      ></input>
-                                    }
+                                        )
+                                          onCheck({
+                                            id: evidenciaProceso.id,
+                                            nombre: evidencia.nombre,
+                                          });
+                                      }}
+                                    >
+                                      <svg
+                                        width="16"
+                                        height="12"
+                                        viewBox="0 0 16 12"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          d="M1 6L6 11L15 1"
+                                          stroke="white"
+                                        />
+                                      </svg>
+                                    </span>
                                   </td>
                                 );
                               }

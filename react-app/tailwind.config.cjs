@@ -25,7 +25,8 @@ module.exports = {
         headerbg:"#F8F8F8",
         complete:"#227B76",
         progress:"#C9B608",
-        textform:"#929292"
+        textform:"#929292",
+        primarybg:"#C7E0DC",
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif'],

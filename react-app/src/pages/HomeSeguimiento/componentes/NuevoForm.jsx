@@ -65,6 +65,8 @@ export default function NuevoForm(props) {
       if (res.status == 200) {
         toast.success("Proceso creado correctamente");
       }
+    }).catch((err) => {
+      toast.error("Error al crear el proceso");
     });
   };
 
