@@ -7,8 +7,8 @@ export default function Dropdown(props) {
 
     return (
       <div className="flex flex-col">
-        <label className="font-poppins text-sm ml-1 mb-2 font-thin" htmlFor={name}>{label}</label>
-        <select className="font-poppins text-sm w-auto h-7 bg-primarylight text-gray1 rounded-md px-2.5 mb-4" onChange={handleChange} disabled={disabled}>
+        <label className="font-poppins text-sm ml-1 mb-1 font-thin" htmlFor={name}>{label}</label>
+        <select className="font-poppins text-sm w-auto h-7 bg-primarylight text-gray1 rounded-md px-2.5 mb-2" onChange={handleChange} disabled={disabled}>
           {
             options == undefined ? <option>No hay opciones</option> :
             options.map(option => (
