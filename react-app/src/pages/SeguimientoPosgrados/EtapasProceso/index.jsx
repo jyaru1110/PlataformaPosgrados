@@ -1,4 +1,5 @@
 import { useEtapasproceso } from "../../../hooks/useEtapasProcesos";
+import Header from "../componentes/Header";
 import Upload from "./Upload";
 import { setEvidenciaId } from "./Upload";
 
@@ -11,6 +12,7 @@ export default function EtapasProceso() {
 
   return (
     <div>
+      <Header titulo="Nuevos programas y actualizaciones"></Header>
       <Upload />
       <table className="font-seravek">
         <thead>
