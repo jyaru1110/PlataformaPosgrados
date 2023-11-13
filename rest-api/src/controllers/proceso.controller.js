@@ -3,8 +3,6 @@ const Etapa = require("../models/Etapa");
 const Programa = require("../models/Programa");
 const EtapaProceso = require("../models/EtapaProceso");
 const ActividadProceso = require("../models/ActividadProceso");
-const EvidenciaProceso = require("../models/EvidenciaProceso");
-const Evidencia = require("../models/Evidencia");
 const Actividad = require("../models/Actividad");
 const { google } = require("googleapis");
 const fs = require("fs");
@@ -34,7 +32,7 @@ const create_proceso = async (req, res) => {
 
   try {
     const fileMetadata = {
-      name: body.programa,
+      name: body.programa || body.programa_origen,
       mimeType: "application/vnd.google-apps.folder",
       parents: ["1xHszoPB0ChmnYhp8mjAQeHRZHcwJ-Ruj"],
     };
@@ -99,21 +97,13 @@ const get_etapas_en_proceso = async (req, res) => {
     include: [
       {
         model: Actividad,
-        include: [
-          {
-            model: Evidencia,
-            include: [
-              {
-                model: EvidenciaProceso,
-              },
-            ],
-          },
-        ],
+        include: [{ model: ActividadProceso }],
       },
       {
         model: Proceso,
       },
     ],
+    order: [[{ model: Actividad }, "numero", "ASC"]],
     where: {
       tipo: tipo,
     },
@@ -126,25 +116,31 @@ const create_evidencia = async (req, res) => {
   upload(req, res, async (err) => {
     const evidencia_id = req.body?.evidencia;
     const file = req.file;
-    const evidencia = await EvidenciaProceso.findOne({
+    const actividad = await ActividadProceso.findOne({
       where: {
         id: evidencia_id,
       },
       attributes: ["id"],
       include: [
         {
-          model: ActividadProceso,
+          model: EtapaProceso,
           include: [
             {
-              model: EtapaProceso,
-              include: [
-                {
-                  model: Proceso,
-                  attributes: ["driveId"],
-                },
+              model: Proceso,
+              attributes: [
+                "driveId",
+                "programaPrograma",
+                "porcentaje",
+                "estado",
+                "cantidadEtapas",
+                "id",
               ],
             },
           ],
+        },
+        {
+          model: Actividad,
+          attributes: ["numero", "nombre", "evidencia"],
         },
       ],
     });
@@ -160,14 +156,18 @@ const create_evidencia = async (req, res) => {
         version: "v3",
         auth: oauth2Client,
       });
-      console.log(evidencia.actividadProceso.etapaProceso.proceso)
       const fileMetadata = {
-        name: file.originalname+"_"+evidencia.actividadProceso.etapaProceso.proceso.dataValues.programaPrograma,
-        parents: [evidencia.actividadProceso.etapaProceso.proceso.driveId],
+        name:
+          actividad.actividad.dataValues.numero +
+          "_" +
+          actividad.actividad.dataValues.evidencia +
+          "_" +
+          actividad.etapaProceso.proceso.programaPrograma,
+        parents: [actividad.etapaProceso.proceso.driveId],
       };
 
       const media = {
-        mimeType: "application/pdf",
+        mimeType: file.mimetype,
         body: fs.createReadStream(file.path),
       };
 
@@ -178,9 +178,9 @@ const create_evidencia = async (req, res) => {
           fields: "id",
         });
 
-        evidencia.url = file_uploaded.data.id;
-        evidencia.estado = "Completada";
-        await evidencia.save();
+        actividad.evidenciaId = file_uploaded.data.id;
+        actividad.estado = "Completada";
+        await actividad.save();
         //delete file from local storage
         await fs.unlink(file.path, (err) => {
           if (err) {

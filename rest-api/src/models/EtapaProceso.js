@@ -54,7 +54,7 @@ const EtapaProceso = sequelize.define(
             etapaProcesoId: etapaProceso.id,
           });
         });
-      },
+      }
     },
     timestamps: true,
     tableName: "etapaProceso",

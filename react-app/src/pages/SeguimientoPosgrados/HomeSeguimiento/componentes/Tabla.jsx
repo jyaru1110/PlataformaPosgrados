@@ -95,7 +95,7 @@ export default function Tabla(props) {
                           <ProgressCircle porcentaje={proceso.porcentaje}/>
                         ) : (
                           <div className="bg-complete justify-center flex flex-col items-center text-xs font-medium text-white px-1 py-1 rounded-[30px]">
-                            {proceso.porcentaje}
+                            {proceso.estado}
                           </div>
                         )}
                       </td>

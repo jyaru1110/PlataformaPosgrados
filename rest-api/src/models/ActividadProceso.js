@@ -1,7 +1,5 @@
 const { DataTypes } = require("sequelize");
 var sequelize = require("../database/database");
-const EvidenciaProceso = require("./EvidenciaProceso");
-const Evidencia = require("./Evidencia");
 
 const ActividadProceso = sequelize.define(
   "actividadProceso",
@@ -20,40 +18,32 @@ const ActividadProceso = sequelize.define(
         },
       },
     },
-    porcentaje: {
-      type: DataTypes.FLOAT,
-      defaultValue: 0.0,
-    },
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    cantidadEvidencias: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
+    evidenciaId: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
     // Opciones del modelo
     hooks: {
-      afterCreate: async (actividadProceso, options) => {
-        const evidencias = await Evidencia.findAll({
-          where: {
-            actividadId: actividadProceso.actividadId,
-          },
-        });
-
-        actividadProceso.cantidadEvidencias = evidencias.length;
-        await actividadProceso.save();
-
-        evidencias.forEach(async (evidencia) => {
-          await EvidenciaProceso.create({
-            evidenciumId: evidencia.id,
-            actividadProcesoId: actividadProceso.id,
+      afterUpdate: async (actividadProceso, options) => {
+        if (actividadProceso.estado == "Completada") {
+          await actividadProceso.etapaProceso.increment("porcentaje", {
+            by: 100 / actividadProceso.etapaProceso.cantidadActividades,
           });
-        });
+
+          await actividadProceso.etapaProceso.proceso.increment("porcentaje", {
+            by:
+              (1 / actividadProceso.etapaProceso.proceso.cantidadEtapas) *
+              (100 / actividadProceso.etapaProceso.cantidadActividades),
+          });
+        }
       },
     },
     tableName: "actividadProceso",

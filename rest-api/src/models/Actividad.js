@@ -19,6 +19,10 @@ const Actividad = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    evidencia: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     // Opciones del modelo

@@ -72,7 +72,7 @@ const router = createBrowserRouter([
     element: <HomeSeguimiento />,
   },
   {
-    path: "seguimientoposgrados/etapasprocesos/nuevos",
+    path: "seguimientoposgrados/etapasprocesos",
     element: <EtapasProceso />,
   }
 ]);

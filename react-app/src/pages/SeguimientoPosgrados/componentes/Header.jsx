@@ -1,23 +1,27 @@
 import LogoPosgrados from "../../../assets/logoposgrados.png";
-import { Link,useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 const rutas = [
   {
     path: "/seguimientoposgrados/",
     name: "Programas",
+    query: null
   },
   {
-    path: "/seguimientoposgrados/etapasprocesos/nuevos",
+    path: "/seguimientoposgrados/etapasprocesos",
     name: "Nuevos",
+    query: "?tipo=Nuevo",
   },
   {
-    path: "/seguimientosposgrados/etapasprocesos/actualizaciones",
+    path: "/seguimientoposgrados/etapasprocesos",
     name: "Actualizaciones",
+    query: "?tipo=Actualización",
   },
 ];
 
 export default function Header(props) {
   const location = useLocation();
+  const [params, setParams] = useSearchParams();
   return (
     <div className="w-full bg-headerbg flex justify-center py-3">
       <div className="flex justify-between items-center w-5/6 font-timesnr">
@@ -31,7 +35,20 @@ export default function Header(props) {
           <h1 className="text-primary text-2xl">{props.titulo}</h1>
         </div>
         {rutas.map((ruta) => {
-          return <Link to={ruta.path} className={`hover:bg-gray-200 p-2 rounded-md ${ruta.path==location.pathname?"text-primary":""}`}>{ruta.name}</Link>;
+          return (
+            <Link
+              key={ruta.name}
+              to={`${ruta.path}${ruta.query?ruta.query:""}`}
+              className={`hover:bg-gray-200 p-2 rounded-md ${
+                ruta.path == location.pathname &&
+                params.get("tipo") == ruta.query?.substring(6, ruta.query.length)
+                  ? "text-primary"
+                  : ""
+              }`}
+            >
+              {ruta.name}
+            </Link>
+          );
         })}
         <div>
           <h1 className="text-primary text-xl">

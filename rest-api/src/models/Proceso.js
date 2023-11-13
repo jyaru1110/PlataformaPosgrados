@@ -19,12 +19,8 @@ const Proceso = sequelize.define(
       },
     },
     porcentaje: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-      validate: {
-        min: 0,
-        max: 100,
-      },
+      type: DataTypes.FLOAT,
+      defaultValue: 0.0
     },
     estado: {
       type: DataTypes.STRING,
@@ -81,6 +77,9 @@ const Proceso = sequelize.define(
             estado: "En proceso",
           });
         });
+
+        proceso.cantidadEtapas = etapas.length;
+        await proceso.save();
       },
     },
     timestamps: true,

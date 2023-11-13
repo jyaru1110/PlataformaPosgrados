@@ -17,10 +17,8 @@ const Usuario = require("./models/Usuario");
 const Notificaciones = require("./models/Notificaciones");
 const Etapa = require("./models/Etapa");
 const Actividad = require("./models/Actividad");
-const Evidencia = require("./models/Evidencia");
 const Proceso = require("./models/Proceso");
 const ActividadProceso = require("./models/ActividadProceso");
-const EvidenciaProceso = require("./models/EvidenciaProceso");
 const EtapaProceso = require("./models/EtapaProceso");
 
 var port = process.env.PORT || 3900;
@@ -39,9 +37,6 @@ Notificaciones.belongsTo(Programa);
 Etapa.hasMany(Actividad);
 Actividad.belongsTo(Etapa);
 
-Actividad.hasMany(Evidencia);
-Evidencia.belongsTo(Actividad);
-
 Programa.hasMany(Proceso);
 Proceso.belongsTo(Programa);
 
@@ -59,13 +54,6 @@ ActividadProceso.belongsTo(EtapaProceso);
 Actividad.hasMany(ActividadProceso);
 ActividadProceso.belongsTo(Actividad);
 
-ActividadProceso.belongsToMany(Evidencia, { through: EvidenciaProceso });
-Evidencia.belongsToMany(ActividadProceso, { through: EvidenciaProceso });
-ActividadProceso.hasMany(EvidenciaProceso);
-EvidenciaProceso.belongsTo(ActividadProceso);
-Evidencia.hasMany(EvidenciaProceso);
-EvidenciaProceso.belongsTo(Evidencia);
-
 //programas y usuarios
 Usuario.belongsToMany(Programa, {
   through: "usuario_programa",
@@ -80,6 +68,7 @@ Programa.belongsToMany(Usuario, {
 async function init() {
   try {
     await sequelize.authenticate();
+    await sequelize.sync({ alter: true });
     console.log("Conexión a la base de datos establecida correctamente.");
     console.log("All models were synchronized successfully.");
     app.listen(port, () => {
