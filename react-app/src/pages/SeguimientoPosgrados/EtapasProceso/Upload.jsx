@@ -13,6 +13,7 @@ export default function Upload() {
   const [dragging, setDragging] = useState(false);
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState(null);
   toast.onChange((payload) => {
     if (payload.type === "success" && payload.status === "removed") {
       window.location.reload();
@@ -61,19 +62,26 @@ export default function Upload() {
     e.preventDefault();
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", file, evidenciaId.nombre);
-    formData.append("evidencia", evidenciaId.id);
-    const evidencia = await axios.post(`${url_backend}/evidencia`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: true,
-    });
-    if (evidencia.data.error) {
-      toast.error(evidencia.data.error);
-      return;
+    if (file) {
+      formData.append("type", "file");
+      formData.append("file", file);
+    } else {
+      formData.append("type", "url");
+      formData.append("url", url);
     }
-    toast.success("Evidencia subida correctamente");
+
+    formData.append("evidencia", evidenciaId.id);
+    const evidencia = await axios
+      .post(`${url_backend}/evidencia`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      })
+      .catch((e) => {
+        toast.error("Error al subir evidencia");
+      });
+    if (evidencia) toast.success("Evidencia subida correctamente");
 
     setLoading(false);
   };
@@ -96,43 +104,78 @@ export default function Upload() {
             id="input-file-upload"
             className="hidden"
             onChange={handleChange}
-            accept=".doc,.docx,.pdf,.jpg,.jpeg,.png"
+            value=""
+            accept=".doc,.docx,.pdf,.jpg,.jpeg,.png,.xlsx,.xls,.ppt,.pptx"
+            disabled={loading || url}
           />
           <label
             id="label-file-upload"
             htmlFor="input-file-upload"
-            className="cursor-pointer"
+            className={`${
+              loading || url ? " opacity-50 " : " opacity-100  cursor-pointer "
+            }`}
           >
             <div
               onDragEnter={handleDrag}
               onDragLeave={handleDrag}
               onDrop={handleDrop}
               onDragOver={handleDrag}
-              className={`border-dashed border-2 rounded-lg h-2/3 flex items-center justify-center ${
+              className={`border-dashed border-2 rounded-lg h-2/5 flex mb-1 flex-col items-center justify-center relative ${
                 dragging || file ? " border-primary " : "  "
               }`}
             >
               <p className={`font-medium ${dragging ? " text-primary " : ""}`}>
                 {file?.name ? (
-                  <span className="font-bold text-primary"> {file.name}</span>
+                  <span className="font-bold text-primary">{file.name}</span>
                 ) : (
                   <>
                     {dragging
                       ? "SUELTALO AQUÍ"
-                      : "ARRASTRA UN ARCHIVO O DA CLICK"}
+                      : "ARRASTRA UN ARCHIVO O DA CLICK AQUÍ"}
                   </>
                 )}
               </p>
+              {file?.name ? (
+                <button
+                  className="text-primary underline"
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFile(null);
+                  }}
+                >
+                  Cancelar
+                </button>
+              ) : null}
             </div>
           </label>
+          Ó
+          <input
+            type="text"
+            className="w-full p-1 mt-1 border-2 rounded-lg"
+            placeholder="INSERTA LINK AL DOCUMENTO"
+            onChange={(e) => setUrl(e.target.value)}
+            disabled={loading || file}
+          ></input>
           <button
             className={`bg-primary p-2 rounded-lg font-medium text-white w-full mt-3 ${
-              !file || loading ? " opacity-50 " : " opacity-100 "
+              (!file && !url) || loading ? " opacity-50 " : " opacity-100 "
             }`}
-            disabled={!file || loading}
             type="submit"
+            disabled={(!file && !url) || loading}
           >
             {loading ? "SUBIENDO EVIDENCIA..." : "SUBIR EVIDENCIA"}
+          </button>
+          <button
+            className={`p-2 rounded-lg  w-full mt-1  ${
+              file || url || loading || loading
+                ? " opacity-50 "
+                : " opacity-100 hover:bg-gray-200"
+            }`}
+            type="submit"
+            disabled={file || url || loading}
+          >
+            {loading ? "SUBIENDO..." : "SUBIR SIN DOCUMENTO"}
           </button>
         </form>
       </div>

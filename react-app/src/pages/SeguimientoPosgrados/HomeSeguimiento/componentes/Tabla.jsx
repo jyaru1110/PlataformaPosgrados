@@ -16,13 +16,13 @@ export default function Tabla(props) {
         </button>
         <table className="table-auto font-seravek w-full mt-5 font-light text-sm overflow-x-scroll">
           <thead>
-            <tr className="text-secondary border-y border-secondary text-center">
+            <tr className="text-secondary border-y border-secondary text-center space-x-5">
               <td className="py-3 text-left">Nombre del programa</td>
               <td>Siglas</td>
               <td>Campus</td>
               <td>Escuela</td>
               <td>Tipo</td>
-              <td>Modalidad</td>
+              <td className="w-36">Modalidad</td>
               <td>Duración</td>
               <td>Etapa 1</td>
               <td>Etapa 2</td>
@@ -43,7 +43,7 @@ export default function Tabla(props) {
                 {procesos.length>0?procesos.map((proceso) => {
                   return (
                     <tr className="border-b border-secondary" key={proceso.id}>
-                      <td className="py-3 w-60">{proceso.programa.programa}</td>
+                      <td className="py-3 w-60 leading-tight">{proceso.programa.programa}</td>
                       <td className="text-center w-20">{proceso.programa.codigo}</td>
                       <td className="text-center w-20">Mixcoac</td>
                       <td className="text-center w-28">
@@ -54,32 +54,32 @@ export default function Tabla(props) {
                         {proceso.programa.modalidad}
                       </td>
                       <td className="text-center w-16">{proceso.programa.duracion} meses</td>
-                      <td className="w-20">
+                      <td className="w-24">
                         <ProgressCircle
                           porcentaje={proceso.etapas[0].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td className="w-20">
+                      <td className="w-24">
                         <ProgressCircle
                           porcentaje={proceso.etapas[1].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td className="w-20">
+                      <td className="w-24">
                         <ProgressCircle
                           porcentaje={proceso.etapas[2].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td className="w-20">
+                      <td className="w-24">
                         <ProgressCircle
                           porcentaje={proceso.etapas[3].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td className="w-20">
+                      <td className="w-24">
                         <ProgressCircle
                           porcentaje={proceso.etapas[4].etapaProceso.porcentaje}
                         />
                       </td>
-                      <td className="w-20 text-center">
+                      <td className="w-24 text-center">
                         {proceso.tipo == "Nuevo" ? (
                           <ProgressCircle
                             porcentaje={
@@ -90,8 +90,8 @@ export default function Tabla(props) {
                           "N/A"
                         )}
                       </td>
-                      <td className="w-20">
-                        {proceso.estado == "En proceso" ? (
+                      <td className="w-24">
+                        {proceso.porcentaje <= 99 ? (
                           <ProgressCircle porcentaje={proceso.porcentaje}/>
                         ) : (
                           <div className="bg-complete justify-center flex flex-col items-center text-xs font-medium text-white px-1 py-1 rounded-[30px]">

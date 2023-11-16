@@ -2,10 +2,10 @@ export default function ProgressCircle(props) {
   if (Math.trunc(props.porcentaje) === 100) {
     return (
       <div className="w-full h-full items-center justify-center flex">
-        <div className="h-7 w-7 rounded-full bg-complete flex items-center justify-center">
+        <div className="h-8 w-8 rounded-full bg-complete flex items-center justify-center">
           <svg
-            width="16"
-            height="12"
+            width="18"
+            height="16"
             viewBox="0 0 16 12"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -17,11 +17,11 @@ export default function ProgressCircle(props) {
     );
   } else {
     return (
-      <div className="w-full h-full relative text-black flex items-center justify-center">
+      <div className="w-full h-full py-2 relative text-black flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
+          width="40"
+          height="40"
           viewBox="0 0 26 26"
         >
           <circle

@@ -212,7 +212,7 @@ const confirmar_servicios = async (req, res) => {
       returning: true,
     }
   );
-  
+
   const coordinadores = await Usuario.findAll({
     include: [
       {

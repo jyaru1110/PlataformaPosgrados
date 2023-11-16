@@ -3,7 +3,7 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 const rutas = [
   {
-    path: "/seguimientoposgrados/",
+    path: "/seguimientoposgrados",
     name: "Programas",
     query: null
   },
@@ -32,7 +32,7 @@ export default function Header(props) {
             width={46}
             className="mr-8"
           ></img>
-          <h1 className="text-primary text-2xl">{props.titulo}</h1>
+          <h1 className="text-primary text-xl">{props.titulo}</h1>
         </div>
         {rutas.map((ruta) => {
           return (

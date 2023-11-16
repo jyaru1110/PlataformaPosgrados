@@ -16,7 +16,7 @@ export default function EtapasProceso() {
     <div>
       <Upload />
       <Header titulo="Nuevos programas y actualizaciones"></Header>
-      <table className="font-seravek mt-5">
+      <table className="font-seravek mt-5 overflow-x-scroll table-auto border-collapse max-w-full">
         <thead>
           <tr>
             <th></th>
@@ -25,12 +25,17 @@ export default function EtapasProceso() {
             {etapas.length > 0
               ? etapas[0].procesos.map((proceso) => {
                   return (
-                    <th
+                    <td
                       key={proceso.id}
-                      className="font-timesnr text-primary w-60"
+                      className="font-timesnr pb-5 leading-tight px-2 text-center text-primary w-60"
                     >
-                      {proceso.programaPrograma?.toUpperCase()}
-                    </th>
+                      <a
+                        href={`https://drive.google.com/drive/folders/${proceso.driveId}`}
+                        target="blank"
+                      >
+                        {proceso.programaPrograma}
+                      </a>
+                    </td>
                   );
                 })
               : null}
@@ -44,14 +49,14 @@ export default function EtapasProceso() {
                 <tr className="bg-primary text-white text-sm">
                   <td
                     colSpan={2}
-                    className="font-timesnr text-left py-4 pl-5 font-bold"
+                    className="font-timesnr text-left py-4 pl-5 font-bold w-60"
                   >{`ETAPA ${
                     etapa.numero
                   }. ${etapa.descripcion?.toUpperCase()}`}</td>
                   <td></td>
                   {etapa.procesos.map((proceso) => {
                     return (
-                      <td className="text-center">
+                      <td className="text-center font-bold text-lg">
                         {Math.trunc(proceso.etapaProceso.porcentaje)}%
                       </td>
                     );
@@ -64,10 +69,10 @@ export default function EtapasProceso() {
                         <td className="px-2 py-1 text-center">
                           {actividad.numero}
                         </td>
-                        <td className="px-2 py-1 border-x border-secondary">
+                        <td className="px-3 py-2 border-x border-secondary  leading-tight">
                           {actividad.descripcion}
                         </td>
-                        <td className="border-x border-secondary px-2 py-1">
+                        <td className="border-x border-secondary px-3 leading-tight py-1">
                           {actividad.evidencia}
                         </td>
                         {actividad.actividadProcesos?.map(
@@ -96,9 +101,15 @@ export default function EtapasProceso() {
                                       });
                                       return;
                                     }
-                                    window.open(
-                                      `https://drive.google.com/file/d/${actividadProceso.evidenciaId}/view?usp=sharing`
-                                    );
+                                    {
+                                      actividadProceso.evidenciaId
+                                        ? window.open(
+                                            `https://drive.google.com/file/d/${actividadProceso.evidenciaId}/view?usp=sharing`
+                                          )
+                                        : window.open(
+                                            actividadProceso.evidenciaUrl
+                                          );
+                                    }
                                   }}
                                 >
                                   <svg

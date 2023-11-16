@@ -28,6 +28,10 @@ const ActividadProceso = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    evidenciaUrl: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     // Opciones del modelo
