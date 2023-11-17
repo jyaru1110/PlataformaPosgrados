@@ -20,7 +20,7 @@ const Proceso = sequelize.define(
     },
     porcentaje: {
       type: DataTypes.FLOAT,
-      defaultValue: 0.0
+      defaultValue: 0.0,
     },
     estado: {
       type: DataTypes.STRING,

@@ -62,12 +62,15 @@ export default function Upload() {
     e.preventDefault();
     setLoading(true);
     const formData = new FormData();
+
     if (file) {
       formData.append("type", "file");
       formData.append("file", file);
-    } else {
+    } else if (url) {
       formData.append("type", "url");
       formData.append("url", url);
+    } else {
+      formData.append("type", "none");
     }
 
     formData.append("evidencia", evidenciaId.id);
@@ -82,7 +85,6 @@ export default function Upload() {
         toast.error("Error al subir evidencia");
       });
     if (evidencia) toast.success("Evidencia subida correctamente");
-
     setLoading(false);
   };
 

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useEtapasproceso } from "../../../hooks/useEtapasProcesos";
 import Header from "../componentes/Header";
 import Upload from "./Upload";
@@ -106,9 +107,11 @@ export default function EtapasProceso() {
                                         ? window.open(
                                             `https://drive.google.com/file/d/${actividadProceso.evidenciaId}/view?usp=sharing`
                                           )
-                                        : window.open(
+                                        : actividadProceso.evidenciaUrl
+                                        ? window.open(
                                             actividadProceso.evidenciaUrl
-                                          );
+                                          )
+                                        : null;
                                     }
                                   }}
                                 >

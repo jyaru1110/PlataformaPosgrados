@@ -138,43 +138,9 @@ const create_evidencia = async (req, res) => {
     if (!req.file && req.body.type == "file") {
       return res.status(500).send({ message: "No se subió ningún archivo" });
     }
-    if (!req.file && req.body.type == "url") {
-      const evidencia_id = req.body?.evidencia;
-      const actividad = await ActividadProceso.findOne({
-        where: {
-          id: evidencia_id,
-        },
-        attributes: ["id"],
-        include: [
-          {
-            model: EtapaProceso,
-            include: [
-              {
-                model: Proceso,
-                attributes: [
-                  "programaPrograma",
-                  "porcentaje",
-                  "estado",
-                  "cantidadEtapas",
-                  "id",
-                ],
-              },
-            ],
-          },
-          {
-            model: Actividad,
-            attributes: ["numero", "nombre", "evidencia"],
-          },
-        ],
-      });
-      actividad.evidenciaUrl = req.body.url;
-      actividad.estado = "Completada";
-      await actividad.save();
-      return res.status(200).send({ message: "Link agregado correctamente" });
-    }
 
     const evidencia_id = req.body?.evidencia;
-    const file = req.file;
+
     const actividad = await ActividadProceso.findOne({
       where: {
         id: evidencia_id,
@@ -203,6 +169,24 @@ const create_evidencia = async (req, res) => {
         },
       ],
     });
+    actividad.estado = "Completada";
+
+    if (!req.file && req.body.type == "url") {
+      actividad.evidenciaUrl = req.body.url;
+      await actividad.save();
+
+      return res.status(200).send({ message: "Link agregado correctamente" });
+    }
+
+    if (!req.file && req.body.type == "none") {
+      await actividad.save();
+
+      return res
+        .status(200)
+        .send({ message: "Actividad completada correctamente" });
+    }
+
+    const file = req.file;
 
     if (!err) {
       const oauth2Client = new google.auth.OAuth2();
