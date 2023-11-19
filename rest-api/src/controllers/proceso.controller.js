@@ -145,7 +145,7 @@ const create_evidencia = async (req, res) => {
       where: {
         id: evidencia_id,
       },
-      attributes: ["id"],
+      attributes: ["id","estado"],
       include: [
         {
           model: EtapaProceso,
@@ -169,6 +169,13 @@ const create_evidencia = async (req, res) => {
         },
       ],
     });
+
+    if (actividad.dataValues.estado == "Completada") {
+      return res
+        .status(500)
+        .send({ message: "La actividad ya está completada" });
+    }
+
     actividad.estado = "Completada";
 
     if (!req.file && req.body.type == "url") {

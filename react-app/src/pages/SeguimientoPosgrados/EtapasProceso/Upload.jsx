@@ -98,7 +98,7 @@ export default function Upload() {
         className={`h-full w-full bg-black/[0.14] inset-0 fixed z-40`}
         onClick={() => setShow(false)}
       ></div>
-      <div className="w-4/5 h-full bg-white max-w-2xl max-h-[350px] rounded-xl text-center p-3 z-50">
+      <div className="w-4/5 bg-white max-w-3xl rounded-xl text-center p-3 z-50">
         <p className="text-base font-bold">Sube {evidenciaId?.nombre}</p>
         <form className="h-full mt-3" onSubmit={onSubmit}>
           <input
@@ -122,7 +122,7 @@ export default function Upload() {
               onDragLeave={handleDrag}
               onDrop={handleDrop}
               onDragOver={handleDrag}
-              className={`border-dashed border-2 rounded-lg h-2/5 flex mb-1 flex-col items-center justify-center relative ${
+              className={`border-dashed border-2 rounded-lg h-[100px] flex mb-1 flex-col items-center justify-center relative ${
                 dragging || file ? " border-primary " : "  "
               }`}
             >

@@ -10,6 +10,7 @@ export default function EtapasProceso() {
   const etapas = useEtapasproceso(tipo.get("tipo"));
 
   const onCheck = (evidenciaId) => {
+    console.log(evidenciaId);
     setEvidenciaId(evidenciaId);
   };
 
@@ -77,7 +78,7 @@ export default function EtapasProceso() {
                           {actividad.evidencia}
                         </td>
                         {actividad.actividadProcesos?.map(
-                          (actividadProceso) => {
+                          (actividadProceso, index) => {
                             return (
                               <td
                                 className={` text-center ${
@@ -102,17 +103,18 @@ export default function EtapasProceso() {
                                       });
                                       return;
                                     }
-                                    {
-                                      actividadProceso.evidenciaId
-                                        ? window.open(
-                                            `https://drive.google.com/file/d/${actividadProceso.evidenciaId}/view?usp=sharing`
-                                          )
-                                        : actividadProceso.evidenciaUrl
-                                        ? window.open(
-                                            actividadProceso.evidenciaUrl
-                                          )
-                                        : null;
-                                    }
+
+                                    actividadProceso.evidenciaId
+                                      ? window.open(
+                                          `https://drive.google.com/file/d/${actividadProceso.evidenciaId}/view?usp=sharing`
+                                        )
+                                      : actividadProceso.evidenciaUrl
+                                      ? window.open(
+                                          actividadProceso.evidenciaUrl
+                                        )
+                                      : window.open(
+                                          `https://drive.google.com/drive/folders/${etapa.procesos[index].driveId}`
+                                        );
                                   }}
                                 >
                                   <svg

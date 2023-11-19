@@ -35,7 +35,7 @@ export default function ProgressCircle(props) {
             fill="none"
           ></circle>
           <circle
-            stroke="#C9B608"
+            stroke="#227B76"
             strokeWidth="3"
             strokeDasharray="72,72"
             strokeDashoffset={72 - props.porcentaje * 0.72}
