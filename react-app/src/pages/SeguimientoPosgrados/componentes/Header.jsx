@@ -24,7 +24,7 @@ export default function Header(props) {
   const [params, setParams] = useSearchParams();
   return (
     <div className="w-full bg-headerbg flex justify-center py-3">
-      <div className="flex justify-between items-center w-5/6 font-timesnr">
+      <div className="flex justify-between items-center w-11/12 font-timesnr">
         <div className="flex items-center">
           <img
             src={LogoPosgrados}
