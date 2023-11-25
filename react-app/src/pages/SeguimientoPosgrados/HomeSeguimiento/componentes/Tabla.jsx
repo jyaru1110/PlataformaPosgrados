@@ -1,18 +1,45 @@
+import { useEffect } from "react";
 import ProgressCircle from "./ProgressCircle";
 import ProgressStatus from "./ProgressStatus";
+import axios from "axios";
+const url_api = import.meta.env.VITE_URL_API;
 
 export default function Tabla(props) {
   const procesos = props.procesos;
   const loading = props.loading;
 
   const onDateChange = (e, id) => {
-
     const data = {
-      id: id,
-      value: e.target.value,
-      field: e.target.id,
+      [e.target.id]: e.target.value,
     };
-    console.log(data);
+    axios
+      .patch(url_api + "/proceso/" + id, data, { withCredentials: true })
+      .then((res) => {
+        props.setProcesos((prev) => {
+          return prev.map((proceso) => {
+            if (proceso.id == res.data.proceso[1][0].id) {
+              res.data.proceso[1][0].programa = proceso.programa;
+              res.data.proceso[1][0].etapas = proceso.etapas;
+              return res.data.proceso[1][0];
+            } else {
+              return proceso;
+            }
+          });
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const threeYearsLater = (date) => {
+    if (date) {
+      const dateObj = new Date(date);
+      dateObj.setFullYear(dateObj.getFullYear() + 3);
+      return dateObj.toLocaleDateString();
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -66,42 +93,42 @@ export default function Tabla(props) {
                         <td className="text-center w-16">
                           {proceso.programa.duracion} meses
                         </td>
-                        <td className="w-24">
+                        <td className="w-[70px]">
                           <ProgressCircle
                             porcentaje={
                               proceso.etapas[0].etapaProceso.porcentaje
                             }
                           />
                         </td>
-                        <td className="w-24">
+                        <td className="w-[70px]">
                           <ProgressCircle
                             porcentaje={
                               proceso.etapas[1].etapaProceso.porcentaje
                             }
                           />
                         </td>
-                        <td className="w-24">
+                        <td className="w-[70px]">
                           <ProgressCircle
                             porcentaje={
                               proceso.etapas[2].etapaProceso.porcentaje
                             }
                           />
                         </td>
-                        <td className="w-24">
+                        <td className="w-[70px]">
                           <ProgressCircle
                             porcentaje={
                               proceso.etapas[3].etapaProceso.porcentaje
                             }
                           />
                         </td>
-                        <td className="w-24">
+                        <td className="w-[70px]">
                           <ProgressCircle
                             porcentaje={
                               proceso.etapas[4].etapaProceso.porcentaje
                             }
                           />
                         </td>
-                        <td className="w-24 text-center">
+                        <td className="w-[70px] text-center">
                           {proceso.tipo == "Nuevo" ? (
                             <ProgressCircle
                               porcentaje={
@@ -112,35 +139,30 @@ export default function Tabla(props) {
                             "N/A"
                           )}
                         </td>
-                        <td className="w-24">
+                        <td className="w-[70px]">
                           <ProgressStatus porcentaje={proceso.porcentaje} />
                         </td>
                         <td className="text-center px-2">
-                          {proceso.fecha_inicio_sep ? (
-                            substring(0, 10)
-                          ) : (
-                            <input
-                              type="date"
-                              id="fecha_inicio_sep"
-                              onChange={(e) => onDateChange(e, proceso.id)}
-                            ></input>
-                          )}
+                          <input
+                            type="date"
+                            id="fecha_inicio_sep"
+                            defaultValue={proceso.fecha_inicio_sep?.substring(
+                              0,
+                              10
+                            )}
+                            onChange={(e) => onDateChange(e, proceso.id)}
+                          ></input>
                         </td>
                         <td className="text-center px-2">
-                          {proceso.fecha_incio_tramite ? (
-                            substring(0, 10)
-                          ) : (
-                            <input
-                              type="date"
-                              id="fecha_inicio_tramite"
-                            ></input>
-                          )}
+                          <input
+                            type="date"
+                            id="fecha_aprobacion"
+                            value={proceso.fecha_aprobacion?.substring(0, 10)}
+                            onChange={(e) => onDateChange(e, proceso.id)}
+                          ></input>
                         </td>
                         <td className="text-center px-2">
-                          {proceso.fecha_proxima_actualizacion?.substring(
-                            0,
-                            10
-                          )}
+                          {threeYearsLater(proceso.fecha_aprobacion)}
                         </td>
                       </tr>
                     );

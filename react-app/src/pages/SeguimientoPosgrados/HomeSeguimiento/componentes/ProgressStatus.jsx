@@ -2,7 +2,7 @@ export default function ProgressStatus(props) {
     if (Math.trunc(props.porcentaje) >= 99) {
       return (
         <div className="w-full h-full items-center justify-center flex">
-          <div className="rounded-full text-xs bg-secondary font-medium p-1 text-white flex items-center justify-center">
+          <div className="rounded-full text-[10px] font-medium bg-secondary p-0.5 text-white flex items-center justify-center">
            COMPLETADO
           </div>
         </div>

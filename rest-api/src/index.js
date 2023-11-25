@@ -68,6 +68,7 @@ Programa.belongsToMany(Usuario, {
 async function init() {
   try {
     await sequelize.authenticate();
+    //await sequelize.sync({ alter: true });
     console.log("Conexión a la base de datos establecida correctamente.");
     console.log("All models were synchronized successfully.");
     app.listen(port, () => {

@@ -27,7 +27,7 @@ export default function HomeSeguimiento() {
       <Tabla
         loading={loading}
         procesos={procesos}
-        setShow={setShowNewForm}
+        setProcesos={procesosResponse.setProcesos}
       ></Tabla>
     </div>
   );

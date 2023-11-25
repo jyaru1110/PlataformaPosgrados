@@ -24,5 +24,5 @@ export const useProcesos = () => {
        get_data();
     }, []);
 
-    return {procesos:procesos,loading:loading};
+    return {procesos:procesos,loading:loading,setProcesos:setProcesos};
 };

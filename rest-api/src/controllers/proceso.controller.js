@@ -20,6 +20,25 @@ const driveId_escuelas = {
   "Bellas Artes": "1DTCQqZytC6XAGlutWoQepoqL_wuRUm4Z",
 };
 
+const update_proceso = async (req, res) => {
+  const id = req.params.id;
+  const data = req.body;
+  try {
+    const proceso = await Proceso.update(data, {
+      where: {
+        id: id,
+      },
+      returning: true,
+    });
+    res
+      .status(200)
+      .send({ message: "Fechas actualizadas correctamente", proceso: proceso });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: "Error al actualizar las fechas" });
+  }
+};
+
 const get_procesos = async (req, res) => {
   const procesos = await Proceso.findAll({
     include: [Etapa, Programa],
@@ -42,17 +61,15 @@ const create_proceso = async (req, res) => {
   });
 
   try {
-    /*
     const fileMetadata = {
       name: body.programa || body.programa_origen,
       mimeType: "application/vnd.google-apps.folder",
-      parents: ["1xHszoPB0ChmnYhp8mjAQeHRZHcwJ-Ruj"],
+      parents: [driveId_escuelas[body.escuela]],
     };
     const file = await drive.files.create({
       resource: fileMetadata,
       fields: "id",
     });
-*/
     if (body.tipo_proceso == "nuevo") {
       await Programa.create({
         tipo: body.tipo,
@@ -67,7 +84,7 @@ const create_proceso = async (req, res) => {
       const proceso = await Proceso.create({
         programaPrograma: body.programa,
         tipo: "Nuevo",
-        //driveId: file.data.id,
+        driveId: file.data.id,
       });
 
       return res.status(200).send({ proceso: proceso });
@@ -93,7 +110,7 @@ const create_proceso = async (req, res) => {
     const proceso = await Proceso.create({
       programaPrograma: body.programa_origen,
       tipo: "Actualización",
-      //driveId: file.data.id,
+      driveId: file.data.id,
     });
 
     return res.status(200).send({ proceso: proceso });
@@ -145,7 +162,7 @@ const create_evidencia = async (req, res) => {
       where: {
         id: evidencia_id,
       },
-      attributes: ["id","estado"],
+      attributes: ["id", "estado"],
       include: [
         {
           model: EtapaProceso,
@@ -250,4 +267,5 @@ module.exports = {
   create_proceso,
   get_etapas_en_proceso,
   create_evidencia,
+  update_proceso,
 };
