@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import ProgressCircle from "./ProgressCircle";
 import ProgressStatus from "./ProgressStatus";
 import axios from "axios";
+import SideTab from "./SideTab";
 const url_api = import.meta.env.VITE_URL_API;
 
 export default function Tabla(props) {
   const procesos = props.procesos;
   const loading = props.loading;
+  const [procesoSide, setProcesoSide] = useState(null);
 
   const onDateChange = (e, id) => {
     const data = {
@@ -32,6 +34,10 @@ export default function Tabla(props) {
       });
   };
 
+  const onClick = (proceso) => {
+    setProcesoSide(proceso);
+  };
+
   const threeYearsLater = (date) => {
     if (date) {
       const dateObj = new Date(date);
@@ -44,6 +50,7 @@ export default function Tabla(props) {
 
   return (
     <div className="w-11/12 flex flex-col items-start flex-1 overflow-auto mt-5">
+      <SideTab proceso={procesoSide} setProceso={setProcesoSide}></SideTab>
       <table className="font-seravek font-light text-sm w-full">
         <thead>
           <tr className="text-secondary border-y border-secondary text-center space-x-5">
@@ -73,8 +80,9 @@ export default function Tabla(props) {
                 ? procesos.map((proceso) => {
                     return (
                       <tr
-                        className="border-b border-secondary"
+                        className="border-b border-secondary cursor-pointer hover:bg-gray-100"
                         key={proceso.id}
+                        onClick={() => onClick(proceso)}
                       >
                         <td className="py-3 w-60 leading-tight">
                           {proceso.programa.programa}
@@ -95,45 +103,33 @@ export default function Tabla(props) {
                         </td>
                         <td className="w-[70px]">
                           <ProgressCircle
-                            porcentaje={
-                              proceso.etapas[0].etapaProceso.porcentaje
-                            }
+                            porcentaje={proceso.etapaProcesos[0].porcentaje}
                           />
                         </td>
                         <td className="w-[70px]">
                           <ProgressCircle
-                            porcentaje={
-                              proceso.etapas[1].etapaProceso.porcentaje
-                            }
+                            porcentaje={proceso.etapaProcesos[1].porcentaje}
                           />
                         </td>
                         <td className="w-[70px]">
                           <ProgressCircle
-                            porcentaje={
-                              proceso.etapas[2].etapaProceso.porcentaje
-                            }
+                            porcentaje={proceso.etapaProcesos[2].porcentaje}
                           />
                         </td>
                         <td className="w-[70px]">
                           <ProgressCircle
-                            porcentaje={
-                              proceso.etapas[3].etapaProceso.porcentaje
-                            }
+                            porcentaje={proceso.etapaProcesos[3].porcentaje}
                           />
                         </td>
                         <td className="w-[70px]">
                           <ProgressCircle
-                            porcentaje={
-                              proceso.etapas[4].etapaProceso.porcentaje
-                            }
+                            porcentaje={proceso.etapaProcesos[4].porcentaje}
                           />
                         </td>
                         <td className="w-[70px] text-center">
                           {proceso.tipo == "Nuevo" ? (
                             <ProgressCircle
-                              porcentaje={
-                                proceso.etapas[5].etapaProceso.porcentaje
-                              }
+                              porcentaje={proceso.etapaProcesos[5].porcentaje}
                             />
                           ) : (
                             "N/A"

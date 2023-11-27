@@ -41,8 +41,26 @@ const update_proceso = async (req, res) => {
 
 const get_procesos = async (req, res) => {
   const procesos = await Proceso.findAll({
-    include: [Etapa, Programa],
-    order: [[{ model: Etapa }, "numero", "ASC"]],
+    include: [
+      {
+        model: EtapaProceso,
+        include: [
+          {
+            model: Etapa,
+          },
+          {
+            model: ActividadProceso,
+            include: [
+              {
+                model: Actividad,
+              },
+            ],
+          }
+        ],
+      },
+      Programa,
+    ],
+    order: [[EtapaProceso, "etapaId", "ASC"]],
   });
   res.status(200).send({ procesos: procesos });
 };
