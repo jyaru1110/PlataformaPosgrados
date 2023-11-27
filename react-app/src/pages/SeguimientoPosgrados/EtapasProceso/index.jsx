@@ -72,10 +72,10 @@ export default function EtapasProceso() {
                           <td className="px-2 py-1 text-center">
                             {actividad.numero}
                           </td>
-                          <td className="px-3 py-2 border-x border-secondary  leading-tight">
+                          <td className="px-3 py-2 border-l border-secondary text-sm leading-tight w-[250px] flex">
                             {actividad.descripcion}
                           </td>
-                          <td className="border-x border-secondary px-3 leading-tight py-1">
+                          <td className="border-x border-secondary px-3 text-sm leading-tight py-1">
                             {actividad.evidencia}
                           </td>
                           {actividad.actividadProcesos?.map(

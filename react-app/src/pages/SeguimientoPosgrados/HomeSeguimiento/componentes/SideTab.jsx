@@ -1,7 +1,53 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function SideTab(props) {
   const onClose = () => {
-    props.setProcesog(null);
+    props.setProceso(null);
   };
+
+  const [cuenta, setCuenta] = useState(props.proceso?.programa.cuenta);
+  const [duracion, setDuracion] = useState(props.proceso?.programa.duracion);
+
+  useEffect(() => {
+    if (!props.proceso) {
+      return;
+    }
+    if (
+      cuenta == props.proceso?.programa.cuenta &&
+      duracion == props.proceso?.programa.duracion
+    ) {
+      return;
+    }
+
+    const getData = setTimeout(() => {
+      axios
+        .patch(
+          import.meta.env.VITE_URL_API +
+            "/programas/" +
+            props.proceso?.programa.programa,
+          { cuenta: cuenta, duracion: duracion },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          props.setProcesos((prev) => {
+            return prev.map((proceso) => {
+              if (proceso?.programa.programa == res.data.programa.programa) {
+                proceso.programa = res.data.programa;
+                return proceso;
+              } else {
+                return proceso;
+              }
+            });
+          });
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    }, 2000);
+
+    return () => clearTimeout(getData);
+  }, [cuenta, duracion]);
 
   const onActivityClick = (actividadProceso) => {
     actividadProceso.evidenciaId
@@ -43,7 +89,7 @@ export default function SideTab(props) {
       </p>
       <div className="space-y-5 mb-5">
         <span className="flex space-x-5 items-center">
-          <span className="w-24 flex space-x-3">
+          <span className="w-28 flex space-x-3">
             <svg
               width="24"
               height="24"
@@ -83,10 +129,14 @@ export default function SideTab(props) {
             </svg>
             <p className="text-base text-[#BABABA]">Cuenta</p>
           </span>
-          <p className="text-base">{props.proceso?.programa.cuenta}</p>
+          <input
+            className="text-base"
+            defaultValue={props.proceso?.programa.cuenta}
+            onChange={(e) => setCuenta(e.target.value)}
+          />
         </span>
         <span className="flex space-x-5 items-center">
-          <span className="w-24 flex space-x-3">
+          <span className="w-28 flex space-x-3">
             <svg
               width="24"
               height="24"
@@ -124,7 +174,7 @@ export default function SideTab(props) {
           <p className="text-base">{props.proceso?.programa.escuela}</p>
         </span>
         <span className="flex space-x-5 items-center">
-          <span className="w-24 flex space-x-3">
+          <span className="w-28 flex space-x-3">
             <svg
               width="24"
               height="24"
@@ -155,7 +205,7 @@ export default function SideTab(props) {
           <p className="text-base">{props.proceso?.programa?.grado}</p>
         </span>
         <span className="flex space-x-5 items-center">
-          <span className="w-24 flex space-x-3">
+          <span className="w-28 flex space-x-3">
             <svg
               width="20"
               height="20"
@@ -185,7 +235,7 @@ export default function SideTab(props) {
           <p className="text-base">{props.proceso?.programa?.modalidad}</p>
         </span>
         <span className="flex space-x-5 items-center">
-          <span className="w-24 flex space-x-3">
+          <span className="w-28 flex space-x-3">
             <svg
               width="20"
               height="20"
@@ -207,10 +257,19 @@ export default function SideTab(props) {
             </svg>
             <p className="text-base text-[#BABABA]">Duración</p>
           </span>
-          <p className="text-base">{props.proceso?.programa?.duracion} meses</p>
+          <span className="text-base">
+            {" "}
+            <input
+              type="number"
+              className="w-8"
+              defaultValue={props.proceso?.programa?.duracion}
+              onChange={(e) => setDuracion(e.target.value)}
+            ></input>{" "}
+            meses
+          </span>
         </span>
         <span className="flex space-x-5 items-center">
-          <span className="w-24 flex space-x-3">
+          <span className="w-28 flex space-x-3">
             <svg
               width="20"
               height="20"

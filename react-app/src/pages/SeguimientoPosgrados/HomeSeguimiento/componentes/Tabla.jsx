@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProgressCircle from "./ProgressCircle";
 import ProgressStatus from "./ProgressStatus";
 import axios from "axios";
@@ -21,7 +21,7 @@ export default function Tabla(props) {
           return prev.map((proceso) => {
             if (proceso.id == res.data.proceso[1][0].id) {
               res.data.proceso[1][0].programa = proceso.programa;
-              res.data.proceso[1][0].etapas = proceso.etapas;
+              res.data.proceso[1][0].etapaProcesos = proceso.etapaProcesos;
               return res.data.proceso[1][0];
             } else {
               return proceso;
@@ -38,6 +38,10 @@ export default function Tabla(props) {
     setProcesoSide(proceso);
   };
 
+  useEffect(() => {
+    console.log(procesos);
+  }, [procesos]);
+
   const threeYearsLater = (date) => {
     if (date) {
       const dateObj = new Date(date);
@@ -50,7 +54,7 @@ export default function Tabla(props) {
 
   return (
     <div className="w-11/12 flex flex-col items-start flex-1 overflow-auto mt-5">
-      <SideTab proceso={procesoSide} setProceso={setProcesoSide}></SideTab>
+      <SideTab proceso={procesoSide} setProcesos={props.setProcesos} setProceso={setProcesoSide}></SideTab>
       <table className="font-seravek font-light text-sm w-full">
         <thead>
           <tr className="text-secondary border-y border-secondary text-center space-x-5">
@@ -76,15 +80,14 @@ export default function Tabla(props) {
         <tbody>
           {loading ? null : (
             <>
-              {procesos.length > 0
+              {procesos?.length > 0
                 ? procesos.map((proceso) => {
                     return (
                       <tr
                         className="border-b border-secondary cursor-pointer hover:bg-gray-100"
                         key={proceso.id}
-                        onClick={() => onClick(proceso)}
                       >
-                        <td className="py-3 w-60 leading-tight">
+                        <td className="py-3 w-60 leading-tight" onClick={() => onClick(proceso)} >
                           {proceso.programa.programa}
                         </td>
                         <td className="text-center w-20">
