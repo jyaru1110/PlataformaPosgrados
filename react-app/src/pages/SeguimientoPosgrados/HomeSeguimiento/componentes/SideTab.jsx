@@ -1,6 +1,6 @@
 export default function SideTab(props) {
   const onClose = () => {
-    props.setProceso(null);
+    props.setProcesog(null);
   };
 
   const onActivityClick = (actividadProceso) => {
