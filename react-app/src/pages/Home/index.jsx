@@ -42,7 +42,8 @@ export default function Home() {
             Plataforma Coffee Breaks
           </a>
           {localStorage.getItem("id") == 184 ||
-          localStorage.getItem("id") == 183 ? (
+          localStorage.getItem("id") == 183 ||
+          localStorage.getItem("id") == 198 ? (
             <a
               href="/seguimientoposgrados"
               className="flex justify-center items-center w-[245px] h-[36px] bg-secondary text-white text-sm rounded-[18px] mt-4"
