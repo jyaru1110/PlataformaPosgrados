@@ -75,3 +75,11 @@ export function date_to_dd_monthshort_yyyy(date) {
     const diaString = dia.toLocaleString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
     return diaString;
 }
+
+export function diff_dates_in_months(date2) {
+    const dia1 = new Date();
+    const dia2 = new Date(date2);
+    const diffTime = Math.abs(dia2 - dia1);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return Math.floor(diffDays/30);
+}

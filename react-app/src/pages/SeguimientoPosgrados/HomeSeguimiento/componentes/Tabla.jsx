@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { diff_dates_in_months } from "../../../../utils/date_to_string";
 import ProgressCircle from "./ProgressCircle";
 import ProgressStatus from "./ProgressStatus";
 import axios from "axios";
@@ -42,7 +43,7 @@ export default function Tabla(props) {
     if (date) {
       const dateObj = new Date(date);
       dateObj.setFullYear(dateObj.getFullYear() + 3);
-      return dateObj.toLocaleDateString();
+      return dateObj;
     } else {
       return null;
     }
@@ -157,8 +158,8 @@ export default function Tabla(props) {
                             onChange={(e) => onDateChange(e, proceso.id)}
                           ></input>
                         </td>
-                        <td className="text-center px-2">
-                          {threeYearsLater(proceso.fecha_aprobacion)}
+                        <td className={`text-center px-2 ${diff_dates_in_months(threeYearsLater(proceso.fecha_aprobacion)) <= 6?" text-red-500":""}`}>
+                          {threeYearsLater(proceso.fecha_aprobacion)?.toLocaleDateString()}
                         </td>
                       </tr>
                     );
