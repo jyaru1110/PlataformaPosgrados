@@ -60,8 +60,8 @@ const get_procesos = async (req, res) => {
       },
       Programa,
     ],
-    order: [[EtapaProceso, "etapaId", "ASC"]],
-  });
+    order: [[Programa,"escuela"],["programaPrograma"],[EtapaProceso, "etapaId"]],
+  })
   res.status(200).send({ procesos: procesos });
 };
 
