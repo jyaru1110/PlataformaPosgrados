@@ -38,10 +38,6 @@ export default function Tabla(props) {
     setProcesoSide(proceso);
   };
 
-  useEffect(() => {
-    console.log(procesos);
-  }, [procesos]);
-
   const threeYearsLater = (date) => {
     if (date) {
       const dateObj = new Date(date);
@@ -156,6 +152,7 @@ export default function Tabla(props) {
                           <input
                             type="date"
                             id="fecha_aprobacion"
+                            className="appearance-none"
                             value={proceso.fecha_aprobacion?.substring(0, 10)}
                             onChange={(e) => onDateChange(e, proceso.id)}
                           ></input>

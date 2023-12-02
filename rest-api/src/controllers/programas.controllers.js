@@ -1,4 +1,5 @@
 const Programa = require("../models/Programa");
+const Proceso  = require("../models/Proceso");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -18,15 +19,16 @@ const get_programas_todos = async (req, res) => {
 };
 
 const update_programa = async (req, res) => {
-  const { id } = req.params;
+  const { programa } = req.params;
   const { body } = req;
-  console.log(body.cuenta);
   try {
-    const programa = await Programa.findByPk(id);
-    programa.cuenta = body.cuenta;
-    programa.duracion = body.duracion;
-    await programa.save();
-    res.status(200).send({ programa: programa });
+    const programa_editado = await Programa.findByPk(programa);
+    const proceso = await Proceso.findByPk(body.id_proceso);
+    proceso.notas = body.notas;
+    programa_editado.duracion = body.duracion;
+    await programa_editado.save();
+    await proceso.save();
+    res.status(200).send({ programa: programa_editado, proceso: proceso });
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Error al actualizar el programa" });

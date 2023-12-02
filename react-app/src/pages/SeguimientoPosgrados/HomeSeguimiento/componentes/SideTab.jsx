@@ -5,17 +5,16 @@ export default function SideTab(props) {
   const onClose = () => {
     props.setProceso(null);
   };
-
-  const [cuenta, setCuenta] = useState(props.proceso?.programa.cuenta);
-  const [duracion, setDuracion] = useState(props.proceso?.programa.duracion);
+  const [duracion, setDuracion] = useState();
+  const [notas, setNotas] = useState();
 
   useEffect(() => {
     if (!props.proceso) {
       return;
     }
     if (
-      cuenta == props.proceso?.programa.cuenta &&
-      duracion == props.proceso?.programa.duracion
+      duracion == props.proceso?.programa.duracion &&
+      notas == props.proceso?.notas
     ) {
       return;
     }
@@ -26,14 +25,17 @@ export default function SideTab(props) {
           import.meta.env.VITE_URL_API +
             "/programas/" +
             props.proceso?.programa.programa,
-          { cuenta: cuenta, duracion: duracion },
+          { duracion: duracion, notas: notas, id_proceso: props.proceso?.id },
           { withCredentials: true }
         )
         .then((res) => {
           props.setProcesos((prev) => {
             return prev.map((proceso) => {
               if (proceso?.programa.programa == res.data.programa.programa) {
-                proceso.programa = res.data.programa;
+                res.data.programa.duracion
+                  ? (proceso.programa = res.data.programa)
+                  : null;
+                proceso.notas = res.data.proceso.notas;
                 return proceso;
               } else {
                 return proceso;
@@ -47,7 +49,7 @@ export default function SideTab(props) {
     }, 2000);
 
     return () => clearTimeout(getData);
-  }, [cuenta, duracion]);
+  }, [duracion, notas]);
 
   const onActivityClick = (actividadProceso) => {
     actividadProceso.evidenciaId
@@ -88,53 +90,42 @@ export default function SideTab(props) {
         {props.proceso?.programa.codigo}
       </p>
       <div className="space-y-5 mb-5">
-        <span className="flex space-x-5 items-center">
-          <span className="w-28 flex space-x-3">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 5C2 4.44771 2.44771 4 3 4H21C21.5523 4 22 4.44771 22 5V19C22 19.5523 21.5523 20 21 20H3C2.44771 20 2 19.5523 2 19V5Z"
-                stroke="#BABABA"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 8H22"
-                stroke="#BABABA"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M13.5 16H18"
-                stroke="#BABABA"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M22 5V13"
-                stroke="#BABABA"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 5V13"
-                stroke="#BABABA"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <p className="text-base text-[#BABABA]">Cuenta</p>
+        {props.proceso?.programa?.programa_previo ? (
+          <span className="flex space-x-5 items-center">
+            <span className="w-28 flex space-x-3">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.16666 18.3334C3.70642 18.3334 3.33333 17.9603 3.33333 17.5001V2.50008C3.33333 2.03984 3.70642 1.66675 4.16666 1.66675H15.8333C16.2936 1.66675 16.6667 2.03984 16.6667 2.50008V17.5001C16.6667 17.9603 16.2936 18.3334 15.8333 18.3334H4.16666Z"
+                  stroke="#BABABA"
+                  strokeLinejoin="round"
+                />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M8.75 9.16675V1.66675H13.75V9.16675L11.25 6.55312L8.75 9.16675Z"
+                  stroke="#BABABA"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M4.16667 1.66675H15.8333"
+                  stroke="#BABABA"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <p className="text-base text-[#BABABA]">Previo</p>
+            </span>
+            <p>{props.proceso?.programa?.programa_previo}</p>
           </span>
-          <input
-            className="text-base"
-            defaultValue={props.proceso?.programa.cuenta}
-            onChange={(e) => setCuenta(e.target.value)}
-          />
-        </span>
+        ) : null}
+
         <span className="flex space-x-5 items-center">
           <span className="w-28 flex space-x-3">
             <svg
@@ -336,6 +327,44 @@ export default function SideTab(props) {
           </span>
           <p className="text-base">{Math.trunc(props.proceso?.porcentaje)}%</p>
         </span>
+        <span className="flex space-x-5 items-center">
+          <span className="w-28 flex space-x-3">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3.33333 2.50008C3.33333 2.03984 3.70642 1.66675 4.16666 1.66675H12.5L16.6667 5.83341V17.5001C16.6667 17.9603 16.2936 18.3334 15.8333 18.3334H4.16666C3.70642 18.3334 3.33333 17.9603 3.33333 17.5001V2.50008Z"
+                stroke="#BABABA"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M6.66667 8.33325H13.3333"
+                stroke="#BABABA"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M6.66667 11.6667H13.3333"
+                stroke="#BABABA"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <p className="text-base text-[#BABABA]">Notas</p>
+          </span>
+          <input
+            type="text"
+            className="text-base"
+            defaultValue={props.proceso?.notas}
+            placeholder="Escribe aquí tus notas"
+            onChange={(e) => setNotas(e.target.value)}
+            key={props.proceso?.id}
+          />
+        </span>
       </div>
       {props.proceso?.etapaProcesos?.map((etapa) => {
         return (
@@ -355,9 +384,7 @@ export default function SideTab(props) {
                         {actividad.actividad.evidencia}
                       </p>
                       <p>
-                        {actividad.updatedAt
-                          .substring(0, 10)
-                          .replaceAll("-", "/")}
+                        {new Date(actividad.updatedAt).toLocaleDateString("es-MX", {})}
                       </p>
                     </span>
                   ) : null}

@@ -6,7 +6,7 @@ const { isUserAuthenticated } = require('../middlewares/auth');
 router.get('/programas/:escuela',get_programas_escuela);
 router.get('/programas',get_programas_todos);
 
-router.patch('/programas/:id',isUserAuthenticated,update_programa);
+router.patch('/programas/:programa',isUserAuthenticated,update_programa);
 
 
 module.exports = router;
