@@ -18,7 +18,6 @@ export default function HomeSeguimiento() {
       .get(url_backend + "/procesos/metricas", { withCredentials: true })
       .then((res) => {
         setMetricas(res.data);
-        console.log(res.data);
       })
       .catch((err) => {});
   }, []);
@@ -37,7 +36,9 @@ export default function HomeSeguimiento() {
           </span>
           <span className="bg-badge-1 text-white px-5 py-2 rounded-2xl">
             <p>Programas completados</p>
-            <p className="text-3xl font-bold text-center">{metricas.completados}</p>
+            <p className="text-3xl font-bold text-center">
+              {metricas.completados}
+            </p>
           </span>
           <span className="bg-badge-2 text-white px-5 py-2 rounded-2xl">
             <p>Nuevos programas</p>
@@ -45,7 +46,9 @@ export default function HomeSeguimiento() {
           </span>
           <span className="bg-badge-3 text-white px-5 py-2 rounded-2xl">
             <p>Actualizaciones</p>
-            <p className="text-3xl font-bold text-center">{metricas.actualizaciones}</p>
+            <p className="text-3xl font-bold text-center">
+              {metricas.actualizaciones}
+            </p>
           </span>
         </section>
         <button

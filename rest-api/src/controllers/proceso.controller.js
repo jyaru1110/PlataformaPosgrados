@@ -38,18 +38,11 @@ const procesos_metrics = async (req, res) => {
       porcentaje: { [Op.gte]: 99 },
     },
   });
-  const en_proceso = await Proceso.count({
-    where: {
-      porcentaje: { [Op.lt]: 99 },
-    },
-  });
-  const porcentaje = await Proceso.sum("porcentaje");
   res.status(200).send({
     total: total,
     nuevos: nuevos,
     actualizaciones: actualizaciones,
     completados: completados,
-    en_proceso: en_proceso,
   });
 };
 
@@ -80,14 +73,6 @@ const get_procesos = async (req, res) => {
         include: [
           {
             model: Etapa,
-          },
-          {
-            model: ActividadProceso,
-            include: [
-              {
-                model: Actividad,
-              },
-            ],
           },
         ],
       },

@@ -10,6 +10,7 @@ export default function Tabla(props) {
   const procesos = props.procesos;
   const loading = props.loading;
   const [procesoSide, setProcesoSide] = useState(null);
+  const [sumaEtapas, setSumaEtapas] = useState({});
 
   const onDateChange = (e, id) => {
     const data = {
@@ -49,9 +50,31 @@ export default function Tabla(props) {
     }
   };
 
+  useEffect(() => {
+    setSumaEtapas({});
+    procesos?.forEach((proceso) => {
+      proceso.etapaProcesos.forEach((etapa) => {
+        if (etapa.porcentaje <= 99 && etapa.porcentaje > 0) {
+          setSumaEtapas((prev) => {
+            return {
+              ...prev,
+              [etapa.etapa.numero]: prev[etapa.etapa.numero]
+                ? prev[etapa.etapa.numero] + 1
+                : 1,
+            };
+          });
+        }
+      });
+    });
+  }, [procesos]);
+
   return (
     <div className="w-11/12 flex flex-col items-start flex-1 overflow-auto mt-5">
-      <SideTab proceso={procesoSide} setProcesos={props.setProcesos} setProceso={setProcesoSide}></SideTab>
+      <SideTab
+        proceso={procesoSide}
+        setProcesos={props.setProcesos}
+        setProceso={setProcesoSide}
+      ></SideTab>
       <table className="font-seravek font-light text-sm w-full">
         <thead>
           <tr className="text-secondary border-y border-secondary text-center space-x-5">
@@ -62,12 +85,30 @@ export default function Tabla(props) {
             <td>Tipo</td>
             <td className="w-36">Modalidad</td>
             <td>Duración</td>
-            <td>Etapa 1</td>
-            <td>Etapa 2</td>
-            <td>Etapa 3</td>
-            <td>Etapa 4</td>
-            <td>Etapa 5</td>
-            <td>Etapa 6</td>
+            <td>
+              <p>Etapa 1</p>
+              <p className="text-xs">{sumaEtapas[1] ? sumaEtapas[1] : 0}</p>
+            </td>
+            <td>
+              <p>Etapa 2</p>
+              <p className="text-xs">{sumaEtapas[2] ? sumaEtapas[2] : 0}</p>
+            </td>
+            <td>
+              <p>Etapa 3</p>
+              <p className="text-xs">{sumaEtapas[3] ? sumaEtapas[3] : 0}</p>
+            </td>
+            <td>
+              <p>Etapa 4</p>
+              <p className="text-xs">{sumaEtapas[4] ? sumaEtapas[4] : 0}</p>
+            </td>
+            <td>
+              <p>Etapa 5</p>
+              <p className="text-xs">{sumaEtapas[5] ? sumaEtapas[5] : 0}</p>
+            </td>
+            <td>
+              <p>Etapa 6</p>
+              <p className="text-xs">{sumaEtapas[6] ? sumaEtapas[6] : 0}</p>
+            </td>
             <td>Estatus</td>
             <td>Inicio trámite</td>
             <td>Aprobación SEP</td>
@@ -81,10 +122,13 @@ export default function Tabla(props) {
                 ? procesos.map((proceso) => {
                     return (
                       <tr
-                        className="border-b border-secondary cursor-pointer hover:bg-gray-100"
+                        className="border-b border-secondary hover:bg-gray-100"
                         key={proceso.id}
                       >
-                        <td className="py-3 w-60 leading-tight" onClick={() => onClick(proceso)} >
+                        <td
+                          className="py-3 w-60 leading-tight cursor-pointer"
+                          onClick={() => onClick(proceso)}
+                        >
                           {proceso.programa.programa}
                         </td>
                         <td className="text-center w-20">
@@ -158,8 +202,18 @@ export default function Tabla(props) {
                             onChange={(e) => onDateChange(e, proceso.id)}
                           ></input>
                         </td>
-                        <td className={`text-center px-2 ${diff_dates_in_months(threeYearsLater(proceso.fecha_aprobacion)) <= 6?" text-red-500":""}`}>
-                          {threeYearsLater(proceso.fecha_aprobacion)?.toLocaleDateString()}
+                        <td
+                          className={`text-center px-2 ${
+                            diff_dates_in_months(
+                              threeYearsLater(proceso.fecha_aprobacion)
+                            ) <= 6
+                              ? " text-red-500"
+                              : ""
+                          }`}
+                        >
+                          {threeYearsLater(
+                            proceso.fecha_aprobacion
+                          )?.toLocaleDateString()}
                         </td>
                       </tr>
                     );
