@@ -23,17 +23,11 @@ const Proceso = sequelize.define(
       defaultValue: 0.0,
     },
     estado: {
-      type: DataTypes.STRING,
-      defaultValue: "En proceso",
-      validate: {
-        customValidator: (value) => {
-          const enums = ["En proceso", "Completado", "Cancelado"];
-          if (!enums.includes(value)) {
-            throw new Error(
-              "El tipo debe ser En proceso, Completado o Cancelado"
-            );
-          }
-        },
+      type: DataTypes.VIRTUAL,
+      get() {
+        return this.getDataValue("porcentaje") >= 99
+          ? "Completado"
+          : "En proceso";
       },
     },
     notas: {

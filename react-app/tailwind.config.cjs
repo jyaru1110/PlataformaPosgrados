@@ -26,6 +26,11 @@ module.exports = {
         progress:"#C9B608",
         textform:"#929292",
         primarybg:"#C7E0DC",
+        badge:{
+          1:"#32547D",
+          2:"#7B222E",
+          3:"#5F227B"
+        }
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif'],

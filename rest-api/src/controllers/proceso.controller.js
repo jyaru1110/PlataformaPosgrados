@@ -7,6 +7,7 @@ const Actividad = require("../models/Actividad");
 const { google } = require("googleapis");
 const fs = require("fs");
 const multer = require("multer");
+const { Op } = require("sequelize");
 const upload = multer({ dest: "public/uploads/" }).single("file");
 
 const driveId_escuelas = {
@@ -18,6 +19,38 @@ const driveId_escuelas = {
   Derecho: "1ZjCIKjq6BYLdY8j0fbmCkOfqj8G_zIGm",
   Comunicación: "1NcgWUaPxsApXQemH3yg5M2VV_8yLhBoG",
   "Bellas Artes": "1DTCQqZytC6XAGlutWoQepoqL_wuRUm4Z",
+};
+
+const procesos_metrics = async (req, res) => {
+  const total = await Proceso.count();
+  const nuevos = await Proceso.count({
+    where: {
+      tipo: "Nuevo",
+    },
+  });
+  const actualizaciones = await Proceso.count({
+    where: {
+      tipo: "Actualización",
+    },
+  });
+  const completados = await Proceso.count({
+    where: {
+      porcentaje: { [Op.gte]: 99 },
+    },
+  });
+  const en_proceso = await Proceso.count({
+    where: {
+      porcentaje: { [Op.lt]: 99 },
+    },
+  });
+  const porcentaje = await Proceso.sum("porcentaje");
+  res.status(200).send({
+    total: total,
+    nuevos: nuevos,
+    actualizaciones: actualizaciones,
+    completados: completados,
+    en_proceso: en_proceso,
+  });
 };
 
 const update_proceso = async (req, res) => {
@@ -55,13 +88,17 @@ const get_procesos = async (req, res) => {
                 model: Actividad,
               },
             ],
-          }
+          },
         ],
       },
       Programa,
     ],
-    order: [[Programa,"escuela"],["programaPrograma"],[EtapaProceso, "etapaId"]],
-  })
+    order: [
+      [Programa, "escuela"],
+      ["programaPrograma"],
+      [EtapaProceso, "etapaId"],
+    ],
+  });
   res.status(200).send({ procesos: procesos });
 };
 
@@ -286,4 +323,5 @@ module.exports = {
   get_etapas_en_proceso,
   create_evidencia,
   update_proceso,
+  procesos_metrics,
 };
