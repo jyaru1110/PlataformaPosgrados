@@ -372,7 +372,7 @@ export default function SideTab(props) {
             <p className="text-primary font-bold text-xl mt-5">
               ETAPA {etapa.etapa.numero}
             </p>
-            {etapa.actividadProcesos.map((actividad) => {
+            {etapa.actividadProcesos?.map((actividad) => {
               return (
                 <span className="flex space-x-3" key={actividad.id}>
                   {actividad.estado == "Completada" ? (

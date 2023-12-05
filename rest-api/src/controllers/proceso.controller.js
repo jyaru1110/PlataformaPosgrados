@@ -67,6 +67,8 @@ const update_proceso = async (req, res) => {
 
 const get_procesos = async (req, res) => {
   const procesos = await Proceso.findAll({
+    include: [Etapa, Programa],
+    order: [[{ model: Etapa }, "numero", "ASC"]],
     include: [
       {
         model: EtapaProceso,
@@ -74,6 +76,14 @@ const get_procesos = async (req, res) => {
           {
             model: Etapa,
           },
+          {
+            model: ActividadProceso,
+            include: [
+              {
+                model: Actividad,
+              },
+            ],
+          }
         ],
       },
       Programa,
