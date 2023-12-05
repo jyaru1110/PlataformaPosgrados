@@ -14,6 +14,8 @@ export default function Home() {
         localStorage.setItem("nombre", res.data.nombre);
         localStorage.setItem("escuela", res.data.escuela);
         localStorage.setItem("email", res.data.email);
+        localStorage.setItem("area", res.data.area);
+
         setLoading(false);
         return res;
       })

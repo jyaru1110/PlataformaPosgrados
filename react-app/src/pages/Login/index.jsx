@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const clientId = import.meta.env.VITE_CLIENT_ID_GOOGLE;
 const url_backend = import.meta.env.VITE_URL_API;
 
 export default function Login() {

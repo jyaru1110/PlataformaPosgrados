@@ -56,7 +56,7 @@ export default function Header(props) {
             {localStorage.getItem("nombre").split(" ")[1]}
           </h1>
           <h1 className="text-secondary text-xl">
-            {localStorage.getItem("escuela")}
+            {localStorage.getItem("area")}
           </h1>
         </div>
       </div>
