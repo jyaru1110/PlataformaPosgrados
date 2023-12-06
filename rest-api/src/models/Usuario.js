@@ -31,6 +31,9 @@ const Usuario = sequelize.define(
         refreshToken: {
             type: DataTypes.STRING,
         },
+        area: {
+            type: DataTypes.STRING,
+        },
     },
     {
         timestamps: false,
