@@ -83,7 +83,7 @@ const get_procesos = async (req, res) => {
                 model: Actividad,
               },
             ],
-          }
+          },
         ],
       },
       Programa,
@@ -111,15 +111,6 @@ const create_proceso = async (req, res) => {
   });
 
   try {
-    const fileMetadata = {
-      name: body.programa || body.programa_origen,
-      mimeType: "application/vnd.google-apps.folder",
-      parents: [driveId_escuelas[body.escuela]],
-    };
-    const file = await drive.files.create({
-      resource: fileMetadata,
-      fields: "id",
-    });
     if (body.tipo_proceso == "nuevo") {
       await Programa.create({
         tipo: body.tipo,
@@ -130,6 +121,16 @@ const create_proceso = async (req, res) => {
         modalidad: body.modalidad,
         duracion: body.duracion,
         tipo_programa: "Nuevo",
+      });
+
+      const fileMetadata = {
+        name: body.programa || body.programa_origen,
+        mimeType: "application/vnd.google-apps.folder",
+        parents: [driveId_escuelas[body.escuela]],
+      };
+      const file = await drive.files.create({
+        resource: fileMetadata,
+        fields: "id",
       });
       const proceso = await Proceso.create({
         programaPrograma: body.programa,
@@ -151,12 +152,33 @@ const create_proceso = async (req, res) => {
         duracion: body.duracion,
         tipo_programa: "Actualización",
       });
+      const fileMetadata = {
+        name: body.programa || body.programa_origen,
+        mimeType: "application/vnd.google-apps.folder",
+        parents: [driveId_escuelas[body.escuela]],
+      };
+      const file = await drive.files.create({
+        resource: fileMetadata,
+        fields: "id",
+      });
       const proceso = await Proceso.create({
         programaPrograma: body.programa,
         tipo: "Actualización",
+        driveId: file.data.id,
       });
       return res.status(200).send({ proceso: proceso });
     }
+    
+    const programa_a_actualizar = await Programa.findByPk(body.programa_origen);
+    const fileMetadata = {
+      name: body.programa || body.programa_origen,
+      mimeType: "application/vnd.google-apps.folder",
+      parents: [driveId_escuelas[programa_a_actualizar.dataValues.escuela]],
+    };
+    const file = await drive.files.create({
+      resource: fileMetadata,
+      fields: "id",
+    });
     const proceso = await Proceso.create({
       programaPrograma: body.programa_origen,
       tipo: "Actualización",

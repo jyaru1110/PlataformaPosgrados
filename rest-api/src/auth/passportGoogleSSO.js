@@ -10,7 +10,7 @@ passport.use(
       callbackURL: process.env.CALLBACK_URL_GOOGLE,
       passReqToCallback: true,
     },
-    async (req, accessToken, refreshToken, profile, done) => {
+    async (req, accessToken, refreshToken, expiresIn, profile, done) => {
       const user = await Usuario.findOne({
         where: { email: profile.emails[0].value },
       }).catch((err) => {
@@ -23,6 +23,7 @@ passport.use(
             googleId: profile.id,
             accessToken: accessToken,
             refreshToken: refreshToken,
+            expiresIn: expiresIn,
           },
           {
             where: { email: profile.emails[0].value },

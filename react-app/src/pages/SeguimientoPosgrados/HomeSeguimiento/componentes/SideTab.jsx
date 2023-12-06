@@ -51,7 +51,7 @@ export default function SideTab(props) {
     return () => clearTimeout(getData);
   }, [duracion, notas]);
 
-  const onActivityClick = (actividadProceso) => {
+  const onActivityClick = (actividadProceso, driveId) => {
     actividadProceso.evidenciaId
       ? window.open(
           `https://drive.google.com/file/d/${actividadProceso.evidenciaId}/view?usp=sharing`
@@ -59,7 +59,7 @@ export default function SideTab(props) {
       : actividadProceso.evidenciaUrl
       ? window.open(actividadProceso.evidenciaUrl)
       : window.open(
-          `https://drive.google.com/drive/folders/${etapa.procesos[index].driveId}`
+          `https://drive.google.com/drive/folders/${driveId}`
         );
   };
 
@@ -356,9 +356,8 @@ export default function SideTab(props) {
             </svg>
             <p className="text-base text-[#BABABA]">Notas</p>
           </span>
-          <input
-            type="text"
-            className="text-base"
+          <textarea
+            className="text-base w-40"
             defaultValue={props.proceso?.notas}
             placeholder="Escribe aquí tus notas"
             onChange={(e) => setNotas(e.target.value)}
@@ -379,7 +378,7 @@ export default function SideTab(props) {
                     <span className="flex space-x-5 mb-3">
                       <p
                         className="text-secondary underline cursor-pointer w-96 leading-tight"
-                        onClick={() => onActivityClick(actividad)}
+                        onClick={() => onActivityClick(actividad,props.proceso.driveId)}
                       >
                         {actividad.actividad.evidencia}
                       </p>
