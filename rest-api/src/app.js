@@ -41,7 +41,7 @@ app.set("trust proxy", 1);
 app.use(
   cookieSession({
     name: "session",
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: 3599*1000,
     keys: ["session","session.sig"],
     secure: environment=="Production"?true:false,
     sameSite: environment=="Production"?"none":"strict"
