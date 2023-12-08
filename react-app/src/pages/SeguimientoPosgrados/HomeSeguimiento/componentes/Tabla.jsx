@@ -77,9 +77,9 @@ export default function Tabla(props) {
       ></SideTab>
       <table className="font-seravek font-light text-sm w-full">
         <thead>
-          <tr className="text-secondary border-y border-secondary text-center space-x-5">
-            <td className="py-3 text-left">Nombre del programa</td>
-            <td>Siglas</td>
+          <tr className="bg-secondary text-white text-center space-x-5">
+            <td className="py-3 pl-1 text-left">Nombre del programa</td>
+            <td className="items-start">Siglas</td>
             <td>Campus</td>
             <td>Escuela</td>
             <td>Tipo</td>

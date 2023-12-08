@@ -54,7 +54,7 @@ const Programa = sequelize.define(
       defaultValue: "Presencial",
       validate: {
         customValidator: (value) => {
-          const enums = ["Presencial", "En línea","Mixta/Blended"];
+          const enums = ["Presencial", "En línea","Mixta"];
           if (!enums.includes(value)) {
             throw new Error("La modalidad debe ser Presencial o Virtual");
           }

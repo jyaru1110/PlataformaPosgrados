@@ -26,9 +26,6 @@ export default function HomeSeguimiento() {
       <NuevoForm show={showNewForm} setShow={setShowNewForm}></NuevoForm>
       <Header titulo="Nuevos programas y actualizaciones"></Header>
       <div className="w-11/12 flex flex-col">
-        <h1 className="font-seravek text-primary self-start font-semibold text-xl mt-10">
-          Posgrados
-        </h1>
         <section className="flex space-x-2 mt-2">
           <span className="bg-complete text-white px-5 py-2 rounded-2xl">
             <p>Programas en total</p>
