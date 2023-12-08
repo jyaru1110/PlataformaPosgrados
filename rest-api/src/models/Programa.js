@@ -54,15 +54,32 @@ const Programa = sequelize.define(
       defaultValue: "Presencial",
       validate: {
         customValidator: (value) => {
-          const enums = ["Presencial", "En línea","Mixta"];
+          const enums = ["Presencial", "En línea", "Mixta"];
           if (!enums.includes(value)) {
             throw new Error("La modalidad debe ser Presencial o Virtual");
           }
         },
       },
     },
-    duracion:{
-      type:DataTypes.STRING,
+    campus: {
+      type: DataTypes.STRING,
+      defaultValue: "Mixcoac",
+      validate: {
+        customValidator: (value) => {
+          const enums = [
+            "Mixcoac",
+            "Santa Fe",
+            "Guadalajara",
+            "Aguascalientes",
+          ];
+          if (!enums.includes(value)) {
+            throw new Error("El campus debe ser Lima o Piura");
+          }
+        },
+      },
+    },
+    duracion: {
+      type: DataTypes.STRING,
     },
   },
   {
