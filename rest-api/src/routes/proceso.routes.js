@@ -6,7 +6,7 @@ const {
   get_etapas_en_proceso,
   create_evidencia,
   update_proceso,
-  procesos_metrics
+  procesos_metrics,
 } = require("../controllers/proceso.controller");
 const { isUserAuthenticated } = require("../middlewares/auth");
 

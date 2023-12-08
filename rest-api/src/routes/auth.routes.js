@@ -12,7 +12,7 @@ router.get(
       "email",
       "https://www.googleapis.com/auth/drive",
       "https://www.googleapis.com/auth/drive.file",
-      "https://www.googleapis.com/auth/drive.resource",
+      "https://www.googleapis.com/auth/drive.resource"
     ],
     accessType: "offline",
     prompt: "consent",

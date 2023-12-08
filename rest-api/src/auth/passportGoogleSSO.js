@@ -10,14 +10,14 @@ passport.use(
       callbackURL: process.env.CALLBACK_URL_GOOGLE,
       passReqToCallback: true,
     },
-    async (req, accessToken, refreshToken, expiresIn, profile, done) => {
+    async (req, accessToken, refreshToken, profile, done) => {
       const user = await Usuario.findOne({
         where: { email: profile.emails[0].value },
       }).catch((err) => {
         console.log("Error signing up", err);
         done(err, null);
       }); 
-      if (user.dataValues.googleId == null || user.dataValues.accessToken == null || user.dataValues.refreshToken == null) {
+      if (user.dataValues.googleId !== null && user.dataValues.accessToken !==  null && user.dataValues.refreshToken !==  null) {
         const user = await Usuario.update(
           {
             googleId: profile.id,
