@@ -81,6 +81,9 @@ const Programa = sequelize.define(
     duracion: {
       type: DataTypes.STRING,
     },
+    rvoe: {
+      type: DataTypes.STRING,
+    },
   },
   {
     // Opciones del modelo

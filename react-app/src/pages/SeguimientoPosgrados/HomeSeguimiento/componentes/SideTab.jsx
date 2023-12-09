@@ -5,10 +5,11 @@ export default function SideTab(props) {
   const onClose = () => {
     props.setProceso(null);
   };
-  const [duracion, setDuracion] = useState(props.proceso?.programa.duracion);
-  const [notas, setNotas] = useState(props.proceso?.notas);
-  const [modalidad, setModalidad] = useState(props.proceso?.programa.modalidad);
-  const [campus, setCampus] = useState(props.proceso?.programa.campus);
+  const [duracion, setDuracion] = useState();
+  const [notas, setNotas] = useState();
+  const [modalidad, setModalidad] = useState();
+  const [campus, setCampus] = useState();
+  const [rvoe, setRvoe] = useState();
 
   useEffect(() => {
     if (!props.proceso) {
@@ -24,10 +25,14 @@ export default function SideTab(props) {
     if (campus && campus !== props.proceso?.programa.campus) {
       data.campus = campus;
     }
+    if (rvoe && rvoe !== props.proceso?.programa.rvoe) {
+      data.rvoe = rvoe;
+    }
     if (notas && notas !== props.proceso?.notas) {
       data.notas = notas;
       data.id_proceso = props.proceso?.id;
     }
+
     if (Object.keys(data).length === 0) {
       return;
     }
@@ -78,7 +83,7 @@ export default function SideTab(props) {
     }, 2000);
 
     return () => clearTimeout(getData);
-  }, [duracion, notas, modalidad, campus]);
+  }, [duracion, notas, modalidad, campus, rvoe]);
 
   useEffect(() => {
     if (!props.proceso) {
@@ -88,8 +93,8 @@ export default function SideTab(props) {
     setNotas(props.proceso?.notas);
     setModalidad(props.proceso?.programa.modalidad);
     setCampus(props.proceso?.programa.campus);
+    setRvoe(props.proceso?.programa.rvoe);
   }, [props.proceso]);
-
 
   const onActivityClick = (actividadProceso, driveId) => {
     actividadProceso.evidenciaId
@@ -128,6 +133,61 @@ export default function SideTab(props) {
         {props.proceso?.programa.codigo}
       </p>
       <div className="space-y-5 mb-5">
+        <span className="flex space-x-5 items-center">
+          <span className="w-28 flex space-x-3 items-center">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.8333 15H2.50001C2.03977 15 1.66667 14.6269 1.66667 14.1667V3.33333C1.66667 2.8731 2.03977 2.5 2.50001 2.5H17.5C17.9603 2.5 18.3333 2.8731 18.3333 3.33333V14.1667C18.3333 14.6269 17.9603 15 17.5 15H14.1667"
+                stroke="#BABABA"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5 5.83325H15"
+                stroke="#BABABA"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5 8.75H7.5"
+                stroke="#BABABA"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5 11.6667H6.66667"
+                stroke="#BABABA"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12.5 13.75C13.8807 13.75 15 12.6307 15 11.25C15 9.86929 13.8807 8.75 12.5 8.75C11.1193 8.75 10 9.86929 10 11.25C10 12.6307 11.1193 13.75 12.5 13.75Z"
+                stroke="#BABABA"
+              />
+              <path
+                d="M12.5 16.6668L14.1667 17.5001V13.1135C14.1667 13.1135 13.6914 13.7501 12.5 13.7501C11.3086 13.7501 10.8333 13.1251 10.8333 13.1251V17.5001L12.5 16.6668Z"
+                stroke="#BABABA"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <p className="text-base text-[#BABABA]">RVOE</p>
+          </span>
+          <input
+            type="text"
+            className="text-base"
+            defaultValue={props.proceso?.programa?.rvoe}
+            placeholder="Escribe el RVOE"
+            key={props.proceso?.id}
+            onChange={(e) => setRvoe(e.target.value)}
+          ></input>
+        </span>
         {props.proceso?.programa?.programa_previo ? (
           <span className="flex space-x-5 items-center">
             <span className="w-28 flex space-x-3">

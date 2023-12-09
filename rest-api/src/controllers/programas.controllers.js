@@ -26,6 +26,7 @@ const update_programa = async (req, res) => {
     body.duracion ? (programa_editado.duracion = body.duracion) : null;
     body.modalidad ? (programa_editado.modalidad = body.modalidad) : null;
     body.campus ? (programa_editado.campus = body.campus) : null;
+    body.rvoe ? (programa_editado.rvoe = body.rvoe) : null;
     await programa_editado.save();
 
     if (body.id_proceso) {
