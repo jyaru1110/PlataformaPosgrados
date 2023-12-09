@@ -73,7 +73,7 @@ const Programa = sequelize.define(
             "Aguascalientes",
           ];
           if (!enums.includes(value)) {
-            throw new Error("El campus debe ser Lima o Piura");
+            throw new Error("El campus debe ser Mixcoac o Santa Fe");
           }
         },
       },

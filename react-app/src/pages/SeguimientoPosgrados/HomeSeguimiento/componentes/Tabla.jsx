@@ -134,7 +134,7 @@ export default function Tabla(props) {
                         <td className="text-center w-20">
                           {proceso.programa.codigo}
                         </td>
-                        <td className="text-center w-20">Mixcoac</td>
+                        <td className="text-center w-20">{proceso.programa.campus}</td>
                         <td className="text-center w-28">
                           {proceso.programa.escuela}
                         </td>

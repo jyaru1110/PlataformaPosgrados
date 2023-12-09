@@ -1,5 +1,5 @@
 const Programa = require("../models/Programa");
-const Proceso  = require("../models/Proceso");
+const Proceso = require("../models/Proceso");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -23,12 +23,21 @@ const update_programa = async (req, res) => {
   const { body } = req;
   try {
     const programa_editado = await Programa.findByPk(programa);
-    const proceso = await Proceso.findByPk(body.id_proceso);
-    proceso.notas = body.notas;
-    programa_editado.duracion = body.duracion;
+    body.duracion ? (programa_editado.duracion = body.duracion) : null;
+    body.modalidad ? (programa_editado.modalidad = body.modalidad) : null;
+    body.campus ? (programa_editado.campus = body.campus) : null;
     await programa_editado.save();
-    await proceso.save();
-    res.status(200).send({ programa: programa_editado, proceso: proceso });
+
+    if (body.id_proceso) {
+      const proceso = await Proceso.findByPk(body.id_proceso);
+      proceso.notas = body.notas;
+      await proceso.save();
+      return res
+        .status(200)
+        .send({ programa: programa_editado, proceso: proceso });
+    }
+
+    res.status(200).send({ programa: programa_editado });
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Error al actualizar el programa" });
@@ -38,5 +47,5 @@ const update_programa = async (req, res) => {
 module.exports = {
   get_programas_escuela,
   get_programas_todos,
-  update_programa
+  update_programa,
 };

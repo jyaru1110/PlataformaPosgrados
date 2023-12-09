@@ -5,17 +5,30 @@ export default function SideTab(props) {
   const onClose = () => {
     props.setProceso(null);
   };
-  const [duracion, setDuracion] = useState();
-  const [notas, setNotas] = useState();
+  const [duracion, setDuracion] = useState(props.proceso?.programa.duracion);
+  const [notas, setNotas] = useState(props.proceso?.notas);
+  const [modalidad, setModalidad] = useState(props.proceso?.programa.modalidad);
+  const [campus, setCampus] = useState(props.proceso?.programa.campus);
 
   useEffect(() => {
     if (!props.proceso) {
       return;
     }
-    if (
-      duracion == props.proceso?.programa.duracion &&
-      notas == props.proceso?.notas
-    ) {
+    const data = {};
+    if (duracion && duracion !== props.proceso?.programa.duracion) {
+      data.duracion = duracion;
+    }
+    if (modalidad && modalidad !== props.proceso?.programa.modalidad) {
+      data.modalidad = modalidad;
+    }
+    if (campus && campus !== props.proceso?.programa.campus) {
+      data.campus = campus;
+    }
+    if (notas && notas !== props.proceso?.notas) {
+      data.notas = notas;
+      data.id_proceso = props.proceso?.id;
+    }
+    if (Object.keys(data).length === 0) {
       return;
     }
 
@@ -25,17 +38,33 @@ export default function SideTab(props) {
           import.meta.env.VITE_URL_API +
             "/programas/" +
             props.proceso?.programa.programa,
-          { duracion: duracion, notas: notas, id_proceso: props.proceso?.id },
+          data,
           { withCredentials: true }
         )
         .then((res) => {
+          if (res.data.proceso) {
+            props.setProcesos((prev) => {
+              return prev.map((proceso) => {
+                if (proceso?.programa.programa == res.data.programa.programa) {
+                  res.data.programa.duracion
+                    ? (proceso.programa = res.data.programa)
+                    : null;
+                  proceso.notas = res.data.proceso.notas;
+                  return proceso;
+                } else {
+                  return proceso;
+                }
+              });
+            });
+
+            return;
+          }
           props.setProcesos((prev) => {
             return prev.map((proceso) => {
               if (proceso?.programa.programa == res.data.programa.programa) {
                 res.data.programa.duracion
                   ? (proceso.programa = res.data.programa)
                   : null;
-                proceso.notas = res.data.proceso.notas;
                 return proceso;
               } else {
                 return proceso;
@@ -49,7 +78,18 @@ export default function SideTab(props) {
     }, 2000);
 
     return () => clearTimeout(getData);
-  }, [duracion, notas]);
+  }, [duracion, notas, modalidad, campus]);
+
+  useEffect(() => {
+    if (!props.proceso) {
+      return;
+    }
+    setDuracion(props.proceso?.programa.duracion);
+    setNotas(props.proceso?.notas);
+    setModalidad(props.proceso?.programa.modalidad);
+    setCampus(props.proceso?.programa.campus);
+  }, [props.proceso]);
+
 
   const onActivityClick = (actividadProceso, driveId) => {
     actividadProceso.evidenciaId
@@ -58,9 +98,7 @@ export default function SideTab(props) {
         )
       : actividadProceso.evidenciaUrl
       ? window.open(actividadProceso.evidenciaUrl)
-      : window.open(
-          `https://drive.google.com/drive/folders/${driveId}`
-        );
+      : window.open(`https://drive.google.com/drive/folders/${driveId}`);
   };
 
   if (!props.proceso) {
@@ -127,7 +165,40 @@ export default function SideTab(props) {
         ) : null}
 
         <span className="flex space-x-5 items-center">
-          <span className="w-28 flex space-x-3">
+          <span className="w-28 flex space-x-3 items-center">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.16666 18.3334C3.70642 18.3334 3.33333 17.9603 3.33333 17.5001V2.50008C3.33333 2.03984 3.70642 1.66675 4.16666 1.66675H15.8333C16.2936 1.66675 16.6667 2.03984 16.6667 2.50008V17.5001C16.6667 17.9603 16.2936 18.3334 15.8333 18.3334H4.16666Z"
+                stroke="#BABABA"
+                strokeLinejoin="round"
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M8.75 9.16675V1.66675H13.75V9.16675L11.25 6.55312L8.75 9.16675Z"
+                stroke="#BABABA"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M4.16667 1.66675H15.8333"
+                stroke="#BABABA"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <p className="text-base text-[#BABABA]">Escuela</p>
+          </span>
+          <p className="text-base">{props.proceso?.programa.escuela}</p>
+        </span>
+        <span className="flex space-x-5 items-center">
+          <span className="w-28 flex space-x-3 items-center">
             <svg
               width="24"
               height="24"
@@ -160,9 +231,19 @@ export default function SideTab(props) {
                 strokeLinejoin="round"
               />
             </svg>
-            <p className="text-base text-[#BABABA]">Escuela</p>
+            <p className="text-base text-[#BABABA]">Campus</p>
           </span>
-          <p className="text-base">{props.proceso?.programa.escuela}</p>
+          <select
+            className="text-base w-32"
+            onChange={(e) => {
+              setCampus(e.target.value);
+            }}
+            key={props.proceso.id}
+            defaultValue={props.proceso?.programa?.campus}
+          >
+            <option value="Mixcoac">Mixcoac</option>
+            <option value="Santa Fe">Santa Fe</option>
+          </select>
         </span>
         <span className="flex space-x-5 items-center">
           <span className="w-28 flex space-x-3">
@@ -223,7 +304,16 @@ export default function SideTab(props) {
             </svg>
             <p className="text-base text-[#BABABA]">Modalidad</p>
           </span>
-          <p className="text-base">{props.proceso?.programa?.modalidad}</p>
+          <select
+            className="text-base w-32"
+            defaultValue={props.proceso.programa?.modalidad}
+            key={props.proceso.id}
+            onChange={(e) => setModalidad(e.target.value)}
+          >
+            <option value="Presencial">Presencial</option>
+            <option value="En línea">En línea</option>
+            <option value="Mixta">Mixta</option>
+          </select>
         </span>
         <span className="flex space-x-5 items-center">
           <span className="w-28 flex space-x-3">
@@ -255,6 +345,7 @@ export default function SideTab(props) {
               className="w-8"
               defaultValue={props.proceso?.programa?.duracion}
               onChange={(e) => setDuracion(e.target.value)}
+              key={props.proceso?.id}
             ></input>{" "}
             meses
           </span>
@@ -357,7 +448,7 @@ export default function SideTab(props) {
             <p className="text-base text-[#BABABA]">Notas</p>
           </span>
           <textarea
-            className="text-base w-40"
+            className="text-base"
             defaultValue={props.proceso?.notas}
             placeholder="Escribe aquí tus notas"
             onChange={(e) => setNotas(e.target.value)}
@@ -378,12 +469,17 @@ export default function SideTab(props) {
                     <span className="flex space-x-5 mb-3">
                       <p
                         className="text-secondary underline cursor-pointer w-96 leading-tight"
-                        onClick={() => onActivityClick(actividad,props.proceso.driveId)}
+                        onClick={() =>
+                          onActivityClick(actividad, props.proceso.driveId)
+                        }
                       >
                         {actividad.actividad.evidencia}
                       </p>
                       <p>
-                        {new Date(actividad.updatedAt).toLocaleDateString("es-MX", {})}
+                        {new Date(actividad.updatedAt).toLocaleDateString(
+                          "es-MX",
+                          {}
+                        )}
                       </p>
                     </span>
                   ) : null}
