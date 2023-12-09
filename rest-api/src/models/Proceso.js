@@ -44,6 +44,9 @@ const Proceso = sequelize.define(
     fecha_aprobacion: {
       type: DataTypes.DATE,
     },
+    fecha_proxima_actualizacion: {
+      type: DataTypes.DATE,
+    },
     driveId: {
       type: DataTypes.STRING,
       defaultValue: "",

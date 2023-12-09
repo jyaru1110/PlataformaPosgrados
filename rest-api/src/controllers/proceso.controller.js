@@ -49,6 +49,7 @@ const procesos_metrics = async (req, res) => {
 const update_proceso = async (req, res) => {
   const id = req.params.id;
   const data = req.body;
+  console.log(data);
   try {
     const proceso = await Proceso.update(data, {
       where: {

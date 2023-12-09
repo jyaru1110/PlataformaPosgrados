@@ -16,38 +16,34 @@ export default function Tabla(props) {
     const data = {
       [e.target.id]: e.target.value,
     };
-    axios
-      .patch(url_api + "/proceso/" + id, data, { withCredentials: true })
-      .then((res) => {
-        props.setProcesos((prev) => {
-          return prev.map((proceso) => {
-            if (proceso.id == res.data.proceso[1][0].id) {
-              res.data.proceso[1][0].programa = proceso.programa;
-              res.data.proceso[1][0].etapaProcesos = proceso.etapaProcesos;
-              return res.data.proceso[1][0];
-            } else {
-              return proceso;
-            }
+    const getData = setTimeout(() => {
+      axios
+        .patch(url_api + "/proceso/" + id, data, { withCredentials: true })
+        .then((res) => {
+          props.setProcesos((prev) => {
+            return prev.map((proceso) => {
+              if (proceso.id == res.data.proceso[1][0].id) {
+                res.data.proceso[1][0].programa = proceso.programa;
+                res.data.proceso[1][0].etapaProcesos = proceso.etapaProcesos;
+                return res.data.proceso[1][0];
+              } else {
+                return proceso;
+              }
+            });
           });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }, 2000);
+
+    return () => {
+      clearTimeout(getData);
+    };
   };
 
   const onClick = (proceso) => {
     setProcesoSide(proceso);
-  };
-
-  const threeYearsLater = (date) => {
-    if (date) {
-      const dateObj = new Date(date);
-      dateObj.setFullYear(dateObj.getFullYear() + 3);
-      return dateObj;
-    } else {
-      return null;
-    }
   };
 
   useEffect(() => {
@@ -134,7 +130,9 @@ export default function Tabla(props) {
                         <td className="text-center w-20">
                           {proceso.programa.codigo}
                         </td>
-                        <td className="text-center w-20">{proceso.programa.campus}</td>
+                        <td className="text-center w-20">
+                          {proceso.programa.campus}
+                        </td>
                         <td className="text-center w-28">
                           {proceso.programa.escuela}
                         </td>
@@ -180,7 +178,12 @@ export default function Tabla(props) {
                           )}
                         </td>
                         <td className="w-[70px]">
-                          <ProgressStatus porcentaje={proceso.porcentaje} />
+                          <ProgressStatus
+                            porcentaje={proceso.porcentaje}
+                            fecha_proxima_actualizacion={
+                              proceso.fecha_proxima_actualizacion
+                            }
+                          />
                         </td>
                         <td className="text-center px-2">
                           <input
@@ -198,22 +201,35 @@ export default function Tabla(props) {
                             type="date"
                             id="fecha_aprobacion"
                             className="appearance-none"
-                            value={proceso.fecha_aprobacion?.substring(0, 10)}
+                            defaultValue={proceso.fecha_aprobacion?.substring(
+                              0,
+                              10
+                            )}
                             onChange={(e) => onDateChange(e, proceso.id)}
                           ></input>
                         </td>
                         <td
                           className={`text-center px-2 ${
                             diff_dates_in_months(
-                              threeYearsLater(proceso.fecha_aprobacion)
+                              proceso.fecha_proxima_actualizacion?.substring(
+                                0,
+                                10
+                              )
                             ) <= 6
                               ? " text-red-500"
                               : ""
                           }`}
                         >
-                          {threeYearsLater(
-                            proceso.fecha_aprobacion
-                          )?.toLocaleDateString()}
+                          <input
+                            type="date"
+                            id="fecha_proxima_actualizacion"
+                            className="appearance-none"
+                            defaultValue={proceso.fecha_proxima_actualizacion?.substring(
+                              0,
+                              10
+                            )}
+                            onChange={(e) => onDateChange(e, proceso.id)}
+                          ></input>
                         </td>
                       </tr>
                     );
