@@ -18,9 +18,11 @@ export default function EtapasProceso() {
     <div>
       <Upload />
       <Header titulo="Nuevos programas y actualizaciones"></Header>
-      <div className="overflow-x-scroll">
-        <table className="font-seravek mt-5 border-collapse max-w-none">
-          <thead>
+      <div className="w-full h-screen overflow-scroll">
+        <table
+          className="font-seravek mt-5 border-collapse max-w-none"
+        >
+          <thead className="sticky top-0 bg-white">
             <tr>
               <th></th>
               <th></th>
