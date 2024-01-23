@@ -253,7 +253,7 @@ export default function Solicitudes() {
                       </>
                     )}
                   </td>
-                  <td className="border-r p-2">{solicitud.usuario.nombre}</td>
+                  <td className="border-r p-2">{solicitud?.usuario?.nombre}</td>
                   <td className="border-r p-2">
                     {solicitud.salon !== solicitud.salon_actual ? (
                       <>
