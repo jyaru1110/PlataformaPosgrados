@@ -239,12 +239,12 @@ const create_horario = async (req, res) => {
         id_horario: horario.id_horario,
       },
     });
-    console.log(servicios_creados);
+
     if (servicios_creados.length == 0) {
       await horario.destroy();
       res
         .status(500)
-        .send({ message: "No se creó ningún servicio revisa las fechas" });
+        .send({ message: "No se creó ningún servicio, revisa las fechas" });
       return;
     }
     res.status(200).send({ horario: horario });

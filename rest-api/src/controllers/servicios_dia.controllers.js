@@ -185,6 +185,8 @@ const confirmar_servicios = async (req, res) => {
     res.status(500).send({ error: "No se pudo confirmar el servicio" });
     return;
   }
+  const semana = await Semana.findOne();
+
   const servicios_confirmados = await Servicios_dia.update(
     {
       estado: "Confirmado",
@@ -200,18 +202,11 @@ const confirmar_servicios = async (req, res) => {
     }
   );
 
-  const semana = await Semana.update(
-    {
-      inicio_semana: fecha_inicio,
-      fin_semana: fecha_fin,
-    },
-    {
-      where: {
-        id: 3,
-      },
-      returning: true,
-    }
-  );
+  if (semana.dataValues.fin_semana < fecha_fin) {
+    semana.dataValues.inicio_semana = fecha_inicio;
+    semana.dataValues.fin_semana = fecha_fin;
+    await semana.save();
+  }
 
   const coordinadores = await Usuario.findAll({
     include: [
@@ -231,7 +226,7 @@ const confirmar_servicios = async (req, res) => {
     });
     await send_servicios_confirmados(
       element.dataValues.email,
-      " del " + semana[1][0].dataValues.inicio_semana + " al " + semana[1][0].dataValues.fin_semana,
+      " del " + fecha_inicio + " al " + fecha_fin,
       servicios
     );
   });
