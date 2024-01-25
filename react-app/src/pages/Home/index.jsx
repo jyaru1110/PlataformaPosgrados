@@ -1,32 +1,11 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-
-const url_backend = import.meta.env.VITE_URL_API;
+import { getAuth } from "../../hooks/useAuth";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const getAuth = async () => {
-    const response = await axios
-      .get(url_backend + "/user/auth", { withCredentials: true })
-      .then((res) => {
-        localStorage.setItem("id", res.data.id);
-        localStorage.setItem("rol", res.data.rol);
-        localStorage.setItem("nombre", res.data.nombre);
-        localStorage.setItem("escuela", res.data.escuela);
-        localStorage.setItem("email", res.data.email);
-        localStorage.setItem("area", res.data.area);
 
-        setLoading(false);
-        return res;
-      })
-      .catch((err) => {
-        if (err.response.status === 401) {
-          window.location.href = "/login";
-        }
-      });
-  };
   useEffect(() => {
-    getAuth();
+    getAuth(setLoading);
   }, []);
   return (
     <div className="flex flex-col items-center h-screen w-screen bg-primary justify-center">

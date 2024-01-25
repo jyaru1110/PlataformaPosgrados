@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const get_fetch = async (url, signal, func) => {
-  const response = await axios
+  await axios
     .get(url, {
       signal: signal,
       withCredentials: true,
@@ -10,6 +10,8 @@ export const get_fetch = async (url, signal, func) => {
       func(response.data);
     })
     .catch((err) => {
-      console.log("error ", err);
+      if (err.response.status === 401) {
+        window.location.href = "/login";
+      }
     });
 };
