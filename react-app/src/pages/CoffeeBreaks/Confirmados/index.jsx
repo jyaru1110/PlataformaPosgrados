@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useServiciosConfirmados } from "../../../hooks/useServiciosConfirmados";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getAuth } from "../../../hooks/useAuth";
 
 const url_backend = import.meta.env.VITE_URL_API;
 
@@ -20,24 +21,7 @@ export default function Confirmados() {
     }
   };
 
-  const getAuth = async () => {
-    const response = await axios
-      .get(url_backend + "/user/auth", { withCredentials: true })
-      .then((res) => {
-        localStorage.setItem("id", res.data.id);
-        localStorage.setItem("rol", res.data.rol);
-        localStorage.setItem("nombre", res.data.nombre);
-        localStorage.setItem("escuela", res.data.escuela);
-        localStorage.setItem("email", res.data.email);
-        setLoading(false);
-        return res;
-      })
-      .catch((err) => {
-        if (err.response.status === 401) {
-          window.location.href = "/login";
-        }
-      });
-  };
+
   useEffect(() => {
     getAuth();
   }, []);

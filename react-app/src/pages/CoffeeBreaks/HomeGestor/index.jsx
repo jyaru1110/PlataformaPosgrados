@@ -1,31 +1,15 @@
+import { useState, useEffect } from "react";
+
 import ProximoServicio from "./components/ProximoServicio";
 import BarDiasSemana from "./components/BarDiasSemana";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import Footer from "./components/Footer";
-const url_backend  = import.meta.env.VITE_URL_API;
+
+import { getAuth } from "../../../hooks/useAuth";
+
 export default function HomeGestor() {
   const [loading, setLoading] = useState(true);
-  const getAuth = async () => {
-    const response = await axios
-      .get(url_backend+"/user/auth", { withCredentials: true })
-      .then((res) => {
-        localStorage.setItem("id", res.data.id);
-        localStorage.setItem("rol", res.data.rol);
-        localStorage.setItem("nombre", res.data.nombre);
-        localStorage.setItem("escuela", res.data.escuela);
-        localStorage.setItem("email", res.data.email);
-        setLoading(false);
-        return res;
-      })
-      .catch((err) => {
-        if (err.response.status === 401) {
-          window.location.href = "/login";
-        }
-      });
-  };
   useEffect(() => {
-    getAuth();
+    getAuth(setLoading);
   }, []);
   return (
     <>

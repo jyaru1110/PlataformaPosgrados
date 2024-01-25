@@ -13,6 +13,7 @@ export default function HomeSeguimiento() {
   const loading = procesosResponse.loading;
   const [metricas, setMetricas] = useState([]);
   const [showNewForm, setShowNewForm] = useState(false);
+
   useEffect(() => {
     axios
       .get(url_backend + "/procesos/metricas", { withCredentials: true })
@@ -21,6 +22,7 @@ export default function HomeSeguimiento() {
       })
       .catch((err) => {});
   }, []);
+  
   return (
     <div className="flex flex-col h-[calc(100dvh)] items-center font-seravek">
       <NuevoForm show={showNewForm} setShow={setShowNewForm}></NuevoForm>
