@@ -10,7 +10,7 @@ export const get_fetch = async (url, signal, func) => {
       func(response.data);
     })
     .catch((err) => {
-      if (err.response.status === 401) {
+      if (err.response?.status === 401) {
         window.location.href = "/login";
       }
     });
