@@ -308,6 +308,47 @@ const update_horario = async (req, res) => {
       },
     }
   );
+
+  const servicios_para_notificacion = await Servicios_dia.findAll({
+    where: {
+      id_horario: id,
+      fecha: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+      estado: "Confirmado",
+    },
+  });
+  for (let i = 0; i < servicios_para_notificacion.length; i++) {
+    const servicio = servicios_para_notificacion[i];
+    const notificacion = await Notificaciones.create({
+      id_servicio: servicio.dataValues.id,
+      tipo: "Cambio",
+      salon: salon,
+      programaPrograma: programa,
+      fecha_inicio: fecha_inicio,
+      hora_inicio: hora_inicio,
+      hora_fin: hora_fin,
+      hora_servicio_inicio: hora_servicio_inicio,
+      hora_servicio_fin: hora_servicio_fin,
+      no_clase: no_clase,
+      num_alumnos: num_alumnos,
+      id_usuario: req.user.dataValues.id,
+      estado: "En proceso",
+    });
+    await send_notificacion(
+      "mx_eventos@up.edu.mx",
+      req.user.dataValues.nombre + " ha realizado una solicitud de cancelacion",
+      notificacion.dataValues,
+      req.user.dataValues.nombre
+    );
+    await send_notificacion(
+      req.user.dataValues.email,
+      "Has realizado una solicitud de cancelacion",
+      notificacion.dataValues,
+      req.user.dataValues.nombre
+    );
+  }
+
   res.status(200).send({ horario: nuevo_horario });
 };
 
