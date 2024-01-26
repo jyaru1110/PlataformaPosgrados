@@ -33,8 +33,8 @@ export default function ProximoServicio() {
     <div className="md:w-2/5 pt-2 md:relative fixed w-11/12 bg-white z-10">
       <div className="flex items-center mb-2 m-auto justify-between sm:mr-0 sm:w-full">
         <h1 className="font-poppins font-semibold text-sm ml-2.5">
-          Bienvenido{"(a)"} {localStorage.getItem("nombre").split(" ")[0]}{" "}
-          {localStorage.getItem("nombre").split(" ")[1]}
+          Bienvenido{"(a)"} {localStorage.getItem("nombre")?.split(" ")[0]}{" "}
+          {localStorage.getItem("nombre")?.split(" ")[1]}
         </h1>
         <div
           className="bg-blue-100 text-blue-900 font-poppins font-semibold text-center text-xs px-2 py-1 rounded-xl cursor-pointer"
