@@ -337,13 +337,13 @@ const update_horario = async (req, res) => {
     });
     await send_notificacion(
       "mx_eventos@up.edu.mx",
-      req.user.dataValues.nombre + " ha realizado una solicitud de cancelacion",
+      req.user.dataValues.nombre + " ha realizado una solicitud de cambio",
       notificacion.dataValues,
       req.user.dataValues.nombre
     );
     await send_notificacion(
       req.user.dataValues.email,
-      "Has realizado una solicitud de cancelacion",
+      "Has realizado una solicitud de cambio",
       notificacion.dataValues,
       req.user.dataValues.nombre
     );
