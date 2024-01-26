@@ -34,7 +34,7 @@ const aceptar_solicitud = async (req, res) => {
     if (notificacion.tipo == "Nuevo") {
       const nuevoHorario = await Horario.create({
         salon: notificacion.salon,
-        programa: notificacion.programa,
+        programa: notificacion.programaPrograma,
         fecha_inicio: notificacion.fecha_inicio,
         fecha_fin: notificacion.fecha_fin,
         hora_inicio: notificacion.hora_inicio,
