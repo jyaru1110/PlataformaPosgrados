@@ -203,8 +203,8 @@ const confirmar_servicios = async (req, res) => {
   );
 
   if (semana.dataValues.fin_semana < fecha_fin) {
-    semana.dataValues.inicio_semana = fecha_inicio;
-    semana.dataValues.fin_semana = fecha_fin;
+    semana.inicio_semana = fecha_inicio;
+    semana.fin_semana = fecha_fin;
     await semana.save();
   }
 
