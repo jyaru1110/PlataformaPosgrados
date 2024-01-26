@@ -147,17 +147,21 @@ const create_horario = async (req, res) => {
   }
 
   const semana = await Semana.findOne({});
+  //fin de la semana confirmada
   var fecha_fin_semana_date = new Date(semana.dataValues.fin_semana);
   var notificacion;
   if (fecha_inicio <= semana.dataValues.fin_semana && rol !== "Gestor") {
+    //creo el iterador de los dias
     var fecha_inicio_i = new Date(fecha_inicio);
+    //obtengo el dia de la semana de la fecha de inicio después de la fecha de inicio (si es el mismo día, no se suma nada)
     fecha_inicio_i.setDate(
       fecha_inicio_i.getDate() + ((dias[dia] - fecha_inicio_i.getDay() + 7) % 7)
     );
+    //obtengo la fecha de inicio en formato iso
     fecha_inicio = fecha_inicio_i.toISOString().slice(0, 10);
     while (
       fecha_inicio_i <= fecha_fin_semana_date &&
-      fecha_inicio <= fecha_fin
+      fecha_inicio < fecha_fin
     ) {
       notificacion = await Notificaciones.create({
         hora_inicio: hora_inicio,

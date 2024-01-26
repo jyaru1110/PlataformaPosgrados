@@ -11,10 +11,7 @@ export default function ProximoServicio() {
   const loading = resultado.loading;
 
   const changeRol = (rol) => {
-    console.log(url_backend);
     const url =`${url_backend}${rol == "Gestor" ? "/user/usuario/" : "/user/gestor/"}${localStorage.getItem("id")}`;
-
-    console.log(url)
     axios
       .put(
         url,
