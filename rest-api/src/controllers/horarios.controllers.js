@@ -3,7 +3,7 @@ const Servicios_dia = require("../models/Servicios_dia");
 const Semana = require("../models/Semana");
 const Notificaciones = require("../models/Notificaciones");
 const { Op } = require("sequelize");
-const {send_notificacion} = require("../mail/nodemailerprovider");
+const { send_notificacion } = require("../mail/nodemailerprovider");
 const sequelize = require("../database/database");
 const environment = process.env.ENV;
 const dias =
@@ -161,7 +161,7 @@ const create_horario = async (req, res) => {
     fecha_inicio = fecha_inicio_i.toISOString().slice(0, 10);
     while (
       fecha_inicio_i <= fecha_fin_semana_date &&
-      fecha_inicio < fecha_fin
+      fecha_inicio <= fecha_fin
     ) {
       notificacion = await Notificaciones.create({
         hora_inicio: hora_inicio,
@@ -169,7 +169,6 @@ const create_horario = async (req, res) => {
         dia: dia,
         salon: salon,
         fecha_inicio: fecha_inicio,
-        fecha_fin: semana.dataValues.fin_semana,
         no_clase: no_clase,
         programaPrograma: programa,
         num_alumnos: num_alumnos,
@@ -188,6 +187,7 @@ const create_horario = async (req, res) => {
       fecha_inicio_i.setDate(fecha_inicio_i.getDate() + 7);
       fecha_inicio = fecha_inicio_i.toISOString().slice(0, 10);
     }
+    //si la fecha de inicio es mayor a la fecha de fin de semana, entonces se le suma 7 días para que sea la fecha de inicio de la siguiente semana
     const suma =
       dias[dia] !== 5
         ? (dias[dia] - fecha_fin_semana_date.getDay() + 7) % 7

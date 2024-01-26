@@ -32,20 +32,19 @@ const aceptar_solicitud = async (req, res) => {
   const notificacion = await Notificaciones.findOne({ where: { id: id } });
   if (notificacion) {
     if (notificacion.tipo == "Nuevo") {
-      const nuevoHorario = await Horario.create({
-        salon: notificacion.salon,
+      const nuevoHorario = await Servicios_dia.create({
+        salon_id: notificacion.salon,
         programa: notificacion.programaPrograma,
-        fecha_inicio: notificacion.fecha_inicio,
-        fecha_fin: notificacion.fecha_fin,
+        fecha: notificacion.fecha_inicio,
         hora_inicio: notificacion.hora_inicio,
         hora_fin: notificacion.hora_fin,
         hora_servicio_inicio: notificacion.hora_servicio_inicio,
         hora_servicio_fin: notificacion.hora_servicio_fin,
         no_clase: notificacion.no_clase,
         dia: notificacion.dia,
-        num_alumnos: notificacion.num_alumnos,
+        num_servicios: notificacion.num_alumnos,
       });
-      notificacion.id_horario = nuevoHorario.id_horario;
+      notificacion.id_servicio = nuevoHorario.id;
       await notificacion.save();
       if (nuevoHorario) {
         notificacion.estado = "Aceptada";
@@ -54,10 +53,6 @@ const aceptar_solicitud = async (req, res) => {
           where: { id: notificacion.id_usuario },
         });
 
-        await Servicios_dia.update(
-          {estado: "Confirmado"},
-          {where: {id_horario: nuevoHorario.dataValues.id_horario, estado: "Pendiente"}}
-        );
         await send_notificacion(
           usuario.email,
           "Solicitud aceptada",
