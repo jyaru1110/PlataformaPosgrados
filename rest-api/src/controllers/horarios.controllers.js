@@ -187,7 +187,7 @@ const create_horario = async (req, res) => {
       fecha_inicio_i.setDate(fecha_inicio_i.getDate() + 7);
       fecha_inicio = fecha_inicio_i.toISOString().slice(0, 10);
     }
-    //si la fecha de inicio es mayor a la fecha de fin de semana, entonces se le suma 7 días para que sea la fecha de inicio de la siguiente semana
+    //calculo la suma al fin de la semana confirmada, si es 5, se suma 1, si no, se suma la diferencia entre el dia de la semana y el dia de la fecha de fin de semana
     const suma =
       dias[dia] !== 5
         ? (dias[dia] - fecha_fin_semana_date.getDay() + 7) % 7
@@ -237,7 +237,6 @@ const create_horario = async (req, res) => {
       hora_servicio_fin: hora_servicio_fin,
       num_alumnos: num_alumnos,
     });
-    console.log(horario);
     const servicios_creados = await Servicios_dia.findAll({
       where: {
         id_horario: horario.id_horario,
