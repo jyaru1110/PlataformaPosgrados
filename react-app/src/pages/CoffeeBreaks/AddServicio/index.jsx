@@ -95,15 +95,15 @@ export default function AddServicio() {
         servicio.salon.substring(0, 2) !== "SF" &&
         servicio.dia !== "Sábado" &&
         (parseInt(servicio.hora_servicio_inicio.substring(0, 2)) > 22 ||
-          parseInt(servicio.hora_servicio_inicio.substring(0, 2)) < 19 ||
+          parseInt(servicio.hora_servicio_inicio.substring(0, 2)) < 17 ||
           parseInt(servicio.hora_servicio_fin.substring(0, 2)) > 22 ||
-          parseInt(servicio.hora_servicio_fin.substring(0, 2)) < 19)
+          parseInt(servicio.hora_servicio_fin.substring(0, 2)) < 17)
       ) {
         seleccionados.includes(servicio.id)
           ? null
           : setSeleccionados([...seleccionados, servicio.id]);
         toast.error(
-          "Las islas en Mixcoac solo esta disponible de 19:00 a 22:00"
+          "Las islas en Mixcoac solo esta disponible de 17:00 a 22:00"
         );
         setIsLoading(false);
         return;
