@@ -239,14 +239,14 @@ const get_reporte = async (req, res) => {
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar || ' ' || SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6), ' \n' ) as Observaciones, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
+      "select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6),'\n') as horario, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
       fecha_inicio +
       "' and '" +
       fecha_fin +
       "' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc;";
   } else {
     query =
-      "select programa.cuenta as cuenta,STRING_AGG(fecha::varchar, ' \n' ) as fechas,STRING_AGG(num_servicios::varchar || ' servicios ' || salon::varchar || ' ' || SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6), ' \n' ) as Observaciones,sum(servicios_dia.num_servicios) as servicios, '$' || sum(servicios_dia.num_servicios*85) || ' + IVA' as total from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
+      "select programa.cuenta as cuenta,STRING_AGG(fecha::varchar, ' \n' ) as fechas,STRING_AGG(num_servicios::varchar || ' servicios ' || salon::varchar || ' ' || SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6), '\n' ) as Observaciones, STRING_AGG(SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6),'\n') as horario,sum(servicios_dia.num_servicios) as servicios, '$' || sum(servicios_dia.num_servicios*85) || ' + IVA' as total from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programa WHERE servicios_dia.fecha between '" +
       fecha_inicio +
       "' and '" +
       fecha_fin +
