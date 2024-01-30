@@ -17,29 +17,44 @@ import { useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
 import PopUp from "../../../components/PopUp";
 import { setMessage } from "../../../components/PopUp";
+import { useQuery } from "../../../hooks/useQuery";
 
 const url_backend = import.meta.env.VITE_URL_API;
 const rol = localStorage.getItem("rol");
 
+
+
+
 export default function FiltarServicios() {
+  //query
+  const query = useQuery();
+  console.log(query.get("fecha_inicio"));
+  //fecha de hoy
   const date = new Date();
+  //navegacion
   const navigation = useNavigate();
+  //servicios de la base de datos
   const resultado = useServicios();
-  const servicios = resultado.servicios;
-  const [reporte, setReporte] = useState([]);
-  const [sinResultados, setSinResultados] = useState(false);
-  const [servicios_filtrados, setServiciosFiltrados] = useState([]);
   const loading = resultado.loading;
+  const servicios = resultado.servicios;
+  const [servicios_filtrados, setServiciosFiltrados] = useState([]);
+  //reporte
+  const [reporte, setReporte] = useState([]);
+  const reporteRef = useRef(null);
+  //estado que controla si hay o no resultados
+  const [sinResultados, setSinResultados] = useState(false);
+  //servicios confirmados
+  const [servicios_confirmados, setServiciosConfirmados] = useState([]);
+  //loading de transacción
+  const [isLoading, setIsLoading] = useState(false);
+  //campos de filtrado
   const [escuela, setEscuela] = useState("Todos");
   const [clase, setClase] = useState("Todos");
   const [hora_inicio, setHoraInicio] = useState("Todos");
   const [hora_fin, setHoraFin] = useState("Todos");
-  const [servicios_confirmados, setServiciosConfirmados] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [fecha_inicio, setFechaInicio] = useState(
     date.toISOString().substring(0, 10)
   );
-  const reporteRef = useRef(null);
   const [fecha_fin, setFechaFin] = useState("Todos");
   const [salones, setSalones] = useState("Todos");
   const [programa, setPrograma] = useState("Todos");
@@ -49,8 +64,11 @@ export default function FiltarServicios() {
     "Realizado",
     "Confirmado",
   ]);
+
+  //suma de servicios
   const [sumaServicios, setSumaServicios] = useState({});
 
+  //funcion que selecciona un servicio
   const select_servicio_confirmado = (servicio) => {
     if (servicios_confirmados.includes(servicio)) {
       setServiciosConfirmados((servicios_confirmados) =>
@@ -64,6 +82,7 @@ export default function FiltarServicios() {
     }
   };
 
+  //funcion que confirma la semana seleccionada
   const confirmar_servicios = () => {
     if (isLoading) return;
     setIsLoading(true);
@@ -92,6 +111,7 @@ export default function FiltarServicios() {
       });
   };
 
+  //funciona para cancelar los servicios seleccionados
   const cancelar_servicios = () => {
     setIsLoading(true);
     toast.onChange((payload) => {
@@ -122,7 +142,7 @@ export default function FiltarServicios() {
         });
       });
   };
-
+  //funcion que filtra servicios
   const filtrar = (servicio) => {
     if (programa !== "Todos" && servicio.programa !== programa) {
       return false;
@@ -156,6 +176,7 @@ export default function FiltarServicios() {
     }
     return true;
   };
+  //efecto que actualiza los servicios que se muestran
   useEffect(() => {
     if (!servicios) return;
     setServiciosFiltrados(servicios.filter(filtrar));
@@ -172,11 +193,13 @@ export default function FiltarServicios() {
     servicios,
   ]);
 
+  //efecto que descarga el reporte
   useEffect(() => {
     if (reporte.length === 0) return;
     reporteRef.current.link.click();
   }, [reporte]);
 
+  //efecto que actualiza la suma de servicios
   useEffect(() => {
     const suma = {
       Confirmado: 0,
