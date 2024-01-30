@@ -7,12 +7,12 @@ export default function Login() {
   const [loading, setLoading] = useState(true);
 
   const googleAuth = () => {
-    window.location.href = url_backend+"/login/google";
+    window.location.href = url_backend + "/login/google";
   };
 
   const getAuth = async () => {
     const response = await axios
-      .get(url_backend+"/user/auth", { withCredentials: true })
+      .get(url_backend + "/user/auth", { withCredentials: true })
       .then((res) => {
         if (res.status === 200) {
           window.location.href = "/home";
