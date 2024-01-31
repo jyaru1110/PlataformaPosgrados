@@ -29,7 +29,6 @@ export default function FiltrarHorario() {
     const loading = resultado.loading;
 
     const filtrar = (horario) => {
-        const date = new Date();
         if(programa!=='Todos' && horario.programa!==programa){
             return false;
         }
@@ -46,7 +45,7 @@ export default function FiltrarHorario() {
         if(hora_fin!=='Todos' && horario.hora_fin.substring(0,5)>hora_fin){
             return false;
         }
-        if(fecha_inicio!=='Todos' && horario.fecha_inicio<fecha_inicio){
+        if(fecha_inicio!=='Todos' && horario.fecha_fin<fecha_inicio){
             return false;
         }
         if(fecha_fin!=='Todos' && horario.fecha_fin>fecha_fin){
