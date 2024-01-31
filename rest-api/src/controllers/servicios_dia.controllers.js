@@ -354,7 +354,7 @@ const get_servicios_pendientes = async (req, res) => {
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where not estado = 'Cancelado' and fecha = '" +
+      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa inner join salon on servicios_dia.salon_id = salon.salon where not estado = 'Cancelado' and fecha = '" +
       fecha +
       "' order by hora_inicio asc";
   } else {
