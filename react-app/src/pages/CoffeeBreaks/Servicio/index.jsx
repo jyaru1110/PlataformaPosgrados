@@ -8,16 +8,14 @@ import NumeroServicios from "../../../components/form/NumeroServicios";
 import { delete_fetch } from "../../../hooks/delete_fetch";
 import { put_fetch } from "../../../hooks/put_fetch";
 import { useServicio } from "../../../hooks/useServicio";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const url_backend = import.meta.env.VITE_URL_API;
 
 export default function Servicio() {
-  const navigation = useNavigate();
-  const { state } = useLocation();
-  const { id } = state;
+  const { id } = useParams();
   const resultado = useServicio(id);
   const servicio = resultado.servicio;
   const loading = resultado.loading;

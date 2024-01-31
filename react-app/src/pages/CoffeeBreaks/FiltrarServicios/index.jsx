@@ -457,7 +457,7 @@ export default function FiltarServicios() {
                 <div
                   className="flex justify-between cursor-pointer"
                   onClick={() => {
-                    navigation("/servicio", { state: { id: servicio_i.id } });
+                    navigation("/servicio/" + servicio_i.id);
                   }}
                 >
                   <div className="w-3/4">
