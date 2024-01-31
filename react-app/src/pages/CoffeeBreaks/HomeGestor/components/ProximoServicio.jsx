@@ -1,5 +1,8 @@
 import { useProximoServicio } from "../../../../hooks/useProximoServicio";
-import { get_numero_dia, get_month_short } from "../../../../utils/date_to_string";
+import {
+  get_numero_dia,
+  get_month_short,
+} from "../../../../utils/date_to_string";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const url_backend = import.meta.env.VITE_URL_API;
@@ -11,7 +14,9 @@ export default function ProximoServicio() {
   const loading = resultado.loading;
 
   const changeRol = (rol) => {
-    const url =`${url_backend}${rol == "Gestor" ? "/user/usuario/" : "/user/gestor/"}${localStorage.getItem("id")}`;
+    const url = `${url_backend}${
+      rol == "Gestor" ? "/user/usuario/" : "/user/gestor/"
+    }${localStorage.getItem("id")}`;
     axios
       .put(
         url,
@@ -36,7 +41,8 @@ export default function ProximoServicio() {
         <div
           className="bg-blue-100 text-blue-900 font-poppins font-semibold text-center text-xs px-2 py-1 rounded-xl cursor-pointer"
           onClick={() => {
-            localStorage.getItem("id") == 184 || localStorage.getItem("id") == 183
+            localStorage.getItem("id") == 184 ||
+            localStorage.getItem("id") == 183
               ? changeRol(localStorage.getItem("rol"))
               : null;
           }}
@@ -67,7 +73,7 @@ export default function ProximoServicio() {
                 <div
                   className="text-whitebg rounded-xl bg-whitebg text-sm flex flex-col justify-center p-2 grow"
                   onClick={() => {
-                    navigation("/servicio", { state: { id: servicio.id } });
+                    navigation("/servicio/" + servicio.id);
                   }}
                 >
                   <p className="text-sm text-whiteprimary font-poppins font-medium">

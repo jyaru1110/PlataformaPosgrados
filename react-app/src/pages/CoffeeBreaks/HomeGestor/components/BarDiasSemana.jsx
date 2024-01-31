@@ -61,7 +61,7 @@ export default function BarDiasSemana() {
                 <div
                   key={servicio.id}
                   onClick={() => {
-                    navigation("/servicio", { state: { id: servicio.id } });
+                    navigation("/servicio/"+servicio.id);
                   }}
                 >
                   <Servicio servicio_parm={servicio} />
