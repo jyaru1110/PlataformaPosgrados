@@ -17,18 +17,13 @@ import { useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
 import PopUp from "../../../components/PopUp";
 import { setMessage } from "../../../components/PopUp";
-import { useQuery } from "../../../hooks/useQuery";
+import { useSearchParams } from "react-router-dom";
 
 const url_backend = import.meta.env.VITE_URL_API;
 const rol = localStorage.getItem("rol");
 
-
-
-
 export default function FiltarServicios() {
-  //query
-  const query = useQuery();
-  console.log(query.get("fecha_inicio"));
+  const [searchParams, setSearchParams] = useSearchParams();
   //fecha de hoy
   const date = new Date();
   //navegacion
@@ -48,16 +43,15 @@ export default function FiltarServicios() {
   //loading de transacción
   const [isLoading, setIsLoading] = useState(false);
   //campos de filtrado
-  const [escuela, setEscuela] = useState("Todos");
-  const [clase, setClase] = useState("Todos");
-  const [hora_inicio, setHoraInicio] = useState("Todos");
-  const [hora_fin, setHoraFin] = useState("Todos");
-  const [fecha_inicio, setFechaInicio] = useState(
-    date.toISOString().substring(0, 10)
-  );
-  const [fecha_fin, setFechaFin] = useState("Todos");
-  const [salones, setSalones] = useState("Todos");
-  const [programa, setPrograma] = useState("Todos");
+  const escuela = searchParams.get("escuela") || "Todos";
+  const clase = searchParams.get("clase") || "Todos";
+  const hora_inicio = searchParams.get("hora_inicio") || "Todos";
+  const hora_fin = searchParams.get("hora_fin") || "Todos";
+  const fecha_inicio =
+    searchParams.get("fecha_inicio") || date.toISOString().substring(0, 10);
+  const fecha_fin = searchParams.get("fecha_fin") || "Todos";
+  const salon = searchParams.get("salon") || "Todos";
+  const programa = searchParams.get("programa") || "Todos";
   const [estados, setEstados] = useState([
     "Pendiente",
     "Cancelado",
@@ -165,7 +159,7 @@ export default function FiltarServicios() {
     if (fecha_fin !== "Todos" && servicio.fecha > fecha_fin) {
       return false;
     }
-    if (salones !== "Todos" && servicio.salon_id !== salones) {
+    if (salon !== "Todos" && servicio.salon_id !== salon) {
       return false;
     }
     if (!estados.includes(servicio.estado)) {
@@ -187,7 +181,7 @@ export default function FiltarServicios() {
     hora_fin,
     fecha_inicio,
     fecha_fin,
-    salones,
+    salon,
     estados,
     programa,
     servicios,
@@ -222,16 +216,58 @@ export default function FiltarServicios() {
     <div className="w-11/12 pt-2 sm:flex sm:w-full">
       <div className="mt-2 ml-9 w-80 md:fixed">
         <Header titulo="Buscar servicios" />
-        <DropdownEscuelas func={setEscuela} />
-        <DropdownProgramas func={setPrograma} escuela={escuela} />
-        <DropdowClase func={setClase} />
-        <DropdownSalon func={setSalones} />
+        <DropdownEscuelas
+          func={(escuelaValue) => {
+            searchParams.set("escuela", escuelaValue);
+            setSearchParams(searchParams);
+          }}
+          value={escuela}
+        />
+        <DropdownProgramas
+          func={(programaValue) => {
+            searchParams.set("programa", programaValue);
+            setSearchParams(searchParams);
+          }}
+          escuela={escuela}
+          value={programa}
+        />
+        <DropdowClase
+          func={(claseValue) => {
+            searchParams.set("clase", claseValue);
+            setSearchParams(searchParams);
+          }}
+          value={clase}
+        />
+        <DropdownSalon
+          func={(salonValue) => {
+            searchParams.set("salon", salonValue);
+            setSearchParams(searchParams);
+          }}
+          value={salon}
+        />
         <Fechas
-          setFechaFin={setFechaFin}
-          setFechaInicio={setFechaInicio}
+          setFechaFin={(fecha_fin) => {
+            searchParams.set("fecha_fin", fecha_fin);
+            setSearchParams(searchParams);
+          }}
+          setFechaInicio={(fecha_inicio) => {
+            searchParams.set("fecha_inicio", fecha_inicio);
+            setSearchParams(searchParams);
+          }}
           value_inicio={fecha_inicio}
         />
-        <Horas setHoraFin={setHoraFin} setHoraInicio={setHoraInicio} />
+        <Horas
+          setHoraFin={(horaFinValue) => {
+            searchParams.set("hora_fin", horaFinValue);
+            setSearchParams(searchParams);
+          }}
+          setHoraInicio={(horaInicioValue) => {
+            searchParams.set("hora_inicio", horaInicioValue);
+            setSearchParams(searchParams);
+          }}
+          value_inicio={hora_inicio}
+          value_fin={hora_fin}
+        />
         <OpcionesEstado estados={estados} setEstados={setEstados} />
         <div className="flex flex-col items-center mt-2 font-poppins">
           <table className="table-auto w-full">
