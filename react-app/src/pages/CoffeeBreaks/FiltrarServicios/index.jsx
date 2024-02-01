@@ -367,7 +367,7 @@ export default function FiltarServicios() {
           servicios_filtrados.map((servicio_i) => {
             return (
               <div
-                className="rounded-3xl bg-primarylight w-96 ml-9 mb-4 p-2.5 font-poppins flex flex-col md:ml-2 max-h-32"
+                className="rounded-3xl bg-primarylight w-96 ml-9 mb-4 p-2.5 font-poppins flex flex-col md:ml-2 max-h-32 hover:shadow-md transition duration-300 ease-in-out"
                 key={servicio_i.id}
               >
                 <div className="flex w-full justify-between">
