@@ -133,9 +133,7 @@ export default function FiltrarHorario() {
             <div
               key={horario.id_horario}
               onClick={() => {
-                navigate("/horario", {
-                  state: { id_horario: horario.id_horario },
-                });
+                navigate("/horario/" + horario.id_horario);
               }}
               className="rounded-3xl bg-primarylight w-80 ml-9 mb-4 p-2.5 md:ml-2 min-h-28 text-xs flex items-center justify-between cursor-pointer hover:shadow-md transition duration-300 ease-in-out"
             >

@@ -44,7 +44,7 @@ const router = createBrowserRouter([
     element: <FiltrarServicios />,
   },
   {
-    path: "/horario",
+    path: "/horario/:id",
     element: <Horario />,
   },
   {

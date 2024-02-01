@@ -8,7 +8,7 @@ import DropdownDia from "../../../components/form/DropdownDia";
 import NumeroServicios from "../../../components/form/NumeroServicios";
 import { useState, useEffect } from "react";
 import { useHorario } from "../../../hooks/useHorario";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { put_fetch } from "../../../hooks/put_fetch";
 import { delete_fetch } from "../../../hooks/delete_fetch";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,10 +16,9 @@ import "react-toastify/dist/ReactToastify.css";
 const url_backend = import.meta.env.VITE_URL_API;
 
 export default function Horario() {
-  const { state } = useLocation();
+  const { id } = useParams();
   const navigation = useNavigate();
-  const { id_horario } = state;
-  const resultado = useHorario(id_horario);
+  const resultado = useHorario(id);
   const horario = resultado.horario;
   const loading = resultado.loading;
 
