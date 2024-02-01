@@ -259,6 +259,7 @@ export default function FiltarServicios() {
             setSearchParams(searchParams);
           }}
           value_inicio={fecha_inicio}
+          value_fin={fecha_fin}
         />
         <Horas
           setHoraFin={(horaFinValue) => {
