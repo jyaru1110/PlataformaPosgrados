@@ -44,6 +44,7 @@ export default function FiltarServicios() {
   const [isLoading, setIsLoading] = useState(false);
   //campos de filtrado
   const escuela = searchParams.get("escuela") || "Todos";
+  const id_horario = searchParams.get("id_horario");
   const clase = searchParams.get("clase") || "Todos";
   const hora_inicio = searchParams.get("hora_inicio") || "Todos";
   const hora_fin = searchParams.get("hora_fin") || "Todos";
@@ -166,6 +167,9 @@ export default function FiltarServicios() {
       return false;
     }
     if (escuela !== "Todos" && servicio.escuela !== escuela) {
+      return false;
+    }
+    if(id_horario && servicio?.id_horario?.toString() !== id_horario){
       return false;
     }
     return true;

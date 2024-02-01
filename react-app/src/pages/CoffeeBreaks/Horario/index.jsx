@@ -8,7 +8,7 @@ import DropdownDia from "../../../components/form/DropdownDia";
 import NumeroServicios from "../../../components/form/NumeroServicios";
 import { useState, useEffect } from "react";
 import { useHorario } from "../../../hooks/useHorario";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { put_fetch } from "../../../hooks/put_fetch";
 import { delete_fetch } from "../../../hooks/delete_fetch";
 import { ToastContainer, toast } from "react-toastify";
@@ -214,9 +214,10 @@ export default function Horario() {
       ) : (
         <div className="mt-2">
           <Header titulo="Editar o eliminar horarios">
-            <button className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-900 rounded-full">
+            <Link to={`/filtrar-servicios?id_horario=${id}`}
+            className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-900 rounded-full">
               Ver servicios
-            </button>
+            </Link>
           </Header>
 
           <div className="m-auto w-80 mt-4 ">
