@@ -8,7 +8,7 @@ import NumeroServicios from "../../../components/form/NumeroServicios";
 import { delete_fetch } from "../../../hooks/delete_fetch";
 import { put_fetch } from "../../../hooks/put_fetch";
 import { useServicio } from "../../../hooks/useServicio";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -189,9 +189,12 @@ export default function Servicio() {
       ) : (
         <div className="mt-2">
           <Header titulo="Editar o eliminar servicios">
-            <button className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-800 rounded-full">
+            <Link
+              to={`/horario/${servicio.id_horario}`}
+              className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-800 rounded-full"
+            >
               Ver horario
-            </button>
+            </Link>
           </Header>
 
           <div className="m-auto w-80 mt-4 ">
