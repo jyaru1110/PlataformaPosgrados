@@ -3,9 +3,9 @@ export default function Header(props) {
   const navigate = useNavigate();
 
   return (
-    <div className="flex mb-3 items-center justify-between px-4">
+    <div className="flex mb-2 items-center ml-1">
       <button
-      className="mr-3"
+      className="mr-4"
         onClick={() => {
           navigate(-1);
         }}
@@ -24,7 +24,7 @@ export default function Header(props) {
         </svg>
       </button>
       <p className="text-center text-xl font-poppins font-semibold">{props.titulo}</p>
-      <div className="">{props.children}</div>
+      <div className="ml-3">{props.children}</div>
     </div>
   );
 }

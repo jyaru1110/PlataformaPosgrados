@@ -188,15 +188,16 @@ export default function Servicio() {
         <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
       ) : (
         <div className="mt-2">
-          <Header titulo="Editar o eliminar servicios">
-            <Link
-              to={`/horario/${servicio.id_horario}`}
-              className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-800 rounded-full"
-            >
-              Ver horario
-            </Link>
-          </Header>
-
+          <div className="ml-9">
+            <Header titulo="Editar o eliminar servicios">
+              <Link
+                to={`/horario/${servicio.id_horario}`}
+                className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-800 rounded-full"
+              >
+                Ver horario
+              </Link>
+            </Header>
+          </div>
           <div className="m-auto w-80 mt-4 ">
             <DropdownProgramas
               escuela="Todos"

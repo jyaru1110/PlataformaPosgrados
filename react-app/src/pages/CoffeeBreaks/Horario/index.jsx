@@ -213,12 +213,16 @@ export default function Horario() {
         <div className="m-auto h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
       ) : (
         <div className="mt-2">
-          <Header titulo="Editar o eliminar horarios">
-            <Link to={`/filtrar-servicios?id_horario=${id}`}
-            className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-900 rounded-full">
-              Ver servicios
-            </Link>
-          </Header>
+          <div className="ml-9">
+            <Header titulo="Editar o eliminar horarios">
+              <Link
+                to={`/filtrar-servicios?id_horario=${id}`}
+                className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-900 rounded-full"
+              >
+                Ver servicios
+              </Link>
+            </Header>
+          </div>
 
           <div className="m-auto w-80 mt-4 ">
             <DropdownProgramas
