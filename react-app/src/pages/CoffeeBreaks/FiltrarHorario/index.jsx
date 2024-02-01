@@ -170,9 +170,6 @@ export default function FiltrarHorario() {
           ))}
         </div>
       )}
-      <div className="fixed right-14 bottom-14">
-        <ButtonAdd />
-      </div>
     </div>
   );
 }

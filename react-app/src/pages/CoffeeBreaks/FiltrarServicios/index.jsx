@@ -503,9 +503,6 @@ export default function FiltarServicios() {
           })
         )}
       </div>
-      <div className="fixed right-14 bottom-14">
-        <ButtonAdd ruta="/add-servicio" />
-      </div>
       <ToastContainer />
       <PopUp proceed={confirmar_servicios}></PopUp>
     </div>
