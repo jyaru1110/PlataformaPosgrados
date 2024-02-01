@@ -9,26 +9,29 @@ import { date_to_dd_monthshort_yyyy } from "../../../utils/date_to_string";
 import { useState } from "react";
 import ButtonAdd from "../HomeGestor/components/ButtonAdd";
 import Header from "../../../components/Header";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function FiltrarHorario() {
+  //relacionado con la navegación
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  //fecha actual
   const date = new Date();
-  const [programa, setPrograma] = useState("Todos");
-  const [dia, setDia] = useState("Todos");
-  const [clase, setClase] = useState("Todos");
-  const [hora_inicio, setHoraInicio] = useState("Todos");
-  const [hora_fin, setHoraFin] = useState("Todos");
-  const [fecha_inicio, setFechaInicio] = useState(
-    date.toISOString().substring(0, 10)
-  );
-  const [fecha_fin, setFechaFin] = useState("Todos");
-  const [salones, setSalones] = useState("Todos");
-
+  //campos de busqueda
+  const programa = searchParams.get("programa") || "Todos";
+  const dia = searchParams.get("dia") || "Todos";
+  const clase = searchParams.get("clase") || "Todos";
+  const hora_inicio = searchParams.get("hora_inicio") || "Todos";
+  const hora_fin = searchParams.get("hora_fin") || "Todos";
+  const fecha_inicio =
+    searchParams.get("fecha_inicio") || date.toISOString().substring(0, 10);
+  const fecha_fin = searchParams.get("fecha_fin") || "Todos";
+  const salones = searchParams.get("salones") || "Todos";
+  //resultado de los horarios
   const resultado = useHorarios();
   const horarios = resultado.horarios;
   const loading = resultado.loading;
-
+  //funciones para filtrar
   const filtrar = (horario) => {
     if (programa !== "Todos" && horario.programa !== programa) {
       return false;
@@ -54,7 +57,7 @@ export default function FiltrarHorario() {
     if (fecha_fin !== "Todos" && horario.fecha_fin > fecha_fin) {
       return false;
     }
-    if (salones !== "Todos" && horario.salon_id !== salones) {
+    if (salones !== "Todos" && horario.salon !== salones) {
       return false;
     }
     return true;
@@ -64,15 +67,62 @@ export default function FiltrarHorario() {
     <div className="w-11/12 pt-2 sm:flex sm:w-full">
       <div className="md:fixed ml-9 w-80">
         <Header titulo="Buscar horario"></Header>
-        <DropdownProgramas func={setPrograma} escuela="Todos" />
-        <DropdowClase func={setClase} />
-        <DropdownSalon func={setSalones} />
-        <DropdownDia func={setDia} />
-        <Horas setHoraFin={setHoraFin} setHoraInicio={setHoraInicio} />
+        <DropdownProgramas
+          func={(valuePrograma) => {
+            searchParams.set("programa", valuePrograma);
+            setSearchParams(searchParams);
+          }}
+          escuela={
+            localStorage.getItem("rol") !== "Gestor"
+              ? localStorage.getItem("escuela")
+              : "Todos"
+          }
+          value={programa}
+        />
+        <DropdowClase
+          func={(claseValue) => {
+            searchParams.set("clase", claseValue);
+            setSearchParams(searchParams);
+          }}
+          value={clase}
+        />
+        <DropdownSalon
+          func={(salonValue) => {
+            searchParams.set("salones", salonValue);
+            setSearchParams(searchParams);
+          }}
+          value={salones}
+        />
+        <DropdownDia
+          func={(diaValue) => {
+            searchParams.set("dia", diaValue);
+            setSearchParams(searchParams);
+          }}
+          value={dia}
+        />
+        <Horas
+          setHoraFin={(horaFinValue) => {
+            searchParams.set("hora_fin", horaFinValue);
+            setSearchParams(searchParams);
+          }}
+          setHoraInicio={(horaInicioValue) => {
+            searchParams.set("hora_inicio", horaInicioValue);
+            setSearchParams(searchParams);
+          }}
+          value_inicio={hora_inicio}
+          value_fin={hora_fin}
+        />
         <Fechas
-          setFechaFin={setFechaFin}
-          setFechaInicio={setFechaInicio}
+          setFechaFin={(fechaFinValue) => {
+            searchParams.set("fecha_fin", fechaFinValue);
+            setSearchParams(searchParams);
+          }}
+          setFechaInicio={(fechaInicioValue) => {
+            searchParams.set("fecha_inicio", fechaInicioValue);
+            setSearchParams(searchParams);
+          }}
           value_inicio={fecha_inicio}
+          value_fin={fecha_fin}
         />
       </div>
       {loading ? (
@@ -114,7 +164,7 @@ export default function FiltrarHorario() {
               </div>
               <div className="text-center text-gray1">
                 <p className="font-poppins text-primary font-bold text-base">
-                  {horario.num_alumnos>0?horario.num_alumnos:'Sin'}
+                  {horario.num_alumnos > 0 ? horario.num_alumnos : "Sin"}
                 </p>
                 servicios
               </div>
