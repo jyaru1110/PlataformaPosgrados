@@ -43,6 +43,7 @@ const aceptar_solicitud = async (req, res) => {
         no_clase: notificacion.no_clase,
         dia: notificacion.dia,
         num_servicios: notificacion.num_alumnos,
+        estado: "Confirmado"
       });
       notificacion.id_servicio = nuevoHorario.id;
       await notificacion.save();
