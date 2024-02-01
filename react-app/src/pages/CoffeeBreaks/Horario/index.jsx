@@ -283,16 +283,16 @@ export default function Horario() {
             {localStorage.getItem("rol") === "Sólo lectura" ? null : (
               <>
                 <button
-                  className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg"
-                  onClick={eliminar_horario}
-                >
-                  Eliminar horario
-                </button>
-                <button
                   className="font-poppins text-sm rounded-md mb-2 w-80 font-normal h-7  text-white bg-primary"
                   onClick={actualizar_informacion}
                 >
                   Guardar
+                </button>
+                <button
+                  className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg"
+                  onClick={eliminar_horario}
+                >
+                  Eliminar horario
                 </button>
                 <button
                   className="font-poppins text-sm rounded-md mb-2 w-80 font-normal h-7 hover:bg-slate-100 text-gray1"

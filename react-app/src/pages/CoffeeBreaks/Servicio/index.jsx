@@ -8,7 +8,7 @@ import NumeroServicios from "../../../components/form/NumeroServicios";
 import { delete_fetch } from "../../../hooks/delete_fetch";
 import { put_fetch } from "../../../hooks/put_fetch";
 import { useServicio } from "../../../hooks/useServicio";
-import {  useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -276,6 +276,12 @@ export default function Servicio() {
             {localStorage.getItem("rol") === "Sólo lectura" ? null : (
               <>
                 <button
+                  className="font-poppins text-sm rounded-md mb-2 bg-primary w-80 font-normal text-white h-7"
+                  onClick={actualizar_informacion}
+                >
+                  Guardar
+                </button>
+                <button
                   className="font-poppins text-sm rounded-md mb-2 text-deletetext w-80 font-medium h-7 bg-deletebg"
                   onClick={cancelar_servicio}
                   disabled={loading_req}
@@ -283,12 +289,6 @@ export default function Servicio() {
                   Cancelar servicio
                 </button>
 
-                <button
-                  className="font-poppins text-sm rounded-md mb-2 bg-primary w-80 font-normal text-white h-7"
-                  onClick={actualizar_informacion}
-                >
-                  Guardar
-                </button>
                 <button
                   className="text-gray1 font-poppins text-sm rounded-md mb-2 hover:bg-slate-100 w-80 font-normal h-7"
                   onClick={() => {
