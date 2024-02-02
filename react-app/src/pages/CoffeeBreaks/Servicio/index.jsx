@@ -190,12 +190,14 @@ export default function Servicio() {
         <div className="mt-2">
           <div className="ml-9">
             <Header titulo="Editar o eliminar servicios">
-              <Link
-                to={`/horario/${servicio.id_horario}`}
-                className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-800 rounded-full"
-              >
-                Ver horario
-              </Link>
+              {servicio.id_horario ? (
+                <Link
+                  to={`/horario/${servicio.id_horario}`}
+                  className="bg-blue-100 font-poppins text-sm font-semibold px-2 py-1 text-blue-800 rounded-full"
+                >
+                  Ver horario
+                </Link>
+              ) : null}
             </Header>
           </div>
           <div className="m-auto w-80 mt-4 ">
