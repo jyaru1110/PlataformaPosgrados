@@ -393,7 +393,7 @@ const bulk_create_horario = async (req, res) => {
           return res.status(500).send({
             message:
               "No se pueden crear horarios antes de la semana confirmada: " +
-              semana.dataValues.fin_semana+" realiza tu solicitud"
+              semana.dataValues.fin_semana+", realiza tu solicitud"
           });
         }
         try {
