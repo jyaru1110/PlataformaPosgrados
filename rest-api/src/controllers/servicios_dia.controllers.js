@@ -113,7 +113,7 @@ const get_servicios_fecha = async (req, res) => {
 const cancelar_servicios = async (req, res) => {
   const rol = req.user.dataValues.rol;
   const servicios = req.body.servicios;
-  if (servicios.length == 0 || rol != "Gestor") {
+  if (servicios.length == 0) {
     res.status(500).send({ error: "No se pudo confirmar el servicio" });
     return;
   }
@@ -166,7 +166,7 @@ const cancelar_servicios = async (req, res) => {
       );
     }
   } else {
-    const servicios_dia_confirmados = await Servicios_dia.destroy({
+    await Servicios_dia.destroy({
       where: {
         id: {
           [Op.in]: servicios,

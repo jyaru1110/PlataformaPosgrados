@@ -5,6 +5,11 @@ const Notificaciones = require("../models/Notificaciones");
 const { Op } = require("sequelize");
 const { send_notificacion } = require("../mail/nodemailerprovider");
 const sequelize = require("../database/database");
+const multer = require("multer");
+const upload = multer({ dest: "public/uploads/" }).single("file");
+const fs = require("fs");
+const { parse } = require("csv-parse");
+
 const environment = process.env.ENV;
 const dias =
   environment == "Production"
@@ -352,10 +357,41 @@ const update_horario = async (req, res) => {
   res.status(200).send({ horario: nuevo_horario });
 };
 
+const bulk_create_horario = async (req, res) => {
+  upload(req, res, async (err) => {
+    const file = req.file;
+    const horarios = [];
+    const semana = await Semana.findOne({});
+
+    fs.createReadStream(file.path)
+      .pipe(
+        parse({
+          delimiter: ",",
+          relax_quotes: true,
+          columns: true,
+          ltrim: true,
+        })
+      )
+      .on("data", function (row) {
+        horarios.push(row);
+      })
+      .on("error", function (error) {
+        return res.status(500).send({ message: "Error al subir el archivo" });
+      })
+      .on("end", async () => {
+        console.log(horarios);
+        const horarios_creados = await Horario.bulkCreate(horarios);
+        console.log(horarios_creados);
+        return res.status(200).send({ horarios: "Archivo subido" });
+      });
+  });
+};
+
 module.exports = {
   get_horarios_todos,
   get_horario,
   delete_horario,
   create_horario,
   update_horario,
+  bulk_create_horario,
 };

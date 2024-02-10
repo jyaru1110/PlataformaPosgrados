@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-const {get_horarios_todos,delete_horario,create_horario,update_horario, get_horario} = require('../controllers/horarios.controllers');
+const {get_horarios_todos,delete_horario,create_horario,update_horario, get_horario, bulk_create_horario} = require('../controllers/horarios.controllers');
 const { isUserAuthenticated } = require('../middlewares/auth');
 
 
@@ -9,5 +9,6 @@ router.get('/horario/:id',isUserAuthenticated,get_horario);
 router.delete('/delete_horario/:id',isUserAuthenticated,delete_horario);
 router.post('/create_horario',isUserAuthenticated,create_horario);
 router.put('/update_horario/:id',isUserAuthenticated,update_horario);
+router.post('/file_upload',isUserAuthenticated,bulk_create_horario);
 
 module.exports = router;
