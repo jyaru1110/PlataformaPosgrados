@@ -233,9 +233,9 @@ export default function AddServicio() {
       <div className="w-11/12 flex justify-between mb-4 fixed flex-wrap">
         <Header titulo="Añadir servicio"></Header>
         <button
-          className="font-poppins bg-primary text-whiteprimary px-2 rounded-lg ml-1 "
+          className={`${isLoading || servicios.length === 0 ? 'opacity-30':'opacity-100'} font-poppins bg-primary text-whiteprimary px-2 rounded-lg ml-1`}
           onClick={send_servicios}
-          disabled={isLoading}
+          disabled={isLoading || servicios.length === 0}
         >
           {isLoading ? (
             <div className="m-auto h-2 p-2 w-2 animate-spin rounded-full border-4 border-solid border-whitebg border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
