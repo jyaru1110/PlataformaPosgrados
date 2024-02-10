@@ -202,7 +202,7 @@ export default function Horario() {
   const eliminar_horario = () => {
     const controller = new AbortController();
     const signal = controller.signal;
-    const url = `${url_backend}/delete_horario/${id_horario}/`;
+    const url = `${url_backend}/delete_horario/${id}/`;
     delete_fetch(url, signal, after_delete);
     return () => controller.abort();
   };
