@@ -18,7 +18,7 @@ export default function AddServicio() {
   const [servicios, setServicios] = useState([]);
   const [seleccionados, setSeleccionados] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const[isAddingClass, setIsAddingClass] = useState(false);
+  const [isAddingClass, setIsAddingClass] = useState(false);
 
   const url_backend = import.meta.env.VITE_URL_API;
 
@@ -227,13 +227,50 @@ export default function AddServicio() {
       seleccionados.filter((seleccionado) => seleccionado !== id)
     );
   };
-  
+
   return (
     <div className="w-screen flex flex-col items-start p-8">
       <div className="w-11/12 flex justify-between mb-4 fixed flex-wrap">
         <Header titulo="Añadir servicio"></Header>
         <button
-          className={`${isLoading || servicios.length === 0 ? 'opacity-30':'opacity-100'} font-poppins bg-primary text-whiteprimary px-2 rounded-lg ml-1`}
+          className={`font-poppins bg-primary text-whiteprimary px-2 rounded-lg ml-1 flex items-center`}
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="opacity-70 mr-2"
+          >
+            <path
+              d="M3 12.0042V21H21V12"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M16.5 7.5L12 3L7.5 7.5"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9958 16V3"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Sube un archivo
+        </button>
+        <button
+          className={`${
+            isLoading || servicios.length === 0 ? "opacity-30" : "opacity-100"
+          } font-poppins bg-primary text-whiteprimary px-2 rounded-lg ml-1`}
           onClick={send_servicios}
           disabled={isLoading || servicios.length === 0}
         >

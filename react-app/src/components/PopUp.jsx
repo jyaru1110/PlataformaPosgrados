@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-const url_backend = import.meta.env.VITE_URL_API;
-
 let listener = (message) => {};
 let listenerShow = (show) => {};
 
