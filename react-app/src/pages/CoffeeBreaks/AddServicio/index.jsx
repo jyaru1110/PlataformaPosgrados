@@ -10,6 +10,8 @@ import { useClases } from "../../../hooks/useClases";
 import SelectDia from "./components/SelectDia";
 import { post_axios } from "../../../hooks/post_axios";
 import { ToastContainer, toast } from "react-toastify";
+import FilePopUp from "./components/FilePopUp";
+import { setShow } from "./components/FilePopUp";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function AddServicio() {
@@ -230,9 +232,11 @@ export default function AddServicio() {
 
   return (
     <div className="w-screen flex flex-col items-start p-8">
+      <FilePopUp />
       <div className="w-11/12 flex justify-between mb-4 fixed flex-wrap">
         <Header titulo="Añadir servicio"></Header>
         <button
+          onClick={() => setShow(true)}
           className={`font-poppins bg-primary text-whiteprimary px-2 rounded-lg ml-1 flex items-center`}
         >
           <svg

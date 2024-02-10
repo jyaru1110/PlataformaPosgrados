@@ -5,7 +5,6 @@ import DropdownProgramas from "../../../components/form/DropdownProgramas";
 import Fechas from "../../../components/form/Fechas";
 import Horas from "../../../components/form/Horas";
 import OpcionesEstado from "../../../components/form/OpcionesEstado";
-import ButtonAdd from "../HomeGestor/components/ButtonAdd";
 import Header from "../../../components/Header";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
