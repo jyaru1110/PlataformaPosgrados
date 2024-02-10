@@ -13,7 +13,6 @@ export default function FilePopUp() {
   const [dragging, setDragging] = useState(false);
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState(null);
   toast.onChange((payload) => {
     if (payload.type === "success" && payload.status === "removed") {
       window.location.reload();
@@ -60,26 +59,25 @@ export default function FilePopUp() {
     const formData = new FormData();
 
     if (file) {
-      formData.append("type", "file");
       formData.append("file", file);
-    } else if (url) {
-      formData.append("type", "url");
-      formData.append("url", url);
-    } else {
-      formData.append("type", "none");
+    }
+    else {
+        toast.error("No se ha seleccionado un archivo");
+        setLoading(false);
+        return;
     }
 
-    const evidencia = await axios
-      .post(`${url_backend}/evidencia`, formData, {
+    const horarios = await axios
+      .post(`${url_backend}/file_upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
         withCredentials: true,
       })
       .catch((e) => {
-        toast.error("Error al subir evidencia");
+        toast.error("Error al subir servicios");
       });
-    if (evidencia) toast.success("Evidencia subida correctamente");
+    if (horarios) toast.success("Servicios subida correctamente");
     setLoading(false);
   };
 
@@ -135,13 +133,13 @@ export default function FilePopUp() {
             onChange={handleChange}
             value=""
             accept=".csv"
-            disabled={loading || url}
+            disabled={loading}
           />
           <label
             id="label-file-upload"
             htmlFor="input-file-upload"
             className={`${
-              loading || url ? " opacity-50 " : " opacity-100  cursor-pointer "
+              loading ? " opacity-50 " : " opacity-100  cursor-pointer "
             }`}
           >
             <div
@@ -180,10 +178,10 @@ export default function FilePopUp() {
           </label>
           <button
             className={`bg-primary p-2 rounded-lg font-medium text-white w-full mt-3 ${
-              (!file && !url) || loading ? " opacity-50 " : " opacity-100 "
+              (!file) || loading ? " opacity-50 " : " opacity-100 "
             }`}
             type="submit"
-            disabled={(!file && !url) || loading}
+            disabled={(!file) || loading}
           >
             {loading ? "SUBIENDO SERVICIOS EVIDENCIA..." : "SUBIR SERVICIOS"}
           </button>
