@@ -362,6 +362,7 @@ const bulk_create_horario = async (req, res) => {
     const file = req.file;
     const horarios = [];
     const semana = await Semana.findOne({});
+    let hay_error = false;
 
     fs.createReadStream(file.path)
       .pipe(
@@ -379,10 +380,28 @@ const bulk_create_horario = async (req, res) => {
         return res.status(500).send({ message: "Error al subir el archivo" });
       })
       .on("end", async () => {
-        console.log(horarios);
-        const horarios_creados = await Horario.bulkCreate(horarios);
-        console.log(horarios_creados);
-        return res.status(200).send({ horarios: "Archivo subido" });
+        horarios.forEach((horario) => {
+          if(horario.fecha_inicio > horario.fecha_fin){
+            hay_error = true;
+          }
+
+          if (horario.fecha_inicio <= semana.dataValues.fin_semana) {
+            hay_error = true;
+          }
+        });
+        if (hay_error) {
+          return res.status(500).send({
+            message:
+              "No se pueden crear horarios antes de la semana confirmada: " +
+              semana.dataValues.fin_semana+" realiza tu solicitud"
+          });
+        }
+        try {
+          await Horario.bulkCreate(horarios);
+          return res.status(200).send({});
+        } catch (e) {
+          return res.status(500).send({ message: e.parent.detail });
+        }
       });
   });
 };

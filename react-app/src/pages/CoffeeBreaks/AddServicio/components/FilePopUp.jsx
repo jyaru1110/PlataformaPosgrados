@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CSVLink } from "react-csv";
 
@@ -60,11 +60,10 @@ export default function FilePopUp() {
 
     if (file) {
       formData.append("file", file);
-    }
-    else {
-        toast.error("No se ha seleccionado un archivo");
-        setLoading(false);
-        return;
+    } else {
+      toast.error("No se ha seleccionado un archivo");
+      setLoading(false);
+      return;
     }
 
     const horarios = await axios
@@ -75,7 +74,7 @@ export default function FilePopUp() {
         withCredentials: true,
       })
       .catch((e) => {
-        toast.error("Error al subir servicios");
+        toast.error(e.response.data.message);
       });
     if (horarios) toast.success("Servicios subida correctamente");
     setLoading(false);
@@ -178,16 +177,15 @@ export default function FilePopUp() {
           </label>
           <button
             className={`bg-primary p-2 rounded-lg font-medium text-white w-full mt-3 ${
-              (!file) || loading ? " opacity-50 " : " opacity-100 "
+              !file || loading ? " opacity-50 " : " opacity-100 "
             }`}
             type="submit"
-            disabled={(!file) || loading}
+            disabled={!file || loading}
           >
             {loading ? "SUBIENDO SERVICIOS EVIDENCIA..." : "SUBIR SERVICIOS"}
           </button>
         </form>
       </div>
-      <ToastContainer />
     </div>
   );
 }
