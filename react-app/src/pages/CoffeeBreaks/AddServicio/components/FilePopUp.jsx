@@ -107,7 +107,7 @@ export default function FilePopUp() {
                   programa: "Especialidad en Dirección de Proyectos",
                   no_clase: "1234",
                   salon: "A 01",
-                  dia: "Lunes",
+                  dia: "1",
                   hora_inicio: "21:00",
                   hora_fin: "22:00",
                   hora_servicio_inicio: "21:30",
