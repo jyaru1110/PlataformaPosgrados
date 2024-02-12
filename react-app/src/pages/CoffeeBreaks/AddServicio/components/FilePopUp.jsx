@@ -93,7 +93,7 @@ export default function FilePopUp() {
       <div className="w-4/5 bg-white max-w-3xl rounded-xl text-center p-3 z-50">
         <p className="text-lg font-bold">Sube un archivo en formato CSV</p>
         <p className="text-left leading-tight">
-          Recuerda que las fechas deben estar en el formato YYYY-MM-DD, la fecha
+          Recuerda que las fechas deben estar en el formato YYYY-MM-DD, la hora
           en formato HH:MM y los programas completos con correcta ortografía y
           con las primeras letras en mayúscula.
         </p>
