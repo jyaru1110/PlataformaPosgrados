@@ -11,6 +11,16 @@ const fs = require("fs");
 const { parse } = require("csv-parse");
 
 const environment = process.env.ENV;
+
+const dias_numero = {
+  1: 'Lunes',
+  2: 'Martes',
+  3: 'Miércoles',
+  4: 'Jueves',
+  5: 'Viernes',
+  6: 'Sábado'
+};
+
 const dias =
   environment == "Production"
     ? {
@@ -381,10 +391,10 @@ const bulk_create_horario = async (req, res) => {
       })
       .on("end", async () => {
         horarios.forEach((horario) => {
+          horario.dia = dias_numero[horario.dia];
           if(horario.fecha_inicio > horario.fecha_fin){
             hay_error = true;
           }
-
           if (horario.fecha_inicio <= semana.dataValues.fin_semana) {
             hay_error = true;
           }
