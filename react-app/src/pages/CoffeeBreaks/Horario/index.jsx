@@ -34,6 +34,12 @@ export default function Horario() {
   const [numero_servicios, setNumeroServicios] = useState(0);
   const [dia, setDia] = useState("");
 
+  toast.onChange((payload) => {
+    if (payload.type === "success" && payload.status === "removed") {
+      navigation(-1);
+    }
+  });
+
   useEffect(() => {
     if (horario) {
       if (programa === "") {
@@ -180,11 +186,6 @@ export default function Horario() {
   };
 
   const after_delete = (data) => {
-    toast.onChange((payload) => {
-      if (payload.type === "success" && payload.status === "removed") {
-        navigation(-1);
-      }
-    });
     if (data.data.notificacion) {
       toast.info("Solicitud de cancelación de horario enviada", {
         pauseOnFocusLoss: true,
@@ -193,7 +194,12 @@ export default function Horario() {
       toast.success("Horario eliminado", {
         pauseOnFocusLoss: true,
       });
-    } else
+    } else if(data.data.message){
+      toast.error(data.data.message, {
+        pauseOnFocusLoss: true,
+      });
+    }
+    else
       toast.error("No se pudo eliminar horario", {
         pauseOnFocusLoss: true,
       });

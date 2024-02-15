@@ -87,9 +87,15 @@ const delete_horario = async (req, res) => {
       where: {
         id_horario: id,
         estado: "Confirmado",
-        fecha: Op.gte(new Date().toISOString().slice(0, 10)),
+        fecha: {
+          [Op.gte]: new Date(),
+        },
       },
     });
+    if(servicios_para_notificacion.length==0)
+    {
+      return res.status(200).send({message:"No se encontraron servicios para cancelar"});
+    }
     for (let i = 0; i < servicios_para_notificacion.length; i++) {
       const servicio = servicios_para_notificacion[i];
       const notificacion = await Notificaciones.create({
