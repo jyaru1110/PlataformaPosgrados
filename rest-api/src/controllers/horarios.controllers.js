@@ -13,12 +13,12 @@ const { parse } = require("csv-parse");
 const environment = process.env.ENV;
 
 const dias_numero = {
-  1: 'Lunes',
-  2: 'Martes',
-  3: 'Miércoles',
-  4: 'Jueves',
-  5: 'Viernes',
-  6: 'Sábado'
+  1: "Lunes",
+  2: "Martes",
+  3: "Miércoles",
+  4: "Jueves",
+  5: "Viernes",
+  6: "Sábado",
 };
 
 const dias =
@@ -87,6 +87,7 @@ const delete_horario = async (req, res) => {
       where: {
         id_horario: id,
         estado: "Confirmado",
+        fecha: Op.gte(new Date().toISOString().slice(0, 10)),
       },
     });
     for (let i = 0; i < servicios_para_notificacion.length; i++) {
@@ -392,7 +393,7 @@ const bulk_create_horario = async (req, res) => {
       .on("end", async () => {
         horarios.forEach((horario) => {
           horario.dia = dias_numero[horario.dia];
-          if(horario.fecha_inicio > horario.fecha_fin){
+          if (horario.fecha_inicio > horario.fecha_fin) {
             hay_error = true;
           }
           if (horario.fecha_inicio <= semana.dataValues.fin_semana) {
@@ -403,7 +404,8 @@ const bulk_create_horario = async (req, res) => {
           return res.status(500).send({
             message:
               "No se pueden crear horarios antes de la semana confirmada: " +
-              semana.dataValues.fin_semana+", realiza tu solicitud"
+              semana.dataValues.fin_semana +
+              ", realiza tu solicitud",
           });
         }
         try {
