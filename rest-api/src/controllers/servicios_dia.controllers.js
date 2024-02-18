@@ -533,6 +533,76 @@ const update_servicio = async (req, res) => {
   }
 };
 
+const get_servicios_a_tiempo_destiempo = async (req, res) => {
+  const { fecha_inicio, fecha_fin } = req.params;
+  const servicios = await Servicios_dia.findAll({
+    attributes: [
+      [sequelize.fn("SUM", sequelize.col("num_servicios")), "suma_servicios"],
+    ],
+    where: {
+      estado: "Confirmado",
+      fecha: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+    },
+  });
+  const servicios_impuntuales = await Notificaciones.findAll({
+    attributes: [
+      [sequelize.fn("SUM", sequelize.col("num_alumnos")), "suma_servicios"],
+    ],
+    where: {
+      tipo: "Nuevo",
+      fecha_inicio: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+      estado: "Aceptada",
+    },
+  });
+  const data = {
+    labels: ["A tiempo", "Una vez confirmados"],
+    datasets: [
+      {
+        label: "Numero de servicios",
+        data: [
+          servicios[0].dataValues.suma_servicios -
+            servicios_impuntuales[0].dataValues.suma_servicios,
+          servicios_impuntuales[0].dataValues.suma_servicios,
+        ],
+        backgroundColor: ["rgb(21, 188, 97)", "rgb(255,149,25)"],
+        hoverOffset: 4,
+      },
+    ],
+  };
+  res.status(200).send(data);
+};
+
+const get_programas_destiempo = async (req, res) => {
+  const { fecha_inicio, fecha_fin } = req.params;
+  const query = `select programa.escuela, sum(num_alumnos) as suma_servicios from notificaciones inner join programa on programa.programa = notificaciones."programaPrograma" where notificaciones.tipo = 'Nuevo' and notificaciones.fecha_inicio between '${fecha_inicio}' and '${fecha_fin}' and estado = 'Aceptada' group by programa.escuela`;
+  const programas_servicios = await sequelize.query(query);
+
+  const labels = programas_servicios[0].map((programa) => {
+    return programa.escuela;
+  });
+
+  const datasets = programas_servicios[0].map((programa) => {
+    return programa.suma_servicios;
+  });
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Numero de servicios",
+        data: datasets,
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  res.status(200).send(data);
+};
+
 const delete_servicio = async (req, res) => {
   const id = req.params.id;
   const rol = req.user.dataValues.rol;
@@ -611,4 +681,6 @@ module.exports = {
   get_reporte,
   get_servicios_confirmados,
   aprobar_servicios,
+  get_servicios_a_tiempo_destiempo,
+  get_programas_destiempo,
 };
