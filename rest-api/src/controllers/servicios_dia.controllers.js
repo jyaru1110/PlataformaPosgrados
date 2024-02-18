@@ -337,10 +337,10 @@ const get_servicios_todos = async (req, res) => {
   var query = "";
   if (rol == "Gestor") {
     query =
-      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa order by fecha asc,hora_inicio asc";
+      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa inner join salon on salon.salon = servicios_dia.salon_id order by fecha asc,hora_inicio asc";
   } else {
     query =
-      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where programa.escuela ='" +
+      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa inner join salon on salon.salon = servicios_dia.salon_id where programa.escuela ='" +
       req.user.dataValues.escuela +
       "'order by servicios_dia.fecha asc,servicios_dia.hora_inicio asc";
   }

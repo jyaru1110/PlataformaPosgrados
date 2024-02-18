@@ -2,6 +2,7 @@ import DropdowClase from "../../../components/form/DropdownClase";
 import DropdownSalon from "../../../components/form/DropdownSalon";
 import DropdownEscuelas from "../../../components/form/DropdownEscuelas";
 import DropdownProgramas from "../../../components/form/DropdownProgramas";
+import DropdownIslas from "../../../components/form/DropdownIsla";
 import Fechas from "../../../components/form/Fechas";
 import Horas from "../../../components/form/Horas";
 import OpcionesEstado from "../../../components/form/OpcionesEstado";
@@ -51,6 +52,7 @@ export default function FiltarServicios() {
     searchParams.get("fecha_inicio") || date.toISOString().substring(0, 10);
   const fecha_fin = searchParams.get("fecha_fin") || "Todos";
   const salon = searchParams.get("salon") || "Todos";
+  const isla = searchParams.get("isla") || "Todos";
   const programa = searchParams.get("programa") || "Todos";
   const [estados, setEstados] = useState([
     "Pendiente",
@@ -171,6 +173,9 @@ export default function FiltarServicios() {
     if(id_horario && servicio?.id_horario?.toString() !== id_horario){
       return false;
     }
+    if(isla !== "Todos" && servicio.isla !== isla){
+      return false;
+    }
     return true;
   };
   //efecto que actualiza los servicios que se muestran
@@ -188,6 +193,7 @@ export default function FiltarServicios() {
     estados,
     programa,
     servicios,
+    isla,
   ]);
 
   //efecto que descarga el reporte
@@ -240,6 +246,13 @@ export default function FiltarServicios() {
             setSearchParams(searchParams);
           }}
           value={clase}
+        />
+        <DropdownIslas
+          func={(islaValue) => {
+            searchParams.set("isla", islaValue);
+            setSearchParams(searchParams);
+          }}
+          value={isla}
         />
         <DropdownSalon
           func={(salonValue) => {
