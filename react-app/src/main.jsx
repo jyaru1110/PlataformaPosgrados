@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import HomeSeguimiento from "./pages/SeguimientoPosgrados/HomeSeguimiento";
 import Confirmados from "./pages/CoffeeBreaks/Confirmados";
 import EtapasProceso from "./pages/SeguimientoPosgrados/EtapasProceso";
+import Dashboard from "./pages/CoffeeBreaks/Dashboard";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -74,7 +75,11 @@ const router = createBrowserRouter([
   {
     path: "seguimientoposgrados/etapasprocesos",
     element: <EtapasProceso />,
-  }
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -19,10 +19,7 @@ export default function Footer() {
         <BotonFooter texto={"Solicitudes de servicios"} ruta="/solicitudes">
           {IconSolicitudes}
         </BotonFooter>
-        <BotonFooter
-          texto={"Servicios confirmados"}
-          ruta="/confirmados"
-        >
+        <BotonFooter texto={"Servicios confirmados"} ruta="/confirmados">
           {IconServiciosConfirmados}
         </BotonFooter>
         <BotonFooter
@@ -34,6 +31,7 @@ export default function Footer() {
         <BotonFooter texto={"Filtra servicios por isla"} ruta="/filtrar-islas">
           {IconFiltrarIsla}
         </BotonFooter>
+        <BotonFooter texto={"Dashboard"} ruta="/dashboard"></BotonFooter>
       </div>
     </div>
   );
