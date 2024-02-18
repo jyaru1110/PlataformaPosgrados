@@ -389,7 +389,7 @@ export default function FiltarServicios() {
               >
                 <div className="flex w-full justify-between">
                   <p className="text-primary font-semibold text-xs mb-1">
-                    Salón {servicio_i.salon_id}
+                    {servicio_i.isla} · Salón {servicio_i.salon_id}
                   </p>
                   {servicio_i.estado === "Pendiente" ? (
                     <>
