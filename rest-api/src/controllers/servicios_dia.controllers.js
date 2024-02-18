@@ -576,6 +576,51 @@ const get_servicios_a_tiempo_destiempo = async (req, res) => {
   res.status(200).send(data);
 };
 
+const get_servicios_cancelados = async (req, res) => {
+  const { fecha_inicio, fecha_fin } = req.params;
+  const servicios_cancelados = await Servicios_dia.findAll({
+    attributes: [
+      [sequelize.fn("SUM", sequelize.col("num_servicios")), "suma_servicios"],
+    ],
+    where: {
+      estado: "Cancelado",
+      fecha: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+    },
+  });
+
+  const servicio_confirmados = await Servicios_dia.findAll({
+    attributes: [
+      [sequelize.fn("SUM", sequelize.col("num_servicios")), "suma_servicios"],
+    ],
+    where: {
+      estado: "Confirmado",
+      fecha: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+    },
+  });
+
+  const data = {
+    labels: ["Cancelados", "Confirmados"],
+    datasets: [
+      {
+        label: "Numero de servicios",
+        data: [
+          servicios_cancelados[0].dataValues.suma_servicios,
+          servicio_confirmados[0].dataValues.suma_servicios,
+        ],
+        backgroundColor: ["rgb(253, 52, 52)", "rgb(21, 189, 96)"],
+        hoverOffset: 4,
+      },
+    ]
+  }
+
+  res.status(200).send(data);
+};
+
+
 const get_programas_destiempo = async (req, res) => {
   const { fecha_inicio, fecha_fin } = req.params;
   const query = `select programa.escuela, sum(num_alumnos) as suma_servicios from notificaciones inner join programa on programa.programa = notificaciones."programaPrograma" where notificaciones.tipo = 'Nuevo' and notificaciones.fecha_inicio between '${fecha_inicio}' and '${fecha_fin}' and estado = 'Aceptada' group by programa.escuela`;
@@ -683,4 +728,5 @@ module.exports = {
   aprobar_servicios,
   get_servicios_a_tiempo_destiempo,
   get_programas_destiempo,
+  get_servicios_cancelados
 };
