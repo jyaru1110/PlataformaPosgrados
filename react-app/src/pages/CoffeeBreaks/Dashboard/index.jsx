@@ -2,10 +2,19 @@ import Header from "../../../components/Header";
 import Fechas from "../../../components/form/Fechas";
 import { useServiciosImpuntuales } from "../../../hooks/useServiciosImpuntuales";
 import { useProgramasServiciosImpuntuales } from "../../../hooks/useProgramasServiciosImpuntuales";
-import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useSolicitudesScatter } from "../../../hooks/useSolicitudesScatter";
+import { Pie, Scatter } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(LinearScale, PointElement, LineElement,ArcElement, Tooltip, Legend);
 
 /*const data = {
   labels: ["Red", "Blue", "Yellow"],
@@ -36,12 +45,19 @@ export default function Dashboard() {
       fecha_fin: "2024-02-17",
     });
 
+  const { scatter_solicitudes, loading_scatter_solicitudes } =
+    useSolicitudesScatter({
+      fecha_inicio: "2024-02-12",
+      fecha_fin: "2024-02-17",
+    });
+
   return (
     <div className="font-poppins p-7">
       <Header titulo="Dashboard"></Header>
       <Fechas></Fechas>
-      <div className="w-full flex justify-between p-5 rounded-2xl bg-primarylight shadow-lg">
+      <div className="w-full flex flex-wrap justify-between p-5 rounded-2xl bg-primarylight shadow-lg">
         <div className="w-80">
+          <p className="text-center font-bold">SERVICIOS CONFIRMADOS</p>
           {loading_impuntuales ? (
             "Cargando..."
           ) : (
@@ -49,10 +65,19 @@ export default function Dashboard() {
           )}
         </div>
         <div className="w-80">
+          <p className="text-center font-bold">NUEVOS SERVICIOS SOLICITADOS</p>
           {loading_programas_impuntuales ? (
             "Cargando..."
           ) : (
             <Pie data={programas_impuntuales} />
+          )}
+        </div>
+        <div className="flex-1">
+          <p className="text-center font-bold">SOLICITUDES</p>
+          {loading_scatter_solicitudes ? (
+            "Cargando..."
+          ) : (
+            <Scatter data={scatter_solicitudes} />
           )}
         </div>
       </div>

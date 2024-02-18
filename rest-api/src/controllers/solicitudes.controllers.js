@@ -5,12 +5,75 @@ const Horario = require("../models/Horario");
 const Programa = require("../models/Programa");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
-const {send_notificacion} = require("../mail/nodemailerprovider");
+const { send_notificacion } = require("../mail/nodemailerprovider");
+const e = require("express");
 
+const get_scatter_solicitudes = async (req, res) => {
+  const { fecha_inicio, fecha_fin } = req.params;
+  const solicitudes = await Notificaciones.findAll({
+    attributes: ["fecha_inicio", "createdAt", "estado", "num_alumnos"],
+    where: {
+      createdAt: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+      tipo: "Nuevo",
+    },
+  });
+  const aceptadas = solicitudes.map((solicitud) => {
+    if (solicitud.dataValues.estado == "Aceptada") {
+      return {
+        x: Math.floor(
+          (new Date(solicitudes[0].dataValues.fecha_inicio) -
+            solicitud.dataValues.createdAt) /
+            (1000 * 60 * 60 * 24)
+        ),
+        y: solicitud.dataValues.num_alumnos,
+      };
+    } else{
+      return{};
+    }
+  });
+
+  const rechazadas = solicitudes.map((solicitud) => {
+    if (solicitud.dataValues.estado == "Rechazada") {
+      return {
+        x: Math.floor(
+          (new Date(solicitudes[0].dataValues.fecha_inicio) -
+            solicitud.dataValues.createdAt) /
+            (1000 * 60 * 60 * 24)
+        ),
+        y: solicitud.dataValues.num_alumnos,
+      };
+    } else{
+      return{};
+    }
+  });
+
+  const dataFinal = {
+    datasets: [
+      {
+        label: "Aceptadas",
+        data: aceptadas,
+        backgroundColor: "green",
+        hoverOffset: 4,
+      },
+      {
+        label: "Rechazadas",
+        data: rechazadas,
+        backgroundColor: "red",
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  console.log(rechazadas);
+
+  res.status(200).send(dataFinal);
+};
 
 const get_solicitudes = async (req, res) => {
   const rol = req.user.dataValues.rol;
-  const where = rol=="Gestor"?{}:{"escuela": req.user.dataValues.escuela};
+  const where = rol == "Gestor" ? {} : { escuela: req.user.dataValues.escuela };
   const notificaciones = await Notificaciones.findAll({
     order: [["createdAt", "DESC"]],
     include: [
@@ -20,8 +83,8 @@ const get_solicitudes = async (req, res) => {
       {
         model: Programa,
         where: where,
-        attributes:["programa"]
-      }
+        attributes: ["programa"],
+      },
     ],
   });
   res.status(200).send({ notificaciones: notificaciones });
@@ -43,7 +106,7 @@ const aceptar_solicitud = async (req, res) => {
         no_clase: notificacion.no_clase,
         dia: notificacion.dia,
         num_servicios: notificacion.num_alumnos,
-        estado: "Confirmado"
+        estado: "Confirmado",
       });
       notificacion.id_servicio = nuevoHorario.id;
       await notificacion.save();
@@ -74,7 +137,7 @@ const aceptar_solicitud = async (req, res) => {
         servicio.salon_id = notificacion.salon;
         servicio.estado = "Confirmado";
         servicio.aprobadoPor = notificacion.userId;
-        servicio.estado_coordinador = "Aprobado"
+        servicio.estado_coordinador = "Aprobado";
         await servicio.save();
         notificacion.estado = "Aceptada";
         await notificacion.save();
@@ -108,9 +171,9 @@ const aceptar_solicitud = async (req, res) => {
         const servicios_restantes = await Servicios_dia.findAll({
           where: {
             id_horario: servicio.id_horario,
-          }
+          },
         });
-        if(servicios_restantes.length==0){
+        if (servicios_restantes.length == 0) {
           await Horario.destroy({
             where: { id_horario: servicio.id_horario },
           });
@@ -136,7 +199,10 @@ const rechazar_solicitud = async (req, res) => {
   const id = req.params.id;
   const mensaje = req.body.mensaje;
   console.log(mensaje);
-  const notificacion = await Notificaciones.findOne({ where: { id: id }, include: [{model: Usuario}] });
+  const notificacion = await Notificaciones.findOne({
+    where: { id: id },
+    include: [{ model: Usuario }],
+  });
   if (notificacion) {
     notificacion.estado = "Rechazada";
     notificacion.comentario = mensaje;
@@ -163,10 +229,10 @@ const cancelar_solicitud = async (req, res) => {
   }
 };
 
-
 module.exports = {
   get_solicitudes,
   aceptar_solicitud,
   rechazar_solicitud,
-  cancelar_solicitud
+  cancelar_solicitud,
+  get_scatter_solicitudes,
 };
