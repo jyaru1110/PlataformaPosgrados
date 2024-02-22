@@ -223,7 +223,7 @@ const confirmar_servicios = async (req, res) => {
       return programa.dataValues.programa;
     });
     const servicios = servicios_confirmados[1].filter((servicio) => {
-      return programas.includes(servicio.programa);
+      return programas.includes(servicio.programaPrograma);
     });
     await send_servicios_confirmados(
       element.dataValues.email,
