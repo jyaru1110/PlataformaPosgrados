@@ -11,9 +11,9 @@ router.get('/servicios_isla_dia/:dia',isUserAuthenticated,get_servicios_isla);
 router.get('/suma_servicios_dia_isla/:fecha_inicio/:fecha_fin',isUserAuthenticated,get_suma_servicios_dia_isla);
 router.get('/proximo_servicio',isUserAuthenticated,get_proximo_servicio);
 router.get('/servicios_confirmados',isUserAuthenticated,get_servicios_confirmados);
-router.get('/servicios_a_tiempo_destiempo/:fecha_inicio/:fecha_fin',isUserAuthenticated,get_servicios_a_tiempo_destiempo);
-router.get('/programas_servicios_destiempo/:fecha_inicio/:fecha_fin',isUserAuthenticated,get_programas_destiempo);
-router.get('/servicios_cancelados/:fecha_inicio/:fecha_fin',isUserAuthenticated,get_servicios_cancelados);
+router.get('/servicios_a_tiempo_destiempo',isUserAuthenticated,get_servicios_a_tiempo_destiempo);
+router.get('/programas_servicios_destiempo',isUserAuthenticated,get_programas_destiempo);
+router.get('/servicios_cancelados',isUserAuthenticated,get_servicios_cancelados);
 
 router.patch('/reporte',isUserAuthenticated,get_reporte);
 router.patch('/aprobar',isUserAuthenticated,aprobar_servicios);

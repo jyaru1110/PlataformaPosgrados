@@ -5,6 +5,7 @@ import IconFiltrarIsla from "../../../../assets/filtrar_servicios_isla.svg";
 import IconBuscarServicios from "../../../../assets/buscar_servicios.svg";
 import IconSolicitudes from "../../../../assets/solicitud_servicios.svg";
 import IconServiciosConfirmados from "../../../../assets/servicios_confirmados.svg";
+import IconDashboard from "../../../../assets/dashboard.svg";
 export default function Footer() {
   return (
     <div className="fixed bottom-0 left-0 flex flex-col items-center w-full md:w-1/3 md:pr-16 md:top-1/4 lg:pr-20 z-50">
@@ -31,7 +32,7 @@ export default function Footer() {
         <BotonFooter texto={"Filtra servicios por isla"} ruta="/filtrar-islas">
           {IconFiltrarIsla}
         </BotonFooter>
-        <BotonFooter texto={"Dashboard"} ruta="/dashboard"></BotonFooter>
+        <BotonFooter texto={"Dashboard"} ruta="/dashboard">{IconDashboard}</BotonFooter>
       </div>
     </div>
   );

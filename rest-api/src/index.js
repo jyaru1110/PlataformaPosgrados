@@ -25,6 +25,12 @@ var port = process.env.PORT || 3900;
 
 //relaciones de las tablas
 
+//programas con servicios_dia
+Programa.hasMany(Servicios_dia);
+Servicios_dia.belongsTo(Programa, {
+  foreignKey: "programaPrograma",
+});
+
 //notificaciones
 Usuario.hasMany(Notificaciones);
 Notificaciones.belongsTo(Usuario, {
@@ -68,7 +74,6 @@ Programa.belongsToMany(Usuario, {
 async function init() {
   try {
     await sequelize.authenticate();
-    //await sequelize.sync({ alter: true });
     console.log("Conexión a la base de datos establecida correctamente.");
     console.log("All models were synchronized successfully.");
     app.listen(port, () => {

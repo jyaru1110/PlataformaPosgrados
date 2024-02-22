@@ -41,13 +41,6 @@ const Servicios_dia = sequelize.define(
     hora_servicio_fin: {
       type: DataTypes.TIME,
     },
-    programa: {
-      type: DataTypes.STRING,
-      references: {
-        model: "programa",
-        key: "programa",
-      },
-    },
     num_servicios: {
       type: DataTypes.INTEGER,
     },

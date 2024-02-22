@@ -3,7 +3,7 @@ import { get_fetch } from "./get_fetch";
 
 const url_backend = import.meta.env.VITE_URL_API;
 
-export const useServiciosCancelados = ({ fecha_inicio, fecha_fin }) => {
+export const useServiciosCancelados = (props) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -14,14 +14,12 @@ export const useServiciosCancelados = ({ fecha_inicio, fecha_fin }) => {
 
   useEffect(() => {
     setLoading(true);
-    fecha_inicio = fecha_inicio.replace(/\//g, "-");
-    fecha_fin = fecha_fin.replace(/\//g, "-");
-    let url = `${url_backend}/servicios_cancelados/${fecha_inicio}/${fecha_fin}`;
+    let url = `${url_backend}/servicios_cancelados`;
     const abortController = new AbortController();
     const signal = abortController.signal;
-    get_fetch(url, signal, after_fetch);
+    get_fetch(url, signal, after_fetch, props);
     return () => abortController.abort();
-  }, [fecha_inicio, fecha_fin]);
+  }, [props.fecha_inicio, props.fecha_fin,props.escuelas]);
 
   return { servicios_cancelados: data, loading_servicios_cancelados: loading };
 };

@@ -3,7 +3,7 @@ import { get_fetch } from "./get_fetch";
 
 const url_backend = import.meta.env.VITE_URL_API;
 
-export const useProgramasServiciosImpuntuales = ({ fecha_inicio, fecha_fin }) => {
+export const useProgramasServiciosImpuntuales = (props) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -14,14 +14,12 @@ export const useProgramasServiciosImpuntuales = ({ fecha_inicio, fecha_fin }) =>
 
   useEffect(() => {
     setLoading(true);
-    fecha_inicio = fecha_inicio.replace(/\//g, "-");
-    fecha_fin = fecha_fin.replace(/\//g, "-");
-    let url = `${url_backend}/programas_servicios_destiempo/${fecha_inicio}/${fecha_fin}`;
+    let url = `${url_backend}/programas_servicios_destiempo`;
     const abortController = new AbortController();
     const signal = abortController.signal;
-    get_fetch(url, signal, after_fetch);
+    get_fetch(url, signal, after_fetch, props);
     return () => abortController.abort();
-  }, [fecha_inicio, fecha_fin]);
+  }, [props.fecha_inicio, props.fecha_fin, props.escuelas]);
 
   return { programas_impuntuales: data, loading_programas_impuntuales: loading };
 };

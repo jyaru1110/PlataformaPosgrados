@@ -10,6 +10,7 @@ const {
   send_servicios_confirmados,
 } = require("../mail/nodemailerprovider");
 const Semana = require("../models/Semana");
+const { query } = require("express");
 
 const get_servicios_confirmados = async (req, res) => {
   const escuela = req.user.dataValues.escuela;
@@ -19,7 +20,7 @@ const get_servicios_confirmados = async (req, res) => {
     },
   });
   const query_aprobados =
-    `select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where servicios_dia.estado = 'Confirmado' and (servicios_dia.estado_coordinador = 'Aprobado' or servicios_dia.estado_coordinador ='En revisión') and servicios_dia."aprobadoPor" = '` +
+    `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" where servicios_dia.estado = 'Confirmado' and (servicios_dia.estado_coordinador = 'Aprobado' or servicios_dia.estado_coordinador ='En revisión') and servicios_dia."aprobadoPor" = '` +
     req.user.dataValues.id +
     "' and servicios_dia.fecha between '" +
     semana.inicio_semana +
@@ -29,7 +30,7 @@ const get_servicios_confirmados = async (req, res) => {
   const servicios_aprobados = await sequelize.query(query_aprobados);
   const hayAprobados = servicios_aprobados[0].length > 0;
   const query =
-    "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where servicios_dia.estado = 'Confirmado' and (servicios_dia.estado_coordinador = 'Sin revisión' or servicios_dia.estado_coordinador = 'En revisión') and programa.escuela = '" +
+    `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" where servicios_dia.estado = 'Confirmado' and (servicios_dia.estado_coordinador = 'Sin revisión' or servicios_dia.estado_coordinador = 'En revisión') and programa.escuela = '` +
     escuela +
     "' and servicios_dia.fecha between '" +
     semana.inicio_semana +
@@ -281,17 +282,9 @@ const get_servicios_isla = async (req, res) => {
   const fecha = req.params.dia;
   var query = "";
   if (rol == "Gestor") {
-    query =
-      "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla,programa.codigo as programa from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia.programa where servicios_dia.fecha = '" +
-      fecha +
-      "' group by salon.isla,programa.codigo";
+    query = `select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla,programa.codigo as programa from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia."programaPrograma" where servicios_dia.fecha = '${fecha}' group by salon.isla,programa.codigo`;
   } else {
-    query =
-      "select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla,servicios_dia.programa as programa from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia.programa where programa.escuela = '" +
-      req.user.dataValues.escuela +
-      "' and servicios_dia.fecha = '" +
-      fecha +
-      "' group by salon.isla,programa.codigo";
+    query = `select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla,servicios_dia.programa as programa from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia."programaPrograma" where programa.escuela = '${req.user.dataValues.escuela}' and servicios_dia.fecha = '${fecha}' group by salon.isla,programa.codigo`;
   }
   try {
     const servicios_dia = await sequelize.query(query);
@@ -336,13 +329,9 @@ const get_servicios_todos = async (req, res) => {
   const rol = req.user.dataValues.rol;
   var query = "";
   if (rol == "Gestor") {
-    query =
-      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa inner join salon on salon.salon = servicios_dia.salon_id order by fecha asc,hora_inicio asc";
+    query = `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" inner join salon on salon.salon = servicios_dia.salon_id order by fecha asc,hora_inicio asc`;
   } else {
-    query =
-      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa inner join salon on salon.salon = servicios_dia.salon_id where programa.escuela ='" +
-      req.user.dataValues.escuela +
-      "'order by servicios_dia.fecha asc,servicios_dia.hora_inicio asc";
+    query = `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" inner join salon on salon.salon = servicios_dia.salon_id where programa.escuela ='${req.user.dataValues.escuela}' order by servicios_dia.fecha asc,servicios_dia.hora_inicio asc`;
   }
   const servicios = await sequelize.query(query);
   res.status(200).send({ servicio: servicios });
@@ -353,17 +342,9 @@ const get_servicios_pendientes = async (req, res) => {
   const rol = req.user.dataValues.rol;
   var query = "";
   if (rol == "Gestor") {
-    query =
-      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa inner join salon on servicios_dia.salon_id = salon.salon where not estado = 'Cancelado' and fecha = '" +
-      fecha +
-      "' order by hora_inicio asc";
+    query = `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" inner join salon on servicios_dia.salon_id = salon.salon where not estado = 'Cancelado' and fecha = '${fecha}' order by hora_inicio asc`;
   } else {
-    query =
-      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa inner join salon on servicios_dia.salon_id = salon.salon where programa.escuela ='" +
-      req.user.dataValues.escuela +
-      "' and not estado = 'Cancelado' and fecha = '" +
-      fecha +
-      "' order by servicios_dia.hora_inicio asc";
+    query = `select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa inner join salon on servicios_dia.salon_id = salon.salon where programa.escuela ='${req.user.dataValues.escuela}' and not estado = 'Cancelado' and fecha = '${fecha}' order by servicios_dia.hora_inicio asc`;
   }
   const servicios = await sequelize.query(query);
   res.status(200).send({ servicio: servicios });
@@ -375,17 +356,9 @@ const get_proximo_servicio = async (req, res) => {
   const iso_today = today.toISOString().split("T")[0];
   var query = "";
   if (rol == "Gestor") {
-    query =
-      "select * from servicios_dia inner join programa on programa.programa = servicios_dia.programa where fecha >= '" +
-      iso_today +
-      "' and not estado = 'Cancelado' order by fecha asc, hora_inicio asc limit 1";
+    query = `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" where fecha >= '${iso_today}' and not estado = 'Cancelado' order by fecha asc, hora_inicio asc limit 1`;
   } else {
-    query =
-      "select * from servicios_dia inner join programa on programa.programa =  servicios_dia.programa where servicios_dia.fecha >= '" +
-      iso_today +
-      "' and not servicios_dia.estado = 'Cancelado' and programa.escuela='" +
-      req.user.dataValues.escuela +
-      "' order by fecha asc, hora_inicio asc limit 1";
+    query = `select * from servicios_dia inner join programa on programa.programa =  servicios_dia."programaPrograma" where servicios_dia.fecha >= '${iso_today}' and not servicios_dia.estado = 'Cancelado' and programa.escuela='${req.user.dataValues.escuela}' order by fecha asc, hora_inicio asc limit 1`;
   }
 
   try {
@@ -534,7 +507,8 @@ const update_servicio = async (req, res) => {
 };
 
 const get_servicios_a_tiempo_destiempo = async (req, res) => {
-  const { fecha_inicio, fecha_fin } = req.params;
+  const { fecha_inicio, fecha_fin, escuelas } = req.query;
+
   const servicios = await Servicios_dia.findAll({
     attributes: [
       [sequelize.fn("SUM", sequelize.col("num_servicios")), "suma_servicios"],
@@ -545,11 +519,30 @@ const get_servicios_a_tiempo_destiempo = async (req, res) => {
         [Op.between]: [fecha_inicio, fecha_fin],
       },
     },
+    group: ["servicios_dia.id"],
+    include: [
+      {
+        model: Programa,
+        attributes: [],
+        required: true,
+        where: {
+          escuela: {
+            [Op.in]: escuelas,
+          },
+        },
+      },
+    ],
   });
+
+  const total_servicios = servicios.reduce((acc, servicio) => {
+    return acc + parseInt(servicio.dataValues.suma_servicios);
+  }, 0);
+
   const servicios_impuntuales = await Notificaciones.findAll({
     attributes: [
       [sequelize.fn("SUM", sequelize.col("num_alumnos")), "suma_servicios"],
     ],
+    group: ["notificaciones.id"],
     where: {
       tipo: "Nuevo",
       fecha_inicio: {
@@ -557,18 +550,39 @@ const get_servicios_a_tiempo_destiempo = async (req, res) => {
       },
       estado: "Aceptada",
     },
+    include: [
+      {
+        model: Programa,
+        attributes: [],
+        required: true,
+        where: {
+          escuela: {
+            [Op.in]: escuelas,
+          },
+        },
+      },
+    ],
   });
+
+  const total_servicios_impuntuales = servicios_impuntuales.reduce(
+    (acc, servicio) => {
+      return acc + parseInt(servicio.dataValues.suma_servicios);
+    },
+    0
+  );
+
+  console.log(total_servicios, total_servicios_impuntuales);
+
   const data = {
-    labels: ["A tiempo", "Una vez confirmados"],
+    labels: ["A tiempo", "Destiempo"],
     datasets: [
       {
         label: "Numero de servicios",
         data: [
-          servicios[0].dataValues.suma_servicios -
-            servicios_impuntuales[0].dataValues.suma_servicios,
-          servicios_impuntuales[0].dataValues.suma_servicios,
+          total_servicios - total_servicios_impuntuales,
+          total_servicios_impuntuales,
         ],
-        backgroundColor: ["rgb(21, 188, 97)", "rgb(255,149,25)"],
+        backgroundColor: ["#227B76", "#C9B608"],
         hoverOffset: 4,
       },
     ],
@@ -577,7 +591,7 @@ const get_servicios_a_tiempo_destiempo = async (req, res) => {
 };
 
 const get_servicios_cancelados = async (req, res) => {
-  const { fecha_inicio, fecha_fin } = req.params;
+  const { fecha_inicio, fecha_fin, escuelas } = req.query;
   const servicios_cancelados = await Servicios_dia.findAll({
     attributes: [
       [sequelize.fn("SUM", sequelize.col("num_servicios")), "suma_servicios"],
@@ -611,18 +625,17 @@ const get_servicios_cancelados = async (req, res) => {
           servicios_cancelados[0].dataValues.suma_servicios,
           servicio_confirmados[0].dataValues.suma_servicios,
         ],
-        backgroundColor: ["rgb(253, 52, 52)", "rgb(21, 189, 96)"],
+        backgroundColor: ["#86172C", "#227B76"],
         hoverOffset: 4,
       },
-    ]
-  }
+    ],
+  };
 
   res.status(200).send(data);
 };
 
-
 const get_programas_destiempo = async (req, res) => {
-  const { fecha_inicio, fecha_fin } = req.params;
+  const { fecha_inicio, fecha_fin, escuelas } = req.query;
   const query = `select programa.escuela, sum(num_alumnos) as suma_servicios from notificaciones inner join programa on programa.programa = notificaciones."programaPrograma" where notificaciones.tipo = 'Nuevo' and notificaciones.fecha_inicio between '${fecha_inicio}' and '${fecha_fin}' and estado = 'Aceptada' group by programa.escuela`;
   const programas_servicios = await sequelize.query(query);
 
@@ -641,6 +654,14 @@ const get_programas_destiempo = async (req, res) => {
         label: "Numero de servicios",
         data: datasets,
         hoverOffset: 4,
+        backgroundColor: [
+          "#30675E",
+          "#0F2C6E",
+          "#C2A670",
+          "#32547D",
+          "#36A192",
+          "#DE2B43",
+        ],
       },
     ],
   };
@@ -728,5 +749,5 @@ module.exports = {
   aprobar_servicios,
   get_servicios_a_tiempo_destiempo,
   get_programas_destiempo,
-  get_servicios_cancelados
+  get_servicios_cancelados,
 };

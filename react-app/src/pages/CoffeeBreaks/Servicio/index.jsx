@@ -204,7 +204,7 @@ export default function Servicio() {
             <DropdownProgramas
               escuela="Todos"
               func={setPrograma}
-              value={servicio.programa}
+              value={servicio.programaPrograma}
               disabled={true}
             />
             <DropdowClase

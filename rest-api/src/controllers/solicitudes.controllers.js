@@ -6,7 +6,6 @@ const Programa = require("../models/Programa");
 const { Op } = require("sequelize");
 const sequelize = require("../database/database");
 const { send_notificacion } = require("../mail/nodemailerprovider");
-const e = require("express");
 
 const get_scatter_solicitudes = async (req, res) => {
   const { fecha_inicio, fecha_fin } = req.params;
@@ -66,8 +65,6 @@ const get_scatter_solicitudes = async (req, res) => {
     ],
   };
 
-  console.log(rechazadas);
-
   res.status(200).send(dataFinal);
 };
 
@@ -97,7 +94,7 @@ const aceptar_solicitud = async (req, res) => {
     if (notificacion.tipo == "Nuevo") {
       const nuevoHorario = await Servicios_dia.create({
         salon_id: notificacion.salon,
-        programa: notificacion.programaPrograma,
+        programaPrograma: notificacion.programaPrograma,
         fecha: notificacion.fecha_inicio,
         hora_inicio: notificacion.hora_inicio,
         hora_fin: notificacion.hora_fin,
