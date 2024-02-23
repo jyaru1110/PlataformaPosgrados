@@ -128,6 +128,12 @@ const cancelar_servicios = async (req, res) => {
   if (rol !== "Gestor") {
     for (let i = 0; i < servicios_confirmados.length; i++) {
       const servicio = servicios_confirmados[i];
+      await Notificaciones.destroy({
+        where: {
+          id_servicio: servicio.dataValues.id,
+          estado: "En proceso",
+        },
+      });
       const notificacion = await Notificaciones.create({
         id_servicio: servicio.dataValues.id,
         tipo: "Cancelacion",
@@ -440,6 +446,12 @@ const update_servicio = async (req, res) => {
     }
   } else {
     try {
+      await Notificaciones.destroy({
+        where: {
+          id_servicio: id,
+          estado: "En proceso",
+        },
+      });
       const notificacion = await Notificaciones.create({
         id_servicio: id,
         tipo: "Cambio",
@@ -784,18 +796,12 @@ const delete_servicio = async (req, res) => {
     await servicio.save();
     res.status(200).send({ servicio: servicio });
   } else {
-    const notificaciones = await Notificaciones.findAll({
+    await Notificaciones.destroy({
       where: {
         id_servicio: id,
         estado: "En proceso",
       },
     });
-    if (notificaciones.length !== 0) {
-      res
-        .status(200)
-        .send({ error: "Solo puede haber una solicitud por servicio" });
-      return;
-    }
     const notificacion = await Notificaciones.create({
       id_servicio: id,
       tipo: "Cancelacion",
@@ -845,5 +851,5 @@ module.exports = {
   get_servicios_a_tiempo_destiempo,
   get_programas_destiempo,
   get_servicios_cancelados,
-  get_servicios_aprobados
+  get_servicios_aprobados,
 };

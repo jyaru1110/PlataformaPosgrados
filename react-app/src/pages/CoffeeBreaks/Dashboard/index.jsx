@@ -6,7 +6,7 @@ import { useProgramasServiciosImpuntuales } from "../../../hooks/useProgramasSer
 import { useServiciosAprobados } from "../../../hooks/useServiciosAprobados";
 import { useServiciosCancelados } from "../../../hooks/useServiciosCancelados";
 import { useNivelImpuntualidad } from "../../../hooks/useNivelImpuntualidad";
-import { Pie, Scatter } from "react-chartjs-2";
+import { Pie, Bar } from "react-chartjs-2";
 import MultiselectPrograma from "./Components/MultiselectProgram";
 import {
   Chart as ChartJS,
@@ -14,6 +14,8 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  CategoryScale,
+  BarElement,
   Tooltip,
   Legend,
 } from "chart.js";
@@ -23,6 +25,8 @@ ChartJS.register(
   PointElement,
   LineElement,
   ArcElement,
+  CategoryScale,
+  BarElement,
   Tooltip,
   Legend
 );
@@ -42,11 +46,12 @@ export default function Dashboard() {
     "Educación Continua",
   ]);
 
-  const {data_nivel_impuntualidad, loading_nivel_impuntualidad} = useNivelImpuntualidad({
-    fecha_inicio: "2024-02-12",
-    fecha_fin: "2024-02-17",
-    escuelas: escuelas,
-  });
+  const { data_nivel_impuntualidad, loading_nivel_impuntualidad } =
+    useNivelImpuntualidad({
+      fecha_inicio: "2024-02-12",
+      fecha_fin: "2024-02-17",
+      escuelas: escuelas,
+    });
 
   const { servicios_impuntuales, loading_impuntuales } =
     useServiciosImpuntuales({
@@ -118,6 +123,14 @@ export default function Dashboard() {
           )}
         </div>
       </div>
+      {loading_nivel_impuntualidad ? (
+        "Cargando..."
+      ) : (
+        <div className="w-full p-7">
+          <p className="text-center font-bold">NIVEL DE IMPUNTUALIDAD EN SOLICITUDES</p>
+          <Bar data={data_nivel_impuntualidad} />
+        </div>
+      )}
     </div>
   );
 }

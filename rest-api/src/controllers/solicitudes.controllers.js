@@ -168,6 +168,14 @@ const cancelar_solicitud = async (req, res) => {
 const get_nivel_impuntualidad = async (req, res) => {
   const { fecha_inicio, fecha_fin, escuelas } = req.query;
   const solicitudes = await Notificaciones.findAll({
+    attributes: [
+      "num_alumnos",
+      "tipo",
+      "fecha_inicio",
+      "hora_servicio_inicio",
+      "createdAt",
+      "id_servicio",
+    ],
     where: {
       fecha_inicio: {
         [Op.between]: [fecha_inicio, fecha_fin],
@@ -187,16 +195,37 @@ const get_nivel_impuntualidad = async (req, res) => {
     ],
   });
 
-  const dataset_nuevos = { data: [0, 0, 0], label: "Nuevos", backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"] };
-  const dataset_cambios = { data: [0, 0, 0], label: "Cambios", backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]};
-  const dataset_cancelaciones = { data: [0, 0, 0], label: "Cancelaciones", backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]};
+  const id_servicios_checked = [];
+
+  const dataset_nuevos = {
+    data: [0, 0, 0],
+    label: "Nuevos",
+    backgroundColor: "#227B76",
+  };
+  const dataset_cambios = {
+    data: [0, 0, 0],
+    label: "Cambios",
+    backgroundColor: "#C9B608",
+  };
+  const dataset_cancelaciones = {
+    data: [0, 0, 0],
+    label: "Cancelaciones",
+    backgroundColor: "#86172C",
+  };
 
   solicitudes.forEach((solicitud) => {
+    if (id_servicios_checked.includes(solicitud.dataValues.id_servicio)) {
+      return;
+    }
+
+    id_servicios_checked.push(solicitud.dataValues.id_servicio);
+
     const fecha_servicio_date = new Date(
       solicitud.dataValues.fecha_inicio +
         "T" +
         solicitud.dataValues.hora_servicio_inicio
     );
+
     const dias_retraso = fecha_servicio_date - solicitud.dataValues.createdAt;
     if (solicitud.dataValues.tipo == "Nuevo") {
       if (dias_retraso > 2) {
@@ -226,12 +255,12 @@ const get_nivel_impuntualidad = async (req, res) => {
   });
 
   const data = {
-    labels: ["1 día", "2 días", "3 o más días"],
+    labels: ["1 día", "1 a 2 días", "3 o más días"],
     datasets: [dataset_nuevos, dataset_cambios, dataset_cancelaciones],
   };
   console.log(data.datasets);
 
-  return res.status(200).send({ data: data });
+  return res.status(200).send(data);
 };
 
 module.exports = {
