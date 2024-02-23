@@ -53,8 +53,8 @@ export default function AddServicio() {
     }
     servicios.forEach((servicio) => {
       if (
-        servicio.programa === "" ||
-        servicio.programa === "Todos" ||
+        servicio.programaPrograma === "" ||
+        servicio.programaPrograma === "Todos" ||
         servicio.no_clase === "" ||
         servicio.no_clase === "Todos" ||
         servicio.salon === "" ||
@@ -177,7 +177,7 @@ export default function AddServicio() {
       ...servicios,
       {
         id: servicios.length,
-        programa: "",
+        programaPrograma: "",
         no_clase: "Todos",
         salon: "",
         dia: "Lunes",
@@ -200,7 +200,7 @@ export default function AddServicio() {
       ...servicios,
       {
         id: servicios.length,
-        programa: servicio_a_duplicar.programa,
+        programaPrograma: servicio_a_duplicar.programaPrograma,
         no_clase: servicio_a_duplicar.no_clase,
         salon: servicio_a_duplicar.salon,
         dia: servicio_a_duplicar.dia,
@@ -315,7 +315,7 @@ export default function AddServicio() {
                     onchange={(programa) => {
                       updateServicio(servicio.id, {
                         ...servicio,
-                        programa: programa,
+                        programaPrograma: programa,
                       });
                       setSeleccionados(
                         seleccionados.filter(
@@ -324,7 +324,7 @@ export default function AddServicio() {
                       );
                     }}
                     options={options_programas}
-                    default_value={servicio.programa}
+                    default_value={servicio.programaPrograma}
                   />
                 </td>
                 <td className="border-r p-2">

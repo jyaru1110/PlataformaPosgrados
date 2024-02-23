@@ -10,7 +10,6 @@ const {
   send_servicios_confirmados,
 } = require("../mail/nodemailerprovider");
 const Semana = require("../models/Semana");
-const { query } = require("express");
 
 const get_servicios_confirmados = async (req, res) => {
   const escuela = req.user.dataValues.escuela;
@@ -379,7 +378,7 @@ const create_servicio = async (req, res) => {
     hora_fin,
     num_servicios,
     salon_id,
-    programa,
+    programaPrograma,
     no_clase,
     dia,
   } = req.body;
@@ -390,7 +389,7 @@ const create_servicio = async (req, res) => {
       hora_fin: hora_fin,
       num_servicios: num_servicios,
       salon_id: salon_id,
-      programa: programa,
+      programaPrograma: programaPrograma,
       no_clase: no_clase,
       dia: dia,
     });
