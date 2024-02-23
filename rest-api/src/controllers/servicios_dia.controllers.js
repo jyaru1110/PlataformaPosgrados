@@ -194,7 +194,9 @@ const confirmar_servicios = async (req, res) => {
         fecha: {
           [Op.between]: [fecha_inicio, fecha_fin],
         },
-        estado: "Pendiente",
+        estado: {
+          [Op.in]: ["Pendiente", "Confirmado"],
+        },
       },
       returning: true,
     }
@@ -635,7 +637,6 @@ const get_servicios_cancelados = async (req, res) => {
     0
   );
 
-
   const total_servicios_confirmados = servicio_confirmados.reduce(
     (acc, servicio) => {
       return acc + parseInt(servicio.dataValues.suma_servicios);
@@ -647,7 +648,7 @@ const get_servicios_cancelados = async (req, res) => {
     datasets: [
       {
         borderWith: 0,
-        borderColor:"transparent",
+        borderColor: "transparent",
         label: "Numero de servicios",
         data: [total_servicios_cancelados, total_servicios_confirmados],
         backgroundColor: ["#86172C", "#227B76"],
