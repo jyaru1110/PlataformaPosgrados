@@ -448,7 +448,7 @@ const update_servicio = async (req, res) => {
           hora_servicio_fin: hora_servicio_fin,
           num_servicios: num_servicios,
           salon_id: salon_id,
-          programa: programa,
+          programaPrograma: programa,
           no_clase: no_clase,
           estado: estado,
         },
