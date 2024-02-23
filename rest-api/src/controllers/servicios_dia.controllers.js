@@ -632,7 +632,7 @@ const get_servicios_cancelados = async (req, res) => {
   );
 
   const data = {
-    labels: ["Cancelados", "Confirmados"],
+    labels: ["Cancelados", "Realizados"],
     datasets: [
       {
         label: "Numero de servicios",
@@ -749,7 +749,7 @@ const get_servicios_aprobados = async (req, res) => {
   );
 
   const data = {
-    labels: ["Sin aprobar", "Aprobados"],
+    labels: ["Sin aprobar", "Aprobados por el coordinador"],
     datasets: [
       {
         label: "Numero de servicios",

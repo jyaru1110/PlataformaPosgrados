@@ -79,7 +79,7 @@ export default function Dashboard() {
       <Fechas></Fechas>
       <div className="w-full flex flex-wrap justify-between p-5 rounded-2xl bg-primarylight shadow-lg">
         <div className="w-80">
-          <p className="text-center font-bold">SERVICIOS CONFIRMADOS</p>
+          <p className="text-center font-bold">SERVICIOS SOLICITADOS</p>
           {loading_impuntuales ? (
             "Cargando..."
           ) : (
@@ -95,7 +95,7 @@ export default function Dashboard() {
           )}
         </div>
         <div className="w-80">
-          <p className="text-center font-bold">SERVICIOS APROBADOS POR EL COORDINADOR</p>
+          <p className="text-center font-bold">SERVICIOS CONFIRMADOS</p>
           {loading_aprobados ? (
             "Cargando..."
           ) : (
@@ -103,7 +103,7 @@ export default function Dashboard() {
           )}
         </div>
         <div className="w-80">
-          <p className="text-center font-bold">SERVICIOS CANCELADOS</p>
+          <p className="text-center font-bold">SERVICIOS SOLICITADOS</p>
           {loading_servicios_cancelados ? (
             "Cargando..."
           ) : (
