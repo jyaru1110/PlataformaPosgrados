@@ -90,11 +90,9 @@ const get_servicios_fecha = async (req, res) => {
   const fecha = req.params.fecha;
   var query = "";
   if (rol == "Gestor") {
-    query =
-      `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" where fecha = '${fecha}' order by hora_inicio asc`;
+    query = `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" where fecha = '${fecha}' order by hora_inicio asc`;
   } else {
-    query =
-      `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" where programa.escuela = '${req.user.dataValues.escuela}' and fecha = '${fecha}' order by hora_inicio asc`;
+    query = `select * from servicios_dia inner join programa on programa.programa = servicios_dia."programaPrograma" where programa.escuela = '${req.user.dataValues.escuela}' and fecha = '${fecha}' order by hora_inicio asc`;
   }
   try {
     const servicios = await sequelize.query(query);
@@ -232,12 +230,10 @@ const get_reporte = async (req, res) => {
   const { fecha_inicio, fecha_fin } = req.body;
   var query = "";
   if (rol == "Gestor") {
-    query =
-      `select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6),'\n') as horario, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia."programaPrograma" WHERE servicios_dia.fecha between 
+    query = `select salon.isla,servicios_dia.fecha,sum(servicios_dia.num_servicios) as NoPersonas,STRING_AGG(num_servicios::varchar || ' ' || salon::varchar, ' \n' ) as Observaciones, STRING_AGG(SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6),'\n') as horario, STRING_AGG(programa.cuenta,'\n') as cuenta from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia."programaPrograma" WHERE servicios_dia.fecha between 
       '${fecha_inicio}' and '${fecha_fin}' and estado = 'Confirmado' group by servicios_dia.fecha,salon.isla order by servicios_dia.fecha asc`;
   } else {
-    query =
-      `select programa.cuenta as cuenta,STRING_AGG(fecha::varchar, ' \n' ) as fechas,STRING_AGG(num_servicios::varchar || ' servicios ' || salon::varchar || ' ' || SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6), '\n' ) as Observaciones, STRING_AGG(SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6),'\n') as horario,sum(servicios_dia.num_servicios) as servicios, '$' || sum(servicios_dia.num_servicios*85) || ' + IVA' as total from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programaPrograma WHERE servicios_dia.fecha between 
+    query = `select programa.cuenta as cuenta,STRING_AGG(fecha::varchar, ' \n' ) as fechas,STRING_AGG(num_servicios::varchar || ' servicios ' || salon::varchar || ' ' || SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6), '\n' ) as Observaciones, STRING_AGG(SUBSTRING(hora_servicio_inicio:: varchar ,0,6) || '-' || SUBSTRING(hora_servicio_fin:: varchar ,0,6),'\n') as horario,sum(servicios_dia.num_servicios) as servicios, '$' || sum(servicios_dia.num_servicios*85) || ' + IVA' as total from servicios_dia inner join salon on salon.salon = servicios_dia.salon_id inner join programa on programa.programa = servicios_dia.programaPrograma WHERE servicios_dia.fecha between 
       '${fecha_inicio}' and '${fecha_fin}' and programa.escuela = '${req.user.dataValues.escuela}' and estado = 'Confirmado' group by programa.cuenta;`;
   }
 
@@ -293,8 +289,7 @@ const get_suma_servicios_dia_isla = async (req, res) => {
       fecha_fin +
       "' group by salon.isla";
   } else {
-    query =
-      `select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia."programaPrograma" where servicios_dia.fecha between 
+    query = `select sum(servicios_dia.num_servicios) as servicios_totales,salon.isla from servicios_dia left join salon on servicios_dia.salon_id =  salon.salon inner join programa on programa.programa = servicios_dia."programaPrograma" where servicios_dia.fecha between 
       '${fecha_inicio}' and '${fecha_fin}' and programa.escuela = '${req.user.dataValues.escuela}' group by salon.isla`;
   }
   try {
@@ -572,6 +567,7 @@ const get_servicios_a_tiempo_destiempo = async (req, res) => {
 
 const get_servicios_cancelados = async (req, res) => {
   const { fecha_inicio, fecha_fin, escuelas } = req.query;
+
   const servicios_cancelados = await Servicios_dia.findAll({
     attributes: [
       [sequelize.fn("SUM", sequelize.col("num_servicios")), "suma_servicios"],
@@ -582,6 +578,19 @@ const get_servicios_cancelados = async (req, res) => {
         [Op.between]: [fecha_inicio, fecha_fin],
       },
     },
+    group: ["servicios_dia.id"],
+    include: [
+      {
+        model: Programa,
+        attributes: [],
+        required: true,
+        where: {
+          escuela: {
+            [Op.in]: escuelas,
+          },
+        },
+      },
+    ],
   });
 
   const servicio_confirmados = await Servicios_dia.findAll({
@@ -594,17 +603,40 @@ const get_servicios_cancelados = async (req, res) => {
         [Op.between]: [fecha_inicio, fecha_fin],
       },
     },
+    group: ["servicios_dia.id"],
+    include: [
+      {
+        model: Programa,
+        attributes: [],
+        required: true,
+        where: {
+          escuela: {
+            [Op.in]: escuelas,
+          },
+        },
+      },
+    ],
   });
+
+  const total_servicios_cancelados = servicios_cancelados.reduce(
+    (acc, servicio) => {
+      return acc + parseInt(servicio.dataValues.suma_servicios);
+    },
+    0
+  );
+  const total_servicios_confirmados = servicio_confirmados.reduce(
+    (acc, servicio) => {
+      return acc + parseInt(servicio.dataValues.suma_servicios);
+    },
+    0
+  );
 
   const data = {
     labels: ["Cancelados", "Confirmados"],
     datasets: [
       {
         label: "Numero de servicios",
-        data: [
-          servicios_cancelados[0].dataValues.suma_servicios,
-          servicio_confirmados[0].dataValues.suma_servicios,
-        ],
+        data: [total_servicios_cancelados, total_servicios_confirmados],
         backgroundColor: ["#86172C", "#227B76"],
         hoverOffset: 4,
       },

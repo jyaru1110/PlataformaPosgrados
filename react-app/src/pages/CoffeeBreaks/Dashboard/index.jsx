@@ -28,10 +28,8 @@ ChartJS.register(
 
 export default function Dashboard() {
   const [escuelas, setEscuelas] = useState([
-    "Ciencias de la Salud",
     "Gobierno y Economía",
     "Bellas Artes",
-    "Humanidades",
     "Derecho",
     "Empresariales",
     "ESDAI",
@@ -39,6 +37,8 @@ export default function Dashboard() {
     "Ingeniería",
     "Comunicación",
     "Pedagogía",
+    "Empresariales Santa Fe",
+    "Educación Continua",
   ]);
 
   const { servicios_impuntuales, loading_impuntuales } =
