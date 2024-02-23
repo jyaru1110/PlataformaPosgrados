@@ -7,7 +7,6 @@ const { Op } = require("sequelize");
 const sequelize = require("../database/database");
 const { send_notificacion } = require("../mail/nodemailerprovider");
 
-
 const get_solicitudes = async (req, res) => {
   const rol = req.user.dataValues.rol;
   const where = rol == "Gestor" ? {} : { escuela: req.user.dataValues.escuela };
@@ -166,9 +165,79 @@ const cancelar_solicitud = async (req, res) => {
   }
 };
 
+const get_nivel_impuntualidad = async (req, res) => {
+  const { fecha_inicio, fecha_fin, escuelas } = req.query;
+  const solicitudes = await Notificaciones.findAll({
+    where: {
+      fecha_inicio: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+      estado: "Aceptada",
+    },
+    include: [
+      {
+        model: Programa,
+        attributes: [],
+        where: {
+          escuela: {
+            [Op.in]: escuelas,
+          },
+        },
+      },
+    ],
+  });
+
+  const dataset_nuevos = { data: [0, 0, 0], label: "Nuevos", backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"] };
+  const dataset_cambios = { data: [0, 0, 0], label: "Cambios", backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]};
+  const dataset_cancelaciones = { data: [0, 0, 0], label: "Cancelaciones", backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]};
+
+  solicitudes.forEach((solicitud) => {
+    const fecha_servicio_date = new Date(
+      solicitud.dataValues.fecha_inicio +
+        "T" +
+        solicitud.dataValues.hora_servicio_inicio
+    );
+    const dias_retraso = fecha_servicio_date - solicitud.dataValues.createdAt;
+    if (solicitud.dataValues.tipo == "Nuevo") {
+      if (dias_retraso > 2) {
+        dataset_nuevos.data[2] += solicitud.dataValues.num_alumnos;
+      } else if (dias_retraso > 1) {
+        dataset_nuevos.data[1] += solicitud.dataValues.num_alumnos;
+      } else {
+        dataset_nuevos.data[0] += solicitud.dataValues.num_alumnos;
+      }
+    } else if (solicitud.dataValues.tipo == "Cambio") {
+      if (dias_retraso > 2) {
+        dataset_cambios.data[2] += solicitud.dataValues.num_alumnos;
+      } else if (dias_retraso > 1) {
+        dataset_cambios.data[1] += solicitud.dataValues.num_alumnos;
+      } else {
+        dataset_cambios.data[0] += solicitud.dataValues.num_alumnos;
+      }
+    } else if (solicitud.dataValues.tipo == "Cancelacion") {
+      if (dias_retraso > 2) {
+        dataset_cancelaciones.data[2] += solicitud.dataValues.num_alumnos;
+      } else if (dias_retraso > 1) {
+        dataset_cancelaciones.data[1] += solicitud.dataValues.num_alumnos;
+      } else {
+        dataset_cancelaciones.data[0] += solicitud.dataValues.num_alumnos;
+      }
+    }
+  });
+
+  const data = {
+    labels: ["1 día", "2 días", "3 o más días"],
+    datasets: [dataset_nuevos, dataset_cambios, dataset_cancelaciones],
+  };
+  console.log(data.datasets);
+
+  return res.status(200).send({ data: data });
+};
+
 module.exports = {
   get_solicitudes,
   aceptar_solicitud,
   rechazar_solicitud,
   cancelar_solicitud,
+  get_nivel_impuntualidad,
 };

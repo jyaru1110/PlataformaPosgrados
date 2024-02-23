@@ -5,6 +5,7 @@ import { useServiciosImpuntuales } from "../../../hooks/useServiciosImpuntuales"
 import { useProgramasServiciosImpuntuales } from "../../../hooks/useProgramasServiciosImpuntuales";
 import { useServiciosAprobados } from "../../../hooks/useServiciosAprobados";
 import { useServiciosCancelados } from "../../../hooks/useServiciosCancelados";
+import { useNivelImpuntualidad } from "../../../hooks/useNivelImpuntualidad";
 import { Pie, Scatter } from "react-chartjs-2";
 import MultiselectPrograma from "./Components/MultiselectProgram";
 import {
@@ -40,6 +41,12 @@ export default function Dashboard() {
     "Empresariales Santa Fe",
     "Educación Continua",
   ]);
+
+  const {data_nivel_impuntualidad, loading_nivel_impuntualidad} = useNivelImpuntualidad({
+    fecha_inicio: "2024-02-12",
+    fecha_fin: "2024-02-17",
+    escuelas: escuelas,
+  });
 
   const { servicios_impuntuales, loading_impuntuales } =
     useServiciosImpuntuales({

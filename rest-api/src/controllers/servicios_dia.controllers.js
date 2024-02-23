@@ -546,8 +546,6 @@ const get_servicios_a_tiempo_destiempo = async (req, res) => {
     0
   );
 
-  console.log(total_servicios, total_servicios_impuntuales);
-
   const data = {
     labels: ["A tiempo", "Destiempo"],
     datasets: [
