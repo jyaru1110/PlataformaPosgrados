@@ -70,7 +70,7 @@ export default function Dashboard() {
     useProgramasServiciosImpuntuales({
       fecha_inicio: "2024-02-12",
       fecha_fin: "2024-02-17",
-      escuelas: escuelas,
+      escuelas:escuelas,
     });
 
   const { servicios_cancelados, loading_servicios_cancelados } =
@@ -79,6 +79,8 @@ export default function Dashboard() {
       fecha_fin: "2024-02-17",
       escuelas: escuelas,
     });
+
+    console.log(servicios_cancelados);
 
   const onChangePrograma = (array) => {
     setEscuelas(array.map((item) => item.label));

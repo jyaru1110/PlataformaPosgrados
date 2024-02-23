@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const get_fetch = async (url, signal, func, body) => {
-  console.log(body)
   await axios
     .get(url,{
       signal: signal,

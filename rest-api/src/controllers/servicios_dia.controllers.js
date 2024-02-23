@@ -634,21 +634,23 @@ const get_servicios_cancelados = async (req, res) => {
     },
     0
   );
+
+
   const total_servicios_confirmados = servicio_confirmados.reduce(
     (acc, servicio) => {
       return acc + parseInt(servicio.dataValues.suma_servicios);
     },
     0
   );
-
   const data = {
     labels: ["Cancelados", "Realizados"],
     datasets: [
       {
+        borderWith: 0,
+        borderColor:"transparent",
         label: "Numero de servicios",
         data: [total_servicios_cancelados, total_servicios_confirmados],
         backgroundColor: ["#86172C", "#227B76"],
-        hoverOffset: 4,
       },
     ],
   };

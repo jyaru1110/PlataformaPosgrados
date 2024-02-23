@@ -1,17 +1,17 @@
 import Select from "react-select";
 export default function MultiselectPrograma({ onChange }) {
   const options = [
-    { value: 1, label: "Educación Continua" },
-    { value: 2, label: "Gobierno y Economía" },
-    { value: 3, label: "Bellas Artes" },
-    { value: 5, label: "Derecho" },
-    { value: 6, label: "Empresariales" },
-    { value: 7, label: "ESDAI" },
-    { value: 8, label: "Filosofía" },
-    { value: 9, label: "Ingeniería" },
-    { value: 10, label: "Comunicación" },
-    { value: 11, label: "Pedagogía" },
-    { value: 12, label: "Empresariales Santa Fe" },
+    { value: "Educación Continua", label: "Educación Continua" },
+    { value: "Gobierno y Economía", label: "Gobierno y Economía" },
+    { value: "Bellas Artes", label: "Bellas Artes" },
+    { value: "Derecho", label: "Derecho" },
+    { value: "Empresariales", label: "Empresariales" },
+    { value: "ESDAI", label: "ESDAI" },
+    { value: "Filosofía", label: "Filosofía" },
+    { value: "Ingeniería", label: "Ingeniería" },
+    { value: "Comunicación", label: "Comunicación" },
+    { value: "Pedagogía", label: "Pedagogía" },
+    { value: "Pedagogía", label: "Empresariales Santa Fe" },
   ];
   return (
     <span className="mt-2 ">
