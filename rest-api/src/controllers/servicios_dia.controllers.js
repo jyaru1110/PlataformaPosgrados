@@ -847,5 +847,5 @@ module.exports = {
   get_servicios_a_tiempo_destiempo,
   get_programas_destiempo,
   get_servicios_cancelados,
-  get_servicios_aprobados,
+  get_servicios_aprobados
 };

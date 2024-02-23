@@ -7,66 +7,6 @@ const { Op } = require("sequelize");
 const sequelize = require("../database/database");
 const { send_notificacion } = require("../mail/nodemailerprovider");
 
-const get_scatter_solicitudes = async (req, res) => {
-  const { fecha_inicio, fecha_fin } = req.params;
-  const solicitudes = await Notificaciones.findAll({
-    attributes: ["fecha_inicio", "createdAt", "estado", "num_alumnos"],
-    where: {
-      createdAt: {
-        [Op.between]: [fecha_inicio, fecha_fin],
-      },
-      tipo: "Nuevo",
-    },
-  });
-  const aceptadas = solicitudes.map((solicitud) => {
-    if (solicitud.dataValues.estado == "Aceptada") {
-      return {
-        x: Math.floor(
-          (new Date(solicitudes[0].dataValues.fecha_inicio) -
-            solicitud.dataValues.createdAt) /
-            (1000 * 60 * 60 * 24)
-        ),
-        y: solicitud.dataValues.num_alumnos,
-      };
-    } else{
-      return{};
-    }
-  });
-
-  const rechazadas = solicitudes.map((solicitud) => {
-    if (solicitud.dataValues.estado == "Rechazada") {
-      return {
-        x: Math.floor(
-          (new Date(solicitudes[0].dataValues.fecha_inicio) -
-            solicitud.dataValues.createdAt) /
-            (1000 * 60 * 60 * 24)
-        ),
-        y: solicitud.dataValues.num_alumnos,
-      };
-    } else{
-      return{};
-    }
-  });
-
-  const dataFinal = {
-    datasets: [
-      {
-        label: "Aceptadas",
-        data: aceptadas,
-        backgroundColor: "green",
-        hoverOffset: 4,
-      },
-      {
-        label: "Rechazadas",
-        data: rechazadas,
-        backgroundColor: "red",
-        hoverOffset: 4,
-      },
-    ],
-  };
-
-  res.status(200).send(dataFinal);
-};
 
 const get_solicitudes = async (req, res) => {
   const rol = req.user.dataValues.rol;
@@ -231,5 +171,4 @@ module.exports = {
   aceptar_solicitud,
   rechazar_solicitud,
   cancelar_solicitud,
-  get_scatter_solicitudes,
 };
