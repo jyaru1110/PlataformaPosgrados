@@ -192,7 +192,7 @@ const create_horario = async (req, res) => {
         salon: salon,
         fecha_inicio: fecha_inicio,
         no_clase: no_clase,
-        programaPrograma: programa,
+        programaPrograma: programaPrograma,
         num_alumnos: num_alumnos,
         hora_servicio_inicio: hora_servicio_inicio,
         hora_servicio_fin: hora_servicio_fin,
