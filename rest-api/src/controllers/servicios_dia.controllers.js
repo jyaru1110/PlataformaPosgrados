@@ -681,6 +681,91 @@ const get_programas_destiempo = async (req, res) => {
   res.status(200).send(data);
 };
 
+const get_servicios_aprobados = async (req, res) => {
+  const { fecha_inicio, fecha_fin, escuelas } = req.query;
+
+  const servicios_confirmados = await Servicios_dia.findAll({
+    attributes: [
+      [sequelize.fn("SUM", sequelize.col("num_servicios")), "suma_servicios"],
+    ],
+    where: {
+      estado: "Confirmado",
+      fecha: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+    },
+    group: ["servicios_dia.id"],
+    include: [
+      {
+        model: Programa,
+        attributes: [],
+        required: true,
+        where: {
+          escuela: {
+            [Op.in]: escuelas,
+          },
+        },
+      },
+    ],
+  });
+
+  const servicios_aprobados = await Servicios_dia.findAll({
+    attributes: [
+      [sequelize.fn("SUM", sequelize.col("num_servicios")), "suma_servicios"],
+    ],
+    where: {
+      estado_coordinador: "Aprobado",
+      fecha: {
+        [Op.between]: [fecha_inicio, fecha_fin],
+      },
+    },
+    group: ["servicios_dia.id"],
+    include: [
+      {
+        model: Programa,
+        attributes: [],
+        required: true,
+        where: {
+          escuela: {
+            [Op.in]: escuelas,
+          },
+        },
+      },
+    ],
+  });
+
+  const total_servicios_confirmados = servicios_confirmados.reduce(
+    (acc, servicio) => {
+      return acc + parseInt(servicio.dataValues.suma_servicios);
+    },
+    0
+  );
+
+  const total_servicios_aprobados = servicios_aprobados.reduce(
+    (acc, servicio) => {
+      return acc + parseInt(servicio.dataValues.suma_servicios);
+    },
+    0
+  );
+
+  const data = {
+    labels: ["Sin aprobar", "Aprobados"],
+    datasets: [
+      {
+        label: "Numero de servicios",
+        data: [
+          total_servicios_confirmados - total_servicios_aprobados,
+          total_servicios_aprobados,
+        ],
+        backgroundColor: ["#C9B608", "#227B76"],
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  res.status(200).send(data);
+};
+
 const delete_servicio = async (req, res) => {
   const id = req.params.id;
   const rol = req.user.dataValues.rol;
@@ -762,4 +847,5 @@ module.exports = {
   get_servicios_a_tiempo_destiempo,
   get_programas_destiempo,
   get_servicios_cancelados,
+  get_servicios_aprobados,
 };

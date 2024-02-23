@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-const {get_servicios_fecha,get_proximo_servicio,get_servicios_todos,get_servicios_isla,get_suma_servicios_dia_isla,create_servicio,update_servicio,delete_servicio,get_servicios_pendientes,get_servicio,cancelar_servicios,confirmar_servicios,get_reporte,get_servicios_confirmados,aprobar_servicios,get_servicios_a_tiempo_destiempo,get_programas_destiempo,get_servicios_cancelados} = require('../controllers/servicios_dia.controllers');
+const {get_servicios_fecha,get_proximo_servicio,get_servicios_todos,get_servicios_isla,get_suma_servicios_dia_isla,create_servicio,update_servicio,delete_servicio,get_servicios_pendientes,get_servicio,cancelar_servicios,confirmar_servicios,get_reporte,get_servicios_confirmados,aprobar_servicios,get_servicios_a_tiempo_destiempo,get_programas_destiempo,get_servicios_cancelados,get_servicios_aprobados} = require('../controllers/servicios_dia.controllers');
 const { isUserAuthenticated } = require('../middlewares/auth');
 
 router.get('/servicios/:fecha',isUserAuthenticated,get_servicios_fecha);
@@ -14,6 +14,7 @@ router.get('/servicios_confirmados',isUserAuthenticated,get_servicios_confirmado
 router.get('/servicios_a_tiempo_destiempo',isUserAuthenticated,get_servicios_a_tiempo_destiempo);
 router.get('/programas_servicios_destiempo',isUserAuthenticated,get_programas_destiempo);
 router.get('/servicios_cancelados',isUserAuthenticated,get_servicios_cancelados);
+router.get('/servicios_aprobados',isUserAuthenticated,get_servicios_aprobados);
 
 router.patch('/reporte',isUserAuthenticated,get_reporte);
 router.patch('/aprobar',isUserAuthenticated,aprobar_servicios);

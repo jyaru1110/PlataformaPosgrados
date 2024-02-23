@@ -3,7 +3,7 @@ import Fechas from "../../../components/form/Fechas";
 import { useState, useEffect } from "react";
 import { useServiciosImpuntuales } from "../../../hooks/useServiciosImpuntuales";
 import { useProgramasServiciosImpuntuales } from "../../../hooks/useProgramasServiciosImpuntuales";
-import { useSolicitudesScatter } from "../../../hooks/useSolicitudesScatter";
+import { useServiciosAprobados } from "../../../hooks/useServiciosAprobados";
 import { useServiciosCancelados } from "../../../hooks/useServiciosCancelados";
 import { Pie, Scatter } from "react-chartjs-2";
 import MultiselectPrograma from "./Components/MultiselectProgram";
@@ -48,6 +48,12 @@ export default function Dashboard() {
       escuelas: escuelas,
     });
 
+  const { servicios_aprobados, loading_aprobados } = useServiciosAprobados({
+    fecha_inicio: "2024-02-12",
+    fecha_fin: "2024-02-17",
+    escuelas: escuelas,
+  });
+
   const { programas_impuntuales, loading_programas_impuntuales } =
     useProgramasServiciosImpuntuales({
       fecha_inicio: "2024-02-12",
@@ -81,11 +87,19 @@ export default function Dashboard() {
           )}
         </div>
         <div className="w-80">
-          <p className="text-center font-bold">NUEVOS SERVICIOS SOLICITADOS</p>
+          <p className="text-center font-bold">SERVICIOS IMPUNTUALES</p>
           {loading_programas_impuntuales ? (
             "Cargando..."
           ) : (
             <Pie data={programas_impuntuales} />
+          )}
+        </div>
+        <div className="w-80">
+          <p className="text-center font-bold">SERVICIOS APROBADOS POR EL COORDINADOR</p>
+          {loading_aprobados ? (
+            "Cargando..."
+          ) : (
+            <Pie data={servicios_aprobados} />
           )}
         </div>
         <div className="w-80">
