@@ -79,38 +79,6 @@ export default function AddServicio() {
         return;
       }
       if (
-        servicio.salon.substring(0, 2) === "SF" &&
-        servicio.dia !== "Sábado" &&
-        (parseInt(servicio.hora_servicio_inicio.substring(0, 2)) > 22 ||
-          parseInt(servicio.hora_servicio_inicio.substring(0, 2)) < 17 ||
-          parseInt(servicio.hora_servicio_fin.substring(0, 2)) > 22 ||
-          parseInt(servicio.hora_servicio_fin.substring(0, 2)) < 17)
-      ) {
-        seleccionados.includes(servicio.id)
-          ? null
-          : setSeleccionados([...seleccionados, servicio.id]);
-        toast.error("La isla Santa fe solo esta disponible de 17:00 a 22:00");
-        setIsLoading(false);
-        return;
-      }
-      if (
-        servicio.salon.substring(0, 2) !== "SF" &&
-        servicio.dia !== "Sábado" &&
-        (parseInt(servicio.hora_servicio_inicio.substring(0, 2)) > 22 ||
-          parseInt(servicio.hora_servicio_inicio.substring(0, 2)) < 17 ||
-          parseInt(servicio.hora_servicio_fin.substring(0, 2)) > 22 ||
-          parseInt(servicio.hora_servicio_fin.substring(0, 2)) < 17)
-      ) {
-        seleccionados.includes(servicio.id)
-          ? null
-          : setSeleccionados([...seleccionados, servicio.id]);
-        toast.error(
-          "Las islas en Mixcoac solo esta disponible de 17:00 a 22:00"
-        );
-        setIsLoading(false);
-        return;
-      }
-      if (
         servicio.dia === "Sábado" &&
         (parseInt(servicio.hora_servicio_inicio.substring(0, 2)) > 12 ||
           parseInt(servicio.hora_servicio_inicio.substring(0, 2)) < 10 ||
