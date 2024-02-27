@@ -16,7 +16,7 @@ export default function MultiselectPrograma({ onChange }) {
   return (
     <span className="mt-2 ">
       <label className="ml-1 font-poppins text-sm font-thin">
-        Selecciona un programa o programas
+        Selecciona una escuela o escuelas
       </label>
       <Select
         defaultValue={options}
