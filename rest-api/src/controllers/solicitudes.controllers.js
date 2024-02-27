@@ -218,8 +218,6 @@ const get_nivel_impuntualidad = async (req, res) => {
       return;
     }
 
-    id_servicios_checked.push(solicitud.dataValues.id_servicio);
-
     const fecha_servicio_date = new Date(
       solicitud.dataValues.fecha_inicio +
         "T" +
@@ -244,6 +242,7 @@ const get_nivel_impuntualidad = async (req, res) => {
         dataset_cambios.data[0] += solicitud.dataValues.num_alumnos;
       }
     } else if (solicitud.dataValues.tipo == "Cancelacion") {
+      id_servicios_checked.push(solicitud.dataValues.id_servicio);
       if (dias_retraso > 2) {
         dataset_cancelaciones.data[2] += solicitud.dataValues.num_alumnos;
       } else if (dias_retraso > 1) {
@@ -258,7 +257,6 @@ const get_nivel_impuntualidad = async (req, res) => {
     labels: ["1 día", "1 a 2 días", "3 o más días"],
     datasets: [dataset_nuevos, dataset_cambios, dataset_cancelaciones],
   };
-  console.log(data.datasets);
 
   return res.status(200).send(data);
 };
