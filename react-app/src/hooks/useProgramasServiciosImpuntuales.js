@@ -19,7 +19,7 @@ export const useProgramasServiciosImpuntuales = (props) => {
     const signal = abortController.signal;
     get_fetch(url, signal, after_fetch, props);
     return () => abortController.abort();
-  }, [props.fecha_inicio, props.fecha_fin, props.escuelas]);
+  }, [props.fecha_inicio, props.fecha_fin]);
 
   return { programas_impuntuales: data, loading_programas_impuntuales: loading };
 };

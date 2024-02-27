@@ -497,6 +497,9 @@ const update_servicio = async (req, res) => {
 
 const get_servicios_a_tiempo_destiempo = async (req, res) => {
   const { fecha_inicio, fecha_fin, escuelas } = req.query;
+  if (!escuelas || escuelas.length == 0) {
+    return res.status(500).send({ message: "Falta la escuela" });
+  }
 
   const servicios = await Servicios_dia.findAll({
     attributes: [
@@ -580,6 +583,10 @@ const get_servicios_a_tiempo_destiempo = async (req, res) => {
 const get_servicios_cancelados = async (req, res) => {
   const { fecha_inicio, fecha_fin, escuelas } = req.query;
 
+  if (!escuelas || escuelas.length == 0) {
+    return res.status(500).send({ message: "Falta la escuela" });
+  }
+
   const servicios_cancelados = await Servicios_dia.findAll({
     attributes: [
       [sequelize.fn("SUM", sequelize.col("num_servicios")), "suma_servicios"],
@@ -660,7 +667,7 @@ const get_servicios_cancelados = async (req, res) => {
 };
 
 const get_programas_destiempo = async (req, res) => {
-  const { fecha_inicio, fecha_fin, escuelas } = req.query;
+  const { fecha_inicio, fecha_fin } = req.query;
   const query = `select programa.escuela, sum(num_alumnos) as suma_servicios from notificaciones inner join programa on programa.programa = notificaciones."programaPrograma" where notificaciones.tipo = 'Nuevo' and notificaciones.fecha_inicio between '${fecha_inicio}' and '${fecha_fin}' and estado = 'Aceptada' group by programa.escuela`;
   const programas_servicios = await sequelize.query(query);
 
@@ -696,6 +703,10 @@ const get_programas_destiempo = async (req, res) => {
 
 const get_servicios_aprobados = async (req, res) => {
   const { fecha_inicio, fecha_fin, escuelas } = req.query;
+
+  if (!escuelas || escuelas.length == 0) {
+    return res.status(500).send({ message: "Falta la escuela" });
+  }
 
   const servicios_confirmados = await Servicios_dia.findAll({
     attributes: [

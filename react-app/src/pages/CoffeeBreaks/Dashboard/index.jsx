@@ -21,6 +21,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 ChartJS.register(
   LinearScale,
@@ -77,39 +79,45 @@ export default function Dashboard() {
       : [localStorage.getItem("escuela")]
   );
 
-  const { data_nivel_impuntualidad, loading_nivel_impuntualidad } =
-    useNivelImpuntualidad({
-      fecha_inicio: fecha_inicio,
-      fecha_fin: fecha_fin,
-      escuelas: escuelas,
-    });
+  const {
+    data_nivel_impuntualidad,
+    loading_nivel_impuntualidad,
+    error_nivel_impuntualidad,
+  } = useNivelImpuntualidad({
+    fecha_inicio: fecha_inicio,
+    fecha_fin: fecha_fin,
+    escuelas: escuelas,
+  });
 
-  const { servicios_impuntuales, loading_impuntuales } =
+  const { servicios_impuntuales, loading_impuntuales, error_impuntuales } =
     useServiciosImpuntuales({
       fecha_inicio: fecha_inicio,
       fecha_fin: fecha_fin,
       escuelas: escuelas,
     });
 
-  const { servicios_aprobados, loading_aprobados } = useServiciosAprobados({
-    fecha_inicio: fecha_inicio,
-    fecha_fin: fecha_fin,
-    escuelas: escuelas,
-  });
+  const { servicios_aprobados, loading_aprobados, error_aprobados } =
+    useServiciosAprobados({
+      fecha_inicio: fecha_inicio,
+      fecha_fin: fecha_fin,
+      escuelas: escuelas,
+    });
 
   const { programas_impuntuales, loading_programas_impuntuales } =
     useProgramasServiciosImpuntuales({
       fecha_inicio: fecha_inicio,
       fecha_fin: fecha_fin,
-      escuelas: escuelas,
     });
 
-  const { servicios_cancelados, loading_servicios_cancelados } =
-    useServiciosCancelados({
-      fecha_inicio: fecha_inicio,
-      fecha_fin: fecha_fin,
-      escuelas: escuelas,
-    });
+  const {
+    servicios_cancelados,
+    loading_servicios_cancelados,
+    error_servicios_cancelados,
+  } = useServiciosCancelados({
+    fecha_inicio: fecha_inicio,
+    fecha_fin: fecha_fin,
+    escuelas: escuelas,
+  });
 
   const onChangePrograma = (array) => {
     setEscuelas(array.map((item) => item.label));
@@ -134,7 +142,7 @@ export default function Dashboard() {
         <div className="w-full flex flex-wrap justify-between p-5 rounded-2xl bg-primarylight shadow-lg">
           <div className="w-80">
             <p className="text-center font-bold">SERVICIOS SOLICITADOS</p>
-            {loading_impuntuales ? (
+            {loading_impuntuales || error_impuntuales ? (
               "Cargando..."
             ) : (
               <Pie data={servicios_impuntuales} />
@@ -142,7 +150,7 @@ export default function Dashboard() {
           </div>
           <div className="w-80">
             <p className="text-center font-bold">SERVICIOS CONFIRMADOS</p>
-            {loading_aprobados ? (
+            {loading_aprobados || error_aprobados ? (
               "Cargando..."
             ) : (
               <Pie data={servicios_aprobados} />
@@ -150,14 +158,14 @@ export default function Dashboard() {
           </div>
           <div className="w-80">
             <p className="text-center font-bold">SERVICIOS SOLICITADOS</p>
-            {loading_servicios_cancelados ? (
+            {loading_servicios_cancelados || error_servicios_cancelados ? (
               "Cargando..."
             ) : (
               <Pie data={servicios_cancelados} />
             )}
           </div>
         </div>
-        {loading_nivel_impuntualidad ? (
+        {loading_nivel_impuntualidad || error_nivel_impuntualidad ? (
           "Cargando..."
         ) : (
           <div className="w-full p-7">
@@ -227,6 +235,7 @@ export default function Dashboard() {
           <Bar data={data_nivel_impuntualidad} options={options_bar} />
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }

@@ -1,15 +1,22 @@
 import { useState, useEffect } from "react";
 import { get_fetch } from "./get_fetch";
+import { toast } from "react-toastify";
 
 const url_backend = import.meta.env.VITE_URL_API;
 
 export const useNivelImpuntualidad = (props) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const after_fetch = (data) => {
     setData(data);
     setLoading(false);
+  };
+
+  const onError = () => {
+    setError(true);
+    toast.error("Error al cargar nivel de impuntualidad");
   };
 
   useEffect(() => {
@@ -17,9 +24,13 @@ export const useNivelImpuntualidad = (props) => {
     let url = `${url_backend}/nivel_impuntualidad`;
     const abortController = new AbortController();
     const signal = abortController.signal;
-    get_fetch(url, signal, after_fetch, props);
+    get_fetch(url, signal, after_fetch, props, onError);
     return () => abortController.abort();
   }, [props.fecha_inicio, props.fecha_fin, props.escuelas]);
 
-  return { data_nivel_impuntualidad: data, loading_nivel_impuntualidad: loading };
+  return {
+    data_nivel_impuntualidad: data,
+    loading_nivel_impuntualidad: loading,
+    error_nivel_impuntualidad: error,
+  };
 };

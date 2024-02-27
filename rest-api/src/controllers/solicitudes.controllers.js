@@ -167,6 +167,10 @@ const cancelar_solicitud = async (req, res) => {
 
 const get_nivel_impuntualidad = async (req, res) => {
   const { fecha_inicio, fecha_fin, escuelas } = req.query;
+  if (!escuelas || escuelas.length == 0) {
+    return res.status(500).send({ message: "Falta la escuela" });
+  }
+
   const solicitudes = await Notificaciones.findAll({
     attributes: [
       "num_alumnos",
@@ -182,6 +186,7 @@ const get_nivel_impuntualidad = async (req, res) => {
       },
       estado: "Aceptada",
     },
+    order: [["createdAt", "DESC"]],
     include: [
       {
         model: Programa,
@@ -234,6 +239,7 @@ const get_nivel_impuntualidad = async (req, res) => {
         dataset_nuevos.data[0] += solicitud.dataValues.num_alumnos;
       }
     } else if (solicitud.dataValues.tipo == "Cambio") {
+      id_servicios_checked.push(solicitud.dataValues.id_servicio);
       if (dias_retraso > 2) {
         dataset_cambios.data[2] += solicitud.dataValues.num_alumnos;
       } else if (dias_retraso > 1) {
