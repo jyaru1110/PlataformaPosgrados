@@ -14,10 +14,10 @@ export const useServiciosAprobados = (props) => {
     setLoading(false);
   };
 
-  const onError = () => {
+  const onError = (err) => {
     setError(true);
-    toast.error("Error al cargar servicios aprobados");
-  }
+    toast.error(err.response.data.message);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -28,5 +28,9 @@ export const useServiciosAprobados = (props) => {
     return () => abortController.abort();
   }, [props.fecha_inicio, props.fecha_fin, props.escuelas]);
 
-  return { servicios_aprobados: data, loading_aprobados: loading, error_aprobados: error};
+  return {
+    servicios_aprobados: data,
+    loading_aprobados: loading,
+    error_aprobados: error,
+  };
 };

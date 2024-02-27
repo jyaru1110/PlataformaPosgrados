@@ -14,9 +14,9 @@ export const useServiciosImpuntuales = (props) => {
     setLoading(false);
   };
 
-  const onError = () => {
+  const onError = (err) => {
+    toast.error(err.response.data.message);
     setError(true);
-    toast.error("Error al cargar servicios impuntuales");
   };
 
   useEffect(() => {

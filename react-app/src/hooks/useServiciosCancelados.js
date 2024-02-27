@@ -14,10 +14,10 @@ export const useServiciosCancelados = (props) => {
     setLoading(false);
   };
 
-  const onError = () => {
+  const onError = (err) => {
+    toast.error(err.response.data.message);
     setError(true);
-    toast.error("Error al cargar servicios cancelados");
-  }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -26,7 +26,11 @@ export const useServiciosCancelados = (props) => {
     const signal = abortController.signal;
     get_fetch(url, signal, after_fetch, props, onError);
     return () => abortController.abort();
-  }, [props.fecha_inicio, props.fecha_fin,props.escuelas]);
+  }, [props.fecha_inicio, props.fecha_fin, props.escuelas]);
 
-  return { servicios_cancelados: data, loading_servicios_cancelados: loading, error_servicios_cancelados: error};
+  return {
+    servicios_cancelados: data,
+    loading_servicios_cancelados: loading,
+    error_servicios_cancelados: error,
+  };
 };

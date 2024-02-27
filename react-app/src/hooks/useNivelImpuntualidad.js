@@ -14,9 +14,9 @@ export const useNivelImpuntualidad = (props) => {
     setLoading(false);
   };
 
-  const onError = () => {
+  const onError = (err) => {
     setError(true);
-    toast.error("Error al cargar nivel de impuntualidad");
+    toast.error(err.response.data.message);
   };
 
   useEffect(() => {
