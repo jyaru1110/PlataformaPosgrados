@@ -35,7 +35,7 @@ export default function Servicio() {
   useEffect(() => {
     if (servicio) {
       if (programa === "") {
-        setPrograma(servicio.programa);
+        setPrograma(servicio.programaPrograma);
       }
       if (clase === "") {
         setClase(servicio.no_clase);
