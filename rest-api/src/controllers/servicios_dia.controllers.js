@@ -820,7 +820,7 @@ const delete_servicio = async (req, res) => {
       id_servicio: id,
       tipo: "Cancelacion",
       salon: servicio.salon_id,
-      programaPrograma: servicio.programa,
+      programaPrograma: servicio.programaPrograma,
       fecha_inicio: servicio.fecha,
       fecha_fin: servicio.fecha,
       hora_inicio: servicio.hora_inicio,
