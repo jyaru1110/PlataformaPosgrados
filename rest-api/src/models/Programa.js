@@ -84,6 +84,18 @@ const Programa = sequelize.define(
     rvoe: {
       type: DataTypes.STRING,
     },
+    creditos: {
+      type: DataTypes.STRING,
+    },
+    year_inicio: {
+      type: DataTypes.STRING,
+    },
+    num_materias: {
+      type: DataTypes.STRING,
+    },
+    num_materias_ingles: {
+      type: DataTypes.STRING,
+    },
   },
   {
     // Opciones del modelo
