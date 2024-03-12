@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 var sequelize = require('../database/database');
 
-const CostosPrograma = sequelize.define('clase', {
+const CostosPrograma = sequelize.define('costos_programa', {
     // Atributos del modelo
     year: {
         type: DataTypes.STRING,
