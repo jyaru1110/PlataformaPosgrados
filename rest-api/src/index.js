@@ -20,10 +20,17 @@ const Actividad = require("./models/Actividad");
 const Proceso = require("./models/Proceso");
 const ActividadProceso = require("./models/ActividadProceso");
 const EtapaProceso = require("./models/EtapaProceso");
+const CostosPrograma = require("./models/CostosPrograma");
 
 var port = process.env.PORT || 3900;
 
 //relaciones de las tablas
+
+//programas y costos
+Programa.hasMany(CostosPrograma);
+CostosPrograma.belongsTo(Programa, {
+  foreignKey: "programaPrograma",
+});
 
 //programas con servicios_dia
 Programa.hasMany(Servicios_dia);
@@ -73,6 +80,7 @@ Programa.belongsToMany(Usuario, {
 //inicio de la aplicacion
 async function init() {
   try {
+    //await sequelize.sync({ alter: false });
     await sequelize.authenticate();
     console.log("Conexión a la base de datos establecida correctamente.");
     console.log("All models were synchronized successfully.");
