@@ -4,10 +4,9 @@ var app = require("./app");
 var sequelize = require("./database/database");
 const Clase = require("./models/Clase");
 const Programa = require("./models/Programa");
-const Puesto_programa = require("./models/Puesto_programa");
-const Persona = require("./models/Persona");
+const PuestoPrograma = require("./models/PuestoPrograma");
 const Escuela = require("./models/Escuela");
-const Puesto_escuela = require("./models/Puesto_escuela");
+const PuestoEscuela = require("./models/PuestoEscuela");
 const Horario = require("./models/Horario");
 const receso = require("./models/receso");
 const Salon = require("./models/Salon");
@@ -26,11 +25,37 @@ var port = process.env.PORT || 3900;
 
 //relaciones de las tablas
 
+//puestos programa
+Programa.belongsToMany(Usuario, {
+  through: PuestoPrograma,
+  timestamps: false,
+});
+Usuario.belongsToMany(Programa, {
+  through: PuestoPrograma,
+  timestamps: false,
+});
+Programa.hasMany(PuestoPrograma);
+PuestoPrograma.belongsTo(Programa);
+Usuario.hasMany(PuestoPrograma);
+PuestoPrograma.belongsTo(Usuario);
+
+//puestos escuela
+Escuela.belongsToMany(Usuario, {
+  through: PuestoEscuela,
+  timestamps: false,
+});
+Usuario.belongsToMany(Escuela, {
+  through: PuestoEscuela,
+  timestamps: false,
+});
+Escuela.hasMany(PuestoEscuela);
+PuestoEscuela.belongsTo(Escuela);
+Usuario.hasMany(PuestoEscuela);
+PuestoEscuela.belongsTo(Usuario);
+
 //programas y costos
 Programa.hasMany(CostosPrograma);
-CostosPrograma.belongsTo(Programa, {
-  foreignKey: "programaPrograma",
-});
+CostosPrograma.belongsTo(Programa);
 
 //programas con servicios_dia
 Programa.hasMany(Servicios_dia);
