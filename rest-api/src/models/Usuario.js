@@ -49,6 +49,9 @@ const Usuario = sequelize.define(
     titulo: {
       type: DataTypes.STRING,
     },
+    foto: {
+      type: DataTypes.STRING,
+    },
   },
   {
     timestamps: false,
