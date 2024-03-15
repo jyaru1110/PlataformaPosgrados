@@ -84,6 +84,9 @@ const Programa = sequelize.define(
     rvoe: {
       type: DataTypes.STRING,
     },
+    fecha_rvoe: {
+      type: DataTypes.DATE,
+    },
     creditos: {
       type: DataTypes.STRING,
     },

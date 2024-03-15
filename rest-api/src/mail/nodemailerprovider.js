@@ -84,7 +84,7 @@ const send_servicios_confirmados = async (email, semana, servicios) => {
             '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
             servicio.dataValues.salon_id +
             '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
-            servicio.dataValues.programa +
+            servicio.dataValues.programaPrograma +
             '</td><td style="border-right: 1px solid;border-bottom:1px solid;border-color: #E1E3E8; padding:8px;">' +
             servicio.dataValues.num_servicios +
             "</td></tr>"
