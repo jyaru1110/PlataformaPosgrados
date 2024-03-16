@@ -33,11 +33,9 @@ AperturasCierres.belongsTo(Programa);
 //puestos programa
 Programa.belongsToMany(Usuario, {
   through: PuestoPrograma,
-  timestamps: false,
 });
 Usuario.belongsToMany(Programa, {
   through: PuestoPrograma,
-  timestamps: false,
 });
 Programa.hasMany(PuestoPrograma);
 PuestoPrograma.belongsTo(Programa);
@@ -47,11 +45,9 @@ PuestoPrograma.belongsTo(Usuario);
 //puestos escuela
 Escuela.belongsToMany(Usuario, {
   through: PuestoEscuela,
-  timestamps: false,
 });
 Usuario.belongsToMany(Escuela, {
   through: PuestoEscuela,
-  timestamps: false,
 });
 Escuela.hasMany(PuestoEscuela);
 PuestoEscuela.belongsTo(Escuela);

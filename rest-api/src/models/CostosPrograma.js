@@ -5,7 +5,6 @@ const CostosPrograma = sequelize.define('costos_programa', {
     // Atributos del modelo
     year: {
         type: DataTypes.STRING,
-        primaryKey: true,
         allowNull: false
     },
     num_mensualidades: {
@@ -13,10 +12,6 @@ const CostosPrograma = sequelize.define('costos_programa', {
         allowNull: true,
     },
     monto_mensual: {
-        type: DataTypes.FLOAT,
-        allowNull: true,
-    },
-    costo_credito: {
         type: DataTypes.FLOAT,
         allowNull: true,
     },
