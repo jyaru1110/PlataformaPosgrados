@@ -5,6 +5,12 @@ const PuestoPrograma = sequelize.define(
   "puesto_programa",
   {
     // Atributos del modelo
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+    },
     puesto: {
       type: DataTypes.STRING,
       allowNull: false,
