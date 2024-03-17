@@ -1,10 +1,38 @@
-import { useParams } from "react-router-dom";
+import Header from "../../components/Header";
+import Main from "../../components/Main";
+import Table from "../../components/Table";
+import { useProgramas } from "../../../../hooks/useProgramas";
+
+const headers = [
+  "Escuela",
+  "Grado",
+  "Programa",
+  "Código",
+  "Sede",
+  "Tipo",
+  "Modalidad",
+  "Duración",
+  "Créditos",
+  "# materias",
+  "# materias ingles",
+  "rvoe",
+  "fecha",
+];
 
 export default function Programas() {
-  const { id } = useParams();
+  const { loading, programas } = useProgramas("Todos");
+  const data_array = programas.map((programa) => Object.values(programa));
   return (
-    <div>
-      <h1>Programas {id}</h1>
+    <div className="w-full  flex flex-col">
+      <Header title="Programas" />
+      <Main>
+        <Table
+          headers={headers}
+          data={data_array}
+          loading={loading}
+          route={"/micrositio/programa/"}
+        />
+      </Main>
     </div>
   );
 }

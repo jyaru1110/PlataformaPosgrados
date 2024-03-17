@@ -1,6 +1,6 @@
-import { usePrograma } from "../../../../hooks/usePrograma";
+import { useProgramasOpciones } from "../../../../hooks/useProgramas";
 export default function ProgramaInput(props) {
-  const programas = usePrograma("Todos");
+  const {programas} = useProgramasOpciones("Todos");
   const { register,nombre } = props;
 
   return (

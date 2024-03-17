@@ -3,7 +3,7 @@ import InputClase from "./components/InputClase";
 import SelectSalon from "./components/SelectSalon";
 import { useState } from "react";
 import SelectPrograma from "./components/SelectPrograma";
-import { usePrograma } from "../../../hooks/usePrograma";
+import { useProgramasOpciones } from "../../../hooks/useProgramas";
 import { useSalones } from "../../../hooks/useSalones";
 import { salones_to_correct_format } from "../../../utils/salones_to_correct_format";
 import { useClases } from "../../../hooks/useClases";
@@ -40,7 +40,7 @@ export default function AddServicio() {
   const salones = useSalones();
   const options_salones = salones_to_correct_format(salones);
 
-  const options_programas = usePrograma(rol == "Gestor" ? "Todos" : escuela);
+  const {programas} = useProgramasOpciones(rol == "Gestor" ? "Todos" : escuela);
 
   const send_servicios = () => {
     setIsLoading(true);
@@ -291,7 +291,7 @@ export default function AddServicio() {
                         )
                       );
                     }}
-                    options={options_programas}
+                    options={programas}
                     default_value={servicio.programaPrograma}
                   />
                 </td>

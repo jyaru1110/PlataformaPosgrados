@@ -1,10 +1,10 @@
 import Dropdown from "./Dropdown";
-import { usePrograma } from "../../hooks/usePrograma";
+import { useProgramasOpciones } from "../../hooks/useProgramas";
 
 export default function DropdownProgramas(props) {
   const rol = localStorage.getItem('rol');
   const escuela = localStorage.getItem('escuela');
-  const options = usePrograma(rol=='Gestor'?props.escuela:escuela);
+  const {programas} = useProgramasOpciones(rol=='Gestor'?props.escuela:escuela);
   const label = 'Selecciona un programa';
   const value = props.value||'';
   const disabled = props.disabled||false;
@@ -14,6 +14,6 @@ export default function DropdownProgramas(props) {
   };
 
   return (
-    <Dropdown options={options} label={label} child_to_parent = {child_to_parent} value={value} disabled={disabled}/>
+    <Dropdown options={programas} label={label} child_to_parent = {child_to_parent} value={value} disabled={disabled}/>
   );
 }
