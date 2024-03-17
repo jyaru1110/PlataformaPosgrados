@@ -45,8 +45,31 @@ const update_programa = async (req, res) => {
   }
 };
 
+const get_programas_todos = async (req, res) => {
+  const programas = await Programa.findAll({
+    attributes: [
+      "escuela",
+      "grado",
+      "programa",
+      "codigo",
+      "campus",
+      "tipo",
+      "modalidad",
+      "duracion",
+      "creditos",
+      "year_inicio",
+      "num_materias",
+      "num_materias_ingles",
+      "rvoe",
+      "fecha_rvoe",
+    ],
+  });
+  res.status(200).send(programas);
+};
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
   update_programa,
+  get_programas_todos,
 };

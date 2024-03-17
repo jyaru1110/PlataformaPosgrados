@@ -13,6 +13,7 @@ const headers = [
   "Modalidad",
   "Duración",
   "Créditos",
+  "Año de inicio",
   "# materias",
   "# materias ingles",
   "rvoe",
