@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SkeletonTable from "./SkeletonTable";
 
-export default function Table({ headers, data, route, loading }) {
+export default function Table({ headers, children, loading }) {
   return (
     <div className="w-full py-1 px-2 bg-white rounded-xl border border-grayborder">
       {loading ? (
@@ -21,18 +21,7 @@ export default function Table({ headers, data, route, loading }) {
             </tr>
           </thead>
           <tbody className="">
-            {data.map((row, index) => (
-              <tr
-                className="border-b border-grayborder hover:bg-grayborder"
-                key={index}
-              >
-                {row.map((cell, index) => (
-                  <td className="px-2 py-1" key={index}>
-                    <Link to={route + row[0]}>{cell}</Link>
-                  </td>
-                ))}
-              </tr>
-            ))}
+            {children}
           </tbody>
         </table>
       )}
