@@ -19,9 +19,9 @@ export const useProgramasOpciones = (escuela) => {
         setLoading(true);
         var url;
         if(escuela === 'Todos')
-            url = url_backend+"/programas";
+            url = url_backend+"/programas_opciones";
         else
-            url = url_backend+"/programas/"+escuela;
+            url = url_backend+"/programas_opciones/"+escuela;
         await get_fetch(url,signal,after_fetch)
         return () => controller.abort();
     }

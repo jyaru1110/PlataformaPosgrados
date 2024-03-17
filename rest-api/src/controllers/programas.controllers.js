@@ -12,7 +12,7 @@ const get_programas_escuela = async (req, res) => {
   res.status(200).send({ programas: programas });
 };
 
-const get_programas_todos = async (req, res) => {
+const get_programas_opciones = async (req, res) => {
   const programas = await Programa.findAll({ order: [["programa", "ASC"]] });
   programas.unshift({ programa: "Todos" });
   res.status(200).send({ programas: programas });
@@ -47,6 +47,6 @@ const update_programa = async (req, res) => {
 
 module.exports = {
   get_programas_escuela,
-  get_programas_todos,
+  get_programas_opciones,
   update_programa,
 };
