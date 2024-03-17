@@ -61,12 +61,13 @@ router.get("/user/all", async (req, res) => {
             'extension',
             'birthday',
             'telefono',
-            'foto'
+            'foto',
+            'id_universidad_panamericana'
         ]
     });
-    res.status(200).send({ users: users });
+    res.status(200).send(users);
   } catch (error) {
-    res.status(500).send({ error: error });
+    res.status(500).send(error);
   }
 });
 
