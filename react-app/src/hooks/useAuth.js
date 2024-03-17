@@ -11,6 +11,7 @@ export const getAuth = async (setLoading) => {
     localStorage.setItem("escuela", res.escuela);
     localStorage.setItem("email", res.email);
     localStorage.setItem("area", res.area);
+    localStorage.setItem("foto", res.foto);
     setLoading(false);
   });
 };

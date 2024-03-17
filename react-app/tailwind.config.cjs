@@ -30,7 +30,9 @@ module.exports = {
           1:"#32547D",
           2:"#7B222E",
           3:"#5F227B"
-        }
+        },
+        grayborder:"#EAEFF2",
+        graybg:"#F9FAFB",
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif'],

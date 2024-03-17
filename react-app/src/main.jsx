@@ -15,6 +15,9 @@ import HomeSeguimiento from "./pages/SeguimientoPosgrados/HomeSeguimiento";
 import Confirmados from "./pages/CoffeeBreaks/Confirmados";
 import EtapasProceso from "./pages/SeguimientoPosgrados/EtapasProceso";
 import Dashboard from "./pages/CoffeeBreaks/Dashboard";
+import Micrositio from "./pages/Micrositio";
+import Programas from "./pages/Micrositio/Admin/Programas";
+import Personas from "./pages/Micrositio/Admin/Personas";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -80,6 +83,20 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: <Dashboard />,
   },
+  {
+    path:"/micrositio",
+    element: <Micrositio />,
+    children: [
+      {
+        path: "admin/programas/:programa",
+        element: <Programas />,
+      },
+      {
+        path: "admin/personas/:id",
+        element: <Personas />,
+      }
+    ],
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
