@@ -5,16 +5,16 @@ export default function Header({ title, children }) {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   return (
-    <header className="w-full py-4 px-8 border border-grayborder flex items-end">
+    <header className="w-full py-4 px-8 border border-grayborder flex items-end sticky">
       <button
         onClick={() => {
           navigate(-1);
         }}
       >
         <svg
-          width="28"
-          height="28"
-          viewBox="0 0 26 26"
+          width="32"
+          height="32"
+          viewBox="0 0 30 30"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -32,12 +32,19 @@ export default function Header({ title, children }) {
           {location
             .substring(1)
             .split("/")
-            .map((route,index) => {
-            return <span key={index}> <Link to={secciones[route].ruta}>{route}</Link> / </span>;
+            .map((route, index) => {
+              return (
+                <span key={index}>
+                  {" "}
+                  <Link to={secciones[route].ruta}>{route}</Link> /{" "}
+                </span>
+              );
             })}
         </span>
-        <h1 className="font-bold text-3xl leading-none">{title}</h1>
-        {children}
+        <div className="flex w-full justify-start space-x-5">
+          <h1 className="font-bold text-3xl leading-none">{title}</h1>
+          {children}
+        </div>
       </div>
       <img
         className="rounded-full"

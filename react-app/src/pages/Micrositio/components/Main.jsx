@@ -1,6 +1,6 @@
 export default function Main({ children }) {
   return (
-    <main className="flex-1 p-8 bg-graybg">
+    <main className="p-8 bg-graybg flex-1 overflow-auto">
       {children}
     </main>
   );

@@ -32,3 +32,27 @@ export const useProgramasOpciones = (escuela) => {
 
     return {programas, loading};
 }
+
+export const useProgramas = () => {
+    const [programas, setProgramas] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const after_fetch = (data) => {
+        setLoading(false);
+        setProgramas(data);
+    }
+
+    const get_programas = async () => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        setLoading(true);
+        await get_fetch(url_backend+"/programas/",signal,after_fetch)
+        return () => controller.abort();
+    }
+
+    useEffect(() => {
+        get_programas();
+    }, []);
+
+    return {programas, loading};
+}

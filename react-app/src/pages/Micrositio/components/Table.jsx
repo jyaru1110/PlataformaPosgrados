@@ -6,8 +6,8 @@ export default function Table({ headers, data, route, loading }) {
       {loading ? (
         <p>cargando</p>
       ) : (
-        <table className="w-full text-sm overflow-x-auto">
-          <thead className="">
+        <table className="w-full text-sm">
+          <thead className="sticky top-0 bg-white">
             <tr className="text-left border-b border-grayborder">
               {headers.map((header, index) => (
                 <th
@@ -21,7 +21,7 @@ export default function Table({ headers, data, route, loading }) {
           </thead>
           <tbody className="">
             {data.map((row, index) => (
-              <tr className="border-b border-grayborder" key={index}>
+              <tr className="border-b border-grayborder hover:bg-grayborder" key={index}>
                 {row.map((cell, index) => (
                   <td className="px-2 py-1" key={index}>
                     <Link to={route + row[0]}>{cell}</Link>

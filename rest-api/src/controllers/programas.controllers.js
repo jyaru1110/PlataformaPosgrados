@@ -48,9 +48,9 @@ const update_programa = async (req, res) => {
 const get_programas_todos = async (req, res) => {
   const programas = await Programa.findAll({
     attributes: [
-      "escuela",
-      "grado",
       "programa",
+      "grado",
+      "escuela",
       "codigo",
       "campus",
       "tipo",
