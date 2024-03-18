@@ -83,6 +83,9 @@ const get_programa = async (req, res) => {
       },
     ],
   });
+  if (!programa_info) {
+    return res.status(404).send({ message: "Programa no encontrado" });
+  }
   res.status(200).send(programa_info);
 };
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import {get_fetch}  from './get_fetch';
 import {programas_to_correct_format} from '../utils/programas_to_correct_format';
+import { set } from 'react-hook-form';
 
 const url_backend  = import.meta.env.VITE_URL_API;
 
@@ -60,17 +61,24 @@ export const useProgramas = () => {
 export const usePrograma = (programa) => {
     const [programaData, setProgramaData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState();
+
 
     const after_fetch = (data) => {
         setLoading(false);
         setProgramaData(data);
     }
 
+    const error_func = (err) => {
+        setLoading(false);
+        setError(err);
+    }
+
     const get_programa = async () => {
         const controller = new AbortController();
         const signal = controller.signal;
         setLoading(true);
-        await get_fetch(url_backend+"/programa/"+programa,signal,after_fetch)
+        await get_fetch(url_backend+"/programa/"+programa,signal,after_fetch,{},error_func)
         return () => controller.abort();
     }
 
@@ -78,5 +86,5 @@ export const usePrograma = (programa) => {
         get_programa();
     }, [programa]);
 
-    return {programaData, loading};
+    return {programaData, loading, error};
 }
