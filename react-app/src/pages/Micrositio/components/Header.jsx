@@ -32,6 +32,7 @@ export default function Header({ title, children }) {
           {location
             .substring(1)
             .split("/")
+            .slice(0, -1)
             .map((route, index) => {
               return (
                 <span key={index}>
