@@ -94,11 +94,26 @@ router.get("/user/:id", async (req, res) => {
       ],
     });
     if (!user) {
-      return res.status(404).send({message:"No se encontró al usuario"});
+      return res.status(404).send({ message: "No se encontró al usuario" });
     }
     res.status(200).send(user);
   } catch (error) {
     res.status(500).send(error);
+  }
+});
+
+router.patch("/user/:id", async (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  try {
+    const user = await Usuario.update(body, {
+      where: {
+        id: id,
+      },
+    });
+    res.status(200).send({ message: "Usuario actualizado" });
+  } catch (error) {
+    res.status(500).send({ message: "Error al actualizar el usuario" });
   }
 });
 
