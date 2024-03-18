@@ -2,25 +2,30 @@ import Header from "../../../components/Header";
 import Main from "../../../components/Main";
 import Form from "../../../components/Form";
 import { useForm } from "react-hook-form";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function NewPrograma() {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const refSubmit = useRef(null);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    /*await axios
+    await axios
       .post(`${import.meta.env.VITE_URL_API}/programa`, data, {
         withCredentials: true,
       })
       .then((res) => {
+        navigate(`/micrositio/admin/programas/${res.data.programa}`);
         console.log(res.data);
       })
       .catch((err) => {
-        console.log(err.response.data);
-      });*/
+        toast.error(err.response.data.message);
+      });
   };
 
   return (
@@ -54,7 +59,7 @@ export default function NewPrograma() {
           <p className="font-bold">Código</p>
           <input {...register("codigo")}></input>
           <p className="font-bold">Escuela</p>
-          <input {...register("codigo")}></input>
+          <input {...register("escuela")}></input>
           <p className="font-bold">Grado</p>
           <input {...register("grado")}></input>
           <p className="font-bold">Duración</p>
@@ -69,11 +74,10 @@ export default function NewPrograma() {
           <input {...register("num_materias_ingles")}></input>
           <p className="font-bold">RVOE</p>
           <input {...register("rvoe")}></input>
-          <p className="font-bold">Fecha RVOE</p>
-          <input type="date" {...register("fecha_rvoe")}></input>
           <button className="invisible" type="submit" ref={refSubmit}></button>
         </Form>
       </Main>
+      <ToastContainer />
     </div>
   );
 }
