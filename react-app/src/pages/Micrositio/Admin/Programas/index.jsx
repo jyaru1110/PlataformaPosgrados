@@ -28,7 +28,7 @@ export default function Programas() {
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Programas">
         <Link
-          to="/microsito/admin/programas/new"
+          to="/micrositio/admin/programas/new"
           className="bg-primary text-center flex items-center text-white rounded-lg px-3"
         >
           Nuevo
