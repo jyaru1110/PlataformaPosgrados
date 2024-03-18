@@ -102,7 +102,6 @@ export default function Persona() {
               <p className="font-bold">Cumpleaños</p>
               <input
                 {...register("birthday")}
-                type="date"
                 defaultValue={persona.birthday}
               ></input>
               <p className="font-bold">Celular</p>
