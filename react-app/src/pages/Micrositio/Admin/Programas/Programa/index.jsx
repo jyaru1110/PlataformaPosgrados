@@ -208,7 +208,7 @@ export default function Programa() {
                     className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
                     key={index}
                   >
-                    <td className="px-2 py-1 underline text-emerald-800"><Link to={`/micrositio/admin/personas/${puesto.usuarioId}`}>{puesto.usuario.nombre}</Link></td>
+                    <td className="px-2 py-1 underline text-emerald-800 flex items-center space-x-2"><img height={20} width={20} className="rounded-full" src={puesto.usuario?.foto}></img><Link to={`/micrositio/admin/personas/${puesto.usuarioId}`}>{puesto.usuario.nombre}</Link></td>
                     <td className="px-2 py-1">{puesto.puesto}</td>
                   </tr>
                 );

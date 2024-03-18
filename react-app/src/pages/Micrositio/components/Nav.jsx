@@ -21,12 +21,11 @@ export default function Nav() {
         <p>Programas</p>
       </Link>
       <Link className="w-full flex text-xl items-center space-x-5 mt-3" to="/micrositio/admin/personas">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 8.33334C11.841 8.33334 13.3334 6.84095 13.3334 5.00001C13.3334 3.15906 11.841 1.66667 10 1.66667C8.15907 1.66667 6.66669 3.15906 6.66669 5.00001C6.66669 6.84095 8.15907 8.33334 10 8.33334Z" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-<path d="M17.5 18.3333C17.5 14.1912 14.1421 10.8333 10 10.8333C5.85787 10.8333 2.5 14.1912 2.5 18.3333" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-</svg>
-
-      <p>Personas</p>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 8.33334C11.841 8.33334 13.3334 6.84095 13.3334 5.00001C13.3334 3.15906 11.841 1.66667 10 1.66667C8.15907 1.66667 6.66669 3.15906 6.66669 5.00001C6.66669 6.84095 8.15907 8.33334 10 8.33334Z" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M17.5 18.3333C17.5 14.1912 14.1421 10.8333 10 10.8333C5.85787 10.8333 2.5 14.1912 2.5 18.3333" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <p>Personas</p>
       </Link>
     </nav>
   );

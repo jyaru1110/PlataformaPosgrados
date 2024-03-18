@@ -89,7 +89,7 @@ const get_programa = async (req, res) => {
         include: [
           {
             model: Usuario,
-            attributes: ["nombre"],
+            attributes: ["nombre","foto"],
             required: false,
           },
         ],
