@@ -117,4 +117,15 @@ router.patch("/user/:id", async (req, res) => {
   }
 });
 
+router.post("/user", async (req, res) => {
+  const body = req.body;
+  try {
+    const user = await Usuario.create(body);
+    res.status(200).send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al crear el usuario" });
+  }
+})
+
 module.exports = router;

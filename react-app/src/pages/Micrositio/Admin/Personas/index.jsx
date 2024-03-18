@@ -22,7 +22,7 @@ export default function Personas() {
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Personas">
         <Link
-          to="/microsito/programa/new"
+          to="/micrositio/admin/personas/new"
           className="bg-primary text-center flex items-center text-white rounded-lg px-3"
         >
           Nuevo

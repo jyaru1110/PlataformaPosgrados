@@ -8,18 +8,18 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function NewPrograma() {
+export default function NewPersona() {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const refSubmit = useRef(null);
 
   const onSubmit = async (data) => {
     await axios
-      .post(`${import.meta.env.VITE_URL_API}/programa`, data, {
+      .post(`${import.meta.env.VITE_URL_API}/user`, data, {
         withCredentials: true,
       })
       .then((res) => {
-        navigate(`/micrositio/admin/programas/${res.data.programa}`);
+        navigate(`/micrositio/admin/personas/${res.data.id}`);
         console.log(res.data);
       })
       .catch((err) => {
@@ -29,7 +29,7 @@ export default function NewPrograma() {
 
   return (
     <div className="w-full flex flex-col relative h-screen">
-      <Header title="Nuevo programa">
+      <Header title="Nueva persona">
         <button
           onClick={() => {
             refSubmit.current.click();
@@ -51,28 +51,24 @@ export default function NewPrograma() {
       </Header>
       <Main>
         <Form
-          register={register("programa")}
+          register={register("nombre")}
           onSubmit={handleSubmit(onSubmit)}
-          title="Nuevo programa"
+          title="Nueva persona"
         >
-          <p className="font-bold">Código</p>
-          <input {...register("codigo")}></input>
+          <p className="font-bold">Titulo</p>
+          <input {...register("titutlo")}></input>
           <p className="font-bold">Escuela</p>
           <input {...register("escuela")}></input>
-          <p className="font-bold">Grado</p>
-          <input {...register("grado")}></input>
-          <p className="font-bold">Duración</p>
-          <input {...register("duracion")}></input>
-          <p className="font-bold">Créditos</p>
-          <input {...register("creditos")}></input>
-          <p className="font-bold">Año inicio</p>
-          <input {...register("year_inicio")}></input>
-          <p className="font-bold"># Materias</p>
-          <input {...register("num_materias")}></input>
-          <p className="font-bold"># Materias en inglés</p>
-          <input {...register("num_materias_ingles")}></input>
-          <p className="font-bold">RVOE</p>
-          <input {...register("rvoe")}></input>
+          <p className="font-bold">Correo</p>
+          <input {...register("email")}></input>
+          <p className="font-bold">ID</p>
+          <input {...register("id_universidad_panamericana")}></input>
+          <p className="font-bold">Extensión</p>
+          <input {...register("extension")}></input>
+          <p className="font-bold">Cumpleaños</p>
+          <input {...register("birthday")}></input>
+          <p className="font-bold">Celular</p>
+          <input {...register("telefono")}></input>
           <button className="invisible" type="submit" ref={refSubmit}></button>
         </Form>
       </Main>
