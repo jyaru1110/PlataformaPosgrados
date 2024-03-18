@@ -39,7 +39,7 @@ export default function Personas() {
               className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
               key={index}
               onClick={() => {
-                navigate(`/micrositio/persona/${persona.id}`);
+                navigate(`/micrositio/admin/personas/${persona.id}`);
               }}
             >
               <td className="px-2 py-1">{persona.titulo}</td>

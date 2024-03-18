@@ -18,6 +18,7 @@ import Dashboard from "./pages/CoffeeBreaks/Dashboard";
 import Micrositio from "./pages/Micrositio";
 import Programas from "./pages/Micrositio/Admin/Programas";
 import Personas from "./pages/Micrositio/Admin/Personas";
+import Persona from "./pages/Micrositio/Admin/Personas/Persona";
 import Programa from "./pages/Micrositio/Admin/Programas/Programa";
 import NewPrograma from "./pages/Micrositio/Admin/Programas/New";
 
@@ -110,6 +111,10 @@ const router = createBrowserRouter([
         path: "admin/programas/:programa",
         element: <Programa />,
       },
+      {
+        path: "admin/personas/:id",
+        element: <Persona />,
+      }
     ],
   },
 ]);
