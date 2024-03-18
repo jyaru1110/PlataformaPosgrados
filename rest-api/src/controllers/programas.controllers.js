@@ -89,10 +89,23 @@ const get_programa = async (req, res) => {
   res.status(200).send(programa_info);
 };
 
+const update_programa = async (req, res) => {
+  const body = req.body;
+  const { programa } = req.params;
+  try {
+    await Programa.update(body, { where: { programa: programa } });
+    res.status(200).send({ message: "Programa actualizado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al actualizar el programa" });
+  }
+};
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
   update_programa_proceso,
   get_programas_todos,
   get_programa,
+  update_programa,
 };

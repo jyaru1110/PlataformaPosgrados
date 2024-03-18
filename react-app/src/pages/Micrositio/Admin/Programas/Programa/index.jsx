@@ -5,20 +5,39 @@ import { useParams } from "react-router-dom";
 import { usePrograma } from "../../../../../hooks/useProgramas";
 import Table from "../../../components/Table";
 import Error from "../../../components/Error";
+import { useForm } from "react-hook-form";
+import {useRef, useEffect} from "react";
+
+const headers_costos = [
+  "Año",
+  "Mensualidades",
+  "Monto mensual",
+  "Costo crédito",
+  "Inscripción",
+  "Programa",
+  "Total",
+];
 
 export default function Programa() {
   const { programa } = useParams();
   const { loading, programaData, error } = usePrograma(programa);
-  console.log(error);
-  const headers_costos = [
-    "Año",
-    "Mensualidades",
-    "Monto mensual",
-    "Costo crédito",
-    "Inscripción",
-    "Programa",
-    "Total",
-  ];
+  const refSubmit = useRef(null);
+  const {
+    register,
+    handleSubmit,
+    reset
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  }
+
+  useEffect(() => {
+    if (programaData) {
+      reset(programaData);
+    }
+  }, [programaData]);
+  
   return (
     <div className="w-full flex flex-col relative h-screen">
       {error ? (
@@ -26,7 +45,7 @@ export default function Programa() {
       ) : (
         <>
           <Header title={programa}>
-            <button>
+            <button onClick={()=>{refSubmit.current.click()}}>
               <svg
                 width="24"
                 height="19"
@@ -42,27 +61,28 @@ export default function Programa() {
             </button>
           </Header>
           <Main>
-            <Form title={programa}>
+            <Form title={programa} register={register('programa')} onSubmit={handleSubmit(onSubmit)}>
               <p className="font-bold">Código</p>
-              <input defaultValue={programaData.codigo}></input>
+              <input {...register('codigo')} defaultValue={programaData.codigo}></input>
               <p className="font-bold">Escuela</p>
-              <input defaultValue={programaData.escuela}></input>
+              <input {...register('escuela')} defaultValue={programaData.escuela}></input>
               <p className="font-bold">Grado</p>
-              <input defaultValue={programaData.grado}></input>
+              <input {...register('grado')} defaultValue={programaData.grado}></input>
               <p className="font-bold">Duración</p>
-              <input defaultValue={programaData.duracion}></input>
+              <input {...register('duracion')} defaultValue={programaData.duracion}></input>
               <p className="font-bold">Créditos</p>
-              <input defaultValue={programaData.creditos}></input>
+              <input {...register('creditos')} defaultValue={programaData.creditos}></input>
               <p className="font-bold">Año inicio</p>
-              <input defaultValue={programaData.year_inicio}></input>
+              <input {...register('year_inicio')} defaultValue={programaData.year_inicio}></input>
               <p className="font-bold"># Materias</p>
-              <input defaultValue={programaData.num_materias}></input>
+              <input {...register('num_materias')} defaultValue={programaData.num_materias}></input>
               <p className="font-bold"># Materias en inglés</p>
-              <input defaultValue={programaData.num_materias_ingles}></input>
+              <input {...register('num_materias_ingles')} defaultValue={programaData.num_materias_ingles}></input>
               <p className="font-bold">RVOE</p>
-              <input defaultValue={programaData.rvoe}></input>
+              <input {...register('rvoe')} defaultValue={programaData.rvoe}></input>
               <p className="font-bold">Fecha RVOE</p>
-              <input type="date" defaultValue={programaData.fecha_rvoe}></input>
+              <input type="date" {...register('fecha_rvoe')} defaultValue={programaData.fecha_rvoe}></input>
+              <button className="invisible" type="submit" ref={refSubmit}></button>
             </Form>
             <h2 className="text-xl font-bold my-5 ml-1">Costos</h2>
             <Table headers={headers_costos} loading={loading}>
