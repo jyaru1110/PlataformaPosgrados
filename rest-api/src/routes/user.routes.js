@@ -2,6 +2,8 @@ const express = require("express");
 const { isUserAuthenticated } = require("../middlewares/auth");
 const router = express.Router();
 const Usuario = require("../models/Usuario");
+const PuestoPrograma = require("../models/PuestoPrograma");
+const PuestoEscuela = require("../models/PuestoEscuela");
 
 router.get("/user/auth", isUserAuthenticated, (req, res) => {
   if (req.user) {
@@ -78,6 +80,18 @@ router.get("/user/:id", async (req, res) => {
       where: {
         id: id,
       },
+      include: [
+        {
+          model: PuestoPrograma,
+          required: false,
+          as: "puesto_programas",
+        },
+        {
+          model: PuestoEscuela,
+          required: false,
+          as: "puesto_escuelas",
+        },
+      ],
     });
     res.status(200).send(user);
   } catch (error) {
