@@ -10,6 +10,7 @@ import { useRef, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const headers_costos = [
   "Año",
@@ -28,7 +29,6 @@ export default function Programa() {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
-    //console.log(data);
     await axios
       .patch(`${import.meta.env.VITE_URL_API}/programa/${programa}`, data, {
         withCredentials: true,
@@ -44,7 +44,11 @@ export default function Programa() {
   useEffect(() => {
     if (programaData) {
       const programa_reset = Object.keys(programaData).reduce((acc, key) => {
-        if (key === "costos_programas" || key === "aperturas_cierres") {
+        if (
+          key === "costos_programas" ||
+          key === "aperturas_cierres" ||
+          key === "puesto_programas"
+        ) {
           return acc;
         }
         return { ...acc, [key]: programaData[key] };
@@ -192,6 +196,20 @@ export default function Programa() {
                       {apertura.fecha_fin.substring(0, 10)}
                     </td>
                     <td className="px-2 py-1">{apertura.term}</td>
+                  </tr>
+                );
+              })}
+            </Table>
+            <h2 className="text-xl font-bold my-5 ml-1">Puestos</h2>
+            <Table headers={["Persona", "Puesto"]} loading={loading}>
+              {programaData.puesto_programas?.map((puesto, index) => {
+                return (
+                  <tr
+                    className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
+                    key={index}
+                  >
+                    <td className="px-2 py-1 underline text-emerald-800"><Link to={`/micrositio/admin/personas/${puesto.usuarioId}`}>{puesto.usuario.nombre}</Link></td>
+                    <td className="px-2 py-1">{puesto.puesto}</td>
                   </tr>
                 );
               })}

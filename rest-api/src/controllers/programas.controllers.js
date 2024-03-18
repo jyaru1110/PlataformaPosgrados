@@ -2,6 +2,8 @@ const Programa = require("../models/Programa");
 const Proceso = require("../models/Proceso");
 const CostosPrograma = require("../models/CostosPrograma");
 const AperturasCierres = require("../models/AperturasCierres");
+const PuestoPrograma = require("../models/PuestoPrograma");
+const Usuario = require("../models/Usuario");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -81,6 +83,17 @@ const get_programa = async (req, res) => {
         model: AperturasCierres,
         required: false,
       },
+      {
+        model: PuestoPrograma,
+        required: false,
+        include: [
+          {
+            model: Usuario,
+            attributes: ["nombre"],
+            required: false,
+          },
+        ],
+      },
     ],
   });
   if (!programa_info) {
@@ -110,7 +123,7 @@ const create_programa = async (req, res) => {
     console.log(error);
     res.status(500).send({ message: "Error al crear el programa" });
   }
-}
+};
 
 module.exports = {
   get_programas_escuela,
@@ -119,5 +132,5 @@ module.exports = {
   get_programas_todos,
   get_programa,
   update_programa,
-  create_programa
+  create_programa,
 };
