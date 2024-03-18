@@ -2,8 +2,21 @@ import Main from "../../../components/Main";
 import Header from "../../../components/Header";
 import Form from "../../../components/Form";
 import { useParams } from "react-router-dom";
+import { usePrograma } from "../../../../../hooks/useProgramas";
+import Table from "../../../components/Table";
+
 export default function Programa() {
   const { programa } = useParams();
+  const { loading, programaData } = usePrograma(programa);
+  const headers_costos = [
+    "Año",
+    "Mensualidades",
+    "Monto",
+    "Costo crédito",
+    "Inscripción",
+    "Programa",
+    "Total",
+  ];
   return (
     <div className="w-full flex flex-col relative h-screen">
       <Header title={programa}>
@@ -25,26 +38,60 @@ export default function Programa() {
       <Main>
         <Form title={programa}>
           <p className="font-bold">Código</p>
-          <input defaultValue={"hola"}></input>
+          <input defaultValue={programaData.codigo}></input>
           <p className="font-bold">Escuela</p>
-          <input defaultValue={"hola"}></input>
+          <input defaultValue={programaData.escuela}></input>
           <p className="font-bold">Grado</p>
-          <input defaultValue={"hola"}></input>
+          <input defaultValue={programaData.grado}></input>
           <p className="font-bold">Duración</p>
-          <input defaultValue={"hola"}></input>
+          <input defaultValue={programaData.duracion}></input>
           <p className="font-bold">Créditos</p>
-          <input defaultValue={"hola"}></input>
+          <input defaultValue={programaData.creditos}></input>
           <p className="font-bold">Año inicio</p>
-          <input defaultValue={"hola"}></input>
+          <input defaultValue={programaData.year_inicio}></input>
           <p className="font-bold"># Materias</p>
-          <input defaultValue={"hola"}></input>
+          <input defaultValue={programaData.num_materias}></input>
           <p className="font-bold"># Materias en inglés</p>
-          <input defaultValue={"hola"}></input>
+          <input defaultValue={programaData.num_materias_ingles}></input>
           <p className="font-bold">RVOE</p>
-          <input defaultValue={"hola"}></input>
+          <input defaultValue={programaData.rvoe}></input>
           <p className="font-bold">Fecha RVOE</p>
-          <input defaultValue={"hola"}></input>
+          <input type="date" defaultValue={programaData.fecha_rvoe}></input>
         </Form>
+        <h2 className="text-xl font-bold my-5 ml-1">Costos</h2>
+        <Table headers={headers_costos} loading={loading}>
+          {programaData.costos_programas?.map((costo, index) => {
+            return (
+              <tr
+                className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
+                key={index}
+              >
+                <td className="px-2 py-1">{costo.year}</td>
+                <td className="px-2 py-1">{costo.num_mensualidades}</td>
+                <td className="px-2 py-1">${costo.monto_mensual}</td>
+                <td className="px-2 py-1">{programaData.creditos?"$"+(costo.num_mensualidades*costo.monto_mensual+costo.costo_inscripcion)/programaData.creditos:'NA'}</td>
+                <td className="px-2 py-1">${costo.costo_inscripcion}</td>
+                <td className="px-2 py-1">${costo.num_mensualidades*costo.monto_mensual}</td>
+                <td className="px-2 py-1">${costo.num_mensualidades*costo.monto_mensual+costo.costo_inscripcion}</td>
+              </tr>
+            );
+          })}
+        </Table>
+        <h2 className="text-xl font-bold my-5 ml-1">Aperturas y cierres</h2>
+        <Table headers={["Fecha inicio", "Fecha fin", "Term"]} loading={loading}>
+          {programaData.aperturas_cierres?.map((apertura, index) => {
+            return (
+              <tr
+                className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
+                key={index}
+              >
+                <td className="px-2 py-1">{apertura.fecha_inicio.substring(0,10)}</td>
+                <td className="px-2 py-1">{apertura.fecha_fin.substring(0,10)}</td>
+                <td className="px-2 py-1">{apertura.term}</td>
+              </tr>
+            );
+          })}
+        </Table>
       </Main>
     </div>
   );

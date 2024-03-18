@@ -56,3 +56,27 @@ export const useProgramas = () => {
 
     return {programas, loading};
 }
+
+export const usePrograma = (programa) => {
+    const [programaData, setProgramaData] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    const after_fetch = (data) => {
+        setLoading(false);
+        setProgramaData(data);
+    }
+
+    const get_programa = async () => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        setLoading(true);
+        await get_fetch(url_backend+"/programa/"+programa,signal,after_fetch)
+        return () => controller.abort();
+    }
+
+    useEffect(() => {
+        get_programa();
+    }, [programa]);
+
+    return {programaData, loading};
+}

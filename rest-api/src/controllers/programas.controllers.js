@@ -1,5 +1,7 @@
 const Programa = require("../models/Programa");
 const Proceso = require("../models/Proceso");
+const CostosPrograma = require("../models/CostosPrograma");
+const AperturasCierres = require("../models/AperturasCierres");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -67,16 +69,27 @@ const get_programas_todos = async (req, res) => {
   res.status(200).send(programas);
 };
 
-const get_programa =  async (req, res) => {
+const get_programa = async (req, res) => {
   const { programa } = req.params;
-  const programa_info = await Programa.findByPk(programa);
+  const programa_info = await Programa.findByPk(programa, {
+    include: [
+      {
+        model: CostosPrograma,
+        required: false,
+      },
+      {
+        model: AperturasCierres,
+        required: false,
+      },
+    ],
+  });
   res.status(200).send(programa_info);
-}
+};
 
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
   update_programa_proceso,
   get_programas_todos,
-  get_programa
+  get_programa,
 };
