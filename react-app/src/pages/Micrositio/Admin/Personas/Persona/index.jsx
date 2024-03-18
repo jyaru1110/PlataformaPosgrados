@@ -2,7 +2,7 @@ import Main from "../../../components/Main";
 import Header from "../../../components/Header";
 import Form from "../../../components/Form";
 import { useParams } from "react-router-dom";
-import { usePrograma } from "../../../../../hooks/useProgramas";
+import { usePersona } from "../../../../../hooks/usePersonas";
 import Table from "../../../components/Table";
 import Error from "../../../components/Error";
 import { useForm } from "react-hook-form";
@@ -19,7 +19,7 @@ export default function Persona() {
 
   const onSubmit = async (data) => {
     await axios
-      .patch(`${import.meta.env.VITE_URL_API}/user/${programa}`, data, {
+      .patch(`${import.meta.env.VITE_URL_API}/user/${id}`, data, {
         withCredentials: true,
       })
       .then((res) => {
@@ -70,7 +70,7 @@ export default function Persona() {
           </Header>
           <Main>
             <Form
-              title={programa}
+              title={persona.nombre}
               register={register("nombre")}
               onSubmit={handleSubmit(onSubmit)}
             >

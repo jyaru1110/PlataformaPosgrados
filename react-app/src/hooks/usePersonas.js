@@ -26,3 +26,33 @@ export const usePersonas = () => {
 
     return {personas, loading};
 }
+
+export const usePersona = (id) => {
+    const [persona, setPersona] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const after_fetch = (data) => {
+        setLoading(false);
+        setPersona(data);
+    }
+
+    const onError = (error) => {
+        setLoading(false);
+        setError(error);
+    }
+
+    const get_persona = async () => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        setLoading(true);
+        await get_fetch(url_backend+"/user/"+id,signal,after_fetch,{},onError)
+        return () => controller.abort();
+    }
+
+    useEffect(() => {
+        get_persona();
+    }, []);
+
+    return {persona, loading, error};
+}
