@@ -1,9 +1,9 @@
-import Main from "../../../components/Main";
-import Header from "../../../components/Header";
-import Form from "../../../components/Form";
+import Main from "../../components/Main";
+import Header from "../../components/Header";
+import Form from "../../components/Form";
 import { useParams } from "react-router-dom";
-import { usePrograma } from "../../../../../hooks/useProgramas";
-import Table from "../../../components/Table";
+import { usePrograma } from "../../../../hooks/useProgramas";
+import Table from "../../components/Table";
 
 export default function Programa() {
   const { programa } = useParams();
@@ -11,7 +11,7 @@ export default function Programa() {
   const headers_costos = [
     "Año",
     "Mensualidades",
-    "Monto",
+    "Monto mensual",
     "Costo crédito",
     "Inscripción",
     "Programa",
@@ -63,7 +63,7 @@ export default function Programa() {
           {programaData.costos_programas?.map((costo, index) => {
             return (
               <tr
-                className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
+                className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
                 key={index}
               >
                 <td className="px-2 py-1">{costo.year}</td>
@@ -82,7 +82,7 @@ export default function Programa() {
           {programaData.aperturas_cierres?.map((apertura, index) => {
             return (
               <tr
-                className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
+                className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
                 key={index}
               >
                 <td className="px-2 py-1">{apertura.fecha_inicio.substring(0,10)}</td>

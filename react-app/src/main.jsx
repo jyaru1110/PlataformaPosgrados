@@ -18,7 +18,7 @@ import Dashboard from "./pages/CoffeeBreaks/Dashboard";
 import Micrositio from "./pages/Micrositio";
 import Programas from "./pages/Micrositio/Admin/Programas";
 import Personas from "./pages/Micrositio/Admin/Personas";
-import Programa from "./pages/Micrositio/Admin/Programas/Programa";
+import Programa from "./pages/Micrositio/Admin/Programa";
 
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
