@@ -101,6 +101,17 @@ const update_programa = async (req, res) => {
   }
 };
 
+const create_programa = async (req, res) => {
+  const { body } = req;
+  try {
+    const programa = await Programa.create(body);
+    res.status(200).send(programa);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al crear el programa" });
+  }
+}
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -108,4 +119,5 @@ module.exports = {
   get_programas_todos,
   get_programa,
   update_programa,
+  create_programa
 };

@@ -1,12 +1,36 @@
 import Header from "../../../components/Header";
 import Main from "../../../components/Main";
 import Form from "../../../components/Form";
+import { useForm } from "react-hook-form";
+import { useRef, useEffect } from "react";
+import axios from "axios";
 
 export default function NewPrograma() {
+  const { register, handleSubmit } = useForm();
+  const refSubmit = useRef(null);
+
+  const onSubmit = (data) => {
+    console.log(data);
+    /*await axios
+      .post(`${import.meta.env.VITE_URL_API}/programa`, data, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });*/
+  };
+
   return (
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Nuevo programa">
-        <button>
+        <button
+          onClick={() => {
+            refSubmit.current.click();
+          }}
+        >
           <svg
             width="24"
             height="19"
@@ -22,27 +46,32 @@ export default function NewPrograma() {
         </button>
       </Header>
       <Main>
-        <Form title="Nuevo programa">
+        <Form
+          register={register("programa")}
+          onSubmit={handleSubmit(onSubmit)}
+          title="Nuevo programa"
+        >
           <p className="font-bold">Código</p>
-          <input></input>
+          <input {...register("codigo")}></input>
           <p className="font-bold">Escuela</p>
-          <input></input>
+          <input {...register("codigo")}></input>
           <p className="font-bold">Grado</p>
-          <input></input>
+          <input {...register("grado")}></input>
           <p className="font-bold">Duración</p>
-          <input></input>
+          <input {...register("duracion")}></input>
           <p className="font-bold">Créditos</p>
-          <input></input>
+          <input {...register("creditos")}></input>
           <p className="font-bold">Año inicio</p>
-          <input></input>
+          <input {...register("year_inicio")}></input>
           <p className="font-bold"># Materias</p>
-          <input></input>
+          <input {...register("num_materias")}></input>
           <p className="font-bold"># Materias en inglés</p>
-          <input></input>
+          <input {...register("num_materias_ingles")}></input>
           <p className="font-bold">RVOE</p>
-          <input></input>
+          <input {...register("rvoe")}></input>
           <p className="font-bold">Fecha RVOE</p>
-          <input type="date"></input>
+          <input type="date" {...register("fecha_rvoe")}></input>
+          <button className="invisible" type="submit" ref={refSubmit}></button>
         </Form>
       </Main>
     </div>
