@@ -41,7 +41,7 @@ export default function SideTab(props) {
       axios
         .patch(
           import.meta.env.VITE_URL_API +
-            "/programas/" +
+            "/programa_proceso/" +
             props.proceso?.programa.programa,
           data,
           { withCredentials: true }

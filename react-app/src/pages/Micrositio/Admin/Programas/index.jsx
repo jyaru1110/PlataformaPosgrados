@@ -28,7 +28,7 @@ export default function Programas() {
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Programas">
         <Link
-          to="/microsito/programa/new"
+          to="/microsito/admin/programas/new"
           className="bg-primary text-center flex items-center text-white rounded-lg px-3"
         >
           Nuevo
@@ -45,7 +45,7 @@ export default function Programas() {
               className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
               key={index}
               onClick={() => {
-                navigate(`/micrositio/programa/${programa.programa}`);
+                navigate(`/micrositio/admin/programas/${programa.programa}`);
               }}
             >
               <td className="px-2 py-1">{programa.escuela}</td>

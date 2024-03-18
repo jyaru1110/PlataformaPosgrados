@@ -36,7 +36,7 @@ export default function Header({ title, children }) {
               return (
                 <span key={index}>
                   {" "}
-                  <Link to={secciones[route].ruta}>{route}</Link> /{" "}
+                  <Link to={secciones[route]?.ruta}>{secciones[route]?.title || route}</Link> /{" "}
                 </span>
               );
             })}

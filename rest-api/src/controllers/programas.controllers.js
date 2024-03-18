@@ -18,7 +18,7 @@ const get_programas_opciones = async (req, res) => {
   res.status(200).send({ programas: programas });
 };
 
-const update_programa = async (req, res) => {
+const update_programa_proceso = async (req, res) => {
   const { programa } = req.params;
   const { body } = req;
   try {
@@ -67,9 +67,16 @@ const get_programas_todos = async (req, res) => {
   res.status(200).send(programas);
 };
 
+const get_programa =  async (req, res) => {
+  const { programa } = req.params;
+  const programa_info = await Programa.findByPk(programa);
+  res.status(200).send(programa_info);
+}
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
-  update_programa,
+  update_programa_proceso,
   get_programas_todos,
+  get_programa
 };

@@ -18,6 +18,8 @@ import Dashboard from "./pages/CoffeeBreaks/Dashboard";
 import Micrositio from "./pages/Micrositio";
 import Programas from "./pages/Micrositio/Admin/Programas";
 import Personas from "./pages/Micrositio/Admin/Personas";
+import Programa from "./pages/Micrositio/Admin/Programas/Programa";
+
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -85,7 +87,7 @@ const router = createBrowserRouter([
     element: <Dashboard />,
   },
   {
-    path:"/micrositio",
+    path: "/micrositio",
     element: <Micrositio />,
     children: [
       {
@@ -99,9 +101,13 @@ const router = createBrowserRouter([
       {
         path: "admin/personas/",
         element: <Personas />,
-      }
+      },
+      {
+        path: "admin/programas/:programa",
+        element: <Programa />,
+      },
     ],
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
