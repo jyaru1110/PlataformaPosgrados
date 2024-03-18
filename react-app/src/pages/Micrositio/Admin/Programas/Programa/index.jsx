@@ -1,9 +1,9 @@
-import Main from "../../components/Main";
-import Header from "../../components/Header";
-import Form from "../../components/Form";
+import Main from "../../../components/Main";
+import Header from "../../../components/Header";
+import Form from "../../../components/Form";
 import { useParams } from "react-router-dom";
-import { usePrograma } from "../../../../hooks/useProgramas";
-import Table from "../../components/Table";
+import { usePrograma } from "../../../../../hooks/useProgramas";
+import Table from "../../../components/Table";
 
 export default function Programa() {
   const { programa } = useParams();
