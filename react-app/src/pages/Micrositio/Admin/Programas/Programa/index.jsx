@@ -6,7 +6,10 @@ import { usePrograma } from "../../../../../hooks/useProgramas";
 import Table from "../../../components/Table";
 import Error from "../../../components/Error";
 import { useForm } from "react-hook-form";
-import {useRef, useEffect} from "react";
+import { useRef, useEffect } from "react";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const headers_costos = [
   "Año",
@@ -22,22 +25,34 @@ export default function Programa() {
   const { programa } = useParams();
   const { loading, programaData, error } = usePrograma(programa);
   const refSubmit = useRef(null);
-  const {
-    register,
-    handleSubmit,
-    reset
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  }
+  const onSubmit = async (data) => {
+    //console.log(data);
+    await axios
+      .patch(`${import.meta.env.VITE_URL_API}/programa/${programa}`, data, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+      });
+  };
 
   useEffect(() => {
     if (programaData) {
-      reset(programaData);
+      const programa_reset = Object.keys(programaData).reduce((acc, key) => {
+        if (key === "costos_programas" || key === "aperturas_cierres") {
+          return acc;
+        }
+        return { ...acc, [key]: programaData[key] };
+      }, {});
+      reset(programa_reset);
     }
   }, [programaData]);
-  
+
   return (
     <div className="w-full flex flex-col relative h-screen">
       {error ? (
@@ -45,7 +60,11 @@ export default function Programa() {
       ) : (
         <>
           <Header title={programa}>
-            <button onClick={()=>{refSubmit.current.click()}}>
+            <button
+              onClick={() => {
+                refSubmit.current.click();
+              }}
+            >
               <svg
                 width="24"
                 height="19"
@@ -61,28 +80,67 @@ export default function Programa() {
             </button>
           </Header>
           <Main>
-            <Form title={programa} register={register('programa')} onSubmit={handleSubmit(onSubmit)}>
+            <Form
+              title={programa}
+              register={register("programa")}
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <p className="font-bold">Código</p>
-              <input {...register('codigo')} defaultValue={programaData.codigo}></input>
+              <input
+                {...register("codigo")}
+                defaultValue={programaData.codigo}
+              ></input>
               <p className="font-bold">Escuela</p>
-              <input {...register('escuela')} defaultValue={programaData.escuela}></input>
+              <input
+                {...register("escuela")}
+                defaultValue={programaData.escuela}
+              ></input>
               <p className="font-bold">Grado</p>
-              <input {...register('grado')} defaultValue={programaData.grado}></input>
+              <input
+                {...register("grado")}
+                defaultValue={programaData.grado}
+              ></input>
               <p className="font-bold">Duración</p>
-              <input {...register('duracion')} defaultValue={programaData.duracion}></input>
+              <input
+                {...register("duracion")}
+                defaultValue={programaData.duracion}
+              ></input>
               <p className="font-bold">Créditos</p>
-              <input {...register('creditos')} defaultValue={programaData.creditos}></input>
+              <input
+                {...register("creditos")}
+                defaultValue={programaData.creditos}
+              ></input>
               <p className="font-bold">Año inicio</p>
-              <input {...register('year_inicio')} defaultValue={programaData.year_inicio}></input>
+              <input
+                {...register("year_inicio")}
+                defaultValue={programaData.year_inicio}
+              ></input>
               <p className="font-bold"># Materias</p>
-              <input {...register('num_materias')} defaultValue={programaData.num_materias}></input>
+              <input
+                {...register("num_materias")}
+                defaultValue={programaData.num_materias}
+              ></input>
               <p className="font-bold"># Materias en inglés</p>
-              <input {...register('num_materias_ingles')} defaultValue={programaData.num_materias_ingles}></input>
+              <input
+                {...register("num_materias_ingles")}
+                defaultValue={programaData.num_materias_ingles}
+              ></input>
               <p className="font-bold">RVOE</p>
-              <input {...register('rvoe')} defaultValue={programaData.rvoe}></input>
+              <input
+                {...register("rvoe")}
+                defaultValue={programaData.rvoe}
+              ></input>
               <p className="font-bold">Fecha RVOE</p>
-              <input type="date" {...register('fecha_rvoe')} defaultValue={programaData.fecha_rvoe}></input>
-              <button className="invisible" type="submit" ref={refSubmit}></button>
+              <input
+                type="date"
+                {...register("fecha_rvoe")}
+                defaultValue={programaData.fecha_rvoe}
+              ></input>
+              <button
+                className="invisible"
+                type="submit"
+                ref={refSubmit}
+              ></button>
             </Form>
             <h2 className="text-xl font-bold my-5 ml-1">Costos</h2>
             <Table headers={headers_costos} loading={loading}>
@@ -141,6 +199,7 @@ export default function Programa() {
           </Main>
         </>
       )}
+      <ToastContainer />
     </div>
   );
 }
