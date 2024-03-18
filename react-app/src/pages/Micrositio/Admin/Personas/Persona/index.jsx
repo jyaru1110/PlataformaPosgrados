@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { useRef, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Persona() {
@@ -124,7 +125,7 @@ export default function Persona() {
                     key={index}
                   >
                     <td className="px-2 py-1">{puesto.puesto}</td>
-                    <td className="px-2 py-1">{puesto.programaPrograma}</td>
+                    <td className="px-2 py-1 text-emerald-800 underline"><Link to={`/micrositio/admin/programas/${puesto.programaPrograma}`}>{puesto.programaPrograma}</Link></td>
                   </tr>
                 );
               })}
