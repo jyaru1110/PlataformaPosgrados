@@ -99,6 +99,10 @@ const Programa = sequelize.define(
     num_materias_ingles: {
       type: DataTypes.STRING,
     },
+    esta_activo: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
   },
   {
     // Opciones del modelo
