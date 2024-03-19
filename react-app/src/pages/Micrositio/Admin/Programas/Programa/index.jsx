@@ -172,23 +172,21 @@ export default function Programa() {
                   >
                     <td className="px-2 py-1">{costo.year}</td>
                     <td className="px-2 py-1">{costo.num_mensualidades}</td>
-                    <td className="px-2 py-1">${costo.monto_mensual}</td>
+                    <td className="px-2 py-1">{costo.monto_mensual.toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
                     <td className="px-2 py-1">
                       {programaData.creditos
-                        ? "$" +
-                          (costo.num_mensualidades * costo.monto_mensual +
+                        ?  ((costo.num_mensualidades * costo.monto_mensual +
                             costo.costo_inscripcion) /
-                            programaData.creditos
+                            programaData.creditos).toLocaleString('en-US', { style: 'currency', currency: 'USD'})
                         : "NA"}
                     </td>
-                    <td className="px-2 py-1">${costo.costo_inscripcion}</td>
+                    <td className="px-2 py-1">{costo.costo_inscripcion.toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
                     <td className="px-2 py-1">
-                      ${costo.num_mensualidades * costo.monto_mensual}
+                      {(costo.num_mensualidades * costo.monto_mensual).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
                     </td>
                     <td className="px-2 py-1">
-                      $
-                      {costo.num_mensualidades * costo.monto_mensual +
-                        costo.costo_inscripcion}
+                      {(costo.num_mensualidades * costo.monto_mensual +
+                        costo.costo_inscripcion).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
                     </td>
                   </tr>
                 );
