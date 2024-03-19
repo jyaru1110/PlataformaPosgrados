@@ -126,6 +126,20 @@ router.post("/user", async (req, res) => {
     console.log(error);
     res.status(500).send({ message: "Error al crear el usuario" });
   }
-})
+});
+
+router.delete("/user/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const user = await Usuario.destroy({
+      where: {
+        id: id,
+      },
+    });
+    res.status(200).send({ message: "Usuario eliminado" });
+  } catch (error) {
+    res.status(500).send({ message: "Error al eliminar el usuario" });
+  }
+});
 
 module.exports = router;
