@@ -55,28 +55,131 @@ export default function NewPrograma() {
           onSubmit={handleSubmit(onSubmit)}
           title="Nuevo programa"
         >
-          <p className="font-bold">Código</p>
-          <input {...register("codigo")}></input>
-          <p className="font-bold">E/F</p>
-          <input {...register("escuela")}></input>
-          <p className="font-bold">Grado</p>
-          <input {...register("grado")}></input>
-          <p className="font-bold">Duración</p>
-          <input {...register("duracion")}></input>
-          <p className="font-bold">Créditos</p>
-          <input {...register("creditos")}></input>
-          <p className="font-bold">Año inicio</p>
-          <input {...register("year_inicio")}></input>
-          <p className="font-bold"># Materias</p>
-          <input {...register("num_materias")}></input>
-          <p className="font-bold"># Materias en inglés</p>
-          <input {...register("num_materias_ingles")}></input>
-          <p className="font-bold">RVOE</p>
-          <input {...register("rvoe")}></input>
-          <p className="font-bold">Modalidad</p>
-          <input {...register("modalidad")}></input>
-          <p className="font-bold">Campus</p>
-          <input {...register("campus")}></input>
+          <label for="codigo" className="font-bold">
+            Código 
+          </label>
+          <input
+            id="codigo"
+            autocomplete="off"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("codigo")}
+          ></input>
+          <label for="escuela" className="font-bold">
+            E/F
+          </label>
+          <select
+            id="escuela"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("escuela")}
+          >
+            <option value="Empresariales">Empresariales</option>
+            <option value="ESDAI">ESDAI</option>
+            <option value="Gobierno y Economía">Gobierno y Economía</option>
+            <option value="Derecho">Derecho</option>
+            <option value="Comunicación">Comunicación</option>
+            <option value="Pedagogía">Pedagogía</option>
+            <option value="Ingeniería">Ingeniería</option>
+            <option value="Ciencias de la Salud">Ciencias de la salud</option>
+            <option value="Bellas Artes">Bellas Artes</option>
+            <option value="Filosofía">Filosofía</option>
+            <option value="Empresariales Santa Fe">
+              Empresariales Santa Fe
+            </option>
+            <option value="Empresariales Santa Fe">Educación Continua</option>
+          </select>
+          <label for="grado" className="font-bold">
+            Grado
+          </label>
+          <select
+            id="grado"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("grado")}
+          >
+            <option value="Maestría">Maestría</option>
+            <option value="Especialidad">Especialidad</option>
+            <option value="Doctorado">Doctorado</option>
+          </select>
+          <label for="duracion" className="font-bold">
+            Duración
+          </label>
+          <input
+            id="duracion"
+            autocomplete="off"
+            type="number"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("duracion")}
+          ></input>
+          <label for="creditos" className="font-bold">
+            Créditos
+          </label>
+          <input
+            id="creditos"
+            autocomplete="off"
+            type="number"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("creditos")}
+          ></input>
+          <label for="year_inicio" className="font-bold">
+            Año inicio
+          </label>
+          <input
+            id="year_inicio"
+            autocomplete="off"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("year_inicio")}
+          ></input>
+          <label for="num_materias" className="font-bold">
+            # Materias
+          </label>
+          <input
+            id="num_materias"
+            autocomplete="off"
+            type="number"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("num_materias")}
+          ></input>
+          <label for="num_materias_ingles" className="font-bold">
+            # Materias en inglés
+          </label>
+          <input
+            id="num_materias_ingles"
+            autocomplete="off"
+            type="number"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("num_materias_ingles")}
+          ></input>
+          <label for="rvoe" className="font-bold">RVOE</label>
+          <input
+            id="rvoe"
+            autocomplete="off"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("rvoe")}
+          ></input>
+          <label for="modalidad" className="font-bold">
+            Modalidad
+          </label>
+          <select
+            id="modalidad"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("modalidad")}
+          >
+            <option value="Presencial">Presencial</option>
+            <option value="En línea">En línea</option>
+            <option value="Mixta">Mixta</option>
+          </select>
+          <label for="campus" className="font-bold">
+            Campus
+          </label>
+          <select
+            id="campus"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("campus")}
+          >
+            <option value="Mixcoac">Mixcoac</option>
+            <option value="Santa Fe">Santa Fe</option>
+            <option value="Guadalajara">Guadalajara</option>
+            <option value="Aguascalientes">Aguascalientes</option>
+          </select>
           <button className="invisible" type="submit" ref={refSubmit}></button>
         </Form>
       </Main>
