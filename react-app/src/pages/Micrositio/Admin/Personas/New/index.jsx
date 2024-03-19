@@ -55,20 +55,55 @@ export default function NewPersona() {
           onSubmit={handleSubmit(onSubmit)}
           title="Nueva persona"
         >
-          <p className="font-bold">Titulo</p>
-          <input {...register("titutlo")}></input>
-          <p className="font-bold">E/F</p>
-          <input {...register("escuela")}></input>
-          <p className="font-bold">Correo</p>
-          <input {...register("email")}></input>
-          <p className="font-bold">ID</p>
-          <input {...register("id_universidad_panamericana")}></input>
-          <p className="font-bold">Extensión</p>
-          <input {...register("extension")}></input>
-          <p className="font-bold">Cumpleaños</p>
-          <input {...register("birthday")}></input>
-          <p className="font-bold">Celular</p>
-          <input {...register("telefono")}></input>
+          <label for="titulo" className="font-bold">
+            Titulo
+          </label>
+          <select
+            id="titulo"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("titutlo")}
+          >
+            <option value="Lic.">Lic.</option>
+            <option value="Esp.">Esp.</option>
+            <option value="Ing.">Ing.</option>
+            <option value="Mtro.">Mtro.</option>
+            <option value="Mtra.">Mtra.</option>
+            <option value="Dr.">Dr.</option>
+            <option value="Dra.">Dra.</option>
+          </select>
+          <label for="escuela" className="font-bold">
+            E/F
+          </label>
+          <select
+            id="escuela"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("escuela")}
+          >
+            <option value="Empresariales">Empresariales</option>
+            <option value="ESDAI">ESDAI</option>
+            <option value="Gobierno y Economía">Gobierno y Economía</option>
+            <option value="Derecho">Derecho</option>
+            <option value="Comunicación">Comunicación</option>
+            <option value="Pedagogía">Pedagogía</option>
+            <option value="Ingeniería">Ingeniería</option>
+            <option value="Ciencias de la Salud">Ciencias de la salud</option>
+            <option value="Bellas Artes">Bellas Artes</option>
+            <option value="Filosofía">Filosofía</option>
+            <option value="Empresariales Santa Fe">
+              Empresariales Santa Fe
+            </option>
+            <option value="Educación Continua">Educación Continua</option>
+          </select>
+          <label for="email" className="font-bold">Correo</label>
+          <input type="email" id="email" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("email")}></input>
+          <label for="id_universidad_panamericana" className="font-bold">ID</label>
+          <input id="id_universidad_panamericana" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"  {...register("id_universidad_panamericana")}></input>
+          <label for="extension" className="font-bold">Extensión</label>
+          <input id="extension" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("extension")}></input>
+          <label for="birthday" className="font-bold">Cumpleaños</label>
+          <input id="birthday" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("birthday")}></input>
+          <label for="telefono" className="font-bold">Celular</label>
+          <input id="telefono" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("telefono")}></input>
           <button className="invisible" type="submit" ref={refSubmit}></button>
         </Form>
       </Main>
