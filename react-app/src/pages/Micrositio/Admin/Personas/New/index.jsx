@@ -94,16 +94,52 @@ export default function NewPersona() {
             </option>
             <option value="Educación Continua">Educación Continua</option>
           </select>
-          <label for="email" className="font-bold">Correo</label>
-          <input type="email" id="email" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("email")}></input>
-          <label for="id_universidad_panamericana" className="font-bold">ID</label>
-          <input id="id_universidad_panamericana" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"  {...register("id_universidad_panamericana")}></input>
-          <label for="extension" className="font-bold">Extensión</label>
-          <input id="extension" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("extension")}></input>
-          <label for="birthday" className="font-bold">Cumpleaños</label>
-          <input id="birthday" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("birthday")}></input>
-          <label for="telefono" className="font-bold">Celular</label>
-          <input id="telefono" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("telefono")}></input>
+          <label for="email" className="font-bold">
+            Correo
+          </label>
+          <input
+            autoComplete="off"
+            type="email"
+            id="email"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("email")}
+          ></input>
+          <label for="id_universidad_panamericana" className="font-bold">
+            ID
+          </label>
+          <input
+            autoComplete="off"
+            id="id_universidad_panamericana"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("id_universidad_panamericana")}
+          ></input>
+          <label for="extension" className="font-bold">
+            Extensión
+          </label>
+          <input
+            autoComplete="off"
+            id="extension"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("extension")}
+          ></input>
+          <label for="birthday" className="font-bold">
+            Cumpleaños
+          </label>
+          <input
+            autoComplete="off"
+            id="birthday"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("birthday")}
+          ></input>
+          <label for="telefono" className="font-bold">
+            Celular
+          </label>
+          <input
+            autoComplete="off"
+            id="telefono"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("telefono")}
+          ></input>
           <button className="invisible" type="submit" ref={refSubmit}></button>
         </Form>
       </Main>
