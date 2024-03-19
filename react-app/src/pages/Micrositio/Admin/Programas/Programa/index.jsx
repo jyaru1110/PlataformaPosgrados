@@ -89,70 +89,164 @@ export default function Programa() {
               register={register("programa")}
               onSubmit={handleSubmit(onSubmit)}
             >
-              <p className="font-bold">Código</p>
+              <label for="codigo" className="font-bold">
+                Código
+              </label>
               <input
+                autoComplete="off"
                 {...register("codigo")}
+                id="codigo"
                 defaultValue={programaData.codigo}
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
               ></input>
-              <p className="font-bold">E/F</p>
-              <input
+              <label for="escuela" className="font-bold">
+                E/F
+              </label>
+              <select
+                id="escuela"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("escuela")}
                 defaultValue={programaData.escuela}
-              ></input>
-              <p className="font-bold">Grado</p>
-              <input
+              >
+                <option value="Empresariales">Empresariales</option>
+                <option value="ESDAI">ESDAI</option>
+                <option value="Gobierno y Economía">Gobierno y Economía</option>
+                <option value="Derecho">Derecho</option>
+                <option value="Comunicación">Comunicación</option>
+                <option value="Pedagogía">Pedagogía</option>
+                <option value="Ingeniería">Ingeniería</option>
+                <option value="Ciencias de la Salud">
+                  Ciencias de la salud
+                </option>
+                <option value="Bellas Artes">Bellas Artes</option>
+                <option value="Filosofía">Filosofía</option>
+                <option value="Empresariales Santa Fe">
+                  Empresariales Santa Fe
+                </option>
+                <option value="Educación Continua">Educación Continua</option>
+              </select>
+              <label for="grado" className="font-bold">
+                Grado
+              </label>
+              <select
+                id="grado"
                 {...register("grado")}
                 defaultValue={programaData.grado}
-              ></input>
-              <p className="font-bold">Duración</p>
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+              >
+                <option value="Maestría">Maestría</option>
+                <option value="Especialidad">Especialidad</option>
+                <option value="Doctorado">Doctorado</option>
+              </select>
+              <label for="duracion" className="font-bold">
+                Duración
+              </label>
               <input
+                id="duracion"
+                autoComplete="off"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("duracion")}
                 defaultValue={programaData.duracion}
+                type="number"
               ></input>
-              <p className="font-bold">Créditos</p>
+              <label for="creditos" className="font-bold">
+                Créditos
+              </label>
               <input
+                id="creditos"
+                autoComplete="off"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+                type="number"
                 {...register("creditos")}
                 defaultValue={programaData.creditos}
               ></input>
-              <p className="font-bold">Año inicio</p>
+              <label for="year_inicio" className="font-bold">
+                Año inicio
+              </label>
               <input
+                id="year_inicio"
+                autoComplete="off"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("year_inicio")}
                 defaultValue={programaData.year_inicio}
               ></input>
-              <p className="font-bold"># Materias</p>
+              <label for="num_materias" className="font-bold">
+                # Materias
+              </label>
               <input
+                id="num_materias"
+                autoComplete="off"
+                type="number"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("num_materias")}
                 defaultValue={programaData.num_materias}
               ></input>
-              <p className="font-bold"># Materias en inglés</p>
+              <label for="num_materias_ingles" className="font-bold">
+                # Materias en inglés
+              </label>
               <input
+                id="num_materias_ingles"
+                autoComplete="off"
+                type="number"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("num_materias_ingles")}
                 defaultValue={programaData.num_materias_ingles}
               ></input>
-              <p className="font-bold">RVOE</p>
+              <label for="rvoe" className="font-bold">
+                RVOE
+              </label>
               <input
+                autoComplete="off"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+                id="rvoe"
                 {...register("rvoe")}
                 defaultValue={programaData.rvoe}
               ></input>
-              <p className="font-bold">Fecha RVOE</p>
+              <label for="fecha_rvoe" className="font-bold">
+                Fecha RVOE
+              </label>
               <input
+                id="fecha_rvoe"
+                autoComplete="off"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 type="date"
                 {...register("fecha_rvoe")}
                 defaultValue={programaData.fecha_rvoe}
               ></input>
-              <p className="font-bold">Modalidad</p>
-              <input
+              <label for="modalidad" className="font-bold">
+                Modalidad
+              </label>
+              <select
+                id="modalidad"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("modalidad")}
                 defaultValue={programaData.modalidad}
-              ></input>
-              <p className="font-bold">Campus</p>
-              <input
+              >
+                <option value="Presencial">Presencial</option>
+                <option value="En línea">En línea</option>
+                <option value="Mixta">Mixta</option>
+              </select>
+              <label for="campus" className="font-bold">
+                Campus
+              </label>
+              <select
+                id="campus"
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("campus")}
                 defaultValue={programaData.campus}
-              ></input>
-              <p className="font-bold">Está activo</p>
+              >
+                <option value="Mixcoac">Mixcoac</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Guadalajara">Guadalajara</option>
+                <option value="Aguascalientes">Aguascalientes</option>
+              </select>
+              <label for="esta_activo" className="font-bold">
+                Está activo
+              </label>
               <input
+                id="esta_activo"
                 type="checkbox"
+                className="justify-self-start"
                 {...register("esta_activo")}
                 defaultValue={programaData.esta_activo}
               ></input>
@@ -172,21 +266,46 @@ export default function Programa() {
                   >
                     <td className="px-2 py-1">{costo.year}</td>
                     <td className="px-2 py-1">{costo.num_mensualidades}</td>
-                    <td className="px-2 py-1">{costo.monto_mensual.toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
+                    <td className="px-2 py-1">
+                      {costo.monto_mensual.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </td>
                     <td className="px-2 py-1">
                       {programaData.creditos
-                        ?  ((costo.num_mensualidades * costo.monto_mensual +
-                            costo.costo_inscripcion) /
-                            programaData.creditos).toLocaleString('en-US', { style: 'currency', currency: 'USD'})
+                        ? (
+                            (costo.num_mensualidades * costo.monto_mensual +
+                              costo.costo_inscripcion) /
+                            programaData.creditos
+                          ).toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                          })
                         : "NA"}
                     </td>
-                    <td className="px-2 py-1">{costo.costo_inscripcion.toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
                     <td className="px-2 py-1">
-                      {(costo.num_mensualidades * costo.monto_mensual).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                      {costo.costo_inscripcion.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
                     </td>
                     <td className="px-2 py-1">
-                      {(costo.num_mensualidades * costo.monto_mensual +
-                        costo.costo_inscripcion).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                      {(
+                        costo.num_mensualidades * costo.monto_mensual
+                      ).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </td>
+                    <td className="px-2 py-1">
+                      {(
+                        costo.num_mensualidades * costo.monto_mensual +
+                        costo.costo_inscripcion
+                      ).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
                     </td>
                   </tr>
                 );
@@ -222,7 +341,19 @@ export default function Programa() {
                     className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
                     key={index}
                   >
-                    <td className="px-2 py-1 underline text-emerald-800 flex items-center space-x-2"><img height={20} width={20} className="rounded-full" src={puesto.usuario?.foto}></img><Link to={`/micrositio/admin/personas/${puesto.usuarioId}`}>{puesto.usuario.nombre}</Link></td>
+                    <td className="px-2 py-1 underline text-emerald-800 flex items-center space-x-2">
+                      <img
+                        height={20}
+                        width={20}
+                        className="rounded-full"
+                        src={puesto.usuario?.foto}
+                      ></img>
+                      <Link
+                        to={`/micrositio/admin/personas/${puesto.usuarioId}`}
+                      >
+                        {puesto.usuario.nombre}
+                      </Link>
+                    </td>
                     <td className="px-2 py-1">{puesto.puesto}</td>
                   </tr>
                 );

@@ -85,7 +85,7 @@ export default function NewPrograma() {
             <option value="Empresariales Santa Fe">
               Empresariales Santa Fe
             </option>
-            <option value="Empresariales Santa Fe">Educación Continua</option>
+            <option value="Educación Continua">Educación Continua</option>
           </select>
           <label for="grado" className="font-bold">
             Grado
