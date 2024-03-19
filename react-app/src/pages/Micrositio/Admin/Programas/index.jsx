@@ -5,7 +5,7 @@ import { useProgramas } from "../../../../hooks/useProgramas";
 import { useNavigate, Link } from "react-router-dom";
 
 const headers = [
-  "Escuela",
+  "E/F",
   "Grado",
   "Programa",
   "Código",

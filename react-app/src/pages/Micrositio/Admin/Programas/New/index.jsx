@@ -57,7 +57,7 @@ export default function NewPrograma() {
         >
           <p className="font-bold">Código</p>
           <input {...register("codigo")}></input>
-          <p className="font-bold">Escuela</p>
+          <p className="font-bold">E/F</p>
           <input {...register("escuela")}></input>
           <p className="font-bold">Grado</p>
           <input {...register("grado")}></input>

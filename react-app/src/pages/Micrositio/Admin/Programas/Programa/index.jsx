@@ -94,7 +94,7 @@ export default function Programa() {
                 {...register("codigo")}
                 defaultValue={programaData.codigo}
               ></input>
-              <p className="font-bold">Escuela</p>
+              <p className="font-bold">E/F</p>
               <input
                 {...register("escuela")}
                 defaultValue={programaData.escuela}

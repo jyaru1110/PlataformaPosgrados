@@ -80,7 +80,7 @@ export default function Persona() {
                 {...register("titutlo")}
                 defaultValue={persona.titulo}
               ></input>
-              <p className="font-bold">Escuela</p>
+              <p className="font-bold">E/F</p>
               <input
                 {...register("escuela")}
                 defaultValue={persona.escuela}
@@ -131,7 +131,7 @@ export default function Persona() {
               })}
             </Table>
             <h2 className="text-xl font-bold my-5 ml-1">Puestos escuela</h2>
-            <Table headers={["Puesto", "Escuela"]} loading={loading}>
+            <Table headers={["Puesto", "Escuela o facultad"]} loading={loading}>
               {persona.puesta_escuelas?.map((puesto, index) => {
                 return (
                   <tr

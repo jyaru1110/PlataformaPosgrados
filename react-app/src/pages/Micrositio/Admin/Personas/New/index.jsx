@@ -57,7 +57,7 @@ export default function NewPersona() {
         >
           <p className="font-bold">Titulo</p>
           <input {...register("titutlo")}></input>
-          <p className="font-bold">Escuela</p>
+          <p className="font-bold">E/F</p>
           <input {...register("escuela")}></input>
           <p className="font-bold">Correo</p>
           <input {...register("email")}></input>

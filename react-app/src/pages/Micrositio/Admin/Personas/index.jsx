@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 const headers = [
   "Titulo",
   "Persona",
-  "Escuela",
+  "Escuela o facultad",
   "Correo",
   "ID",
   "Extensión",
