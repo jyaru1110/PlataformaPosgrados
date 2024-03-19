@@ -140,6 +140,22 @@ export default function Programa() {
                 {...register("fecha_rvoe")}
                 defaultValue={programaData.fecha_rvoe}
               ></input>
+              <p className="font-bold">Modalidad</p>
+              <input
+                {...register("modalidad")}
+                defaultValue={programaData.modalidad}
+              ></input>
+              <p className="font-bold">Campus</p>
+              <input
+                {...register("campus")}
+                defaultValue={programaData.campus}
+              ></input>
+              <p className="font-bold">Está activo</p>
+              <input
+                type="checkbox"
+                {...register("esta_activo")}
+                defaultValue={programaData.esta_activo}
+              ></input>
               <button
                 className="invisible"
                 type="submit"

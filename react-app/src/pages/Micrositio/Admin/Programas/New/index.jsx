@@ -73,6 +73,10 @@ export default function NewPrograma() {
           <input {...register("num_materias_ingles")}></input>
           <p className="font-bold">RVOE</p>
           <input {...register("rvoe")}></input>
+          <p className="font-bold">Modalidad</p>
+          <input {...register("modalidad")}></input>
+          <p className="font-bold">Campus</p>
+          <input {...register("campus")}></input>
           <button className="invisible" type="submit" ref={refSubmit}></button>
         </Form>
       </Main>
