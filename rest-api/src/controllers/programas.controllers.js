@@ -84,10 +84,10 @@ const get_programa = async (req, res) => {
         model: AperturasCierres,
         required: false,
       },
-      {
+      /*{
         model: MetasPrograma,
         required: false,
-      },
+      },*/
       {
         model: PuestoPrograma,
         required: false,
