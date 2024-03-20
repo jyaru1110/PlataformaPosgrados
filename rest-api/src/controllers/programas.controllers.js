@@ -3,6 +3,7 @@ const Proceso = require("../models/Proceso");
 const CostosPrograma = require("../models/CostosPrograma");
 const AperturasCierres = require("../models/AperturasCierres");
 const PuestoPrograma = require("../models/PuestoPrograma");
+const MetasPrograma = require("../models/MetasPrograma");
 const Usuario = require("../models/Usuario");
 
 const get_programas_escuela = async (req, res) => {
@@ -81,6 +82,10 @@ const get_programa = async (req, res) => {
       },
       {
         model: AperturasCierres,
+        required: false,
+      },
+      {
+        model: MetasPrograma,
         required: false,
       },
       {
