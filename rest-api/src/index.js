@@ -21,10 +21,15 @@ const ActividadProceso = require("./models/ActividadProceso");
 const EtapaProceso = require("./models/EtapaProceso");
 const CostosPrograma = require("./models/CostosPrograma");
 const AperturasCierres = require("./models/AperturasCierres");
+const MetasPrograma = require("./models/MetasPrograma");
 
 var port = process.env.PORT || 3900;
 
 //relaciones de las tablas
+
+//metas de los programas
+Programa.hasMany(MetasPrograma);
+MetasPrograma.belongsTo(Programa);
 
 //aperturas y cierres de cada programa
 Programa.hasMany(AperturasCierres);
