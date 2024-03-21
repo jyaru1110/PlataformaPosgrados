@@ -694,6 +694,51 @@ export default function Programa() {
               </tr>
             </Table>
 
+            <h2 className="text-xl font-bold my-5 ml-1">Metas</h2>
+            <Table
+              headers={[
+                "Periodo",
+                "Apertura (Term)",
+                "Meta alumnos",
+                "Inscritos",
+                "% Meta",
+              ]}
+              loading={loading}
+            >
+              {programaData.aperturas_cierres?.map((apertura, index) => {
+                return (
+                  <tr
+                    className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
+                    key={index}
+                  >
+                    <td className="px-2 py-1">
+                      {apertura.fecha_inicio?.substring(0, 4)}-
+                      {apertura.fecha_fin?.substring(0, 4)}
+                    </td>
+                    <td className="px-2 py-1">{apertura.term}</td>
+                    <td className="px-2 py-1">
+                      <input
+                        className="border-b-2 border-transparent hover:border-white"
+                        defaultValue={apertura.meta_inscripciones}
+                        type="number"
+                      ></input>
+                    </td>
+                    <td className="px-2 py-1">
+                      <input
+                        className="border-b-2 border-transparent hover:border-white"
+                        defaultValue={apertura.num_inscripciones}
+                        type="number"
+                      ></input>
+                    </td>
+                    <td className="px-2 py-1">
+                      %{" "}
+                      {apertura.num_inscripciones / apertura.meta_inscripciones}
+                    </td>
+                  </tr>
+                );
+              })}
+            </Table>
+
             <h2 className="text-xl font-bold my-5 ml-1">Puestos</h2>
             <Table headers={["Persona", "Puesto"]} loading={loading}>
               {programaData.puesto_programas?.map((puesto, index) => {
