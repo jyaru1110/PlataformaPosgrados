@@ -4,6 +4,7 @@ const CostosPrograma = require("../models/CostosPrograma");
 const AperturasCierres = require("../models/AperturasCierres");
 const PuestoPrograma = require("../models/PuestoPrograma");
 const Usuario = require("../models/Usuario");
+const PuestoEscuela = require("../models/PuestoEscuela");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -132,8 +133,19 @@ const create_programa = async (req, res) => {
 const create_puesto = async (req, res) => {
   const { body } = req;
   try {
-    const puesto = await PuestoPrograma.bulkCreate(body.nuevosPuestosPrograma);
-    res.status(200).send({message: "Puesto creado"});
+    await PuestoPrograma.bulkCreate(body.nuevosPuestosPrograma);
+    res.status(200).send({ message: "Puesto guardado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al crear el puesto" });
+  }
+};
+
+const create_puesto_escuela = async (req, res) => {
+  const { body } = req;
+  try {
+    await PuestoEscuela.bulkCreate(body.nuevosPuestosEscuela);
+    res.status(200).send({ message: "Puesto guardado" });
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Error al crear el puesto" });
@@ -149,4 +161,5 @@ module.exports = {
   update_programa,
   create_programa,
   create_puesto,
+  create_puesto_escuela,
 };

@@ -20,6 +20,7 @@ export default function Persona() {
 
   const [programChanged, setProgramChanged] = useState(false);
   const [nuevosPuestosPrograma, setNuevosPuestosPrograma] = useState([]);
+  const [nuevosPuestosEscuela, setNuevosPuestosEscuela] = useState([]);
 
   const refSubmit = useRef(null);
   const { register, handleSubmit, reset } = useForm();
@@ -27,9 +28,29 @@ export default function Persona() {
   const savePuestosPrograma = async () => {
     await axios
       .post(
-        `${import.meta.env.VITE_URL_API}/puesto`,
+        `${import.meta.env.VITE_URL_API}/programa/puesto`,
         {
           nuevosPuestosPrograma,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
+  const savePuestosEscuela = async () => {
+    console.log(nuevosPuestosEscuela);
+    await axios
+      .post(
+        `${import.meta.env.VITE_URL_API}/escuela/puesto`,
+        {
+          nuevosPuestosEscuela,
         },
         {
           withCredentials: true,
@@ -91,6 +112,28 @@ export default function Persona() {
     );
   };
 
+  const addPuestoEscuela = () => {
+    setNuevosPuestosEscuela([
+      ...nuevosPuestosEscuela,
+      {
+        puesto: "",
+        escuelaEscuela: "",
+        usuarioId: id,
+      },
+    ]);
+  };
+
+  const updatePuestoEscuela = (index, key, value) => {
+    setNuevosPuestosEscuela(
+      nuevosPuestosEscuela.map((puesto, i) => {
+        if (i === index) {
+          return { ...puesto, [key]: value };
+        }
+        return puesto;
+      })
+    );
+  };
+
   useEffect(() => {
     if (persona) {
       const programa_reset = Object.keys(persona).reduce((acc, key) => {
@@ -110,7 +153,9 @@ export default function Persona() {
       ) : (
         <>
           <Header title={persona.nombre}>
-            {(programChanged || nuevosPuestosPrograma.length > 0) && (
+            {(programChanged ||
+              nuevosPuestosPrograma.length > 0 ||
+              nuevosPuestosEscuela.length > 0) && (
               <button
                 onClick={() => {
                   if (programChanged) {
@@ -118,6 +163,9 @@ export default function Persona() {
                   }
                   if (nuevosPuestosPrograma.length > 0) {
                     savePuestosPrograma();
+                  }
+                  if (nuevosPuestosEscuela.length > 0) {
+                    savePuestosEscuela();
                   }
                 }}
               >
@@ -380,7 +428,7 @@ export default function Persona() {
 
             <h2 className="text-xl font-bold my-5 ml-1">Puestos escuela</h2>
             <Table headers={["Puesto", "Escuela o facultad"]} loading={loading}>
-              {persona.puesta_escuelas?.map((puesto, index) => {
+              {persona.puesto_escuelas?.map((puesto, index) => {
                 return (
                   <tr
                     className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
@@ -391,6 +439,93 @@ export default function Persona() {
                   </tr>
                 );
               })}
+
+              {nuevosPuestosEscuela.map((puesto, index) => {
+                return (
+                  <tr
+                    className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
+                    key={index}
+                  >
+                    <td className="px-2 py-1">
+                      <select
+                        onChange={(event) => {
+                          updatePuestoEscuela(
+                            index,
+                            "puesto",
+                            event.target.value
+                          );
+                        }}
+                        defaultValue=""
+                      >
+                        <option value="" disabled>
+                          Selecciona un puesto
+                        </option>
+                        <option value="Coordinador de Asuntos Estudiantiles">
+                          Coordinador de Asuntos Estudiantiles
+                        </option>
+                        <option value="Director">Director</option>
+                        <option value="Secretario Administrativo">
+                          Secretario Administrativo
+                        </option>
+                        <option value="Jefe Promoción y Admisiones">
+                          Jefe Promoción y Admisiones
+                        </option>
+                        <option value="Coordinador Gestión Escolar">
+                          Coordinador Gestión Escolar
+                        </option>
+                      </select>
+                    </td>
+                    <td className="px-2 py-1">
+                      <select
+                        onChange={(event) => {
+                          updatePuestoEscuela(
+                            index,
+                            "escuelaEscuela",
+                            event.target.value
+                          );
+                        }}
+                        defaultValue=""
+                        className="w-full"
+                      >
+                        <option value="" disabled>
+                          Selecciona una escuela
+                        </option>
+                        <option value="Empresariales">Empresariales</option>
+                        <option value="ESDAI">ESDAI</option>
+                        <option value="Gobierno y Economía">
+                          Gobierno y Economía
+                        </option>
+                        <option value="Derecho">Derecho</option>
+                        <option value="Comunicación">Comunicación</option>
+                        <option value="Pedagogía">Pedagogía</option>
+                        <option value="Ingeniería">Ingeniería</option>
+                        <option value="Ciencias de la Salud">
+                          Ciencias de la salud
+                        </option>
+                        <option value="Bellas Artes">Bellas Artes</option>
+                        <option value="Filosofía">Filosofía</option>
+                        <option value="Empresariales Santa Fe">
+                          Empresariales Santa Fe
+                        </option>
+                        <option value="Educación Continua">
+                          Educación Continua
+                        </option>
+                      </select>
+                    </td>
+                  </tr>
+                );
+              })}
+
+              <tr>
+                <td className="p-2">
+                  <button
+                    onClick={addPuestoEscuela}
+                    className="flex text-emerald-700"
+                  >
+                    + Nuevo
+                  </button>
+                </td>
+              </tr>
             </Table>
           </Main>
         </>
