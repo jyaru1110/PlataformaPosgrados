@@ -45,7 +45,6 @@ export default function Persona() {
   };
 
   const savePuestosEscuela = async () => {
-    console.log(nuevosPuestosEscuela);
     await axios
       .post(
         `${import.meta.env.VITE_URL_API}/escuela/puesto`,

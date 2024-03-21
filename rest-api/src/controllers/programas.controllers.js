@@ -152,6 +152,28 @@ const create_puesto_escuela = async (req, res) => {
   }
 };
 
+const create_costos = async (req, res) => {
+  const { body } = req;
+  try {
+    await CostosPrograma.bulkCreate(body.nuevosCostos);
+    res.status(200).send({ message: "Costo guardado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al crear el costo" });
+  }
+};
+
+const create_aperturas = async (req, res) => {
+  const { body } = req;
+  try {
+    await AperturasCierres.bulkCreate(body.nuevasAperturas);
+    res.status(200).send({ message: "Apertura guardada" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al crear la apertura" });
+  }
+};
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -162,4 +184,6 @@ module.exports = {
   create_programa,
   create_puesto,
   create_puesto_escuela,
+  create_aperturas,
+  create_costos,
 };

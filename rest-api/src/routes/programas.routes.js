@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-const {get_programas_escuela,get_programas_opciones,update_programa_proceso,get_programas_todos,get_programa,update_programa,create_programa,create_puesto, create_puesto_escuela} = require('../controllers/programas.controllers');
+const {get_programas_escuela,get_programas_opciones,update_programa_proceso,get_programas_todos,get_programa,update_programa,create_programa,create_puesto, create_puesto_escuela, create_costos, create_aperturas} = require('../controllers/programas.controllers');
 const { isUserAuthenticated } = require('../middlewares/auth');
 
 router.get('/programas/:escuela',get_programas_escuela);
@@ -14,6 +14,8 @@ router.patch('/programa/:programa',isUserAuthenticated,update_programa);
 router.post('/programa',isUserAuthenticated,create_programa);
 router.post('/programa/puesto',isUserAuthenticated,create_puesto);
 router.post('/escuela/puesto',isUserAuthenticated,create_puesto_escuela);
+router.post('/programa/costo',isUserAuthenticated,create_costos);
+router.post('/programa/apertura',isUserAuthenticated,create_aperturas);
 
 
 module.exports = router;
