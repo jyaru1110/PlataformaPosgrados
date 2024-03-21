@@ -138,6 +138,19 @@ export default function Programa() {
                 <option value="Especialidad">Especialidad</option>
                 <option value="Doctorado">Doctorado</option>
               </select>
+              <label for="tipo" className="font-bold">
+                Tipo
+              </label>
+              <select
+                id="tipo"
+                {...register("tipo")}
+                defaultValue={programaData.tipo}
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+              >
+                <option value="Investigación">Investigación</option>
+                <option value="Profesionalizante">Profesionalizante</option>
+                <option value="Directiva">Directiva</option>
+              </select>
               <label for="duracion" className="font-bold">
                 Duración
               </label>

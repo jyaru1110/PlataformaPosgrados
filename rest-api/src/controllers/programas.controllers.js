@@ -3,7 +3,6 @@ const Proceso = require("../models/Proceso");
 const CostosPrograma = require("../models/CostosPrograma");
 const AperturasCierres = require("../models/AperturasCierres");
 const PuestoPrograma = require("../models/PuestoPrograma");
-const MetasPrograma = require("../models/MetasPrograma");
 const Usuario = require("../models/Usuario");
 
 const get_programas_escuela = async (req, res) => {
@@ -94,7 +93,7 @@ const get_programa = async (req, res) => {
         include: [
           {
             model: Usuario,
-            attributes: ["nombre","foto"],
+            attributes: ["nombre", "foto"],
             required: false,
           },
         ],
@@ -130,6 +129,17 @@ const create_programa = async (req, res) => {
   }
 };
 
+const create_puesto = async (req, res) => {
+  const { body } = req;
+  try {
+    const puesto = await PuestoPrograma.bulkCreate(body.nuevosPuestosPrograma);
+    res.status(200).send({message: "Puesto creado"});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al crear el puesto" });
+  }
+};
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -138,4 +148,5 @@ module.exports = {
   get_programa,
   update_programa,
   create_programa,
+  create_puesto,
 };
