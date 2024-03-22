@@ -4,6 +4,7 @@ import Form from "../../../components/Form";
 import { useParams } from "react-router-dom";
 import { usePrograma } from "../../../../../hooks/useProgramas";
 import { usePersonas } from "../../../../../hooks/usePersonas";
+import { usePeriodos } from "../../../../../hooks/usePeriodos";
 import Table from "../../../components/Table";
 import Error from "../../../components/Error";
 import { useForm } from "react-hook-form";
@@ -13,6 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import Select from "react-select";
+import Creatable from "react-select/creatable";
 import personas_to_options_format from "../../../../../utils/personas_to_options_format";
 
 const headers_costos = [
@@ -29,6 +31,11 @@ export default function Programa() {
   const { programa } = useParams();
   const { personas } = usePersonas();
   const { loading, programaData, error } = usePrograma(programa);
+  const { periodos, update: update_programa } = usePeriodos();
+
+  const periodos_options = periodos.map((periodo) => {
+    return { value: periodo.periodo_nombre, label: periodo.periodo_nombre };
+  });
 
   const personas_options = personas_to_options_format(personas);
 
@@ -174,6 +181,26 @@ export default function Programa() {
       )
       .then((res) => {
         toast.success(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
+  const createPeriodo = async (periodo) => {
+    await axios
+      .post(
+        `${import.meta.env.VITE_URL_API}/periodo`,
+        {
+          periodo_nombre: periodo,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.message);
+        update_programa();
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -617,7 +644,7 @@ export default function Programa() {
 
             <h2 className="text-xl font-bold my-5 ml-1">Aperturas y cierres</h2>
             <Table
-              headers={["Fecha inicio", "Fecha fin", "Term"]}
+              headers={["Periodo", "Fecha inicio", "Fecha fin", "Term"]}
               loading={loading}
             >
               {programaData.aperturas_cierres?.map((apertura, index) => {
@@ -626,6 +653,24 @@ export default function Programa() {
                     className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
                     key={index}
                   >
+                    <td className="px-2 py-1">
+                      <Creatable
+                        className="max-w-xs"
+                        styles={{
+                          control: (baseStyles) => ({
+                            ...baseStyles,
+                            border: "none",
+                            fontFamily: "Seravek",
+                            outline: "none",
+                            backgroundColor: "transparent",
+                          }),
+                        }}
+                        options={periodos_options}
+                        onCreateOption={(input) => {
+                          createPeriodo(input);
+                        }}
+                      ></Creatable>
+                    </td>
                     <td className="px-2 py-1">
                       {apertura.fecha_inicio.substring(0, 10)}
                     </td>
@@ -643,6 +688,27 @@ export default function Programa() {
                     className="border-b border-grayborder hover:bg-grayborder"
                     key={index}
                   >
+                    <td>
+                      <Creatable
+                        className="max-w-xs"
+                        styles={{
+                          control: (baseStyles) => ({
+                            ...baseStyles,
+                            border: "none",
+                            fontFamily: "Seravek",
+                            outline: "none",
+                            backgroundColor: "transparent",
+                          }),
+                        }}
+                        onCreateOption={(input) => {
+                          createPeriodo(input);
+                        }}
+                        options={periodos_options}
+                        onChange={(option) => {
+                          updateApertura(index, "periodoId", option.value);
+                        }}
+                      ></Creatable>
+                    </td>
                     <td className="px-2 py-1">
                       <input
                         type="date"
@@ -692,51 +758,6 @@ export default function Programa() {
                   </button>
                 </td>
               </tr>
-            </Table>
-
-            <h2 className="text-xl font-bold my-5 ml-1">Metas</h2>
-            <Table
-              headers={[
-                "Periodo",
-                "Apertura (Term)",
-                "Meta alumnos",
-                "Inscritos",
-                "% Meta",
-              ]}
-              loading={loading}
-            >
-              {programaData.aperturas_cierres?.map((apertura, index) => {
-                return (
-                  <tr
-                    className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
-                    key={index}
-                  >
-                    <td className="px-2 py-1">
-                      {apertura.fecha_inicio?.substring(0, 4)}-
-                      {apertura.fecha_fin?.substring(0, 4)}
-                    </td>
-                    <td className="px-2 py-1">{apertura.term}</td>
-                    <td className="px-2 py-1">
-                      <input
-                        className="border-b-2 border-transparent hover:border-white"
-                        defaultValue={apertura.meta_inscripciones}
-                        type="number"
-                      ></input>
-                    </td>
-                    <td className="px-2 py-1">
-                      <input
-                        className="border-b-2 border-transparent hover:border-white"
-                        defaultValue={apertura.num_inscripciones}
-                        type="number"
-                      ></input>
-                    </td>
-                    <td className="px-2 py-1">
-                      %{" "}
-                      {apertura.num_inscripciones / apertura.meta_inscripciones}
-                    </td>
-                  </tr>
-                );
-              })}
             </Table>
 
             <h2 className="text-xl font-bold my-5 ml-1">Puestos</h2>

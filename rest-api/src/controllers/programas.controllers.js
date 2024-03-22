@@ -5,6 +5,8 @@ const AperturasCierres = require("../models/AperturasCierres");
 const PuestoPrograma = require("../models/PuestoPrograma");
 const Usuario = require("../models/Usuario");
 const PuestoEscuela = require("../models/PuestoEscuela");
+const Periodo = require("../models/Periodo");
+const PeriodoPrograma = require("../models/PeriodoPrograma");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -174,6 +176,33 @@ const create_aperturas = async (req, res) => {
   }
 };
 
+const create_periodo = async (req, res) => {
+  const { body } = req;
+  try {
+    await Periodo.create(body);
+    res.status(200).send({ message: "Periodo creado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al crear el periodo" });
+  }
+};
+
+const create_periodo_programa = async (req, res) => {
+  const { body } = req;
+  try {
+    await PeriodoPrograma.create(body);
+    res.status(200).send({ message: "Periodo creado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al crear el periodo" });
+  }
+};
+
+const get_periodos = async (req, res) => {
+  const periodos = await Periodo.findAll();
+  res.status(200).send(periodos);
+};
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -186,4 +215,7 @@ module.exports = {
   create_puesto_escuela,
   create_aperturas,
   create_costos,
+  create_periodo,
+  create_periodo_programa,
+  get_periodos,
 };
