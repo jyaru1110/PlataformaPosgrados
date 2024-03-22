@@ -34,14 +34,25 @@ export default function Programa() {
   const { periodos, update: update_programa } = usePeriodos();
 
   const periodos_options = periodos.map((periodo) => {
-    return { value: periodo.periodo_nombre, label: periodo.periodo_nombre };
+    return { value: periodo.id, label: periodo.periodo_nombre };
   });
+
+  const periodos_programa_options = programaData.periodo_programas?.map(
+    (periodo) => {
+      return {
+        value: periodo.id,
+        label: periodo.periodo.periodo_nombre,
+      };
+    }
+  );
 
   const personas_options = personas_to_options_format(personas);
 
   const [nuevosPuestosPrograma, setNuevosPuestosPrograma] = useState([]);
   const [nuevasAperturas, setNuevasAperturas] = useState([]);
   const [nuevosCostos, setNuevosCostos] = useState([]);
+  const [nuevosPeriodosProgramas, setNuevosPeriodosProgramas] = useState([]);
+
   const [programChanged, setProgramChanged] = useState(false);
 
   const refSubmit = useRef(null);
@@ -187,6 +198,48 @@ export default function Programa() {
       });
   };
 
+  const addPeriodoPrograma = () => {
+    setNuevosPeriodosProgramas([
+      ...nuevosPeriodosProgramas,
+      {
+        meta_inscripciones: 0,
+        num_inscripciones: 0,
+        periodoId: null,
+        programaPrograma: programa,
+      },
+    ]);
+  };
+
+  const updatePeriodoPrograma = (index, key, value) => {
+    setNuevosPeriodosProgramas(
+      nuevosPeriodosProgramas.map((periodo, i) => {
+        if (i === index) {
+          return { ...periodo, [key]: value };
+        }
+        return periodo;
+      })
+    );
+  };
+
+  const savePeriodosProgramas = async () => {
+    await axios
+      .post(
+        `${import.meta.env.VITE_URL_API}/programa/periodo`,
+        {
+          nuevosPeriodosProgramas,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
   const createPeriodo = async (periodo) => {
     await axios
       .post(
@@ -233,7 +286,8 @@ export default function Programa() {
             {(programChanged ||
               nuevosPuestosPrograma.length > 0 ||
               nuevosCostos.length > 0 ||
-              nuevasAperturas.length > 0) && (
+              nuevasAperturas.length > 0 ||
+              nuevosPeriodosProgramas.length > 0) && (
               <button
                 onClick={() => {
                   if (programChanged) {
@@ -247,6 +301,9 @@ export default function Programa() {
                   }
                   if (nuevosCostos.length > 0) {
                     saveCostos();
+                  }
+                  if (nuevosPeriodosProgramas.length > 0) {
+                    savePeriodosProgramas();
                   }
                 }}
               >
@@ -689,7 +746,7 @@ export default function Programa() {
                     key={index}
                   >
                     <td>
-                      <Creatable
+                      <Select
                         className="max-w-xs"
                         styles={{
                           control: (baseStyles) => ({
@@ -700,14 +757,11 @@ export default function Programa() {
                             backgroundColor: "transparent",
                           }),
                         }}
-                        onCreateOption={(input) => {
-                          createPeriodo(input);
-                        }}
-                        options={periodos_options}
+                        options={periodos_programa_options}
                         onChange={(option) => {
                           updateApertura(index, "periodoId", option.value);
                         }}
-                      ></Creatable>
+                      ></Select>
                     </td>
                     <td className="px-2 py-1">
                       <input
@@ -752,6 +806,99 @@ export default function Programa() {
                 <td className="p-2">
                   <button
                     onClick={addApertura}
+                    className="flex text-emerald-700"
+                  >
+                    + Nuevo
+                  </button>
+                </td>
+              </tr>
+            </Table>
+
+            <h2 className="text-xl font-bold my-5 ml-1">Metas</h2>
+            <Table
+              headers={["Periodo", "Meta Alumnos", "Inscritos", "Porcentaje"]}
+              loading={loading}
+            >
+              {programaData.periodo_programas?.map((meta, index) => {
+                return (
+                  <tr
+                    className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
+                    key={index}
+                  >
+                    <td className="px-2 py-1">
+                      {meta?.periodo.periodo_nombre}
+                    </td>
+                    <td className="px-2 py-1">{meta.meta_inscripciones}</td>
+                    <td className="px-2 py-1">{meta.num_inscripciones}</td>
+                    <td className="px-2 py-1">
+                      {(meta.num_inscripciones / meta.meta_inscripciones) * 100}%
+                    </td>
+                  </tr>
+                );
+              })}
+
+              {nuevosPeriodosProgramas?.map((meta, index) => {
+                return (
+                  <tr
+                    className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
+                    key={index}
+                  >
+                    <td>
+                      <Creatable
+                        className="max-w-xs"
+                        styles={{
+                          control: (baseStyles) => ({
+                            ...baseStyles,
+                            border: "none",
+                            fontFamily: "Seravek",
+                            outline: "none",
+                            backgroundColor: "transparent",
+                          }),
+                        }}
+                        options={periodos_options}
+                        onChange={(option) => {
+                          updatePeriodoPrograma(
+                            index,
+                            "periodoId",
+                            option.value
+                          );
+                        }}
+                      ></Creatable>
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        onChange={(event) => {
+                          updatePeriodoPrograma(
+                            index,
+                            "meta_inscripciones",
+                            event.target.value
+                          );
+                        }}
+                        className="w-full border-b border-transparent hover:border-white"
+                      ></input>
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        onChange={(event) => {
+                          updatePeriodoPrograma(
+                            index,
+                            "num_inscripciones",
+                            event.target.value
+                          );
+                        }}
+                        className="w-full border-b border-transparent hover:border-white"
+                      ></input>
+                    </td>
+                  </tr>
+                );
+              })}
+
+              <tr>
+                <td className="p-2">
+                  <button
+                    onClick={addPeriodoPrograma}
                     className="flex text-emerald-700"
                   >
                     + Nuevo

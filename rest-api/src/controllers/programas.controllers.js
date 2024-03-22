@@ -86,10 +86,16 @@ const get_programa = async (req, res) => {
         model: AperturasCierres,
         required: false,
       },
-      /*{
-        model: MetasPrograma,
+      {
+        model: PeriodoPrograma,
         required: false,
-      },*/
+        include: [
+          {
+            model: Periodo,
+            required: false,
+          },
+        ],
+      },
       {
         model: PuestoPrograma,
         required: false,
@@ -190,7 +196,7 @@ const create_periodo = async (req, res) => {
 const create_periodo_programa = async (req, res) => {
   const { body } = req;
   try {
-    await PeriodoPrograma.create(body);
+    await PeriodoPrograma.bulkCreate(body.nuevosPeriodosProgramas);
     res.status(200).send({ message: "Periodo creado" });
   } catch (error) {
     console.log(error);
