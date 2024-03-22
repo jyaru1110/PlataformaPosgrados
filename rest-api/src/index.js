@@ -1,5 +1,4 @@
 require("dotenv").config();
-const { send_servicios_confirmados } = require("./mail/nodemailerprovider");
 var app = require("./app");
 var sequelize = require("./database/database");
 const Clase = require("./models/Clase");
@@ -21,19 +20,32 @@ const ActividadProceso = require("./models/ActividadProceso");
 const EtapaProceso = require("./models/EtapaProceso");
 const CostosPrograma = require("./models/CostosPrograma");
 const AperturasCierres = require("./models/AperturasCierres");
-const MetasPrograma = require("./models/MetasPrograma");
+const Periodo = require("./models/Periodo");
+const PeriodoPrograma = require("./models/PeriodoPrograma");
 
 var port = process.env.PORT || 3900;
 
 //relaciones de las tablas
 
-//metas de los programas
-Programa.hasMany(MetasPrograma);
-MetasPrograma.belongsTo(Programa);
+//programas y periodos
+Programa.belongsToMany(Periodo, {
+  through: PeriodoPrograma,
+});
+Periodo.belongsToMany(Programa, {
+  through: PeriodoPrograma,
+});
+Programa.hasMany(PeriodoPrograma);
+PeriodoPrograma.belongsTo(Programa);
+Periodo.hasMany(PeriodoPrograma);
+PeriodoPrograma.belongsTo(Periodo);
 
 //aperturas y cierres de cada programa
 Programa.hasMany(AperturasCierres);
 AperturasCierres.belongsTo(Programa);
+
+//aperturas y periodos
+Periodo.hasMany(AperturasCierres);
+AperturasCierres.belongsTo(Periodo);
 
 //puestos programa
 Programa.belongsToMany(Usuario, {
@@ -111,7 +123,7 @@ Programa.belongsToMany(Usuario, {
 //inicio de la aplicacion
 async function init() {
   try {
-    await sequelize.sync({ alter: true });
+    //await sequelize.sync({ alter: true });
     await sequelize.authenticate();
     console.log("Conexión a la base de datos establecida correctamente.");
     console.log("All models were synchronized successfully.");
