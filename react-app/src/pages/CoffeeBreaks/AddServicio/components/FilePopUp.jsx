@@ -104,7 +104,7 @@ export default function FilePopUp() {
               filename="Plantilla para subir coffee breaks"
               data={[
                 {
-                  programaPrograma: "Especialidad en Dirección de Proyectos",
+                  programa: "Especialidad en Dirección de Proyectos",
                   no_clase: "1234",
                   salon: "A 01",
                   dia: "1",

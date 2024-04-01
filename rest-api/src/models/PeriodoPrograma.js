@@ -13,6 +13,12 @@ const PeriodoPrograma = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
   },
   {
     // Opciones del modelo

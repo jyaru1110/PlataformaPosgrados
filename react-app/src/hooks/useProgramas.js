@@ -70,6 +70,7 @@ export const usePrograma = (programa) => {
     }
 
     const error_func = (err) => {
+        console.log(err);
         setLoading(false);
         setError(err);
     }

@@ -418,6 +418,7 @@ const bulk_create_horario = async (req, res) => {
           await Horario.bulkCreate(horarios);
           return res.status(200).send({});
         } catch (e) {
+          console.log(e);
           return res.status(500).send({ message: e.parent.detail });
         }
       });

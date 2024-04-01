@@ -701,7 +701,7 @@ export default function Programa() {
 
             <h2 className="text-xl font-bold my-5 ml-1">Aperturas y cierres</h2>
             <Table
-              headers={["Periodo", "Fecha inicio", "Fecha fin", "Term"]}
+              headers={["Fecha inicio", "Fecha fin", "Term", "Periodo"]}
               loading={loading}
             >
               {programaData.aperturas_cierres?.map((apertura, index) => {
@@ -711,41 +711,13 @@ export default function Programa() {
                     key={index}
                   >
                     <td className="px-2 py-1">
-                      <Creatable
-                        className="max-w-xs"
-                        styles={{
-                          control: (baseStyles) => ({
-                            ...baseStyles,
-                            border: "none",
-                            fontFamily: "Seravek",
-                            outline: "none",
-                            backgroundColor: "transparent",
-                          }),
-                        }}
-                        options={periodos_options}
-                        onCreateOption={(input) => {
-                          createPeriodo(input);
-                        }}
-                      ></Creatable>
-                    </td>
-                    <td className="px-2 py-1">
                       {apertura.fecha_inicio.substring(0, 10)}
                     </td>
                     <td className="px-2 py-1">
                       {apertura.fecha_fin.substring(0, 10)}
                     </td>
                     <td className="px-2 py-1">{apertura.term}</td>
-                  </tr>
-                );
-              })}
-
-              {nuevasAperturas.map((apertura, index) => {
-                return (
-                  <tr
-                    className="border-b border-grayborder hover:bg-grayborder"
-                    key={index}
-                  >
-                    <td>
+                    <td className="px-2 py-1">
                       <Select
                         className="max-w-xs"
                         styles={{
@@ -757,12 +729,23 @@ export default function Programa() {
                             backgroundColor: "transparent",
                           }),
                         }}
-                        options={periodos_programa_options}
-                        onChange={(option) => {
-                          updateApertura(index, "periodoId", option.value);
+                        defaultValue={{
+                          value: apertura.periodoProgramaId,
+                          label: apertura.periodoProgramaId,
                         }}
+                        options={periodos_programa_options}
                       ></Select>
                     </td>
+                  </tr>
+                );
+              })}
+
+              {nuevasAperturas.map((apertura, index) => {
+                return (
+                  <tr
+                    className="border-b border-grayborder hover:bg-grayborder"
+                    key={index}
+                  >
                     <td className="px-2 py-1">
                       <input
                         type="date"
@@ -798,6 +781,24 @@ export default function Programa() {
                         className="border-b-2 border-transparent hover:border-white"
                       ></input>
                     </td>
+                    <td>
+                      <Select
+                        className="max-w-xs"
+                        styles={{
+                          control: (baseStyles) => ({
+                            ...baseStyles,
+                            border: "none",
+                            fontFamily: "Seravek",
+                            outline: "none",
+                            backgroundColor: "transparent",
+                          }),
+                        }}
+                        options={periodos_programa_options}
+                        onChange={(option) => {
+                          updateApertura(index, "periodoProgramaId", option.value);
+                        }}
+                      ></Select>
+                    </td>
                   </tr>
                 );
               })}
@@ -831,7 +832,8 @@ export default function Programa() {
                     <td className="px-2 py-1">{meta.meta_inscripciones}</td>
                     <td className="px-2 py-1">{meta.num_inscripciones}</td>
                     <td className="px-2 py-1">
-                      {(meta.num_inscripciones / meta.meta_inscripciones) * 100}%
+                      {(meta.num_inscripciones / meta.meta_inscripciones) * 100}
+                      %
                     </td>
                   </tr>
                 );
@@ -863,6 +865,7 @@ export default function Programa() {
                             option.value
                           );
                         }}
+                        onCreateOption={(periodo) => createPeriodo(periodo)}
                       ></Creatable>
                     </td>
                     <td>
@@ -890,6 +893,10 @@ export default function Programa() {
                         }}
                         className="w-full border-b border-transparent hover:border-white"
                       ></input>
+                    </td>
+                    <td>
+                      {(meta.num_inscripciones / meta.meta_inscripciones) * 100}
+                      %
                     </td>
                   </tr>
                 );

@@ -44,8 +44,8 @@ Programa.hasMany(AperturasCierres);
 AperturasCierres.belongsTo(Programa);
 
 //aperturas y periodos
-Periodo.hasMany(AperturasCierres);
-AperturasCierres.belongsTo(Periodo);
+PeriodoPrograma.hasMany(AperturasCierres);
+AperturasCierres.belongsTo(PeriodoPrograma);
 
 //puestos programa
 Programa.belongsToMany(Usuario, {
