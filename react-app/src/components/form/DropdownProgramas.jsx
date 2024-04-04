@@ -5,7 +5,6 @@ export default function DropdownProgramas(props) {
   const rol = localStorage.getItem('rol');
   const escuela = localStorage.getItem('escuela');
   const {programas} = useProgramasOpciones(rol=='Gestor'?props.escuela:escuela);
-  console.log(programas);
   const label = 'Selecciona un programa';
   const value = props.value||'';
   const disabled = props.disabled||false;
