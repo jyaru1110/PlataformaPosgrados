@@ -19,7 +19,7 @@ const {
 const { isUserAuthenticated } = require("../middlewares/auth");
 
 router.get("/programas/:escuela", get_programas_escuela);
-router.get("/programas_opciones", get_programas_opciones);
+router.get("/programas_opciones/", get_programas_opciones);
 router.get("/programas/", get_programas_todos, isUserAuthenticated);
 router.get("/programa/:programa", get_programa, isUserAuthenticated);
 router.get("/periodos", get_periodos, isUserAuthenticated);

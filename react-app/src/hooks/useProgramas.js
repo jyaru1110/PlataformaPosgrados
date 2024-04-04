@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import {get_fetch}  from './get_fetch';
 import {programas_to_correct_format} from '../utils/programas_to_correct_format';
-import { set } from 'react-hook-form';
 
 const url_backend  = import.meta.env.VITE_URL_API;
 
@@ -22,7 +21,7 @@ export const useProgramasOpciones = (escuela) => {
         if(escuela === 'Todos')
             url = url_backend+"/programas_opciones";
         else
-            url = url_backend+"/programas_opciones/"+escuela;
+            url = url_backend+"/programas/"+escuela;
         await get_fetch(url,signal,after_fetch)
         return () => controller.abort();
     }
