@@ -52,6 +52,7 @@ export default function Programa() {
   const [nuevasAperturas, setNuevasAperturas] = useState([]);
   const [nuevosCostos, setNuevosCostos] = useState([]);
   const [nuevosPeriodosProgramas, setNuevosPeriodosProgramas] = useState([]);
+  const [aperturasChanges, setAperturasChanges] = useState([]);
 
   const [programChanged, setProgramChanged] = useState(false);
 
@@ -260,6 +261,31 @@ export default function Programa() {
       });
   };
 
+  const changeApertura = (index, key, value) => {
+    console.log(value);
+    setAperturasChanges([
+      ...aperturasChanges,
+      {
+        id: index,
+        field: key,
+        value: value,
+      },
+    ]);
+  };
+
+  const saveAperturasChanges = async () => {
+    await axios
+      .patch(`${import.meta.env.VITE_URL_API}/aperturas`, aperturasChanges, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
   useEffect(() => {
     if (programaData) {
       const programa_reset = Object.keys(programaData).reduce((acc, key) => {
@@ -287,7 +313,8 @@ export default function Programa() {
               nuevosPuestosPrograma.length > 0 ||
               nuevosCostos.length > 0 ||
               nuevasAperturas.length > 0 ||
-              nuevosPeriodosProgramas.length > 0) && (
+              nuevosPeriodosProgramas.length > 0 ||
+              aperturasChanges.length > 0) && (
               <button
                 onClick={() => {
                   if (programChanged) {
@@ -304,6 +331,9 @@ export default function Programa() {
                   }
                   if (nuevosPeriodosProgramas.length > 0) {
                     savePeriodosProgramas();
+                  }
+                  if (aperturasChanges.length > 0) {
+                    saveAperturasChanges();
                   }
                 }}
               >
@@ -701,43 +731,113 @@ export default function Programa() {
 
             <h2 className="text-xl font-bold my-5 ml-1">Aperturas y cierres</h2>
             <Table
-              headers={["Fecha inicio", "Fecha fin", "Term", "Periodo"]}
+              headers={[
+                "Fecha inicio",
+                "Fecha fin",
+                "Term",
+                "Meta",
+                "Inscripciones",
+                "Periodo",
+              ]}
               loading={loading}
             >
-              {programaData.aperturas_cierres?.map((apertura, index) => {
-                return (
-                  <tr
-                    className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
-                    key={index}
-                  >
-                    <td className="px-2 py-1">
-                      {apertura.fecha_inicio.substring(0, 10)}
-                    </td>
-                    <td className="px-2 py-1">
-                      {apertura.fecha_fin.substring(0, 10)}
-                    </td>
-                    <td className="px-2 py-1">{apertura.term}</td>
-                    <td className="px-2 py-1">
-                      <Select
-                        className="max-w-xs"
-                        styles={{
-                          control: (baseStyles) => ({
-                            ...baseStyles,
-                            border: "none",
-                            fontFamily: "Seravek",
-                            outline: "none",
-                            backgroundColor: "transparent",
-                          }),
-                        }}
-                        defaultValue={{
-                          value: apertura.periodoProgramaId,
-                          label: apertura.periodoProgramaId,
-                        }}
-                        options={periodos_programa_options}
-                      ></Select>
-                    </td>
-                  </tr>
-                );
+              {programaData.periodo_programas?.map((periodo, index) => {
+                return periodo?.aperturas_cierres?.map((apertura, index) => {
+                  console.log(apertura);
+                  return (
+                    <tr
+                      className="border-b border-grayborder hover:bg-grayborder transition-all ease-in-out duration-300"
+                      key={index}
+                    >
+                      <td className="px-2 py-1">
+                        {apertura.fecha_inicio.substring(0, 10)}
+                      </td>
+                      <td className="px-2 py-1">
+                        {apertura.fecha_fin.substring(0, 10)}
+                      </td>
+                      <td className="px-2 py-1">{apertura.term}</td>
+                      <td className="px-2 py-1">
+                        <input
+                          type="number"
+                          placeholder={
+                            !apertura?.meta_inscripciones ||
+                            apertura?.meta_inscripciones == 0
+                              ? periodo?.meta_inscripciones /
+                                periodo?.aperturas_cierres?.length
+                              : null
+                          }
+                          defaultValue={
+                            apertura?.meta_inscripciones &&
+                            apertura?.meta_inscripciones !== 0
+                              ? apertura?.meta_inscripciones
+                              : null
+                          }
+                          onChange={(event) => {
+                            changeApertura(
+                              apertura.id,
+                              "meta_inscripciones",
+                              event.target.value
+                            );
+                          }}
+                        ></input>
+                      </td>
+                      <td className="px-2 py-1">
+                        <input
+                          type="number"
+                          placeholder={
+                            !apertura?.num_inscripciones ||
+                            apertura?.num_inscripciones == 0
+                              ? periodo?.num_inscripciones /
+                                periodo?.aperturas_cierres?.length
+                              : null
+                          }
+                          defaultValue={
+                            apertura?.num_inscripciones &&
+                            apertura?.num_inscripciones !== 0
+                              ? apertura?.num_inscripciones
+                              : null
+                          }
+                          onChange={(event) => {
+                            changeApertura(
+                              apertura.id,
+                              "num_inscripciones",
+                              event.target.value
+                            );
+                          }}
+                        ></input>
+                      </td>
+                      <td className="px-2 py-1">
+                        <Select
+                          className="max-w-xs"
+                          styles={{
+                            control: (baseStyles) => ({
+                              ...baseStyles,
+                              border: "none",
+                              fontFamily: "Seravek",
+                              outline: "none",
+                              backgroundColor: "transparent",
+                            }),
+                          }}
+                          defaultValue={{
+                            value: apertura.periodoProgramaId,
+                            label: periodos_programa_options.find(
+                              (periodo) =>
+                                periodo.value === apertura.periodoProgramaId
+                            )?.label,
+                          }}
+                          onChange={(option) => {
+                            changeApertura(
+                              apertura.id,
+                              "periodoProgramaId",
+                              option.value
+                            );
+                          }}
+                          options={periodos_programa_options}
+                        ></Select>
+                      </td>
+                    </tr>
+                  );
+                });
               })}
 
               {nuevasAperturas.map((apertura, index) => {
@@ -795,7 +895,11 @@ export default function Programa() {
                         }}
                         options={periodos_programa_options}
                         onChange={(option) => {
-                          updateApertura(index, "periodoProgramaId", option.value);
+                          updateApertura(
+                            index,
+                            "periodoProgramaId",
+                            option.value
+                          );
                         }}
                       ></Select>
                     </td>
@@ -815,7 +919,7 @@ export default function Programa() {
               </tr>
             </Table>
 
-            <h2 className="text-xl font-bold my-5 ml-1">Metas</h2>
+            <h2 className="text-xl font-bold my-5 ml-1">Periodos</h2>
             <Table
               headers={["Periodo", "Meta Alumnos", "Inscritos", "Porcentaje"]}
               loading={loading}

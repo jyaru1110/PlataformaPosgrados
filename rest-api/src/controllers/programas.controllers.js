@@ -83,10 +83,6 @@ const get_programa = async (req, res) => {
         required: false,
       },
       {
-        model: AperturasCierres,
-        required: false,
-      },
-      {
         model: PeriodoPrograma,
         required: false,
         include: [
@@ -94,6 +90,7 @@ const get_programa = async (req, res) => {
             model: Periodo,
             required: false,
           },
+          { model: AperturasCierres, required: false },
         ],
       },
       {
@@ -209,6 +206,27 @@ const get_periodos = async (req, res) => {
   res.status(200).send(periodos);
 };
 
+const bulk_update_aperturas = async (req, res) => {
+  const aperturas = req.body;
+
+  try {
+    aperturas.forEach(async (element) => {
+      await AperturasCierres.update(
+        {
+          [element.field]: element.value,
+        },
+        { where: { id: element.id } }
+      );
+    });
+
+    return res.status(200).send({ message: "Aperturas actualizadas" });
+  } catch (e) {
+    return res
+      .status(500)
+      .send({ message: "Error al actualizar las aperturas" });
+  }
+};
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -224,4 +242,5 @@ module.exports = {
   create_periodo,
   create_periodo_programa,
   get_periodos,
+  bulk_update_aperturas,
 };

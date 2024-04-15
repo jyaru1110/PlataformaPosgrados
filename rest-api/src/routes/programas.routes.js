@@ -14,7 +14,8 @@ const {
   create_aperturas,
   create_periodo,
   create_periodo_programa,
-  get_periodos
+  get_periodos,
+  bulk_update_aperturas,
 } = require("../controllers/programas.controllers");
 const { isUserAuthenticated } = require("../middlewares/auth");
 
@@ -30,6 +31,7 @@ router.patch(
   update_programa_proceso
 );
 router.patch("/programa/:programa", isUserAuthenticated, update_programa);
+router.patch("/aperturas", isUserAuthenticated, bulk_update_aperturas);
 
 router.post("/programa", isUserAuthenticated, create_programa);
 router.post("/programa/puesto", isUserAuthenticated, create_puesto);
