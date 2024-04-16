@@ -25,7 +25,7 @@ export default function Admin() {
         <MultiselectPrograma onChange={changeEscuelas} />
         <article className="flex w-full justify-between">
           <TablaPosgradosTotal escuelas={escuelas} />
-          <TablaPosgradosTipo />
+          <TablaPosgradosTipo escuelas={escuelas}/>
         </article>
       </Main>
     </div>

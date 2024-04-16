@@ -248,6 +248,24 @@ const get_total_programas = async (req, res) => {
   res.status(200).send(resultado);
 };
 
+const get_programas_por_tipo = async (req, res) => {
+  const { escuelas } = req.query;
+  const resultado = await Programa.findAll({
+    attributes: [
+      [sequelize.fn("COUNT", sequelize.col("programa")), "total"],
+      "tipo",
+    ],
+    where: {
+      escuela: {
+        [Op.in]: escuelas,
+      },
+    },
+    group: ["tipo"],
+  });
+
+  res.status(200).send(resultado);
+};
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -265,4 +283,5 @@ module.exports = {
   get_periodos,
   bulk_update_aperturas,
   get_total_programas,
+  get_programas_por_tipo,
 };
