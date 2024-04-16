@@ -16,14 +16,16 @@ const {
   create_periodo_programa,
   get_periodos,
   bulk_update_aperturas,
+  get_total_programas
 } = require("../controllers/programas.controllers");
 const { isUserAuthenticated } = require("../middlewares/auth");
 
-router.get("/programas/:escuela", get_programas_escuela);
-router.get("/programas_opciones/", get_programas_opciones);
-router.get("/programas/", get_programas_todos, isUserAuthenticated);
-router.get("/programa/:programa", get_programa, isUserAuthenticated);
-router.get("/periodos", get_periodos, isUserAuthenticated);
+router.get("/programas/:escuela", isUserAuthenticated, get_programas_escuela);
+router.get("/programas_opciones/", isUserAuthenticated, get_programas_opciones);
+router.get("/programas/", isUserAuthenticated, get_programas_todos);
+router.get("/programa/:programa", isUserAuthenticated, get_programa);
+router.get("/periodos", isUserAuthenticated, get_periodos);
+router.get("/totalprogramas", isUserAuthenticated, get_total_programas);
 
 router.patch(
   "/programa_proceso/:programa",

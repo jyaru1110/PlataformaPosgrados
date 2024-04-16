@@ -10,7 +10,7 @@ export default function Table({ headers, children, loading }) {
         <table className="w-full text-sm">
           <thead className="sticky top-0 bg-white">
             <tr className="text-left border-b border-grayborder">
-              {headers.map((header, index) => (
+              {headers?.map((header, index) => (
                 <th
                   className="px-2 py-1 font-normal text-secondary"
                   key={index}

@@ -16,6 +16,7 @@ import Confirmados from "./pages/CoffeeBreaks/Confirmados";
 import EtapasProceso from "./pages/SeguimientoPosgrados/EtapasProceso";
 import Dashboard from "./pages/CoffeeBreaks/Dashboard";
 import Micrositio from "./pages/Micrositio";
+import HomeMicrosito from "./pages/Micrositio/Home";
 import Programas from "./pages/Micrositio/Admin/Programas";
 import Personas from "./pages/Micrositio/Admin/Personas";
 import Persona from "./pages/Micrositio/Admin/Personas/Persona";
@@ -92,6 +93,14 @@ const router = createBrowserRouter([
     path: "/micrositio",
     element: <Micrositio />,
     children: [
+      {
+        index: true,
+        element: <HomeMicrosito />,
+      },
+      {
+        path: "home/",
+        element: <HomeMicrosito />,
+      },
       {
         path: "admin/",
         element: <Admin />,

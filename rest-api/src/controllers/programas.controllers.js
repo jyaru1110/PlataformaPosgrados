@@ -7,6 +7,8 @@ const Usuario = require("../models/Usuario");
 const PuestoEscuela = require("../models/PuestoEscuela");
 const Periodo = require("../models/Periodo");
 const PeriodoPrograma = require("../models/PeriodoPrograma");
+const sequelize = require("../database/database");
+const { Op } = require("sequelize");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -227,6 +229,25 @@ const bulk_update_aperturas = async (req, res) => {
   }
 };
 
+const get_total_programas = async (req, res) => {
+  const { escuelas } = req.query;
+
+  const resultado = await Programa.findAll({
+    attributes: [
+      [sequelize.fn("COUNT", sequelize.col("programa")), "total"],
+      "grado",
+    ],
+    where: {
+      escuela: {
+        [Op.in]: escuelas,
+      },
+    },
+    group: ["grado"],
+  });
+
+  res.status(200).send(resultado);
+};
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -243,4 +264,5 @@ module.exports = {
   create_periodo_programa,
   get_periodos,
   bulk_update_aperturas,
+  get_total_programas,
 };
