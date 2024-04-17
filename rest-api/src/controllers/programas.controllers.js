@@ -266,6 +266,124 @@ const get_programas_por_tipo = async (req, res) => {
   res.status(200).send(resultado);
 };
 
+const get_metas_por_periodo = async (req, res) => {
+  const { escuelas } = req.query;
+
+  const resultado = await PeriodoPrograma.findAll({
+    attributes: [
+      [
+        sequelize.fn("SUM", sequelize.col("num_inscripciones")),
+        "num_inscripciones",
+      ],
+      [
+        sequelize.fn("SUM", sequelize.col("meta_inscripciones")),
+        "meta_inscripciones",
+      ],
+    ],
+    include: [
+      {
+        model: Programa,
+        where: {
+          escuela: {
+            [Op.in]: escuelas,
+          },
+        },
+        attributes: [],
+      },
+      {
+        model: Periodo,
+        attributes: ["periodo_nombre"],
+      },
+    ],
+    group: ["periodo.id"],
+  });
+
+  const periodos = resultado.map(
+    (element) => element.dataValues.periodo.periodo_nombre
+  );
+
+  const inscripciones = resultado.map(
+    (element) => element.dataValues.num_inscripciones
+  );
+
+  const metas = resultado.map(
+    (element) => element.dataValues.meta_inscripciones
+  );
+
+  const data_set = {
+    labels: periodos,
+    datasets: [
+      {
+        label: "Inscripciones",
+        data: inscripciones,
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        borderColor: "rgba(54, 162, 235, 1)",
+        borderWidth: 1,
+      },
+      {
+        label: "Metas",
+        data: metas,
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  res.status(200).send(data_set);
+};
+
+const get_metas_periodo = async (req, res) => {
+  const { periodo } = req.params;
+  const { escuelas } = req.query;
+
+  const resultado = await PeriodoPrograma.findAll({
+    attributes: [
+      [
+        sequelize.fn("SUM", sequelize.col("num_inscripciones")),
+        "num_inscripciones",
+      ],
+      [
+        sequelize.fn("SUM", sequelize.col("meta_inscripciones")),
+        "meta_inscripciones",
+      ],
+    ],
+    include: [
+      {
+        model: Programa,
+        attributes: [],
+        where: {
+          escuela: {
+            [Op.in]: escuelas,
+          },
+        },
+      },
+    ],
+    where: {
+      periodoId: periodo,
+    },
+    group: ["periodoId"],
+  });
+
+  const data = {
+    labels: ["Inscripciones", "Sin inscribir"],
+    datasets: [
+      {
+        label: "Número de inscripciones",
+        data: [
+          resultado[0]?.dataValues.num_inscripciones,
+          resultado[0]?.dataValues.meta_inscripciones -
+            resultado[0]?.dataValues.num_inscripciones,
+        ],
+        backgroundColor: ["#227B76", "#C9B608"],
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  res.status(200).send(data);
+};
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -283,5 +401,7 @@ module.exports = {
   get_periodos,
   bulk_update_aperturas,
   get_total_programas,
+  get_metas_por_periodo,
   get_programas_por_tipo,
+  get_metas_periodo,
 };
