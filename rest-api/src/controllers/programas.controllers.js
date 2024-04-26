@@ -295,6 +295,7 @@ const get_metas_por_periodo = async (req, res) => {
         attributes: ["periodo_nombre"],
       },
     ],
+    order: [[{ model: Periodo }, "periodo_nombre", "ASC"]],
     group: ["periodo.id"],
   });
 
@@ -316,16 +317,12 @@ const get_metas_por_periodo = async (req, res) => {
       {
         label: "Inscripciones",
         data: inscripciones,
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-        borderColor: "rgba(54, 162, 235, 1)",
-        borderWidth: 1,
+        backgroundColor: "#C9B608",
       },
       {
         label: "Metas",
         data: metas,
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 1,
+        backgroundColor: "#227B76",
       },
     ],
   };
@@ -381,7 +378,13 @@ const get_metas_periodo = async (req, res) => {
     ],
   };
 
-  res.status(200).send(data);
+  res.status(200).send({
+    data: data,
+    percentage:
+      (resultado[0]?.dataValues.num_inscripciones /
+        resultado[0]?.dataValues.meta_inscripciones) *
+      100,
+  });
 };
 
 module.exports = {

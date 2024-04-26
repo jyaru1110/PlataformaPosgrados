@@ -34,8 +34,8 @@ export default function ChartsMetas(escuelas) {
     periodo: periodo,
   });
   return (
-    <div className="w-full bg-white px-7 py-3 rounded-lg shadow-sm mt-7">
-      <h2 className="font-bold text-3xl">Metas</h2>
+    <div className="w-full bg-white px-7 py-3 rounded-xl shadow-sm mt-7">
+      <h2 className="font-bold text-2xl">Metas</h2>
       <div className="flex w-full space-x-10">
         <div className="w-2/3">{!loading && <Bar data={data}></Bar>}</div>
         <div className="w-1/3 flex flex-col items-end justify-between">
@@ -51,12 +51,12 @@ export default function ChartsMetas(escuelas) {
             <option value="4">2024-2025</option>
             <option value="5">2025-2026</option>
           </select>
-          <div className="flex-1 relative">
+          <div className="flex-1 relative items-center flex">
             {!loading_pie && (
               <>
-                <Doughnut data={data_pie}></Doughnut>{" "}
-                <span className="absolute top-0 text-4xl w-full h-full flex items-center justify-center">
-                  60%
+                <Doughnut data={data_pie?.data}></Doughnut>{" "}
+                <span className="absolute top-0 text-4xl w-full h-full flex items-center justify-center pointer-events-none">
+                  <p className="mt-8 font-semibold text-primary">%{data_pie?.percentage?.toFixed(1)}</p>
                 </span>
               </>
             )}

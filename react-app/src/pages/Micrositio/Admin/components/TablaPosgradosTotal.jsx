@@ -5,14 +5,14 @@ export default function TablaPosgradosTotal(escuelas) {
   const { data, loading, error } = useTotalPosgrados(escuelas);
   return (
     <span>
-      <h3 className="ml-2">Total posgrados</h3>
+      <h2 className="ml-2 font-bold text-2xl">Total posgrados</h2>
       {!loading && (
         <Table headers={["Tipo", "Número"]}>
           {data?.map((programa, index) => {
             return (
               <tr key={index}>
-                <td className="pr-10 pl-2">{programa?.grado || 'Sin grado'}</td>
-                <td className="pr-10 pl-2">{programa.total}</td>
+                <td className="pr-10 pl-2 text-base">{programa?.grado || 'Sin grado'}</td>
+                <td className="pr-10 pl-2 font-bold text-base">{programa.total}</td>
               </tr>
             );
           })}

@@ -33,7 +33,7 @@ export default function Metas() {
 
   return (
     <div className="w-full  flex flex-col">
-      <Header title="Admin" />
+      <Header title="Dashboard posgrados" />
       <Main>
         <MultiselectPrograma onChange={changeEscuelas} />
         <article className="flex w-full justify-between mt-14">
