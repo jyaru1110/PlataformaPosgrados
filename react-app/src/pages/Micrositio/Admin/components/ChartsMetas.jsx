@@ -34,26 +34,35 @@ export default function ChartsMetas(escuelas) {
     periodo: periodo,
   });
   return (
-    <div>
-      <h2>Charts Metas</h2>
-      {!loading && <Bar data={data}></Bar>}
-      <select
-        className="w-40 mt-12"
-        onChange={(e) => {
-          setPeriodo(e.target.value);
-        }}
-      >
-        <option value="1">2023-2024</option>
-        <option value="2">2021-2022</option>
-        <option value="3">2022-2023</option>
-        <option value="4">2024-2025</option>
-        <option value="5">2025-2026</option>
-      </select>
-      {!loading_pie && (
-        <div className="w-80">
-          <Doughnut data={data_pie}></Doughnut>
+    <div className="w-full bg-white px-7 py-3 rounded-lg shadow-sm mt-7">
+      <h2 className="font-bold text-3xl">Metas</h2>
+      <div className="flex w-full space-x-10">
+        <div className="w-2/3">{!loading && <Bar data={data}></Bar>}</div>
+        <div className="w-1/3 flex flex-col items-end justify-between">
+          <select
+            className="w-32 border border-grayborder rounded-lg px-3 py-1"
+            onChange={(e) => {
+              setPeriodo(e.target.value);
+            }}
+          >
+            <option value="1">2023-2024</option>
+            <option value="2">2021-2022</option>
+            <option value="3">2022-2023</option>
+            <option value="4">2024-2025</option>
+            <option value="5">2025-2026</option>
+          </select>
+          <div className="flex-1 relative">
+            {!loading_pie && (
+              <>
+                <Doughnut data={data_pie}></Doughnut>{" "}
+                <span className="absolute top-0 text-4xl w-full h-full flex items-center justify-center">
+                  60%
+                </span>
+              </>
+            )}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import MultiselectPrograma from "../components/MultiSelectPrograma";
+import MultiselectPrograma from "../../components/MultiSelectPrograma";
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
-import Main from "../components/Main";
-import TablaPosgradosTipo from "./components/TablaPosgradosTipo";
-import TablaPosgradosTotal from "./components/TablaPosgradosTotal";
-import ChartsMetas from "./components/ChartsMetas";
+import Header from "../../components/Header";
+import Main from "../../components/Main";
+import TablaPosgradosTipo from "../components/TablaPosgradosTipo";
+import TablaPosgradosTotal from "../components/TablaPosgradosTotal";
+import ChartsMetas from "../components/ChartsMetas";
 
-export default function Admin() {
+export default function Metas() {
   const [escuelas, setEscuelas] = useState([
     "Gobierno y Economía",
     "Bellas Artes",
@@ -36,7 +36,7 @@ export default function Admin() {
       <Header title="Admin" />
       <Main>
         <MultiselectPrograma onChange={changeEscuelas} />
-        <article className="flex w-full justify-between">
+        <article className="flex w-full justify-between mt-14">
           <TablaPosgradosTotal escuelas={escuelas} />
           <TablaPosgradosTipo escuelas={escuelas} />
         </article>

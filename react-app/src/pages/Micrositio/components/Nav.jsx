@@ -13,7 +13,7 @@ export default function Nav() {
         </svg>
         <p>Micrositio</p>
       </NavLink>
-      <NavLink to={'/micrositio/admin'} className="w-full mt-3 opacity-50 font-extralight">Admin</NavLink>
+      <p className="w-full mt-3 opacity-50 font-extralight">Admin</p>
       <NavLink className={({ isActive, isPending }) =>{
         return `w-full flex text-xl items-center space-x-5 rounded-lg p-1 ${isActive ? 'bg-grayfocus text-primary font-medium' : ''}`
       }} to="/micrositio/admin/programas">
@@ -32,6 +32,15 @@ export default function Nav() {
           <path d="M17.5 18.3333C17.5 14.1912 14.1421 10.8333 10 10.8333C5.85787 10.8333 2.5 14.1912 2.5 18.3333" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <p>Personas</p>
+      </NavLink>
+      <NavLink className={({ isActive, isPending }) =>{
+        return `w-full flex text-xl items-center space-x-5 rounded-lg p-1 ${isActive ? 'bg-grayfocus text-primary font-medium' : ''}`
+      }} to="/micrositio/admin/metas">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.5 12C2.5 17.2467 6.7533 21.5 12 21.5V13C12 12.4477 12.4477 12 13 12H21.5C21.5 6.7533 17.2467 2.5 12 2.5C6.7533 2.5 2.5 6.7533 2.5 12Z" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 15H15V21H21V15Z" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p>Metas</p>
       </NavLink>
     </nav>
   );
