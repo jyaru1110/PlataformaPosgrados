@@ -180,7 +180,7 @@ export default function Horario() {
     };
     const controller = new AbortController();
     const signal = controller.signal;
-    const url = `${url_backend}/update_horario/${id_horario}`;
+    const url = `${url_backend}/update_horario/${id}`;
     put_fetch(url, signal, data, after_set);
     return () => controller.abort();
   };

@@ -241,6 +241,9 @@ const get_total_programas = async (req, res) => {
       escuela: {
         [Op.in]: escuelas,
       },
+      rvoe: {
+        [Op.not]: null,
+      },
     },
     group: ["grado"],
   });
@@ -258,6 +261,9 @@ const get_programas_por_tipo = async (req, res) => {
     where: {
       escuela: {
         [Op.in]: escuelas,
+      },
+      rvoe: {
+        [Op.not]: null,
       },
     },
     group: ["tipo"],
