@@ -199,6 +199,7 @@ const create_periodo = async (req, res) => {
 
 const create_periodo_programa = async (req, res) => {
   const { body } = req;
+  console.log(body);
   try {
     await PeriodoPrograma.bulkCreate(body.nuevosPeriodosProgramas);
     res.status(200).send({ message: "Periodo creado" });
@@ -408,7 +409,6 @@ const get_periodos_programa = async (req, res) => {
     ],
     order: [[{ model: Periodo }, "periodo_nombre", "ASC"]],
   });
-  console.log(periodos[0].dataValues.periodo);
 
   res.status(200).send(periodos);
 }
