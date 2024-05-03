@@ -7,7 +7,7 @@ import TablaPosgradosTipo from "../components/TablaPosgradosTipo";
 import TablaPosgradosTotal from "../components/TablaPosgradosTotal";
 import ChartsMetas from "../components/ChartsMetas";
 
-export default function Metas() {
+export default function Dashboard() {
   const [escuelas, setEscuelas] = useState([
     "Gobierno y Economía",
     "Bellas Artes",
