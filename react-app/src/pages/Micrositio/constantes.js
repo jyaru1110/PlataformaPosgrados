@@ -11,9 +11,9 @@ export const secciones = {
         title:'Micrositio',
         ruta:'/micrositio'
     },
-    metas:{
-        title:'Metas',
-        ruta:'/micrositio/admin/metas'
+    dashboardprogramas:{
+        title:'Dashboard',
+        ruta:'/micrositio/admin/dashboard'
     },
     admin:{
         title:'Admin',

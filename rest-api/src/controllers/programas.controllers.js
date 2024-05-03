@@ -72,6 +72,7 @@ const get_programas_todos = async (req, res) => {
       "rvoe",
       "fecha_rvoe",
     ],
+    order: [["escuela", "ASC"], ["programa", "ASC"]],
   });
   res.status(200).send(programas);
 };
