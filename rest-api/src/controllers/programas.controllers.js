@@ -9,6 +9,7 @@ const Periodo = require("../models/Periodo");
 const PeriodoPrograma = require("../models/PeriodoPrograma");
 const sequelize = require("../database/database");
 const { Op } = require("sequelize");
+const { get } = require("../routes/programas.routes");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -72,7 +73,10 @@ const get_programas_todos = async (req, res) => {
       "rvoe",
       "fecha_rvoe",
     ],
-    order: [["escuela", "ASC"], ["programa", "ASC"]],
+    order: [
+      ["escuela", "ASC"],
+      ["programa", "ASC"],
+    ],
   });
   res.status(200).send(programas);
 };
@@ -394,6 +398,21 @@ const get_metas_periodo = async (req, res) => {
   });
 };
 
+const get_periodos_programa = async (req, res) => {
+  const periodos = await PeriodoPrograma.findAll({
+    include: [
+      {
+        model: Periodo,
+        required: false,
+      },
+    ],
+    order: [[{ model: Periodo }, "periodo_nombre", "ASC"]],
+  });
+  console.log(periodos[0].dataValues.periodo);
+
+  res.status(200).send(periodos);
+}
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -414,4 +433,5 @@ module.exports = {
   get_metas_por_periodo,
   get_programas_por_tipo,
   get_metas_periodo,
+  get_periodos_programa,
 };

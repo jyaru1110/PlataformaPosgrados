@@ -3,8 +3,8 @@ import { get_fetch } from "./get_fetch";
 
 const url_backend = import.meta.env.VITE_URL_API;
 
-export const usePeriodos = () => {
-  const [periodos, setPeriodos] = useState([]);
+export const usePeriodoPrograma = () => {
+  const [metas, setPeriodos] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const after_fetch = (data) => {
@@ -16,7 +16,7 @@ export const usePeriodos = () => {
     setLoading(true);
     const controller = new AbortController();
     const signal = controller.signal;
-    get_fetch(url_backend + "/periodos/", signal, after_fetch);
+    get_fetch(url_backend + "/programas/periodos/", signal, after_fetch);
     return () => controller.abort();
   };
 
@@ -24,5 +24,5 @@ export const usePeriodos = () => {
     update();
   }, []);
 
-  return { periodos, loading, update };
+  return { metas, loading, update};
 };

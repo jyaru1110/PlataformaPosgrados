@@ -19,10 +19,12 @@ const {
   get_total_programas,
   get_programas_por_tipo,
   get_metas_por_periodo,
-  get_metas_periodo
+  get_metas_periodo,
+  get_periodos_programa
 } = require("../controllers/programas.controllers");
 const { isUserAuthenticated } = require("../middlewares/auth");
 
+router.get("/programas/periodos", isUserAuthenticated, get_periodos_programa);
 router.get("/programas/:escuela", isUserAuthenticated, get_programas_escuela);
 router.get("/programas_opciones/", isUserAuthenticated, get_programas_opciones);
 router.get("/programas/", isUserAuthenticated, get_programas_todos);
