@@ -10,10 +10,11 @@ const DB_PASSWORD = process.env.DB_PASSWORD;
 const sequelize = new Sequelize(DB_NAME, user,DB_PASSWORD, {
     host: DB_HOST, 
     port: DB_PORT, 
-    dialect: 'postgres', 
+    dialect: 'postgres',
     timezone: '-06:00',
     dialectOptions: {
-        useUTC: false
+        useUTC: false,
+        timezone: '-06:00',
     },
 });
 

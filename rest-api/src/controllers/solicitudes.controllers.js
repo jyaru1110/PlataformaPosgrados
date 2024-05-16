@@ -21,7 +21,7 @@ const get_solicitudes = async (req, res) => {
         where: where,
         attributes: ["programa"],
       },
-    ],
+    ]
   });
   res.status(200).send({ notificaciones: notificaciones });
 };
