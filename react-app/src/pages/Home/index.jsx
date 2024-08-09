@@ -24,6 +24,7 @@ export default function Home() {
           </a>
           {localStorage.getItem("id") == 184 ||
           localStorage.getItem("id") == 183 ||
+          localStorage.getItem("id") == 227 ||
           localStorage.getItem("id") == 198 ? (
             <a
               href="/micrositio"
@@ -35,6 +36,7 @@ export default function Home() {
 
           {localStorage.getItem("id") == 184 ||
           localStorage.getItem("id") == 183 ||
+          localStorage.getItem("id") == 227 ||
           localStorage.getItem("id") == 198 ? (
             <a
               href="/seguimientoposgrados"

@@ -21,22 +21,27 @@ export default function HomeMicrosito() {
           ¡Bienvenido, {localStorage.getItem("nombre")}! 🚀
         </h1>
         <div className="mt-20 flex space-x-4">
-          <div className="w-60 h-32 bg-white shadow-md rounded-lg p-2">
-            <p className="font-bold text-lg">Directores E/F</p>
-            <button className="border border-grayborder rounded-lg p-1">
-              Copiar correos
-            </button>
+          <div className="w-72 h-32 bg-white shadow-md rounded-lg p-2">
+            <span className="flex justify-between items-center">
+              <p className="font-bold text-lg">Directores E/F</p>
+              <button className="border border-grayborder rounded-lg p-1">
+                Copiar correos
+              </button>
+            </span>
             <button className="border border-grayborder rounded-lg p-1">
               Ver miembros
             </button>
           </div>
           <div className="w-60 h-32 bg-white shadow-md rounded-lg p-2">
-            <p className="font-bold text-lg leading-tight">
-              Coordinador de Asuntos Estudiantiles
-            </p>
-            <button className="border border-grayborder rounded-lg p-1">
-              Copiar correos
-            </button>
+            <span>
+              <p className="font-bold text-lg leading-tight">
+                Coordinador de Asuntos Estudiantiles
+              </p>
+              <button className="border border-grayborder rounded-lg p-1">
+                Copiar correos
+              </button>
+            </span>
+
             <button className="border border-grayborder rounded-lg p-1">
               Ver miembros
             </button>

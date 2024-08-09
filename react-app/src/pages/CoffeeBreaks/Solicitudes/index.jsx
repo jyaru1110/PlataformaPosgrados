@@ -219,7 +219,6 @@ export default function Solicitudes() {
         ) : (
           <tbody className="font-poppins text-base">
             {solicitudes.filter(filtrar).map((solicitud) => {
-              console.log(solicitud);
               return (
                 <tr
                   className={`${
@@ -232,7 +231,7 @@ export default function Solicitudes() {
                   key={solicitud.id}
                 >
                   <td className="border-r p-2">
-                    {solicitud.createdAt?.substring(0, 10)}
+                    {solicitud.createdAt.substring(0, 10)}
                   </td>
                   <td className="border-r p-2">{solicitud.estado}</td>
                   <td className="border-r p-2">
