@@ -77,6 +77,9 @@ const get_programas_todos = async (req, res) => {
       ["escuela", "ASC"],
       ["programa", "ASC"],
     ],
+    where: {
+      esta_activo: true,
+    },
   });
   res.status(200).send(programas);
 };

@@ -562,7 +562,7 @@ export default function Programa() {
                 <option value="Aguascalientes">Aguascalientes</option>
               </select>
               <label for="esta_activo" className="font-bold">
-                Está activo
+                Visible
               </label>
               <input
                 id="esta_activo"
