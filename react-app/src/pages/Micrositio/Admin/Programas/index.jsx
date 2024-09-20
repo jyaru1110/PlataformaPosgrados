@@ -1,6 +1,8 @@
 import Header from "../../components/Header";
 import Main from "../../components/Main";
 import Table from "../../components/Table";
+import TablaPosgradosTipo from "../components/TablaPosgradosTipo";
+import TablaPosgradosTotal from "../components/TablaPosgradosTotal";
 import { useProgramas } from "../../../../hooks/useProgramas";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -21,6 +23,20 @@ const headers = [
   "fecha",
 ];
 
+const escuelas = [
+  "Gobierno y Economía",
+  "Bellas Artes",
+  "Derecho",
+  "Empresariales",
+  "ESDAI",
+  "Filosofía",
+  "Ingeniería",
+  "Comunicación",
+  "Pedagogía",
+  "Empresariales Santa Fe",
+  "Ciencias de la Salud",
+];
+
 export default function Programas() {
   const { loading, programas } = useProgramas("Todos");
   const navigate = useNavigate();
@@ -39,6 +55,10 @@ export default function Programas() {
         ></input>
       </Header>
       <Main>
+        <article className="flex w-full justify-between mb-14">
+          <TablaPosgradosTotal escuelas={escuelas} />
+          <TablaPosgradosTipo escuelas={escuelas} />
+        </article>
         <Table headers={headers} loading={loading}>
           {programas.map((programa, index) => (
             <tr
