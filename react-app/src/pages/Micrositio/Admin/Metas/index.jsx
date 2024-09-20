@@ -206,7 +206,7 @@ export default function Metas() {
                   (
                     (meta?.num_inscripciones / meta?.meta_inscripciones) *
                     100
-                  )?.toFixed(2)}
+                  )?.toFixed(0)}
                 %
               </td>
             </tr>
