@@ -291,7 +291,8 @@ const update_horario = async (req, res) => {
     programa,
     num_alumnos,
   } = req.body;
-  console.log(req.body);
+  const fecha_actual = new Date();
+  const fecha_a_actualizar = fecha_inicio > fecha_actual ? fecha_inicio : fecha_actual;
   const nuevo_horario = await Horario.update(
     {
       hora_fin: hora_fin,
@@ -324,7 +325,7 @@ const update_horario = async (req, res) => {
       where: {
         id_horario: id,
         fecha: {
-          [Op.between]: [fecha_inicio, fecha_fin],
+          [Op.between]: [fecha_a_actualizar, fecha_fin],
         },
         estado: "Pendiente",
       },
@@ -335,7 +336,7 @@ const update_horario = async (req, res) => {
     where: {
       id_horario: id,
       fecha: {
-        [Op.between]: [fecha_inicio, fecha_fin],
+        [Op.between]: [fecha_a_actualizar, fecha_fin],
       },
       estado: "Confirmado",
     },
