@@ -46,7 +46,6 @@ export default function ChartsMetas(escuelas) {
             }}
           >
             <option value="1">2023-2024</option>
-            <option value="2">2021-2022</option>
             <option value="3">2022-2023</option>
             <option value="4">2024-2025</option>
             <option value="5">2025-2026</option>
