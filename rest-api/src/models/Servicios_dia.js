@@ -82,6 +82,8 @@ const Servicios_dia = sequelize.define(
     },
     aprobadoPor: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+      onDelete: "SET NULL",
       references: {
         model: "usuarios",
         key: "id",
