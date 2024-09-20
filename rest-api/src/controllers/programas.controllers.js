@@ -422,6 +422,28 @@ const get_periodos_programa = async (req, res) => {
   res.status(200).send(periodos);
 }
 
+const delete_periodo_programa = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await PeriodoPrograma.destroy({ where: { id: id } });
+    res.status(200).send({ message: "Periodo eliminado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al eliminar el periodo" });
+  }
+}
+
+const delete_apertura = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await AperturasCierres.destroy({ where: { id: id } });
+    res.status(200).send({ message: "Apertura eliminada" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al eliminar la apertura" });
+  }
+}
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -442,5 +464,7 @@ module.exports = {
   get_metas_por_periodo,
   get_programas_por_tipo,
   get_metas_periodo,
+  delete_periodo_programa,
   get_periodos_programa,
+  delete_apertura
 };

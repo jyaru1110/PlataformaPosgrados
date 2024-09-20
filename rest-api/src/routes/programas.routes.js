@@ -20,7 +20,9 @@ const {
   get_programas_por_tipo,
   get_metas_por_periodo,
   get_metas_periodo,
-  get_periodos_programa
+  get_periodos_programa,
+  delete_periodo_programa,
+  delete_apertura
 } = require("../controllers/programas.controllers");
 const { isUserAuthenticated } = require("../middlewares/auth");
 
@@ -50,5 +52,8 @@ router.post("/programa/costo", isUserAuthenticated, create_costos);
 router.post("/programa/apertura", isUserAuthenticated, create_aperturas);
 router.post("/periodo", isUserAuthenticated, create_periodo);
 router.post("/programa/periodo", isUserAuthenticated, create_periodo_programa);
+
+router.delete("/programa/periodo/:id", isUserAuthenticated, delete_periodo_programa);
+router.delete("/aperturas/:id", isUserAuthenticated, delete_apertura);
 
 module.exports = router;
