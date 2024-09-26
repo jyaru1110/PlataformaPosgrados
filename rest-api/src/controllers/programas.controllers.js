@@ -466,6 +466,17 @@ const delete_costo_programa = async (req, res) => {
   }
 }
 
+const delete_puesto_escuela = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await PuestoEscuela.destroy({ where: { id: id } });
+    res.status(200).send({ message: "Puesto eliminado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al eliminar el puesto" });
+  }
+}
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -490,5 +501,6 @@ module.exports = {
   get_periodos_programa,
   delete_apertura,
   delete_puesto_programa,
-  delete_costo_programa
+  delete_costo_programa,
+  delete_puesto_escuela
 };

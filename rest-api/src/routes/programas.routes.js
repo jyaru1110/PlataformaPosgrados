@@ -24,7 +24,8 @@ const {
   delete_periodo_programa,
   delete_apertura,
   delete_puesto_programa,
-  delete_costo_programa
+  delete_costo_programa,
+  delete_puesto_escuela
 } = require("../controllers/programas.controllers");
 const { isUserAuthenticated } = require("../middlewares/auth");
 
@@ -59,5 +60,6 @@ router.delete("/programa/periodo/:id", isUserAuthenticated, delete_periodo_progr
 router.delete("/aperturas/:id", isUserAuthenticated, delete_apertura);
 router.delete("/programa/puesto/:id", isUserAuthenticated, delete_puesto_programa);
 router.delete("/programa/costo/:id", isUserAuthenticated, delete_costo_programa);
+router.delete("/escuela/puesto/:id", isUserAuthenticated, delete_puesto_escuela);
 
 module.exports = router;
