@@ -444,6 +444,17 @@ const delete_apertura = async (req, res) => {
   }
 }
 
+const delete_puesto_programa = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await PuestoPrograma.destroy({ where: { id: id } });
+    res.status(200).send({ message: "Puesto eliminado" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al eliminar el puesto" });
+  }
+}
+
 module.exports = {
   get_programas_escuela,
   get_programas_opciones,
@@ -466,5 +477,6 @@ module.exports = {
   get_metas_periodo,
   delete_periodo_programa,
   get_periodos_programa,
-  delete_apertura
+  delete_apertura,
+  delete_puesto_programa
 };
