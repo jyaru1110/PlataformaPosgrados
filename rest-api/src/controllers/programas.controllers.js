@@ -412,7 +412,7 @@ const get_periodos_programa = async (req, res) => {
       },
       {
         model: Programa,
-        attributes: [],
+        attributes: ["escuela"],
         where: {
           escuela: user.escuela,
         },

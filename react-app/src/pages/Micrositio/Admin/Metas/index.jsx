@@ -2,14 +2,28 @@ import Header from "../../components/Header";
 import Main from "../../components/Main";
 import Table from "../../components/Table";
 import { usePeriodoPrograma } from "../../../../hooks/usePeriodoPrograma";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Creatable from "react-select/creatable";
-import Select from "react-select";
 import { usePeriodos } from "../../../../hooks/usePeriodos";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useProgramasOpciones } from "../../../../hooks/useProgramas";
 import { Link } from "react-router-dom";
+import Filter from "../../components/Filter";
+
+const escuelas = [
+  "Gobierno y Economía",
+  "Bellas Artes",
+  "Derecho",
+  "Empresariales",
+  "ESDAI",
+  "Filosofía",
+  "Ingeniería",
+  "Comunicación",
+  "Pedagogía",
+  "Empresariales Santa Fe",
+  "Ciencias de la Salud",
+];
 
 const headers = [
   "Periodo",
@@ -23,16 +37,31 @@ export default function Metas() {
   const { loading, metas, update } = usePeriodoPrograma("Todos");
   const [newMetas, setNewMetas] = useState([]);
   const { periodos, update: update_periodos } = usePeriodos();
-  const [metasToUpdate, setMetasToUpdate] = useState({}); 
+  const [metasToUpdate, setMetasToUpdate] = useState({});
   const { programas } = useProgramasOpciones("Todos");
+  const [filteredEscuelas, setFilteredEscuelas] = useState([]);
+  const [filteredPeriodos, setFilteredPeriodos] = useState([]);
+
+  const filterMetas = (meta) => {
+    if (filteredEscuelas.length === 0 && filteredPeriodos.length === 0)
+      return true;
+    if (filteredEscuelas.length === 0)
+      return filteredPeriodos.includes(meta.periodo.periodo_nombre);
+    if (filteredPeriodos.length === 0)
+      return filteredEscuelas.includes(meta.programa.escuela);
+    return (
+      filteredPeriodos.includes(meta.periodo.nombre) &&
+      filteredEscuelas.includes(meta.periodo.periodo_nombre)
+    );
+  };
 
   const periodos_options = periodos.map((periodo) => {
     return { value: periodo.id, label: periodo.periodo_nombre };
   });
 
-  const updateMetasToUpdate = (index,key,value) => {
-    const metasToUpdateCopy = {...metasToUpdate};
-    if(!metasToUpdateCopy[index]) metasToUpdateCopy[index] = {};
+  const updateMetasToUpdate = (index, key, value) => {
+    const metasToUpdateCopy = { ...metasToUpdate };
+    if (!metasToUpdateCopy[index]) metasToUpdateCopy[index] = {};
     metasToUpdateCopy[index][key] = value;
     setMetasToUpdate(metasToUpdateCopy);
   };
@@ -110,31 +139,31 @@ export default function Metas() {
   };
 
   const saveChanges = async () => {
-    if(newMetas.length > 0){
+    if (newMetas.length > 0) {
       saveNewMetas();
     }
 
-    if(Object.keys(metasToUpdate).length > 0){
+    if (Object.keys(metasToUpdate).length > 0) {
       await axios
-      .put(
-        `${import.meta.env.VITE_URL_API}/programas/periodos`,
-        {
-          metasToUpdate: metasToUpdate,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        toast.success(res.data.message);
-        update();
-        setMetasHasChanged(false);
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
+        .put(
+          `${import.meta.env.VITE_URL_API}/programas/periodos`,
+          {
+            metasToUpdate: metasToUpdate,
+          },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          toast.success(res.data.message);
+          update();
+          setMetasHasChanged(false);
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message);
+        });
     }
-  }
+  };
 
   return (
     <div className="w-full flex flex-col relative h-screen">
@@ -159,6 +188,18 @@ export default function Metas() {
             </svg>
           </button>
         )}
+        <Filter
+          title={"Escuela"}
+          filtered={filteredEscuelas}
+          setFiltered={setFilteredEscuelas}
+          options={escuelas}
+        />
+        <Filter
+          title={"Periodo"}
+          filtered={filteredPeriodos}
+          setFiltered={setFilteredPeriodos}
+          options={periodos_options.map((option) => option.label)}
+        />
       </Header>
       <Main>
         <Table headers={headers} loading={loading}>
@@ -241,15 +282,47 @@ export default function Metas() {
               </td>
             </tr>
           ))}
-          {metas.map((meta, index) => (
+          {metas.filter(filterMetas).map((meta, index) => (
             <tr
               className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
               key={index}
             >
               <td className="px-2 py-1">{meta?.periodo?.periodo_nombre}</td>
-              <td className="px-2 py-1 text-emerald-800 underline"><Link to={`/micrositio/admin/programas/${meta?.programaPrograma}`}>{meta?.programaPrograma}</Link></td>
-              <td className="px-2 py-1"><input type="number" min={0} onChange={(e)=>updateMetasToUpdate(meta.id,"meta_inscripciones",e.target.value)} defaultValue={meta?.meta_inscripciones}></input></td>
-              <td className="px-2 py-1"><input type="number" min={0} onChange={(e)=>updateMetasToUpdate(meta.id,"num_inscripciones",e.target.value)}  defaultValue={meta?.num_inscripciones}/></td>
+              <td className="px-2 py-1 text-emerald-800 underline">
+                <Link
+                  to={`/micrositio/admin/programas/${meta?.programaPrograma}`}
+                >
+                  {meta?.programaPrograma}
+                </Link>
+              </td>
+              <td className="px-2 py-1">
+                <input
+                  type="number"
+                  min={0}
+                  onChange={(e) =>
+                    updateMetasToUpdate(
+                      meta.id,
+                      "meta_inscripciones",
+                      e.target.value
+                    )
+                  }
+                  defaultValue={meta?.meta_inscripciones}
+                ></input>
+              </td>
+              <td className="px-2 py-1">
+                <input
+                  type="number"
+                  min={0}
+                  onChange={(e) =>
+                    updateMetasToUpdate(
+                      meta.id,
+                      "num_inscripciones",
+                      e.target.value
+                    )
+                  }
+                  defaultValue={meta?.num_inscripciones}
+                />
+              </td>
               <td className="px-2 py-1 font-bold">
                 {meta.num_inscripciones &&
                   meta.meta_inscripciones &&
