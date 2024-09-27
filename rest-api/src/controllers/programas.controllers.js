@@ -408,15 +408,18 @@ const get_periodos_programa = async (req, res) => {
       {
         model: Periodo,
         required: false,
+        attributes: ["periodo_nombre"],
       },
       {
         model: Programa,
+        attributes: [],
         where: {
           escuela: user.escuela,
         },
       },
     ],
-    order: [[{ model: Periodo }, "periodo_nombre", "DESC"]],
+    attributes: ["programaPrograma", "num_inscripciones", "meta_inscripciones"],
+    order: [[{ model: Periodo }, "periodo_nombre", "DESC"],"programaPrograma"],
   });
 
   res.status(200).send(periodos);
