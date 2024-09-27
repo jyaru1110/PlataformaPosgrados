@@ -262,7 +262,6 @@ export default function Programa() {
   };
 
   const changeApertura = (index, key, value) => {
-    console.log(value);
     setAperturasChanges([
       ...aperturasChanges,
       {

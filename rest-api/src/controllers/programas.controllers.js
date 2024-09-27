@@ -420,7 +420,7 @@ const get_periodos_programa = async (req, res) => {
   });
 
   res.status(200).send(periodos);
-}
+};
 
 const delete_periodo_programa = async (req, res) => {
   const { id } = req.params;
@@ -431,7 +431,7 @@ const delete_periodo_programa = async (req, res) => {
     console.log(error);
     res.status(500).send({ message: "Error al eliminar el periodo" });
   }
-}
+};
 
 const delete_apertura = async (req, res) => {
   const { id } = req.params;
@@ -442,7 +442,7 @@ const delete_apertura = async (req, res) => {
     console.log(error);
     res.status(500).send({ message: "Error al eliminar la apertura" });
   }
-}
+};
 
 const delete_puesto_programa = async (req, res) => {
   const { id } = req.params;
@@ -453,7 +453,7 @@ const delete_puesto_programa = async (req, res) => {
     console.log(error);
     res.status(500).send({ message: "Error al eliminar el puesto" });
   }
-}
+};
 
 const delete_costo_programa = async (req, res) => {
   const { id } = req.params;
@@ -464,7 +464,7 @@ const delete_costo_programa = async (req, res) => {
     console.log(error);
     res.status(500).send({ message: "Error al eliminar el costo" });
   }
-}
+};
 
 const delete_puesto_escuela = async (req, res) => {
   const { id } = req.params;
@@ -475,7 +475,23 @@ const delete_puesto_escuela = async (req, res) => {
     console.log(error);
     res.status(500).send({ message: "Error al eliminar el puesto" });
   }
-}
+};
+
+const update_bulk_periodo_programa = async (req, res) => {
+  const { body } = req;
+  const { metasToUpdate } = body;
+
+  try {
+    Object.keys(metasToUpdate).forEach(async (key) => {
+      await PeriodoPrograma.update(metasToUpdate[key], { where: { id: key } });
+    });
+
+    res.status(200).send({ message: "Periodos actualizados" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error al actualizar los periodos" });
+  }
+};
 
 module.exports = {
   get_programas_escuela,
@@ -502,5 +518,6 @@ module.exports = {
   delete_apertura,
   delete_puesto_programa,
   delete_costo_programa,
-  delete_puesto_escuela
+  delete_puesto_escuela,
+  update_bulk_periodo_programa,
 };

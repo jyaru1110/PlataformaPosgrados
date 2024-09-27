@@ -2,13 +2,14 @@ import Header from "../../components/Header";
 import Main from "../../components/Main";
 import Table from "../../components/Table";
 import { usePeriodoPrograma } from "../../../../hooks/usePeriodoPrograma";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Creatable from "react-select/creatable";
 import Select from "react-select";
 import { usePeriodos } from "../../../../hooks/usePeriodos";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useProgramasOpciones } from "../../../../hooks/useProgramas";
+import { Link } from "react-router-dom";
 
 const headers = [
   "Periodo",
@@ -22,11 +23,19 @@ export default function Metas() {
   const { loading, metas, update } = usePeriodoPrograma("Todos");
   const [newMetas, setNewMetas] = useState([]);
   const { periodos, update: update_periodos } = usePeriodos();
+  const [metasToUpdate, setMetasToUpdate] = useState({}); 
   const { programas } = useProgramasOpciones("Todos");
 
   const periodos_options = periodos.map((periodo) => {
     return { value: periodo.id, label: periodo.periodo_nombre };
   });
+
+  const updateMetasToUpdate = (index,key,value) => {
+    const metasToUpdateCopy = {...metasToUpdate};
+    if(!metasToUpdateCopy[index]) metasToUpdateCopy[index] = {};
+    metasToUpdateCopy[index][key] = value;
+    setMetasToUpdate(metasToUpdateCopy);
+  };
 
   const createPeriodo = async (periodo) => {
     await axios
@@ -85,6 +94,7 @@ export default function Metas() {
         toast.error(err.response.data.message);
       });
   };
+
   const deleteMeta = async (id) => {
     await axios
       .delete(`${import.meta.env.VITE_URL_API}/programa/periodo/${id}`, {
@@ -99,13 +109,40 @@ export default function Metas() {
       });
   };
 
+  const saveChanges = async () => {
+    if(newMetas.length > 0){
+      saveNewMetas();
+    }
+
+    if(Object.keys(metasToUpdate).length > 0){
+      await axios
+      .put(
+        `${import.meta.env.VITE_URL_API}/programas/periodos`,
+        {
+          metasToUpdate: metasToUpdate,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.message);
+        update();
+        setMetasHasChanged(false);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+    }
+  }
+
   return (
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Metas">
-        {newMetas?.length > 0 && (
+        {(newMetas.length > 0 || Object.keys(metasToUpdate).length > 0) && (
           <button
             onClick={() => {
-              saveNewMetas();
+              saveChanges();
             }}
           >
             <svg
@@ -210,9 +247,9 @@ export default function Metas() {
               key={index}
             >
               <td className="px-2 py-1">{meta?.periodo?.periodo_nombre}</td>
-              <td className="px-2 py-1">{meta?.programaPrograma}</td>
-              <td className="px-2 py-1">{meta?.meta_inscripciones}</td>
-              <td className="px-2 py-1">{meta?.num_inscripciones}</td>
+              <td className="px-2 py-1 text-emerald-800 underline"><Link to={`/micrositio/admin/programas/${meta?.programaPrograma}`}>{meta?.programaPrograma}</Link></td>
+              <td className="px-2 py-1"><input type="number" min={0} onChange={(e)=>updateMetasToUpdate(meta.id,"meta_inscripciones",e.target.value)} defaultValue={meta?.meta_inscripciones}></input></td>
+              <td className="px-2 py-1"><input type="number" min={0} onChange={(e)=>updateMetasToUpdate(meta.id,"num_inscripciones",e.target.value)}  defaultValue={meta?.num_inscripciones}/></td>
               <td className="px-2 py-1 font-bold">
                 {meta.num_inscripciones &&
                   meta.meta_inscripciones &&
