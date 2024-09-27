@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import SkeletonTable from "./SkeletonTable";
 
 export default function Table({ headers, children, loading }) {
