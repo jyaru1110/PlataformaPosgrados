@@ -5,6 +5,8 @@ import TablaPosgradosTipo from "../components/TablaPosgradosTipo";
 import TablaPosgradosTotal from "../components/TablaPosgradosTotal";
 import { useProgramas } from "../../../../hooks/useProgramas";
 import { useNavigate, Link } from "react-router-dom";
+import Filter from "../../components/Filter";
+import { useState } from "react";
 
 const headers = [
   "E/F",
@@ -37,9 +39,28 @@ const escuelas = [
   "Ciencias de la Salud",
 ];
 
+const sedes = [
+  "Mixcoac",
+  "Santa Fe"
+]
+
 export default function Programas() {
   const { loading, programas } = useProgramas("Todos");
+  const [filteredEscuelas, setFilteredEscuelas] = useState([]);
+  const [filterSede, setFilterSede] = useState([]);
+  const [filteredGrado, setFilteredGrado] = useState([]);
   const navigate = useNavigate();
+
+  const filterProgramas = (programa) => {
+    if (filteredEscuelas.length === 0 && filterSede.length === 0 && filteredGrado.length === 0) return true;
+    if (filteredGrado.length === 0){
+      if (filteredEscuelas.length === 0) return filterSede.includes(programa.campus);
+      if (filterSede.length === 0) return filteredEscuelas.includes(programa.escuela);
+      return filterSede.includes(programa.campus) && filteredEscuelas.includes(programa.escuela);
+    }
+    if(filteredEscuelas.length === 0 && filterSede.length === 0) return filteredGrado.includes(programa.grado);
+    return filteredEscuelas.includes(programa.escuela) && filterSede.includes(programa.campus) && filteredGrado.includes(programa.grado);
+  }
   return (
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Programas">
@@ -53,14 +74,17 @@ export default function Programas() {
           placeholder="Buscar"
           className="rounded-lg px-3 py-1 border border-grayborder justify-self-end"
         ></input>
+        <Filter title={"Escuela"} filtered={filteredEscuelas} setFiltered={setFilteredEscuelas} options={escuelas}/>
+        <Filter title={"Sede"} filtered={filterSede} setFiltered={setFilterSede} options={sedes}/>
+        <Filter title={"Grado"} filtered={filteredGrado} setFiltered={setFilteredGrado} options={["Maestría", "Doctorado","Especialidad"]}/>
       </Header>
       <Main>
         <article className="flex w-full justify-between mb-14">
-          <TablaPosgradosTotal escuelas={escuelas} />
-          <TablaPosgradosTipo escuelas={escuelas} />
+          <TablaPosgradosTotal escuelas={filteredEscuelas.length>0?filteredEscuelas:escuelas} />
+          <TablaPosgradosTipo escuelas={filteredEscuelas.length>0?filteredEscuelas:escuelas} />
         </article>
         <Table headers={headers} loading={loading}>
-          {programas.map((programa, index) => (
+        {programas.filter(filterProgramas).map((programa, index) => 
             <tr
               className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
               key={index}
@@ -72,7 +96,7 @@ export default function Programas() {
               <td className="px-2 py-1">{programa.grado}</td>
               <td className="px-2 py-1">{programa.programa}</td>
               <td className="px-2 py-1">{programa.codigo}</td>
-              <td className="px-2 py-1">{programa.sede}</td>
+              <td className="px-2 py-1">{programa.campus}</td>
               <td className="px-2 py-1">{programa.tipo}</td>
               <td className="px-2 py-1">{programa.modalidad}</td>
               <td className="px-2 py-1">{programa.duracion}</td>
@@ -84,8 +108,7 @@ export default function Programas() {
               <td className="px-2 py-1">
                 {programa.fecha_rvoe?.substring(0, 10)}
               </td>
-            </tr>
-          ))}
+            </tr>)}
         </Table>
       </Main>
     </div>

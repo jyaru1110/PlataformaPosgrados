@@ -242,7 +242,7 @@ const get_total_programas = async (req, res) => {
 
   const resultado = await Programa.findAll({
     attributes: [
-      [sequelize.fn("COUNT", sequelize.col("programa")), "total"],
+      [sequelize.fn("COUNT", 1), "total"],
       "grado",
     ],
     where: {
