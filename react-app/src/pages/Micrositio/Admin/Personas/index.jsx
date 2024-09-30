@@ -1,8 +1,10 @@
 import Header from "../../components/Header";
 import Main from "../../components/Main";
 import Table from "../../components/Table";
+import { useState } from "react";
 import { usePersonas } from "../../../../hooks/usePersonas";
 import { useNavigate, Link } from "react-router-dom";
+import Filter from "../../components/Filter";
 
 const headers = [
   "Titulo",
@@ -15,9 +17,29 @@ const headers = [
   "Teléfono",
 ];
 
+const escuelas = [
+  "Gobierno y Economía",
+  "Bellas Artes",
+  "Derecho",
+  "Empresariales",
+  "ESDAI",
+  "Filosofía",
+  "Ingeniería",
+  "Comunicación",
+  "Pedagogía",
+  "Empresariales Santa Fe",
+  "Ciencias de la Salud",
+];
+
 export default function Personas() {
   const { loading, personas } = usePersonas("Todos");
   const navigate = useNavigate();
+  const [filteredEscuelas, setFilteredEscuelas] = useState([]);
+  const filterPersonas = (persona) => {
+    if (filteredEscuelas.length === 0) return true;
+    return filteredEscuelas.includes(persona.escuela);
+  };
+
   return (
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Personas">
@@ -31,10 +53,11 @@ export default function Personas() {
           placeholder="Buscar"
           className="rounded-lg px-3 py-1 border border-grayborder justify-self-end"
         ></input>
+        <Filter title={"Escuela"} filtered={filteredEscuelas} setFiltered={setFilteredEscuelas} options={escuelas} />
       </Header>
       <Main>
         <Table headers={headers} loading={loading}>
-          {personas.map((persona, index) => (
+          {personas.filter(filterPersonas).map((persona, index) => (
             <tr
               className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
               key={index}
