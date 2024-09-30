@@ -64,6 +64,7 @@ router.get("/user/all", async (req, res) => {
         "birthday",
         "telefono",
         "foto",
+        "area",
         "id_universidad_panamericana",
       ],
     });

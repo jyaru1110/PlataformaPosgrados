@@ -47,7 +47,7 @@ export default function Personas() {
                 {persona.foto?<img className="rounded-full mr-2" height={20} width={20} src={persona.foto}/>:null}
                 {persona.nombre}
               </td>
-              <td className="px-2 py-1">{persona.escuela}</td>
+              <td className="px-2 py-1">{persona.area?persona.area:persona.escuela}</td>
               <td className="px-2 py-1">{persona.email}</td>
               <td className="px-2 py-1">{persona.id_universidad_panamericana}</td>
               <td className="px-2 py-1">{persona.extension}</td>
