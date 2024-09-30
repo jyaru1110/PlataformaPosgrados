@@ -68,9 +68,17 @@ router.get("/user/all", async (req, res) => {
         "id_universidad_panamericana",
       ],
       order: [["area","DESC"],["escuela","ASC"],["nombre", "ASC"]],
+      include:[
+        {
+          model: PuestoEscuela,
+          required: false,
+          attributes:["puesto"],
+        }
+      ] 
     });
     res.status(200).send(users);
   } catch (error) {
+    console.log(error)
     res.status(500).send(error);
   }
 });
