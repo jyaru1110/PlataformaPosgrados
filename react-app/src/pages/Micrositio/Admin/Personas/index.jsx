@@ -59,7 +59,7 @@ export default function Personas() {
         filteredPuestos,
         persona.puesto_escuelas
       );
-      
+
     return (
       filteredEscuelas.includes(persona.escuela) &&
       puestosInterceptionNotZero(filteredPuestos, persona.puesto_escuelas)

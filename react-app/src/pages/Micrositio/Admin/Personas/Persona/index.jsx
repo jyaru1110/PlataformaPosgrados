@@ -235,7 +235,7 @@ export default function Persona() {
               register={register("nombre")}
               onSubmit={handleSubmit(onSubmit)}
             >
-              <label for="titulo" className="font-bold">
+              <label htmlFor="titulo" className="font-bold">
                 Titulo
               </label>
               <select
@@ -255,7 +255,7 @@ export default function Persona() {
                 <option value="Dr.">Dr.</option>
                 <option value="Dra.">Dra.</option>
               </select>
-              <label for="escuela" className="font-bold">
+              <label htmlFor="escuela" className="font-bold">
                 E/F
               </label>
               <select
@@ -284,7 +284,7 @@ export default function Persona() {
                 </option>
                 <option value="Educación Continua">Educación Continua</option>
               </select>
-              <label for="email" className="font-bold">
+              <label htmlFor="email" className="font-bold">
                 Correo
               </label>
               <input
@@ -298,7 +298,7 @@ export default function Persona() {
                   setProgramChanged(true);
                 }}
               ></input>
-              <label for="id_universidad_panamericana" className="font-bold">
+              <label htmlFor="id_universidad_panamericana" className="font-bold">
                 ID
               </label>
               <input
@@ -310,7 +310,7 @@ export default function Persona() {
                   setProgramChanged(true);
                 }}
               ></input>
-              <label for="extension" className="font-bold">
+              <label htmlFor="extension" className="font-bold">
                 Extensión
               </label>
               <input
@@ -323,7 +323,7 @@ export default function Persona() {
                   setProgramChanged(true);
                 }}
               ></input>
-              <label for="birthday" className="font-bold">
+              <label htmlFor="birthday" className="font-bold">
                 Cumpleaños
               </label>
               <input
@@ -336,7 +336,7 @@ export default function Persona() {
                   setProgramChanged(true);
                 }}
               ></input>
-              <label for="telefono" className="font-bold">
+              <label htmlFor="telefono" className="font-bold">
                 Celular
               </label>
               <input
