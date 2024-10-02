@@ -5,7 +5,7 @@ export default function Header({ title, children }) {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   return (
-    <header className="w-full py-4 px-8 border border-grayborder flex items-end sticky">
+    <header className="w-full py-4 px-8 border border-grayborder flex items-end sticky z-50">
       <button
         onClick={() => {
           navigate(-1);
