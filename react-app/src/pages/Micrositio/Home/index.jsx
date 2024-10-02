@@ -1,6 +1,9 @@
 import Main from "../components/Main";
+import { useState } from "react";
 import { usePersonas } from "../../../hooks/usePersonas";
 import Table from "../components/Table";
+import Filter from "../components/Filter";
+import { puestosInterceptionNotZero } from "../../../utils/arrays";
 const headers = [
   "Titulo",
   "Persona",
@@ -11,9 +14,42 @@ const headers = [
   "Cumpleaños",
   "Teléfono",
 ];
+const escuelas = [
+  "Gobierno y Economía",
+  "Bellas Artes",
+  "Derecho",
+  "Empresariales",
+  "ESDAI",
+  "Filosofía",
+  "Ingeniería",
+  "Comunicación",
+  "Pedagogía",
+  "Empresariales Santa Fe",
+  "Ciencias de la Salud",
+];
+const puestos = [
+  "Coordinador Gestión Escolar",
+  "Subdirector Posgrado",
+  "Coordinador de Asuntos Estudiantiles",
+  "Secretario Administrativo",
+  "Director Posgrado",
+  "Jefe Promoción y Admisiones",
+  "Decano",
+];
 
 export default function HomeMicrosito() {
   const { loading, personas } = usePersonas("Todos");
+  const [filteredEscuelas, setFilteredEscuelas] = useState([]);
+  const [filteredPuestos, setFilteredPuestos] = useState([]);
+
+  const filterPersonas = (persona) => {
+    return (
+      (filteredEscuelas.length === 0 ||
+        filteredEscuelas.includes(persona.escuela)) &&
+      (filteredPuestos.length === 0 ||
+        puestosInterceptionNotZero(filteredPuestos, persona.puesto_escuelas))
+    );
+  }
   return (
     <div className="w-full">
       <Main>
@@ -63,11 +99,13 @@ export default function HomeMicrosito() {
             <h2 className="ml-3 text-2xl font-bold">Personas</h2>
             <input
               placeholder="Buscar"
-              className="rounded-lg flex-1 px-2 py-1 border border-grayborder"
+              className="rounded-lg w-auto px-2 py-1 border border-grayborder"
             ></input>
+              <Filter title={"Escuela"} options={escuelas} filtered={filteredEscuelas} setFiltered={setFilteredEscuelas}/>
+              <Filter title={"Puestos"} options={puestos} filtered={filteredPuestos} setFiltered={setFilteredPuestos}/>
           </div>
           <Table headers={headers} loading={loading}>
-            {personas.map((persona, index) => (
+            {personas.filter(filterPersonas).map((persona, index) => (
               <tr
                 className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
                 key={index}
@@ -87,7 +125,7 @@ export default function HomeMicrosito() {
                   ) : null}
                   {persona.nombre}
                 </td>
-                <td className="px-2 py-1">{persona.escuela}</td>
+                <td className="px-2 py-1">{persona.area?persona.area:persona.escuela}</td>
                 <td className="px-2 py-1">{persona.email}</td>
                 <td className="px-2 py-1">
                   {persona.id_universidad_panamericana}
