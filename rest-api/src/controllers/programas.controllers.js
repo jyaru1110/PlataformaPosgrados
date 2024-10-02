@@ -402,7 +402,6 @@ const get_metas_periodo = async (req, res) => {
 };
 
 const get_periodos_programa = async (req, res) => {
-  const user = req.user;
   const periodos = await PeriodoPrograma.findAll({
     include: [
       {
@@ -413,9 +412,6 @@ const get_periodos_programa = async (req, res) => {
       {
         model: Programa,
         attributes: ["escuela"],
-        where: {
-          escuela: user.escuela,
-        },
       },
     ],
     attributes: ["programaPrograma", "num_inscripciones", "meta_inscripciones"],
