@@ -22,7 +22,7 @@ export default function Filter({ title, options, filtered, setFiltered }) {
       </button>
       {isSelected && (
         <div className="flex flex-col absolute top-10 bg-white p-2 rounded-lg border-grayborder border w-56 z-50">
-          {options.map((option, index) => (
+          {options.map((option) => (
             <span key={option} className="flex items-center space-x-3">
               <input
                 id={option}
