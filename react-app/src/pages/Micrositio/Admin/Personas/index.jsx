@@ -48,22 +48,8 @@ export default function Personas() {
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPuestos, setFilteredPuestos] = useState([]);
   const filterPersonas = (persona) => {
-    if (filteredEscuelas.length === 0 && filteredPuestos.length === 0)
-      return true;
-
-    if (filteredPuestos.length === 0)
-      return filteredEscuelas.includes(persona.escuela);
-
-    if (filteredEscuelas.length === 0)
-      return puestosInterceptionNotZero(
-        filteredPuestos,
-        persona.puesto_escuelas
-      );
-
-    return (
-      filteredEscuelas.includes(persona.escuela) &&
-      puestosInterceptionNotZero(filteredPuestos, persona.puesto_escuelas)
-    );
+    return (filteredEscuelas.length === 0 || filteredEscuelas.includes(persona.escuela)) &&
+      (filteredPuestos.length === 0 || puestosInterceptionNotZero(filteredPuestos, persona.puesto_escuelas));
   };
 
   return (

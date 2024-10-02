@@ -43,17 +43,9 @@ export default function Metas() {
   const [filteredPeriodos, setFilteredPeriodos] = useState([]);
 
   const filterMetas = (meta) => {
-    if (filteredEscuelas.length === 0 && filteredPeriodos.length === 0)
-      return true;
-    if (filteredEscuelas.length === 0)
-      return filteredPeriodos.includes(meta.periodo.periodo_nombre);
-    if (filteredPeriodos.length === 0)
-      return filteredEscuelas.includes(meta.programa.escuela);
-    return (
-      filteredPeriodos.includes(meta.periodo.nombre) &&
-      filteredEscuelas.includes(meta.periodo.periodo_nombre)
-    );
-  };
+    return (filteredEscuelas.length === 0 || filteredEscuelas.includes(meta?.programa?.escuela)) &&
+      (filteredPeriodos.length === 0 || filteredPeriodos.includes(meta?.periodo?.periodo_nombre));
+    };
 
   const periodos_options = periodos.map((periodo) => {
     return { value: periodo.id, label: periodo.periodo_nombre };
