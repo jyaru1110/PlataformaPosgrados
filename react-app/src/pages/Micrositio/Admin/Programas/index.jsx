@@ -49,17 +49,16 @@ export default function Programas() {
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filterSede, setFilterSede] = useState([]);
   const [filteredGrado, setFilteredGrado] = useState([]);
+  const [filteredTipo, setFilteredTipo] = useState([])
+  const [filteredModalidad, setFilteredModalidad] = useState([])
   const navigate = useNavigate();
 
   const filterProgramas = (programa) => {
-    if (filteredEscuelas.length === 0 && filterSede.length === 0 && filteredGrado.length === 0) return true;
-    if (filteredGrado.length === 0){
-      if (filteredEscuelas.length === 0) return filterSede.includes(programa.campus);
-      if (filterSede.length === 0) return filteredEscuelas.includes(programa.escuela);
-      return filterSede.includes(programa.campus) && filteredEscuelas.includes(programa.escuela);
-    }
-    if(filteredEscuelas.length === 0 && filterSede.length === 0) return filteredGrado.includes(programa.grado);
-    return filteredEscuelas.includes(programa.escuela) && filterSede.includes(programa.campus) && filteredGrado.includes(programa.grado);
+    return (filteredEscuelas.length === 0 || filteredEscuelas.includes(programa.escuela)) && 
+    (filterSede.length === 0 || filterSede.includes(programa.campus)) &&
+    (filteredGrado.length === 0 || filteredGrado.includes(programa.grado)) &&
+    (filteredTipo.length === 0 || filteredTipo.includes(programa.tipo)) &&
+    (filteredModalidad.length === 0 || filteredModalidad.includes(programa.modalidad))
   }
   return (
     <div className="w-full flex flex-col relative h-screen">
@@ -77,6 +76,8 @@ export default function Programas() {
         <Filter title={"Escuela"} filtered={filteredEscuelas} setFiltered={setFilteredEscuelas} options={escuelas}/>
         <Filter title={"Sede"} filtered={filterSede} setFiltered={setFilterSede} options={sedes}/>
         <Filter title={"Grado"} filtered={filteredGrado} setFiltered={setFilteredGrado} options={["Maestría", "Doctorado","Especialidad"]}/>
+        <Filter title={"Tipo"} filtered={filteredTipo} setFiltered={setFilteredTipo} options={["Investigación","Profesionalizante","Directiva"]}/>
+        <Filter title={"Modalidad"} filtered={filteredModalidad} setFiltered={setFilteredModalidad} options={["Blended / Mixta","Mixta","Presencial"]}/>
       </Header>
       <Main>
         <article className="flex w-full justify-between mb-14">
