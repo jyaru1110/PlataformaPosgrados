@@ -32,7 +32,7 @@ export default function DashboardProgramas() {
   };
 
   return (
-    <div className="w-full  flex flex-col">
+    <div className="w-full flex flex-col h-screen">
       <Header title="Dashboard posgrados" />
       <Main>
         <MultiselectPrograma onChange={changeEscuelas} />
