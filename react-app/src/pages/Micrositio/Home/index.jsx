@@ -51,7 +51,7 @@ export default function HomeMicrosito() {
     );
   }
   return (
-    <div className="w-full">
+    <div className="w-full h-screen overflow-y-auto">
       <Main>
         <h1 className="text-3xl font-bold">
           ¡Bienvenido, {localStorage.getItem("nombre")}! 🚀
