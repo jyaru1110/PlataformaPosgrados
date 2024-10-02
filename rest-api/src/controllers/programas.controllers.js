@@ -8,7 +8,8 @@ const PuestoEscuela = require("../models/PuestoEscuela");
 const Periodo = require("../models/Periodo");
 const PeriodoPrograma = require("../models/PeriodoPrograma");
 const sequelize = require("../database/database");
-const { Op } = require("sequelize");
+const { Op, fn } = require("sequelize");
+const { get } = require("../app");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -241,10 +242,7 @@ const get_total_programas = async (req, res) => {
   const { escuelas } = req.query;
 
   const resultado = await Programa.findAll({
-    attributes: [
-      [sequelize.fn("COUNT", 1), "total"],
-      "grado",
-    ],
+    attributes: [[sequelize.fn("COUNT", 1), "total"], "grado"],
     where: {
       escuela: {
         [Op.in]: escuelas,
@@ -415,9 +413,17 @@ const get_periodos_programa = async (req, res) => {
       },
     ],
     attributes: ["programaPrograma", "num_inscripciones", "meta_inscripciones"],
-    order: [[{ model: Periodo }, "periodo_nombre", "DESC"],"programaPrograma"],
+    order: [[{ model: Periodo }, "periodo_nombre", "DESC"], "programaPrograma"],
   });
 
+  res.status(200).send(periodos);
+};
+
+const get_periodos_escuela = async (req, res) => {
+  const query = `SELECT SUM("meta_inscripciones") AS "total_meta_inscripciones", SUM("num_inscripciones") AS "num_inscripciones", "periodo"."periodo_nombre" AS "periodo_nombre", "programa"."escuela" AS "escuela" FROM "periodo_programa" AS "periodo_programa" LEFT OUTER JOIN "periodo" AS "periodo" ON "periodo_programa"."periodoId" = "periodo"."id" LEFT OUTER JOIN "programa" AS "programa" ON "periodo_programa"."programaPrograma" = "programa"."programa" GROUP BY "programa"."escuela", "periodo"."periodo_nombre" ORDER BY "periodo"."periodo_nombre" DESC, "programa"."escuela";`;
+  const periodos = await sequelize.query(query, {
+    type: sequelize.QueryTypes.SELECT,
+  });
   res.status(200).send(periodos);
 };
 
@@ -519,4 +525,5 @@ module.exports = {
   delete_costo_programa,
   delete_puesto_escuela,
   update_bulk_periodo_programa,
+  get_periodos_escuela,
 };

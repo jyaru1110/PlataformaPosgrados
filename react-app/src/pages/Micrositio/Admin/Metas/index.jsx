@@ -10,6 +10,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useProgramasOpciones } from "../../../../hooks/useProgramas";
 import { Link } from "react-router-dom";
 import Filter from "../../components/Filter";
+import { useMetasEscuela } from "../../../../hooks/useMetasEscuela";
 
 const escuelas = [
   "Gobierno y Economía",
@@ -32,8 +33,16 @@ const headers = [
   "Inscritos",
   "Porcentaje",
 ];
+const headers_escuela = [
+  "Periodo",
+  "Escuela",
+  "Meta Alumnos",
+  "Inscritos",
+  "Porcentaje",
+];
 
 export default function Metas() {
+  const { loadingMetasEscuelas, error, data } = useMetasEscuela();
   const { loading, metas, update } = usePeriodoPrograma("Todos");
   const [newMetas, setNewMetas] = useState([]);
   const { periodos, update: update_periodos } = usePeriodos();
@@ -43,9 +52,20 @@ export default function Metas() {
   const [filteredPeriodos, setFilteredPeriodos] = useState([]);
 
   const filterMetas = (meta) => {
-    return (filteredEscuelas.length === 0 || filteredEscuelas.includes(meta?.programa?.escuela)) &&
-      (filteredPeriodos.length === 0 || filteredPeriodos.includes(meta?.periodo?.periodo_nombre));
-    };
+    return (
+      (filteredEscuelas.length === 0 ||
+        filteredEscuelas.includes(meta?.programa?.escuela)) &&
+      (filteredPeriodos.length === 0 ||
+        filteredPeriodos.includes(meta?.periodo?.periodo_nombre))
+    );
+  };
+
+  const filterMetasEscuelas = (meta) => {
+    return (
+      filteredPeriodos.length === 0 ||
+      filteredPeriodos.includes(meta?.periodo_nombre)
+    );
+  };
 
   const periodos_options = periodos.map((periodo) => {
     return { value: periodo.id, label: periodo.periodo_nombre };
@@ -194,6 +214,34 @@ export default function Metas() {
         />
       </Header>
       <Main>
+        <h2 className="ml-2 font-bold text-2xl mb-1">Metas por escuela</h2>
+        <Table headers={headers_escuela} loading={loading}>
+          {data?.filter(filterMetasEscuelas).map((meta, index) => {
+            return (
+              <tr
+                className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
+                key={index}
+              >
+                <td className="px-2 py-1">{meta?.periodo_nombre}</td>
+                <td className="px-2 py-1">{meta?.escuela}</td>
+                <td className="px-2 py-1">{meta?.total_meta_inscripciones}</td>
+                <td className="px-2 py-1">{meta?.num_inscripciones}</td>
+                <td className="px-2 py-1">
+                  {meta.num_inscripciones > 0 &&
+                  meta.total_meta_inscripciones > 0
+                    ? (
+                        (meta?.num_inscripciones /
+                          meta?.total_meta_inscripciones) *
+                        100
+                      )?.toFixed(0)
+                    : 0}
+                  %
+                </td>
+              </tr>
+            );
+          })}
+        </Table>
+        <h2 className="ml-2 font-bold text-2xl my-5">Metas por programa</h2>
         <Table headers={headers} loading={loading}>
           <tr>
             <td className="p-2">

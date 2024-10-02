@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const url_backend = import.meta.env.VITE_URL_API;
 
-export const useUsersByEscuela = () => {
+export const useMetasEscuela = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -21,7 +21,7 @@ export const useUsersByEscuela = () => {
 
   useEffect(() => {
     setLoading(true);
-    let url = `${url_backend}/users/escuelas`;
+    let url = `${url_backend}/escuelas/periodos`;
     const abortController = new AbortController();
     const signal = abortController.signal;
     get_fetch(url, signal, after_fetch,{}, onError);
