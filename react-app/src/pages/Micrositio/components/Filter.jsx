@@ -2,12 +2,21 @@ import { useState, useEffect, useRef } from "react";
 export default function Filter({ title, options, filtered, setFiltered }) {
   const [isSelected, setIsSelected] = useState(false);
   const container = useRef(null);
-  useEffect(() =>
-    window.addEventListener("click", (ev) => {
-      if (container.current && !container.current.contains(ev.target)) {
-        setIsSelected(false);
-      }
-    })
+  useEffect(
+    () =>
+      window.addEventListener("click", (ev) => {
+        if (container.current && !container.current.contains(ev.target)) {
+          setIsSelected(false);
+        }
+        return () => {
+          window.removeEventListener("click", (ev) => {
+            if (container.current && !container.current.contains(ev.target)) {
+              setIsSelected(false);
+            }
+          });
+        };
+      }),
+    []
   );
   return (
     <div ref={container} className="relative">
