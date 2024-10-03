@@ -106,10 +106,10 @@ export default function ChartsMetas(escuelas) {
         <div className="flex flex-col  p-4 rounded-xl border border-grayborder w-40 my-5">
           <span className="font-light">Porcentaje</span>
           <span className="font-bold text-3xl">
-            {(
+            {data?((
               (100 * data?.datasets[0].data[periodo]) /
               data?.datasets[1].data[periodo]
-            )?.toFixed(2)}
+            )?.toFixed(2)):0}
             %
           </span>
         </div>
