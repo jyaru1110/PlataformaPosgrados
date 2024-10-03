@@ -80,7 +80,7 @@ export default function Programas() {
         <Filter title={"Modalidad"} filtered={filteredModalidad} setFiltered={setFilteredModalidad} options={["Blended / Mixta","Mixta","Presencial"]}/>
       </Header>
       <Main>
-        <article className="flex w-full justify-between mb-14">
+        <article className="flex w-full justify-between mb-6">
           <TablaPosgradosTotal escuelas={filteredEscuelas.length>0?filteredEscuelas:escuelas} />
           <TablaPosgradosTipo escuelas={filteredEscuelas.length>0?filteredEscuelas:escuelas} />
         </article>
