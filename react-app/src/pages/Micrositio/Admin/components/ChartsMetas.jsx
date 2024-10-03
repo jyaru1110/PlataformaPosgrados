@@ -54,7 +54,6 @@ export default function ChartsMetas(escuelas) {
     escuelas: escuelas,
     periodo: periodo ? periodo : 1,
   });
-  
 
   const filterMetasEscuelas = (meta) => {
     return (
@@ -94,26 +93,46 @@ export default function ChartsMetas(escuelas) {
       <article className="flex space-x-5">
         <div className="flex flex-col  p-4 rounded-xl border border-grayborder w-40 my-5">
           <span className="font-light">Metas en total</span>
-          <span className="font-bold text-3xl">
-            {data_pie?.data?(parseInt(data_pie?.data?.datasets[0].data[0])+parseInt(data_pie?.data?.datasets[0].data[1])):0}
-          </span>
+          {loadingMetasEscuelas ? (
+            <div className="w-32 rounded-md h-10 animate-pulse bg-slate-100"></div>
+          ) : (
+            <span className="font-bold text-3xl">
+              {data_pie?.data
+                ? parseInt(data_pie?.data?.datasets[0].data[0]) +
+                  parseInt(data_pie?.data?.datasets[0].data[1])
+                : 0}
+            </span>
+          )}
         </div>
         <div className="flex flex-col  p-4 rounded-xl border border-grayborder w-40 my-5">
           <span className="font-light">Inscripciones</span>
-          <span className="font-bold text-3xl">
-            {data_pie?.data?.datasets[0].data[0]}
-          </span>
+          {loadingMetasEscuelas ? (
+            <div className="w-32 rounded-md h-10 animate-pulse bg-slate-100"></div>
+          ) : (
+            <span className="font-bold text-3xl">
+              {data_pie?.data?.datasets[0].data[0]}
+            </span>
+          )}
         </div>
         <div className="flex flex-col  p-4 rounded-xl border border-grayborder w-40 my-5">
           <span className="font-light">Porcentaje</span>
-          <span className="font-bold text-3xl">
-            {data_pie?.percentage?.toFixed(1)}
-            %
-          </span>
+          {loadingMetasEscuelas ? (
+            <div className="w-32 rounded-md h-10 animate-pulse bg-slate-100"></div>
+          ) : (
+            <span className="font-bold text-3xl">
+              {data_pie?.percentage?.toFixed(1)}%
+            </span>
+          )}
         </div>
       </article>
       <div className="flex w-full space-x-10">
-        <div className="w-2/3">{!loading ? <Bar data={data}></Bar>:<div className="w-[700px] h-72 bg-slate-100 animate-pulse rounded-xl"></div>}</div>
+        <div className="w-2/3">
+          {!loading ? (
+            <Bar data={data}></Bar>
+          ) : (
+            <div className="w-[700px] h-72 bg-slate-100 animate-pulse rounded-xl"></div>
+          )}
+        </div>
         <div className="w-1/3 flex flex-col items-end justify-between">
           <div className="flex-1 relative items-center flex">
             {!loading_pie ? (
@@ -125,7 +144,9 @@ export default function ChartsMetas(escuelas) {
                   </p>
                 </span>
               </>
-            ): <div className="w-72 h-72 bg-slate-100 animate-pulse rounded-xl"></div>}
+            ) : (
+              <div className="w-72 h-72 bg-slate-100 animate-pulse rounded-xl"></div>
+            )}
           </div>
         </div>
       </div>
