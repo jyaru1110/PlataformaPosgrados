@@ -21,7 +21,7 @@ export const useUsersByEscuela = () => {
 
   useEffect(() => {
     setLoading(true);
-    let url = `${url_backend}/users/escuelas`;
+    let url = `${url_backend}/escuelas/numberofpersonas`;
     const abortController = new AbortController();
     const signal = abortController.signal;
     get_fetch(url, signal, after_fetch,{}, onError);

@@ -497,7 +497,25 @@ const update_bulk_periodo_programa = async (req, res) => {
   }
 };
 
+const get_number_of_personas_by_escuela = async (req, res) => {
+  const users_by_escuela = await Usuario.findAll({
+    attributes: [
+      "escuela",
+      [sequelize.fn("COUNT", 1), "total"],
+    ],
+    group: ["escuela"],
+    order: ["escuela"],
+    where: {
+      escuela: {
+        [Op.not]: "Educación Continua",
+      },
+    },
+  }); 
+  res.status(200).send(users_by_escuela);
+}
+
 module.exports = {
+  get_number_of_personas_by_escuela,
   get_programas_escuela,
   get_programas_opciones,
   update_programa_proceso,

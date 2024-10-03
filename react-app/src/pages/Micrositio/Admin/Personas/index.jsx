@@ -6,6 +6,7 @@ import { usePersonas } from "../../../../hooks/usePersonas";
 import { useNavigate, Link } from "react-router-dom";
 import Filter from "../../components/Filter";
 import { puestosInterceptionNotZero } from "../../../../utils/arrays";
+import CardsPersonas from "../components/CardsPersonas";
 
 const headers = [
   "Titulo",
@@ -43,7 +44,7 @@ const puestos = [
 ];
 
 export default function Personas() {
-  const { loading, personas } = usePersonas("Todos");
+  const { loading, personas } = usePersonas();
   const navigate = useNavigate();
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPuestos, setFilteredPuestos] = useState([]);
@@ -79,6 +80,7 @@ export default function Personas() {
         />
       </Header>
       <Main>
+        <CardsPersonas/>
         <Table headers={headers} loading={loading}>
           {personas.filter(filterPersonas).map((persona, index) => (
             <tr

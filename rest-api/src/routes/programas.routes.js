@@ -27,7 +27,8 @@ const {
   delete_costo_programa,
   delete_puesto_escuela,
   get_periodos_escuela,
-  update_bulk_periodo_programa
+  update_bulk_periodo_programa,
+  get_number_of_personas_by_escuela,
 } = require("../controllers/programas.controllers");
 const { isUserAuthenticated } = require("../middlewares/auth");
 
@@ -42,6 +43,7 @@ router.get("/totalprogramas", isUserAuthenticated, get_total_programas);
 router.get("/programastipo", isUserAuthenticated, get_programas_por_tipo);
 router.get("/metasporperiodo", isUserAuthenticated, get_metas_por_periodo);
 router.get("/metas/:periodo", isUserAuthenticated, get_metas_periodo);
+router.get("/escuelas/numberofpersonas", isUserAuthenticated, get_number_of_personas_by_escuela);
 
 router.put("/programas/periodos", isUserAuthenticated, update_bulk_periodo_programa);
 
