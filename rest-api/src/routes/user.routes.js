@@ -4,6 +4,7 @@ const router = express.Router();
 const Usuario = require("../models/Usuario");
 const PuestoPrograma = require("../models/PuestoPrograma");
 const PuestoEscuela = require("../models/PuestoEscuela");
+const { where } = require("sequelize");
 
 router.get("/user/auth", isUserAuthenticated, (req, res) => {
   if (req.user) {
@@ -67,18 +68,22 @@ router.get("/user/all", async (req, res) => {
         "area",
         "id_universidad_panamericana",
       ],
-      order: [["area","DESC"],["escuela","ASC"],["nombre", "ASC"]],
-      include:[
+      order: [
+        ["area", "DESC"],
+        ["escuela", "ASC"],
+        ["nombre", "ASC"],
+      ],
+      include: [
         {
           model: PuestoEscuela,
           required: false,
-          attributes:["puesto"],
-        }
-      ] 
+          attributes: ["puesto"],
+        },
+      ],
     });
     res.status(200).send(users);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).send(error);
   }
 });
@@ -150,6 +155,50 @@ router.delete("/user/:id", async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Error al eliminar el usuario" });
   }
+});
+
+router.get("/users/bypuesto", async (req, res) => {
+  const puestos_escuela = [
+    "Decano",
+    "Coordinador de Asuntos Estudiantiles",
+    "Jefe Promoción y Admisiones",
+  ];
+  const puestos_programa = [
+    "Jefe Académico",
+    "Coordinador Académico",
+    "Coordinador de Promoción y Admisiones",
+  ];
+  const users = [];
+
+  for (const puesto_escuela of puestos_escuela) {
+    const temp_users = await PuestoEscuela.findAll({
+      include: [
+        {
+          model: Usuario,
+          attributes: ["nombre", "email", "telefono", "extension"],
+        },
+      ],
+      where: { puesto: puesto_escuela },
+      attributes: ["puesto", "escuelaEscuela"],
+    });
+    users.push(temp_users);
+  }
+
+  for (const puesto_programa of puestos_programa) {
+    const temp_users = await PuestoPrograma.findAll({
+      include: [
+        {
+          model: Usuario,
+          attributes: ["nombre", "email", "telefono", "extension"],
+        },
+      ],
+      where: { puesto: puesto_programa },
+      attributes: ["puesto", "programaPrograma"],
+    });
+    users.push(temp_users);
+  }
+
+  res.status(200).send(users);
 });
 
 module.exports = router;

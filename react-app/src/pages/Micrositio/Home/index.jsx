@@ -4,6 +4,7 @@ import { usePersonas } from "../../../hooks/usePersonas";
 import Table from "../components/Table";
 import Filter from "../components/Filter";
 import { puestosInterceptionNotZero } from "../../../utils/arrays";
+import CardsPuesto from "../components/CardsPuesto";
 const headers = [
   "Titulo",
   "Persona",
@@ -56,45 +57,8 @@ export default function HomeMicrosito() {
         <h1 className="text-3xl font-bold">
           ¡Bienvenido, {localStorage.getItem("nombre")}! 🚀
         </h1>
-        <div className="mt-20 flex space-x-4">
-          <div className="w-72 h-32 bg-white shadow-md rounded-lg p-2">
-            <span className="flex justify-between items-center">
-              <p className="font-bold text-lg">Directores E/F</p>
-              <button className="border border-grayborder rounded-lg p-1">
-                Copiar correos
-              </button>
-            </span>
-            <button className="border border-grayborder rounded-lg p-1">
-              Ver miembros
-            </button>
-          </div>
-          <div className="w-60 h-32 bg-white shadow-md rounded-lg p-2">
-            <span>
-              <p className="font-bold text-lg leading-tight">
-                Coordinador de Asuntos Estudiantiles
-              </p>
-              <button className="border border-grayborder rounded-lg p-1">
-                Copiar correos
-              </button>
-            </span>
-
-            <button className="border border-grayborder rounded-lg p-1">
-              Ver miembros
-            </button>
-          </div>
-          <div className="w-60 h-32 bg-white shadow-md rounded-lg p-2">
-            <p className="font-bold text-lg leading-tight">
-              Coordinador Gestión Escolar
-            </p>
-            <button className="border border-grayborder rounded-lg p-1">
-              Copiar correos
-            </button>
-            <button className="border border-grayborder rounded-lg p-1">
-              Ver miembros
-            </button>
-          </div>
-        </div>
-        <div className="mt-20 space-y-4 p-3 shadow-lg bg-white rounded-2xl">
+        <CardsPuesto />
+        <div className="mt-10 space-y-4 p-3 shadow-lg bg-white rounded-2xl">
           <div className="flex space-x-2">
             <h2 className="ml-3 text-2xl font-bold">Personas</h2>
             <input
