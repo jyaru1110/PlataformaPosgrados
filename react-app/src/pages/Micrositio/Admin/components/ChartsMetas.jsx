@@ -54,6 +54,7 @@ export default function ChartsMetas(escuelas) {
     escuelas: escuelas,
     periodo: periodo ? periodo : 1,
   });
+  
 
   const filterMetasEscuelas = (meta) => {
     return (
@@ -94,22 +95,19 @@ export default function ChartsMetas(escuelas) {
         <div className="flex flex-col  p-4 rounded-xl border border-grayborder w-40 my-5">
           <span className="font-light">Metas en total</span>
           <span className="font-bold text-3xl">
-            {data?.datasets[1].data[periodo]}
+            {data_pie?.data?(parseInt(data_pie?.data?.datasets[0].data[0])+parseInt(data_pie?.data?.datasets[0].data[1])):0}
           </span>
         </div>
         <div className="flex flex-col  p-4 rounded-xl border border-grayborder w-40 my-5">
           <span className="font-light">Inscripciones</span>
           <span className="font-bold text-3xl">
-            {data?.datasets[0].data[periodo]}
+            {data_pie?.data?.datasets[0].data[0]}
           </span>
         </div>
         <div className="flex flex-col  p-4 rounded-xl border border-grayborder w-40 my-5">
           <span className="font-light">Porcentaje</span>
           <span className="font-bold text-3xl">
-            {data?((
-              (100 * data?.datasets[0].data[periodo]) /
-              data?.datasets[1].data[periodo]
-            )?.toFixed(2)):0}
+            {data_pie?.percentage?.toFixed(1)}
             %
           </span>
         </div>
@@ -118,7 +116,7 @@ export default function ChartsMetas(escuelas) {
         <div className="w-2/3">{!loading && <Bar data={data}></Bar>}</div>
         <div className="w-1/3 flex flex-col items-end justify-between">
           <div className="flex-1 relative items-center flex">
-            {!loading_pie && (
+            {!loading_pie ? (
               <>
                 <Doughnut data={data_pie?.data}></Doughnut>{" "}
                 <span className="absolute top-0 text-4xl w-full h-full flex items-center justify-center pointer-events-none">
@@ -127,7 +125,7 @@ export default function ChartsMetas(escuelas) {
                   </p>
                 </span>
               </>
-            )}
+            ): <div className="w-72 h-72 bg-slate-100 animate-pulse rounded-xl"></div>}
           </div>
         </div>
       </div>
