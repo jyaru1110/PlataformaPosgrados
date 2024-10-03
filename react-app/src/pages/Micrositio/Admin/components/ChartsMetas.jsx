@@ -113,7 +113,7 @@ export default function ChartsMetas(escuelas) {
         </div>
       </article>
       <div className="flex w-full space-x-10">
-        <div className="w-2/3">{!loading && <Bar data={data}></Bar>}</div>
+        <div className="w-2/3">{!loading ? <Bar data={data}></Bar>:<div className="w-[700px] h-72 bg-slate-100 animate-pulse rounded-xl"></div>}</div>
         <div className="w-1/3 flex flex-col items-end justify-between">
           <div className="flex-1 relative items-center flex">
             {!loading_pie ? (
