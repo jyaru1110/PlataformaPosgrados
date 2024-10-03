@@ -1,46 +1,40 @@
-import { Link } from "react-router-dom";
 import MultiselectPrograma from "../../components/MultiSelectPrograma";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "../../components/Header";
 import Main from "../../components/Main";
 import TablaPosgradosTipo from "../components/TablaPosgradosTipo";
 import TablaPosgradosTotal from "../components/TablaPosgradosTotal";
 import ChartsMetas from "../components/ChartsMetas";
+import Filter from "../../components/Filter";
 
+const escuelas = [
+  "Gobierno y Economía",
+  "Bellas Artes",
+  "Derecho",
+  "Empresariales",
+  "ESDAI",
+  "Filosofía",
+  "Ingeniería",
+  "Comunicación",
+  "Pedagogía",
+  "Empresariales Santa Fe",
+  "Ciencias de la Salud",
+];
+  
 export default function DashboardProgramas() {
-  const [escuelas, setEscuelas] = useState([
-    "Gobierno y Economía",
-    "Bellas Artes",
-    "Derecho",
-    "Empresariales",
-    "ESDAI",
-    "Filosofía",
-    "Ingeniería",
-    "Comunicación",
-    "Pedagogía",
-    "Empresariales Santa Fe",
-    "Ciencias de la Salud",
-  ]);
-
-  const changeEscuelas = (programas) => {
-    let programasArray = [];
-    programas.forEach((programa) => {
-      programasArray.push(programa.value);
-    });
-
-    setEscuelas(programasArray);
-  };
+  const [filteredEscuelas, setFilteredEscuelas] = useState(escuelas);
 
   return (
     <div className="w-full flex flex-col h-screen">
-      <Header title="Dashboard posgrados" />
+      <Header title="Dashboard posgrados">
+        <Filter filtered={filteredEscuelas} setFiltered={setFilteredEscuelas} options={escuelas} title={"Escuelas"}/>
+      </Header>
       <Main>
-        <MultiselectPrograma onChange={changeEscuelas} />
-        <article className="flex w-full justify-between mt-14">
-          <TablaPosgradosTotal escuelas={escuelas} />
-          <TablaPosgradosTipo escuelas={escuelas} />
+        <article className="flex w-full justify-between">
+          <TablaPosgradosTotal escuelas={filteredEscuelas} />
+          <TablaPosgradosTipo escuelas={filteredEscuelas} />
         </article>
-        <ChartsMetas escuelas={escuelas} />
+        <ChartsMetas escuelas={filteredEscuelas} />
       </Main>
     </div>
   );

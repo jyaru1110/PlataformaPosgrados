@@ -4,7 +4,6 @@ const Usuario = require("../models/Usuario");
 const Horario = require("../models/Horario");
 const Programa = require("../models/Programa");
 const { Op } = require("sequelize");
-const sequelize = require("../database/database");
 const { send_notificacion } = require("../mail/nodemailerprovider");
 
 const get_solicitudes = async (req, res) => {

@@ -8,8 +8,7 @@ const PuestoEscuela = require("../models/PuestoEscuela");
 const Periodo = require("../models/Periodo");
 const PeriodoPrograma = require("../models/PeriodoPrograma");
 const sequelize = require("../database/database");
-const { Op, fn } = require("sequelize");
-const { get } = require("../app");
+const { Op } = require("sequelize");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
