@@ -11,17 +11,13 @@ export const useProcesos = () => {
         setLoading(false);
     }
 
-    const get_data = async () => {
+    useEffect(() => {
         setLoading(true);
         const url = `${url_backend}/procesos`;
         const abortController = new AbortController();
         const signal = abortController.signal;
-        await get_fetch(url,signal, after_fetch);
+        get_fetch(url,signal, after_fetch);
         return () => abortController.abort();
-    }
-
-    useEffect(() => {
-       get_data();
     }, []);
 
     return {procesos:procesos,loading:loading,setProcesos:setProcesos};

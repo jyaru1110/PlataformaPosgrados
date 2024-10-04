@@ -10,19 +10,17 @@ export const useEtapasproceso = (tipo) => {
     setEtapasprocesos(data.etapas);
   };
 
-  const get_etapas_procesos = async () => {
+    
+
+  useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-    await get_fetch(
+    get_fetch(
       url_backend + "/etapasprocesos/" + tipo,
       signal,
       after_get_etapasprocesos
     );
     return () => controller.abort();
-  };
-
-  useEffect(() => {
-    get_etapas_procesos();
   }, [tipo]);
 
   return etapasprocesos;
