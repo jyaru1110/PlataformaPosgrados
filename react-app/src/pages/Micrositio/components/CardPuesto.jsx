@@ -9,7 +9,7 @@ export default function CardPuesto({ puesto, setPersonasPuesto }) {
     setHasBeenCopied(true);
     setTimeout(() => {
       setHasBeenCopied(false);
-    }, 1000);
+    }, 1300);
   };
 
   const [hasBeenCopied, setHasBeenCopied] = useState(false);
@@ -27,7 +27,7 @@ export default function CardPuesto({ puesto, setPersonasPuesto }) {
           onClick={() => copyEmails(puesto)}
           className={`border relative border-grayborder rounded-md p-1 text-base ${
             hasBeenCopied
-              ? "after:bg-primary/10 after:text-primary after:text-sm after:border after:border-primary after:rounded-md after:p-0.5 after:content-['Copiado'] after:absolute after:-top-7 after:-left-4"
+              ? "after:bg-primary/10 after:text-white after:text-sm after:bg-slate-300 after:rounded-md after:p-0.5 after:content-['Copiado'] after:absolute after:-top-7 after:-left-4"
               : ""
           }`}
         >
