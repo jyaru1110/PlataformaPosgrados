@@ -1,5 +1,5 @@
 import useUsersByPuesto from "../../../hooks/useUsersByPuesto";
-export default function CardsPuesto() {
+export default function CardsPuesto({setPersonasPuesto}) {
   const { puestos, loading, error } = useUsersByPuesto();
 
   const copyEmails = (puesto) => {
@@ -48,7 +48,7 @@ export default function CardsPuesto() {
                   </svg>
                 </button>
               </span>
-              <button className="border border-grayborder rounded-lg p-1">
+              <button onClick={()=>setPersonasPuesto(puesto)} className="border border-grayborder rounded-lg p-1">
                 Ver miembros
               </button>
             </div>

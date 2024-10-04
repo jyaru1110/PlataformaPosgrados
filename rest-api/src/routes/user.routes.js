@@ -175,7 +175,7 @@ router.get("/users/bypuesto", async (req, res) => {
       include: [
         {
           model: Usuario,
-          attributes: ["nombre", "email", "telefono", "extension"],
+          attributes: ["nombre", "email", "telefono", "extension","id","foto"],
         },
       ],
       where: { puesto: puesto_escuela },

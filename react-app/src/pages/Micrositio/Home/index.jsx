@@ -5,6 +5,7 @@ import Table from "../components/Table";
 import Filter from "../components/Filter";
 import { puestosInterceptionNotZero } from "../../../utils/arrays";
 import CardsPuesto from "../components/CardsPuesto";
+import ModalPuestos from "../Admin/components/ModalPuestos";
 const headers = [
   "Titulo",
   "Persona",
@@ -40,6 +41,7 @@ const puestos = [
 
 export default function HomeMicrosito() {
   const { loading, personas } = usePersonas("Todos");
+  const [personasPuesto, setPersonasPuesto] = useState([]);
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPuestos, setFilteredPuestos] = useState([]);
 
@@ -57,7 +59,7 @@ export default function HomeMicrosito() {
         <h1 className="text-3xl font-bold">
           ¡Bienvenido, {localStorage.getItem("nombre")}! 🚀
         </h1>
-        <CardsPuesto />
+        <CardsPuesto setPersonasPuesto={setPersonasPuesto}/>
         <div className="mt-10 space-y-4 p-3 shadow-lg bg-white rounded-2xl">
           <div className="flex space-x-2">
             <h2 className="ml-3 text-2xl font-bold">Personas</h2>
@@ -102,6 +104,7 @@ export default function HomeMicrosito() {
           </Table>
         </div>
       </Main>
+      <ModalPuestos miembros={personasPuesto} close={()=>setPersonasPuesto([])} />
     </div>
   );
 }
