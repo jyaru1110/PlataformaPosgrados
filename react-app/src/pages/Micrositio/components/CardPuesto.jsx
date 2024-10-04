@@ -72,7 +72,7 @@ export default function CardPuesto({ puesto, setPersonasPuesto }) {
         onClick={() => setPersonasPuesto(puesto)}
         className="border border-grayborder rounded-lg p-1"
       >
-        Ver miembros
+        Ver {puesto.length} personas
       </button>
     </div>
   );
