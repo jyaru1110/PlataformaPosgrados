@@ -1,5 +1,5 @@
 import Main from "../components/Main";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { usePersonas } from "../../../hooks/usePersonas";
 import Table from "../components/Table";
 import Filter from "../components/Filter";
@@ -40,10 +40,13 @@ const puestos = [
 ];
 
 export default function HomeMicrosito() {
-  const { loading, personas } = usePersonas("Todos");
+  const [query, setQuery] = useState("");
+  const { loading, personas } = usePersonas(query);
   const [personasPuesto, setPersonasPuesto] = useState([]);
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPuestos, setFilteredPuestos] = useState([]);
+  const searchRef = useRef(null);
+  const timeOutRef = useRef(null);
 
   const filterPersonas = (persona) => {
     return (
@@ -52,23 +55,44 @@ export default function HomeMicrosito() {
       (filteredPuestos.length === 0 ||
         puestosInterceptionNotZero(filteredPuestos, persona.puesto_escuelas))
     );
-  }
+  };
+
+  const search = () => {
+    if (timeOutRef.current === null) {
+      timeOutRef.current = setTimeout(() => {
+        setQuery(searchRef.current.value);
+        timeOutRef.current = null;
+      }, 1000);
+    }
+  };
   return (
     <div className="w-full h-screen overflow-y-auto">
       <Main>
         <h1 className="text-3xl font-bold">
           ¡Bienvenido, {localStorage.getItem("nombre")}! 🚀
         </h1>
-        <CardsPuesto setPersonasPuesto={setPersonasPuesto}/>
+        <CardsPuesto setPersonasPuesto={setPersonasPuesto} />
         <div className="mt-10 space-y-4 p-3 shadow-lg bg-white rounded-2xl">
           <div className="flex space-x-2">
             <h2 className="ml-3 text-2xl font-bold">Personas</h2>
             <input
+              ref={searchRef}
+              onChange={search}
               placeholder="Buscar"
               className="rounded-lg w-auto px-2 py-1 border border-grayborder"
             ></input>
-              <Filter title={"Escuela"} options={escuelas} filtered={filteredEscuelas} setFiltered={setFilteredEscuelas}/>
-              <Filter title={"Puestos"} options={puestos} filtered={filteredPuestos} setFiltered={setFilteredPuestos}/>
+            <Filter
+              title={"Escuela"}
+              options={escuelas}
+              filtered={filteredEscuelas}
+              setFiltered={setFilteredEscuelas}
+            />
+            <Filter
+              title={"Puestos"}
+              options={puestos}
+              filtered={filteredPuestos}
+              setFiltered={setFilteredPuestos}
+            />
           </div>
           <Table headers={headers} loading={loading}>
             {personas.filter(filterPersonas).map((persona, index) => (
@@ -91,7 +115,9 @@ export default function HomeMicrosito() {
                   ) : null}
                   {persona.nombre}
                 </td>
-                <td className="px-2 py-1">{persona.area?persona.area:persona.escuela}</td>
+                <td className="px-2 py-1">
+                  {persona.area ? persona.area : persona.escuela}
+                </td>
                 <td className="px-2 py-1">{persona.email}</td>
                 <td className="px-2 py-1">
                   {persona.id_universidad_panamericana}
@@ -104,7 +130,10 @@ export default function HomeMicrosito() {
           </Table>
         </div>
       </Main>
-      <ModalPuestos miembros={personasPuesto} close={()=>setPersonasPuesto([])} />
+      <ModalPuestos
+        miembros={personasPuesto}
+        close={() => setPersonasPuesto([])}
+      />
     </div>
   );
 }

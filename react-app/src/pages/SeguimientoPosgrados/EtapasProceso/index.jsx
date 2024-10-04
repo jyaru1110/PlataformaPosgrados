@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useEtapasproceso } from "../../../hooks/useEtapasProcesos";
 import Header from "../componentes/Header";
 import Upload from "./Upload";

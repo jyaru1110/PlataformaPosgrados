@@ -3,7 +3,7 @@ import { get_fetch } from "./get_fetch";
 
 const url_backend = import.meta.env.VITE_URL_API;
 
-export const usePersonas = () => {
+export const usePersonas = (query) => {
   const [personas, setPersonas] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,9 +21,15 @@ export const usePersonas = () => {
     const controller = new AbortController();
     const signal = controller.signal;
     setLoading(true);
-    get_fetch(url_backend + "/user/all", signal, after_fetch, {}, onError);
+    get_fetch(
+      url_backend + "/user/all",
+      signal,
+      after_fetch,
+      { query: query },
+      onError
+    );
     return () => controller.abort();
-  }, []);
+  }, [query]);
 
   return { personas, loading };
 };

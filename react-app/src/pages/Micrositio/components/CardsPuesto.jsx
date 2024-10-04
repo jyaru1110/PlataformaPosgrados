@@ -8,7 +8,7 @@ export default function CardsPuesto({ setPersonasPuesto }) {
       {!loading ? (
         puestos.map((puesto) => {
           return (
-            <CardPuesto setPersonasPuesto={setPersonasPuesto} puesto={puesto} />
+            <CardPuesto key={puesto[0].puesto} setPersonasPuesto={setPersonasPuesto} puesto={puesto} />
           );
         })
       ) : (

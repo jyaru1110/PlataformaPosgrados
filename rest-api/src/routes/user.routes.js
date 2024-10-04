@@ -4,7 +4,7 @@ const router = express.Router();
 const Usuario = require("../models/Usuario");
 const PuestoPrograma = require("../models/PuestoPrograma");
 const PuestoEscuela = require("../models/PuestoEscuela");
-const { where } = require("sequelize");
+const { Op } = require("sequelize");
 
 router.get("/user/auth", isUserAuthenticated, (req, res) => {
   if (req.user) {
@@ -53,6 +53,7 @@ router.put("/user/usuario/:id", async (req, res) => {
 });
 
 router.get("/user/all", async (req, res) => {
+  const { query } = req.query;
   try {
     const users = await Usuario.findAll({
       attributes: [
@@ -80,6 +81,13 @@ router.get("/user/all", async (req, res) => {
           attributes: ["puesto"],
         },
       ],
+      where: {
+        [Op.or]: [
+          { nombre: { [Op.iLike]: `%${query}%` } },
+          { escuela: { [Op.iLike]: `%${query}%` } },
+          { area: { [Op.iLike]: `%${query}%` } },
+        ],
+      },
     });
     res.status(200).send(users);
   } catch (error) {
@@ -175,7 +183,14 @@ router.get("/users/bypuesto", async (req, res) => {
       include: [
         {
           model: Usuario,
-          attributes: ["nombre", "email", "telefono", "extension","id","foto"],
+          attributes: [
+            "nombre",
+            "email",
+            "telefono",
+            "extension",
+            "id",
+            "foto",
+          ],
         },
       ],
       where: { puesto: puesto_escuela },
