@@ -21,7 +21,7 @@ export default function ModalPuestos({ miembros, close }) {
           ref={modalRef}
           className="bg-white rounded-lg p-7 max-h-[450px] overflow-y-auto relative"
         >
-          <h3 className="text-2xl ml-2 font-bold sticky -top-7 bg-white">
+          <h3 className="text-2xl ml-2 font-bold bg-white">
             {miembros[0].puesto}
           </h3>
           <Table

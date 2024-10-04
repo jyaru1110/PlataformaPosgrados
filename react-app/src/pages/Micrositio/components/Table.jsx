@@ -7,7 +7,7 @@ export default function Table({ headers, children, loading }) {
         <SkeletonTable />
       ) : (
         <table className="w-full text-sm">
-          <thead className="sticky top-0 bg-white z-0">
+          <thead className="sticky -top-8 bg-white z-0">
             <tr className="text-left border-b border-grayborder">
               {headers?.map((header, index) => (
                 <th
