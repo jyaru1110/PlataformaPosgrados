@@ -6,7 +6,7 @@ export default function CardsPersonas() {
   return (
     <article className="flex space-x-2.5 overflow-x-scroll mb-3 w-full">
       <div
-        className="border border-slate-100 bg-white rounded-xl py-1 px-3 justify-center flex flex-col"
+        className="bg-white rounded-xl py-1 px-3 justify-center flex flex-col"
       >
         <span className="text-sm font-light">Total</span>
         {

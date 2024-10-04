@@ -62,7 +62,7 @@ export default function HomeMicrosito() {
       timeOutRef.current = setTimeout(() => {
         setQuery(searchRef.current.value);
         timeOutRef.current = null;
-      }, 1000);
+      }, 1100);
     }
   };
   return (

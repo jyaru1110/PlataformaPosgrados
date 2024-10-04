@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import Main from "../../components/Main";
 import Table from "../../components/Table";
-import { useState } from "react";
+import { useState, useRef} from "react";
 import { usePersonas } from "../../../../hooks/usePersonas";
 import { useNavigate, Link } from "react-router-dom";
 import Filter from "../../components/Filter";
@@ -44,13 +44,30 @@ const puestos = [
 ];
 
 export default function Personas() {
-  const { loading, personas } = usePersonas();
+  const [query, setQuery] = useState("");
+  const { loading, personas } = usePersonas(query);
   const navigate = useNavigate();
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPuestos, setFilteredPuestos] = useState([]);
+  const searchRef = useRef(null);
+  const timeOutRef = useRef(null);
+
   const filterPersonas = (persona) => {
-    return (filteredEscuelas.length === 0 || filteredEscuelas.includes(persona.escuela)) &&
-      (filteredPuestos.length === 0 || puestosInterceptionNotZero(filteredPuestos, persona.puesto_escuelas));
+    return (
+      (filteredEscuelas.length === 0 ||
+        filteredEscuelas.includes(persona.escuela)) &&
+      (filteredPuestos.length === 0 ||
+        puestosInterceptionNotZero(filteredPuestos, persona.puesto_escuelas))
+    );
+  };
+
+  const search = () => {
+    if (timeOutRef.current === null) {
+      timeOutRef.current = setTimeout(() => {
+        setQuery(searchRef.current.value);
+        timeOutRef.current = null;
+      }, 1100);
+    }
   };
 
   return (
@@ -63,6 +80,8 @@ export default function Personas() {
           Nuevo
         </Link>
         <input
+          onChange={search}
+          ref={searchRef}
           placeholder="Buscar"
           className="rounded-lg px-3 py-1 border border-grayborder justify-self-end"
         ></input>
@@ -80,7 +99,7 @@ export default function Personas() {
         />
       </Header>
       <Main>
-        <CardsPersonas/>
+        <CardsPersonas />
         <Table headers={headers} loading={loading}>
           {personas.filter(filterPersonas).map((persona, index) => (
             <tr
