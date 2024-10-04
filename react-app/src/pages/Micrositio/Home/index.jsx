@@ -6,6 +6,7 @@ import Filter from "../components/Filter";
 import { puestosInterceptionNotZero } from "../../../utils/arrays";
 import CardsPuesto from "../components/CardsPuesto";
 import ModalPuestos from "../Admin/components/ModalPuestos";
+import useSearchKey from "../../../hooks/useSearchKey";
 const headers = [
   "Titulo",
   "Persona",
@@ -47,6 +48,8 @@ export default function HomeMicrosito() {
   const [filteredPuestos, setFilteredPuestos] = useState([]);
   const searchRef = useRef(null);
   const timeOutRef = useRef(null);
+
+  useSearchKey(searchRef)
 
   const filterPersonas = (persona) => {
     return (

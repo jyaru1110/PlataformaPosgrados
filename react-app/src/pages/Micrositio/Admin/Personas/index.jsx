@@ -7,6 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Filter from "../../components/Filter";
 import { puestosInterceptionNotZero } from "../../../../utils/arrays";
 import CardsPersonas from "../components/CardsPersonas";
+import useSearchKey from "../../../../hooks/useSearchKey";
 
 const headers = [
   "Titulo",
@@ -51,6 +52,7 @@ export default function Personas() {
   const [filteredPuestos, setFilteredPuestos] = useState([]);
   const searchRef = useRef(null);
   const timeOutRef = useRef(null);
+  useSearchKey(searchRef);
 
   const filterPersonas = (persona) => {
     return (

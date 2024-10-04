@@ -7,6 +7,7 @@ import { useProgramas } from "../../../../hooks/useProgramas";
 import { useNavigate, Link } from "react-router-dom";
 import Filter from "../../components/Filter";
 import { useState,useRef} from "react";
+import useSearchKey from "../../../../hooks/useSearchKey";
 
 const headers = [
   "E/F",
@@ -55,6 +56,8 @@ export default function Programas() {
   const navigate = useNavigate();
   const searchInputRef = useRef(null);
   const timeOutRef = useRef(null);
+  
+  useSearchKey(searchInputRef);
 
   const filterProgramas = (programa) => {
     return (filteredEscuelas.length === 0 || filteredEscuelas.includes(programa.escuela)) && 
