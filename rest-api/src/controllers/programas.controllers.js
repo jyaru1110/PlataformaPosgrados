@@ -55,6 +55,7 @@ const update_programa_proceso = async (req, res) => {
 };
 
 const get_programas_todos = async (req, res) => {
+  const { query } = req.query;
   const programas = await Programa.findAll({
     attributes: [
       "programa",
@@ -77,7 +78,7 @@ const get_programas_todos = async (req, res) => {
       ["programa", "ASC"],
     ],
     where: {
-      esta_activo: true,
+      [Op.or]: [{ programa: { [Op.iLike]: `%${query}%` } }, {escuela:{[Op.iLike]:`%${query}%`}}, {codigo:{[Op.iLike]:`%${query}%`}}, {rvoe:{[Op.iLike]:`%${query}%`}}],
     },
   });
   res.status(200).send(programas);
@@ -499,10 +500,7 @@ const update_bulk_periodo_programa = async (req, res) => {
 
 const get_number_of_personas_by_escuela = async (req, res) => {
   const users_by_escuela = await Usuario.findAll({
-    attributes: [
-      "escuela",
-      [sequelize.fn("COUNT", 1), "total"],
-    ],
+    attributes: ["escuela", [sequelize.fn("COUNT", 1), "total"]],
     group: ["escuela"],
     order: ["escuela"],
     where: {
@@ -510,9 +508,9 @@ const get_number_of_personas_by_escuela = async (req, res) => {
         [Op.not]: "Educación Continua",
       },
     },
-  }); 
+  });
   res.status(200).send(users_by_escuela);
-}
+};
 
 module.exports = {
   get_number_of_personas_by_escuela,

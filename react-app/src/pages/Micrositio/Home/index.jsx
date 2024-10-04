@@ -65,6 +65,7 @@ export default function HomeMicrosito() {
       }, 1100);
     }
   };
+
   return (
     <div className="w-full h-screen overflow-y-auto">
       <Main>

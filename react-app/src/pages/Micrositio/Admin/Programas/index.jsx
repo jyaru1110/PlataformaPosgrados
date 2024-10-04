@@ -6,7 +6,7 @@ import TablaPosgradosTotal from "../components/TablaPosgradosTotal";
 import { useProgramas } from "../../../../hooks/useProgramas";
 import { useNavigate, Link } from "react-router-dom";
 import Filter from "../../components/Filter";
-import { useState } from "react";
+import { useState,useRef} from "react";
 
 const headers = [
   "E/F",
@@ -45,13 +45,16 @@ const sedes = [
 ]
 
 export default function Programas() {
-  const { loading, programas } = useProgramas("Todos");
+  const [query, setQuery] = useState("");
+  const { loading, programas } = useProgramas(query);
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filterSede, setFilterSede] = useState([]);
   const [filteredGrado, setFilteredGrado] = useState([]);
   const [filteredTipo, setFilteredTipo] = useState([])
   const [filteredModalidad, setFilteredModalidad] = useState([])
   const navigate = useNavigate();
+  const searchInputRef = useRef(null);
+  const timeOutRef = useRef(null);
 
   const filterProgramas = (programa) => {
     return (filteredEscuelas.length === 0 || filteredEscuelas.includes(programa.escuela)) && 
@@ -60,6 +63,16 @@ export default function Programas() {
     (filteredTipo.length === 0 || filteredTipo.includes(programa.tipo)) &&
     (filteredModalidad.length === 0 || filteredModalidad.includes(programa.modalidad))
   }
+  
+  const search = () => {
+    if(timeOutRef.current === null) {
+      timeOutRef.current = setTimeout(()=>{
+        setQuery(searchInputRef.current.value)
+        timeOutRef.current = null
+      },1100);
+    }
+  }
+
   return (
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Programas">
@@ -70,6 +83,8 @@ export default function Programas() {
           Nuevo
         </Link>
         <input
+          ref = {searchInputRef}
+          onChange={search}
           placeholder="Buscar"
           className="rounded-lg px-3 py-1 border border-grayborder justify-self-end"
         ></input>
