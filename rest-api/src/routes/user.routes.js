@@ -167,7 +167,6 @@ router.delete("/user/:id", async (req, res) => {
 
 router.get("/users/bypuesto", async (req, res) => {
   const puestos_escuela = [
-    "Decano",
     "Coordinador de Asuntos Estudiantiles",
     "Jefe Promoción y Admisiones",
   ];
@@ -175,6 +174,7 @@ router.get("/users/bypuesto", async (req, res) => {
     "Jefe Académico",
     "Coordinador Académico",
     "Coordinador de Promoción y Admisiones",
+    "Director"
   ];
   const users = [];
 
