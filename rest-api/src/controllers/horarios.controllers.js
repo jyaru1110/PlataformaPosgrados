@@ -318,7 +318,7 @@ const update_horario = async (req, res) => {
       hora_servicio_inicio: hora_servicio_inicio,
       salon_id: salon,
       no_clase: no_clase,
-      programa: programa,
+      programaPrograma: programa,
       num_servicios: num_alumnos,
     },
     {
