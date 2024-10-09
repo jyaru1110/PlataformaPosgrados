@@ -73,7 +73,7 @@ export default function Horario() {
         setDia(horario[0].dia);
       }
       if (numero_servicios === 0) {
-        setNumeroServicios(horario[0].numero_servicios);
+        setNumeroServicios(horario[0].num_alumnos);
       }
     }
   }, [
@@ -160,7 +160,7 @@ export default function Horario() {
       (hora_servicio_fin === "" ||
         hora_servicio_fin == horario[0].hora_servicio_fin) &&
       (numero_servicios === 0 ||
-        numero_servicios == horario[0].numero_servicios) &&
+        numero_servicios == horario[0].num_alumnos) &&
       (dia === "" || dia == horario[0].dia)
     )
       return;
