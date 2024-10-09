@@ -71,8 +71,9 @@ const aceptar_solicitud = async (req, res) => {
         servicio.num_servicios = notificacion.num_alumnos;
         servicio.salon_id = notificacion.salon;
         servicio.estado = "Confirmado";
-        servicio.aprobadoPor = notificacion.userId;
+        servicio.aprobadoPor = notificacion.id_usuario;
         servicio.estado_coordinador = "Aprobado";
+        servicio.programaPrograma = notificacion.programaPrograma;
         await servicio.save();
         notificacion.estado = "Aceptada";
         await notificacion.save();
