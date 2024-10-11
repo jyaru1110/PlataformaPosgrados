@@ -61,7 +61,7 @@ export default function NewPersona() {
           <select
             id="titulo"
             className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
-            {...register("titutlo")}
+            {...register("titulo")}
           >
             <option value="Lic.">Lic.</option>
             <option value="Esp.">Esp.</option>
