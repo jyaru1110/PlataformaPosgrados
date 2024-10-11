@@ -3,7 +3,7 @@ import Header from "../../../components/Header";
 import Form from "../../../components/Form";
 import { useParams } from "react-router-dom";
 import { usePersona } from "../../../../../hooks/usePersonas";
-import {  useProgramasOpciones } from "../../../../../hooks/useProgramas";
+import { useProgramasOpciones } from "../../../../../hooks/useProgramas";
 import Table from "../../../components/Table";
 import Error from "../../../components/Error";
 import { useForm } from "react-hook-form";
@@ -158,7 +158,6 @@ export default function Persona() {
         toast.error(err.response.data.message);
       });
   };
-   
 
   useEffect(() => {
     if (persona) {
@@ -298,7 +297,10 @@ export default function Persona() {
                   setProgramChanged(true);
                 }}
               ></input>
-              <label htmlFor="id_universidad_panamericana" className="font-bold">
+              <label
+                htmlFor="id_universidad_panamericana"
+                className="font-bold"
+              >
                 ID
               </label>
               <input
@@ -374,7 +376,7 @@ export default function Persona() {
                       </Link>
                     </td>
                     <td>
-                      <button onClick={()=>deletePuestoPrograma(puesto.id)}>
+                      <button onClick={() => deletePuestoPrograma(puesto.id)}>
                         <svg
                           width="28"
                           height="28"
@@ -427,6 +429,7 @@ export default function Persona() {
                         <option value="Coordinador de Admisiones">
                           Coordinador de Admisiones
                         </option>
+                        <option value="Coordinador de Asuntos Estudiantiles">Coordinador de Asuntos Estudiantiles</option>
                       </select>
                     </td>
                     <td className="px-2 py-1 text-emerald-800 underline">
@@ -479,7 +482,7 @@ export default function Persona() {
                     <td className="px-2 py-1">{puesto.puesto}</td>
                     <td className="px-2 py-1">{puesto.escuelaEscuela}</td>
                     <td>
-                      <button onClick={()=>deletePuestoEscuela(puesto.id)}>
+                      <button onClick={() => deletePuestoEscuela(puesto.id)}>
                         <svg
                           width="28"
                           height="28"
@@ -530,6 +533,9 @@ export default function Persona() {
                         </option>
                         <option value="Coordinador Gestión Escolar">
                           Coordinador Gestión Escolar
+                        </option>
+                        <option value="Asistente administrativo">
+                          Asistente administrativo
                         </option>
                       </select>
                     </td>
