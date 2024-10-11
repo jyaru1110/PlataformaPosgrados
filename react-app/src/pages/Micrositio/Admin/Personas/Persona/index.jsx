@@ -3,7 +3,7 @@ import Header from "../../../components/Header";
 import Form from "../../../components/Form";
 import { useParams } from "react-router-dom";
 import { usePersona } from "../../../../../hooks/usePersonas";
-import { useProgramas } from "../../../../../hooks/useProgramas";
+import { useProgramas, useProgramasOpciones } from "../../../../../hooks/useProgramas";
 import Table from "../../../components/Table";
 import Error from "../../../components/Error";
 import { set, useForm } from "react-hook-form";
@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Persona() {
   const { id } = useParams();
   const { loading, persona, error } = usePersona(id);
-  const { programas } = useProgramas();
+  const { programas } = useProgramasOpciones("Todos");
 
   const [programChanged, setProgramChanged] = useState(false);
   const [nuevosPuestosPrograma, setNuevosPuestosPrograma] = useState([]);
