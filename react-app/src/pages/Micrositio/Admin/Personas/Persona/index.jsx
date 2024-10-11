@@ -3,10 +3,10 @@ import Header from "../../../components/Header";
 import Form from "../../../components/Form";
 import { useParams } from "react-router-dom";
 import { usePersona } from "../../../../../hooks/usePersonas";
-import { useProgramas, useProgramasOpciones } from "../../../../../hooks/useProgramas";
+import {  useProgramasOpciones } from "../../../../../hooks/useProgramas";
 import Table from "../../../components/Table";
 import Error from "../../../components/Error";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -521,7 +521,7 @@ export default function Persona() {
                         <option value="Coordinador de Asuntos Estudiantiles">
                           Coordinador de Asuntos Estudiantiles
                         </option>
-                        <option value="Director">Director</option>
+                        <option value="Decano">Decano</option>
                         <option value="Secretario Administrativo">
                           Secretario Administrativo
                         </option>
