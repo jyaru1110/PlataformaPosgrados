@@ -173,8 +173,7 @@ router.get("/users/bypuesto", async (req, res) => {
   const puestos_programa = [
     "Jefe Académico",
     "Coordinador Académico",
-    "Coordinador de Promoción y Admisiones",
-    "Director"
+    "Coordinador de Promoción y Admisiones"
   ];
   const users = [];
 

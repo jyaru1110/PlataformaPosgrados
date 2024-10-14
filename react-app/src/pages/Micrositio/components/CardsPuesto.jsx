@@ -6,7 +6,7 @@ export default function CardsPuesto({ setPersonasPuesto }) {
   return (
     <div className="mt-10 flex space-x-2.5">
       {!loading ? (
-        puestos.map((puesto) => {
+        puestos?.map((puesto) => {
           return (
             <CardPuesto key={puesto[0].puesto} setPersonasPuesto={setPersonasPuesto} puesto={puesto} />
           );
