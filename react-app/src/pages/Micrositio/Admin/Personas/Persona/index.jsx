@@ -416,7 +416,6 @@ export default function Persona() {
                           Selecciona un puesto
                         </option>
                         <option value="Subdirector">Subdirector</option>
-                        <option value="Director">Director</option>
                         <option value="Coordinador de Promoción y Admisiones">
                           Coordinador de Promoción y Admisiones
                         </option>
@@ -425,7 +424,6 @@ export default function Persona() {
                         </option>
                         <option value="Jefe Académico">Jefe Académico</option>
                         <option value="Asistente">Asistente</option>
-                        <option value="Program Manager">Program Manager</option>
                         <option value="Coordinador de Admisiones">
                           Coordinador de Admisiones
                         </option>
@@ -537,6 +535,8 @@ export default function Persona() {
                         <option value="Asistente administrativo">
                           Asistente administrativo
                         </option>
+                        <option value="Subdirector de Posgrados">Subdirector de Posgrados</option>
+                        <option value="Director de Posgrados">Director de Posgrados</option>
                       </select>
                     </td>
                     <td className="px-2 py-1">
