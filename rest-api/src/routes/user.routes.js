@@ -80,6 +80,11 @@ router.get("/user/all", async (req, res) => {
           required: false,
           attributes: ["puesto"],
         },
+        {
+          model: PuestoPrograma,
+          required: false,
+          attributes: ["puesto", "programaPrograma"],
+        }
       ],
       where: {
         [Op.or]: [
