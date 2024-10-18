@@ -21,7 +21,7 @@ const headers = [
   "Créditos",
   "Año de inicio",
   "# materias",
-  "# materias ingles",
+  "# materias inglés",
   "rvoe",
   "fecha",
 ];
