@@ -103,7 +103,7 @@ const router = createBrowserRouter([
         element: <Programas />,
       },
       {
-        path: "admin/personas/",
+        path: "admin/directorio/",
         element: <Personas />,
       },
       {
