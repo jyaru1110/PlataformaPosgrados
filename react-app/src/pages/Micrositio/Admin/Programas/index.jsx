@@ -93,7 +93,7 @@ export default function Programas() {
         ></input>
         <Filter title={"Escuela"} filtered={filteredEscuelas} setFiltered={setFilteredEscuelas} options={escuelas}/>
         <Filter title={"Sede"} filtered={filterSede} setFiltered={setFilterSede} options={sedes}/>
-        <Filter title={"Grado"} filtered={filteredGrado} setFiltered={setFilteredGrado} options={["Maestría", "Doctorado","Especialidad"]}/>
+        <Filter title={"Grado"} filtered={filteredGrado} setFiltered={setFilteredGrado} options={["Maestría", "Doctorado","Especialidad","Diplomado","Curso"]}/>
         <Filter title={"Tipo"} filtered={filteredTipo} setFiltered={setFilteredTipo} options={["Investigación","Profesionalizante","Directiva"]}/>
         <Filter title={"Modalidad"} filtered={filteredModalidad} setFiltered={setFilteredModalidad} options={["Blended / Mixta","Mixta","Presencial"]}/>
       </Header>

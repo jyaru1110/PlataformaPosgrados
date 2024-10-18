@@ -98,6 +98,8 @@ export default function NewPrograma() {
             <option value="Maestría">Maestría</option>
             <option value="Especialidad">Especialidad</option>
             <option value="Doctorado">Doctorado</option>
+            <option value="Diplomado">Diplomado</option>
+            <option value="Curso">Curso</option>
           </select>
           <label for="duracion" className="font-bold">
             Duración
