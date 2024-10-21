@@ -29,6 +29,7 @@ const escuelas = [
 const headers = [
   "Periodo",
   "Programa",
+  "Código",
   "Meta Alumnos",
   "Inscritos",
   "Porcentaje",
@@ -214,8 +215,6 @@ export default function Metas() {
         />
       </Header>
       <Main>
-       
-
         <h2 className="ml-2 font-bold text-2xl my-5">Metas por escuela</h2>
         <Table headers={headers_escuela} loading={loading}>
           {data?.filter(filterMetasEscuelas).map((meta, index) => {
@@ -336,6 +335,9 @@ export default function Metas() {
                 >
                   {meta?.programaPrograma}
                 </Link>
+              </td>
+              <td className="px-2 py-1">
+                {meta?.programa?.codigo}
               </td>
               <td className="px-2 py-1">
                 <input

@@ -409,7 +409,7 @@ const get_periodos_programa = async (req, res) => {
       },
       {
         model: Programa,
-        attributes: ["escuela"],
+        attributes: ["escuela","codigo"],
       },
     ],
     attributes: ["id","programaPrograma", "num_inscripciones", "meta_inscripciones"],
