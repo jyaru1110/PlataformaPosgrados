@@ -213,7 +213,9 @@ const create_periodo_programa = async (req, res) => {
 };
 
 const get_periodos = async (req, res) => {
-  const periodos = await Periodo.findAll();
+  const periodos = await Periodo.findAll({
+    order:["periodo_nombre"]
+  });
   res.status(200).send(periodos);
 };
 

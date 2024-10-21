@@ -2,7 +2,7 @@ import Header from "../../components/Header";
 import Main from "../../components/Main";
 import Table from "../../components/Table";
 import { usePeriodoPrograma } from "../../../../hooks/usePeriodoPrograma";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import Creatable from "react-select/creatable";
 import { usePeriodos } from "../../../../hooks/usePeriodos";
 import axios from "axios";
@@ -47,6 +47,8 @@ export default function Metas() {
   const { loading, metas, update } = usePeriodoPrograma("Todos");
   const [newMetas, setNewMetas] = useState([]);
   const { periodos, update: update_periodos } = usePeriodos();
+  const [periodosOptions, setPeriodosOptions] = useState([]);
+  const [periodosFilter, setPeriodosFilter] = useState([]);
   const [metasToUpdate, setMetasToUpdate] = useState({});
   const { programas } = useProgramasOpciones("Todos");
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
@@ -67,10 +69,6 @@ export default function Metas() {
       filteredPeriodos.includes(meta?.periodo_nombre)
     );
   };
-
-  const periodos_options = periodos.map((periodo) => {
-    return { value: periodo.id, label: periodo.periodo_nombre };
-  });
 
   const updateMetasToUpdate = (index, key, value) => {
     const metasToUpdateCopy = { ...metasToUpdate };
@@ -178,6 +176,16 @@ export default function Metas() {
     }
   };
 
+
+  useEffect(() => {
+    setPeriodosOptions(
+      periodos.map((periodo) => {
+        return { value: periodo.id, label: periodo.periodo_nombre };
+      })
+    );
+    setPeriodosFilter(periodos.map((periodo) => periodo.periodo_nombre));
+  }
+  , [periodos]);
   return (
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Metas">
@@ -211,7 +219,7 @@ export default function Metas() {
           title={"Periodo"}
           filtered={filteredPeriodos}
           setFiltered={setFilteredPeriodos}
-          options={periodos_options.map((option) => option.label)}
+          options={periodosFilter}
         />
       </Header>
       <Main>
@@ -271,7 +279,7 @@ export default function Metas() {
                       backgroundColor: "transparent",
                     }),
                   }}
-                  options={periodos_options}
+                  options={periodosOptions}
                   onChange={(option) => {
                     updateNewMetas(index, "periodoId", option.value);
                   }}
