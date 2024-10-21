@@ -54,6 +54,8 @@ export default function Metas() {
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPeriodos, setFilteredPeriodos] = useState([]);
 
+  console.log(metas);
+
   const filterMetas = (meta) => {
     return (
       (filteredEscuelas.length === 0 ||
@@ -186,6 +188,7 @@ export default function Metas() {
     setPeriodosFilter(periodos.map((periodo) => periodo.periodo_nombre));
   }
   , [periodos]);
+
   return (
     <div className="w-full flex flex-col relative h-screen">
       <Header title="Metas">
@@ -334,7 +337,7 @@ export default function Metas() {
           {metas.filter(filterMetas).map((meta, index) => (
             <tr
               className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
-              key={index}
+              key={meta.id}
             >
               <td className="px-2 py-1">{meta?.periodo?.periodo_nombre}</td>
               <td className="px-2 py-1 text-emerald-800 underline">
