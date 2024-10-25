@@ -13,7 +13,7 @@ import { CSVLink } from "react-csv";
 const headers = [
   "Titulo",
   "Persona",
-  "Escuela o facultad",
+  "Escuela, facultad o área",
   "Correo",
   "ID",
   "Extensión",

@@ -11,7 +11,7 @@ import { CSVLink } from "react-csv";
 const headers = [
   "Titulo",
   "Persona",
-  "Escuela o facultad",
+  "Escuela, facultad o área",
   "Correo",
   "ID",
   "Extensión",
@@ -117,7 +117,7 @@ export default function HomeMicrosito() {
         <CardsPuesto setPersonasPuesto={setPersonasPuesto} />
         <div className="mt-10 space-y-4 p-3 shadow-lg bg-white rounded-2xl">
           <div className="flex space-x-2">
-            <h2 className="ml-3 text-2xl font-bold">Personas</h2>
+            <h2 className="ml-3 text-2xl font-bold">Directorio</h2>
             <input
               ref={searchRef}
               onChange={search}
@@ -169,7 +169,7 @@ export default function HomeMicrosito() {
                 className="border-b border-grayborder hover:bg-grayborder cursor-pointer transition-all ease-in-out duration-300"
                 key={index}
                 onClick={() => {
-                  navigate(`/micrositio/admin/personas/${persona.id}`);
+                  navigate(`/micrositio/admin/directorio/${persona.id}`);
                 }}
               >
                 <td className="px-2 py-1">{persona.titulo}</td>
