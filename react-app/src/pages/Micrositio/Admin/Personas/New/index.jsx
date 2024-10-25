@@ -94,6 +94,16 @@ export default function NewPersona() {
             </option>
             <option value="Educación Continua">Educación Continua</option>
           </select>
+          <label htmlFor="area" className="font-bold">
+            Área
+          </label>
+          <input
+            type="text"
+            autoComplete="off"
+            id="area"
+            className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            {...register("area")}
+          />
           <label for="email" className="font-bold">
             Correo
           </label>
