@@ -61,6 +61,7 @@ export default function NewPrograma() {
           <input
             id="codigo"
             autocomplete="off"
+            required
             className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
             {...register("codigo")}
           ></input>
@@ -70,8 +71,11 @@ export default function NewPrograma() {
           <select
             id="escuela"
             className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+            required
+            defaultValue={""}
             {...register("escuela")}
           >
+            <option value="" disabled>Selecciona una escuela</option>
             <option value="Empresariales">Empresariales</option>
             <option value="ESDAI">ESDAI</option>
             <option value="Gobierno y Economía">Gobierno y Economía</option>
