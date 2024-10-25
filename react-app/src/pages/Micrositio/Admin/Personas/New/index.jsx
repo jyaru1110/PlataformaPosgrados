@@ -62,7 +62,9 @@ export default function NewPersona() {
             id="titulo"
             className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
             {...register("titulo")}
+            defaultValue={""}
           >
+            <option value="" disabled>Selecciona un titulo</option>
             <option value="Lic.">Lic.</option>
             <option value="Esp.">Esp.</option>
             <option value="Ing.">Ing.</option>
@@ -78,7 +80,9 @@ export default function NewPersona() {
             id="escuela"
             className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
             {...register("escuela")}
+            defaultValue={""}
           >
+            <option value="" disabled>Selecciona una escuela</option>
             <option value="Empresariales">Empresariales</option>
             <option value="ESDAI">ESDAI</option>
             <option value="Gobierno y Economía">Gobierno y Economía</option>
@@ -111,6 +115,7 @@ export default function NewPersona() {
             autoComplete="off"
             type="email"
             id="email"
+            required
             className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
             {...register("email")}
           ></input>
