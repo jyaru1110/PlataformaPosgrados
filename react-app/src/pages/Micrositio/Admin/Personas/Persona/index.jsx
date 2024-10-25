@@ -553,6 +553,7 @@ export default function Persona() {
                         <option value="Director de Posgrados">
                           Director de Posgrados
                         </option>
+                        <option value="Secretario de Investigación">Secretario de Investigación</option>
                       </select>
                     </td>
                     <td className="px-2 py-1">

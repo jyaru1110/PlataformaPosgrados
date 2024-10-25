@@ -43,6 +43,7 @@ const puestos = [
   "Director Posgrado",
   "Jefe Promoción y Admisiones",
   "Decano",
+  "Secretario de Investigación"
 ];
 
 const puestos_program = [
