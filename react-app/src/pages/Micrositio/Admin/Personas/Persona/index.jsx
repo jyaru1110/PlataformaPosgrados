@@ -283,6 +283,16 @@ export default function Persona() {
                 </option>
                 <option value="Educación Continua">Educación Continua</option>
               </select>
+              <label htmlFor="area" className="font-bold">Área</label>
+              <input
+                type="text"
+                id="area"
+                autoComplete="off"
+                {...register("area")}
+                className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700"
+                defaultValue={persona.area}
+                onChange={() => setProgramChanged(true)}
+              />
               <label htmlFor="email" className="font-bold">
                 Correo
               </label>
@@ -427,7 +437,9 @@ export default function Persona() {
                         <option value="Coordinador de Admisiones">
                           Coordinador de Admisiones
                         </option>
-                        <option value="Coordinador de Asuntos Estudiantiles">Coordinador de Asuntos Estudiantiles</option>
+                        <option value="Coordinador de Asuntos Estudiantiles">
+                          Coordinador de Asuntos Estudiantiles
+                        </option>
                       </select>
                     </td>
                     <td className="px-2 py-1 text-emerald-800 underline">
@@ -535,8 +547,12 @@ export default function Persona() {
                         <option value="Asistente administrativo">
                           Asistente administrativo
                         </option>
-                        <option value="Subdirector de Posgrados">Subdirector de Posgrados</option>
-                        <option value="Director de Posgrados">Director de Posgrados</option>
+                        <option value="Subdirector de Posgrados">
+                          Subdirector de Posgrados
+                        </option>
+                        <option value="Director de Posgrados">
+                          Director de Posgrados
+                        </option>
                       </select>
                     </td>
                     <td className="px-2 py-1">
