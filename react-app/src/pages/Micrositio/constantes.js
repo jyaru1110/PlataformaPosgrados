@@ -1,7 +1,7 @@
 export const secciones = {
     personas:{
-        title:'Personas',
-        ruta:'/micrositio/admin/personas'
+        title:'Directorio',
+        ruta:'/micrositio/admin/directorio'
     },
     programas:{
         title:'Programas',

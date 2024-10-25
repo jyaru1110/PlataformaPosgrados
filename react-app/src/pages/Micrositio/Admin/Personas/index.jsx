@@ -126,7 +126,7 @@ export default function Personas() {
 
   return (
     <div className="w-full flex flex-col relative h-screen">
-      <Header title="Personas">
+      <Header title="Directorio">
         <Link
           to="/micrositio/admin/personas/new"
           className="bg-primary text-center flex items-center text-white rounded-lg px-3"
