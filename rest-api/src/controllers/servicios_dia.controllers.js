@@ -138,7 +138,7 @@ const cancelar_servicios = async (req, res) => {
         id_servicio: servicio.dataValues.id,
         tipo: "Cancelacion",
         salon: servicio.salon_id,
-        programaPrograma: servicio.programa,
+        programaPrograma: servicio.programaPrograma,
         fecha_inicio: servicio.fecha,
         hora_inicio: servicio.hora_inicio,
         hora_fin: servicio.hora_fin,
