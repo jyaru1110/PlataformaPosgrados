@@ -229,7 +229,8 @@ const get_nivel_impuntualidad = async (req, res) => {
         solicitud.dataValues.hora_servicio_inicio
     );
 
-    const dias_retraso = fecha_servicio_date - solicitud.dataValues.createdAt;
+    const dias_retraso = (fecha_servicio_date - solicitud.dataValues.createdAt)/1000/60/60/24;
+
     if (solicitud.dataValues.tipo == "Nuevo") {
       if (dias_retraso > 2) {
         dataset_nuevos.data[2] += solicitud.dataValues.num_alumnos;
