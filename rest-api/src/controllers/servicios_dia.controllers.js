@@ -413,6 +413,10 @@ const update_servicio = async (req, res) => {
       salon: servicio.salon_id,
     },
   });
+  if(fecha < new Date().toISOString().split("T")[0]){
+    return res.status(500).send({ error: "No se puede modificar un servicio que ya pasó" });
+  }
+
   if (
     rol == "Gestor" ||
     servicio.estado !== "Confirmado" ||
