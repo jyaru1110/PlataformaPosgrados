@@ -189,7 +189,7 @@ export default function Metas() {
   , [periodos]);
 
   return (
-    <div className="w-full flex flex-col relative h-screen">
+    <div className="w-5/6 flex flex-col relative h-screen">
       <Header title="Metas">
         {(newMetas.length > 0 || Object.keys(metasToUpdate).length > 0) && (
           <button

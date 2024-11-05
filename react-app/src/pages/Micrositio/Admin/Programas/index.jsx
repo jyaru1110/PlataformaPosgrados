@@ -77,7 +77,7 @@ export default function Programas() {
   }
 
   return (
-    <div className="w-full flex flex-col relative h-screen">
+    <div className="w-5/6 flex flex-col relative h-screen">
       <Header title="Programas">
         <Link
           to="/micrositio/admin/programas/new"
