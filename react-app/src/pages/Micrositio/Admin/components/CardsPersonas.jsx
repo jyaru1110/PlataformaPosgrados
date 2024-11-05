@@ -4,7 +4,7 @@ export default function CardsPersonas() {
   const { data, loading, error } = useUsersByEscuela();
   const reduceTotal = data?.reduce((acc, escuela) => acc + parseInt(escuela.total), 0);
   return (
-    <article className="flex space-x-2.5 overflow-x-scroll mb-3 w-full">
+    <article className="flex space-x-2.5 overflow-x-auto mb-3 w-full">
       <div
         className="bg-white rounded-xl py-1 px-3 justify-center flex flex-col"
       >
