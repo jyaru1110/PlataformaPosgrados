@@ -231,7 +231,7 @@ export default function Dashboard() {
         "Cargando..."
       ) : (
         <div className="w-full p-7">
-          <p className="text-center font-bold">SOLICITUDES</p>
+          <p className="text-center font-bold">Servicios posterior a la confirmación de Eventos</p>
           <Bar data={data_nivel_impuntualidad} options={options_bar} />
         </div>
       )}
