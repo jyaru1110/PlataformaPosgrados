@@ -331,12 +331,12 @@ const get_metas_por_periodo = async (req, res) => {
       {
         label: "Inscripciones",
         data: inscripciones,
-        backgroundColor: "#C9B608",
+        backgroundColor: "#B9975B",
       },
       {
         label: "Metas",
         data: metas,
-        backgroundColor: "#227B76",
+        backgroundColor: "#00685E",
       },
     ],
   };
@@ -386,7 +386,7 @@ const get_metas_periodo = async (req, res) => {
           resultado[0]?.dataValues.meta_inscripciones -
             resultado[0]?.dataValues.num_inscripciones,
         ],
-        backgroundColor: ["#227B76", "#C9B608"],
+        backgroundColor: ["#00685E", "#B9975B"],
         hoverOffset: 4,
       },
     ],
