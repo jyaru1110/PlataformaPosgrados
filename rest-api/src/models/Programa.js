@@ -103,6 +103,12 @@ const Programa = sequelize.define(
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    website: {
+      type: DataTypes.STRING,
+    },
+    encarte: {
+      type: DataTypes.STRING,
+    }
   },
   {
     // Opciones del modelo

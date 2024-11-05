@@ -186,6 +186,10 @@ export default function NewPrograma() {
             <option value="Guadalajara">Guadalajara</option>
             <option value="Aguascalientes">Aguascalientes</option>
           </select>
+          <label htmlFor="website" className="font-bold">Website</label>
+          <input type="text" id="website" autoComplete="off" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("website")}/>
+          <label htmlFor="encarte" className="font-bold">Encarte</label>
+          <input type="text" id="encarte" autoComplete="off" className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" {...register("encarte")}/>
           <button className="invisible" type="submit" ref={refSubmit}></button>
         </Form>
       </Main>

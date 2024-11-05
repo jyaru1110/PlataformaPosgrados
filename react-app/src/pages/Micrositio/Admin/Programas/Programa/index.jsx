@@ -628,6 +628,10 @@ export default function Programa() {
                   setProgramChanged(true);
                 }}
               ></input>
+              <label htmlFor="website" className="font-bold">Website</label>
+              <input type="text" id="website" className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700" {...register("website")} defaultValue={programaData.website} onChange={()=>setProgramChanged(true)}/>
+              <label htmlFor="encarte" className="font-bold">Encarte</label>
+              <input type="text" id="encarte" className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700" {...register("encarte")} defaultValue={programaData.encarte} onChange={()=>setProgramChanged(true)}/>
               <button
                 className="invisible"
                 type="submit"
