@@ -49,11 +49,12 @@ export const usePersona = (id) => {
     setError(error);
   };
 
-  const get_persona = async () => {
+
+  useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
     setLoading(true);
-    await get_fetch(
+    get_fetch(
       url_backend + "/user/" + id,
       signal,
       after_fetch,
@@ -61,10 +62,6 @@ export const usePersona = (id) => {
       onError
     );
     return () => controller.abort();
-  };
-
-  useEffect(() => {
-    get_persona();
   }, []);
 
   return { persona, loading, error };
