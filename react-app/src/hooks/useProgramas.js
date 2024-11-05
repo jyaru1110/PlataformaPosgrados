@@ -17,8 +17,9 @@ export const useProgramasOpciones = (escuela) => {
     const controller = new AbortController();
     const signal = controller.signal;
     setLoading(true);
-    var url;
+    let url;
     if (escuela === "Todos") url = url_backend + "/programas_opciones";
+    else if(escuela === "Metas") url = url_backend + "/programas_metas";
     else url = url_backend + "/programas/" + escuela;
     get_fetch(url, signal, after_fetch);
     return () => controller.abort();

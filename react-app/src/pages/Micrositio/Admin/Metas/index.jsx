@@ -50,7 +50,7 @@ export default function Metas() {
   const [periodosOptions, setPeriodosOptions] = useState([]);
   const [periodosFilter, setPeriodosFilter] = useState([]);
   const [metasToUpdate, setMetasToUpdate] = useState({});
-  const { programas } = useProgramasOpciones("Todos");
+  const { programas } = useProgramasOpciones("Metas");
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPeriodos, setFilteredPeriodos] = useState([]);
 

@@ -29,13 +29,15 @@ const {
   get_periodos_escuela,
   update_bulk_periodo_programa,
   get_number_of_personas_by_escuela,
+  get_programas_opciones_metas
 } = require("../controllers/programas.controllers");
 const { isUserAuthenticated } = require("../middlewares/auth");
 
 router.get("/programas/periodos", isUserAuthenticated, get_periodos_programa);
 router.get("/escuelas/periodos", isUserAuthenticated, get_periodos_escuela);
 router.get("/programas/:escuela", isUserAuthenticated, get_programas_escuela);
-router.get("/programas_opciones/", isUserAuthenticated, get_programas_opciones);
+router.get("/programas_metas", isUserAuthenticated, get_programas_opciones_metas);
+router.get("/programas_opciones", isUserAuthenticated, get_programas_opciones);
 router.get("/programas/", isUserAuthenticated, get_programas_todos);
 router.get("/programa/:programa", isUserAuthenticated, get_programa);
 router.get("/periodos", isUserAuthenticated, get_periodos);

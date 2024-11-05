@@ -514,7 +514,13 @@ const get_number_of_personas_by_escuela = async (req, res) => {
   res.status(200).send(users_by_escuela);
 };
 
+const get_programas_opciones_metas = async (req, res) => {
+  const programas = await Programa.findAll({ order: [["programa", "ASC"]], where: { escuela: { [Op.not]: "Educación Continua"} } });
+  res.status(200).send({ programas: programas });
+}
+
 module.exports = {
+  get_programas_opciones_metas,
   get_number_of_personas_by_escuela,
   get_programas_escuela,
   get_programas_opciones,
