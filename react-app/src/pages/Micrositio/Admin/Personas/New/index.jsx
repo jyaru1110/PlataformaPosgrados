@@ -105,6 +105,7 @@ export default function NewPersona() {
             id="area"
             className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
             {...register("area")}
+            defaultValue={""}
           >
             <option value="" disabled>Selecciona un área</option>
             <option value="Operaciones">Operaciones</option>
