@@ -3,7 +3,7 @@ import LogoPosgrados from "../../../assets/LogoPosgrados.png";
 
 export default function Nav() {
   return (
-    <nav className="h-screen w-1/6 border-grayborder border p-4 flex flex-col items-center">
+    <div className="h-screen w-1/6 border-grayborder border p-4 flex flex-col items-center">
       <img className="w-20 mb-10" src={LogoPosgrados}></img>
       <NavLink className={({ isActive, isPending }) =>{
         return `${isActive ? 'bg-grayfocus text-primary font-medium' : ''} w-full flex text-xl items-center space-x-5 rounded-lg p-1 `
@@ -50,6 +50,6 @@ export default function Nav() {
         </svg>
         <p>Metas</p>
       </NavLink>
-    </nav>
+    </div>
   );
 }

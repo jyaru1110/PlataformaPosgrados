@@ -9,6 +9,7 @@ import { puestosInterceptionNotZero } from "../../../../utils/arrays";
 import CardsPersonas from "../components/CardsPersonas";
 import useSearchKey from "../../../../hooks/useSearchKey";
 import { CSVLink } from "react-csv";
+import CardsPuesto from "../../components/CardsPuesto";
 
 const headers = [
   "Titulo",
@@ -58,6 +59,7 @@ const puestos_program = [
 export default function Personas() {
   const [query, setQuery] = useState("");
   const { loading, personas } = usePersonas(query);
+  const [personasPuesto, setPersonasPuesto] = useState([]);
   const navigate = useNavigate();
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPuestos, setFilteredPuestos] = useState([]);
@@ -126,7 +128,7 @@ export default function Personas() {
   }, [personas, filteredEscuelas, filteredPuestos, filteredPuestosPrograma]);
 
   return (
-    <div className="w-full flex flex-col relative h-screen">
+    <div className="w-5/6 flex flex-col relative h-screen">
       <Header title="Directorio">
         <Link
           to="/micrositio/admin/personas/new"
@@ -180,6 +182,7 @@ export default function Personas() {
         </CSVLink>
       </Header>
       <Main>
+        <CardsPuesto setPersonasPuesto={setPersonasPuesto} />
         <CardsPersonas />
         <Table headers={headers} loading={loading}>
           {personas.filter(filterPersonas).map((persona, index) => (

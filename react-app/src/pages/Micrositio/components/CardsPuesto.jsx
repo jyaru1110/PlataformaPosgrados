@@ -4,7 +4,7 @@ export default function CardsPuesto({ setPersonasPuesto }) {
   const { puestos, loading, error } = useUsersByPuesto();
 
   return (
-    <div className="mt-10 flex space-x-2.5">
+    <div className="mb-10 flex space-x-2.5 w-full overflow-x-auto">
       {!loading ? (
         puestos?.map((puesto) => {
           return (

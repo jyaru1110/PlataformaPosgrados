@@ -17,7 +17,7 @@ export default function CardPuesto({ puesto, setPersonasPuesto }) {
   return (
     <div
       key={puesto[0].puesto}
-      className="w-72 bg-white shadow-md rounded-lg p-2.5 flex flex-col justify-between"
+      className="w-72 bg-white border border-slate-100 rounded-lg p-2.5 flex flex-col justify-between"
     >
       <span className="flex justify-between items-start">
         <p className="font-bold text-base leading-none mb-2">
