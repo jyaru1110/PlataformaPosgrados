@@ -12,15 +12,11 @@ export const useClases = () => {
         setClases(data_processed);
     }
 
-    const get_clases = async () => {
+    useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
-        await get_fetch(url_backend+"/clases",signal,after_get_clases);
-        return () => controller.abort();
-    }
-
-    useEffect(() => {
-        get_clases();
+        get_fetch(url_backend+"/clases",signal,after_get_clases);
+        return () => controller.abort(); 
     }, []);
 
     return {clases:clases,setClases:setClases};

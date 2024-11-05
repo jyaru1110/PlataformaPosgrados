@@ -12,16 +12,16 @@ export const usePeriodoPrograma = () => {
     setLoading(false);
   };
 
-  const update = () => {
+  const update = (signal) => {
     setLoading(true);
-    const controller = new AbortController();
-    const signal = controller.signal;
     get_fetch(url_backend + "/programas/periodos/", signal, after_fetch);
-    return () => controller.abort();
   };
 
   useEffect(() => {
-    update();
+    const controller = new AbortController();
+    const signal = controller.signal;
+    update(signal);
+    return () => controller.abort();
   }, []);
 
   return { metas, loading, update};
