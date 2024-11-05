@@ -284,15 +284,18 @@ export default function Persona() {
                 <option value="Educación Continua">Educación Continua</option>
               </select>
               <label htmlFor="area" className="font-bold">Área</label>
-              <input
-                type="text"
+              <select
                 id="area"
                 autoComplete="off"
                 {...register("area")}
                 className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700"
                 defaultValue={persona.area}
                 onChange={() => setProgramChanged(true)}
-              />
+              >
+                <option value="" disabled>Selecciona un área</option>
+                <option value="Operaciones">Operaciones</option>
+                <option value="Dirección de Posgrados">Dirección de Posgrados</option>
+              </select>
               <label htmlFor="email" className="font-bold">
                 Correo
               </label>
