@@ -226,7 +226,7 @@ export default function Metas() {
         />
       </Header>
       <Main>
-        <h2 className="ml-2 font-bold text-2xl my-5">Metas por escuela</h2>
+        <h2 className="ml-2 font-bold text-2xl mb-5">Metas por escuela</h2>
         <Table headers={headers_escuela} loading={loading}>
           {data?.filter(filterMetasEscuelas).map((meta, index) => {
             return (
@@ -253,7 +253,7 @@ export default function Metas() {
             );
           })}
         </Table>
-        <h2 className="ml-2 font-bold text-2xl mb-1">Metas por programa</h2>
+        <h2 className="ml-2 font-bold text-2xl mb-5 mt-10">Metas por programa</h2>
         <Table headers={headers} loading={loading}>
           <tr>
             <td className="p-2">
