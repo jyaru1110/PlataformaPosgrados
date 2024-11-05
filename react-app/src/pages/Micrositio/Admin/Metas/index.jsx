@@ -54,8 +54,6 @@ export default function Metas() {
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPeriodos, setFilteredPeriodos] = useState([]);
 
-  console.log(metas);
-
   const filterMetas = (meta) => {
     return (
       (filteredEscuelas.length === 0 ||
@@ -131,6 +129,7 @@ export default function Metas() {
       .then((res) => {
         toast.success(res.data.message);
         update();
+        setNewMetas([]);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -312,6 +311,7 @@ export default function Metas() {
                   })}
                 </select>
               </td>
+              <td></td>
               <td>
                 <input
                   type="number"
@@ -332,6 +332,7 @@ export default function Metas() {
                   }
                 />
               </td>
+              <td></td>
             </tr>
           ))}
           {metas.filter(filterMetas).map((meta, index) => (
