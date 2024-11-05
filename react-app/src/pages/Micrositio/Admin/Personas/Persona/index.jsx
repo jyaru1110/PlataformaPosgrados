@@ -364,6 +364,12 @@ export default function Persona() {
                   setProgramChanged(true);
                 }}
               ></input>
+              <label htmlFor="campus" className="font-bold">Campus</label>
+              <select name="campus" id="campus" required className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" defaultValue={persona.campus} {...register("campus")} onChange={()=>setProgramChanged(true)}>
+                <option value="Mixcoac">Mixcoac</option>
+                <option value="Aguascalientes">Aguascalientes</option>
+                <option value="Guadalajara">Guadalajara</option>
+              </select>
               <button
                 className="invisible"
                 type="submit"

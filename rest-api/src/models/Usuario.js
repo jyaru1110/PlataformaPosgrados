@@ -52,6 +52,20 @@ const Usuario = sequelize.define(
     foto: {
       type: DataTypes.STRING,
     },
+    campus: {
+      type: DataTypes.STRING,
+      defaultValue: "Mixcoac",
+      validate: {
+        customValidator: (value) => {
+          const enums = ["Mixcoac", "Aguascalientes", "Guadalajara"];
+          if (!enums.includes(value)) {
+            throw new Error(
+              "El campus debe ser Mixcoac, Aguascalientes o Guadalajara"
+            );
+          }
+        },
+      },
+    }
   },
   {
     timestamps: false,

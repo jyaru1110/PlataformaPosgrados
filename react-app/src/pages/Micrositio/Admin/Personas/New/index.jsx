@@ -14,6 +14,10 @@ export default function NewPersona() {
   const refSubmit = useRef(null);
 
   const onSubmit = async (data) => {
+    //remove empty fields
+    Object.keys(data).forEach(
+      (key) => data[key] === "" && delete data[key]
+    );
     await axios
       .post(`${import.meta.env.VITE_URL_API}/user`, data, {
         withCredentials: true,
@@ -159,6 +163,13 @@ export default function NewPersona() {
             className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
             {...register("telefono")}
           ></input>
+          <label htmlFor="campus" className="font-bold">Campus</label>
+          <select name="campus" id="campus" required className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" defaultValue={""} {...register("campus")}>
+            <option value="" disabled>Selecciona un campus</option>
+            <option value="Mixcoac">Mixcoac</option>
+            <option value="Aguascalientes">Aguascalientes</option>
+            <option value="Guadalajara">Guadalajara</option>
+          </select>
           <button className="invisible" type="submit" ref={refSubmit}></button>
         </Form>
       </Main>
