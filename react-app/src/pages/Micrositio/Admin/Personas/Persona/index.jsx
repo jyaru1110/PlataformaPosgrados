@@ -1,5 +1,5 @@
 import Main from "../../../components/Main";
-import Header from "../../../components/Header";
+import Header from "../../components/Header";
 import Form from "../../../components/Form";
 import { useParams } from "react-router-dom";
 import { usePersona } from "../../../../../hooks/usePersonas";

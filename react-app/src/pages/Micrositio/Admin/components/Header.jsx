@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { secciones } from "../constantes";
+import { secciones } from "../../constantes";
 
 export default function Header({ title, children }) {
   const navigate = useNavigate();

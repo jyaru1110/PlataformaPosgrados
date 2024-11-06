@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import Header from "../components/Header";
 import Main from "../../components/Main";
 import Table from "../../components/Table";
 import { useState, useEffect, useRef } from "react";
