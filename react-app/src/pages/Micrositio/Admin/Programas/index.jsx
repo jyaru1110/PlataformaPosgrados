@@ -45,7 +45,7 @@ const sedes = [
   "Santa Fe"
 ]
 
-export default function Programas() {
+export default function ProgramasAdmin() {
   const [query, setQuery] = useState("");
   const { loading, programas } = useProgramas(query);
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);

@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import HomeGestor from "./pages/CoffeeBreaks/HomeGestor";
 import FiltrarHorario from "./pages/CoffeeBreaks/FiltrarHorario";
@@ -16,8 +17,8 @@ import Confirmados from "./pages/CoffeeBreaks/Confirmados";
 import EtapasProceso from "./pages/SeguimientoPosgrados/EtapasProceso";
 import Dashboard from "./pages/CoffeeBreaks/Dashboard";
 import Micrositio from "./pages/Micrositio";
-import HomeMicrosito from "./pages/Micrositio/Home";
-import Programas from "./pages/Micrositio/Admin/Programas";
+import ProgramasAdmin from "./pages/Micrositio/Admin/Programas";
+import Programas from "./pages/Micrositio/Programas";
 import Personas from "./pages/Micrositio/Admin/Personas";
 import Persona from "./pages/Micrositio/Admin/Personas/Persona";
 import Programa from "./pages/Micrositio/Admin/Programas/Programa";
@@ -91,44 +92,48 @@ const router = createBrowserRouter([
     element: <Dashboard />,
   },
   {
-    path: "/micrositio",
+    path: "micrositio",
     element: <Micrositio />,
     children: [
+      { index: true, element: <Navigate to="programas" replace /> },
+      { path: "programas", element: <Programas /> },
       {
-        index: true,
-        element: <HomeMicrosito />,
-      },
-      {
-        path: "admin/programas/",
-        element: <Programas />,
-      },
-      {
-        path: "admin/directorio/",
-        element: <Personas />,
-      },
-      {
-        path: "admin/programas/new",
-        element: <NewPrograma />,
-      },
-      {
-        path: "admin/personas/new",
-        element: <NewPersona />,
-      },
-      {
-        path: "admin/programas/:programa",
-        element: <Programa />,
-      },
-      {
-        path: "admin/personas/:id",
-        element: <Persona />,
-      },
-      {
-        path: "admin/dashboard/",
-        element: <DashboardProgramas />,
-      },
-      {
-        path: "admin/metas/",
-        element: <Metas />,
+        path: "admin",
+        children: [
+          { index: true, element: <Navigate to="programas" replace /> },
+          {
+            path: "programas/",
+            element: <ProgramasAdmin />,
+          },
+          {
+            path: "directorio/",
+            element: <Personas />,
+          },
+          {
+            path: "programas/new",
+            element: <NewPrograma />,
+          },
+          {
+            path: "personas/new",
+            element: <NewPersona />,
+          },
+          {
+            path: "programas/:programa",
+            element: <Programa />,
+          },
+          {
+            path: "personas/:id",
+            element: <Persona />,
+          },
+          {
+            path: "dashboard/",
+            element: <DashboardProgramas />,
+          },
+          {
+            path: "metas/",
+            element: <Metas />,
+          },
+        ],
       },
     ],
   },
