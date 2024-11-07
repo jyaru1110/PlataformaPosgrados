@@ -11,7 +11,7 @@ import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import { puestos } from "../../../constantes";
+import { puestos, puestos_program } from "../../../constantes";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Persona() {
@@ -284,7 +284,9 @@ export default function Persona() {
                 </option>
                 <option value="Educación Continua">Educación Continua</option>
               </select>
-              <label htmlFor="area" className="font-bold">Área</label>
+              <label htmlFor="area" className="font-bold">
+                Área
+              </label>
               <select
                 id="area"
                 autoComplete="off"
@@ -293,9 +295,13 @@ export default function Persona() {
                 defaultValue={persona.area}
                 onChange={() => setProgramChanged(true)}
               >
-                <option value="" disabled>Selecciona un área</option>
+                <option value="" disabled>
+                  Selecciona un área
+                </option>
                 <option value="Operaciones">Operaciones</option>
-                <option value="Dirección de Posgrados">Dirección de Posgrados</option>
+                <option value="Dirección de Posgrados">
+                  Dirección de Posgrados
+                </option>
               </select>
               <label htmlFor="email" className="font-bold">
                 Correo
@@ -365,8 +371,18 @@ export default function Persona() {
                   setProgramChanged(true);
                 }}
               ></input>
-              <label htmlFor="campus" className="font-bold">Campus</label>
-              <select name="campus" id="campus" required className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700" defaultValue={persona.campus} {...register("campus")} onChange={()=>setProgramChanged(true)}>
+              <label htmlFor="campus" className="font-bold">
+                Campus
+              </label>
+              <select
+                name="campus"
+                id="campus"
+                required
+                className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
+                defaultValue={persona.campus}
+                {...register("campus")}
+                onChange={() => setProgramChanged(true)}
+              >
                 <option value="Mixcoac">Mixcoac</option>
                 <option value="Aguascalientes">Aguascalientes</option>
                 <option value="Guadalajara">Guadalajara</option>
@@ -435,21 +451,13 @@ export default function Persona() {
                         <option value="" disabled>
                           Selecciona un puesto
                         </option>
-                        <option value="Subdirector">Subdirector</option>
-                        <option value="Coordinador de Promoción y Admisiones">
-                          Coordinador de Promoción y Admisiones
-                        </option>
-                        <option value="Coordinador Académico">
-                          Coordinador Académico
-                        </option>
-                        <option value="Jefe Académico">Jefe Académico</option>
-                        <option value="Asistente">Asistente</option>
-                        <option value="Coordinador de Admisiones">
-                          Coordinador de Admisiones
-                        </option>
-                        <option value="Coordinador de Asuntos Estudiantiles">
-                          Coordinador de Asuntos Estudiantiles
-                        </option>
+                        {puestos_program.map((puesto, index) => {
+                          return (
+                            <option key={index} value={puesto}>
+                              {puesto}
+                            </option>
+                          );
+                        })}
                       </select>
                     </td>
                     <td className="px-2 py-1 text-emerald-800 underline">
@@ -540,15 +548,14 @@ export default function Persona() {
                       >
                         <option value="" disabled>
                           Selecciona un puesto
-                        </option> 
+                        </option>
                         {puestos.map((puesto, index) => {
                           return (
                             <option key={index} value={puesto}>
                               {puesto}
                             </option>
                           );
-                        }
-                      )}
+                        })}
                       </select>
                     </td>
                     <td className="px-2 py-1">

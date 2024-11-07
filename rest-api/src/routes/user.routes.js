@@ -177,9 +177,9 @@ router.get("/users/bypuesto", async (req, res) => {
     "Dirección de Posgrados"
   ];
   const puestos_programa = [
-    "Jefe Académico",
-    "Coordinador Académico",
-    "Coordinador de Promoción y Admisiones"
+    "Jefatura Académica",
+    "Coordinación Académica",
+    "Coordinación de Promoción y Admisiones"
   ];
   const users = [];
 

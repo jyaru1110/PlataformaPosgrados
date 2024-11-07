@@ -47,12 +47,12 @@ export const puestos = [
 ];
 
 export const puestos_program = [
-  "Coordinador de Promoción y Admisiones",
-  "Coordinador de Admisiones",
-  "Coordinador Académico",
-  "Coordinador de Asuntos Estudiantiles",
-  "Jefe Académico",
-  "Asistente",
+  "Coordinación de Promoción y Admisiones",
+  "Coordinación de Admisiones",
+  "Coordinación Académica",
+  "Coordinación de Asuntos Estudiantiles",
+  "Jefatura Académica",
+  "Asistencia",
 ];
 
 export const sedes = ["Mixcoac", "Santa Fe"];

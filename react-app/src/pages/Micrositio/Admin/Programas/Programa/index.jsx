@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import Select from "react-select";
 import Creatable from "react-select/creatable";
 import personas_to_options_format from "../../../../../utils/personas_to_options_format";
-import { puestos } from "../../../constantes";
+import { puestos_program } from "../../../constantes";
 
 const headers_costos = [
   "Año",
@@ -1248,7 +1248,7 @@ export default function Programa() {
                         <option value="" disabled>
                           Selecciona un puesto
                         </option>
-                        {puestos.map((puesto, index) => {
+                        {puestos_program.map((puesto, index) => {
                           return (
                             <option key={index} value={puesto}>
                               {puesto}
