@@ -9,6 +9,7 @@ const Periodo = require("../models/Periodo");
 const PeriodoPrograma = require("../models/PeriodoPrograma");
 const sequelize = require("../database/database");
 const { Op } = require("sequelize");
+const Escuela = require("../models/Escuela");
 
 const get_programas_escuela = async (req, res) => {
   const { escuela } = req.params;
@@ -78,7 +79,12 @@ const get_programas_todos = async (req, res) => {
       ["programa", "ASC"],
     ],
     where: {
-      [Op.or]: [{ programa: { [Op.iLike]: `%${query}%` } }, {escuela:{[Op.iLike]:`%${query}%`}}, {codigo:{[Op.iLike]:`%${query}%`}}, {rvoe:{[Op.iLike]:`%${query}%`}}],
+      [Op.or]: [
+        { programa: { [Op.iLike]: `%${query}%` } },
+        { escuela: { [Op.iLike]: `%${query}%` } },
+        { codigo: { [Op.iLike]: `%${query}%` } },
+        { rvoe: { [Op.iLike]: `%${query}%` } },
+      ],
     },
   });
   res.status(200).send(programas);
@@ -214,7 +220,7 @@ const create_periodo_programa = async (req, res) => {
 
 const get_periodos = async (req, res) => {
   const periodos = await Periodo.findAll({
-    order:["periodo_nombre"]
+    order: ["periodo_nombre"],
   });
   res.status(200).send(periodos);
 };
@@ -411,10 +417,15 @@ const get_periodos_programa = async (req, res) => {
       },
       {
         model: Programa,
-        attributes: ["escuela","codigo"],
+        attributes: ["escuela", "codigo"],
       },
     ],
-    attributes: ["id","programaPrograma", "num_inscripciones", "meta_inscripciones"],
+    attributes: [
+      "id",
+      "programaPrograma",
+      "num_inscripciones",
+      "meta_inscripciones",
+    ],
     order: [[{ model: Periodo }, "periodo_nombre", "DESC"], "programaPrograma"],
   });
 
@@ -515,9 +526,84 @@ const get_number_of_personas_by_escuela = async (req, res) => {
 };
 
 const get_programas_opciones_metas = async (req, res) => {
-  const programas = await Programa.findAll({ order: [["programa", "ASC"]], where: { escuela: { [Op.not]: "Educación Continua"} } });
+  const programas = await Programa.findAll({
+    order: [["programa", "ASC"]],
+    where: { escuela: { [Op.not]: "Educación Continua" } },
+  });
   res.status(200).send({ programas: programas });
-}
+};
+
+const get_programas_full = async (req, res) => {
+  let escuelas = await Escuela.findAll({
+    where: {
+      escuela: {
+        [Op.not]: "Educación Continua",
+      },
+    },
+    order: [["escuela", "ASC"]],
+    include: [
+      {
+        model: PuestoEscuela,
+        required: false,
+        attributes: ["puesto", "id"],
+        include: [
+          {
+            model: Usuario,
+            required: true,
+            attributes: ["titulo", "nombre", "email", "extension", "telefono"],
+          },
+        ],
+        where: {
+          puesto: {
+            [Op.or]: [
+              "Dirección de Posgrados",
+              "Jefatura Promoción y Admisiones",
+            ],
+          },
+        },
+      },
+    ],
+  });
+
+  for (let i = 0; i < escuelas.length; i++) {
+    const programas = await Programa.findAll({
+      where: {
+        escuela: escuelas[i].escuela,
+        rvoe: { [Op.not]: null },
+      },
+      attributes: [
+        "programa",
+        "codigo",
+        "campus",
+        "modalidad",
+        "tipo",
+        "duracion",
+        "rvoe",
+        "website",
+        "encarte",
+      ],
+      include: [
+        {
+          model: PuestoPrograma,
+          attributes: ["puesto","id"],
+          required: false,
+          include: [
+            {
+              model: Usuario,
+              attributes: ["nombre", "titulo", "email", "extension", "telefono"],
+              required: false,
+            },
+          ],
+        },
+      ],
+    });
+    escuelas[i].dataValues.programas = programas;
+  }
+
+  console.log(escuelas);
+
+  res.status(200).send(escuelas);
+};
 
 module.exports = {
   get_programas_opciones_metas,
@@ -549,4 +635,5 @@ module.exports = {
   delete_puesto_escuela,
   update_bulk_periodo_programa,
   get_periodos_escuela,
+  get_programas_full,
 };
