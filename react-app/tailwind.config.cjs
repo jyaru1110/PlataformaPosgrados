@@ -37,7 +37,7 @@ module.exports = {
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif'],
-        timesnr : ['Times New Roman', 'sans-serif'],
+        timesnr : ['Times New Roman', 'serif'],
         seravek : ['Seravek', 'sans-serif'],
       }
     },

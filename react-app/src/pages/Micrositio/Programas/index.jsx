@@ -1,3 +1,8 @@
+import Header from "../components/Header";
 export default function Programas() {
-    return <h1>programas gg</h1>
+  return (
+    <div className="w-5/6">
+      <Header></Header>
+    </div>
+  );
 }
