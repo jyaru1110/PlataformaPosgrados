@@ -11,21 +11,7 @@ import { useProgramasOpciones } from "../../../../hooks/useProgramas";
 import { Link } from "react-router-dom";
 import Filter from "../../components/Filter";
 import { useMetasEscuela } from "../../../../hooks/useMetasEscuela";
-
-const escuelas = [
-  "Gobierno y Economía",
-  "Bellas Artes",
-  "Derecho",
-  "Empresariales",
-  "ESDAI",
-  "Filosofía",
-  "Ingeniería",
-  "Comunicación",
-  "Pedagogía",
-  "Empresariales Santa Fe",
-  "Ciencias de la Salud",
-];
-
+import { escuelas } from "../../constantes";
 const headers = [
   "Periodo",
   "Programa",

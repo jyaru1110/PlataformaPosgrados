@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import Select from "react-select";
 import Creatable from "react-select/creatable";
 import personas_to_options_format from "../../../../../utils/personas_to_options_format";
+import { puestos } from "../../../constantes";
 
 const headers_costos = [
   "Año",
@@ -628,10 +629,28 @@ export default function Programa() {
                   setProgramChanged(true);
                 }}
               ></input>
-              <label htmlFor="website" className="font-bold">Website</label>
-              <input type="text" id="website" className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700" {...register("website")} defaultValue={programaData.website} onChange={()=>setProgramChanged(true)}/>
-              <label htmlFor="encarte" className="font-bold">Encarte</label>
-              <input type="text" id="encarte" className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700" {...register("encarte")} defaultValue={programaData.encarte} onChange={()=>setProgramChanged(true)}/>
+              <label htmlFor="website" className="font-bold">
+                Website
+              </label>
+              <input
+                type="text"
+                id="website"
+                className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700"
+                {...register("website")}
+                defaultValue={programaData.website}
+                onChange={() => setProgramChanged(true)}
+              />
+              <label htmlFor="encarte" className="font-bold">
+                Encarte
+              </label>
+              <input
+                type="text"
+                id="encarte"
+                className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700"
+                {...register("encarte")}
+                defaultValue={programaData.encarte}
+                onChange={() => setProgramChanged(true)}
+              />
               <button
                 className="invisible"
                 type="submit"
@@ -1229,20 +1248,13 @@ export default function Programa() {
                         <option value="" disabled>
                           Selecciona un puesto
                         </option>
-                        <option value="Subdirector">Subdirector</option>
-                        <option value="Director">Director</option>
-                        <option value="Coordinador de Promoción y Admisiones">
-                          Coordinador de Promoción y Admisiones
-                        </option>
-                        <option value="Coordinador Académico">
-                          Coordinador Académico
-                        </option>
-                        <option value="Jefe Académico">Jefe Académico</option>
-                        <option value="Asistente">Asistente</option>
-                        <option value="Program Manager">Program Manager</option>
-                        <option value="Coordinador de Admisiones">
-                          Coordinador de Admisiones
-                        </option>
+                        {puestos.map((puesto, index) => {
+                          return (
+                            <option key={index} value={puesto}>
+                              {puesto}
+                            </option>
+                          );
+                        })}
                       </select>
                     </td>
                   </tr>

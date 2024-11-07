@@ -172,9 +172,9 @@ router.delete("/user/:id", async (req, res) => {
 
 router.get("/users/bypuesto", async (req, res) => {
   const puestos_escuela = [
-    "Coordinador de Asuntos Estudiantiles",
-    "Jefe Promoción y Admisiones",
-    "Director Posgrado"
+    "Coordinación de Asuntos Estudiantiles",
+    "Jefatura Promoción y Admisiones",
+    "Dirección de Posgrados"
   ];
   const puestos_programa = [
     "Jefe Académico",

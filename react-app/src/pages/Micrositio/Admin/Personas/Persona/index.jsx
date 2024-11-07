@@ -11,6 +11,7 @@ import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { puestos } from "../../../constantes";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Persona() {
@@ -539,30 +540,15 @@ export default function Persona() {
                       >
                         <option value="" disabled>
                           Selecciona un puesto
-                        </option>
-                        <option value="Coordinador de Asuntos Estudiantiles">
-                          Coordinador de Asuntos Estudiantiles
-                        </option>
-                        <option value="Decano">Decano</option>
-                        <option value="Secretario Administrativo">
-                          Secretario Administrativo
-                        </option>
-                        <option value="Jefe Promoción y Admisiones">
-                          Jefe Promoción y Admisiones
-                        </option>
-                        <option value="Coordinador Gestión Escolar">
-                          Coordinador Gestión Escolar
-                        </option>
-                        <option value="Asistente administrativo">
-                          Asistente administrativo
-                        </option>
-                        <option value="Subdirector de Posgrados">
-                          Subdirector de Posgrados
-                        </option>
-                        <option value="Director de Posgrados">
-                          Director de Posgrados
-                        </option>
-                        <option value="Secretario de Investigación">Secretario de Investigación</option>
+                        </option> 
+                        {puestos.map((puesto, index) => {
+                          return (
+                            <option key={index} value={puesto}>
+                              {puesto}
+                            </option>
+                          );
+                        }
+                      )}
                       </select>
                     </td>
                     <td className="px-2 py-1">

@@ -6,20 +6,7 @@ import TablaPosgradosTotal from "../components/TablaPosgradosTotal";
 import ChartsMetas from "../components/ChartsMetas";
 import Filter from "../../components/Filter";
 import CardsPersonas from "../components/CardsPersonas";
-
-const escuelas = [
-  "Gobierno y Economía",
-  "Bellas Artes",
-  "Derecho",
-  "Empresariales",
-  "ESDAI",
-  "Filosofía",
-  "Ingeniería",
-  "Comunicación",
-  "Pedagogía",
-  "Empresariales Santa Fe",
-  "Ciencias de la Salud",
-];
+import { escuelas } from "../../constantes";
 
 export default function DashboardProgramas() {
   const [filteredEscuelas, setFilteredEscuelas] = useState(escuelas);

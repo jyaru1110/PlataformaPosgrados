@@ -8,6 +8,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Filter from "../../components/Filter";
 import { useState,useRef} from "react";
 import useSearchKey from "../../../../hooks/useSearchKey";
+import { escuelas, sedes } from "../../constantes";
 
 const headers = [
   "E/F",
@@ -26,24 +27,6 @@ const headers = [
   "fecha",
 ];
 
-const escuelas = [
-  "Gobierno y Economía",
-  "Bellas Artes",
-  "Derecho",
-  "Empresariales",
-  "ESDAI",
-  "Filosofía",
-  "Ingeniería",
-  "Comunicación",
-  "Pedagogía",
-  "Empresariales Santa Fe",
-  "Ciencias de la Salud",
-];
-
-const sedes = [
-  "Mixcoac",
-  "Santa Fe"
-]
 
 export default function ProgramasAdmin() {
   const [query, setQuery] = useState("");

@@ -10,6 +10,7 @@ import CardsPersonas from "../components/CardsPersonas";
 import useSearchKey from "../../../../hooks/useSearchKey";
 import { CSVLink } from "react-csv";
 import CardsPuesto from "../../components/CardsPuesto";
+import { escuelas, puestos, puestos_program} from "../../constantes";
 
 const headers = [
   "Titulo",
@@ -22,39 +23,6 @@ const headers = [
   "Teléfono",
 ];
 
-const escuelas = [
-  "Gobierno y Economía",
-  "Bellas Artes",
-  "Derecho",
-  "Empresariales",
-  "ESDAI",
-  "Filosofía",
-  "Ingeniería",
-  "Comunicación",
-  "Pedagogía",
-  "Empresariales Santa Fe",
-  "Ciencias de la Salud",
-];
-
-const puestos = [
-  "Coordinador Gestión Escolar",
-  "Subdirector Posgrado",
-  "Coordinador de Asuntos Estudiantiles",
-  "Secretario Administrativo",
-  "Director Posgrado",
-  "Jefe Promoción y Admisiones",
-  "Decano",
-  "Secretario de Investigación"
-];
-
-const puestos_program = [
-  "Coordinador de Promoción y Admisiones",
-  "Coordinador de Admisiones",
-  "Coordinador Académico",
-  "Coordinador de Asuntos Estudiantiles",
-  "Jefe Académico",
-  "Asistente",
-];
 
 export default function Personas() {
   const [query, setQuery] = useState("");
