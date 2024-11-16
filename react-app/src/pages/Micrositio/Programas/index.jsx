@@ -20,6 +20,7 @@ export default function Programas() {
                 }
                 style={"bg-white shadow-md"}
                 key={escuela.escuela}
+                arrowColor={"#000"}
               >
                 {escuela.puesto_escuelas.length > 0 && (
                   <div className="bg-headerbg p-8 rounded-lg">
@@ -48,6 +49,7 @@ export default function Programas() {
                     <Accordion
                       key={programa.programa}
                       style={"bg-bgsecondary"}
+                      arrowColor={"#B9975B"}
                       header={
                         <span className="font-timesnr">
                           <h3 className="text-secondary text-2xl">
