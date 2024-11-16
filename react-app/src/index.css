@@ -4,62 +4,78 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: "Laurentian";
+    font-weight: normal;
+    font-style: normal;
+    src: url("../src/assets/fonts/laurentian/Laurentian Std Regular.otf")
+  }
+  @font-face {
+    font-family: "Laurentian";
+    font-weight: bold;
+    font-style: normal;
+    src: url("../src/assets/fonts/laurentian/Laurentian Std Bold.otf");
+  }
+}
+
 select {
-  background: url("data:image/svg+xml,<svg width='26' height='26' viewBox='0 0 26 26' fill='%23545A5A' xmlns='http://www.w3.org/2000/svg'><path d='M18.4165 9.93417C18.2135 9.73239 17.939 9.61914 17.6528 9.61914C17.3666 9.61914 17.092 9.73239 16.889 9.93417L12.9998 13.7692L9.16484 9.93417C8.96187 9.73239 8.68729 9.61914 8.40109 9.61914C8.11489 9.61914 7.84032 9.73239 7.63734 9.93417C7.5358 10.0349 7.45521 10.1547 7.40021 10.2867C7.34521 10.4187 7.31689 10.5603 7.31689 10.7033C7.31689 10.8463 7.34521 10.9879 7.40021 11.12C7.45521 11.252 7.5358 11.3718 7.63734 11.4725L12.2307 16.0658C12.3314 16.1674 12.4512 16.248 12.5832 16.303C12.7152 16.358 12.8568 16.3863 12.9998 16.3863C13.1429 16.3863 13.2845 16.358 13.4165 16.303C13.5485 16.248 13.6683 16.1674 13.769 16.0658L18.4165 11.4725C18.518 11.3718 18.5986 11.252 18.6536 11.12C18.7086 10.9879 18.737 10.8463 18.737 10.7033C18.737 10.5603 18.7086 10.4187 18.6536 10.2867C18.5986 10.1547 18.518 10.0349 18.4165 9.93417Z'/></svg>") no-repeat right;
-  -moz-appearance:none !important;
-  -webkit-appearance: none !important; 
+  background: url("data:image/svg+xml,<svg width='26' height='26' viewBox='0 0 26 26' fill='%23545A5A' xmlns='http://www.w3.org/2000/svg'><path d='M18.4165 9.93417C18.2135 9.73239 17.939 9.61914 17.6528 9.61914C17.3666 9.61914 17.092 9.73239 16.889 9.93417L12.9998 13.7692L9.16484 9.93417C8.96187 9.73239 8.68729 9.61914 8.40109 9.61914C8.11489 9.61914 7.84032 9.73239 7.63734 9.93417C7.5358 10.0349 7.45521 10.1547 7.40021 10.2867C7.34521 10.4187 7.31689 10.5603 7.31689 10.7033C7.31689 10.8463 7.34521 10.9879 7.40021 11.12C7.45521 11.252 7.5358 11.3718 7.63734 11.4725L12.2307 16.0658C12.3314 16.1674 12.4512 16.248 12.5832 16.303C12.7152 16.358 12.8568 16.3863 12.9998 16.3863C13.1429 16.3863 13.2845 16.358 13.4165 16.303C13.5485 16.248 13.6683 16.1674 13.769 16.0658L18.4165 11.4725C18.518 11.3718 18.5986 11.252 18.6536 11.12C18.7086 10.9879 18.737 10.8463 18.737 10.7033C18.737 10.5603 18.7086 10.4187 18.6536 10.2867C18.5986 10.1547 18.518 10.0349 18.4165 9.93417Z'/></svg>")
+    no-repeat right;
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
   appearance: none !important;
 }
 
-.css-art2ul-ValueContainer2, .css-4xgw5l-IndicatorsContainer2, .css-1jqq78o-placeholder, .css-w9q2zk-Input2, .css-b62m3t-container
-{
-  height: 1.75rem!important;
+.css-art2ul-ValueContainer2,
+.css-4xgw5l-IndicatorsContainer2,
+.css-1jqq78o-placeholder,
+.css-w9q2zk-Input2,
+.css-b62m3t-container {
+  height: 1.75rem !important;
 }
 
-
-.css-b62m3t-container{
-  margin-bottom: 1rem!important;
+.css-b62m3t-container {
+  margin-bottom: 1rem !important;
 }
 
-.css-tj5bde-Svg{
-  fill: #545A5A!important;
+.css-tj5bde-Svg {
+  fill: #545a5a !important;
 }
 
-.css-1dimb5e-singleValue, .css-1jqq78o-placeholder{
-  --tw-text-opacity: 1!important;
-  color: rgb(117 120 121 / var(--tw-text-opacity))!important;
+.css-1dimb5e-singleValue,
+.css-1jqq78o-placeholder {
+  --tw-text-opacity: 1 !important;
+  color: rgb(117 120 121 / var(--tw-text-opacity)) !important;
 }
 
-.css-1u9des2-indicatorSeparator{
-  display: none!important;
+.css-1u9des2-indicatorSeparator {
+  display: none !important;
 }
 
-.css-w9q2zk-Input2{
-  min-height: 1.75rem!important;
-  height: 1.75rem!important;
-  margin: 0px!important;
-  padding: 0px!important;
+.css-w9q2zk-Input2 {
+  min-height: 1.75rem !important;
+  height: 1.75rem !important;
+  margin: 0px !important;
+  padding: 0px !important;
 }
 
-.css-art2ul-ValueContainer2{
-  padding-top: 0px!important;
-
+.css-art2ul-ValueContainer2 {
+  padding-top: 0px !important;
 }
 
-.css-1xc3v61-indicatorContainer{
-  padding-right: 4px!important;
+.css-1xc3v61-indicatorContainer {
+  padding-right: 4px !important;
 }
-
-
 
 .Toastify__toast-body {
-  font-family:'Poppins', sans-serif!important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 * {
-  outline: none!important;
+  outline: none !important;
 }
 
-input{
+input {
   background-color: transparent;
 }

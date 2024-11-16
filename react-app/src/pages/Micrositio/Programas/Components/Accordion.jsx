@@ -3,7 +3,7 @@ export default function Accordion({ header, children, style }) {
   const [open, setOpen] = useState(false);
   return (
     <div
-      className={`${style} p-4 h-[calc-size(auto)] rounded-lg transition-all flex flex-col`}
+      className={`${style} py-6 px-8 h-auto rounded-lg transition-all flex flex-col`}
     >
       <div
         className={`cursor-pointer flex items-center justify-between w-full`}
@@ -12,7 +12,7 @@ export default function Accordion({ header, children, style }) {
         {header}
         <span>{open ? "-" : "+"}</span>
       </div>
-      {open && <div className="mt-5 space-y-4">{children}</div>}
+      {open && <div className="mt-5 h-auto space-y-4">{children}</div>}
     </div>
   );
 }

@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{jsx,js}", "./index.html"],
   theme: {
     extend: {
+      boxShadow: {
+        header:"0px 2px 5px #00000014;",
+      },
       colors: {
         primary: "#00685E",
         secondary: "#B9975B",
@@ -38,7 +41,7 @@ module.exports = {
       },
       fontFamily: {
         poppins : ['Poppins', 'sans-serif'],
-        timesnr : ['Times New Roman', 'serif'],
+        timesnr : ['Laurentian', 'sans-serif'],
         seravek : ['Seravek', 'sans-serif'],
       }
     },

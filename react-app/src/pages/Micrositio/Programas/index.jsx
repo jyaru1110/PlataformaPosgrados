@@ -16,14 +16,14 @@ export default function Programas() {
             return (
               <Accordion
                 header={
-                  <h2 className="font-timesnr text-3xl">{escuela.escuela}</h2>
+                  <h2 className="font-timesnr text-4xl">{escuela.escuela}</h2>
                 }
                 style={"bg-white shadow-md"}
                 key={escuela.escuela}
               >
                 {escuela.puesto_escuelas.length > 0 && (
-                  <div className="bg-headerbg p-4 rounded-lg">
-                    <table className="w-full">
+                  <div className="bg-headerbg p-8 rounded-lg">
+                    <table className="w-4/5">
                       <tbody>
                         {escuela?.puesto_escuelas?.map((puesto) => {
                           return (
@@ -59,7 +59,7 @@ export default function Programas() {
                         </span>
                       }
                     >
-                      <div>
+                      <>
                         <div className="space-x-8 text-base font-light border-b border-secondary pb-2">
                           <span>{programa.campus}</span>
                           <span>{programa.modalidad}</span>
@@ -67,7 +67,7 @@ export default function Programas() {
                           <span>{programa.duracion} meses</span>
                           <span>{programa.rvoe}</span>
                         </div>
-                        <table className="mt-6 w-full">
+                        <table className="mt-6 w-4/5">
                           <tbody>
                             {programa?.puesto_programas?.map((puesto) => {
                               return (
@@ -90,8 +90,8 @@ export default function Programas() {
                             })}
                           </tbody>
                         </table>
-                      </div>
-                      <div className="space-x-4">
+                      </>
+                      <div className="space-x-4 mt-12">
                         <a className="text-white bg-primary px-3.5 py-2 rounded-full cursor-pointer" href={programa.website}>Website</a>
                         <a className="text-white bg-primary px-3.5 py-2 rounded-full cursor-pointer" href={programa.encarte}>Encarte</a>
                       </div>
