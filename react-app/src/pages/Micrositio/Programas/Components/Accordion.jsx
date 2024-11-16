@@ -11,7 +11,7 @@ export default function Accordion({ header, children, style, arrowColor}) {
       >
         {header}
         <svg className={`rotate-180 transition-transform ${open && "rotate-0"}`} xmlns="http://www.w3.org/2000/svg" width="17.572" height="9.599" viewBox="0 0 17.572 9.599">
-          <path d="M3040.993,122.59l-7.485,7.671,7.485,8.544" transform="translate(139.464 -3032.146) rotate(90)" fill="none" stroke={arrowColor} stroke-width="2"/>
+          <path d="M3040.993,122.59l-7.485,7.671,7.485,8.544" transform="translate(139.464 -3032.146) rotate(90)" fill="none" stroke={arrowColor} strokeWidth="2"/>
         </svg>
       </div>
       {open && <div className="mt-5 h-auto space-y-4">{children}</div>}
