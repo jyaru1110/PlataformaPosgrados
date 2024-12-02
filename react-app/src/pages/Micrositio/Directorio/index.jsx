@@ -58,9 +58,7 @@ export default function Directorio() {
         "Nombre": persona.nombre,
         "Escuela": persona.escuela,
         "Correo": persona.email,
-        "ID": persona.id,
         "Extensión": persona.extension,
-        "Cumpleaños": persona.cumpleaños,
         "Teléfono": persona.telefono,
         "Puesto_escuela": reduced_puestos,
         "Puesto_programa": reduced_puestos_programa

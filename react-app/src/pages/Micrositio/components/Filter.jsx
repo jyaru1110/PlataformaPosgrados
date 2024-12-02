@@ -22,7 +22,7 @@ export default function Filter({ title, options, filtered, setFiltered }) {
     <div ref={container} className="relative">
       <button
         onClick={() => setIsSelected((prev) => !prev)}
-        className={`rounded-lg px-3 py-1 border border-secondary text-secondary ${
+        className={`rounded-lg px-3 py-2 border border-secondary text-secondary ${
           filtered.length > 0 &&
           "bg-secondary text-white border-transparent"
         }`}
