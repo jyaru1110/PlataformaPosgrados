@@ -595,12 +595,16 @@ const get_programas_full = async (req, res) => {
             },
           ],
         },
+        {
+          model: AperturasCierres,
+          limit: 1, 
+          attributes: ["fecha_inicio","id"],
+          order: [["fecha_inicio", "DESC"]],
+        }
       ],
     });
     escuelas[i].dataValues.programas = programas;
   }
-
-  console.log(escuelas);
 
   res.status(200).send(escuelas);
 };
