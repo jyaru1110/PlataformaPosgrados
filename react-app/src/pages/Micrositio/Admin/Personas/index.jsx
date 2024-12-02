@@ -11,6 +11,7 @@ import useSearchKey from "../../../../hooks/useSearchKey";
 import { CSVLink } from "react-csv";
 import CardsPuesto from "../../components/CardsPuesto";
 import { escuelas, puestos, puestos_program} from "../../constantes";
+import ModalPuestos from "../components/ModalPuestos";
 
 const headers = [
   "Titulo",
@@ -187,6 +188,10 @@ export default function Personas() {
           ))}
         </Table>
       </Main>
+      <ModalPuestos
+        miembros={personasPuesto}
+        close={()=>setPersonasPuesto([])}
+      />
     </div>
   );
 }
