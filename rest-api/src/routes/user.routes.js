@@ -4,6 +4,7 @@ const router = express.Router();
 const Usuario = require("../models/Usuario");
 const PuestoPrograma = require("../models/PuestoPrograma");
 const PuestoEscuela = require("../models/PuestoEscuela");
+const Programa = require("../models/Programa");
 const { Op } = require("sequelize");
 
 router.get("/user/auth", isUserAuthenticated, (req, res) => {
@@ -84,6 +85,13 @@ router.get("/user/all", async (req, res) => {
           model: PuestoPrograma,
           required: false,
           attributes: ["puesto", "programaPrograma"],
+          include: [
+            {
+              model: Programa,
+              required: false,
+              attributes: ["codigo"],
+            },
+          ],
         }
       ],
       where: {

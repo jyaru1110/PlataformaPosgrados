@@ -56,3 +56,5 @@ export const puestos_program = [
 ];
 
 export const sedes = ["Mixcoac", "Santa Fe"];
+
+export const areas = ["Operaciones", "Dirección de Posgrados"];

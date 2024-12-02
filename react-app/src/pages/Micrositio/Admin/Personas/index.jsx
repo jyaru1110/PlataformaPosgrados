@@ -42,16 +42,15 @@ export default function Personas() {
     return (
       (filteredEscuelas.length === 0 ||
         filteredEscuelas.includes(persona.escuela)) &&
-      (filteredPuestos.length === 0 ||
+      (filteredPuestos.length === 0 && filteredPuestosPrograma.length === 0 ||
         puestosInterceptionNotZero(
           filteredPuestos,
           persona?.puesto_escuelas
-        )) &&
-      (filteredPuestosPrograma.length === 0 ||
+        )) ||
         puestosInterceptionNotZero(
           filteredPuestosPrograma,
           persona?.puesto_programas
-        ))
+        )
     );
   };
 

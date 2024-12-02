@@ -26,6 +26,7 @@ import NewPrograma from "./pages/Micrositio/Admin/Programas/New";
 import DashboardProgramas from "./pages/Micrositio/Admin/Dashboard";
 import NewPersona from "./pages/Micrositio/Admin/Personas/New";
 import Metas from "./pages/Micrositio/Admin/Metas";
+import Directorio from "./pages/Micrositio/Directorio";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -97,6 +98,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="programas" replace /> },
       { path: "programas", element: <Programas /> },
+      {path: "directorio", element: <Directorio/> },
       {
         path: "admin",
         children: [
