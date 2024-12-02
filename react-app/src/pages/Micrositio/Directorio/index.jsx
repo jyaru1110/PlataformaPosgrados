@@ -1,15 +1,17 @@
 import Header from "../components/Header";
 import Main from "../components/Main";
 import Buscador from "../components/Buscador";
-import { useState } from "react";
+import { useState, useRef, useEffect} from "react";
 import Filter from "../components/Filter";
 import { escuelas, puestos, puestos_program, areas } from "../constantes";
 import { usePersonas } from "../../../hooks/usePersonas";
 import { puestosInterceptionNotZero } from "../../../utils/arrays";
 import ResumedPuestos from "./Components/ResumedPuestos";
+import { CSVLink } from "react-csv";
 
 export default function Directorio() {
   const [query, setQuery] = useState("");
+  const downloadRef = useRef(null);
   const { loading, personas } = usePersonas(query);
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPuestos, setFilteredPuestos] = useState([]);
@@ -36,6 +38,42 @@ export default function Directorio() {
       )
     );
   };
+
+  const copyEmailsToClipboard = () => {
+    const emails = personas.filter(filterPersonas).map(persona => persona.email).join(", ");
+    navigator.clipboard.writeText(emails);
+  }
+
+  const downloadCSV = () => {
+    const personasFiltered = personas.filter(filterPersonas);
+    const personasReport = personasFiltered.map(persona => {
+    const reduced_puestos = persona.puesto_escuelas?.reduce((acc, puesto) => {
+                                return acc + puesto.puesto + "\n";
+                            }, "");
+    const reduced_puestos_programa = persona.puesto_programas?.reduce((acc, puesto) => {
+                                        return acc + puesto.puesto + " - " + puesto.programaPrograma + "\n";
+                            },"");
+    return {
+        "Titulo": persona.titulo,
+        "Nombre": persona.nombre,
+        "Escuela": persona.escuela,
+        "Correo": persona.email,
+        "ID": persona.id,
+        "Extensión": persona.extension,
+        "Cumpleaños": persona.cumpleaños,
+        "Teléfono": persona.telefono,
+        "Puesto_escuela": reduced_puestos,
+        "Puesto_programa": reduced_puestos_programa
+    }
+    });
+    setPersonasReport(personasReport);
+  }
+
+  useEffect(() => {
+    if (personasReport.length > 0) {
+      downloadRef.current.link.click();
+    }
+  }, [personasReport]);
 
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
@@ -67,12 +105,13 @@ export default function Directorio() {
             filtered={filteredArea}
             setFiltered={setFilteredArea}
           />
-          <button>
+          <button onClick={copyEmailsToClipboard}>
             <svg id="Layer_1" height="20" viewBox="0 0 512 512" fill="#00685E" xmlns="http://www.w3.org/2000/svg"><path d="m397.943 83.923h-11.735v-18.6a65.393 65.393 0 0 0 -65.319-65.323h-206.833a65.393 65.393 0 0 0 -65.319 65.319v297.439a65.393 65.393 0 0 0 65.319 65.319h11.736v18.6a65.393 65.393 0 0 0 65.319 65.323h206.832a65.393 65.393 0 0 0 65.32-65.319v-297.439a65.393 65.393 0 0 0 -65.32-65.319zm-283.887 308.154a29.353 29.353 0 0 1 -29.319-29.319v-297.439a29.352 29.352 0 0 1 29.319-29.319h206.833a29.352 29.352 0 0 1 29.319 29.319v18.6h-159.1a65.393 65.393 0 0 0 -65.319 65.319v242.839zm313.207 54.6a29.352 29.352 0 0 1 -29.32 29.323h-206.832a29.352 29.352 0 0 1 -29.319-29.319v-297.439a29.352 29.352 0 0 1 29.319-29.319h206.832a29.353 29.353 0 0 1 29.32 29.319z"/></svg>
           </button>
-          <button>
-          <svg id="Layer_1" height="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs"><g width="100%" height="100%" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,512.0004692077637,-0.000476837158203125)"><path d="m478.063 75.448v361.105a75.534 75.534 0 0 1 -75.449 75.447h-232.104a18 18 0 0 1 0-36h232.1a39.493 39.493 0 0 0 39.449-39.447v-361.105a39.493 39.493 0 0 0 -39.445-39.448h-232.104a18 18 0 0 1 0-36h232.1a75.534 75.534 0 0 1 75.453 75.448zm-302.592 284.825a18 18 0 1 0 25.455 25.456l117-117a18 18 0 0 0 0-25.456l-117-117a18 18 0 0 0 -25.455 25.456l86.273 86.271h-209.806a18 18 0 1 0 0 36h209.806z" fill="#00685E" fillOpacity="1" stroke="none" strokeOpacity="1"/></g></svg>
+          <button onClick={downloadCSV}>
+            <svg id="Layer_1" height="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs"><g width="100%" height="100%" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,512.0004692077637,-0.000476837158203125)"><path d="m478.063 75.448v361.105a75.534 75.534 0 0 1 -75.449 75.447h-232.104a18 18 0 0 1 0-36h232.1a39.493 39.493 0 0 0 39.449-39.447v-361.105a39.493 39.493 0 0 0 -39.445-39.448h-232.104a18 18 0 0 1 0-36h232.1a75.534 75.534 0 0 1 75.453 75.448zm-302.592 284.825a18 18 0 1 0 25.455 25.456l117-117a18 18 0 0 0 0-25.456l-117-117a18 18 0 0 0 -25.455 25.456l86.273 86.271h-209.806a18 18 0 1 0 0 36h209.806z" fill="#00685E" fillOpacity="1" stroke="none" strokeOpacity="1"/></g></svg>
           </button>
+          <CSVLink ref={downloadRef} className="hidden" data={personasReport} filename={`${(new Date).toLocaleDateString()}_directorio.csv`}></CSVLink>
         </Buscador>
         <div className="mt-7 grid grid-cols-3 gap-4">
             {personas?.filter(filterPersonas).map((persona) => 
