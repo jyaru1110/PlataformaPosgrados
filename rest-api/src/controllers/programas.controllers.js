@@ -581,6 +581,7 @@ const get_programas_full = async (req, res) => {
         "rvoe",
         "website",
         "encarte",
+        "grado"
       ],
       include: [
         {

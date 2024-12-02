@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Accordion from "./Components/Accordion";
 import Main from "../components/Main";
 import { useEscuelasInfo } from "../../../hooks/useEscuelasInfo";
+import GradeCounter from "./Components/GradeCounter";
 
 export default function Programas() {
   const { escuelas, loading } = useEscuelasInfo();
@@ -21,6 +22,13 @@ export default function Programas() {
                 key={escuela.escuela}
                 arrowColor={"#000"}
               >
+                <div className="flex space-x-9">
+                  <span className="flex flex-col items-center text-primary border-r pr-8">
+                    <span className="font-bold text-4xl">{escuela.programas.length}</span>
+                    <span className="font-light">Programas</span>
+                  </span>
+                  <GradeCounter programs={escuela.programas}/>
+                </div>
                 {escuela.puesto_escuelas.length > 0 && (
                   <div className="bg-headerbg p-8 rounded-lg">
                     <table className="w-4/5">
