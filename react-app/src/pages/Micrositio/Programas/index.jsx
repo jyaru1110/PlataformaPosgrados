@@ -3,6 +3,7 @@ import Accordion from "./Components/Accordion";
 import Main from "../components/Main";
 import { useEscuelasInfo } from "../../../hooks/useEscuelasInfo";
 import GradeCounter from "./Components/GradeCounter";
+import AccordionLoader from "./Components/AccordionLoader";
 
 export default function Programas() {
   const { escuelas, loading } = useEscuelasInfo();
@@ -11,6 +12,7 @@ export default function Programas() {
     <div className="w-5/6 flex flex-col relative h-screen">
       <Header></Header>
       <Main>
+        {loading && <AccordionLoader />}
         <div className="space-y-4">
           {escuelas.map((escuela) => {
             return (
