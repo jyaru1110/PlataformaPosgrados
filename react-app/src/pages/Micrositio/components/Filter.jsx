@@ -22,21 +22,21 @@ export default function Filter({ title, options, filtered, setFiltered }) {
     <div ref={container} className="relative">
       <button
         onClick={() => setIsSelected((prev) => !prev)}
-        className={`rounded-lg px-3 py-1 border border-grayborder ${
+        className={`rounded-lg px-3 py-1 border border-secondary text-secondary ${
           filtered.length > 0 &&
-          "bg-primary/20 text-primary border border-primary"
+          "bg-secondary text-white border-transparent"
         }`}
       >
         {title}
       </button>
       {isSelected && (
-        <div className="flex flex-col absolute top-10 bg-white py-2 px-1 rounded-lg border-grayborder border w-max z-50">
+        <div className="flex flex-col absolute top-10 bg-white py-2 px-1 rounded-lg border-secondary border w-max z-50">
           {options.map((option) => (
-            <label htmlFor={option} className="flex items-center space-x-3 hover:bg-grayborder px-1 py-0.5 rounded-md" key={option} >
+            <label htmlFor={option} className="flex items-center space-x-3 hover:bg-secondary/10 px-1 py-0.5 text-secondary rounded-md" key={option} >
               <input
                 id={option}
                 type="checkbox"
-                className="mr-2"
+                className="mr-2 peer relative appearance-none w-4 h-4 border border-secondary rounded-sm bg-white checked:bg-secondary checked:border-transparent"
                 checked={filtered.includes(option)}
                 onChange={(e) => {
                   if (e.target.checked) {
@@ -48,6 +48,7 @@ export default function Filter({ title, options, filtered, setFiltered }) {
                   }
                 }}
               />
+              <svg className="absolute left-0 w-2.5 h-2.5 pointer-events-none hidden peer-checked:block stroke-white outline-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" > <polyline points="20 6 9 17 4 12"></polyline> </svg>
               {option}
             </label>
           ))}
