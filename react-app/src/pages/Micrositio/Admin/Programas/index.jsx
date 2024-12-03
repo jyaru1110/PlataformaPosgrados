@@ -64,7 +64,7 @@ export default function ProgramasAdmin() {
       <Header title="Programas">
         <Link
           to="/micrositio/admin/programas/new"
-          className="bg-primary text-center flex items-center text-white rounded-lg px-3"
+          className="bg-primary text-center flex items-center text-white rounded-lg px-3 py-2"
         >
           Nuevo
         </Link>
@@ -72,7 +72,7 @@ export default function ProgramasAdmin() {
           ref = {searchInputRef}
           onChange={search}
           placeholder="Buscar"
-          className="rounded-lg px-3 py-1 border border-grayborder justify-self-end"
+          className="rounded-lg px-3 py-2 border border-grayborder"
         ></input>
         <Filter title={"Escuela"} filtered={filteredEscuelas} setFiltered={setFilteredEscuelas} options={escuelas}/>
         <Filter title={"Sede"} filtered={filterSede} setFiltered={setFilterSede} options={sedes}/>

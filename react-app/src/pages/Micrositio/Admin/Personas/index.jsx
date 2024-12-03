@@ -100,7 +100,7 @@ export default function Personas() {
       <Header title="Directorio">
         <Link
           to="/micrositio/admin/personas/new"
-          className="bg-primary text-center flex items-center text-white rounded-lg px-3"
+          className="bg-primary text-center flex items-center text-white rounded-lg px-3 py-2"
         >
           Nuevo
         </Link>
@@ -108,7 +108,7 @@ export default function Personas() {
           onChange={search}
           ref={searchRef}
           placeholder="Buscar"
-          className="rounded-lg px-3 py-1 border border-grayborder justify-self-end"
+          className="rounded-lg px-3 border border-grayborder justify-self-end py-2"
         ></input>
         <Filter
           title={"Escuela"}
@@ -131,7 +131,7 @@ export default function Personas() {
         <CSVLink
           filename="reporte_personas"
           data={personasReport}
-          className="bg-primary text-white/90 px-3 rounded-lg flex items-center space-x-3"
+          className="bg-primary text-white/90 px-3 rounded-lg flex items-center space-x-3 py-2"
         >
           <svg
             className="opacity-90"

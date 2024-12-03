@@ -7,6 +7,7 @@ export default function Header({ title, children }) {
   return (
     <header className="w-full py-4 px-8 border border-grayborder flex items-end sticky z-50">
       <button
+        className="mb-0.5"
         onClick={() => {
           navigate(-1);
         }}
@@ -42,13 +43,13 @@ export default function Header({ title, children }) {
               );
             })}
         </span>
-        <div className="flex w-full justify-start space-x-5">
+        <div className="flex w-full justify-start space-x-5 items-center">
           <h1 className="font-bold text-3xl leading-none">{title}</h1>
           {children}
         </div>
       </div>
       <img
-        className="rounded-full"
+        className="rounded-full mb-0.5"
         height={35}
         width={35}
         src={localStorage.getItem("foto")}
