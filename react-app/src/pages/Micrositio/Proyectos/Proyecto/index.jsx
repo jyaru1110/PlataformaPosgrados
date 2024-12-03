@@ -1,8 +1,19 @@
 import Header from "../../components/Header";
 import Main from "../../components/Main";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useProyecto } from "../../../../hooks/useProyectos"; 
+import Error from "../../components/Error";
+import Markdown from 'react-markdown'
 
 export default function Proyecto() {
+  const {id} = useParams();
+  const {loading,proyecto,error} = useProyecto(id);
+
+
+  if (error) {
+    return <Error error={error}></Error>
+  }
+
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
       <Header></Header>
@@ -11,22 +22,20 @@ export default function Proyecto() {
           className="bg-primary text-white px-4 py-2 rounded-3xl text-sm flex items-center w-fit"
           to={"/micrositio/proyectos"}
         >
-            <svg className="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="15" height="12.931" viewBox="0 0 15 12.931"><defs><clipPath id="a"><path data-name="Trazado 103" d="M6.422 0a1.3 1.3 0 0 0-.872.379L.379 5.552a1.294 1.294 0 0 0 0 1.829l5.171 5.171a1.294 1.294 0 0 0 1.829-1.829L4.415 7.759h9.292a1.293 1.293 0 1 0 0-2.586H4.415l2.964-2.966A1.294 1.294 0 0 0 6.507 0Z" fill="#fff"/></clipPath></defs><g data-name="Grupo 221"><g data-name="Grupo 220" clip-path="url(#a)"><path data-name="Rectángulo 102" fill="#fff" d="M-.126 0H15v13.057H-.126z"/></g></g></svg>
+            <svg className="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="15" height="12.931" viewBox="0 0 15 12.931"><defs><clipPath id="a"><path data-name="Trazado 103" d="M6.422 0a1.3 1.3 0 0 0-.872.379L.379 5.552a1.294 1.294 0 0 0 0 1.829l5.171 5.171a1.294 1.294 0 0 0 1.829-1.829L4.415 7.759h9.292a1.293 1.293 0 1 0 0-2.586H4.415l2.964-2.966A1.294 1.294 0 0 0 6.507 0Z" fill="#fff"/></clipPath></defs><g data-name="Grupo 221"><g data-name="Grupo 220" clipPath="url(#a)"><path data-name="Rectángulo 102" fill="#fff" d="M-.126 0H15v13.057H-.126z"/></g></g></svg>
             Regresar a proyectos
         </Link>
         <div className="w-full flex">
           <div className="w-[70%] bg-white shadow-header rounded-xl mt-6">
-            <div className="h-36 rounded-t-xl bg-no-repeat bg-center bg-cover" style={{backgroundImage:"url(https://st4.depositphotos.com/13193658/29566/i/450/depositphotos_295663768-stock-photo-four-multiethnic-colleagues-formal-wear.jpg)"}}></div>
+            <div className="h-36 rounded-t-xl bg-no-repeat bg-center bg-cover" style={{backgroundImage:"url("+proyecto?.foto+")"}}></div>
             <div className="p-10">
-              <h1 className="font-timesnr text-5xl">Masters of Speaking</h1>
+              <h1 className="font-timesnr text-5xl">{proyecto?.nombre}</h1>
               <div className="bg-secondary h-[1px] my-8"></div>
               <p className="font-light">
-                En este curso de 30 horas los alumnos de posgrados de todas las
-                escuelas y facultades podrán discutir diversos temas enfocados
-                en varios aspectos de la vida laboral mientras practican su
-                inglés conversacional.
+                {proyecto?.descripcion} 
               </p>
               <h2 className="font-timesnr text-4xl my-8">Características</h2>
+              <Markdown className="prose">{proyecto?.caracteristicas}</Markdown>
             </div>
           </div>
           <div className="pl-5 mt-6 w-[30%]">

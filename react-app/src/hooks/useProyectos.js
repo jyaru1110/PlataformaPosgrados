@@ -23,3 +23,28 @@ export const useProyectos = () => {
 
     return {loading,proyectos}
 };
+
+export const useProyecto = (id) => {
+    const [proyecto, setProyecto] = useState();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState()
+
+    const afterFetch = (data) => {
+        setProyecto(data)
+        setLoading(false)
+    }
+
+    const afterError = (error) => {
+        setError(error)
+        setLoading(false)
+    }
+
+    useEffect(()=>{
+        const controller = new AbortController();
+        const signal = controller.signal;
+        get_fetch(url_backend+"/proyecto/"+id,signal,afterFetch,{},afterError)
+        return () => controller.abort()
+    },[id])
+
+    return {loading, proyecto, error}
+}
