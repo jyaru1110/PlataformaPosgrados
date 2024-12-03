@@ -8,6 +8,7 @@ import { usePersonas } from "../../../hooks/usePersonas";
 import { puestosInterceptionNotZero } from "../../../utils/arrays";
 import ResumedPuestos from "./Components/ResumedPuestos";
 import { CSVLink } from "react-csv";
+import LoaderCard from "./Components/LoaderCard";
 
 export default function Directorio() {
   const [query, setQuery] = useState("");
@@ -111,6 +112,9 @@ export default function Directorio() {
           </button>
           <CSVLink ref={downloadRef} className="hidden" data={personasReport} filename={`${(new Date).toLocaleDateString()}_directorio.csv`}></CSVLink>
         </Buscador>
+        {
+            loading && <LoaderCard />
+        }
         <div className="mt-7 columns-3">
             {personas?.filter(filterPersonas).map((persona) => 
                 {
