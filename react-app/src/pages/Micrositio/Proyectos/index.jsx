@@ -14,8 +14,12 @@ export default function Proyectos() {
       <Header></Header>
       <Main>
         <Buscador setQuery={setQuery} />
-        <div className="grid grid-cols-2 mt-8">
-            <CardProyecto proyecto={{nombre: "Resultados de Aprendizaje", descripcion: "Implementación de RAPs y sus evidencias a través de UPlanner y Blackboard", id: "1", foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnBreaB1AG5AuORv9pr8_3AkuBOV2xHw-_aGny-HW9_ZmGuyG8Hp0lpdE2TTqFA9cExTk&usqp=CAU"}} />
+        <div className="grid grid-cols-2 mt-8 gap-4">
+            {
+              proyectos.map((proyecto)=>{
+                return <CardProyecto proyecto={proyecto}></CardProyecto>
+              })
+            }
         </div>
       </Main>
     </div>
