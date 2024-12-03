@@ -2,16 +2,24 @@ import Header from "../../components/Header";
 import Main from "../../../components/Main";
 import { Link } from "react-router-dom";
 import '@mdxeditor/editor/style.css'
-import { MDXEditor, UndoRedo, BoldItalicUnderlineToggles, toolbarPlugin, linkPlugin, linkDialogPlugin, CreateLink, BlockTypeSelect, InsertTable, tablePlugin,listsPlugin,markdownShortcutPlugin,headingsPlugin, ListsToggle,quotePlugin} from '@mdxeditor/editor'
+import { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { MDXEditor, UndoRedo, BoldItalicUnderlineToggles, toolbarPlugin, linkPlugin, linkDialogPlugin, CreateLink, BlockTypeSelect, InsertTable, tablePlugin,listsPlugin,markdownShortcutPlugin,headingsPlugin, ListsToggle,quotePlugin, frontmatterPlugin} from '@mdxeditor/editor'
 
 export default function NewProyecto() {
+    const { register, handleSubmit } = useForm();
+    const mdRef = useRef(null)
+    const onSubmit = async (data) => {
+        data.caracteristicas = mdRef.current.getMarkdown()
+        console.log(data)
+    };
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
       <Header title="Nuevo proyecto">
         <button
+            type="submit"
+            form="formNewProyecto"
             className="py-3 px-3 hover:bg-gray-100 rounded-lg"
-          onClick={() => {
-          }}
         >
           <svg
             width="24"
@@ -28,18 +36,20 @@ export default function NewProyecto() {
         </button>
       </Header>
       <Main>
-      <form className="w-full flex">
+      <form id="formNewProyecto" onSubmit={handleSubmit(onSubmit)} className="w-full flex">
           <div className="w-[70%] bg-white shadow-header rounded-xl mt-6">
             <div className="h-36 rounded-t-xl bg-no-repeat bg-center bg-cover" style={{backgroundImage:"url(https://st4.depositphotos.com/13193658/29566/i/450/depositphotos_295663768-stock-photo-four-multiethnic-colleagues-formal-wear.jpg)"}}></div>
             <div className="p-10">
-              <input type="text" className="font-timesnr text-5xl" placeholder="Titulo del proyecto"/>
+              <input {...register("nombre",{required:true})} type="text" className="font-timesnr text-5xl" placeholder="Titulo del proyecto"/>
               <div className="bg-secondary h-[1px] my-8"></div>
-              <textarea className="font-light border border-grayborder w-full p-3 rounded-xl" placeholder="Descripción del proyecto"></textarea>
+              <textarea {...register("descripcion")} className="font-light border border-grayborder w-full p-3 rounded-xl" placeholder="Descripción del proyecto"></textarea>
               <h2 className="font-timesnr text-4xl my-8">Características</h2>
               <MDXEditor
-                    markdown="Hello **world**!" 
+                    markdown="# Escribe texto markdown" 
                     contentEditableClassName="prose"
                     plugins={[
+                        frontmatterPlugin(),
+                        headingsPlugin(),
                         quotePlugin(),
                         markdownShortcutPlugin(),
                         listsPlugin(),
@@ -59,6 +69,7 @@ export default function NewProyecto() {
                         )
                         })
                     ]}
+                    ref={mdRef}
                 />
             </div>
           </div>
