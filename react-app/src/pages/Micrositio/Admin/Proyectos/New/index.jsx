@@ -5,13 +5,25 @@ import '@mdxeditor/editor/style.css'
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { MDXEditor, UndoRedo, BoldItalicUnderlineToggles, toolbarPlugin, linkPlugin, linkDialogPlugin, CreateLink, BlockTypeSelect, InsertTable, tablePlugin,listsPlugin,markdownShortcutPlugin,headingsPlugin, ListsToggle,quotePlugin, frontmatterPlugin} from '@mdxeditor/editor'
+import axios from "axios";
+
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function NewProyecto() {
     const { register, handleSubmit } = useForm();
     const mdRef = useRef(null)
     const onSubmit = async (data) => {
         data.caracteristicas = mdRef.current.getMarkdown()
-        console.log(data)
+        axios.post(`${import.meta.env.VITE_URL_API}/proyecto`,data,{
+            withCredentials: true
+        }).then((res)=>{
+            toast.success("Proyecto creado")
+        }).catch((e)=>{
+            console.log(e)
+            toast.error(e.response.data.message)
+        })
+
     };
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
@@ -94,6 +106,7 @@ export default function NewProyecto() {
           </div>
         </form> 
       </Main>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
