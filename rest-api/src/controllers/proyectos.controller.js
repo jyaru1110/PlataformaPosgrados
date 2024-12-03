@@ -10,7 +10,20 @@ const get_proyectos = async (req, res) => {
   }
 };
 
+const create_proyecto = async (req,res) => {
+    const body = req.body;
+    try{
+        await Proyecto.create(body)
+        return res.status(200).send()
+    }
+    catch(e){
+        console.log(e);
+        return res.status(500).send({message:e.parent.detail})
+    }
+}
+
 module.exports = {
-    get_proyectos
+    get_proyectos,
+    create_proyecto
 }
 
