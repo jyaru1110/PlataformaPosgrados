@@ -8,10 +8,11 @@ export default function Proyecto() {
       <Header></Header>
       <Main>
         <Link
-          className="bg-primary text-white px-4 py-2 rounded-3xl text-sm"
+          className="bg-primary text-white px-4 py-2 rounded-3xl text-sm flex items-center w-fit"
           to={"/micrositio/proyectos"}
         >
-          Regresar a proyectos
+            <svg className="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="15" height="12.931" viewBox="0 0 15 12.931"><defs><clipPath id="a"><path data-name="Trazado 103" d="M6.422 0a1.3 1.3 0 0 0-.872.379L.379 5.552a1.294 1.294 0 0 0 0 1.829l5.171 5.171a1.294 1.294 0 0 0 1.829-1.829L4.415 7.759h9.292a1.293 1.293 0 1 0 0-2.586H4.415l2.964-2.966A1.294 1.294 0 0 0 6.507 0Z" fill="#fff"/></clipPath></defs><g data-name="Grupo 221"><g data-name="Grupo 220" clip-path="url(#a)"><path data-name="Rectángulo 102" fill="#fff" d="M-.126 0H15v13.057H-.126z"/></g></g></svg>
+            Regresar a proyectos
         </Link>
         <div className="w-full flex">
           <div className="w-[70%] bg-white shadow-header rounded-xl mt-6">
