@@ -124,6 +124,7 @@ export default function Directorio() {
                             <div>
                                 <p className="font-timesnr text-primary text-xl leading-none">{persona.titulo} {persona.nombre}</p>
                                 <p className="font-timesnr text-secondary text-lg">{persona.area || persona.escuela}</p>
+                                <p className="font-timesnr">{persona?.puesto_escuelas[0]?.puesto}</p>
                                 <ResumedPuestos puestos={persona.puesto_programas} />
                                 <div className="mt-5">
                                     {
