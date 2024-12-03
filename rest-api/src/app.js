@@ -5,6 +5,7 @@ const passport = require("passport");
 const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
 const app = express();
+const proyectos_routes = require("./routes/proyectos.routes")
 const servicios_dia_routes = require("./routes/servicios_dia.routes");
 const solicitudes_routes = require("./routes/solicitudes.routes");
 const horarios_routes = require("./routes/horarios.routes");
@@ -60,5 +61,6 @@ app.use("/api", clases_routes);
 app.use("/api", salones_routes);
 app.use("/api", programas_routes);
 app.use("/api", user_routes);
+app.use("/api", proyectos_routes)
 
 module.exports = app;

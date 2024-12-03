@@ -3,9 +3,12 @@ import Header from "../components/Header";
 import Main from "../components/Main";
 import Buscador from "../components/Buscador";
 import CardProyecto from "./Components/CardProyecto";
+import { useProyectos } from "../../../hooks/useProyectos";
 
 export default function Proyectos() {
   const [query, setQuery] = useState("");
+  const {loading, proyectos} = useProyectos();
+  console.log(proyectos)
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
       <Header></Header>
