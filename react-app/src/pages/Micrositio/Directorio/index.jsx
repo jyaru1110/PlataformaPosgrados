@@ -111,11 +111,11 @@ export default function Directorio() {
           </button>
           <CSVLink ref={downloadRef} className="hidden" data={personasReport} filename={`${(new Date).toLocaleDateString()}_directorio.csv`}></CSVLink>
         </Buscador>
-        <div className="mt-7 grid grid-cols-3 gap-4">
+        <div className="mt-7 columns-3">
             {personas?.filter(filterPersonas).map((persona) => 
                 {
                     return (
-                        <div className="flex bg-white shadow-header p-5 rounded-lg space-x-3 items-start" key={persona.id}>
+                        <div className="mb-4 break-inside-avoid flex bg-white shadow-header p-5 rounded-lg space-x-3 items-start" key={persona.id}>
                             {persona.foto ? <img className="rounded-full" width={60} height={60} src={persona.foto}></img> : <div className="rounded-full bg-primary h-[60px] w-[60px] text-white font-timesnr flex items-center justify-center text-3xl">{persona.nombre.substring(0,2).toUpperCase()}</div>}
                             <div>
                                 <p className="font-timesnr text-primary text-xl leading-none">{persona.titulo} {persona.nombre}</p>
