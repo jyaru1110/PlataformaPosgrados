@@ -40,9 +40,27 @@ const get_proyecto = async (req,res) =>{
     }
 }
 
+const update_proyecto = async(req,res) => {
+    const {id} = req.params;
+    const body = req.body;
+    try{
+        await Proyecto.update(body,{
+            where: {
+                id: id
+            }
+        })
+        return res.status(200).send()
+    }
+    catch(e){
+        console.log(e);
+        return res.status(500).send({message:e.parent.detail})
+    }
+}   
+
 module.exports = {
     get_proyectos,
     create_proyecto,
-    get_proyecto
+    get_proyecto, 
+    update_proyecto
 }
 
