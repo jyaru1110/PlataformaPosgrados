@@ -6,19 +6,21 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { MDXEditor, UndoRedo, BoldItalicUnderlineToggles, toolbarPlugin, linkPlugin, linkDialogPlugin, CreateLink, BlockTypeSelect, InsertTable, tablePlugin,listsPlugin,markdownShortcutPlugin,headingsPlugin, ListsToggle,quotePlugin, frontmatterPlugin} from '@mdxeditor/editor'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 
 export default function NewProyecto() {
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
     const mdRef = useRef(null)
     const onSubmit = async (data) => {
         data.caracteristicas = mdRef.current.getMarkdown()
         axios.post(`${import.meta.env.VITE_URL_API}/proyecto`,data,{
             withCredentials: true
         }).then((res)=>{
-            toast.success("Proyecto creado")
+            navigate("/micrositio/admin/proyectos/"+res.data.id)
         }).catch((e)=>{
             console.log(e)
             toast.error(e.response.data.message)

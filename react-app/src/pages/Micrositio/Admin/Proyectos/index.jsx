@@ -19,7 +19,7 @@ export default function ProyectosAdmin() {
         <div className="grid grid-cols-2 mt-8 gap-4">
             {
                 proyectos.map((proyecto)=>{
-                    return <CardProyectoEditar proyecto={proyecto}></CardProyectoEditar>
+                    return <CardProyectoEditar key={proyecto.id} proyecto={proyecto}></CardProyectoEditar>
                 })
             }
         </div>
