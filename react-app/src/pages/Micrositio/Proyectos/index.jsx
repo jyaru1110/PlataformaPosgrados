@@ -8,7 +8,6 @@ import { useProyectos } from "../../../hooks/useProyectos";
 export default function Proyectos() {
   const [query, setQuery] = useState("");
   const {loading, proyectos} = useProyectos();
-  console.log(proyectos)
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
       <Header></Header>
@@ -17,7 +16,7 @@ export default function Proyectos() {
         <div className="grid grid-cols-2 mt-8 gap-4">
             {
               proyectos.map((proyecto)=>{
-                return <CardProyecto proyecto={proyecto}></CardProyecto>
+                return <CardProyecto key={proyecto.id} proyecto={proyecto}></CardProyecto>
               })
             }
         </div>

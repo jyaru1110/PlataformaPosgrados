@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useProyecto } from "../../../../hooks/useProyectos"; 
 import Error from "../../components/Error";
 import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export default function Proyecto() {
   const {id} = useParams();
@@ -11,8 +12,11 @@ export default function Proyecto() {
 
 
   if (error) {
-    return <Error error={error}></Error>
-  }
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+            <Error err={error}></Error>
+      </div>
+    )}
 
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
@@ -35,7 +39,7 @@ export default function Proyecto() {
                 {proyecto?.descripcion} 
               </p>
               <h2 className="font-timesnr text-4xl my-8">Características</h2>
-              <Markdown className="prose">{proyecto?.caracteristicas}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]} className="prose">{proyecto?.caracteristicas}</Markdown>
             </div>
           </div>
           <div className="pl-5 mt-6 w-[30%]">
