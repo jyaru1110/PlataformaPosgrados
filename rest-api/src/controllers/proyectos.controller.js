@@ -22,8 +22,27 @@ const create_proyecto = async (req,res) => {
     }
 }
 
+const get_proyecto = async (req,res) =>{
+    const {id} = req.params
+    try{
+        const proyecto = await Proyecto.findOne(
+            {
+                where: {
+                    id: id
+                }
+            }
+        )
+        return res.status(200).send(proyecto);
+    }
+    catch(e){
+        console.log(e.parent.message)
+        return res.status(500).send({message:e.parent.message})
+    }
+}
+
 module.exports = {
     get_proyectos,
-    create_proyecto
+    create_proyecto,
+    get_proyecto
 }
 
