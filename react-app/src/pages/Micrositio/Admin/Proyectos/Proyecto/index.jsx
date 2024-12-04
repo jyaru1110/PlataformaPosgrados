@@ -6,7 +6,7 @@ import { useProyecto } from "../../../../../hooks/useProyectos";
 import Error from "../../../components/Error";
 import { MDXEditor, UndoRedo, BoldItalicUnderlineToggles, toolbarPlugin, linkPlugin, linkDialogPlugin, CreateLink, BlockTypeSelect, InsertTable, tablePlugin,listsPlugin,markdownShortcutPlugin,headingsPlugin, ListsToggle,quotePlugin, frontmatterPlugin} from '@mdxeditor/editor'
 import { useForm } from "react-hook-form";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
@@ -16,9 +16,12 @@ export default function ProyectoAdmin() {
   const {loading,proyecto,error} = useProyecto(id);
   const {register, handleSubmit} = useForm();
   const mdRef = useRef(null);
+
+  const [newFechas, setNewFechas] = useState([])
   
   const onSubmit = (data) => {
     data.caracteristicas = mdRef.current.getMarkdown();
+    data.newFechas = newFechas;
 
     axios.put(import.meta.env.VITE_URL_API+"/proyecto/"+id,data,{withCredentials:true})
     .then((res)=>{
@@ -29,6 +32,12 @@ export default function ProyectoAdmin() {
         toast.error("Error al actualizar proyecto")
     })
   } 
+                
+  const updateFechas = (index,field,value) => {
+    const newFechasCopy = [...newFechas];
+    newFechasCopy[index][field] = value;
+    setNewFechas(newFechasCopy);
+  }
 
   const onDelete = () => {
     axios.delete(import.meta.env.VITE_URL_API+"/proyecto/"+id,{withCredentials:true})
@@ -120,10 +129,23 @@ export default function ProyectoAdmin() {
                     <svg id="Grupo_69" data-name="Grupo 69" className="mr-2.5 -mt-1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="21.217" height="21.524" viewBox="0 0 21.217 21.524"> <defs> <clipPath id="clip-path"> <rect id="Rectángulo_22" data-name="Rectángulo 22" width="21.217" height="21.524" fill="#b9975b"/> </clipPath> </defs> <g id="Grupo_66" data-name="Grupo 66" transform="translate(0 0)" clipPath="url(#clip-path)"> <path id="Trazado_44" data-name="Trazado 44" d="M20.971,4.543a1.489,1.489,0,0,0,1.493-1.49V1.493a1.493,1.493,0,1,0-2.985,0v1.56a1.489,1.489,0,0,0,1.492,1.489" transform="translate(-5.082 0)" fill="#b9975b"/> <path id="Trazado_45" data-name="Trazado 45" d="M21.194,3.481H18.188V4.24a2.272,2.272,0,1,1-4.545,0V3.481H7.579V4.24a2.273,2.273,0,1,1-4.546,0V3.481L0,3.443V22.422H19.7l1.514,0ZM19.7,20.911H1.517V8.786H19.7V20.911Z" transform="translate(0 -0.898)" fill="#b9975b"/> <path id="Trazado_46" data-name="Trazado 46" d="M6.62,4.543a1.49,1.49,0,0,0,1.494-1.49V1.493a1.493,1.493,0,1,0-2.985,0v1.56A1.487,1.487,0,0,0,6.62,4.543" transform="translate(-1.338 0)" fill="#b9975b"/> <rect id="Rectángulo_11" data-name="Rectángulo 11" width="2.388" height="2.108" transform="translate(7.583 9.515)" fill="#b9975b"/> <rect id="Rectángulo_12" data-name="Rectángulo 12" width="2.39" height="2.108" transform="translate(11.445 9.515)" fill="#b9975b"/> <rect id="Rectángulo_13" data-name="Rectángulo 13" width="2.388" height="2.108" transform="translate(15.026 9.515)" fill="#b9975b"/> <rect id="Rectángulo_14" data-name="Rectángulo 14" width="2.388" height="2.107" transform="translate(7.583 13.015)" fill="#b9975b"/> <rect id="Rectángulo_15" data-name="Rectángulo 15" width="2.39" height="2.107" transform="translate(11.445 13.015)" fill="#b9975b"/> <rect id="Rectángulo_16" data-name="Rectángulo 16" width="2.388" height="2.107" transform="translate(15.026 13.015)" fill="#b9975b"/> <rect id="Rectángulo_17" data-name="Rectángulo 17" width="2.388" height="2.107" transform="translate(7.583 16.585)" fill="#b9975b"/> <rect id="Rectángulo_18" data-name="Rectángulo 18" width="2.387" height="2.107" transform="translate(3.79 13.015)" fill="#b9975b"/> <rect id="Rectángulo_19" data-name="Rectángulo 19" width="2.387" height="2.107" transform="translate(3.79 16.585)" fill="#b9975b"/> <rect id="Rectángulo_20" data-name="Rectángulo 20" width="2.39" height="2.107" transform="translate(11.445 16.585)" fill="#b9975b"/> <rect id="Rectángulo_21" data-name="Rectángulo 21" width="2.388" height="2.107" transform="translate(15.026 16.585)" fill="#b9975b"/> </g> </svg>
                     Calendario
                 </h4>
-                <span className="text-center my-4 text-base">
-                    <h5 className=" text-secondary">Próximo inicio de curso:</h5>
-                    <p className="font-light">31 agosto 2024</p>
-                </span>
+                {
+                    newFechas.map((fecha,index)=>{
+                    return( 
+                        <span className="text-center my-4 text-base flex flex-col">
+                            <input onChange={(e)=>updateFechas(index,"titulo",e.target.value)} className=" text-secondary border-b border-b-transparent hover:border-b-secondary" placeholder="titulo de la fecha"/>
+                            <input onChange={(e)=>updateFechas(index,"fecha",e.target.value)} className="font-light border-b-transparent border-b hover:border-b-secondary" placeholder="fecha"/>
+                        </span>
+                    )
+                    })
+                }
+                <button
+                    onClick={()=>{
+                        setNewFechas([...newFechas,{titulo:"",fecha:"",proyectoId:id}])
+                    }}
+                 type="button" className="text-secondary mt-3 px-3 py-2 hover:bg-secondary/10 rounded-md">
+                    + Agrega una fecha
+                </button>
             </div>
             <div className="mt-6 bg-white py-6 px-10 rounded-lg shadow-header">
                 <h4 className="border-b border-secondary font-timesnr text-secondary text-xl mb-5">Material promocional</h4>

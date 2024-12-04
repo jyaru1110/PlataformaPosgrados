@@ -22,6 +22,8 @@ const CostosPrograma = require("./models/CostosPrograma");
 const AperturasCierres = require("./models/AperturasCierres");
 const Periodo = require("./models/Periodo");
 const PeriodoPrograma = require("./models/PeriodoPrograma");
+const Proyecto = require("./models/Proyecto");
+const FechaProyecto = require("./models/FechaProyecto")
 
 var port = process.env.PORT || 3900;
 
@@ -119,6 +121,11 @@ Programa.belongsToMany(Usuario, {
   through: "usuario_programa",
   timestamps: false,
 });
+
+//proyectos y fechas
+Proyecto.hasMany(FechaProyecto);
+FechaProyecto.belongsTo(Proyecto);
+
 
 //inicio de la aplicacion
 async function init() {

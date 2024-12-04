@@ -1,3 +1,4 @@
+const FechaProyecto = require("../models/FechaProyecto");
 const Proyecto = require("../models/Proyecto")
 
 const get_proyectos = async (req, res) => {
@@ -29,8 +30,12 @@ const get_proyecto = async (req,res) =>{
             {
                 where: {
                     id: id
+                },
+                include: {
+                    model: FechaProyecto,
+                    attributes: ["fecha","titulo","id"]
                 }
-            }
+            },
         )
         if (!proyecto){
             return res.status(404).send({message:"Proyecto no encontrado"})
@@ -52,6 +57,7 @@ const update_proyecto = async(req,res) => {
                 id: id
             }
         })
+        await FechaProyecto.bulkCreate(body.newFechas)
         return res.status(200).send()
     }
     catch(e){
