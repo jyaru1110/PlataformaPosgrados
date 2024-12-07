@@ -117,9 +117,8 @@ export default function Directorio() {
           <CSVLink ref={downloadRef} className="hidden" data={personasReport} filename={`${(new Date).toLocaleDateString()}_directorio.csv`}></CSVLink>
         </Buscador>
         {
-            loading && <LoaderCard />
-        }
-        <div className="mt-7 columns-3">
+            loading ? <LoaderCard />:
+            <div className="mt-7 columns-3">
             {personas?.filter(filterPersonas).map((persona) => 
                 {
                     return (
@@ -157,6 +156,7 @@ export default function Directorio() {
                 } 
             )}
         </div>
+        }
       </Main>
       <ToastContainer />
     </div>
