@@ -10,7 +10,7 @@ import CardsPersonas from "../components/CardsPersonas";
 import useSearchKey from "../../../../hooks/useSearchKey";
 import { CSVLink } from "react-csv";
 import CardsPuesto from "../../components/CardsPuesto";
-import { escuelas, puestos, puestos_program} from "../../constantes";
+import { escuelas, puestos, puestos_program, areas} from "../../constantes";
 import ModalPuestos from "../components/ModalPuestos";
 
 const headers = [
@@ -31,6 +31,7 @@ export default function Personas() {
   const [personasPuesto, setPersonasPuesto] = useState([]);
   const navigate = useNavigate();
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
+  const [filteredAreas, setFilteredAreas] = useState([]);
   const [filteredPuestos, setFilteredPuestos] = useState([]);
   const [filteredPuestosPrograma, setFilteredPuestosPrograma] = useState([]);
   const [personasReport, setPersonasReport] = useState([]);
@@ -40,6 +41,7 @@ export default function Personas() {
 
   const filterPersonas = (persona) => {
     return (
+      (filteredAreas.length === 0 || filteredAreas.includes(persona.area)) &&
       (filteredEscuelas.length === 0 ||
         filteredEscuelas.includes(persona.escuela)) &&
       (filteredPuestos.length === 0 && filteredPuestosPrograma.length === 0 ||
@@ -128,6 +130,12 @@ export default function Personas() {
           setFiltered={setFilteredPuestosPrograma}
           filtered={filteredPuestosPrograma}
         ></Filter>
+        <Filter
+          title={"Área"}
+          options={areas}
+          setFiltered={setFilteredAreas}
+          filtered={filteredAreas}
+        ></Filter>
         <CSVLink
           filename="reporte_personas"
           data={personasReport}
@@ -146,7 +154,7 @@ export default function Personas() {
               fill="white"
             />
           </svg>
-          <span className="font-normal">Descargar reporte</span>
+          <span className="font-normal">Descargar</span>
         </CSVLink>
       </Header>
       <Main>
