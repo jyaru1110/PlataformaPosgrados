@@ -53,7 +53,8 @@ router.put("/user/usuario/:id", async (req, res) => {
   }
 });
 
-router.get("/user/all", async (req, res) => {
+
+router.get("/user/all/admin", async (req, res) => {
   const { query } = req.query;
   try {
     const users = await Usuario.findAll({
@@ -102,6 +103,64 @@ router.get("/user/all", async (req, res) => {
           { area: { [Op.iLike]: `%${query}%` } },
         ],
       },
+    });
+    res.status(200).send(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+});
+
+router.get("/user/all", async (req, res) => {
+  const { query } = req.query;
+  try {
+    const users = await Usuario.findAll({
+      attributes: [
+        "id",
+        "titulo",
+        "nombre",
+        "escuela",
+        "email",
+        "extension",
+        "birthday",
+        "telefono",
+        "foto",
+        "area",
+        "id_universidad_panamericana",
+        "puesto_area"
+      ],
+      order: [
+        ["area", "DESC"],
+        ["escuela", "ASC"],
+        ["nombre", "ASC"],
+      ],
+      include: [
+        {
+          model: PuestoEscuela,
+          required: false,
+          attributes: ["puesto"],
+        },
+        {
+          model: PuestoPrograma,
+          required: false,
+          attributes: ["puesto", "programaPrograma"],
+          include: [
+            {
+              model: Programa,
+              required: false,
+              attributes: ["codigo"],
+            },
+          ],
+        }
+      ],
+      where: [
+        {escuela:{[Op.not]: "Educación Continua"}},
+        {[Op.or]: [
+          { nombre: { [Op.iLike]: `%${query}%` } },
+          { escuela: { [Op.iLike]: `%${query}%`} },
+          { area: { [Op.iLike]: `%${query}%` } },
+        ]},
+      ],
     });
     res.status(200).send(users);
   } catch (error) {

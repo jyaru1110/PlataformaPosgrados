@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Main from "../../components/Main";
 import Table from "../../components/Table";
 import { useState, useEffect, useRef } from "react";
-import { usePersonas } from "../../../../hooks/usePersonas";
+import { usePersonasAdmin } from "../../../../hooks/usePersonas";
 import { useNavigate, Link } from "react-router-dom";
 import Filter from "../../components/Filter";
 import { puestosInterceptionNotZero } from "../../../../utils/arrays";
@@ -27,7 +27,7 @@ const headers = [
 
 export default function Personas() {
   const [query, setQuery] = useState("");
-  const { loading, personas } = usePersonas(query);
+  const { loading, personas } = usePersonasAdmin(query);
   const [personasPuesto, setPersonasPuesto] = useState([]);
   const navigate = useNavigate();
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);

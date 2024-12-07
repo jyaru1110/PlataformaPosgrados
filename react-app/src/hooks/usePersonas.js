@@ -34,6 +34,37 @@ export const usePersonas = (query) => {
   return { personas, loading };
 };
 
+export const usePersonasAdmin = (query) => {
+  const [personas, setPersonas] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const after_fetch = (data) => {
+    setLoading(false);
+    setPersonas(data);
+  };
+
+  const onError = (error) => {
+    setLoading(false);
+    console.log(error);
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    setLoading(true);
+    get_fetch(
+      url_backend + "/user/all/admin",
+      signal,
+      after_fetch,
+      { query: query },
+      onError
+    );
+    return () => controller.abort();
+  }, [query]);
+
+  return { personas, loading };
+}
+
 export const usePersona = (id) => {
   const [persona, setPersona] = useState({});
   const [loading, setLoading] = useState(true);
