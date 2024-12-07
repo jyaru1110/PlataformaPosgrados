@@ -19,6 +19,10 @@ export const secciones = {
     title: "Admin",
     ruta: "/micrositio/admin",
   },
+  proyectos: {
+    title: "Proyectos",
+    ruta: "/micrositio/admin/proyectos",
+  },
 };
 
 export const escuelas = [
