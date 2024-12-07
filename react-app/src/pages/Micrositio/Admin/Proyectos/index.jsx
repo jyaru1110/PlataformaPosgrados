@@ -2,9 +2,22 @@ import Header from "../components/Header";
 import Main from "../../components/Main";
 import { Link } from "react-router-dom";
 import { useProyectos } from "../../../../hooks/useProyectos";
+import { useRef, useState } from "react";
 import CardProyectoEditar from "./Components/CardProyectoEditar";
 export default function ProyectosAdmin() {
-  const { loading, proyectos } = useProyectos();
+  const [query, setQuery] = useState("");
+  const { loading, proyectos } = useProyectos(query);
+  const searchInputRef = useRef(null);
+
+  const search = () => {
+    if(timeOutRef.current === null) {
+      timeOutRef.current = setTimeout(()=>{
+        setQuery(searchInputRef.current.value)
+        timeOutRef.current = null
+      },1100);
+    }
+  }
+
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
       <Header title="Proyectos">
@@ -14,6 +27,12 @@ export default function ProyectosAdmin() {
         >
           Nuevo
         </Link>
+        <input
+          ref = {searchInputRef}
+          onChange={search}
+          placeholder="Buscar"
+          className="rounded-lg px-3 py-2 border border-grayborder"
+        ></input>
       </Header>
       <Main>
         <div className="grid grid-cols-2 mt-8 gap-4">

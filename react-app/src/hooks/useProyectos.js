@@ -3,7 +3,7 @@ import { get_fetch } from "./get_fetch";
 
 const url_backend = import.meta.env.VITE_URL_API;
 
-export const useProyectos = () => {
+export const useProyectos = (query) => {
     const [proyectos,setProyectos] = useState([])
     const [loading,setLoading] = useState(true)
 
@@ -16,9 +16,9 @@ export const useProyectos = () => {
     useEffect(()=>{
         const controller = new AbortController();
         const signal = controller.signal;
-        get_fetch(url_backend+"/proyectos",signal,afterFetch)
+        get_fetch(url_backend+"/proyectos?query="+query,signal,afterFetch)
         return () => controller.abort();
-    },[])
+    },[query])
 
 
     return {loading,proyectos}

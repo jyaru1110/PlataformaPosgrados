@@ -1,9 +1,26 @@
 const FechaProyecto = require("../models/FechaProyecto");
 const Proyecto = require("../models/Proyecto");
+const { Op } = require("sequelize");
 
 const get_proyectos = async (req, res) => {
+  const {query}= req.query;
   try {
-    const proyectos = await Proyecto.findAll();
+    const proyectos = await Proyecto.findAll({
+      where: {
+        [Op.or]: [
+          {
+            nombre: {
+              [Op.iLike]: `%${query}%`,
+            },
+          },
+          {
+            descripcion: {
+              [Op.iLike]: `%${query}%`,
+            },
+          },
+        ],
+      },
+    });
     return res.status(200).send(proyectos);
   } catch (e) {
     console.log(e);
@@ -58,11 +75,11 @@ const update_proyecto = async (req, res) => {
     await FechaProyecto.bulkCreate(body.newFechas);
 
     Object.keys(body.changesFechas).forEach(async (key) => {
-        await FechaProyecto.update(body.changesFechas[key], {
-          where: {
-            id: key,
-          },
-        });
+      await FechaProyecto.update(body.changesFechas[key], {
+        where: {
+          id: key,
+        },
+      });
     });
     return res.status(200).send();
   } catch (e) {

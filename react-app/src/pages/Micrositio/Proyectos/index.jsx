@@ -7,7 +7,7 @@ import { useProyectos } from "../../../hooks/useProyectos";
 
 export default function Proyectos() {
   const [query, setQuery] = useState("");
-  const {loading, proyectos} = useProyectos();
+  const {loading, proyectos} = useProyectos(query);
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
       <Header></Header>
