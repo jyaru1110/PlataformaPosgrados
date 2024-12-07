@@ -69,6 +69,7 @@ router.get("/user/all", async (req, res) => {
         "foto",
         "area",
         "id_universidad_panamericana",
+        "puesto_area"
       ],
       order: [
         ["area", "DESC"],

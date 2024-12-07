@@ -55,6 +55,11 @@ export const puestos_program = [
   "Asistencia",
 ];
 
+export const puestos_area = {
+  "Dirección de Posgrados": ["Dirección","Beca","Jefatura de Estrategia, Desarrollo y Calidad de Posgrados","Jefatura de Vinculación y Comercial de Posgrados"],
+  "Operaciones": ["Dirección","Subdirección","Jefatura de Eventos","Coordinación de Eventos","Beca"],
+}
+
 export const sedes = ["Mixcoac", "Santa Fe"];
 
 export const areas = ["Operaciones", "Dirección de Posgrados"];

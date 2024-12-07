@@ -11,7 +11,7 @@ import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import { puestos, puestos_program } from "../../../constantes";
+import { puestos, puestos_program, puestos_area } from "../../../constantes";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Persona() {
@@ -22,6 +22,7 @@ export default function Persona() {
   const [programChanged, setProgramChanged] = useState(false);
   const [nuevosPuestosPrograma, setNuevosPuestosPrograma] = useState([]);
   const [nuevosPuestosEscuela, setNuevosPuestosEscuela] = useState([]);
+  const [currentArea, setCurrentArea] = useState(null);
 
   const refSubmit = useRef(null);
   const { register, handleSubmit, reset } = useForm();
@@ -169,6 +170,7 @@ export default function Persona() {
         return { ...acc, [key]: persona[key] };
       }, {});
       reset(programa_reset);
+      setCurrentArea(persona.area);
     }
   }, [persona]);
 
@@ -284,25 +286,6 @@ export default function Persona() {
                 </option>
                 <option value="Educación Continua">Educación Continua</option>
               </select>
-              <label htmlFor="area" className="font-bold">
-                Área
-              </label>
-              <select
-                id="area"
-                autoComplete="off"
-                {...register("area")}
-                className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700"
-                defaultValue={persona.area}
-                onChange={() => setProgramChanged(true)}
-              >
-                <option value="" disabled>
-                  Selecciona un área
-                </option>
-                <option value="Operaciones">Operaciones</option>
-                <option value="Dirección de Posgrados">
-                  Dirección de Posgrados
-                </option>
-              </select>
               <label htmlFor="email" className="font-bold">
                 Correo
               </label>
@@ -387,6 +370,50 @@ export default function Persona() {
                 <option value="Aguascalientes">Aguascalientes</option>
                 <option value="Guadalajara">Guadalajara</option>
               </select>
+              <label htmlFor="area" className="font-bold">
+                Área
+              </label>
+              <select
+                id="area"
+                {...register("area")}
+                className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700"
+                defaultValue={persona.area}
+                onChange={() => setProgramChanged(true)}
+              >
+                <option value="" disabled>
+                  Selecciona un área
+                </option>
+                <option value="Operaciones">Operaciones</option>
+                <option value="Dirección de Posgrados">
+                  Dirección de Posgrados
+                </option>
+              </select>
+              {persona.area && (
+                <>
+                  <label htmlFor="puesto_area" className="font-bold">
+                    Puesto área
+                  </label>
+                  <select
+                    id="puesto_area"
+                    {...register("puesto_area", { required: true })}
+                    name="puesto_area"
+                    className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700"
+                    defaultValue={persona.puesto_area}
+                    onChange={() => setProgramChanged(true)}
+                  >
+                    <option value="" disabled>
+                      Selecciona un puesto
+                    </option>
+                    {puestos_area[persona.area].map((puesto, index) => {
+                      return (
+                        <option key={index} value={puesto}>
+                          {puesto}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </>
+              )}
               <button
                 className="invisible"
                 type="submit"

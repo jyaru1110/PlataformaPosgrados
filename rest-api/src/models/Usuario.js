@@ -65,7 +65,10 @@ const Usuario = sequelize.define(
           }
         },
       },
-    }
+    },
+    puesto_area: {
+      type: DataTypes.STRING,
+    },
   },
   {
     timestamps: false,
