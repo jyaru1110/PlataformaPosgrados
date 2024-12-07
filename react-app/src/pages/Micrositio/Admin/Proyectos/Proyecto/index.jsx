@@ -105,7 +105,7 @@ export default function ProyectoAdmin() {
           <div className="w-[70%] bg-white shadow-header rounded-xl mt-6">
             <div className="h-36 rounded-t-xl bg-no-repeat bg-center bg-cover" style={{backgroundImage:"url("+proyecto?.foto+")"}}></div>
             <div className="p-10">
-              <input {...register("nombre",{required:true})} className="font-timesnr text-5xl border-b border-b-transparent hover:border-b-emerald-700" type="text" placeholder="Titulo del proyecto" defaultValue={proyecto.nombre}/>
+              <input {...register("nombre",{required:true})} className="font-timesnr text-5xl border-b border-b-transparent hover:border-b-emerald-700 w-full" type="text" placeholder="Titulo del proyecto" defaultValue={proyecto.nombre}/>
               <div className="bg-secondary h-[1px] my-8"></div>
               <textarea defaultValue={proyecto.descripcion} {...register("descripcion")} className="font-light w-full border p-4 rounded-lg" placeholder="Escribe la descripción del proyecto"></textarea>
               <h2 className="font-timesnr text-4xl my-8">Características</h2>

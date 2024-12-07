@@ -54,7 +54,7 @@ export default function NewProyecto() {
           <div className="w-[70%] bg-white shadow-header rounded-xl mt-6">
             <div className="h-36 rounded-t-xl bg-no-repeat bg-center bg-cover" style={{backgroundImage:"url(https://st4.depositphotos.com/13193658/29566/i/450/depositphotos_295663768-stock-photo-four-multiethnic-colleagues-formal-wear.jpg)"}}></div>
             <div className="p-10">
-              <input {...register("nombre",{required:true})} type="text" className="font-timesnr text-5xl" placeholder="Titulo del proyecto"/>
+              <input {...register("nombre",{required:true})} type="text" className="font-timesnr text-5xl w-full" placeholder="Titulo del proyecto"/>
               <div className="bg-secondary h-[1px] my-8"></div>
               <textarea {...register("descripcion")} className="font-light border border-grayborder w-full p-3 rounded-xl" placeholder="Descripción del proyecto"></textarea>
               <h2 className="font-timesnr text-4xl my-8">Características</h2>
