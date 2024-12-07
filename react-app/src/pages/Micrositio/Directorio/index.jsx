@@ -9,6 +9,8 @@ import { puestosInterceptionNotZero } from "../../../utils/arrays";
 import ResumedPuestos from "./Components/ResumedPuestos";
 import { CSVLink } from "react-csv";
 import LoaderCard from "./Components/LoaderCard";
+import { ToastContainer, toast } from "react-toastify";
+
 
 export default function Directorio() {
   const [query, setQuery] = useState("");
@@ -43,6 +45,7 @@ export default function Directorio() {
   const copyEmailsToClipboard = () => {
     const emails = personas.filter(filterPersonas).map(persona => persona.email).join(", ");
     navigator.clipboard.writeText(emails);
+    toast.success("Contactos copiados");
   }
 
   const downloadCSV = () => {
@@ -71,6 +74,7 @@ export default function Directorio() {
   useEffect(() => {
     if (personasReport.length > 0) {
       downloadRef.current.link.click();
+      toast.success("Descarga exitosa");
     }
   }, [personasReport]);
 
@@ -153,6 +157,7 @@ export default function Directorio() {
             )}
         </div>
       </Main>
+      <ToastContainer />
     </div>
   );
 }
