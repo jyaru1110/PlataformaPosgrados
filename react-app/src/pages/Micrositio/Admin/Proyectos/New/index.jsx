@@ -57,7 +57,6 @@ export default function NewProyecto() {
               <input {...register("nombre",{required:true})} type="text" className="font-timesnr text-5xl w-full" placeholder="Titulo del proyecto"/>
               <div className="bg-secondary h-[1px] my-8"></div>
               <textarea {...register("descripcion")} className="font-light border border-grayborder w-full p-3 rounded-xl" placeholder="Descripción del proyecto"></textarea>
-              <h2 className="font-timesnr text-4xl my-8">Características</h2>
               <MDXEditor
                     markdown="# Escribe texto markdown" 
                     contentEditableClassName="prose"

@@ -108,7 +108,6 @@ export default function ProyectoAdmin() {
               <input {...register("nombre",{required:true})} className="font-timesnr text-5xl border-b border-b-transparent hover:border-b-emerald-700 w-full" type="text" placeholder="Titulo del proyecto" defaultValue={proyecto.nombre}/>
               <div className="bg-secondary h-[1px] my-8"></div>
               <textarea defaultValue={proyecto.descripcion} {...register("descripcion")} className="font-light w-full border p-4 rounded-lg" placeholder="Escribe la descripción del proyecto"></textarea>
-              <h2 className="font-timesnr text-4xl my-8">Características</h2>
               <MDXEditor
                 markdown={proyecto?.caracteristicas}
                 contentEditableClassName="prose"

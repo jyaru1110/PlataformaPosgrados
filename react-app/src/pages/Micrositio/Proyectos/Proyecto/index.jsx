@@ -38,7 +38,6 @@ export default function Proyecto() {
               <p className="font-light">
                 {proyecto?.descripcion} 
               </p>
-              <h2 className="font-timesnr text-4xl my-8">Características</h2>
               <Markdown remarkPlugins={[remarkGfm]} className="prose">{proyecto?.caracteristicas}</Markdown>
             </div>
           </div>
