@@ -1,3 +1,4 @@
+const hubspotClient = require("../hubspot/hubspotclient")
 const Programa = require("../models/Programa");
 const Proceso = require("../models/Proceso");
 const CostosPrograma = require("../models/CostosPrograma");
@@ -610,6 +611,23 @@ const get_programas_full = async (req, res) => {
   res.status(200).send(escuelas);
 };
 
+const get_contacts = async (req,res) => {
+  const publicObjectSearchRequest = {}
+
+  try
+  {
+    const response = await hubspotClient.crm.contacts.searchApi.doSearch(publicObjectSearchRequest);
+    console.log(response)
+    console.log(response.results.length)
+
+    return res.status(200).send(response)
+  }
+  catch(e){
+    console.log(e)
+    return res.status(500)
+  }
+}
+
 module.exports = {
   get_programas_opciones_metas,
   get_number_of_personas_by_escuela,
@@ -641,4 +659,5 @@ module.exports = {
   update_bulk_periodo_programa,
   get_periodos_escuela,
   get_programas_full,
+  get_contacts
 };
