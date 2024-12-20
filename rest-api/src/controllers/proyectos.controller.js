@@ -1,6 +1,8 @@
 const FechaProyecto = require("../models/FechaProyecto");
 const Proyecto = require("../models/Proyecto");
 const { Op } = require("sequelize");
+const multer = require("multer");
+const upload = multer({ dest: "public/images/" }).single("file");
 
 const get_proyectos = async (req, res) => {
   const {query}= req.query;
@@ -61,31 +63,35 @@ const get_proyecto = async (req, res) => {
   }
 };
 
-const update_proyecto = async (req, res) => {
-  const { id } = req.params;
-  const body = req.body;
-  console.log(body.changesFechas);
-  try {
-    await Proyecto.update(body, {
-      where: {
-        id: id,
-      },
-    });
-
-    await FechaProyecto.bulkCreate(body.newFechas);
-
-    Object.keys(body.changesFechas).forEach(async (key) => {
-      await FechaProyecto.update(body.changesFechas[key], {
+const update_proyecto = async (req,res) => {
+  upload(req, res, async (err) => {
+    const file = req.file; 
+    console.log(file);
+    const { id } = req.params;
+    const body = req.body;
+    body.foto = file ? file.filename : "";
+    try {
+      await Proyecto.update(body, {
         where: {
-          id: key,
+          id: id,
         },
       });
-    });
-    return res.status(200).send();
-  } catch (e) {
-    console.log(e);
-    return res.status(500).send({ message: e.parent.detail });
-  }
+  
+      await FechaProyecto.bulkCreate(body.newFechas);
+  
+      Object.keys(body.changesFechas).forEach(async (key) => {
+        await FechaProyecto.update(body.changesFechas[key], {
+          where: {
+            id: key,
+          },
+        });
+      });
+      return res.status(200).send();
+    } catch (e) {
+      console.log(e);
+      return res.status(500).send({ message: e.parent.detail });
+    }
+  })
 };
 
 const delete_proyecto = async (req, res) => {

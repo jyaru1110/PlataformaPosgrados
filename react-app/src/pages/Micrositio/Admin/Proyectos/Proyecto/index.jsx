@@ -6,10 +6,12 @@ import { useProyecto } from "../../../../../hooks/useProyectos";
 import Error from "../../../components/Error";
 import { MDXEditor, UndoRedo, BoldItalicUnderlineToggles, toolbarPlugin, linkPlugin, linkDialogPlugin, CreateLink, BlockTypeSelect, InsertTable, tablePlugin,listsPlugin,markdownShortcutPlugin,headingsPlugin, ListsToggle,quotePlugin, frontmatterPlugin} from '@mdxeditor/editor'
 import { useForm } from "react-hook-form";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
+
+const domainImage = import.meta.env.VITE_IMAGE_DOMAIN;
 
 export default function ProyectoAdmin() {
   const {id} = useParams();
@@ -19,12 +21,46 @@ export default function ProyectoAdmin() {
 
   const [newFechas, setNewFechas] = useState([]);
   const [changesFechas, setChangesFechas] = useState({})
+
+  const [dragging, setDragging] = useState(false);
+  const [file, setFile] = useState(null);
+
+  const handleDrag = function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragging(true);
+    } else if (e.type === "dragleave") {
+      setDragging(false);
+    }
+  };
+
+  const handleDrop = function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  const handleChange = function (e) {
+    e.preventDefault();
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
   
   const onSubmit = (data) => {
     data.caracteristicas = mdRef.current.getMarkdown();
     data.newFechas = newFechas;
     data.changesFechas = changesFechas; 
-    axios.put(import.meta.env.VITE_URL_API+"/proyecto/"+id,data,{withCredentials:true})
+    const formData = new FormData();
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+    formData.append("file", file);
+    axios.put(import.meta.env.VITE_URL_API+"/proyecto/"+id,formData,{withCredentials:true, headers: { 'Content-Type': 'multipart/form-data' }})
     .then((res)=>{
         toast.success("Proyecto actualizado correctamente");
     })
@@ -103,7 +139,49 @@ export default function ProyectoAdmin() {
             loading ? <div className="w-full h-screen flex items-center justify-center"><div className="loader"></div></div>:
         <form id="formUpdateProyecto" onSubmit={handleSubmit(onSubmit)} className="w-full flex">
           <div className="w-[70%] bg-white shadow-header rounded-xl mt-6">
-            <div className="h-36 rounded-t-xl bg-no-repeat bg-center bg-cover" style={{backgroundImage:"url("+proyecto?.foto+")"}}></div>
+          <input
+            type="file"
+            id="input-file-upload"
+            className="hidden"
+            onChange={handleChange}
+            accept=".jpeg,.jpg,.png"
+          />
+          <label
+            id="label-file-upload"
+            htmlFor="input-file-upload"
+          >
+            <div
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDrop={handleDrop}
+              onDragOver={handleDrag}
+              className={`h-36 rounded-t-xl bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center relative cursor-pointer border-dashed border-2 ${(dragging || file) && "border-primary"}`} style={{backgroundImage:"url("+domainImage+proyecto?.foto+")"}}
+            >
+              <p className={`font-medium ${dragging ? " text-primary " : ""}`}>
+                {file?.name ? (
+                  <span className="font-bold text-primary">{file.name}</span>
+                ) : (
+                  <>
+                    {dragging
+                      ? "SUELTALO AQUÍ"
+                      : "ARRASTRA UN ARCHIVO O DA CLICK AQUÍ"}
+                  </>
+                )}
+              </p>
+              {file?.name ? (
+                <button
+                  className="text-primary underline"
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFile(null);
+                  }}
+                >
+                  Cancelar
+                </button>
+              ) : null}
+            </div>
+          </label>
             <div className="p-10">
               <input {...register("nombre",{required:true})} className="font-timesnr text-5xl border-b border-b-transparent hover:border-b-emerald-700 w-full" type="text" placeholder="Titulo del proyecto" defaultValue={proyecto.nombre}/>
               <div className="bg-secondary h-[1px] my-8"></div>
