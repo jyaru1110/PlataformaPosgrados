@@ -2,7 +2,15 @@ const FechaProyecto = require("../models/FechaProyecto");
 const Proyecto = require("../models/Proyecto");
 const { Op } = require("sequelize");
 const multer = require("multer");
-const upload = multer({ dest: "public/images/" }).single("file");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/images/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now()+'-'+file.originalname)
+  }
+});
+const upload = multer({storage:storage}).single("file");
 
 const get_proyectos = async (req, res) => {
   const {query}= req.query;
