@@ -24,6 +24,7 @@ export default function ProyectoAdmin() {
 
   const [dragging, setDragging] = useState(false);
   const [file, setFile] = useState(null);
+  const [stringFile, setStringFile] = useState(null);
 
   const handleDrag = function (e) {
     e.preventDefault();
@@ -48,18 +49,30 @@ export default function ProyectoAdmin() {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
+      const genStringFile = URL.createObjectURL(e.target.files[0]);
+      console.log(genStringFile);
+      setStringFile(genStringFile);
     }
   };
+
+  useEffect(() => {
+    console.log(stringFile);
+  }, [stringFile]);
   
   const onSubmit = (data) => {
     data.caracteristicas = mdRef.current.getMarkdown();
     data.newFechas = newFechas;
     data.changesFechas = changesFechas; 
     const formData = new FormData();
+
     for (const key in data) {
       formData.append(key, data[key]);
     }
-    formData.append("file", file);
+
+    if (file){
+      formData.append("file", file);
+    }
+
     axios.put(import.meta.env.VITE_URL_API+"/proyecto/"+id,formData,{withCredentials:true, headers: { 'Content-Type': 'multipart/form-data' }})
     .then((res)=>{
         toast.success("Proyecto actualizado correctamente");
@@ -155,7 +168,7 @@ export default function ProyectoAdmin() {
               onDragLeave={handleDrag}
               onDrop={handleDrop}
               onDragOver={handleDrag}
-              className={`h-36 rounded-t-xl bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center relative cursor-pointer border-dashed border-2 ${(dragging || file) && "border-primary"}`} style={{backgroundImage:"url("+domainImage+proyecto?.foto+")"}}
+              className={`h-36 rounded-t-xl bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center relative cursor-pointer border-dashed border-2 ${(dragging || file) && "border-primary"}`} style={{backgroundImage:"url("+(stringFile?stringFile:(domainImage+proyecto?.foto))+")"}}
             >
               <p className={`font-medium ${dragging ? " text-primary " : ""}`}>
                 {file?.name ? (
@@ -175,6 +188,7 @@ export default function ProyectoAdmin() {
                   onClick={(e) => {
                     e.preventDefault();
                     setFile(null);
+                    setStringFile(null);
                   }}
                 >
                   Cancelar

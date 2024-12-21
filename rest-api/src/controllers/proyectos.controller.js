@@ -74,10 +74,14 @@ const get_proyecto = async (req, res) => {
 const update_proyecto = async (req,res) => {
   upload(req, res, async (err) => {
     const file = req.file; 
-    console.log(file);
     const { id } = req.params;
     const body = req.body;
-    body.foto = file ? file.filename : "";
+
+    if (file)
+    {
+      body.foto = file.filename;
+    }
+
     try {
       await Proyecto.update(body, {
         where: {
