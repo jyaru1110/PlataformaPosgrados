@@ -6,6 +6,8 @@ import Error from "../../components/Error";
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
+const domainImage = import.meta.env.VITE_IMAGE_DOMAIN;
+
 export default function Proyecto() {
   const {id} = useParams();
   const {loading,proyecto,error} = useProyecto(id);
@@ -31,7 +33,7 @@ export default function Proyecto() {
         </Link>
         <div className="w-full flex">
           <div className="w-[70%] bg-white shadow-header rounded-xl mt-6">
-            <div className="h-36 rounded-t-xl bg-no-repeat bg-center bg-cover" style={{backgroundImage:"url("+proyecto?.foto+")"}}></div>
+            <div className="h-36 rounded-t-xl bg-no-repeat bg-center bg-cover" style={{backgroundImage:"url("+domainImage+proyecto?.foto+")"}}></div>
             <div className="p-10">
               <h1 className="font-timesnr text-5xl">{proyecto?.nombre}</h1>
               <div className="bg-secondary h-[1px] my-8"></div>

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+
+const domainImage = import.meta.env.VITE_IMAGE_DOMAIN;
 export default function CardProyecto({ proyecto }) {
   return (
     <div className="flex bg-white shadow-header w-full h-72 justify-between rounded-md">
@@ -10,7 +12,7 @@ export default function CardProyecto({ proyecto }) {
                 Abrir
             </Link>
         </div>
-        <div className="w-1/3 bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover" style={{backgroundImage:"url("+proyecto.foto+")"}}></div>
+        <div className="w-1/3 bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover" style={{backgroundImage:"url("+domainImage+proyecto.foto+")"}}></div>
     </div>
   );
 }
