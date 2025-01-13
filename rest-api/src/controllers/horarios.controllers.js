@@ -376,6 +376,7 @@ const update_horario = async (req, res) => {
 };
 
 const bulk_create_horario = async (req, res) => {
+  const cleanKey = key => key.replace(/^\ufeff/, '');
   upload(req, res, async (err) => {
     const file = req.file;
     const horarios = [];
@@ -392,7 +393,10 @@ const bulk_create_horario = async (req, res) => {
         })
       )
       .on("data", function (row) {
-        horarios.push(row);
+        const cleanedRow = Object.fromEntries(
+          Object.entries(row).map(([key, value]) => [cleanKey(key), value])
+        );
+        horarios.push(cleanedRow);
       })
       .on("error", function (error) {
         return res.status(500).send({ message: "Error al subir el archivo" });
