@@ -127,7 +127,7 @@ const delete_horario = async (req, res) => {
         req.user.dataValues.nombre
       );
     }
-    res.status(200).send({});
+    res.status(200).send({message: "Se han cancelado los servicios"});
   }
 };
 
