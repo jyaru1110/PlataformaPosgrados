@@ -2,6 +2,7 @@ const FechaProyecto = require("../models/FechaProyecto");
 const Proyecto = require("../models/Proyecto");
 const { Op } = require("sequelize");
 const multer = require("multer");
+const { Json } = require("sequelize/lib/utils");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/images/')
@@ -71,16 +72,33 @@ const get_proyecto = async (req, res) => {
   }
 };
 
-const update_proyecto = async (req,res) => {
+const upload_photo = async (req, res) => {
   upload(req, res, async (err) => {
     const file = req.file; 
     const { id } = req.params;
-    const body = req.body;
 
-    if (file)
-    {
-      body.foto = file.filename;
+    if (!file) {
+      return res.status(400).send({ message: "No se ha subido una imagen" });
     }
+
+    body.foto = file.filename;
+    try {
+      await Proyecto.update(body, {
+        where: {
+          id: id,
+        },
+      });
+      return res.status(200);
+    } catch (e) {
+      console.log(e);
+      return res.status(500).send({ message: e.parent.detail });
+    }
+  })
+}
+
+const update_proyecto = async (req,res) => {
+    const { id } = req.params;
+    const body = req.body;
 
     try {
       await Proyecto.update(body, {
@@ -88,9 +106,9 @@ const update_proyecto = async (req,res) => {
           id: id,
         },
       });
-  
+
       await FechaProyecto.bulkCreate(body.newFechas);
-  
+
       Object.keys(body.changesFechas).forEach(async (key) => {
         await FechaProyecto.update(body.changesFechas[key], {
           where: {
@@ -98,12 +116,12 @@ const update_proyecto = async (req,res) => {
           },
         });
       });
+
       return res.status(200).send();
     } catch (e) {
       console.log(e);
       return res.status(500).send({ message: e.parent.detail });
     }
-  })
 };
 
 const delete_proyecto = async (req, res) => {
@@ -127,4 +145,5 @@ module.exports = {
   get_proyecto,
   delete_proyecto,
   update_proyecto,
+  upload_photo
 };

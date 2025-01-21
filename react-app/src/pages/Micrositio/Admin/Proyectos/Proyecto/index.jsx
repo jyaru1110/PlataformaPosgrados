@@ -55,25 +55,25 @@ export default function ProyectoAdmin() {
     }
   };
 
-  useEffect(() => {
-    console.log(stringFile);
-  }, [stringFile]);
-  
   const onSubmit = (data) => {
     data.caracteristicas = mdRef.current.getMarkdown();
     data.newFechas = newFechas;
     data.changesFechas = changesFechas; 
-    const formData = new FormData();
-
-    for (const key in data) {
-      formData.append(key, data[key]);
-    }
 
     if (file){
+      const formData = new FormData();
       formData.append("file", file);
+      axios.put(import.meta.env.VITE_URL_API+"/proyecto/"+id,formData,{withCredentials:true, headers: { 'Content-Type': 'multipart/form-data' }})
+      .then((res)=>{
+        toast.success("Foto actualizada correctamente");
+      })
+      .catch((e)=>{
+        console.log(e);
+        toast.error("Error al actualizar la foto del proyecto")
+      })
     }
 
-    axios.put(import.meta.env.VITE_URL_API+"/proyecto/"+id,formData,{withCredentials:true, headers: { 'Content-Type': 'multipart/form-data' }})
+    axios.put(import.meta.env.VITE_URL_API+"/proyecto/"+id,data,{withCredentials:true})
     .then((res)=>{
         toast.success("Proyecto actualizado correctamente");
     })

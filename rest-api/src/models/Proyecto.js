@@ -15,6 +15,9 @@ const Proyecto = sequelize.define("proyecto", {
   caracteristicas: {
     type: DataTypes.TEXT,
   },
+  categoria:{
+    type: DataTypes.TEXT,
+  },
 });
 
 module.exports = Proyecto
