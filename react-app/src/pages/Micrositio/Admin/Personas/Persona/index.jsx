@@ -175,7 +175,7 @@ export default function Persona() {
   }, [persona]);
 
   return (
-    <div className="w-full flex flex-col relative h-screen">
+    <div className="w-5/6 flex flex-col relative h-screen">
       {error ? (
         <Error err={error} />
       ) : (
