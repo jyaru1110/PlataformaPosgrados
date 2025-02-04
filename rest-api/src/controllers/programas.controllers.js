@@ -86,6 +86,7 @@ const get_programas_todos = async (req, res) => {
         { codigo: { [Op.iLike]: `%${query}%` } },
         { rvoe: { [Op.iLike]: `%${query}%` } },
       ],
+      "esta_activo": true
     },
   });
   res.status(200).send(programas);
