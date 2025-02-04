@@ -26,17 +26,17 @@ export const secciones = {
 };
 
 export const escuelas = [
-  "Gobierno y Economía",
   "Bellas Artes",
-  "Derecho",
-  "Empresariales",
-  "ESDAI",
-  "Filosofía",
-  "Ingeniería",
-  "Comunicación",
-  "Pedagogía",
-  "Empresariales Santa Fe",
   "Ciencias de la Salud",
+  "Comunicación",
+  "Derecho",
+  "ESDAI",
+  "Empresariales",
+  "Empresariales Santa Fe",
+  "Filosofía",
+  "Gobierno y Economía",
+  "Ingeniería",
+  "Pedagogía",
 ];
 
 export const puestos = [
@@ -48,6 +48,7 @@ export const puestos = [
   "Jefatura Promoción y Admisiones",
   "Decano",
   "Secretaría de Investigación",
+  "Subdirección",
 ];
 
 export const puestos_program = [
@@ -60,9 +61,20 @@ export const puestos_program = [
 ];
 
 export const puestos_area = {
-  "Dirección de Posgrados": ["Dirección","Beca","Jefatura de Estrategia, Desarrollo y Calidad de Posgrados","Jefatura de Vinculación y Comercial de Posgrados"],
-  "Operaciones": ["Dirección","Subdirección","Jefatura de Eventos","Coordinación de Eventos","Beca"],
-}
+  "Dirección de Posgrados": [
+    "Dirección",
+    "Beca",
+    "Jefatura de Estrategia, Desarrollo y Calidad de Posgrados",
+    "Jefatura de Vinculación y Comercial de Posgrados",
+  ],
+  Operaciones: [
+    "Dirección",
+    "Subdirección",
+    "Jefatura de Eventos",
+    "Coordinación de Eventos",
+    "Beca",
+  ],
+};
 
 export const sedes = ["Mixcoac", "Santa Fe"];
 
