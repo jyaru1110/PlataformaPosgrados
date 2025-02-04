@@ -600,7 +600,7 @@ const get_programas_full = async (req, res) => {
         },
         {
           model: AperturasCierres,
-          limit: 1, 
+          limit: 2, 
           attributes: ["fecha_inicio","id"],
           order: [["fecha_inicio", "DESC"]],
         }
