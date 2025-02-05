@@ -1,8 +1,10 @@
 const FechaProyecto = require("../models/FechaProyecto");
 const Proyecto = require("../models/Proyecto");
+const Seccion = require("../models/Seccion");
+
 const { Op } = require("sequelize");
 const multer = require("multer");
-const { Json } = require("sequelize/lib/utils");
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/images/')
@@ -11,6 +13,7 @@ const storage = multer.diskStorage({
     cb(null, Date.now()+'-'+file.originalname)
   }
 });
+
 const upload = multer({storage:storage}).single("file");
 
 const get_proyectos = async (req, res) => {
@@ -101,20 +104,32 @@ const update_proyecto = async (req,res) => {
     const body = req.body;
 
     try {
+      const newFechas = body.newFechas;
+      const changesFechas = body.changesFechas;
+      const newSecciones = body.newSecciones;
+      delete body.newSecciones;
+      delete body.changesFechas;
+      delete body.newFechas;
+
       await Proyecto.update(body, {
         where: {
           id: id,
         },
       });
+      
+      await FechaProyecto.bulkCreate(newFechas);
 
-      await FechaProyecto.bulkCreate(body.newFechas);
-
-      Object.keys(body.changesFechas).forEach(async (key) => {
-        await FechaProyecto.update(body.changesFechas[key], {
+      Object.keys(changesFechas).forEach(async (key) => {
+        await FechaProyecto.update(changesFechas[key], {
           where: {
             id: key,
           },
         });
+      });
+
+
+      await Seccion.bulkCreate(newSecciones, {
+        include: ["links"]
       });
 
       return res.status(200).send();
