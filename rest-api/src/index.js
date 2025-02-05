@@ -24,6 +24,8 @@ const Periodo = require("./models/Periodo");
 const PeriodoPrograma = require("./models/PeriodoPrograma");
 const Proyecto = require("./models/Proyecto");
 const FechaProyecto = require("./models/FechaProyecto")
+const Seccion = require("./models/Seccion");
+const Link = require("./models/Link");
 
 var port = process.env.PORT || 3900;
 
@@ -126,6 +128,13 @@ Programa.belongsToMany(Usuario, {
 Proyecto.hasMany(FechaProyecto);
 FechaProyecto.belongsTo(Proyecto);
 
+//Proyecto y secciones
+Proyecto.hasMany(Seccion);
+Seccion.belongsTo(Proyecto);
+
+//Seccion y links
+Seccion.hasMany(Link);
+Link.belongsTo(Seccion);
 
 //inicio de la aplicacion
 async function init() {
