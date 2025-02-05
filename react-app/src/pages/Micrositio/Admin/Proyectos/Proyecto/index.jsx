@@ -311,7 +311,7 @@ export default function ProyectoAdmin() {
                }
             <button
               onClick={()=>{
-                setNewSecciones([...newSecciones ,{titulo:"", links:[]}])
+                setNewSecciones([...newSecciones ,{proyectoId:id,titulo:"", links:[]}])
               }}
               type="button" className="w-full text-secondary mt-3 px-3 py-2 hover:bg-secondary/10 rounded-md">
             + Agrega una sección 
