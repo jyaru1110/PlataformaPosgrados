@@ -5,7 +5,7 @@ import AdminNavLink from "./AdminNavLink";
 export default function Nav() {
   return (
     <div className="h-screen w-1/6 p-4 flex text-white flex-col items-center bg-primary font-timesnr space-y-2.5">
-      <img className="w-20 mb-20" src={LogoPosgrados}></img>
+      <img className="w-20 mb-20 mt-5" src={LogoPosgrados}></img>
       <NavLink className={({ isActive, isPending }) =>{
         return `w-full flex text-xl items-center space-x-4 rounded-3xl pl-5 py-2 ${isActive && 'bg-secondary'}`
       }} to="/micrositio/programas">
@@ -31,6 +31,15 @@ export default function Nav() {
         <p className="text-xl">Proyectos</p>
         <AdminNavLink section="proyectos"/>
       </NavLink>
+      <NavLink className={({ isActive, isPending }) =>{
+        return `w-full flex text-xl items-center space-x-4 rounded-3xl pl-5 py-2 ${isActive && 'bg-secondary'}`
+      }} to="/micrositio/promocion">
+      <svg height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="m8,13c0,2.206,1.794,4,4,4s4-1.794,4-4-1.794-4-4-4-4,1.794-4,4Zm4-3c1.654,0,3,1.346,3,3s-1.346,3-3,3-3-1.346-3-3,1.346-3,3-3Zm6-2c2.206,0,4-1.794,4-4s-1.794-4-4-4-4,1.794-4,4,1.794,4,4,4Zm0-7c1.654,0,3,1.346,3,3s-1.346,3-3,3-3-1.346-3-3,1.346-3,3-3Zm6,11.5v2.5h-1v-2.5c0-.827-.673-1.5-1.5-1.5h-3.849c-.124-.349-.277-.684-.461-1h4.309c1.379,0,2.5,1.121,2.5,2.5Zm-6,9v2.5h-1v-2.5c0-.827-.673-1.5-1.5-1.5h-7c-.827,0-1.5.673-1.5,1.5v2.5h-1v-2.5c0-1.379,1.121-2.5,2.5-2.5h7c1.379,0,2.5,1.121,2.5,2.5ZM6,8c2.206,0,4-1.794,4-4S8.206,0,6,0,2,1.794,2,4s1.794,4,4,4Zm0-7c1.654,0,3,1.346,3,3s-1.346,3-3,3-3-1.346-3-3,1.346-3,3-3Zm-3.5,10c-.827,0-1.5.673-1.5,1.5v2.5H0v-2.5c0-1.379,1.121-2.5,2.5-2.5h4.309c-.183.316-.337.651-.461,1h-3.849Z" stroke="white"/>
+      </svg> 
+        <p className="text-xl">Promoción</p>
+        <AdminNavLink section="promocion"/>
+      </NavLink> 
       <NavLink className={({ isActive, isPending }) =>{
         return `w-full flex text-xl items-center space-x-4 rounded-3xl pl-5 py-2 ${isActive && 'bg-secondary'}`
       }} to="/micrositio/admin/dashboard">

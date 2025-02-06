@@ -66,6 +66,7 @@ export const puestos_area = {
     "Beca",
     "Jefatura de Estrategia, Desarrollo y Calidad de Posgrados",
     "Jefatura de Vinculación y Comercial de Posgrados",
+    "Jefatura de Comunicación y Posicionamiento de Posgrados"
   ],
   Operaciones: [
     "Dirección",

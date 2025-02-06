@@ -35,6 +35,7 @@ import ProyectoAdmin from "./pages/Micrositio/Admin/Proyectos/Proyecto";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import Promocion from "./pages/Micrositio/Promocion";
 
 const router = createBrowserRouter([
   {
@@ -106,6 +107,7 @@ const router = createBrowserRouter([
       { path: "directorio", element: <Directorio/> },
       { path: "proyectos", element: <Proyectos/> },
       { path: "proyectos/:id", element: <Proyecto/> },
+      { path: "promocion", element: <Promocion/> },
       {
         path: "admin",
         children: [
