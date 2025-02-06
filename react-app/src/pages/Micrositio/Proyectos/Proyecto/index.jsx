@@ -59,12 +59,12 @@ export default function Proyecto() {
                   })
                 }
             </div>
-            <div className="mt-6 bg-white py-6 px-10 rounded-lg shadow-header">
+            <div className="mt-6 bg-white py-6 px-10 rounded-lg shadow-header space-y-10">
                {
                   proyecto?.seccions?.map((seccion)=>{
                     return(
-                      <span key={seccion.id}>
-                        <h4 className="border-b border-secondary font-timesnr text-secondary text-xl mb-5">{seccion.titulo}</h4>
+                      <div key={seccion.id} className="">
+                        <h4 className="border-b border-secondary font-timesnr text-secondary text-xl mb-3">{seccion.titulo}</h4>
                         {seccion.links?.map((link)=>{
                           return(
                             <a className="flex font-light items-center" target="blank" href={link.url} key={link.id}>
@@ -73,7 +73,7 @@ export default function Proyecto() {
                            </a> 
                           )
                         })}
-                      </span>
+                      </div>
                     )}
                   )
                 }
