@@ -61,7 +61,6 @@ export default function Programa() {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data.esta_activo);
     await axios
       .patch(`${import.meta.env.VITE_URL_API}/programa/${programa}`, data, {
         withCredentials: true,
@@ -419,7 +418,6 @@ export default function Programa() {
                 autoComplete="off"
                 {...register("codigo")}
                 id="codigo"
-                defaultValue={programaData.codigo}
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 onChange={() => {
                   setProgramChanged(true);
@@ -432,7 +430,6 @@ export default function Programa() {
                 id="escuela"
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("escuela")}
-                defaultValue={programaData.escuela}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -460,7 +457,6 @@ export default function Programa() {
               <select
                 id="grado"
                 {...register("grado")}
-                defaultValue={programaData.grado}
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 onChange={() => {
                   setProgramChanged(true);
@@ -478,7 +474,6 @@ export default function Programa() {
               <select
                 id="tipo"
                 {...register("tipo")}
-                defaultValue={programaData.tipo}
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 onChange={() => {
                   setProgramChanged(true);
@@ -496,7 +491,6 @@ export default function Programa() {
                 autoComplete="off"
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("duracion")}
-                defaultValue={programaData.duracion}
                 type="number"
                 onChange={() => {
                   setProgramChanged(true);
@@ -511,7 +505,6 @@ export default function Programa() {
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 type="number"
                 {...register("creditos")}
-                defaultValue={programaData.creditos}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -524,7 +517,6 @@ export default function Programa() {
                 autoComplete="off"
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("year_inicio")}
-                defaultValue={programaData.year_inicio}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -538,7 +530,6 @@ export default function Programa() {
                 type="number"
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("num_materias")}
-                defaultValue={programaData.num_materias}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -552,7 +543,6 @@ export default function Programa() {
                 type="number"
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("num_materias_ingles")}
-                defaultValue={programaData.num_materias_ingles}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -565,7 +555,6 @@ export default function Programa() {
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 id="rvoe"
                 {...register("rvoe")}
-                defaultValue={programaData.rvoe}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -579,7 +568,6 @@ export default function Programa() {
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 type="date"
                 {...register("fecha_rvoe")}
-                defaultValue={programaData.fecha_rvoe}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -591,7 +579,6 @@ export default function Programa() {
                 id="modalidad"
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("modalidad")}
-                defaultValue={programaData.modalidad}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -607,7 +594,6 @@ export default function Programa() {
                 id="campus"
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 {...register("campus")}
-                defaultValue={programaData.campus}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -621,11 +607,10 @@ export default function Programa() {
                 Visible
               </label>
               <input
+                {...register("esta_activo")}
                 id="esta_activo"
                 type="checkbox"
                 className="justify-self-start"
-                {...register("esta_activo")}
-                defaultValue={programaData.esta_activo}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
@@ -638,7 +623,6 @@ export default function Programa() {
                 id="website"
                 className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700"
                 {...register("website")}
-                defaultValue={programaData.website}
                 onChange={() => setProgramChanged(true)}
               />
               <label htmlFor="encarte" className="font-bold">
@@ -649,7 +633,6 @@ export default function Programa() {
                 id="encarte"
                 className="hover:border-gray-200 border-b border-white/0 focus:border-emerald-700"
                 {...register("encarte")}
-                defaultValue={programaData.encarte}
                 onChange={() => setProgramChanged(true)}
               />
               <button
