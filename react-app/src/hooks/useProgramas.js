@@ -28,6 +28,28 @@ export const useProgramasOpciones = (escuela) => {
   return { programas, loading };
 };
 
+
+export const useProgramasShort = () => {
+  const [programas, setProgramas] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const after_fetch = (data) => {
+    setLoading(false);
+    setProgramas(programas_to_correct_format(data.programas));
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    setLoading(true);
+    const url = url_backend + "/programas/short";
+    get_fetch(url, signal, after_fetch);
+    return () => controller.abort();
+  }, []);
+
+  return { programas, loading };
+};
+
 export const useProgramas = (query) => {
   const [programas, setProgramas] = useState([]);
   const [loading, setLoading] = useState(true);

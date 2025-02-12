@@ -29,6 +29,22 @@ const get_programas_opciones = async (req, res) => {
   res.status(200).send({ programas: programas });
 };
 
+const get_programas_short = async (req, res) => {
+  const programas = await Programa.findAll({
+    attributes: ["programa"],
+    order: [["programa", "ASC"]],
+    where: {
+      escuela: {
+        [Op.not]: "Educación Continua",
+      },
+      rvoe: {
+        [Op.not]: null,
+      },
+    },
+  });
+  res.status(200).send({programas});
+};
+
 const update_programa_proceso = async (req, res) => {
   const { programa } = req.params;
   const { body } = req;
@@ -768,5 +784,6 @@ module.exports = {
   get_programas_full,
   get_contacts,
   get_periodos_de_escuela,
-  get_ultima_actualizacion_periodo_escuela
+  get_ultima_actualizacion_periodo_escuela,
+  get_programas_short
 };
