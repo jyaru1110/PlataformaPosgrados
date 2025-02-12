@@ -61,6 +61,7 @@ export default function Programa() {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
+    console.log(data.esta_activo);
     await axios
       .patch(`${import.meta.env.VITE_URL_API}/programa/${programa}`, data, {
         withCredentials: true,

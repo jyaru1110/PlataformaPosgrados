@@ -23,7 +23,7 @@ const PeriodoPrograma = sequelize.define(
   {
     // Opciones del modelo
     tableName: "periodo_programa",
-    timestamps: false,
+    timestamps: true,
   }
 );
 

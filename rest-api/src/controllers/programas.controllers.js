@@ -86,7 +86,7 @@ const get_programas_todos = async (req, res) => {
         { codigo: { [Op.iLike]: `%${query}%` } },
         { rvoe: { [Op.iLike]: `%${query}%` } },
       ],
-      "esta_activo": true
+      [Op.not]: { escuela: "Educación Continua" },
     },
   });
   res.status(200).send(programas);
@@ -442,17 +442,41 @@ const get_periodos_escuela = async (req, res) => {
   res.status(200).send(periodos);
 };
 
+const get_ultima_actualizacion_periodo_escuela = async (req, res) => {
+  const {escuela} = req.params;
+  const {periodo} = req.query;
+
+  const ultima_fecha = await PeriodoPrograma.findOne({
+    attributes: ["createdAt"],
+    include: [
+      {
+        model: Programa,
+        attributes: [],
+        where: {
+          escuela: escuela,
+        }
+      },
+      {
+        model: Periodo,
+        attributes: [],
+        where: {
+          periodo_nombre: periodo
+        }
+      }
+    ],
+    order: [["createdAt", "DESC"]],
+  });
+
+  return res.status(200).send(ultima_fecha);
+}
+
 const get_periodos_de_escuela = async (req, res) => {
   const { escuela } = req.params;
   const { pagina } = req.query;
 
   try {
-    const periodos = await PeriodoPrograma.findAll({
+    const periodos = await AperturasCierres.findAll({
       include: [
-        {
-          model: Periodo,
-          attributes: ["periodo_nombre"],
-        },
         {
           model: Programa,
           attributes: ["escuela", "codigo"],
@@ -462,14 +486,23 @@ const get_periodos_de_escuela = async (req, res) => {
         },
       ],
       offset: (pagina - 1) * 4,
+      where:
+      {
+        fecha_inicio: {
+          [Op.gte]: new Date()
+        }
+      },
       limit: 4,
-      attributes: [],
-      order: [[{ model: Periodo }, "periodo_nombre", "DESC"], [{ model: Programa }, "codigo"]],
+      attributes: ["fecha_inicio"],
+      order: ["fecha_inicio", [{ model: Programa }, "codigo"]],
     });    
 
-    const count = await PeriodoPrograma.count({
+    const count = await AperturasCierres.count({
       where: {
         "$programa.escuela$": escuela,
+        fecha_inicio: {
+          [Op.gte]: new Date()
+        }
       },
       include: [
         {
@@ -480,7 +513,7 @@ const get_periodos_de_escuela = async (req, res) => {
     }
     );
 
-    return res.status(200).send({periodos, count});
+    return res.status(200).send({periodos, count });
   }
   catch(e){
     console.log(e)
@@ -618,6 +651,7 @@ const get_programas_full = async (req, res) => {
       where: {
         escuela: escuelas[i].escuela,
         rvoe: { [Op.not]: null },
+        esta_activo: true,
       },
       attributes: [
         "programa",
@@ -730,5 +764,6 @@ module.exports = {
   get_periodos_escuela,
   get_programas_full,
   get_contacts,
-  get_periodos_de_escuela
+  get_periodos_de_escuela,
+  get_ultima_actualizacion_periodo_escuela
 };

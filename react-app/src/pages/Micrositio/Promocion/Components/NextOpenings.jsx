@@ -27,7 +27,7 @@ export default function NextOpenings() {
             data?.periodos?.map((periodo)=>{
                 return <div key={periodo.id} className="flex justify-between font-light w-52 m-auto">
                     <span className="text-left font-timesnr text-primary text-xl">{periodo.programa.codigo}</span>
-                    <span className="text-right text-xl">{periodo.periodo.periodo_nombre}</span>
+                    <span className="text-right text-xl">{periodo.fecha_inicio?.substring(0,10).split("-").reverse().join("/")}</span>
                 </div>
             })
         }

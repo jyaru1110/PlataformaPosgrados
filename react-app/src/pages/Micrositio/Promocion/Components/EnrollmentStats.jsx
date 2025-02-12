@@ -4,14 +4,18 @@ import { useState } from "react";
 import { escuelas } from "../../constantes";
 import { usePeriodos } from "../../../../hooks/usePeriodos";
 import { useMetasEscuela } from "../../../../hooks/useMetasEscuela";
+import {useUltimaActualizacionPeriodoEscuela} from "../../../../hooks/useMetasEscuela";
 
 export default function EnrollmentStats() {
   const { loading, metas, update } = usePeriodoPrograma();
+
   const { data } = useMetasEscuela();
   const { periodos } = usePeriodos();
 
-  const [filteredEscuelas, setFilteredEscuelas] = useState("Comunicación");
-  const [filteredPeriodos, setFilteredPeriodos] = useState("2024-2025");
+  const [filteredEscuelas, setFilteredEscuelas] = useState(localStorage.getItem("escuela") || "Bellas Artes");
+  const [filteredPeriodos, setFilteredPeriodos] = useState("2022-2023");
+
+  const {data: ultimaActualizacion} = useUltimaActualizacionPeriodoEscuela(filteredEscuelas,filteredPeriodos);
 
   const filterMetas = (meta) => {
     return (
@@ -33,7 +37,7 @@ export default function EnrollmentStats() {
       <div className="space-y-1">
         <div className="flex items-center space-x-2">
           <h2 className="text-3xl font-serif">Meta de alumnos de</h2>
-          <select className="w-[300px] text-secondary font-timesnr text-3xl mt-2" onChange={(e)=>{setFilteredEscuelas(e.target.value)}}>
+          <select className="w-[300px] text-secondary font-timesnr text-3xl mt-2" defaultValue={filteredEscuelas} onChange={(e)=>{setFilteredEscuelas(e.target.value)}}>
             {
               escuelas.map((escuela)=>{
                 return <option key={escuela} value={escuela} label={escuela}></option>
@@ -42,7 +46,7 @@ export default function EnrollmentStats() {
           </select>
         </div>
         <div>
-          <select className="w-[130px] text-secondary font-timesnr text-2xl" onChange={(e)=>{setFilteredPeriodos(e.target.value)}}>
+          <select className="w-[130px] text-secondary font-timesnr text-2xl" defaultValue={filteredPeriodos} onChange={(e)=>{setFilteredPeriodos(e.target.value)}}>
             {
               periodos.map((periodo)=>{
                 return <option key={periodo.id} value={periodo.periodo_nombre} label={periodo.periodo_nombre}></option>
@@ -95,7 +99,7 @@ export default function EnrollmentStats() {
           }
         </div>
 
-        <p className="text-gray-500 text-sm italic">Última actualización: 5/12/24</p>
+        <p className="text-gray-500 text-sm italic">Última actualización: {ultimaActualizacion?.createdAt.substring(0,10).split("-").reverse().join("/")??""}</p>
       </div>
     </div>
   )

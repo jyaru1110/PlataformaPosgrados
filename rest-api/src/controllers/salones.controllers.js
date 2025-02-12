@@ -6,7 +6,7 @@ const get_salones_todos = async (req, res) => {
             attributes: ['salon'],
             order: [
                 ['salon', 'ASC']
-            ]
+            ],
         }
     );
     salones.unshift({salon:'Todos'});

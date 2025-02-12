@@ -32,13 +32,16 @@ const {
   get_programas_opciones_metas,
   get_programas_full,
   get_contacts,
-  get_periodos_de_escuela
+  get_periodos_de_escuela,
+  get_ultima_actualizacion_periodo_escuela
 } = require("../controllers/programas.controllers");
 const { isUserAuthenticated } = require("../middlewares/auth");
 
 router.get("/programas/periodos", isUserAuthenticated, get_periodos_programa);
 router.get("/escuelas/periodos", isUserAuthenticated, get_periodos_escuela);
+router.get("/escuelas/periodos/:escuela", isUserAuthenticated, get_periodos_escuela);
 router.get("/escuela/periodos/:escuela", isUserAuthenticated, get_periodos_de_escuela);
+router.get("/periodos/last/:escuela", isUserAuthenticated, get_ultima_actualizacion_periodo_escuela);
 router.get("/programas/:escuela", isUserAuthenticated, get_programas_escuela);
 router.get("/programas_metas", isUserAuthenticated, get_programas_opciones_metas);
 router.get("/programas_opciones", isUserAuthenticated, get_programas_opciones);
