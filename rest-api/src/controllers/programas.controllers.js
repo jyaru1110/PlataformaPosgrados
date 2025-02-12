@@ -9,7 +9,7 @@ const PuestoEscuela = require("../models/PuestoEscuela");
 const Periodo = require("../models/Periodo");
 const PeriodoPrograma = require("../models/PeriodoPrograma");
 const sequelize = require("../database/database");
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 const Escuela = require("../models/Escuela");
 
 const get_programas_escuela = async (req, res) => {
@@ -473,16 +473,19 @@ const get_ultima_actualizacion_periodo_escuela = async (req, res) => {
 const get_periodos_de_escuela = async (req, res) => {
   const { escuela } = req.params;
   const { pagina } = req.query;
+  const conditions = {}
 
   try {
+    if (escuela != "Todas") {
+      conditions.escuela = escuela;
+    }
+
     const periodos = await AperturasCierres.findAll({
       include: [
         {
           model: Programa,
           attributes: ["escuela", "codigo"],
-          where: {
-            escuela: escuela,
-          },
+          where: conditions,
         },
       ],
       offset: (pagina - 1) * 4,

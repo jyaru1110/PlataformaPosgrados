@@ -21,6 +21,7 @@ export default function NextOpenings() {
                 return <option key={escuela} value={escuela} label={escuela}></option>
               })
             }
+            <option value="Todas" label="Todas"></option>
         </select> 
         <div>
         {
