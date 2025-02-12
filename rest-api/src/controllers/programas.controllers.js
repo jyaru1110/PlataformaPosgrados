@@ -442,6 +442,52 @@ const get_periodos_escuela = async (req, res) => {
   res.status(200).send(periodos);
 };
 
+const get_periodos_de_escuela = async (req, res) => {
+  const { escuela } = req.params;
+  const { pagina } = req.query;
+
+  try {
+    const periodos = await PeriodoPrograma.findAll({
+      include: [
+        {
+          model: Periodo,
+          attributes: ["periodo_nombre"],
+        },
+        {
+          model: Programa,
+          attributes: ["escuela", "codigo"],
+          where: {
+            escuela: escuela,
+          },
+        },
+      ],
+      offset: (pagina - 1) * 4,
+      limit: 4,
+      attributes: [],
+      order: [[{ model: Periodo }, "periodo_nombre", "DESC"], [{ model: Programa }, "codigo"]],
+    });    
+
+    const count = await PeriodoPrograma.count({
+      where: {
+        "$programa.escuela$": escuela,
+      },
+      include: [
+        {
+          model: Programa,
+          attributes: [],
+        },
+      ]
+    }
+    );
+
+    return res.status(200).send({periodos, count});
+  }
+  catch(e){
+    console.log(e)
+    return res.status(500).send({message: "Error al obtener los periodos"})
+  }
+}
+
 const delete_periodo_programa = async (req, res) => {
   const { id } = req.params;
   try {
@@ -613,7 +659,30 @@ const get_programas_full = async (req, res) => {
 };
 
 const get_contacts = async (req,res) => {
-  const publicObjectSearchRequest = {}
+  const publicObjectSearchRequest = {
+    properties: ['createdate', 'email', 'firstname','lastname','status_up',"ciclo","posgrado_de_interes_2021"],
+    filterGroups: [
+      {
+          filters: [
+          {
+              propertyName: 'status_up',
+              operator: 'EQ',
+              value: "Inscrito Matriculado"
+          },
+          {
+            propertyName: "ciclo",
+            operator: "EQ",
+            value: "1252"
+          },
+          {
+            propertyName: "posgrado_de_interes_2021",
+            operator: "EQ",
+            value: "MCOMI"
+          }
+        ]
+      }
+      ],
+  }
 
   try
   {
@@ -660,5 +729,6 @@ module.exports = {
   update_bulk_periodo_programa,
   get_periodos_escuela,
   get_programas_full,
-  get_contacts
+  get_contacts,
+  get_periodos_de_escuela
 };
