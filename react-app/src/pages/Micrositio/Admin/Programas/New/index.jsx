@@ -7,13 +7,20 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { useProgramasShort } from "../../../../../hooks/useProgramas";
 
 export default function NewPrograma() {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const refSubmit = useRef(null);
+  const { programas } = useProgramasShort();
 
   const onSubmit = async (data) => {
+
+    if (data.programa_previo === "") {
+      delete data.programa_previo;
+    }
+
     await axios
       .post(`${import.meta.env.VITE_URL_API}/programa`, data, {
         withCredentials: true,
@@ -55,6 +62,14 @@ export default function NewPrograma() {
           onSubmit={handleSubmit(onSubmit)}
           title="Nuevo programa"
         >
+          <select className="col-span-2" name="programa_previo" id="programa_previo" {...register("programa_previo")}>
+            <option value="">Escoge un programa previo</option>
+            {
+              programas.map((programa)=>{
+                return <option key={programa.programa} value={programa.programa} label={programa.programa}></option>
+              })
+            }
+          </select>
           <label for="codigo" className="font-bold">
             Código 
           </label>
@@ -145,7 +160,7 @@ export default function NewPrograma() {
             {...register("num_materias")}
           ></input>
           <label for="num_materias_ingles" className="font-bold">
-            # Materias en inglés
+            # Materias inglés
           </label>
           <input
             id="num_materias_ingles"

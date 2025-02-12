@@ -17,6 +17,7 @@ import Select from "react-select";
 import Creatable from "react-select/creatable";
 import personas_to_options_format from "../../../../../utils/personas_to_options_format";
 import { puestos_program } from "../../../constantes";
+import { useProgramasShort } from "../../../../../hooks/useProgramas";
 
 const headers_costos = [
   "Año",
@@ -33,6 +34,7 @@ export default function Programa() {
   const { personas } = usePersonas();
   const { loading, programaData, error } = usePrograma(programa);
   const { periodos, update: update_programa } = usePeriodos();
+  const { programas } = useProgramasShort();
 
   const periodos_options = periodos.map((periodo) => {
     return { value: periodo.id, label: periodo.periodo_nombre };
@@ -61,6 +63,9 @@ export default function Programa() {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
+    if (data.programa_previo === "") {
+      delete data.programa_previo;
+    }
     await axios
       .patch(`${import.meta.env.VITE_URL_API}/programa/${programa}`, data, {
         withCredentials: true,
@@ -411,6 +416,14 @@ export default function Programa() {
               register={register("programa")}
               onSubmit={handleSubmit(onSubmit)}
             >
+              <select name="programa_previo" className="col-span-2" id="programa_previo" {...register("programa_previo")} onChange={()=>{setProgramChanged(true)}} >
+                <option value="">Escoge un programa previo</option>
+                {
+                  programas.map((programa)=>{
+                      return <option key={programa.programa} value={programa.programa} label={programa.programa}></option>
+                  })
+                }
+              </select>
               <label htmlFor="codigo" className="font-bold">
                 Código
               </label>
@@ -535,7 +548,7 @@ export default function Programa() {
                 }}
               ></input>
               <label htmlFor="num_materias_ingles" className="font-bold">
-                # Materias en inglés
+                # Materias inglés
               </label>
               <input
                 id="num_materias_ingles"

@@ -276,6 +276,7 @@ const get_total_programas = async (req, res) => {
       rvoe: {
         [Op.not]: null,
       },
+      programa_previo: null
     },
     group: ["grado"],
   });
@@ -297,6 +298,7 @@ const get_programas_por_tipo = async (req, res) => {
       rvoe: {
         [Op.not]: null,
       },
+      programa_previo: null
     },
     group: ["tipo"],
   });
