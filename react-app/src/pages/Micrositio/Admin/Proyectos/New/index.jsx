@@ -6,18 +6,21 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { MDXEditor, UndoRedo, BoldItalicUnderlineToggles, toolbarPlugin, linkPlugin, linkDialogPlugin, CreateLink, BlockTypeSelect, InsertTable, tablePlugin,listsPlugin,markdownShortcutPlugin,headingsPlugin, ListsToggle,quotePlugin, frontmatterPlugin} from '@mdxeditor/editor'
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams} from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 
 export default function NewProyecto() {
+    const [searchParams, setSearchParams] = useSearchParams();
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const mdRef = useRef(null)
     const onSubmit = async (data) => {
         data.caracteristicas = mdRef.current.getMarkdown()
-        axios.post(`${import.meta.env.VITE_URL_API}/proyecto`,data,{
+        const categoria = searchParams.get("categoria")
+        const url = categoria ? `${import.meta.env.VITE_URL_API}/proyecto?categoria=${categoria}` : `${import.meta.env.VITE_URL_API}/proyecto` 
+        axios.post(url,data,{
             withCredentials: true
         }).then((res)=>{
             navigate("/micrositio/admin/proyectos/"+res.data.id)

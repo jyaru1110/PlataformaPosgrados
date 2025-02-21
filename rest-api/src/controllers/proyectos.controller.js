@@ -3,7 +3,7 @@ const Proyecto = require("../models/Proyecto");
 const Seccion = require("../models/Seccion");
 const Link = require("../models/Link");
 
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -34,6 +34,9 @@ const get_proyectos = async (req, res) => {
             },
           },
         ],
+        nombre: {
+          [Op.not]:"promocion",
+        }
       },
     });
     return res.status(200).send(proyectos);
@@ -45,6 +48,12 @@ const get_proyectos = async (req, res) => {
 
 const create_proyecto = async (req, res) => {
   const body = req.body;
+  const categoria = req.query?.categoria;
+
+  if (categoria){
+    body.categoria = categoria;
+  }
+
   try {
     const nuevoProyecto = await Proyecto.create(body);
     return res.status(200).send({ id: nuevoProyecto.id });
@@ -215,6 +224,50 @@ const delete_proyecto = async (req, res) => {
   }
 };
 
+const get_proyectos_promocion = async (req, res) => {
+  try {
+    const proyectos = await Proyecto.findAll({
+      where: {
+        categoria: "promocion",
+        nombre:{
+          [Op.not]:"promocion",
+        }
+      },
+    });
+    return res.status(200).send(proyectos);
+  } catch (e) {
+    console.log(e);
+    return res.status(500);
+  }
+}
+
+const get_secciones_promocion = async (req, res) => {
+  try
+  {
+    const secciones = await Seccion.findAll({
+      where: {
+        proyectoId: 14,
+      },
+      include: [
+        {
+          model: Link,
+          attributes: ["descripcion", "url", "id"],
+        },
+        {
+          model: Proyecto,
+          attributes: [],
+        }
+      ],
+    });
+
+    return res.status(200).send(secciones);
+  }
+  catch(e){
+    console.log(e);
+    return res.status(500);
+  }
+}
+
 module.exports = {
   get_proyectos,
   create_proyecto,
@@ -223,5 +276,7 @@ module.exports = {
   update_proyecto,
   upload_photo,
   delete_link,
-  delete_seccion
+  delete_seccion,
+  get_proyectos_promocion,
+  get_secciones_promocion
 };

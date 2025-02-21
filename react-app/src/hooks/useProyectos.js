@@ -24,6 +24,26 @@ export const useProyectos = (query) => {
     return {loading,proyectos}
 };
 
+export const usePromocionProyectos = () => {
+    const [proyectos,setProyectos] = useState([])
+    const [loading,setLoading] = useState(true)
+
+    const afterFetch = (data) => {
+        setProyectos(data);
+        setLoading(false);
+    }
+
+    useEffect(()=>{
+        const controller = new AbortController();
+        const signal = controller.signal;
+        get_fetch(url_backend+"/promocion/proyectos",signal,afterFetch)
+        return () => controller.abort();
+    },[])
+
+    return {loading,proyectos}
+
+}
+
 export const useProyecto = (id) => {
     const [proyecto, setProyecto] = useState();
     const [loading, setLoading] = useState(true);

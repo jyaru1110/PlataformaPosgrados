@@ -1,20 +1,20 @@
-import Header from "../components/Header";
-import Main from "../components/Main";
-import CardProyecto from "./Components/CardProyecto";
-import { usePromocionProyectos } from "../../../hooks/useProyectos";
-import EnrollmentStats from "./Components/EnrollmentStats";
-import NextOpenings from "./Components/NextOpenings";
-import { useSeccionesPromocion } from "../../../hooks/useSeccionesPromocion";
+import Header from "../components/Header"
+import Main from "../../components/Main"
+import EnrollmentStats from "../../Promocion/Components/EnrollmentStats"
+import NextOpenings from "../../Promocion/Components/NextOpenings"
+import CardProyecto from "./CardProyecto"
+import { usePromocionProyectos } from "../../../../hooks/useProyectos"
+import { useSeccionesPromocion } from "../../../../hooks/useSeccionesPromocion"
+import { Link } from "react-router-dom"
 
-export default function Promocion() {
-  const {loading, proyectos} = usePromocionProyectos();
-  const {secciones} = useSeccionesPromocion(); 
-
-  return (
-    <div className="w-5/6 flex flex-col relative h-screen">
-      <Header></Header>
-      <Main>
-        <div className="w-full flex gap-5">
+export default function PromocionAdmin(){
+    const {loading, proyectos} = usePromocionProyectos();
+    const {secciones} = useSeccionesPromocion();
+    return(
+        <div className="w-full h-screen flex flex-col relative">    
+            <Header title="Promoción"></Header>
+            <Main>
+            <div className="w-full flex gap-5">
             <div className="w-2/3 gap-4">
               <EnrollmentStats></EnrollmentStats>
               <div className="space-y-8 mb-8">
@@ -24,11 +24,11 @@ export default function Promocion() {
                 })
               }
               </div>
+              <Link to="/micrositio/admin/proyectos/new?categoria=promocion" className="bg-primary text-white p-2 rounded-md">Nuevo Proyecto</Link>
             </div> 
             <div className="w-1/3">
               <NextOpenings></NextOpenings>
-              <div className="space-y-8 bg-white p-4 rounded-md mb-8">
-              {
+              <div className="space-y-8 bg-white p-4 rounded-md mb-8">              {
                 secciones?.map((seccion)=>{
                   return (
                     <div key={seccion.id} className="">
@@ -41,14 +41,16 @@ export default function Promocion() {
                            </a> 
                           )
                         })}
+
                       </div>
                   )}
                   )
               }
-            </div>
+              </div>
+              <Link to="/micrositio/admin/proyectos/14" className="bg-primary text-white p-2 rounded-md">Agregar sección</Link>
             </div>
         </div>
-      </Main>
-    </div>
-  );
+            </Main>
+        </div>
+    )
 }
