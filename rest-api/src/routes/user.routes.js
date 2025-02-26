@@ -157,7 +157,7 @@ router.get("/user/all", async (req, res) => {
         {escuela:{[Op.not]: "Educación Continua"}},
         {[Op.or]: [
           { nombre: { [Op.iLike]: `%${query}%` } },
-          { escuela: { [Op.iLike]: `%${query}%`} },
+          { escuela: { [Op.iLike]: `%${query}%`}, area: null},
           { area: { [Op.iLike]: `%${query}%` } },
         ]},
       ],
