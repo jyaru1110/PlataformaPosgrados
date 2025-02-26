@@ -15,11 +15,13 @@ import { ToastContainer, toast } from "react-toastify";
 export default function Directorio() {
   const [query, setQuery] = useState("");
   const downloadRef = useRef(null);
+  const downloadRolesRef = useRef(null);
   const { loading, personas } = usePersonas(query);
   const [filteredEscuelas, setFilteredEscuelas] = useState([]);
   const [filteredPuestos, setFilteredPuestos] = useState([]);
   const [filteredPuestosPrograma, setFilteredPuestosPrograma] = useState([]);
   const [personasReport, setPersonasReport] = useState([]);
+  const [rolesReport, setRolesReport] = useState([]);
   const [filteredArea, setFilteredArea] = useState([]);
 
   const filterPersonas = (persona) => {
@@ -57,6 +59,7 @@ export default function Directorio() {
     const reduced_puestos_programa = persona.puesto_programas?.reduce((acc, puesto) => {
                                         return acc + puesto.puesto + " - " + puesto.programaPrograma + "\n";
                             },"");
+
     return {
         "Titulo": persona.titulo,
         "Nombre": persona.nombre,
@@ -68,15 +71,53 @@ export default function Directorio() {
         "Puesto_programa": reduced_puestos_programa
     }
     });
+
+    const roles = [];
+
+    personasFiltered.forEach(persona => {
+      persona.puesto_escuelas.forEach(puesto => {
+          roles.push({
+            "Titulo": persona.titulo,
+            "Nombre": persona.nombre,
+            "Escuela": persona.escuela,
+            "Correo": persona.email,
+            "Extensión": persona.extension,
+            "Teléfono": persona.telefono,
+            "Puesto": puesto.puesto
+          });
+      });
+
+      persona.puesto_programas.forEach(puesto => {
+          roles.push({
+            "Titulo": persona.titulo,
+            "Nombre": persona.nombre,
+            "Escuela": persona.escuela,
+            "Correo": persona.email,
+            "Extensión": persona.extension,
+            "Teléfono": persona.telefono,
+            "Programa": puesto.programaPrograma,
+            "Puesto": puesto.puesto
+          });
+      });
+    });
+
+
+
     setPersonasReport(personasReport);
+    setRolesReport(roles);
   }
 
   useEffect(() => {
     if (personasReport.length > 0) {
       downloadRef.current.link.click();
-      toast.success("Descarga exitosa");
+      toast.success("Descarga de directorio exitosa");
     }
-  }, [personasReport]);
+
+    if (rolesReport.length > 0) {
+      downloadRolesRef.current.link.click();
+      toast.success("Descarga de archivo de roles exitosa");
+    }
+  }, [personasReport, rolesReport]);
 
   return (
     <div className="w-5/6 flex flex-col relative h-screen">
@@ -115,6 +156,7 @@ export default function Directorio() {
             <svg id="Layer_1" height="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs"><g width="100%" height="100%" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,512.0004692077637,-0.000476837158203125)"><path d="m478.063 75.448v361.105a75.534 75.534 0 0 1 -75.449 75.447h-232.104a18 18 0 0 1 0-36h232.1a39.493 39.493 0 0 0 39.449-39.447v-361.105a39.493 39.493 0 0 0 -39.445-39.448h-232.104a18 18 0 0 1 0-36h232.1a75.534 75.534 0 0 1 75.453 75.448zm-302.592 284.825a18 18 0 1 0 25.455 25.456l117-117a18 18 0 0 0 0-25.456l-117-117a18 18 0 0 0 -25.455 25.456l86.273 86.271h-209.806a18 18 0 1 0 0 36h209.806z" fill="#00685E" fillOpacity="1" stroke="none" strokeOpacity="1"/></g></svg>
           </button>
           <CSVLink ref={downloadRef} className="hidden" data={personasReport} filename={`${(new Date).toLocaleDateString()}_directorio.csv`}></CSVLink>
+          <CSVLink ref={downloadRolesRef} className="hidden" data={rolesReport} filename={`${(new Date).toLocaleDateString()}_desglose_roles.csv`}></CSVLink>
         </Buscador>
         {
             loading ? <LoaderCard />:
