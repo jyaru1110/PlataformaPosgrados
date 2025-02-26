@@ -140,7 +140,7 @@ export default function ChartsMetas(escuelas) {
                 <Doughnut data={data_pie?.data}></Doughnut>{" "}
                 <span className="absolute top-0 text-4xl w-full h-full flex items-center justify-center pointer-events-none">
                   <p className="mt-8 font-semibold text-primary">
-                    %{data_pie?.percentage?.toFixed(1)}
+                    {data_pie?.percentage?.toFixed(1)}%
                   </p>
                 </span>
               </>
