@@ -27,7 +27,7 @@ export default function Directorio() {
       (filteredArea.length === 0 ||
         filteredArea.includes(persona.area)) &&
       (filteredEscuelas.length === 0 ||
-        filteredEscuelas.includes(persona.escuela)) &&
+        filteredEscuelas.includes(persona.escuela) && !persona.area) &&
       (
         filteredPuestos.length === 0 && filteredPuestosPrograma.length === 0 ||
         puestosInterceptionNotZero(
