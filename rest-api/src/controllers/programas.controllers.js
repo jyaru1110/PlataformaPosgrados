@@ -9,7 +9,7 @@ const PuestoEscuela = require("../models/PuestoEscuela");
 const Periodo = require("../models/Periodo");
 const PeriodoPrograma = require("../models/PeriodoPrograma");
 const sequelize = require("../database/database");
-const { Op, where } = require("sequelize");
+const { Op, where, STRING } = require("sequelize");
 const Escuela = require("../models/Escuela");
 
 const get_programas_escuela = async (req, res) => {
@@ -746,42 +746,61 @@ const get_programas_full = async (req, res) => {
 };
 
 const get_contacts = async (req,res) => {
-  const publicObjectSearchRequest = {
-    properties: ['createdate', 'email', 'firstname','lastname','status_up',"ciclo","posgrado_de_interes_2021"],
-    filterGroups: [
-      {
-          filters: [
-          {
-              propertyName: 'status_up',
-              operator: 'EQ',
-              value: "Inscrito Matriculado"
-          },
-          {
-            propertyName: "ciclo",
-            operator: "EQ",
-            value: "1252"
-          },
-          {
-            propertyName: "posgrado_de_interes_2021",
-            operator: "EQ",
-            value: "MCOMI"
-          }
-        ]
+  const programas = await Programa.findAll({
+    where: {
+      rvoe: {
+        [Op.not]: null
+      },
+      escuela: {
+        [Op.ne]: "Educación Continua"
       }
-      ],
+    },
+    attributes: ["programa","codigo"]
+  });
+
+  const codigos = programas.map(programa => programa.codigo)
+
+  const publicObjectSearchRequest = {
+      limit:200,
+      properties: ['createdate', 'email', 'firstname','lastname','status_up',"ciclo","posgrado_de_interes_2021"],
+      filterGroups: [
+        {
+            filters: [
+            {
+                propertyName: 'status_up',
+                operator: 'EQ',
+                value: "Inscrito Matriculado"
+            },
+            {
+              propertyName: "posgrado_de_interes_2021",
+              operator: "IN",
+              values: codigos 
+            }
+          ]
+        }
+        ],
   }
 
   try
   {
+    const results = [];
     const response = await hubspotClient.crm.contacts.searchApi.doSearch(publicObjectSearchRequest);
-    console.log(response)
-    console.log(response.results.length)
+    const result = response.results;
+    results.push(...result);
+    var next = response.paging.next.after;
 
-    return res.status(200).send(response)
+    while (next != null) {
+      publicObjectSearchRequest.after = next;
+      const response = await hubspotClient.crm.contacts.searchApi.doSearch(publicObjectSearchRequest);
+      results.push(...response.results);
+      if (response.paging?.next) next = response.paging.next.after;
+      else next = null;
+    } 
+
+    return res.status(200).send(results);
   }
   catch(e){
     console.log(e)
-    return res.status(500)
   }
 }
 
