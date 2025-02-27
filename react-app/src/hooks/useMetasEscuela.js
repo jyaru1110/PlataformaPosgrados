@@ -88,7 +88,7 @@ export const useUltimaActualizacionPeriodoEscuela = (escuela,periodo) => {
     const signal = abortController.signal;
     get_fetch(url, signal, after_fetch,{}, onError);
     return () => abortController.abort();
-  }, [escuela]);
+  }, [escuela,periodo]);
 
   return {
     data: data,

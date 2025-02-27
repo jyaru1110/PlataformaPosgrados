@@ -98,8 +98,9 @@ export default function EnrollmentStats() {
             ))
           }
         </div>
-
-        <p className="text-gray-500 text-sm italic">Última actualización: {ultimaActualizacion?.createdAt.substring(0,10).split("-").reverse().join("/")??""}</p>
+          {
+            ultimaActualizacion && <p className="text-gray-500 text-sm italic">Última actualización: {ultimaActualizacion?.updatedAt.substring(0,10).split("-").reverse().join("/")??""}</p>
+          }
       </div>
     </div>
   )

@@ -465,7 +465,7 @@ const get_ultima_actualizacion_periodo_escuela = async (req, res) => {
   const {periodo} = req.query;
 
   const ultima_fecha = await PeriodoPrograma.findOne({
-    attributes: ["createdAt"],
+    attributes: ["updatedAt"],
     include: [
       {
         model: Programa,
@@ -482,7 +482,7 @@ const get_ultima_actualizacion_periodo_escuela = async (req, res) => {
         }
       }
     ],
-    order: [["createdAt", "DESC"]],
+    order: [["updatedAt", "DESC"]],
   });
 
   return res.status(200).send(ultima_fecha);
