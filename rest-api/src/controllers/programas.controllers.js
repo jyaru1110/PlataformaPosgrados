@@ -699,14 +699,46 @@ const get_programas_full = async (req, res) => {
             },
           ],
         },
-        {
-          model: AperturasCierres,
-          limit: 2, 
-          attributes: ["fecha_inicio","id"],
-          order: [["fecha_inicio", "DESC"]],
-        }
       ],
     });
+    for(let j = 0; j < programas.length; j++){
+      const aperturas_cierres = [];
+
+      const ultima_apertura = await AperturasCierres.findOne({
+        where: {
+          programaPrograma: programas[j].programa,
+          fecha_inicio: {
+            [Op.lte]: new Date()
+          }
+        },
+        attributes: ["fecha_inicio","id"],
+        order: [["fecha_inicio", "DESC"]]
+      });
+
+      if(ultima_apertura){
+        aperturas_cierres.push(ultima_apertura);
+      }
+
+      const proximaApertura = await AperturasCierres.findOne({
+        where: {
+          programaPrograma: programas[j].programa,
+          fecha_inicio: {
+            [Op.gte]: new Date()
+          }
+        },
+        attributes: ["fecha_inicio","id"],
+        order: [["fecha_inicio", "ASC"]]
+      });
+
+      if(proximaApertura){
+        aperturas_cierres.push(proximaApertura);
+      }
+
+      
+
+      programas[j].dataValues.ultima_apertura = ultima_apertura;
+      programas[j].dataValues.proxima_apertura = proximaApertura;
+    }
     escuelas[i].dataValues.programas = programas;
   }
 

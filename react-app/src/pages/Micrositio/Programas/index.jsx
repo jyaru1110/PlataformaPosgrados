@@ -132,17 +132,18 @@ export default function Programas() {
                           </span>
                          } 
 
-                          {programa.aperturas_cierres?.length > 0 &&
+                          {(programa?.ultima_apertura || programa?.proxima_apertura) &&
                           <span className="font-medium text-primary flex">
                             <svg className="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="21.217" height="21.524" viewBox="0 0 21.217 21.524"><defs><clipPath id="a"><path fill="#00685E" d="M0 0h21.217v21.524H0z"/></clipPath></defs><g clipPath="url(#a)" fill="#00685E"><path d="M15.889 4.543a1.49 1.49 0 0 0 1.493-1.49v-1.56a1.493 1.493 0 1 0-2.985 0v1.56a1.49 1.49 0 0 0 1.492 1.489"/><path d="M21.194 2.583h-3.006v.759a2.273 2.273 0 1 1-4.545 0v-.759H7.579v.759a2.273 2.273 0 1 1-4.546 0v-.759L0 2.545v18.979h21.214ZM19.7 20.013H1.517V7.888H19.7z"/><path d="M5.282 4.543a1.49 1.49 0 0 0 1.494-1.49v-1.56a1.493 1.493 0 1 0-2.985 0v1.56a1.487 1.487 0 0 0 1.491 1.49"/><path d="M7.583 9.515h2.388v2.108H7.583z"/><path d="M11.445 9.515h2.39v2.108h-2.39z"/><path d="M15.026 9.515h2.388v2.108h-2.388z"/><path d="M7.583 13.015h2.388v2.107H7.583z"/><path d="M11.445 13.015h2.39v2.107h-2.39z"/><path d="M15.026 13.015h2.388v2.107h-2.388z"/><path d="M7.583 16.585h2.388v2.107H7.583z"/><path d="M3.79 13.015h2.387v2.107H3.79z"/><path d="M3.79 16.585h2.387v2.107H3.79z"/><path d="M11.445 16.585h2.39v2.107h-2.39z"/><path d="M15.026 16.585h2.388v2.107h-2.388z"/></g></svg>
-                            <span>
-                              <span className="mr-3">
-                                UA: {programa?.aperturas_cierres[1]?.fecha_inicio.substring(0, 10).split('-').reverse().join('/')}
-                              </span>
-                            </span>
                             {
-                              programa.aperturas_cierres?.length > 1 &&
-                              <span>PA: {programa?.aperturas_cierres[0]?.fecha_inicio.substring(0, 10).split('-').reverse().join('/')}</span>
+                              programa?.ultima_apertura &&
+                              <span className="mr-3">
+                                  UA: {programa?.ultima_apertura?.fecha_inicio.substring(0, 10).split('-').reverse().join('/')}
+                              </span>
+                            }
+                            {
+                              programa?.proxima_apertura &&
+                              <span>PA: {programa?.proxima_apertura?.fecha_inicio.substring(0, 10).split('-').reverse().join('/')}</span>
                             }
                           </span>                           
                           }
