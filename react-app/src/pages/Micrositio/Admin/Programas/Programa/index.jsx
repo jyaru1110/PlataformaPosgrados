@@ -354,6 +354,11 @@ export default function Programa() {
         ) {
           return acc;
         }
+
+        if(key == "fecha_rvoe"){
+          return {...acc, [key]: programaData[key].split("T")[0]}
+        }
+
         return { ...acc, [key]: programaData[key] };
       }, {});
       reset(programa_reset);
@@ -576,11 +581,11 @@ export default function Programa() {
                 Fecha RVOE
               </label>
               <input
+                {...register("fecha_rvoe")}
                 id="fecha_rvoe"
                 autoComplete="off"
                 className="hover:border-gray-200 border-white/0 border-b focus:border-emerald-700"
                 type="date"
-                {...register("fecha_rvoe")}
                 onChange={() => {
                   setProgramChanged(true);
                 }}
