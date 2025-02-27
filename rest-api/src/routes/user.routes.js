@@ -160,7 +160,7 @@ router.get("/user/all", async (req, res) => {
         ]},
         {[Op.or]: [
           { nombre: { [Op.iLike]: `%${query}%` } },
-          { escuela: { [Op.iLike]: `%${query}%`}},
+          { escuela: { [Op.iLike]: `%${query}%`}, area: null},
           { area: { [Op.iLike]: `%${query}%` } },
         ]},
       ],
