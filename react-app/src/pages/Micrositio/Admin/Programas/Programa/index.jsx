@@ -355,7 +355,7 @@ export default function Programa() {
           return acc;
         }
 
-        if(key == "fecha_rvoe"){
+        if(key == "fecha_rvoe" && programaData[key]){
           return {...acc, [key]: programaData[key].split("T")[0]}
         }
 
