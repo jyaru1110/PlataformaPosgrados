@@ -146,6 +146,7 @@ const create_horario = async (req, res) => {
     hora_servicio_inicio,
     hora_servicio_fin,
   } = req.body;
+  const solicitadoPor = req.user.dataValues.id;
   var fecha_inicio = req.body.fecha_inicio;
   const servicios_repetidos = await Servicios_dia.findAll({
     where: {
@@ -238,6 +239,7 @@ const create_horario = async (req, res) => {
       hora_servicio_inicio: hora_servicio_inicio,
       hora_servicio_fin: hora_servicio_fin,
       num_servicios: num_alumnos,
+      solicitadoPor: solicitadoPor,
     });
     res.status(200).send({ servicio: servicio });
     return;
@@ -258,6 +260,7 @@ const create_horario = async (req, res) => {
       hora_servicio_inicio: hora_servicio_inicio,
       hora_servicio_fin: hora_servicio_fin,
       num_alumnos: num_alumnos,
+      solicitadoPor: solicitadoPor,
     });
     const servicios_creados = await Servicios_dia.findAll({
       where: {
@@ -396,6 +399,7 @@ const bulk_create_horario = async (req, res) => {
         const cleanedRow = Object.fromEntries(
           Object.entries(row).map(([key, value]) => [cleanKey(key), value])
         );
+        cleanedRow["solicitadoPor"] = req.user.dataValues.id;
         horarios.push(cleanedRow);
       })
       .on("error", function (error) {

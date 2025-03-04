@@ -60,6 +60,15 @@ const Horario = sequelize.define('horario', {
         type: DataTypes.INTEGER,
         defaultValue: 0
     },
+    solicitadoPor:{
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        onDelete: "SET NULL",
+        references: {
+          model: "usuarios",
+          key: "id",
+        },
+      }
 
 }, {
     tableName: 'horario',

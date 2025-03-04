@@ -89,6 +89,15 @@ const Servicios_dia = sequelize.define(
         key: "id",
       },
     },
+    solicitadoPor:{
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      onDelete: "SET NULL",
+      references: {
+        model: "usuarios",
+        key: "id",
+      },
+    }
   },
   {
     // Opciones del modelo
