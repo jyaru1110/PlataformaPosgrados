@@ -198,7 +198,7 @@ export default function NuevoForm(props) {
                             </option>
                             <option value="En línea">En línea</option>
                             <option value="Presencial">Presencial</option>
-                            <option value="Mixta/Blended">Mixta</option>
+                            <option value="Mixta">Mixta</option>
                           </select>
                         </div>
                         <div className="w-full">
