@@ -49,7 +49,7 @@ const procesos_metrics = async (req, res) => {
 const update_proceso = async (req, res) => {
   const id = req.params.id;
   const data = req.body;
-  console.log(data);
+  
   try {
     const proceso = await Proceso.update(data, {
       where: {
@@ -57,6 +57,12 @@ const update_proceso = async (req, res) => {
       },
       returning: true,
     });
+    if (data?.fecha_aprobacion) {
+      await Programa.update(
+        { fecha_rvoe: data.fecha_aprobacion },
+        { where: { programa: proceso[1][0].programaPrograma } }
+      );
+    }
     res
       .status(200)
       .send({ message: "Fechas actualizadas correctamente", proceso: proceso });
