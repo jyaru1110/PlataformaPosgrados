@@ -18,6 +18,8 @@ export default function ProyectoAdmin() {
   const {register, handleSubmit} = useForm();
   const mdRef = useRef(null);
 
+  const [pinned, setPinned] = useState();
+
   const [newFechas, setNewFechas] = useState([]);
   const [changesFechas, setChangesFechas] = useState({})
 
@@ -66,7 +68,6 @@ export default function ProyectoAdmin() {
     data.changesSecciones = changesSecciones;
     data.changesEnlaces = changesEnlaces;
 
-    console.log(changesEnlaces);
 
     if (file){
       const formData = new FormData();
@@ -168,6 +169,12 @@ export default function ProyectoAdmin() {
     })
   }
 
+  useEffect(()=>{
+    if (proyecto){
+      setPinned(proyecto.pinned);
+    }
+  },[proyecto])
+
   if (error) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
@@ -251,7 +258,23 @@ export default function ProyectoAdmin() {
             </div>
           </label>
             <div className="p-10">
-              <input {...register("nombre",{required:true})} className="mb-5 font-timesnr text-5xl border-b border-b-transparent hover:border-b-emerald-700 w-full" type="text" placeholder="Titulo del proyecto" defaultValue={proyecto.nombre}/>
+              <div className="flex space-x-5 items-center mb-5">
+                <label htmlFor="pinned" className="relative mb-2">
+                  {
+                    pinned ?
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22 10.1C22.1 9.6 21.7 9 21.2 9L15.5 8.2L12.9 3C12.8 2.8 12.7 2.7 12.5 2.6C12 2.3 11.4 2.5 11.1 3L8.6 8.2L2.9 9C2.6 9 2.4 9.1 2.3 9.3C1.9 9.7 1.9 10.3 2.3 10.7L6.4 14.7L5.4 20.4C5.4 20.6 5.4 20.8 5.5 21C5.8 21.5 6.4 21.7 6.9 21.4L12 18.7L17.1 21.4C17.2 21.5 17.4 21.5 17.6 21.5C17.7 21.5 17.7 21.5 17.8 21.5C18.3 21.4 18.7 20.9 18.6 20.3L17.6 14.6L21.7 10.6C21.9 10.5 22 10.3 22 10.1Z" fill="#B9975B"/>
+                    </svg> :
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.9189 10.1265C21.9992 9.5797 21.621 9.0714 21.0742 8.99114L15.4228 8.16497L12.8975 3.01848C12.8065 2.8615 12.676 2.73113 12.5189 2.64037C12.0229 2.35369 11.3883 2.52336 11.1016 3.01946L8.57715 8.16497L2.92578 8.9912C2.70971 9.02288 2.51001 9.12444 2.35699 9.28026C1.96985 9.67461 1.97577 10.3082 2.37011 10.6953L6.46289 14.708L5.49707 20.3721C5.48791 20.4263 5.48321 20.4811 5.48309 20.5362C5.48157 21.0896 5.92895 21.5395 6.48242 21.541C6.64557 21.5408 6.80621 21.5005 6.95019 21.4238L12 18.7539L17.0488 21.4228C17.244 21.5264 17.4678 21.5625 17.6856 21.5254C18.2298 21.4325 18.5957 20.9162 18.5029 20.3721L17.5371 14.708L21.6309 10.6943C21.7861 10.5414 21.8873 10.3421 21.9189 10.1265ZM16.6504 14.1767C16.5333 14.2916 16.4797 14.4563 16.5068 14.6181L17.5166 20.539L12.2334 17.746C12.0871 17.6698 11.9129 17.6698 11.7666 17.746L6.4834 20.54L7.4931 14.6182C7.52026 14.4564 7.46667 14.2916 7.34955 14.1767L3.07025 9.98143L8.98236 9.11718C9.14563 9.09276 9.2865 8.98986 9.35937 8.84178L12 3.46001L14.6406 8.84172C14.7134 8.9898 14.8544 9.0927 15.0176 9.11711L20.9307 9.9804L16.6504 14.1767Z" fill="#B9975B"/>
+                    </svg>
+                  }
+                  
+                </label> 
+                <input id="pinned" type="checkbox" {...register("pinned")} className="opacity-0 absolute top-0 left-0" onChange={(e)=>{setPinned(e.target.checked)}} defaultChecked={proyecto.pinned}></input>
+                <input {...register("nombre",{required:true})} className="font-timesnr text-5xl border-b border-b-transparent hover:border-b-emerald-700 w-full" type="text" placeholder="Titulo del proyecto" defaultValue={proyecto.nombre}/>
+              </div>
+
               <label htmlFor="categoria" className="ml-1 font-medium">Categoría:</label>
               <select  id="categoria" {...register("categoria")} className="font-light w-full border p-4 rounded-lg" defaultValue={proyecto.categoria||""}>
                 <option value="promocion">Promoción</option>

@@ -3,7 +3,7 @@ const Proyecto = require("../models/Proyecto");
 const Seccion = require("../models/Seccion");
 const Link = require("../models/Link");
 
-const { Op, where } = require("sequelize");
+const { Op } = require("sequelize");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -38,6 +38,7 @@ const get_proyectos = async (req, res) => {
           [Op.not]:"promocion",
         }
       },
+      order: [["pinned", "DESC"]],
     });
     return res.status(200).send(proyectos);
   } catch (e) {

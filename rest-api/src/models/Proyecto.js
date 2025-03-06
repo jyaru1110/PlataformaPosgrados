@@ -18,6 +18,10 @@ const Proyecto = sequelize.define("proyecto", {
   categoria:{
     type: DataTypes.TEXT,
   },
+  pinned:{
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  }
 });
 
 module.exports = Proyecto
