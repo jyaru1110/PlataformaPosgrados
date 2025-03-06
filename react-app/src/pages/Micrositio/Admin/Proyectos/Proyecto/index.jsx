@@ -1,4 +1,3 @@
-
 import Header from "../../components/Header";
 import Main from "../../../components/Main";
 import { Link, useParams } from "react-router-dom";
@@ -253,7 +252,15 @@ export default function ProyectoAdmin() {
           </label>
             <div className="p-10">
               <input {...register("nombre",{required:true})} className="font-timesnr text-5xl border-b border-b-transparent hover:border-b-emerald-700 w-full" type="text" placeholder="Titulo del proyecto" defaultValue={proyecto.nombre}/>
-              <div className="bg-secondary h-[1px] my-8"></div>
+              {
+                proyecto?.categoria &&
+                <div className="mt-5">
+                  <span className="font-light text-white bg-secondary py-0.5 px-3 rounded-xl ">
+                    {proyecto.categoria}
+                  </span>
+                </div>
+              }
+              <div className="bg-secondary h-[1px] mb-8 mt-4"></div>
               <textarea defaultValue={proyecto.descripcion} {...register("descripcion")} className="font-light w-full border p-4 rounded-lg" placeholder="Escribe la descripción del proyecto"></textarea>
               <MDXEditor
                 markdown={proyecto?.caracteristicas}
