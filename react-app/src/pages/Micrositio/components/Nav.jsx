@@ -4,7 +4,7 @@ import AdminNavLink from "./AdminNavLink";
 
 export default function Nav() {
   return (
-    <div className="h-screen w-1/6 p-4 flex text-white flex-col items-center bg-primary font-timesnr space-y-2.5">
+    <div className="h-screen w-[249px] p-4 flex text-white flex-col items-center bg-primary font-timesnr space-y-2.5">
       <img className="w-20 mb-20 mt-5" src={LogoPosgrados}></img>
       <NavLink className={({ isActive, isPending }) =>{
         return `w-full flex text-xl items-center space-x-4 rounded-3xl pl-5 py-2 ${isActive && 'bg-secondary'}`

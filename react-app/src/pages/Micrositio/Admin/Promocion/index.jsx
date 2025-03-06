@@ -11,7 +11,7 @@ export default function PromocionAdmin(){
     const {loading, proyectos} = usePromocionProyectos();
     const {secciones} = useSeccionesPromocion();
     return(
-        <div className="w-5/6 h-screen flex flex-col relative">    
+        <div className="w-full min-w-[1117px] h-screen flex flex-col relative">    
             <Header title="Promoción"></Header>
             <Main>
             <div className="w-full flex gap-5">

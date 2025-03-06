@@ -11,7 +11,7 @@ export default function Promocion() {
   const {secciones} = useSeccionesPromocion(); 
 
   return (
-    <div className="w-5/6 flex flex-col relative h-screen">
+    <div className="w-full min-w-[1117px] flex flex-col relative h-screen">
       <Header></Header>
       <Main>
         <div className="w-full flex gap-5">

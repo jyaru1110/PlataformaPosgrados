@@ -98,7 +98,7 @@ export default function Personas() {
   }, [personas, filteredEscuelas, filteredPuestos, filteredPuestosPrograma]);
 
   return (
-    <div className="w-5/6 flex flex-col relative h-screen">
+    <div className="w-full min-w-[1117px] flex flex-col relative h-screen">
       <Header title="Directorio">
         <Link
           to="/micrositio/admin/personas/new"

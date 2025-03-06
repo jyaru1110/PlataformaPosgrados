@@ -19,7 +19,7 @@ export default function ProyectosAdmin() {
   }
 
   return (
-    <div className="w-5/6 flex flex-col relative h-screen">
+    <div className="w-full w-min-[1117px] flex flex-col relative h-screen">
       <Header title="Proyectos">
         <Link
           to="/micrositio/admin/proyectos/new"
