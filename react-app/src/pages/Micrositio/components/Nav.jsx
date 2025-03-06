@@ -42,10 +42,9 @@ export default function Nav() {
       </NavLink> 
       <NavLink className={({ isActive, isPending }) =>{
         return `w-full flex text-xl items-center space-x-4 rounded-3xl pl-5 py-2 ${isActive && 'bg-secondary'}`
-      }} to="/micrositio/admin/dashboard">
+      }} to="/micrositio/dashboard">
        <svg fill="white" height="30" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g><g><path d="m59.53 37.31c-.72 3.72-2.18 7.22-4.33 10.36l-9.72-9.72c.1-.21.19-.43.27-.64zm3.27-2.87h-19.16c-.31 1.45-.9 2.81-1.69 4.01l13.53 13.53c4.12-4.79 6.78-10.87 7.32-17.54z"/></g><g><path d="m26.69 4.48v13.77c-5.54 2.18-9.35 7.61-9.35 13.7 0 8.11 6.6 14.71 14.71 14.71 1.99 0 3.96-.41 5.78-1.19l9.75 9.75c-4.58 3.06-9.99 4.72-15.53 4.72-15.44 0-27.99-12.56-27.99-27.99 0-13.43 9.72-24.94 22.63-27.47m2.87-3.28c-15.85 1.28-28.36 14.57-28.36 30.74 0 17.01 13.84 30.85 30.85 30.85 7.57 0 14.51-2.74 19.88-7.28l-13.56-13.55c-1.83 1.16-4 1.84-6.32 1.84-6.54 0-11.85-5.32-11.85-11.85 0-5.68 4.02-10.43 9.35-11.58v-19.17z"/></g><g><path d="m37.42 4.48c5.42 1.06 10.46 3.73 14.42 7.69s6.63 8.99 7.69 14.42h-13.78c-1.49-3.81-4.53-6.84-8.34-8.34v-13.77m-2.85-3.28v19.16c4.53.98 8.11 4.55 9.08 9.08h19.16c-1.21-15.02-13.22-27.03-28.24-28.24z"/></g></g></svg> 
         <p className="text-xl">Dashboard</p>
-        <AdminNavLink section="dashboard"/>
       </NavLink>
       <NavLink className={({ isActive, isPending }) =>{
         return `w-full flex text-xl items-center space-x-4 rounded-3xl pl-5 py-2 ${isActive && 'bg-secondary'}`

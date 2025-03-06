@@ -109,6 +109,7 @@ const router = createBrowserRouter([
       { path: "proyectos", element: <Proyectos/> },
       { path: "proyectos/:id", element: <Proyecto/> },
       { path: "promocion", element: <Promocion/> },
+      { path: "dashboard/", element: <DashboardProgramas />},
       {
         path: "admin",
         children: [
@@ -145,10 +146,6 @@ const router = createBrowserRouter([
           {
             path: "personas/:id",
             element: <Persona />,
-          },
-          {
-            path: "dashboard/",
-            element: <DashboardProgramas />,
           },
           {
             path: "promocion/",
