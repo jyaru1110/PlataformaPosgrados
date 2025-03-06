@@ -358,6 +358,7 @@ const update_horario = async (req, res) => {
       hora_servicio_fin: hora_servicio_fin,
       no_clase: no_clase,
       num_alumnos: num_alumnos,
+      num_alumnos_actual: servicio.dataValues.num_servicios,
       id_usuario: req.user.dataValues.id,
       estado: "En proceso",
     });
