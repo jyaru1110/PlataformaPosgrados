@@ -5,6 +5,7 @@ const Link = require("../models/Link");
 
 const { Op } = require("sequelize");
 const multer = require("multer");
+const ProyectosPinneados = require("../models/ProyectosPinneados");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -86,6 +87,14 @@ const get_proyecto = async (req, res) => {
             },
           ],
         },
+        {
+          model: ProyectosPinneados,
+          attributes: ["id"],
+          where: {
+            usuarioId: req.user.dataValues.id,
+          },
+          required: false,
+        }
       ],
     });
     if (!proyecto) {
@@ -93,7 +102,7 @@ const get_proyecto = async (req, res) => {
     }
     return res.status(200).send(proyecto);
   } catch (e) {
-    console.log(e.parent.message);
+    console.log(e);
     return res.status(500).send({ message: e.parent.message });
   }
 };
@@ -107,9 +116,8 @@ const upload_photo = async (req, res) => {
       return res.status(400).send({ message: "No se ha subido una imagen" });
     }
 
-    body.foto = file.filename;
     try {
-      await Proyecto.update(body, {
+      await Proyecto.update({foto:file.filename}, {
         where: {
           id: id,
         },
@@ -117,7 +125,7 @@ const upload_photo = async (req, res) => {
       return res.status(200);
     } catch (e) {
       console.log(e);
-      return res.status(500).send({ message: e.parent.detail });
+      return res.status(500).send({ message: e });
     }
   });
 };
@@ -176,7 +184,7 @@ const update_proyecto = async (req, res) => {
     return res.status(200).send();
   } catch (e) {
     console.log(e);
-    return res.status(500).send({ message: e.parent.detail });
+    return res.status(500).send({ message: e});
   }
 };
 
@@ -269,6 +277,46 @@ const get_secciones_promocion = async (req, res) => {
   }
 }
 
+const pin_proyecto = async (req,res) => {
+  const { id } = req.params;
+  var action = ""
+  var id_proyecto_pinneado = null;
+  try {
+    const pin = await ProyectosPinneados.findOne({
+      where: {
+        usuarioId: req.user.dataValues.id,
+        proyectoId: id,
+      },
+    });
+
+    if (pin) {
+      action = "delete";
+      id_proyecto_pinneado = pin.id;
+      const deleted = await ProyectosPinneados.destroy({
+        where: {
+          usuarioId: req.user.dataValues.id,
+          proyectoId: id,
+        },
+      });
+    } else {
+      action = "create";
+      const created =
+
+      await ProyectosPinneados.create({
+        usuarioId: req.user.dataValues.id,
+        proyectoId: id,
+      });
+
+      id_proyecto_pinneado = created.id;
+    }
+
+    return res.status(200).send({action,id_proyecto_pinneado});
+  } catch (e) {
+    console.log(e);
+    return res.status(500);
+  }
+}
+
 module.exports = {
   get_proyectos,
   create_proyecto,
@@ -279,5 +327,6 @@ module.exports = {
   delete_link,
   delete_seccion,
   get_proyectos_promocion,
-  get_secciones_promocion
+  get_secciones_promocion,
+  pin_proyecto
 };
