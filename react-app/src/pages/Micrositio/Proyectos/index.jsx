@@ -15,9 +15,10 @@ export default function Proyectos() {
         <Buscador setQuery={setQuery} />
         <div className="grid grid-cols-2 mt-8 gap-4">
             {
-              proyectos.map((proyecto)=>{
+              !loading && proyectos?.map((proyecto)=>{
                 return <CardProyecto key={proyecto.id} proyecto={proyecto}></CardProyecto>
               })
+              
             }
         </div>
       </Main>

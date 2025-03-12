@@ -20,7 +20,7 @@ export default function CardProyecto({ proyecto }) {
                 Abrir
             </Link>
         </div>
-        <div className="w-1/3 bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover" style={{backgroundImage:"url("+domainImage+proyecto.foto+")"}}></div>
+        <div style={{backgroundImage:`url("${domainImage}${proyecto.foto}")`}} className="w-1/3 bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover"></div>
     </div>
   );
 }

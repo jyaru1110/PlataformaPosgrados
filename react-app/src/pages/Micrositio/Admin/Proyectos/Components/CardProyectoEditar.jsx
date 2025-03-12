@@ -27,7 +27,7 @@ export default function CardProyectoEditar({ proyecto }) {
                Editar 
             </Link>
         </div>
-        <div className="w-1/3 bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover" style={{backgroundImage:"url("+domainImage+proyecto.foto+")"}}></div>
+        <div className="w-1/3 bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover" style={{backgroundImage:`url("${domainImage}${proyecto.foto}")`}}></div>
     </div>
   );
 }
