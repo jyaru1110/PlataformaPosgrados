@@ -122,7 +122,7 @@ const upload_photo = async (req, res) => {
           id: id,
         },
       });
-      return res.status(200);
+      return res.status(200).send({ message: "Foto subida correctamente" });
     } catch (e) {
       console.log(e);
       return res.status(500).send({ message: e });
