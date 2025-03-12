@@ -66,5 +66,5 @@ export const useProyecto = (id) => {
         return () => controller.abort()
     },[id])
 
-    return {loading, proyecto, error}
+    return {loading, proyecto, error, setProyecto}
 }

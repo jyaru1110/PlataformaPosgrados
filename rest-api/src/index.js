@@ -26,6 +26,7 @@ const Proyecto = require("./models/Proyecto");
 const FechaProyecto = require("./models/FechaProyecto")
 const Seccion = require("./models/Seccion");
 const Link = require("./models/Link");
+const ProyectosPinneados = require("./models/ProyectosPinneados");
 
 var port = process.env.PORT || 3900;
 
@@ -136,10 +137,15 @@ Seccion.belongsTo(Proyecto);
 Seccion.hasMany(Link);
 Link.belongsTo(Seccion);
 
+//Proyectos y usuarios
+ProyectosPinneados.belongsTo(Usuario);
+ProyectosPinneados.belongsTo(Proyecto);
+Proyecto.hasMany(ProyectosPinneados);
+
 //inicio de la aplicacion
 async function init() {
   try {
-    //await sequelize.sync({ alter: true });
+//    await sequelize.sync({ alter: true });
     await sequelize.authenticate();
     console.log("Conexión a la base de datos establecida correctamente.");
     console.log("All models were synchronized successfully.");

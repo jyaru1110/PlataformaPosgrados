@@ -72,7 +72,7 @@ export default function ProyectoAdmin() {
     if (file){
       const formData = new FormData();
       formData.append("file", file);
-      axios.put(import.meta.env.VITE_URL_API+"/proyecto/"+id,formData,{withCredentials:true, headers: { 'Content-Type': 'multipart/form-data' }})
+      axios.post(import.meta.env.VITE_URL_API+"/proyecto/foto/"+id,formData,{withCredentials:true, headers: { 'Content-Type': 'multipart/form-data' }})
       .then((res)=>{
         toast.success("Foto actualizada correctamente");
       })
