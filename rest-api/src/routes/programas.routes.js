@@ -57,7 +57,7 @@ router.get("/metasporperiodo", isUserAuthenticated, get_metas_por_periodo);
 router.get("/metas/:periodo", isUserAuthenticated, get_metas_periodo);
 router.get("/escuelas/numberofpersonas", isUserAuthenticated, get_number_of_personas_by_escuela);
 
-router.get("/contacts", get_contacts)
+router.get("/contacts", isUserAuthenticated, get_contacts)
 
 router.put("/programas/periodos", isUserAuthenticated, update_bulk_periodo_programa);
 

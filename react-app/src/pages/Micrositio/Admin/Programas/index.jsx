@@ -11,6 +11,10 @@ import useSearchKey from "../../../../hooks/useSearchKey";
 import { escuelas, sedes } from "../../constantes";
 import { CSVLink } from "react-csv";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import { key } from "localforage";
+
+const url_backend = import.meta.env.VITE_URL_API;
 
 const headers = [
   "E/F",
@@ -29,6 +33,19 @@ const headers = [
   "fecha",
 ];
 
+const headersHubspot = [
+  {label: "createdAt", key: "createdAt"},
+  {label: "updatedAt", key: "updatedAt"},
+  {label:"archivado", key:"archived"},
+  {label:"ciclo", key:"properties.ciclo"},
+  {label:"createdate", key:"properties.createdate"},
+  {label:"email", key:"properties.email"},
+  {label:"firstname", key:"properties.firstname"},
+  {label:"lastmodifieddate", key:"properties.lastmodifieddate"},
+  {label:"lastname", key:"properties.lastname"},
+  {label:"posgrado_interes", key:"properties.posgrado_de_interes_2021"},
+  {label:"status", key:"properties.status_up"},
+]
 
 export default function ProgramasAdmin() {
   const [query, setQuery] = useState("");
@@ -69,8 +86,22 @@ export default function ProgramasAdmin() {
     {
       csvLinkRef.current.link.click();
     }
-  }, []);
+  }, [dataHubspot]);
+        
 
+  const getDataHubspot = async () => {
+      const response = await toast.promise(
+        axios.get(`${url_backend}/contacts`,{withCredentials: true}),
+        {
+          pending: "Descargando reporte",
+          success: "Reporte descargado",
+          error: "Error al descargar reporte"
+        }
+      );
+
+      if (response.status !== 200) return;
+      setDataHubspot(response.data);
+  }
 
   return (
     <div className="w-full w-min-[1117px] flex flex-col relative h-screen">
@@ -92,7 +123,13 @@ export default function ProgramasAdmin() {
         <Filter title={"Grado"} filtered={filteredGrado} setFiltered={setFilteredGrado} options={["Maestría", "Doctorado","Especialidad","Diplomado","Curso"]}/>
         <Filter title={"Tipo"} filtered={filteredTipo} setFiltered={setFilteredTipo} options={["Investigación","Profesionalizante","Directiva"]}/>
         <Filter title={"Modalidad"} filtered={filteredModalidad} setFiltered={setFilteredModalidad} options={["Blended / Mixta","Mixta","Presencial"]}/>
-        <button className="bg-primary text-white/90 px-3 rounded-lg flex items-center space-x-3 py-2">
+      </Header>
+      <Main>
+        <article className="flex w-full justify-between mb-6">
+          <TablaPosgradosTotal escuelas={filteredEscuelas.length>0?filteredEscuelas:escuelas} />
+          <TablaPosgradosTipo escuelas={filteredEscuelas.length>0?filteredEscuelas:escuelas} />
+        </article>
+        <button onClick={getDataHubspot}  className="bg-primary text-white/90 px-3 rounded-lg flex items-center space-x-3 py-2 my-4 justify-self-end">
         <svg
             className="opacity-90"
             width="20"
@@ -109,18 +146,12 @@ export default function ProgramasAdmin() {
           <span className="font-normal">Reporte hubspot</span>
         </button>
         <CSVLink
-          data={programas}
-          headers={headers}
-          filename={"programas.csv"}
+          data={dataHubspot}
+          filename={"reporte_hubspot.csv"}
+          headers={headersHubspot}
           ref={csvLinkRef}
           className="hidden"
         />
-      </Header>
-      <Main>
-        <article className="flex w-full justify-between mb-6">
-          <TablaPosgradosTotal escuelas={filteredEscuelas.length>0?filteredEscuelas:escuelas} />
-          <TablaPosgradosTipo escuelas={filteredEscuelas.length>0?filteredEscuelas:escuelas} />
-        </article>
         <Table headers={headers} loading={loading}>
         {programas.filter(filterProgramas).map((programa, index) => 
             <tr

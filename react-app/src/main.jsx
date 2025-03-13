@@ -33,6 +33,7 @@ import ProyectosAdmin from "./pages/Micrositio/Admin/Proyectos";
 import NewProyecto from "./pages/Micrositio/Admin/Proyectos/New";
 import ProyectoAdmin from "./pages/Micrositio/Admin/Proyectos/Proyecto";
 import PromocionAdmin from "./pages/Micrositio/Admin/Promocion";
+import Launchpad from "./pages/Micrositio/Launchpad/Launchpad";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -103,7 +104,7 @@ const router = createBrowserRouter([
     path: "micrositio",
     element: <Micrositio />,
     children: [
-      { index: true, element: <Navigate to="programas" replace /> },
+      {path: "", element: <Launchpad />},
       { path: "programas", element: <Programas/> },
       { path: "directorio", element: <Directorio/> },
       { path: "proyectos", element: <Proyectos/> },
