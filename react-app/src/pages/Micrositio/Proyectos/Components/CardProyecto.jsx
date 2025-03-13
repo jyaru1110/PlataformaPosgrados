@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const domainImage = import.meta.env.VITE_IMAGE_DOMAIN;
 export default function CardProyecto({ proyecto }) {
   return (
-    <div className="flex bg-white shadow-header w-full min-h-[288px] justify-between rounded-md">
+    <div className="flex bg-white shadow-header w-[600px] min-h-[280px] justify-between rounded-md">
         <div className="flex flex-col h-full justify-between p-5 w-2/3">
               <div className="flex items-center justify-between w-full">
                 <p className="font-timesnr text-4xl">{proyecto.nombre}</p>
