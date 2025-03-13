@@ -22,6 +22,16 @@ const get_proyectos = async (req, res) => {
   const { query } = req.query;
   try {
     const proyectos = await Proyecto.findAll({
+      include: [
+        {
+          model: ProyectosPinneados,
+          attributes: ["id"],
+          where: {
+            usuarioId: req.user.dataValues.id,
+          },
+          required: false,
+        }
+      ],
       where: {
         [Op.or]: [
           {
@@ -39,7 +49,7 @@ const get_proyectos = async (req, res) => {
           [Op.not]:"promocion",
         }
       },
-      order: [["pinned", "DESC"]],
+      order: [["pinned", "DESC"],["proyectos_pinneados", "id", "ASC"]],
     });
     return res.status(200).send(proyectos);
   } catch (e) {
