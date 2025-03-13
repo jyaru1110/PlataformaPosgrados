@@ -31,7 +31,7 @@ export default function PromocionAdmin(){
               <div className="space-y-8 bg-white p-4 rounded-md mb-8">              {
                 secciones?.map((seccion)=>{
                   return (
-                    <div key={seccion.id} className="">
+                    <div key={seccion.id}>
                         <h4 className="border-b border-secondary font-timesnr text-secondary text-xl mb-3">{seccion.titulo}</h4>
                         {seccion.links?.map((link)=>{
                           return(

@@ -1,17 +1,16 @@
 import { NavLink } from "react-router-dom";
 export default function AdminNavLink({ section }) {
   return (
-    <span className="w-1/2 h-full items-center flex justify-end pr-3 ">
       <NavLink
         className={({ isActive }) => {
-          return `${isActive && "bg-secondary"} rounded-xl flex items-center px-2 h-full`;
+          return `${isActive && "bg-secondary"} rounded-xl flex items-center px-3 h-full`;
         }}
         to={`/micrositio/admin/${section}`}
       >
         <svg
           viewBox="0 0 682.66669 682.66669"
           xmlns="http://www.w3.org/2000/svg"
-          height="25"
+          height="23"
         >
           <defs>
             <clipPath clipPathUnits="userSpaceOnUse">
@@ -58,6 +57,5 @@ export default function AdminNavLink({ section }) {
           </g>
         </svg>
       </NavLink>
-    </span>
   );
 }

@@ -9,7 +9,6 @@ export default function Launchpad() {
 
     return (
     <div className="w-full min-w-[1117px] flex flex-col relative h-screen">
-      <Header></Header>
       <Main>
         <div className="flex mx-auto justify-center space-x-3 mb-8">
           <div className="bg-white p-5 rounded-md flex items-center space-x-4">

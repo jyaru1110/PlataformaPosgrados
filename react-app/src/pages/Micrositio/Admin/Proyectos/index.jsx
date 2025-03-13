@@ -35,7 +35,7 @@ export default function ProyectosAdmin() {
         ></input>
       </Header>
       <Main>
-        <div className="grid grid-cols-2 mt-8 gap-4">
+        <div className="grid grid-cols-2 mt-8 gap-4 w-full">
             {
                 proyectos.map((proyecto)=>{
                     return <CardProyectoEditar key={proyecto.id} proyecto={proyecto}></CardProyectoEditar>

@@ -31,7 +31,7 @@ export default function NewProyecto() {
 
     };
   return (
-    <div className="w-5/6 flex flex-col relative h-screen">
+    <div className="w-full min-w-[1117px] flex flex-col relative h-screen">
       <Header title="Nuevo proyecto">
         <button
             type="submit"

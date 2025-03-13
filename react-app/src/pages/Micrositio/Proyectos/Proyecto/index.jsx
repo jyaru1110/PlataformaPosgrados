@@ -53,7 +53,7 @@ export default function Proyecto() {
   }
 
   return (
-    <div className="w-5/6 flex flex-col relative h-screen">
+    <div className="w-full min-w-[1117px] flex flex-col relative h-screen">
       <Header></Header>
       <Main>
         <Link

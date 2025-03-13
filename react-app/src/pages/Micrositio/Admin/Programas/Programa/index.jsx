@@ -366,7 +366,7 @@ export default function Programa() {
   }, [programaData]);
 
   return (
-    <div className="w-5/6 flex flex-col relative h-screen">
+    <div className="w-full min-w-[1117px] flex flex-col relative h-screen">
       {error ? (
         <Error err={error} />
       ) : (

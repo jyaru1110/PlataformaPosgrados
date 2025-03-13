@@ -32,7 +32,7 @@ export default function NewPersona() {
   };
 
   return (
-    <div className="w-full flex flex-col relative h-screen">
+    <div className="w-full min-w-[1117px]flex flex-col relative h-screen">
       <Header title="Nueva persona">
         <button
           onClick={() => {
