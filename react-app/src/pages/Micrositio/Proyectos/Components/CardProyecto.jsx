@@ -24,7 +24,7 @@ export default function CardProyecto({ proyecto }) {
                 Abrir
             </Link>
         </div>
-        <div style={{backgroundImage:`url("${domainImage}${proyecto.foto}")`}} className="w-[250px] bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover"></div>
+        <div style={{backgroundImage:`url("${domainImage}${proyecto.foto}")`}} className="w-[250px] min-w-[250px] bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover"></div>
     </div>
   );
 }

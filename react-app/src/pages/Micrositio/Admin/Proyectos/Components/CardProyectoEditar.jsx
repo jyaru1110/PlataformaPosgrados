@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 const domainImage = import.meta.env.VITE_IMAGE_DOMAIN;
 export default function CardProyectoEditar({ proyecto }) {
   return (
-    <div className="flex bg-white shadow-header w-full h-72 justify-between rounded-md">
-        <div className="flex flex-col h-full justify-between p-5 w-full">
+    <div className="flex bg-white shadow-header w-[600px] min-h-[280px] justify-between rounded-md">
+        <div className="flex flex-col h-full justify-between p-5 flex-1">
             <div className="w-full">
               <div className="flex items-center justify-between w-full">
                 <p className="font-timesnr text-4xl">{proyecto.nombre}</p>
@@ -27,7 +27,7 @@ export default function CardProyectoEditar({ proyecto }) {
                Editar 
             </Link>
         </div>
-        <div className="w-1/3 bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover" style={{backgroundImage:`url("${domainImage}${proyecto.foto}")`}}></div>
+        <div className="w-[250px] bg-origin-border rounded-tr-md rounded-br-md bg-center bg-no-repeat bg-cover" style={{backgroundImage:`url("${domainImage}${proyecto.foto}")`}}></div>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function ProyectosAdmin() {
   }
 
   return (
-    <div className="w-full w-min-[1117px] flex flex-col relative h-screen">
+    <div className="w-full min-w-[1300px] flex flex-col relative h-screen">
       <Header title="Proyectos">
         <Link
           to="/micrositio/admin/proyectos/new"
@@ -35,13 +35,15 @@ export default function ProyectosAdmin() {
         ></input>
       </Header>
       <Main>
-        <div className="grid grid-cols-2 mt-8 gap-4 w-full">
+      <div className="w-full">
+      <div className="w-[1216px] m-auto grid grid-cols-2 mt-8 gap-4">
             {
                 proyectos.map((proyecto)=>{
                     return <CardProyectoEditar key={proyecto.id} proyecto={proyecto}></CardProyectoEditar>
                 })
             }
         </div>
+      </div>
       </Main>
     </div>
   );
